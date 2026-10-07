@@ -187,10 +187,6 @@ ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(la
           <div><dt>E:</dt><dd><a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a></dd></div>
           <div><dt>${t.hoursKey}</dt><dd>${t.hours}</dd></div>
         </dl>
-      </div>
-      <div>
-        <span class="label">${t.careers}</span>
-        <p>${t.careersText}</p>
         <a class="footer__careers ulink" href="mailto:${CAREERS}?subject=Portfolio">${t.careersCta}: ${CAREERS} →</a>
       </div>
       <img class="footer__mark" src="${up}assets/mark.svg" width="56" height="56" alt="">

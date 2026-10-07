@@ -111,8 +111,6 @@ export const PAIRS = [
   ['<dt>A:</dt>', '<dt>D:</dt>'],
   ['Monday to Friday, 8:00 to 17:00', 'Lunes a viernes, 8:00 a 17:00'],
   ['Back to top ↑', 'Volver arriba ↑'],
-  ['(Careers)', '(Empleo)'],
-  ['Architects, interior designers and students who want to work with us: send a portfolio.', 'Arquitectos, diseñadores de interiores y estudiantes que quieran trabajar con nosotros: envíen su portafolio.'],
   ['>Work with us: careers@cava.design →</a>', '>Trabaje con nosotros: careers@cava.design →</a>'],
 
   // ---------- enquiry ----------

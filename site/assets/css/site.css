@@ -273,7 +273,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .footer__info { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 2.5rem; }
 .footer__info .label { display: block; margin-bottom: 1rem; }
 .footer__info p { max-width: 36ch; }
-.footer__careers { display: inline-block; margin-top: 0.6rem; font-weight: var(--w-strong); }
+.footer__careers { display: inline-block; margin-top: 0.9rem; }
 .info div { display: flex; gap: 0.3rem; }
 .info dt { font-weight: var(--w-strong); }
 .footer__mark { width: 3.5rem; height: 3.5rem; }
