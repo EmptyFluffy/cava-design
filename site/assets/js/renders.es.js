@@ -3,216 +3,252 @@ window.CAVA_RENDERS = [
  {
   "id": "portland-house-1",
   "src": "../assets/img/projects/portland-house/1",
+  "v": "49e63442",
   "title": "Portland House",
   "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía"
  },
  {
   "id": "portland-house-2",
   "src": "../assets/img/projects/portland-house/2",
+  "v": "6c1dab1b",
   "title": "Portland House",
   "alt": "Casa de dos pisos con piscina infinita sobre una base de concreto, encima del bosque seco"
  },
  {
   "id": "portland-house-3",
   "src": "../assets/img/projects/portland-house/3",
+  "v": "c4fa6d01",
   "title": "Portland House",
   "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo"
  },
  {
   "id": "papagayo-404-1",
   "src": "../assets/img/projects/papagayo-404/1",
+  "v": "4d2d9d59",
   "title": "Papagayo 404",
   "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa"
  },
  {
   "id": "papagayo-404-2",
   "src": "../assets/img/projects/papagayo-404/2",
+  "v": "67c9f923",
   "title": "Papagayo 404",
   "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito"
  },
  {
   "id": "papagayo-404-3",
   "src": "../assets/img/projects/papagayo-404/3",
+  "v": "63a72a6d",
   "title": "Papagayo 404",
   "alt": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo"
  },
  {
   "id": "papagayo-404-4",
   "src": "../assets/img/projects/papagayo-404/4",
+  "v": "ba6a3662",
   "title": "Papagayo 404",
   "alt": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía"
  },
  {
   "id": "papagayo-404-5",
   "src": "../assets/img/projects/papagayo-404/5",
+  "v": "1e2cac83",
   "title": "Papagayo 404",
   "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco"
  },
  {
   "id": "papagayo-404-6",
   "src": "../assets/img/projects/papagayo-404/6",
+  "v": "6e0b5e06",
   "title": "Papagayo 404",
   "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo"
  },
  {
   "id": "papagayo-404-7",
   "src": "../assets/img/projects/papagayo-404/7",
+  "v": "5252a1a7",
   "title": "Papagayo 404",
   "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
  },
  {
   "id": "papagayo-404-8",
   "src": "../assets/img/projects/papagayo-404/8",
+  "v": "f432f563",
   "title": "Papagayo 404",
   "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
  },
  {
   "id": "papagayo-404-9",
   "src": "../assets/img/projects/papagayo-404/9",
+  "v": "a4122b91",
   "title": "Papagayo 404",
   "alt": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
  },
  {
   "id": "casa-alcaravan-1",
   "src": "../assets/img/projects/casa-alcaravan/1",
+  "v": "f1416d50",
   "title": "Casa Alcaraván",
   "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "../assets/img/projects/casa-alcaravan/2",
+  "v": "2d40f94a",
   "title": "Casa Alcaraván",
   "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "../assets/img/projects/casa-alcaravan/3",
+  "v": "650104d9",
   "title": "Casa Alcaraván",
   "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "../assets/img/projects/casa-alcaravan/4",
+  "v": "4c71c01e",
   "title": "Casa Alcaraván",
   "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "../assets/img/projects/casa-alcaravan/5",
+  "v": "d697e61f",
   "title": "Casa Alcaraván",
   "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
  },
  {
   "id": "hangars-b-1",
   "src": "../assets/img/projects/hangars-b/1",
+  "v": "e401786e",
   "title": "Hangars B",
   "alt": "Edificio de hangares de dos pisos marcado 01, con un techo profundo sobre naves abiertas"
  },
  {
   "id": "hangars-b-2",
   "src": "../assets/img/projects/hangars-b/2",
+  "v": "1bc15c57",
   "title": "Hangars B",
   "alt": "Fachada de celosía oscura perforada con una escalera exterior bajo un techo que parece flotar"
  },
  {
   "id": "tragaluz-retreat-1",
   "src": "../assets/img/projects/tragaluz-retreat/1",
+  "v": "85b0992f",
   "title": "Tragaluz Retreat",
   "alt": "Pabellón con deck de madera y un espejo de agua entre árboles al atardecer"
  },
  {
   "id": "tragaluz-retreat-2",
   "src": "../assets/img/projects/tragaluz-retreat/2",
+  "v": "d0a89ee2",
   "title": "Tragaluz Retreat",
   "alt": "Pasarela de madera hacia un pabellón con un muro de celosía perforada y una piscina"
  },
  {
   "id": "tragaluz-retreat-3",
   "src": "../assets/img/projects/tragaluz-retreat/3",
+  "v": "b0bd601c",
   "title": "Tragaluz Retreat",
   "alt": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio"
  },
  {
   "id": "kauhane-house-1",
   "src": "../assets/img/projects/kauhane-house/1",
+  "v": "42444a64",
   "title": "Kauhane House",
   "alt": "Casa de dos pisos con un muro de piedra, un balcón de vidrio y una piscina entre árboles"
  },
  {
   "id": "kauhane-house-2",
   "src": "../assets/img/projects/kauhane-house/2",
+  "v": "c1a6338b",
   "title": "Kauhane House",
   "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical"
  },
  {
   "id": "kauhane-house-3",
   "src": "../assets/img/projects/kauhane-house/3",
+  "v": "02badb0d",
   "title": "Kauhane House",
   "alt": "Sala con ventanales de piso a techo que abren al jardín"
  },
  {
   "id": "kauhane-house-4",
   "src": "../assets/img/projects/kauhane-house/4",
+  "v": "064ac7ac",
   "title": "Kauhane House",
   "alt": "Isla de cocina bajo un cielo raso de madera, con vista al jardín por los dos lados"
  },
  {
   "id": "kauhane-house-5",
   "src": "../assets/img/projects/kauhane-house/5",
+  "v": "144ca204",
   "title": "Kauhane House",
   "alt": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio"
  },
  {
   "id": "negra-mixed-use-1",
   "src": "../assets/img/projects/negra-mixed-use/1",
+  "v": "beb76a2a",
   "title": "Negra Mixed Use",
   "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer"
  },
  {
   "id": "s3-houses-1",
   "src": "../assets/img/projects/s3-houses/1",
+  "v": "92233c72",
   "title": "S3 Houses",
   "alt": "Casa de dos niveles escalonada en una ladera seca, con una piscina pequeña y un deck"
  },
  {
   "id": "tree-house-1",
   "src": "../assets/img/projects/tree-house/1",
+  "v": "eac7e679",
   "title": "Tree House",
   "alt": "Cabaña de madera en voladizo sobre una ladera boscosa al atardecer"
  },
  {
   "id": "amacor-house-1",
   "src": "../assets/img/projects/amacor-house/1",
+  "v": "58a6ef0e",
   "title": "Amacor House",
   "alt": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
  },
  {
   "id": "dawn-patrol-bakery-1",
   "src": "../assets/img/projects/dawn-patrol-bakery/1",
+  "v": "c062df0d",
   "title": "Dawn Patrol Bakery",
   "alt": "Barra de café con vitrina de repostería y lámparas colgantes de ratán"
  },
  {
   "id": "dawn-patrol-bakery-2",
   "src": "../assets/img/projects/dawn-patrol-bakery/2",
+  "v": "ca93399c",
   "title": "Dawn Patrol Bakery",
   "alt": "Sala del café con pared de madera, sillones y abanicos de techo"
  },
  {
   "id": "dawn-patrol-bakery-3",
   "src": "../assets/img/projects/dawn-patrol-bakery/3",
+  "v": "88717fae",
   "title": "Dawn Patrol Bakery",
   "alt": "Barra de café en madera y piedra bajo lámparas colgantes tejidas"
  },
  {
   "id": "dawn-patrol-bakery-4",
   "src": "../assets/img/projects/dawn-patrol-bakery/4",
+  "v": "7632c3fd",
   "title": "Dawn Patrol Bakery",
   "alt": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos"
  },
  {
   "id": "military-museum-1",
   "src": "../assets/img/projects/military-museum/1",
+  "v": "7326cdd7",
   "title": "Military Museum",
   "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas"
  }
@@ -220,6 +256,7 @@ window.CAVA_RENDERS = [
 window.CAVA_HERO = [
  {
   "src": "../assets/img/projects/portland-house/1",
+  "v": "49e63442",
   "w": 1600,
   "h": 900,
   "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía",
@@ -229,6 +266,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/papagayo-404/1",
+  "v": "4d2d9d59",
   "w": 1484,
   "h": 1060,
   "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa",
@@ -238,6 +276,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/tragaluz-retreat/3",
+  "v": "b0bd601c",
   "w": 1600,
   "h": 900,
   "alt": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio",
@@ -247,6 +286,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/military-museum/1",
+  "v": "7326cdd7",
   "w": 1600,
   "h": 900,
   "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas",
@@ -256,6 +296,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/negra-mixed-use/1",
+  "v": "beb76a2a",
   "w": 1600,
   "h": 900,
   "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer",

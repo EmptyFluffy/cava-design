@@ -3,216 +3,252 @@ window.CAVA_RENDERS = [
  {
   "id": "portland-house-1",
   "src": "assets/img/projects/portland-house/1",
+  "v": "49e63442",
   "title": "Portland House",
   "alt": "Single-storey pool house under a deep flat roof, looking over a bay"
  },
  {
   "id": "portland-house-2",
   "src": "assets/img/projects/portland-house/2",
+  "v": "6c1dab1b",
   "title": "Portland House",
   "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest"
  },
  {
   "id": "portland-house-3",
   "src": "assets/img/projects/portland-house/3",
+  "v": "c4fa6d01",
   "title": "Portland House",
   "alt": "Open kitchen and living room facing a green valley through full-height glass"
  },
  {
   "id": "papagayo-404-1",
   "src": "assets/img/projects/papagayo-404/1",
+  "v": "4d2d9d59",
   "title": "Papagayo 404",
   "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside"
  },
  {
   "id": "papagayo-404-2",
   "src": "assets/img/projects/papagayo-404/2",
+  "v": "67c9f923",
   "title": "Papagayo 404",
   "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge"
  },
  {
   "id": "papagayo-404-3",
   "src": "assets/img/projects/papagayo-404/3",
+  "v": "63a72a6d",
   "title": "Papagayo 404",
   "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms"
  },
  {
   "id": "papagayo-404-4",
   "src": "assets/img/projects/papagayo-404/4",
+  "v": "ba6a3662",
   "title": "Papagayo 404",
   "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay"
  },
  {
   "id": "papagayo-404-5",
   "src": "assets/img/projects/papagayo-404/5",
+  "v": "1e2cac83",
   "title": "Papagayo 404",
   "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest"
  },
  {
   "id": "papagayo-404-6",
   "src": "assets/img/projects/papagayo-404/6",
+  "v": "6e0b5e06",
   "title": "Papagayo 404",
   "alt": "Double-height living room with a timber wall, open to the garden through full-height glass"
  },
  {
   "id": "papagayo-404-7",
   "src": "assets/img/projects/papagayo-404/7",
+  "v": "5252a1a7",
   "title": "Papagayo 404",
   "alt": "White cubic house raised on slender steel columns above a pool deck"
  },
  {
   "id": "papagayo-404-8",
   "src": "assets/img/projects/papagayo-404/8",
+  "v": "f432f563",
   "title": "Papagayo 404",
   "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
  },
  {
   "id": "papagayo-404-9",
   "src": "assets/img/projects/papagayo-404/9",
+  "v": "a4122b91",
   "title": "Papagayo 404",
   "alt": "Site plan of the house, with the long pool, the terraces and the trees around them"
  },
  {
   "id": "casa-alcaravan-1",
   "src": "assets/img/projects/casa-alcaravan/1",
+  "v": "f1416d50",
   "title": "Casa Alcaraván",
   "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "assets/img/projects/casa-alcaravan/2",
+  "v": "2d40f94a",
   "title": "Casa Alcaraván",
   "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "assets/img/projects/casa-alcaravan/3",
+  "v": "650104d9",
   "title": "Casa Alcaraván",
   "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "assets/img/projects/casa-alcaravan/4",
+  "v": "4c71c01e",
   "title": "Casa Alcaraván",
   "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "assets/img/projects/casa-alcaravan/5",
+  "v": "d697e61f",
   "title": "Casa Alcaraván",
   "alt": "Bathroom in polished concrete with a vessel sink on a timber counter"
  },
  {
   "id": "hangars-b-1",
   "src": "assets/img/projects/hangars-b/1",
+  "v": "e401786e",
   "title": "Hangars B",
   "alt": "Two-storey hangar building marked 01 with a deep roof over open bays"
  },
  {
   "id": "hangars-b-2",
   "src": "assets/img/projects/hangars-b/2",
+  "v": "1bc15c57",
   "title": "Hangars B",
   "alt": "Dark perforated screen facade with an exterior stair under a floating roof"
  },
  {
   "id": "tragaluz-retreat-1",
   "src": "assets/img/projects/tragaluz-retreat/1",
+  "v": "85b0992f",
   "title": "Tragaluz Retreat",
   "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk"
  },
  {
   "id": "tragaluz-retreat-2",
   "src": "assets/img/projects/tragaluz-retreat/2",
+  "v": "d0a89ee2",
   "title": "Tragaluz Retreat",
   "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool"
  },
  {
   "id": "tragaluz-retreat-3",
   "src": "assets/img/projects/tragaluz-retreat/3",
+  "v": "b0bd601c",
   "title": "Tragaluz Retreat",
   "alt": "Low white house with a timber-clad wall under a wide roof"
  },
  {
   "id": "kauhane-house-1",
   "src": "assets/img/projects/kauhane-house/1",
+  "v": "42444a64",
   "title": "Kauhane House",
   "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees"
  },
  {
   "id": "kauhane-house-2",
   "src": "assets/img/projects/kauhane-house/2",
+  "v": "c1a6338b",
   "title": "Kauhane House",
   "alt": "Stone and timber house around a pool in a tropical garden"
  },
  {
   "id": "kauhane-house-3",
   "src": "assets/img/projects/kauhane-house/3",
+  "v": "02badb0d",
   "title": "Kauhane House",
   "alt": "Living room with full-height glass opening to a garden"
  },
  {
   "id": "kauhane-house-4",
   "src": "assets/img/projects/kauhane-house/4",
+  "v": "064ac7ac",
   "title": "Kauhane House",
   "alt": "Kitchen island under a timber ceiling with garden views on both sides"
  },
  {
   "id": "kauhane-house-5",
   "src": "assets/img/projects/kauhane-house/5",
+  "v": "144ca204",
   "title": "Kauhane House",
   "alt": "Dining room under a slatted timber ceiling with glass walls"
  },
  {
   "id": "negra-mixed-use-1",
   "src": "assets/img/projects/negra-mixed-use/1",
+  "v": "beb76a2a",
   "title": "Negra Mixed Use",
   "alt": "Two-storey timber and glass building with lit interiors at dusk"
  },
  {
   "id": "s3-houses-1",
   "src": "assets/img/projects/s3-houses/1",
+  "v": "92233c72",
   "title": "S3 Houses",
   "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck"
  },
  {
   "id": "tree-house-1",
   "src": "assets/img/projects/tree-house/1",
+  "v": "eac7e679",
   "title": "Tree House",
   "alt": "Timber cabin cantilevered over a forested hillside at sunset"
  },
  {
   "id": "amacor-house-1",
   "src": "assets/img/projects/amacor-house/1",
+  "v": "58a6ef0e",
   "title": "Amacor House",
   "alt": "Double-height living room with a stair, a timber kitchen and courtyard light"
  },
  {
   "id": "dawn-patrol-bakery-1",
   "src": "assets/img/projects/dawn-patrol-bakery/1",
+  "v": "c062df0d",
   "title": "Dawn Patrol Bakery",
   "alt": "Café counter with a pastry case and rattan pendant lamps"
  },
  {
   "id": "dawn-patrol-bakery-2",
   "src": "assets/img/projects/dawn-patrol-bakery/2",
+  "v": "ca93399c",
   "title": "Dawn Patrol Bakery",
   "alt": "Café lounge with a timber wall, sofas and ceiling fans"
  },
  {
   "id": "dawn-patrol-bakery-3",
   "src": "assets/img/projects/dawn-patrol-bakery/3",
+  "v": "88717fae",
   "title": "Dawn Patrol Bakery",
   "alt": "Café counter in timber and stone under woven pendant lamps"
  },
  {
   "id": "dawn-patrol-bakery-4",
   "src": "assets/img/projects/dawn-patrol-bakery/4",
+  "v": "7632c3fd",
   "title": "Dawn Patrol Bakery",
   "alt": "Café seating area with timber panelling, a low sofa and graphic prints"
  },
  {
   "id": "military-museum-1",
   "src": "assets/img/projects/military-museum/1",
+  "v": "7326cdd7",
   "title": "Military Museum",
   "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
  }
@@ -220,6 +256,7 @@ window.CAVA_RENDERS = [
 window.CAVA_HERO = [
  {
   "src": "assets/img/projects/portland-house/1",
+  "v": "49e63442",
   "w": 1600,
   "h": 900,
   "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
@@ -229,6 +266,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/1",
+  "v": "4d2d9d59",
   "w": 1484,
   "h": 1060,
   "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
@@ -238,6 +276,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/tragaluz-retreat/3",
+  "v": "b0bd601c",
   "w": 1600,
   "h": 900,
   "alt": "Low white house with a timber-clad wall under a wide roof",
@@ -247,6 +286,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/military-museum/1",
+  "v": "7326cdd7",
   "w": 1600,
   "h": 900,
   "alt": "Aerial view of a tensile canopy on a headland above a bay with islands",
@@ -256,6 +296,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/negra-mixed-use/1",
+  "v": "beb76a2a",
   "w": 1600,
   "h": 900,
   "alt": "Two-storey timber and glass building with lit interiors at dusk",

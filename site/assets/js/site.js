@@ -10,7 +10,7 @@
 
   /* ---------- Renders (the viewer walks this list) ---------- */
   // Generated from data/projects.json by scripts/build.mjs (assets/js/renders.js):
-  // { id: '<slug>-<n>', src: 'assets/img/projects/<slug>/<n>', title, alt }
+  // { id: '<slug>-<n>', src: 'assets/img/projects/<slug>/<n>', v: fingerprint, title, alt }
   const RENDERS = window.CAVA_RENDERS || [];
 
   /* ---------- Dialog plumbing shared by the sheets and the viewer ---------- */
@@ -119,14 +119,14 @@
   function lbShow(i) {
     lbIndex = (i + RENDERS.length) % RENDERS.length;
     const r = RENDERS[lbIndex];
-    lbImg.src = `${r.src}-1600.webp`;
+    lbImg.src = `${r.src}-1600.webp?v=${r.v}`;
     lbImg.alt = r.alt;
     $('[data-lb-count]', lb).textContent = `(${String(lbIndex + 1).padStart(2, '0')}/${RENDERS.length})`;
     $('[data-lb-title]', lb).textContent = r.title;
     $('[data-lb-alt]', lb).textContent = r.alt;
     // warm the next one
     const n = RENDERS[(lbIndex + 1) % RENDERS.length];
-    new Image().src = `${n.src}-1600.webp`;
+    new Image().src = `${n.src}-1600.webp?v=${n.v}`;
   }
   function lbGo(step) { lbShow(lbIndex + step); }
 
@@ -361,8 +361,8 @@
     heroImg.after(layer);
     let shown = heroImg, waiting = layer, idx = 0, busy = false;
     const load = (img, sl) => {
-      img.srcset = `${sl.src}-800.webp 800w, ${sl.src}-1600.webp 1600w`;
-      img.src = `${sl.src}-1600.webp`;
+      img.srcset = `${sl.src}-800.webp?v=${sl.v} 800w, ${sl.src}-1600.webp?v=${sl.v} 1600w`;
+      img.src = `${sl.src}-1600.webp?v=${sl.v}`;
       img.width = sl.w; img.height = sl.h; img.alt = sl.alt;
     };
     const advance = () => {
