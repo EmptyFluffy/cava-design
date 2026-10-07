@@ -1,0 +1,24 @@
+{
+  "_note": "Photos of Costa Rica that sit beside the studio's own images on town, cost and land pages. All Unsplash or Pexels licence (no credit required; we credit anyway). scripts/places.py crops each to a 2:1 band around 'focus' (0 top, 1 bottom) and writes site/assets/img/places/<id>-{1600,800}.webp. The alt text says what the photo shows, never that it is the town it illustrates.",
+  "photos": {
+    "langosta": { "src": "tamarindo-1.jpg", "focus": 0.5, "by": "César Badilla Miranda", "site": "Unsplash", "url": "https://unsplash.com/photos/2hIjk-uOK80", "alt_en": "Aerial view at golden hour over Playa Langosta, Tamarindo and its estuary, with Playa Grande beyond", "alt_es": "Vista aérea al atardecer sobre Playa Langosta, Tamarindo y su estero, con Playa Grande al fondo" },
+    "grande": { "src": "tamarindo-6.jpg", "focus": 0.45, "by": "Luis Diego Aguilar", "site": "Unsplash", "url": "https://unsplash.com/photos/myrdfYW0N7g", "alt_en": "Playa Grande from directly above: sand, a beach path and the edge of the forest", "alt_es": "Playa Grande vista desde arriba: arena, un sendero y el borde del bosque" },
+    "sand": { "src": "tamarindo-8.jpg", "focus": 0.5, "by": "Gavin Fregona", "site": "Pexels", "url": "https://www.pexels.com/photo/35598265/", "alt_en": "Branching patterns left in the sand by draining water", "alt_es": "Dibujos ramificados que deja el agua al escurrir en la arena" },
+    "peninsula": { "src": "papagayo-1.jpg", "focus": 0.5, "by": "Jean Paul Montanaro", "site": "Pexels", "url": "https://www.pexels.com/photo/15365635/", "alt_en": "Aerial view of a dry-forest headland between two coves in the Gulf of Papagayo", "alt_es": "Vista aérea de una península de bosque seco entre dos bahías en el Golfo de Papagayo" },
+    "pangas": { "src": "nosara-2.jpg", "focus": 0.5, "by": "Frames For Your Heart", "site": "Unsplash", "url": "https://unsplash.com/photos/W67Q7YgocTU", "alt_en": "Fishing boats pulled up under palms on a white beach, seen from above", "alt_es": "Lanchas de pesca bajo las palmeras en una playa blanca, vistas desde arriba" },
+    "whale": { "src": "ballena-3.jpg", "focus": 0.5, "saturation": 0.82, "by": "César Badilla Miranda", "site": "Unsplash", "url": "https://unsplash.com/photos/GKcXxfkyTXY", "alt_en": "The whale-tail sandbar of Bahía Ballena from the sea, with the coastal mountains behind", "alt_es": "La cola de ballena de Bahía Ballena desde el mar, con las montañas de la costa detrás" },
+    "surf": { "src": "ballena-4.jpg", "focus": 0.5, "by": "Bernd Dittrich", "site": "Unsplash", "url": "https://unsplash.com/photos/PD5DzG_Kxr8", "alt_en": "Surf, wet sand, dry sand and forest in bands, seen from directly above", "alt_es": "Olas, arena húmeda, arena seca y bosque en franjas, vistos desde arriba" },
+    "bluff": { "src": "nature-4.jpg", "focus": 0.45, "by": "Luis Diego Aguilar", "site": "Unsplash", "url": "https://unsplash.com/photos/c3HJQsS3nzI", "alt_en": "Two flat-crowned trees above coastal scrub, with a pale sea behind", "alt_es": "Dos árboles de copa plana sobre el monte de la costa, con el mar pálido detrás" },
+    "mist": { "src": "nature-5.jpg", "focus": 0.5, "by": "Christina Victoria Craft", "site": "Unsplash", "url": "https://unsplash.com/photos/bjVoK4pDMj4", "alt_en": "Mist drifting through montane forest", "alt_es": "Neblina entre el bosque de montaña" },
+    "canopy": { "src": "nature-7.jpg", "focus": 0.5, "by": "Bernd Dittrich", "site": "Unsplash", "url": "https://unsplash.com/photos/4bCXzaB8IkE", "alt_en": "Forest canopy seen from directly above", "alt_es": "El dosel del bosque visto desde arriba" },
+    "monstera": { "src": "nature-10.jpg", "focus": 0.5, "by": "Christian Holzinger", "site": "Unsplash", "url": "https://unsplash.com/photos/noqV_-OsYKg", "alt_en": "Large split monstera leaves", "alt_es": "Hojas grandes de monstera" },
+    "fern": { "src": "nature-11.jpg", "focus": 0.55, "by": "Outward Bound Costa Rica", "site": "Unsplash", "url": "https://unsplash.com/photos/OQNuDpjmE5s", "alt_en": "A fern frond against a pale, cloudy sky", "alt_es": "Una hoja de helecho contra un cielo pálido y nublado" }
+  },
+  "towns": {
+    "tamarindo": "langosta", "playa-grande": "grande", "playa-negra": "sand", "flamingo": "bluff", "playas-del-coco": "surf",
+    "papagayo": "peninsula", "liberia": "canopy", "nosara": "pangas", "samara": "fern", "santa-teresa": "monstera",
+    "jaco": "sand", "dominical": "surf", "uvita": "whale", "puerto-viejo": "monstera", "escazu": "mist",
+    "santa-ana": "canopy", "atenas": "fern", "heredia": "bluff"
+  },
+  "hub": "langosta"
+}

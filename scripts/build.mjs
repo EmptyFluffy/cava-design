@@ -601,13 +601,13 @@ ${bar(lang, up, paths, 'towns')}
       <p class="label proj__crumb"><a class="ulink" href="../">${L.crumb}</a><span>(${regions[t.region][lang]})</span></p>
       <h1 class="tw__title" id="tw-title"><span class="label tw__kicker">${L.kicker}</span> <span class="display">${esc(t.name)}</span></h1>
     </header>
-    <section class="tw__intro grid">
+${places?.towns[t.slug] ? placePhoto(lang, up, places.towns[t.slug], { eager: true }) : ''}    <section class="tw__intro grid">
       <div class="tw__lead">
         <p class="tw__standfirst">${esc(L.intro(t, d, c, muni)[0])}</p>
         <p class="large">${esc(L.intro(t, d, c, muni)[1])}</p>
         <div class="reach__actions">
           <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
-          <a class="btn btn--light reach__mail" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a>
+          ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}?town=${t.slug}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light reach__mail" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a>`}
         </div>
       </div>
     </section>
@@ -728,7 +728,7 @@ ${bar(lang, up, paths, 'towns')}
       <h1 class="display mf__title" id="hub-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
     </header>
-    <div class="hub__map">
+${places?.hub ? placePhoto(lang, up, places.hub, { eager: true }).replace('<figure class="place">', '<figure class="place place--hub">') : ''}    <div class="hub__map">
 ${climateMap(lang, { center: [-84.25, 9.85], zoom: 6.9, bounds: [[-85.95, 8.0], [-82.55, 11.22]], where: 'Costa Rica', pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: `${o.slug}/` })) })}    </div>
     <div class="hub__wrap">
       <table class="hub__table">
@@ -1091,6 +1091,21 @@ ${costs.sources.map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
   </article>
 ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${end}`;
+}
+
+// ---------- Photos of Costa Rica (data/places.json, scripts/places.py) ----------
+const PLACES_PATH = join(ROOT, 'data', 'places.json');
+const places = existsSync(PLACES_PATH) ? JSON.parse(readFileSync(PLACES_PATH, 'utf8')) : null;
+// a full-width band; `eager` for the first image of a page
+function placePhoto(lang, up, id, { eager = false } = {}) {
+  const ph = places?.photos[id];
+  if (!ph) return '';
+  const base = `${up}assets/img/places/${id}`;
+  return `    <figure class="place">
+      <img src="${base}-1600.webp" srcset="${base}-800.webp 800w, ${base}-1600.webp 1600w" sizes="(min-width: 768px) 96vw, 100vw" width="1600" height="800" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(ph[`alt_${lang}`])}">
+      <figcaption class="place__credit">${lang === 'en' ? 'Photo' : 'Foto'}: <a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.by)}, ${ph.site}</a></figcaption>
+    </figure>
+`;
 }
 
 // ---------- /book/ and /es/agendar/: book a free call ----------
