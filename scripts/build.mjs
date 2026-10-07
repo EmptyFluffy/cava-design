@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { UI } from './strings.mjs';
 import { PAIRS, SAME } from './home-es.mjs';
 import { sunFacts, path as sunPath, SOLSTICE_JUNE, EQUINOX_MARCH, SOLSTICE_DECEMBER } from './sun.mjs';
+import { route as permitRoute, render as permitRender, TOWN_MUNI } from './permit-route.mjs';
 import { T as TT, MONTHS, MONTHS_SHORT, climate, paragraphs, faq, num, duration } from './towns-text.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -592,7 +593,7 @@ function townPage(lang, t) {
   const fact = (k, v) => `        <div><dt>${k}</dt><dd>${esc(v)}</dd></div>`;
   return head(lang, {
     title: L.title(t), description: L.description(t, d, c, muni), paths,
-    image: `${imgBase(work[0].p.slug, 1)}-1600.webp`, up, script: ['project.js', 'climate-map.js'], jsonld: ld,
+    image: `${imgBase(work[0].p.slug, 1)}-1600.webp`, up, script: ['project.js', 'climate-map.js', 'permit-flow.js'], jsonld: ld,
   }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'towns')}
 <main class="page">
@@ -652,7 +653,9 @@ ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">${L.build.label}</h2>
-${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building here follows its own route, set out below.' : 'Construir aquí sigue su propia ruta, que se explica abajo.'}</p>` : `      <ol class="tw__steps">
+${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building here follows its own route, set out below.' : 'Construir aquí sigue su propia ruta, que se explica abajo.'}</p>\n` : ''}${permitGuide && TOWN_MUNI[t.slug] ? `      <div class="tw__route" id="permits">
+        <p class="note">${PR[lang].hereNote}</p>
+${permitWidget(lang, up, { town: t.slug }, `${up}${guidePath(lang, permitGuide)}#source-`)}      </div>` : `      <ol class="tw__steps">
 ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</span><h3>${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
       </ol>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
@@ -742,7 +745,7 @@ ${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title"
     <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
     <ol class="stages">
 ${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
-${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}${land ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 2 : 1))})</span><h3 class="stage__title"><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)}</a></h3><p class="large stage__text">${esc(LT[lang].description)}</p></li>\n` : ''}    </ol>
+${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}${land ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 2 : 1))})</span><h3 class="stage__title"><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)}</a></h3><p class="large stage__text">${esc(LT[lang].description)}</p></li>\n` : ''}${permitGuide ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 1 : 0) + (land ? 1 : 0) + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].name)}</a></h3><p class="large stage__text">${esc(PR[lang].description)}</p></li>\n` : ''}    </ol>
   </section>
 ` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
@@ -830,7 +833,7 @@ ${(Array.isArray(G.sources) ? G.sources : g[G.sources].sources).map((s, k) => so
       <ul class="tw__aside guide__links">
 ${guides.filter((o) => o !== g).map((o) => `        <li><a class="ulink" href="${up}${guidePath(lang, o)}">${esc(o[lang].link)} →</a></li>`).join('\n')}
 ${towns.filter((t) => t.extra).map((t) => `        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(t.extra[lang].title)} →</a></li>`).join('\n')}
-${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)} →</a></li>\n` : ''}        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
+${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)} →</a></li>\n` : ''}${permitGuide ? `        <li><a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].name)} →</a></li>\n` : ''}        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
       </ul>
     </nav>
   </article>
@@ -1067,7 +1070,7 @@ ${land ? `          <label><input type="checkbox" name="land"${on('land')}> ${E.
           <h2 class="label" id="est-flags-t">${E.flags}</h2>
           <ul class="guide__tips" data-est-flags></ul>
           <ul class="guide__links est__guides">
-${land ? `            <li><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)} →</a></li>\n` : ''}${guides.map((g) => `            <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${land ? `            <li><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)} →</a></li>\n` : ''}${permitGuide ? `            <li><a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].name)} →</a></li>\n` : ''}${guides.map((g) => `            <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
           </ul>
         </section>
         <div class="est__actions">
@@ -1385,7 +1388,7 @@ ${T.phases.map((ph, k) => `        <li class="svc__phase">
       <div class="tw__text guide__body">
 ${T.fees.map((x) => `        <p class="large">${c(x)}</p>`).join('\n')}
         <ul class="guide__links">
-${costs ? `          <li><a class="ulink" href="${up}${estimatorPath(lang)}">${S.estimator} →</a></li>\n` : ''}${T.guide && guides[0] ? `          <li><a class="ulink" href="${up}${guidePath(lang, guides[0])}">${S.guide} →</a></li>\n` : ''}        </ul>
+${costs ? `          <li><a class="ulink" href="${up}${estimatorPath(lang)}">${S.estimator} →</a></li>\n` : ''}${T.guide && permitGuide ? `          <li><a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].name)} →</a></li>\n          <li><a class="ulink" href="${up}${guidePath(lang, permitGuide)}">${S.guide} →</a></li>\n` : ''}        </ul>
       </div>
     </section>
     <section class="tw__sec grid" aria-labelledby="svc-not">
@@ -2033,6 +2036,92 @@ ${t ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${
   return estimatorPage(lang, { paths, title: S.title(T.name), description: intro, h1: T.h1, intro, preset: st, photo: sc.photo, extra, ld, cls: 'est--town', wa: S.wa(T.name), q: `?town=${st.town}` });
 }
 
+// ---------- The permit route: /tools/permit-route/ and drawn on every town page ----------
+// The rules live in scripts/permit-route.mjs (also served to the browser); citations are the permits guide's sources.
+const permitGuide = guides.find((g) => g.slug.en === 'building-permits');
+const permitPath = (lang) => (lang === 'en' ? 'tools/permit-route/' : 'es/herramientas/ruta-de-permisos/');
+const PR = {
+  en: {
+    title: 'Building permits in Costa Rica, step by step for your project | Studio CAVA',
+    description: 'Which permits a house, a hotel or a shop in Costa Rica needs, in what order and from whom: answer five questions and the route draws itself, with the municipality, SETENA, the CFIA and every source.',
+    label: '(Tool)', h1: ['Permit', 'route'], link: 'Permit route', name: 'The permit route for your project',
+    intro: 'Which permits a project in Costa Rica needs, in what order and from whom. Answer five questions and the route draws itself, step by step, with the rules behind each one.',
+    what: 'What', whats: { house: 'House', units: 'Villas, up to 3', apartments: 'Apartments, 4 or more', hotel: 'Hotel', shop: 'Shop or restaurant' },
+    size: 'Built area', sizes: { s: 'Under 300 m²', m: '300 to 500 m²', l: '500 to 1,000 m²', xl: 'Over 1,000 m²' },
+    lot: 'The lot', lots: { zmt: 'Within 200 m of the beach', river: 'Near a river or spring', forest: 'Forest on the lot', condo: 'In a condominium', road: 'Faces a national road' },
+    where: 'Where', elsewhere: 'Elsewhere in Costa Rica',
+    town: (n) => `Permits in ${n}`, here: '(The permit route here)', hereNote: 'A house of 300 to 500 m² to start with: change the project and the route redraws.',
+    guide: 'Every step explained, in the building permits guide', service: 'We file the permits for you', sources: '(Sources)',
+    note: 'General information, not legal advice: rules change, and each municipality applies them its own way. Reviewed October 2026.',
+  },
+  es: {
+    title: 'Permisos de construcción en Costa Rica, paso a paso para su proyecto | Studio CAVA',
+    description: 'Qué permisos necesita una casa, un hotel o un comercio en Costa Rica, en qué orden y ante quién: responda cinco preguntas y la ruta se dibuja sola, con la municipalidad, SETENA, el CFIA y cada fuente.',
+    label: '(Herramienta)', h1: ['Ruta de', 'permisos'], link: 'Ruta de permisos', name: 'La ruta de permisos de su proyecto',
+    intro: 'Qué permisos necesita un proyecto en Costa Rica, en qué orden y ante quién. Responda cinco preguntas y la ruta se dibuja sola, paso a paso, con las reglas detrás de cada uno.',
+    what: 'Qué', whats: { house: 'Casa', units: 'Villas, hasta 3', apartments: 'Apartamentos, 4 o más', hotel: 'Hotel', shop: 'Comercio o restaurante' },
+    size: 'Área construida', sizes: { s: 'Menos de 300 m²', m: '300 a 500 m²', l: '500 a 1,000 m²', xl: 'Más de 1,000 m²' },
+    lot: 'El lote', lots: { zmt: 'A menos de 200 m de la playa', river: 'Cerca de un río o naciente', forest: 'Bosque en el lote', condo: 'En un condominio', road: 'Frente a una ruta nacional' },
+    where: 'Dónde', elsewhere: 'En otro lugar de Costa Rica',
+    town: (n) => `Permisos en ${n}`, here: '(La ruta de permisos aquí)', hereNote: 'Una casa de 300 a 500 m² para empezar: cambie el proyecto y la ruta se vuelve a dibujar.',
+    guide: 'Cada paso explicado, en la guía de permisos de construcción', service: 'Tramitamos los permisos por usted', sources: '(Fuentes)',
+    note: 'Información general, no asesoría legal: las reglas cambian y cada municipalidad las aplica a su manera. Revisado en octubre de 2026.',
+  },
+};
+// the questions and the route, drawn for `preset`; `cite` is where source n lives
+function permitWidget(lang, up, preset, cite) {
+  const P = PR[lang];
+  const q = { type: 'house', size: 'm', town: '', ...preset };
+  const seg = (name, opts, checked) => `<div class="est__seg pr__seg" role="radiogroup">${Object.entries(opts).map(([v, l]) => `<label class="est__opt"><input type="radio" name="${name}" value="${v}"${v === checked ? ' checked' : ''}><span>${esc(l)}</span></label>`).join('')}</div>`;
+  const r = permitRoute(q, lang);
+  return `      <div class="pr" data-permit-route data-cite="${cite}">
+        <form class="pr__form" data-pr-form onsubmit="return false">
+          <fieldset class="est__field"><legend class="label">${P.what}</legend>${seg('type', P.whats, q.type)}</fieldset>
+          <fieldset class="est__field"><legend class="label">${P.size}</legend>${seg('size', P.sizes, q.size)}</fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">${P.lot}</legend>${Object.entries(P.lots).map(([k, l]) => `<label${k === 'condo' && q.town === 'papagayo' ? ' hidden' : ''}><input type="checkbox" name="${k}"${q[k] ? ' checked' : ''}> ${esc(l)}</label>`).join('')}</fieldset>
+          <fieldset class="est__field"><legend class="label">${P.where}</legend><select class="input est__select" name="town"><option value="">${P.elsewhere}</option>${towns.filter((t) => TOWN_MUNI[t.slug]).map((t) => `<option value="${t.slug}"${t.slug === q.town ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></fieldset>
+        </form>
+        <div class="pr__out" data-pr-out aria-live="polite">
+${permitRender(r, lang, (n) => `${cite}${n}`)}
+        </div>
+      </div>
+`;
+}
+function permitPage(lang) {
+  const P = PR[lang];
+  const paths = { en: permitPath('en'), es: permitPath('es') };
+  const up = upFrom(paths[lang]);
+  const permits = services.find((x) => x.slug.en === 'permits');
+  const ld = { '@context': 'https://schema.org', '@type': 'WebApplication', name: P.name, description: P.description, applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` } };
+  return head(lang, { title: P.title, description: P.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up, script: 'permit-flow.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'tools')}
+<main class="page">
+  <article class="mf prp" aria-labelledby="pr-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${P.label}</p>
+      <h1 class="display mf__title" id="pr-title"><span>${esc(P.h1[0])}</span><span class="right">${esc(P.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(P.intro)}</p>
+      <p class="svc__cta mf__intro">${booking ? `<a class="btn btn--dark" href="${up}${bookPath(lang)}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a> ` : ''}${permits ? `<a class="btn btn--light" href="${up}${servicePath(lang, permits)}">${P.service} <span class="btn__dot" aria-hidden="true"></span></a>` : ''}</p>
+    </header>
+${permitWidget(lang, up, { town: 'tamarindo' }, '#source-')}
+    <p class="note pr__disclaimer">${esc(P.note)}</p>
+    <nav class="tw__sec grid" aria-labelledby="pr-more">
+      <h2 class="label tw__label" id="pr-more">${lang === 'en' ? '(Related)' : '(Relacionado)'}</h2>
+      <ul class="tw__aside guide__links">
+${permitGuide ? `        <li><a class="ulink" href="${up}${guidePath(lang, permitGuide)}">${P.guide} →</a></li>\n` : ''}${permits ? `        <li><a class="ulink" href="${up}${servicePath(lang, permits)}">${P.service} →</a></li>\n` : ''}${towns.filter((t) => TOWN_MUNI[t.slug]).map((t) => `        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}#permits">${esc(P.town(t.name))} →</a></li>`).join('\n')}
+      </ul>
+    </nav>
+${permitGuide ? `    <section class="tw__sec grid" aria-labelledby="pr-sources">
+      <h2 class="label tw__label" id="pr-sources">${P.sources}</h2>
+      <ol class="guide__sources">
+${(Array.isArray(permitGuide[lang].sources) ? permitGuide[lang].sources : permitGuide[permitGuide[lang].sources].sources).map((x, k) => sourceItem(lang, x, k, '        ')).join('\n')}
+      </ol>
+    </section>
+` : ''}  </article>
+${contact(lang, UI[lang].wa.general, up)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -2048,6 +2137,7 @@ function sitemap() {
     ...(land ? [{ en: landPath('en'), es: landPath('es') }, ...towns.filter((t) => land.towns[t.slug]).map((t) => ({ en: landTownPath('en', t.slug), es: landTownPath('es', t.slug) }))] : []),
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
+    ...(permitGuide ? [{ en: permitPath('en'), es: permitPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -2169,6 +2259,7 @@ for (const lang of ['en', 'es']) {
     towns.filter((t) => land.towns[t.slug]).forEach((t) => write(`${landTownPath(lang, t.slug)}index.html`, landTownPage(lang, t)));
   }
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
+  if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
     services.forEach((x, i) => write(`${servicePath(lang, x)}index.html`, servicePage(lang, x, i)));
@@ -2177,9 +2268,56 @@ for (const lang of ['en', 'es']) {
 if (costs) write('assets/data/costs.json', JSON.stringify(costsData()));
 write('sitemap.xml', sitemap());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
+
+// ---------- 404.html: served for any missing path, so its links start at the root ----------
+// Without it Cloudflare Pages would answer every unknown address with the home page (and a 200).
+{
+  const paths = { en: '', es: 'es/' };
+  const page = head('en', { title: 'Page not found | Studio CAVA', description: 'This page does not exist.', paths, image: `${imgBase('casa-alcaravan', 1)}-1600.webp`, up: '/' }).replace('<head>', '<head>\n<meta name="robots" content="noindex">') + `<div id="top"></div>
+${bar('en', '/', paths, '')}
+<main class="page">
+  <article class="mf" aria-labelledby="nf-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">(404)</p>
+      <h1 class="display mf__title" id="nf-title"><span>Page not</span><span class="right">found</span></h1>
+      <p class="h3 mf__intro">This address does not exist, or it moved. Esta dirección no existe, o cambió de lugar.</p>
+    </header>
+    <nav class="tw__sec grid" aria-labelledby="nf-links">
+      <h2 class="label tw__label" id="nf-links">(Studio CAVA)</h2>
+      <ul class="tw__aside guide__links">
+        <li><a class="ulink" href="/">Home →</a></li>
+        <li><a class="ulink" href="/${projectsPath('en')}">Projects →</a></li>
+        <li><a class="ulink" href="/${servicesPath('en')}">Services →</a></li>
+        <li><a class="ulink" href="/${estimatorPath('en')}">${ET.en.name} →</a></li>
+        <li><a class="ulink" href="/es/">Inicio en español →</a></li>
+      </ul>
+    </nav>
+  </article>
+</main>
+${footer('en', '/', paths)}${end}`;
+  write('404.html', page);
+}
+
+// ---------- _headers: how long Cloudflare Pages lets browsers keep each kind of file ----------
+// Project images carry ?v=<hash> in every reference, so they can be kept for good; the rest changes in place.
+write('_headers', `/assets/img/projects/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/img/places/*
+  Cache-Control: public, max-age=604800
+/assets/data/*
+  Cache-Control: public, max-age=86400
+/assets/css/*
+  Cache-Control: public, max-age=600
+/assets/js/*
+  Cache-Control: public, max-age=600
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+`);
 write('es/index.html', homeEs());
 write('assets/js/renders.js', rendersJs('en', ''));
 // the 3D sun path (site/assets/js/sun3d.js) runs the same solar maths as the build
 write('assets/js/sun.mjs', readFileSync(join(ROOT, 'scripts', 'sun.mjs'), 'utf8'));
+write('assets/js/permit-route.mjs', readFileSync(join(ROOT, 'scripts', 'permit-route.mjs'), 'utf8'));
 write('assets/js/renders.es.js', rendersJs('es', '../'));
 console.log(`built ${towns.length} town pages and /architects/, /studio/, /projects/ and ${projects.length} project pages in each language, ${projects.reduce((n, p) => n + p.images.length, 0)} images; /es/ home`);

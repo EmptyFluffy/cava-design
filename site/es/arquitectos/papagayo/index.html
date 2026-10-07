@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="../../../assets/css/site.css">
 <script defer src="../../../assets/js/project.js"></script>
 <script defer src="../../../assets/js/climate-map.js"></script>
+<script defer src="../../../assets/js/permit-flow.js"></script>
 <script defer src="../../../assets/js/book-sheet.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Papagayo, Liberia, Guanacaste, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":10.6285,"longitude":-85.6764}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/es/"},{"@type":"ListItem","position":2,"name":"Dónde trabajamos","item":"https://cava.design/es/arquitectos/"},{"@type":"ListItem","position":3,"name":"Papagayo","item":"https://cava.design/es/arquitectos/papagayo/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la mejor época para construir en Papagayo?","acceptedAnswer":{"@type":"Answer","text":"De diciembre a abril, la época seca: 54 mm de lluvia en 5 meses. Una etapa de 4 meses de movimiento de tierra, fundaciones y estructura que empieza en diciembre pierde casi ningún día por lluvia fuerte, contra unos 27 si empieza en mayo, así que empezar en época seca ahorra unos 27 días de cuadrilla y maquinaria. Conviene tener el permiso listo en noviembre."}},{"@type":"Question","name":"¿Quién da los permisos de construcción en Papagayo?","acceptedAnswer":{"@type":"Answer","text":"Varias instancias, en orden. Dentro de la Península Papagayo el Master Design Review Board aprueba primero el diseño; luego el ICT aprueba el anteproyecto y el proyecto final y visa los planos; después el CFIA y la Municipalidad de Liberia (o la de Carrillo, del lado de Playa Panamá) dan los permisos de siempre. La revisión ambiental de SETENA corre en paralelo."}},{"@type":"Question","name":"¿Se puede construir cerca de la playa en Papagayo?","acceptedAnswer":{"@type":"Answer","text":"La zona pública de 50 m sigue siendo pública, y la tierra detrás se tiene en concesión del ICT y no de la municipalidad. Lo que permite cada lote lo fija el Plan Maestro del ICT y, en la Península Papagayo, el diagrama del lote en el manual de diseño."}},{"@type":"Question","name":"¿Qué tanto calor hace en Papagayo?","acceptedAnswer":{"@type":"Answer","text":"Las tardes promedian 34 °C en abril, el mes más caliente, y 30 °C en noviembre. Las noches se mantienen entre 23 y 26 °C. La sombra del lado oeste y el aire que cruza los espacios hacen más por el confort que cualquier otra cosa."}},{"@type":"Question","name":"¿Qué tan lejos queda Papagayo de los aeropuertos?","acceptedAnswer":{"@type":"Answer","text":"Por carretera y sin presas, a 55 min del aeropuerto Daniel Oduber en Liberia (32 km) y a 4 h 45 min del aeropuerto Juan Santamaría en San José (238 km)."}}]}]}</script>
 </head>
@@ -172,6 +173,111 @@
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Construir aquí)</h2>
       <p class="large tw__aside">Construir aquí sigue su propia ruta, que se explica abajo.</p>
+      <div class="tw__route" id="permits">
+        <p class="note">Una casa de 300 a 500 m² para empezar: cambie el proyecto y la ruta se vuelve a dibujar.</p>
+      <div class="pr" data-permit-route data-cite="../../../es/guias/permisos-de-construccion/#source-">
+        <form class="pr__form" data-pr-form onsubmit="return false">
+          <fieldset class="est__field"><legend class="label">Qué</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>Casa</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, hasta 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartamentos, 4 o más</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Comercio o restaurante</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">Área construida</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Menos de 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 a 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 a 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Más de 1,000 m²</span></label></div></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">El lote</legend><label><input type="checkbox" name="zmt"> A menos de 200 m de la playa</label><label><input type="checkbox" name="river"> Cerca de un río o naciente</label><label><input type="checkbox" name="forest"> Bosque en el lote</label><label hidden><input type="checkbox" name="condo"> En un condominio</label><label><input type="checkbox" name="road"> Frente a una ruta nacional</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo" selected>Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
+        </form>
+        <div class="pr__out" data-pr-out aria-live="polite">
+<p class="pf__card">La Municipalidad de Liberia da el permiso. Tiene un plan regulador parcial (1983, 2002, 2008); fuera de él rigen las reglas nacionales de construcción.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+<ol class="pf"><li class="pf__stage is-parallel">
+  <p class="pf__name label">(01) El lote y sus reglas</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="use">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Certificado de uso de suelo</h4>
+      <p class="pf__note">Lo que la zonificación permite en el lote: uso, retiros, cobertura, densidad y altura.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-2">2</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="water">
+      <span class="pf__who label">AyA o ASADA</span>
+      <h4 class="pf__title">Disponibilidad de agua</h4>
+      <p class="pf__note">Toda edificación la necesita. AyA responde en 15 días hábiles, gratis, con validez de 12 meses; donde el agua la da una ASADA, ella emite su propia carta.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-2">2</a>,<a href="../../../es/guias/permisos-de-construccion/#source-6">6</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-chain">
+  <p class="pf__name label">(02) Aprobaciones antes de los planos</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="mdrb">
+      <span class="pf__who label">MDRB</span>
+      <h4 class="pf__title">Revisiones del MDRB</h4>
+      <p class="pf__note">En la Península Papagayo: reunión previa, esquema y diseño final, US$2,000 cada una, antes que todo lo demás.</p>
+      
+    </li>
+    <li class="pf__node" data-key="ict">
+      <span class="pf__who label">ICT</span>
+      <h4 class="pf__title">Aprobación del ICT</h4>
+      <p class="pf__note">El polo turístico es una concesión del ICT: el ICT aprueba el anteproyecto y visa los planos.</p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(03) El ambiente</p>
+  <ul class="pf__row">
+    <li class="pf__node is-off" data-key="setena">
+      <span class="pf__who label">SETENA</span>
+      <h4 class="pf__title">SETENA</h4>
+      <p class="pf__note">No se necesita: menos de 500 m².<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-8">8</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(04) Los planos y el CFIA</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="drawings">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Planos y contrato</h4>
+      <p class="pf__note">Se registran en el APC del CFIA con el arquitecto y los ingenieros responsables; el CFIA cobra cerca del 0.27% de su valoración, y su sello dura un año.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-10">10</a>,<a href="../../../es/guias/permisos-de-construccion/#source-11">11</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-parallel is-sub">
+  
+  <ul class="pf__row">
+    <li class="pf__node" data-key="health">
+      <span class="pf__who label">Ministerio de Salud</span>
+      <h4 class="pf__title">Salud: declaración jurada</h4>
+      <p class="pf__note">En una casa, o en un edificio de 300 m² o menos, Salud aprueba con la declaración jurada del profesional.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      
+    </li>
+    <li class="pf__node is-off" data-key="fire">
+      <span class="pf__who label">Bomberos</span>
+      <h4 class="pf__title">Bomberos</h4>
+      <p class="pf__note">No revisan una casa ni menos de 4 apartamentos, aunque las reglas contra incendios igual aplican.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+    <li class="pf__node" data-key="muni-review">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Revisión municipal en el APC</h4>
+      <p class="pf__note">La Municipalidad de Liberia aprobó proyectos en 10.1 días en promedio en 2024-25, el 61% al primer ingreso.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-chain">
+  <p class="pf__name label">(05) Licencia y obra</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="licence">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Licencia municipal</h4>
+      <p class="pf__note">Un impuesto de construcción de hasta el 1% del valor de la obra, después de la póliza de riesgos del trabajo del INS.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-13">13</a>,<a href="../../../es/guias/permisos-de-construccion/#source-14">14</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="logbook">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Bitácora digital</h4>
+      <p class="pf__note">La abre el director de la obra, con su código QR en el sitio.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-15">15</a></sup></p>
+      
+    </li>
+  </ul>
+</li></ol>
+        </div>
+      </div>
+      </div>
       <p class="large tw__aside">La zona pública de 50 m junto a la playa sigue siendo pública en todo el polo, y aquí la costa la administra el ICT y no la municipalidad <sup class="cite"><a href="#source-1">1</a>,<a href="#source-3">3</a></sup>.</p>
       <ul class="tw__aside guide__links">
         <li><a class="ulink" href="../../../es/herramientas/estimador-de-costos/papagayo/">Cuánto cuesta construir en Papagayo →</a></li>

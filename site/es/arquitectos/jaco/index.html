@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="../../../assets/css/site.css">
 <script defer src="../../../assets/js/project.js"></script>
 <script defer src="../../../assets/js/climate-map.js"></script>
+<script defer src="../../../assets/js/permit-flow.js"></script>
 <script defer src="../../../assets/js/book-sheet.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Jacó, Garabito, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.61564,"longitude":-84.62813}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/es/"},{"@type":"ListItem","position":2,"name":"Dónde trabajamos","item":"https://cava.design/es/arquitectos/"},{"@type":"ListItem","position":3,"name":"Jacó","item":"https://cava.design/es/arquitectos/jaco/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es la mejor época para construir en Jacó?","acceptedAnswer":{"@type":"Answer","text":"De enero a marzo, la época seca: 59 mm de lluvia en 3 meses. Una etapa de 4 meses de movimiento de tierra, fundaciones y estructura que empieza en enero pierde unos 4 días por lluvia fuerte, contra unos 29 si empieza en abril, así que empezar en época seca ahorra unos 25 días de cuadrilla y maquinaria. Conviene tener el permiso listo en diciembre."}},{"@type":"Question","name":"¿Quién da los permisos de construcción en Jacó?","acceptedAnswer":{"@type":"Answer","text":"La Municipalidad de Garabito. Los planos se tramitan primero en el CFIA, por su plataforma APC, y el permiso llega después del certificado de uso de suelo y de la carta de disponibilidad de agua."}},{"@type":"Question","name":"¿Se puede construir cerca de la playa en Jacó?","acceptedAnswer":{"@type":"Answer","text":"No en los primeros 50 m desde la pleamar ordinaria, que son públicos. Los 150 m siguientes se tienen en concesión de la municipalidad y no en propiedad, con sus propias reglas. Más allá de los 200 m, un lote inscrito sigue el trámite normal de permisos."}},{"@type":"Question","name":"¿Qué tanto calor hace en Jacó?","acceptedAnswer":{"@type":"Answer","text":"Las tardes promedian 28 °C en marzo, el mes más caliente, y 26 °C en diciembre. Las noches se mantienen entre 23 y 24 °C. La sombra del lado oeste y el aire que cruza los espacios hacen más por el confort que cualquier otra cosa."}},{"@type":"Question","name":"¿Qué tan lejos queda Jacó de los aeropuertos?","acceptedAnswer":{"@type":"Answer","text":"Por carretera y sin presas, a 3 h 30 min del aeropuerto Daniel Oduber en Liberia (197 km) y a 1 h 40 min del aeropuerto Juan Santamaría en San José (85 km)."}}]}]}</script>
 </head>
@@ -170,12 +171,95 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Construir aquí)</h2>
-      <ol class="tw__steps">
-        <li><span class="label">(01)</span><h3>Certificado de uso de suelo</h3><p>En la Municipalidad de Garabito: lo que la zonificación permite en el lote.</p></li>
-        <li><span class="label">(02)</span><h3>Carta de disponibilidad de agua</h3><p>De la ASADA local o de AyA. Sin ella no hay permiso de construcción, así que conviene pedirla antes de comprar.</p></li>
-        <li><span class="label">(03)</span><h3>Planos en el CFIA</h3><p>Se tramitan por la plataforma APC del CFIA, firmados por el profesional responsable.</p></li>
-        <li><span class="label">(04)</span><h3>Permiso de construcción</h3><p>Lo emite la Municipalidad de Garabito.</p></li>
-      </ol>
+      <div class="tw__route" id="permits">
+        <p class="note">Una casa de 300 a 500 m² para empezar: cambie el proyecto y la ruta se vuelve a dibujar.</p>
+      <div class="pr" data-permit-route data-cite="../../../es/guias/permisos-de-construccion/#source-">
+        <form class="pr__form" data-pr-form onsubmit="return false">
+          <fieldset class="est__field"><legend class="label">Qué</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>Casa</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, hasta 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartamentos, 4 o más</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Comercio o restaurante</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">Área construida</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Menos de 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 a 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 a 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Más de 1,000 m²</span></label></div></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">El lote</legend><label><input type="checkbox" name="zmt"> A menos de 200 m de la playa</label><label><input type="checkbox" name="river"> Cerca de un río o naciente</label><label><input type="checkbox" name="forest"> Bosque en el lote</label><label><input type="checkbox" name="condo"> En un condominio</label><label><input type="checkbox" name="road"> Frente a una ruta nacional</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco" selected>Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
+        </form>
+        <div class="pr__out" data-pr-out aria-live="polite">
+<p class="pf__card">La Municipalidad de Garabito da el permiso. No tiene plan regulador: rigen las reglas nacionales de construcción.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+<ol class="pf"><li class="pf__stage is-parallel">
+  <p class="pf__name label">(01) El lote y sus reglas</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="use">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Certificado de uso de suelo</h4>
+      <p class="pf__note">Lo que la zonificación permite en el lote: uso, retiros, cobertura, densidad y altura.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-2">2</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="water">
+      <span class="pf__who label">AyA o ASADA</span>
+      <h4 class="pf__title">Disponibilidad de agua</h4>
+      <p class="pf__note">Toda edificación la necesita. AyA responde en 15 días hábiles, gratis, con validez de 12 meses; donde el agua la da una ASADA, ella emite su propia carta.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-2">2</a>,<a href="../../../es/guias/permisos-de-construccion/#source-6">6</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(02) El ambiente</p>
+  <ul class="pf__row">
+    <li class="pf__node is-off" data-key="setena">
+      <span class="pf__who label">SETENA</span>
+      <h4 class="pf__title">SETENA</h4>
+      <p class="pf__note">No se necesita: menos de 500 m².<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-8">8</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(03) Los planos y el CFIA</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="drawings">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Planos y contrato</h4>
+      <p class="pf__note">Se registran en el APC del CFIA con el arquitecto y los ingenieros responsables; el CFIA cobra cerca del 0.27% de su valoración, y su sello dura un año.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-10">10</a>,<a href="../../../es/guias/permisos-de-construccion/#source-11">11</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-parallel is-sub">
+  
+  <ul class="pf__row">
+    <li class="pf__node" data-key="health">
+      <span class="pf__who label">Ministerio de Salud</span>
+      <h4 class="pf__title">Salud: declaración jurada</h4>
+      <p class="pf__note">En una casa, o en un edificio de 300 m² o menos, Salud aprueba con la declaración jurada del profesional.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      
+    </li>
+    <li class="pf__node is-off" data-key="fire">
+      <span class="pf__who label">Bomberos</span>
+      <h4 class="pf__title">Bomberos</h4>
+      <p class="pf__note">No revisan una casa ni menos de 4 apartamentos, aunque las reglas contra incendios igual aplican.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+    <li class="pf__node" data-key="muni-review">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Revisión municipal en el APC</h4>
+      <p class="pf__note">La Municipalidad de Garabito aprobó proyectos en 18.6 días en promedio en 2024-25, el 12% al primer ingreso.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-chain">
+  <p class="pf__name label">(04) Licencia y obra</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="licence">
+      <span class="pf__who label">Municipalidad</span>
+      <h4 class="pf__title">Licencia municipal</h4>
+      <p class="pf__note">Un impuesto de construcción de hasta el 1% del valor de la obra, después de la póliza de riesgos del trabajo del INS.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-13">13</a>,<a href="../../../es/guias/permisos-de-construccion/#source-14">14</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="logbook">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Bitácora digital</h4>
+      <p class="pf__note">La abre el director de la obra, con su código QR en el sitio.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-15">15</a></sup></p>
+      
+    </li>
+  </ul>
+</li></ol>
+        </div>
+      </div>
+      </div>
       <p class="large tw__aside">A menos de 200 m de la pleamar ordinaria rige la Ley de la Zona Marítimo Terrestre (Ley 6043): los primeros 50 m son públicos y no se puede construir, y los 150 m siguientes se tienen en concesión de la municipalidad, no en propiedad. Conviene saber dónde está el lote antes de comprar.</p>
       <ul class="tw__aside guide__links">
         <li><a class="ulink" href="../../../es/herramientas/estimador-de-costos/jaco/">Cuánto cuesta construir en Jacó →</a></li>

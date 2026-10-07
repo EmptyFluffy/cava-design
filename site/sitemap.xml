@@ -1056,4 +1056,16 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/agendar/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/book/"/>
   </url>
+  <url>
+    <loc>https://cava.design/tools/permit-route/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/tools/permit-route/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/herramientas/ruta-de-permisos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/tools/permit-route/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/herramientas/ruta-de-permisos/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/tools/permit-route/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/herramientas/ruta-de-permisos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/tools/permit-route/"/>
+  </url>
 </urlset>

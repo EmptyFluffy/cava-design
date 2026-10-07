@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="../../assets/css/site.css">
 <script defer src="../../assets/js/project.js"></script>
 <script defer src="../../assets/js/climate-map.js"></script>
+<script defer src="../../assets/js/permit-flow.js"></script>
 <script defer src="../../assets/js/book-sheet.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Tamarindo, Santa Cruz, Guanacaste, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":10.29841,"longitude":-85.83995}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Tamarindo","item":"https://cava.design/architects/tamarindo/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Tamarindo?","acceptedAnswer":{"@type":"Answer","text":"From December to April, the dry season: 48 mm of rain in 5 months. A 4-month phase of earthworks, foundations and structure started in December loses almost no days to heavy rain, against about 27 if it starts in May, so a dry-season start saves about 27 days of crew and machinery. Have the permit ready by November."}},{"@type":"Question","name":"Who issues building permits in Tamarindo?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Santa Cruz. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Tamarindo?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Tamarindo?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 35 °C in April, the hottest month, and 31 °C in November. Nights stay between 23 and 25 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Tamarindo from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 1 h 25 min from Daniel Oduber airport in Liberia (64 km) and 4 h 55 min from Juan Santamaría airport in San José (244 km)."}}]}]}</script>
 </head>
@@ -171,12 +172,95 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Building here)</h2>
-      <ol class="tw__steps">
-        <li><span class="label">(01)</span><h3>Land use certificate</h3><p>The uso de suelo, from the Municipalidad de Santa Cruz: what the zoning allows on the lot.</p></li>
-        <li><span class="label">(02)</span><h3>Water availability letter</h3><p>From the local ASADA or from AyA. Without it there is no building permit, so it is worth asking for before buying.</p></li>
-        <li><span class="label">(03)</span><h3>Drawings at the CFIA</h3><p>Filed through the CFIA's APC platform and signed by the architect in charge.</p></li>
-        <li><span class="label">(04)</span><h3>Building permit</h3><p>Issued by the Municipalidad de Santa Cruz.</p></li>
-      </ol>
+      <div class="tw__route" id="permits">
+        <p class="note">A house of 300 to 500 m² to start with: change the project and the route redraws.</p>
+      <div class="pr" data-permit-route data-cite="../../guides/building-permits/#source-">
+        <form class="pr__form" data-pr-form onsubmit="return false">
+          <fieldset class="est__field"><legend class="label">What</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>House</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, up to 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartments, 4 or more</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Shop or restaurant</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">Built area</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Under 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 to 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 to 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Over 1,000 m²</span></label></div></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">The lot</legend><label><input type="checkbox" name="zmt"> Within 200 m of the beach</label><label><input type="checkbox" name="river"> Near a river or spring</label><label><input type="checkbox" name="forest"> Forest on the lot</label><label><input type="checkbox" name="condo"> In a condominium</label><label><input type="checkbox" name="road"> Faces a national road</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Where</legend><select class="input est__select" name="town"><option value="">Elsewhere in Costa Rica</option><option value="tamarindo" selected>Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
+        </form>
+        <div class="pr__out" data-pr-out aria-live="polite">
+<p class="pf__card">The Municipalidad de Santa Cruz issues the permit. It has a partial regulating plan (1983, 1994); outside it, the national construction rules apply.<sup class="cite"><a href="../../guides/building-permits/#source-21">21</a>,<a href="../../guides/building-permits/#source-29">29</a></sup></p>
+<ol class="pf"><li class="pf__stage is-parallel">
+  <p class="pf__name label">(01) The lot and its rules</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="use">
+      <span class="pf__who label">Municipality</span>
+      <h4 class="pf__title">Land use certificate</h4>
+      <p class="pf__note">What the zoning allows on the lot: use, setbacks, coverage, density and height.<sup class="cite"><a href="../../guides/building-permits/#source-1">1</a>,<a href="../../guides/building-permits/#source-2">2</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="water">
+      <span class="pf__who label">AyA or ASADA</span>
+      <h4 class="pf__title">Water availability</h4>
+      <p class="pf__note">Every building needs it. AyA answers within 15 working days, free, valid 12 months; where an ASADA supplies the water, it gives its own letter.<sup class="cite"><a href="../../guides/building-permits/#source-2">2</a>,<a href="../../guides/building-permits/#source-6">6</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(02) The environment</p>
+  <ul class="pf__row">
+    <li class="pf__node is-off" data-key="setena">
+      <span class="pf__who label">SETENA</span>
+      <h4 class="pf__title">SETENA</h4>
+      <p class="pf__note">Not needed: under 500 m².<sup class="cite"><a href="../../guides/building-permits/#source-8">8</a></sup></p>
+      <span class="pf__skip label">Not needed</span>
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(03) Drawings and the CFIA</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="drawings">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Drawings and contract</h4>
+      <p class="pf__note">Registered in the CFIA's APC with the architect and engineers responsible; the CFIA charges about 0.27% of its valuation, and its stamp lasts a year.<sup class="cite"><a href="../../guides/building-permits/#source-10">10</a>,<a href="../../guides/building-permits/#source-11">11</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-parallel is-sub">
+  
+  <ul class="pf__row">
+    <li class="pf__node" data-key="health">
+      <span class="pf__who label">Ministry of Health</span>
+      <h4 class="pf__title">Health: sworn declaration</h4>
+      <p class="pf__note">For a house, or a building of 300 m² or less, Health approves on the professional's sworn declaration.<sup class="cite"><a href="../../guides/building-permits/#source-12">12</a></sup></p>
+      
+    </li>
+    <li class="pf__node is-off" data-key="fire">
+      <span class="pf__who label">Fire Department</span>
+      <h4 class="pf__title">Fire Department</h4>
+      <p class="pf__note">No review for a house or fewer than 4 apartments, though the fire rules still apply.<sup class="cite"><a href="../../guides/building-permits/#source-12">12</a></sup></p>
+      <span class="pf__skip label">Not needed</span>
+    </li>
+    <li class="pf__node" data-key="muni-review">
+      <span class="pf__who label">Municipality</span>
+      <h4 class="pf__title">Municipal review in the APC</h4>
+      <p class="pf__note">The Municipalidad de Santa Cruz approved projects in 10.1 days on average in 2024-25, 35% at the first submission.<sup class="cite"><a href="../../guides/building-permits/#source-29">29</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-chain">
+  <p class="pf__name label">(04) Licence and works</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="licence">
+      <span class="pf__who label">Municipality</span>
+      <h4 class="pf__title">Municipal licence</h4>
+      <p class="pf__note">A construction tax of up to 1% of the value of the works, after the INS work-risk policy.<sup class="cite"><a href="../../guides/building-permits/#source-1">1</a>,<a href="../../guides/building-permits/#source-13">13</a>,<a href="../../guides/building-permits/#source-14">14</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="logbook">
+      <span class="pf__who label">CFIA</span>
+      <h4 class="pf__title">Digital site logbook</h4>
+      <p class="pf__note">Opened by the director of works, with its QR code on site.<sup class="cite"><a href="../../guides/building-permits/#source-15">15</a></sup></p>
+      
+    </li>
+  </ul>
+</li></ol>
+        </div>
+      </div>
+      </div>
       <p class="large tw__aside">Within 200 m of the ordinary high-tide line the maritime zone law (Ley 6043) applies: the first 50 m are public and cannot be built on, and the next 150 m are held under a concession from the municipality, not owned. Check where a lot sits before you buy.</p>
       <ul class="tw__aside guide__links">
         <li><a class="ulink" href="../../tools/cost-estimator/tamarindo/">What it costs to build in Tamarindo →</a></li>
