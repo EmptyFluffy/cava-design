@@ -235,6 +235,24 @@ ${contact(lang, t.wa.projects)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.projects)}${end}`;
 }
 
+// Cards that link to projects, three across on wide screens. `items` = [{ p, meta }].
+function projectCards(lang, up, items) {
+  return `      <ol class="cards cards--three">
+${items.map(({ p, meta }) => `        <li class="card">
+          <a class="card__link" href="${up}${projectPath(lang, p.slug)}">
+            <span class="card__media">${picture(up, p.slug, 1, altOf(lang, p, 1), '(min-width: 768px) 31vw, 92vw')}</span>
+            <span class="card__cap label"><span class="card__name">${esc(p.name)}</span><span class="card__meta">${esc(meta)}</span></span>
+          </a>
+        </li>`).join('\n')}
+      </ol>
+`;
+}
+const placeOf = (lang, p) => (tr(lang, p, 'location') ?? tr(lang, p, 'type')).split(',')[0];
+// Projects like this one: the same typology first, then the closest.
+const similar = (p, n = 3) => projects.filter((o) => o.slug !== p.slug)
+  .map((o) => ({ o, score: (o.typology === p.typology ? 0 : 1e5) + km(p.coords, o.coords) }))
+  .sort((a, b) => a.score - b.score).slice(0, n).map(({ o }) => o);
+
 // ---------- /projects/<slug>/ and /es/proyectos/<slug>/ ----------
 const FACTS = ['location', 'year', 'status', 'siteArea', 'builtArea'];
 const AREAS = new Set(['siteArea', 'builtArea']);
@@ -308,7 +326,10 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}    <nav class="next" aria-label="${s.nextAria}">
+${gallery}    <section class="related" aria-labelledby="related-title">
+      <h2 class="label" id="related-title">${s.similar}</h2>
+${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
+    <nav class="next" aria-label="${s.nextAria}">
       <a class="next__link" href="../${next.slug}/">
         <span class="label">${s.next}</span>
         <span class="h3 next__name">${esc(next.name)} →</span>
@@ -628,15 +649,7 @@ ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">$
     </section>
     <section class="tw__sec tw__work" aria-labelledby="work-title">
       <h2 class="label" id="work-title">${near ? L.work.near : L.work.far}</h2>
-      <ol class="cards cards--three">
-${work.map(({ p, km: dist }) => `        <li class="card">
-          <a class="card__link" href="${up}${projectPath(lang, p.slug)}">
-            <span class="card__media">${picture(up, p.slug, 1, altOf(lang, p, 1), '(min-width: 768px) 31vw, 92vw')}</span>
-            <span class="card__cap label"><span class="card__name">${esc(p.name)}</span><span class="card__meta">${near ? L.work.km(Math.round(dist)) : esc(tr(lang, p, 'type'))}</span></span>
-          </a>
-        </li>`).join('\n')}
-      </ol>
-    </section>
+${projectCards(lang, up, work.map(({ p, km: dist }) => ({ p, meta: near ? L.work.km(Math.round(dist)) : tr(lang, p, 'type') })))}    </section>
     <section class="tw__sec grid" aria-labelledby="faq-title">
       <h2 class="label tw__label" id="faq-title">${L.faq.label}</h2>
       <div class="faq">
@@ -689,6 +702,9 @@ ${rows}
     </div>
     <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}</p>
   </article>
+  <section class="related" aria-labelledby="hub-work-title">
+    <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
+${projectCards(lang, up, [...projects].sort((a, b) => (a.status === 'Built' ? 0 : 1) - (b.status === 'Built' ? 0 : 1)).slice(0, 6).map((p) => ({ p, meta: placeOf(lang, p) })))}  </section>
 ${contact(lang, UI[lang].wa.general)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }

@@ -62,6 +62,7 @@ export const PAIRS = [
   // ---------- works ----------
   ['<span>Featured</span><span class="indent-2">works</span>', '<span>Obras</span><span class="indent-2">selectas</span>'],
   [/aria-label="View (.+?) image"/g, 'aria-label="Ver imagen de $1"'],
+  [/<span class="card__meta">([^<]+)<\/span>/g, (m, t) => `<span class="card__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel' })[t] ?? t}</span>`],
   [/<span class="work__meta">([^<]+)<\/span>/g, (m, t) => `<span class="work__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel', 'View image →': 'Ver imagen →' })[t] ?? t}</span>`],
   [/All projects \((\d+)\) <span/g, 'Todos los proyectos ($1) <span'],
   [/View all images \((\d+)\) <span/g, 'Ver todas las imágenes ($1) <span'],

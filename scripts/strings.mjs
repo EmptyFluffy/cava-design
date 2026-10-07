@@ -32,7 +32,7 @@ export const UI = {
       tbc: 'To be confirmed',
       tbcNote: 'Entries marked "To be confirmed" are placeholders until the studio confirms them.',
       more: (name) => `More images of ${name}`,
-      nextAria: 'Next project', next: '(Next project)',
+      nextAria: 'Next project', next: '(Next project)', similar: '(Similar projects)',
     },
     map: {
       label: '(Location)', approximate: 'Approximate', tbc: 'Location to be confirmed',
@@ -72,7 +72,7 @@ export const UI = {
       tbc: 'Por confirmar',
       tbcNote: 'Los datos marcados "Por confirmar" son provisionales hasta que el estudio los confirme.',
       more: (name) => `Más imágenes de ${name}`,
-      nextAria: 'Siguiente proyecto', next: '(Siguiente proyecto)',
+      nextAria: 'Siguiente proyecto', next: '(Siguiente proyecto)', similar: '(Proyectos similares)',
     },
     map: {
       label: '(Ubicación)', approximate: 'Aproximada', tbc: 'Ubicación por confirmar',
