@@ -285,6 +285,16 @@ window.CAVA_HERO = [
   "href": "projects/tragaluz-retreat/"
  },
  {
+  "src": "assets/img/projects/papagayo-404/5",
+  "v": "1e2cac83",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "projects/papagayo-404/"
+ },
+ {
   "src": "assets/img/projects/military-museum/1",
   "v": "7326cdd7",
   "w": 1600,
@@ -295,13 +305,23 @@ window.CAVA_HERO = [
   "href": "projects/military-museum/"
  },
  {
+  "src": "assets/img/projects/papagayo-404/2",
+  "v": "67c9f923",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "projects/papagayo-404/"
+ },
+ {
   "src": "assets/img/projects/negra-mixed-use/1",
   "v": "beb76a2a",
   "w": 1600,
   "h": 900,
   "alt": "Two-storey timber and glass building with lit interiors at dusk",
   "name": "Negra Mixed Use",
-  "place": "Mixed use",
+  "place": "Playa Negra",
   "href": "projects/negra-mixed-use/"
  }
 ];

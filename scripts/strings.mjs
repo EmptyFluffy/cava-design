@@ -27,10 +27,8 @@ export const UI = {
       description: (name, type) => `${name}, ${type.toLowerCase()} by Studio CAVA. Images and technical sheet.`,
       crumb: 'Projects', sheet: '(Technical sheet)',
       rows: {
-        project: 'Project', type: 'Type', location: 'Location', year: 'Year', status: 'Status', siteArea: 'Site area', builtArea: 'Built area',
-        program: 'Program', structure: 'Structure', materials: 'Materials', climate: 'Climate strategy', team: 'Team', images: 'Images',
+        project: 'Project', type: 'Type', typology: 'Typology', location: 'Location', year: 'Year', status: 'Status', siteArea: 'Site area', builtArea: 'Built area',
       },
-      images: (n) => `${n} image${n > 1 ? 's' : ''}`,
       tbc: 'To be confirmed',
       tbcNote: 'Entries marked "To be confirmed" are placeholders until the studio confirms them.',
       more: (name) => `More images of ${name}`,
@@ -69,10 +67,8 @@ export const UI = {
       description: (name, type) => `${name}, ${type.toLowerCase()} de Studio CAVA. Imágenes y ficha técnica.`,
       crumb: 'Proyectos', sheet: '(Ficha técnica)',
       rows: {
-        project: 'Proyecto', type: 'Tipo', location: 'Ubicación', year: 'Año', status: 'Estado', siteArea: 'Área del lote', builtArea: 'Área construida',
-        program: 'Programa', structure: 'Estructura', materials: 'Materiales', climate: 'Estrategia climática', team: 'Equipo', images: 'Imágenes',
+        project: 'Proyecto', type: 'Tipo', typology: 'Tipología', location: 'Ubicación', year: 'Año', status: 'Estado', siteArea: 'Área del lote', builtArea: 'Área construida',
       },
-      images: (n) => `${n} ${n > 1 ? 'imágenes' : 'imagen'}`,
       tbc: 'Por confirmar',
       tbcNote: 'Los datos marcados "Por confirmar" son provisionales hasta que el estudio los confirme.',
       more: (name) => `Más imágenes de ${name}`,

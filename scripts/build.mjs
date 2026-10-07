@@ -235,7 +235,11 @@ ${footer(lang, up, paths)}${waButton(lang, t.wa.projects)}${end}`;
 }
 
 // ---------- /projects/<slug>/ and /es/proyectos/<slug>/ ----------
-const FACTS = ['location', 'year', 'status', 'siteArea', 'builtArea', 'program', 'structure', 'materials', 'climate', 'team'];
+const FACTS = ['location', 'year', 'status', 'siteArea', 'builtArea'];
+const AREAS = new Set(['siteArea', 'builtArea']);
+// Areas are kept in m²; the sheet adds square feet (1 m² = 10.7639 ft²), rounded to 10 because the metres are round figures too.
+const group = (lang, n) => (lang === 'en' ? n.toLocaleString('en-US') : n >= 10000 ? n.toLocaleString('en-US').replace(/,/g, '\u00a0') : String(n));
+const area = (lang, m2) => `${group(lang, m2)} m² (${group(lang, Math.round((m2 * 10.7639) / 10) * 10)} ft²)`;
 
 function mapFigure(lang, p) {
   const t = UI[lang].map;
@@ -268,8 +272,8 @@ function projectPage(lang, p, i) {
   const rows = [
     [s.rows.project, p.name],
     [s.rows.type, type],
-    ...FACTS.map((k) => [s.rows[k], tr(lang, p, k)]),
-    [s.rows.images, s.images(p.images.length)],
+    [s.rows.typology, tr(lang, p, 'typology')],
+    ...FACTS.map((k) => [s.rows[k], AREAS.has(k) && p[k] != null ? area(lang, p[k]) : tr(lang, p, k)]),
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? s.tbc)}</dd></div>`).join('\n');
   const placeholders = FACTS.some((k) => p[k] == null);
   const rest = p.images.slice(1);

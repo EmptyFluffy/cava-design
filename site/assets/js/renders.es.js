@@ -285,6 +285,16 @@ window.CAVA_HERO = [
   "href": "proyectos/tragaluz-retreat/"
  },
  {
+  "src": "../assets/img/projects/papagayo-404/5",
+  "v": "1e2cac83",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "proyectos/papagayo-404/"
+ },
+ {
   "src": "../assets/img/projects/military-museum/1",
   "v": "7326cdd7",
   "w": 1600,
@@ -295,13 +305,23 @@ window.CAVA_HERO = [
   "href": "proyectos/military-museum/"
  },
  {
+  "src": "../assets/img/projects/papagayo-404/2",
+  "v": "67c9f923",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "proyectos/papagayo-404/"
+ },
+ {
   "src": "../assets/img/projects/negra-mixed-use/1",
   "v": "beb76a2a",
   "w": 1600,
   "h": 900,
   "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer",
   "name": "Negra Mixed Use",
-  "place": "Uso mixto",
+  "place": "Playa Negra",
   "href": "proyectos/negra-mixed-use/"
  }
 ];

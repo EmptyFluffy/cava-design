@@ -1,10 +1,12 @@
 {
-  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
+  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Areas (siteArea, builtArea) are numbers in m²; the pages add square feet. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
   "hero": [
     "portland-house/1",
     "papagayo-404/1",
     "tragaluz-retreat/3",
+    "papagayo-404/5",
     "military-museum/1",
+    "papagayo-404/2",
     "negra-mixed-use/1"
   ],
   "projects": [
@@ -14,6 +16,8 @@
       "folder": "Portland House",
       "type": "House",
       "type_es": "Casa",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": "Huacas, Guanacaste",
       "coords": [
         -85.765,
@@ -24,11 +28,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Portland House C.png",
@@ -53,6 +52,8 @@
       "folder": "Papagayo 404",
       "type": "House",
       "type_es": "Casa",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": "Península Papagayo, Guanacaste",
       "coords": [
         -85.668,
@@ -62,13 +63,7 @@
       "status": null,
       "year": null,
       "siteArea": null,
-      "builtArea": "1,100 m²",
-      "builtArea_es": "1100 m²",
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
+      "builtArea": 1100,
       "images": [
         {
           "file": "Arquitectura moderna restaurada con precisión-5.png",
@@ -123,6 +118,8 @@
       "folder": "CASA ALCARABAN",
       "type": "House",
       "type_es": "Casa",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": "Playa Grande, Guanacaste",
       "coords": [
         -85.842,
@@ -133,12 +130,7 @@
       "status_es": "Construida",
       "year": null,
       "siteArea": null,
-      "builtArea": "200 m²",
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
+      "builtArea": 200,
       "images": [
         {
           "file": "U.webp",
@@ -173,6 +165,8 @@
       "folder": "Hangars B",
       "type": "Hangars",
       "type_es": "Hangares",
+      "typology": "Aviation / mixed use",
+      "typology_es": "Aviación / uso mixto",
       "location": "Huacas, Guanacaste",
       "coords": [
         -85.77496,
@@ -183,11 +177,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Hangars.png",
@@ -207,6 +196,8 @@
       "folder": "Tragaluz Retreat",
       "type": "Hotel",
       "type_es": "Hotel",
+      "typology": "Hospitality",
+      "typology_es": "Hospitalidad",
       "location": "Playa Negra, Guanacaste",
       "coords": [
         -85.83015,
@@ -217,11 +208,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Tragaluz Retreat B.png",
@@ -246,6 +232,8 @@
       "folder": "Kauhane House",
       "type": "House",
       "type_es": "Casa",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": "Playa Grande, Guanacaste",
       "coords": [
         -85.84702,
@@ -256,11 +244,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Kauhane House E.png",
@@ -295,21 +278,18 @@
       "folder": "Negra Mixed Use",
       "type": "Mixed use",
       "type_es": "Uso mixto",
-      "location": null,
+      "typology": "Mixed use",
+      "typology_es": "Uso mixto",
+      "location": "Playa Negra, Guanacaste",
       "coords": [
-        -85.79334,
-        10.4284
+        -85.826,
+        10.201
       ],
-      "pin": "placeholder",
+      "pin": "approximate",
       "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Negra Mixed Use.png",
@@ -324,6 +304,8 @@
       "folder": "S3 Houses",
       "type": "Houses",
       "type_es": "Casas",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": null,
       "coords": [
         -85.69226,
@@ -334,11 +316,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "S3 Houses.png",
@@ -353,6 +330,8 @@
       "folder": "Tree House",
       "type": "Tree house",
       "type_es": "Casa del árbol",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": null,
       "coords": [
         -85.6279,
@@ -363,11 +342,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Tree House.png",
@@ -382,6 +356,8 @@
       "folder": "Amacor House",
       "type": "House",
       "type_es": "Casa",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
       "location": null,
       "coords": [
         -85.5289,
@@ -392,11 +368,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Amacor House.png",
@@ -411,6 +382,8 @@
       "folder": "Dawn Patrol Bakery",
       "type": "Bakery and café",
       "type_es": "Panadería y café",
+      "typology": "Hospitality",
+      "typology_es": "Hospitalidad",
       "location": "Tamarindo, Guanacaste, across from Bar El Vaquero",
       "location_es": "Tamarindo, Guanacaste, frente al Bar El Vaquero",
       "coords": [
@@ -422,11 +395,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Dawn Patrol Bakery.png",
@@ -456,6 +424,8 @@
       "folder": "Military Museum",
       "type": "Museum",
       "type_es": "Museo",
+      "typology": "Cultural",
+      "typology_es": "Cultural",
       "location": null,
       "coords": [
         -85.43932,
@@ -466,11 +436,6 @@
       "year": null,
       "siteArea": null,
       "builtArea": null,
-      "program": null,
-      "structure": null,
-      "materials": null,
-      "climate": null,
-      "team": null,
       "images": [
         {
           "file": "Military Museum.png",
