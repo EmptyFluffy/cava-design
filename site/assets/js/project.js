@@ -3,6 +3,20 @@
 (() => {
   'use strict';
 
+  // Town pages: the 3D sun path (sun3d.js) loads when its figure nears the viewport, if the browser
+  // has WebGL. Otherwise, or if the CDN fails, the SVG diagram stays.
+  const SCRIPT = document.currentScript && document.currentScript.src;
+  const sunFig = document.querySelector('[data-sun3d]');
+  const webgl = () => { try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { return false; } };
+  if (sunFig && SCRIPT && 'IntersectionObserver' in window && webgl()) {
+    const io3 = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io3.disconnect();
+      import(new URL('sun3d.js', SCRIPT).href).then((m) => m.mount(sunFig)).catch(() => {});
+    }, { rootMargin: '500px 0px' });
+    io3.observe(sunFig);
+  }
+
   const fig = document.querySelector('[data-pmap]');
   if (!fig) return;
   const canvas = fig.querySelector('.pmap__canvas');

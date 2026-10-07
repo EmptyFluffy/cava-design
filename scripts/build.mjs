@@ -485,7 +485,7 @@ function sunDiagram(lang, t, d) {
     return `<polyline class="${cls}" points="${line}"/>${dots}${labels}`;
   }).join('\n          ');
   const [N, E, S, W] = L.sun.compass;
-  return `      <figure class="sunpath tw__fig">
+  return `      <figure class="sunpath tw__fig" data-sun3d data-lat="${lat}" data-lng="${lng}" data-temps="${esc(JSON.stringify(d.temp))}">
         <svg viewBox="-150 -150 300 300" role="img" aria-label="${esc(L.sun.aria(t))}">
           <circle class="sun__ring" r="${R}"/><circle class="sun__ring sun__ring--in" r="${(R * 2) / 3}"/><circle class="sun__ring sun__ring--in" r="${R / 3}"/>
           <path class="sun__axis" d="M0 ${-R}V${R}M${-R} 0H${R}"/>
@@ -493,6 +493,8 @@ function sunDiagram(lang, t, d) {
           ${tracks}
         </svg>
         <figcaption class="sun__legend label">${L.sun.legend.map((txt, i) => `<span class="sun__key sun__key--${['jun', 'equ', 'dec'][i]}">${txt}</span>`).join('')}</figcaption>
+        <div class="sun3d__legend label"><span class="sun3d__legend-title">${L.sun.temps}</span>${L.sun.bands.map((txt, i) => `<span class="sun3d__key"><i class="sun3d__t${i}"></i>${txt}</span>`).join('')}</div>
+        <p class="note sun3d__note">${L.sun.note}</p>
       </figure>
 `;
 }
@@ -757,5 +759,7 @@ write('sitemap.xml', sitemap());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 write('es/index.html', homeEs());
 write('assets/js/renders.js', rendersJs('en', ''));
+// the 3D sun path (site/assets/js/sun3d.js) runs the same solar maths as the build
+write('assets/js/sun.mjs', readFileSync(join(ROOT, 'scripts', 'sun.mjs'), 'utf8'));
 write('assets/js/renders.es.js', rendersJs('es', '../'));
 console.log(`built ${towns.length} town pages and /architects/, /studio/, /projects/ and ${projects.length} project pages in each language, ${projects.reduce((n, p) => n + p.images.length, 0)} images; /es/ home`);
