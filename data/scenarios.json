@@ -1,0 +1,107 @@
+{
+  "_note": "Preset estimates (/tools/cost-estimator/<slug>/): a typical project in a town, priced by the estimator. 'preset' uses the estimator's fields; the numbers in the text are computed at build time.",
+  "scenarios": [
+    {
+      "slug": { "en": "boutique-hotel-santa-teresa", "es": "hotel-boutique-santa-teresa" },
+      "photo": "monstera",
+      "preset": { "town": "santa-teresa", "type": "hotel", "area": 600, "storeys": 2, "quality": "high", "slope": "gentle", "pool": 50, "deck": 150, "solar": true, "landscape": true, "furniture": true },
+      "en": {
+        "name": "A boutique hotel in Santa Teresa",
+        "h1": ["Boutique hotel", "in Santa Teresa"],
+        "lede": "Twelve rooms of about 30 m² with their bathrooms, a reception, a small restaurant and a pool, on a gently sloping lot a few minutes from the beach.",
+        "note": "A hotel goes through the Health and Fire review in the CFIA's APC and must meet the accessibility law, and over 1,000 m² it needs SETENA's environmental viability. Santa Teresa is a long road from suppliers, which is why building here costs about 15% more than the national figures."
+      },
+      "es": {
+        "name": "Un hotel boutique en Santa Teresa",
+        "h1": ["Hotel boutique", "en Santa Teresa"],
+        "lede": "Doce habitaciones de unos 30 m² con sus baños, recepción, un restaurante pequeño y piscina, en un lote de pendiente suave a pocos minutos de la playa.",
+        "note": "Un hotel pasa por la revisión de Salud y Bomberos en el APC del CFIA y tiene que cumplir la ley de accesibilidad, y con más de 1,000 m² necesita la viabilidad ambiental de SETENA. Santa Teresa queda lejos de los proveedores, y por eso construir aquí cuesta cerca de un 15% más que las cifras nacionales."
+      }
+    },
+    {
+      "slug": { "en": "rental-villa-tamarindo", "es": "villa-de-alquiler-tamarindo" },
+      "photo": "sand",
+      "preset": { "town": "tamarindo", "type": "house", "area": 320, "storeys": 2, "quality": "high", "slope": "flat", "pool": 32, "deck": 80, "solar": true, "landscape": true, "furniture": true },
+      "en": {
+        "name": "A rental villa in Tamarindo",
+        "h1": ["Rental villa", "in Tamarindo"],
+        "lede": "Four bedrooms over two storeys, a 32 m² pool and generous terraces, furnished and ready to let, on a flat lot in town.",
+        "note": "Rentals earn in the dry season, from December to April, so the schedule matters as much as the budget: a villa that misses one opening of the dry season starts earning a year later. Furniture ready to rent is in the number; the land is not."
+      },
+      "es": {
+        "name": "Una villa de alquiler en Tamarindo",
+        "h1": ["Villa de alquiler", "en Tamarindo"],
+        "lede": "Cuatro habitaciones en dos pisos, piscina de 32 m² y terrazas amplias, amueblada y lista para alquilar, en un lote plano en el pueblo.",
+        "note": "Los alquileres ganan en la época seca, de diciembre a abril, así que el cronograma pesa tanto como el presupuesto: una villa que pierde una apertura de la época seca empieza a ganar un año después. El mobiliario listo para alquilar está en el número; el terreno no."
+      }
+    },
+    {
+      "slug": { "en": "family-house-escazu", "es": "casa-familiar-escazu" },
+      "photo": "mist",
+      "preset": { "town": "escazu", "type": "house", "area": 280, "storeys": 2, "quality": "high", "slope": "gentle", "pool": 0, "deck": 40, "solar": true, "landscape": true, "furniture": false },
+      "en": {
+        "name": "A family house in Escazú",
+        "h1": ["Family house", "in Escazú"],
+        "lede": "Four bedrooms and a study over two storeys on a gently sloping lot in the hills, with a garden instead of a pool.",
+        "note": "The Central Valley has no extra cost for distance, and a slope like Escazú's adds foundations and retaining walls rather than area. Most lots here sit inside a condominium, which adds its own design review before the municipality."
+      },
+      "es": {
+        "name": "Una casa familiar en Escazú",
+        "h1": ["Casa familiar", "en Escazú"],
+        "lede": "Cuatro habitaciones y un estudio en dos pisos, en un lote de pendiente suave en las lomas, con jardín en vez de piscina.",
+        "note": "El Valle Central no suma costo por distancia, y una pendiente como la de Escazú agrega fundaciones y muros de contención, no área. Casi todos los lotes aquí están en un condominio, que suma su propia revisión de diseño antes de la municipalidad."
+      }
+    },
+    {
+      "slug": { "en": "luxury-house-papagayo", "es": "casa-de-lujo-papagayo" },
+      "photo": "peninsula",
+      "preset": { "town": "papagayo", "type": "house", "area": 600, "storeys": 2, "quality": "luxury", "slope": "gentle", "pool": 50, "deck": 200, "solar": true, "landscape": true, "furniture": true },
+      "en": {
+        "name": "A luxury house in Papagayo",
+        "h1": ["Luxury house", "in Papagayo"],
+        "lede": "A 600 m² house over two levels on a hillside lot above the gulf, with a 50 m² pool, wide covered terraces and a luxury finish.",
+        "note": "Inside Península Papagayo the land is an ICT concession and the design passes three reviews by the MDRB before the ICT, the CFIA and the municipality; the estimate adds those reviews and the US$25,000 water connection. A 600 m² house stays under SETENA's 1,000 m² threshold."
+      },
+      "es": {
+        "name": "Una casa de lujo en Papagayo",
+        "h1": ["Casa de lujo", "en Papagayo"],
+        "lede": "Una casa de 600 m² en dos niveles, en un lote en ladera sobre el golfo, con piscina de 50 m², terrazas techadas amplias y acabados de lujo.",
+        "note": "Dentro de la Península Papagayo el terreno es una concesión del ICT y el diseño pasa tres revisiones del MDRB antes del ICT, el CFIA y la municipalidad; la estimación suma esas revisiones y la conexión de agua de US$25,000. Una casa de 600 m² queda por debajo del umbral de 1,000 m² de SETENA."
+      }
+    },
+    {
+      "slug": { "en": "small-house-uvita", "es": "casa-pequena-uvita" },
+      "photo": "whale",
+      "preset": { "town": "uvita", "type": "house", "area": 150, "storeys": 1, "quality": "standard", "slope": "gentle", "pool": 15, "deck": 30, "solar": true, "landscape": true, "furniture": false },
+      "en": {
+        "name": "A small house in Uvita",
+        "h1": ["Small house", "in Uvita"],
+        "lede": "Two bedrooms on one floor, a plunge pool and a deep terrace, with a standard finish, on a lot with a gentle slope towards the sea.",
+        "note": "Building in the south Pacific costs a little less than on the Guanacaste coast, and a small house is the one where every fixed cost shows: the pool, the solar panels and the professional fees weigh more per m² than in a large one. The rains here are long, so the start date decides a lot."
+      },
+      "es": {
+        "name": "Una casa pequeña en Uvita",
+        "h1": ["Casa pequeña", "en Uvita"],
+        "lede": "Dos habitaciones en un piso, una piscina pequeña y una terraza profunda, con acabados estándar, en un lote con pendiente suave hacia el mar.",
+        "note": "Construir en el Pacífico sur cuesta un poco menos que en la costa de Guanacaste, y una casa pequeña es donde más se notan los costos fijos: la piscina, los paneles y los honorarios pesan más por m² que en una grande. Aquí las lluvias son largas, así que la fecha de inicio decide mucho."
+      }
+    },
+    {
+      "slug": { "en": "beach-house-nosara", "es": "casa-de-playa-nosara" },
+      "photo": "pangas",
+      "preset": { "town": "nosara", "type": "house", "area": 220, "storeys": 1, "quality": "high", "slope": "flat", "pool": 15, "deck": 60, "solar": true, "landscape": true, "furniture": false },
+      "en": {
+        "name": "A beach house in Nosara",
+        "h1": ["Beach house", "in Nosara"],
+        "lede": "Three bedrooms on one floor under a deep roof, a plunge pool and a terrace facing the forest, on a flat lot walking distance from Guiones.",
+        "note": "Nosara is the dearest place on the coast to build: the roads are slow, contractors are few and the market leans to the top end, which puts construction about 25% above the national figures. A single storey under a deep roof keeps the house cool without leaning on air conditioning."
+      },
+      "es": {
+        "name": "Una casa de playa en Nosara",
+        "h1": ["Casa de playa", "en Nosara"],
+        "lede": "Tres habitaciones en un piso bajo un techo profundo, una piscina pequeña y una terraza hacia el bosque, en un lote plano a poca distancia de Guiones.",
+        "note": "Nosara es el lugar más caro de la costa para construir: los caminos son lentos, hay pocos constructores y el mercado se inclina hacia arriba, lo que pone la construcción cerca de un 25% sobre las cifras nacionales. Un solo piso bajo un techo profundo mantiene la casa fresca sin depender del aire acondicionado."
+      }
+    }
+  ]
+}

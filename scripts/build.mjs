@@ -1085,7 +1085,13 @@ ${work.map((p) => `        <li class="card" data-area="${p.builtArea}" data-kind
       </ol>
     </section>
     <p class="est__sticky label" aria-hidden="true"><span>${E.sticky}</span><b data-est-sticky></b></p>
-${pg ? '' : `    <nav class="tw__sec grid" aria-labelledby="est-towns">
+${pg || !scenarios.length ? '' : `    <nav class="tw__sec grid" aria-labelledby="est-examples">
+      <h2 class="label tw__label" id="est-examples">${lang === 'en' ? '(Examples)' : '(Ejemplos)'}</h2>
+      <ul class="tw__aside guide__links">
+${scenarios.map((sc) => `        <li><a class="ulink" href="${up}${scenarioPath(lang, sc)}">${esc(sc[lang].name)} →</a></li>`).join('\n')}
+      </ul>
+    </nav>
+`}${pg ? '' : `    <nav class="tw__sec grid" aria-labelledby="est-towns">
       <h2 class="label tw__label" id="est-towns">${lang === 'en' ? '(By town)' : '(Por pueblo)'}</h2>
       <ul class="tw__aside guide__links est__towns">
 ${towns.map((t) => `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(TC[lang].link(t.name))} →</a></li>`).join('\n')}
@@ -1881,6 +1887,87 @@ ${contact(lang, E.wa(t.name), up, `?town=${t.slug}`)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
+// ---------- Example projects, priced: /tools/cost-estimator/<scenario>/ (data/scenarios.json) ----------
+const SCEN_PATH = join(ROOT, 'data', 'scenarios.json');
+const scenarios = existsSync(SCEN_PATH) ? JSON.parse(readFileSync(SCEN_PATH, 'utf8')).scenarios : [];
+const scenarioPath = (lang, sc) => `${estimatorPath(lang)}${sc.slug[lang]}/`;
+const lcFirst = (x) => x.charAt(0).toLowerCase() + x.slice(1);
+const SC = {
+  en: {
+    title: (n) => `What ${lcFirst(n)} costs to build | Studio CAVA`,
+    total: (e) => ` The estimate comes to ${usdK(e.total[0])} to ${usdK(e.total[2])}, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve.`,
+    project: '(The project)', moves: '(What moves the number)', more: '(More examples)',
+    movesNote: 'The likely figure, with one thing changed and the rest as above.',
+    facts: { area: (a, s) => `${a.toLocaleString('en-US')} m² over ${s === 1 ? 'one storey' : `${s} storeys`}`, quality: { standard: 'Standard finish', high: 'High finish', luxury: 'Luxury finish' }, slope: { flat: 'Flat lot', gentle: 'Gentle slope', steep: 'Steep lot' }, pool: (m) => `A ${m} m² pool`, deck: (m) => `${m} m² of terraces and decks`, solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture, ready to rent', hotel: 'A small hotel', house: 'A house' },
+    alt: { down: (q) => `A ${q.toLowerCase()}`, up: (q) => `A ${q.toLowerCase()}`, noPool: 'Without the pool', steep: 'On a steep lot', smaller: '20% less area', noFurniture: 'Without furniture' },
+    town: (n) => `What it costs to build in ${n}`, land: (n) => `Land prices in ${n}`,
+    wa: (n) => `Hi Studio CAVA, I saw your estimate for ${lcFirst(n)} and would like to talk about my project.`,
+  },
+  es: {
+    title: (n) => `Cuánto cuesta construir ${lcFirst(n)} | Studio CAVA`,
+    total: (e) => ` La estimación da de ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva.`,
+    project: '(El proyecto)', moves: '(Qué mueve el número)', more: '(Más ejemplos)',
+    movesNote: 'La cifra probable, cambiando una sola cosa y dejando el resto como arriba.',
+    facts: { area: (a, s) => `${a.toLocaleString('en-US')} m² en ${s === 1 ? 'un piso' : `${s} pisos`}`, quality: { standard: 'Acabados estándar', high: 'Acabados altos', luxury: 'Acabados de lujo' }, slope: { flat: 'Lote plano', gentle: 'Pendiente suave', steep: 'Pendiente fuerte' }, pool: (m) => `Piscina de ${m} m²`, deck: (m) => `${m} m² de terrazas y decks`, solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario listo para alquilar', hotel: 'Un hotel pequeño', house: 'Una casa' },
+    alt: { down: (q) => `${q}`, up: (q) => `${q}`, noPool: 'Sin piscina', steep: 'En pendiente fuerte', smaller: 'Un 20% menos de área', noFurniture: 'Sin mobiliario' },
+    town: (n) => `Cuánto cuesta construir en ${n}`, land: (n) => `Precio del terreno en ${n}`,
+    wa: (n) => `Hola Studio CAVA, vi su estimación de ${lcFirst(n)} y quisiera conversar sobre mi proyecto.`,
+  },
+};
+function scenarioPage(lang, sc) {
+  const S = SC[lang];
+  const T = sc[lang];
+  const D = costsData();
+  const st = { ...EST_DEFAULT, ...sc.preset };
+  const e = estimateNode(D, st);
+  const t = towns.find((x) => x.slug === st.town);
+  const paths = { en: scenarioPath('en', sc), es: scenarioPath('es', sc) };
+  const up = upFrom(paths[lang]);
+  const F = S.facts;
+  const facts = [F[st.type], F.area(st.area, st.storeys), F.quality[st.quality], F.slope[st.slope], st.pool ? F.pool(st.pool) : '', st.deck ? F.deck(st.deck) : '', st.solar ? F.solar : '', st.landscape ? F.landscape : '', st.furniture ? F.furniture : ''].filter(Boolean);
+  // one change at a time, against the likely total
+  const Q = ['standard', 'high', 'luxury'], qi = Q.indexOf(st.quality);
+  const alts = [
+    qi > 0 ? [S.alt.down(F.quality[Q[qi - 1]]), { quality: Q[qi - 1] }] : null,
+    qi < 2 ? [S.alt.up(F.quality[Q[qi + 1]]), { quality: Q[qi + 1] }] : null,
+    st.pool ? [S.alt.noPool, { pool: 0 }] : null,
+    st.slope !== 'steep' ? [S.alt.steep, { slope: 'steep' }] : null,
+    [S.alt.smaller, { area: Math.round(st.area * 0.8) }],
+    st.furniture ? [S.alt.noFurniture, { furniture: false }] : null,
+  ].filter(Boolean).map(([label, over]) => { const d = estimateNode(D, { ...st, ...over }).total[1] - e.total[1]; return [label, d]; });
+  const sign = (d) => `${d > 0 ? '+' : '−'}${usdK(Math.abs(d))}`;
+  const extra = `    <section class="tw__sec grid" aria-labelledby="sc-project">
+      <h2 class="label tw__label" id="sc-project">${S.project}</h2>
+      <div class="tw__text">
+        <ul class="svc__for sc__facts">${facts.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+        <p class="large">${esc(T.note)}</p>
+      </div>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="sc-moves">
+      <h2 class="label tw__label" id="sc-moves">${S.moves}</h2>
+      <div class="tw__text">
+        <ul class="est__list est__list--soft sc__moves">${alts.map(([l, d]) => `<li><span>${esc(l)}</span><b>${sign(d)}</b></li>`).join('')}</ul>
+        <p class="note">${S.movesNote}</p>
+      </div>
+    </section>
+    <nav class="tw__sec grid" aria-labelledby="sc-more">
+      <h2 class="label tw__label" id="sc-more">${S.more}</h2>
+      <ul class="tw__aside guide__links">
+${scenarios.filter((o) => o !== sc).map((o) => `        <li><a class="ulink" href="${up}${scenarioPath(lang, o)}">${esc(o[lang].name)} →</a></li>`).join('\n')}
+${t ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(S.town(t.name))} →</a></li>\n` : ''}${t && land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(S.land(t.name))} →</a></li>\n` : ''}      </ul>
+    </nav>
+`;
+  const intro = `${T.lede}${S.total(e)}`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebPage', name: S.title(T.name).split(' | ')[0], description: intro, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}` },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: ET[lang].h1.join(' '), item: `${ORIGIN}/${estimatorPath(lang)}` }, { '@type': 'ListItem', position: 3, name: T.name, item: `${ORIGIN}/${paths[lang]}` }] },
+    ],
+  };
+  return estimatorPage(lang, { paths, title: S.title(T.name), description: intro, h1: T.h1, intro, preset: st, photo: sc.photo, extra, ld, cls: 'est--town', wa: S.wa(T.name), q: `?town=${st.town}` });
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -1892,7 +1979,7 @@ function sitemap() {
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
-    ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }, ...towns.map((t) => ({ en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) }))] : []),
+    ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }, ...towns.map((t) => ({ en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) })), ...scenarios.map((sc) => ({ en: scenarioPath('en', sc), es: scenarioPath('es', sc) }))] : []),
     ...(land ? [{ en: landPath('en'), es: landPath('es') }, ...towns.filter((t) => land.towns[t.slug]).map((t) => ({ en: landTownPath('en', t.slug), es: landTownPath('es', t.slug) }))] : []),
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
@@ -2002,6 +2089,7 @@ for (const lang of ['en', 'es']) {
   if (costs) {
     write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
     towns.forEach((t) => write(`${townCostPath(lang, t.slug)}index.html`, townCostPage(lang, t)));
+    scenarios.forEach((sc) => write(`${scenarioPath(lang, sc)}index.html`, scenarioPage(lang, sc)));
   }
   if (land && costs) {
     write(`${landPath(lang)}index.html`, landPage(lang));
