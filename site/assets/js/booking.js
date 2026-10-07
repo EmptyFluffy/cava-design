@@ -6,9 +6,10 @@
 (() => {
   'use strict';
 
-  const root = document.querySelector('[data-booking]');
-  if (!root) return;
-  const ES = document.documentElement.lang === 'es';
+function init(root, params = new URLSearchParams(location.search)) {
+  if (!root || root.dataset.bkInit) return;
+  root.dataset.bkInit = '1';
+  const ES = (root.closest('[lang]')?.getAttribute('lang') || document.documentElement.lang) === 'es';
   const $ = (s, r = root) => r.querySelector(s);
   const $$ = (s, r = root) => [...r.querySelectorAll(s)];
   const C = root.dataset;
@@ -151,12 +152,13 @@
   // ---------- the form ----------
   const form = $('[data-bk-form]');
   function toForm() {
+    root.dataset.dir = 'next';
     root.dataset.step = 'form';
     $('[data-bk-when]').textContent = `${longDate(picked)}, ${clock(picked)} – ${clock(new Date(picked.getTime() + DURATION * 60e3))}`;
     $('[data-bk-when-tz]').textContent = tz().replace(/_/g, ' ');
-    form.querySelector('input')?.focus();
+    form.querySelector('input')?.focus({ preventScroll: true });
   }
-  $('[data-bk-back]').addEventListener('click', () => { root.dataset.step = 'pick'; $('[data-bk-error]').textContent = ''; });
+  $('[data-bk-back]').addEventListener('click', () => { root.dataset.dir = 'back'; root.dataset.step = 'pick'; $('[data-bk-error]').textContent = ''; });
 
   // what the visitor tells us, as text for the studio's calendar
   function notes(f) {
@@ -213,7 +215,7 @@
   $('[data-bk-again]').addEventListener('click', () => { form.reset(); form.querySelector('[type=submit]').disabled = false; root.dataset.step = 'pick'; cache.clear(); drawMonth(false); });
 
   // arriving from a town page or from the estimator: the place and the estimate come along
-  const qs = new URLSearchParams(location.search);
+  const qs = params;
   const town = qs.get('town');
   if (town) { const o = form.querySelector(`select[name=where] option[value="${CSS.escape(town)}"]`); if (o) o.selected = true; }
   const est = qs.get('est');
@@ -222,4 +224,8 @@
   root.dataset.step = 'pick';
   root.classList.add('is-ready');
   drawMonth(true);
+}
+
+  window.CAVA_BOOK = { init };
+  init(document.querySelector('[data-booking]'));
 })();

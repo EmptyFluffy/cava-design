@@ -107,7 +107,7 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="${up}assets/css/site.css">
-${[].concat(script ?? []).map((s) => `<script defer src="${up}assets/js/${s}"></script>
+${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : []).map((s) => `<script defer src="${up}assets/js/${s}"></script>
 `).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 ` : ''}</head>
 <body class="sub">
@@ -1072,7 +1072,7 @@ ${land ? `            <li><a class="ulink" href="${up}${landPath(lang)}">${esc(L
         </section>
         <div class="est__actions">
           <a class="btn btn--dark" data-est-wa data-phone="${WHATSAPP}" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">${E.whatsapp} <span class="btn__dot" aria-hidden="true"></span></a>
-${booking ? `          <a class="btn btn--light" data-est-book href="${up}${bookPath(lang)}">${lang === 'en' ? 'Book a free call about it' : 'Agendar una llamada sobre esto'} <span class="btn__dot" aria-hidden="true"></span></a>
+${booking ? `          <a class="btn btn--light" data-est-book href="${up}${bookPath(lang)}">${lang === 'en' ? 'Book a free call about it' : 'Agendar una llamada gratis sobre esto'} <span class="btn__dot" aria-hidden="true"></span></a>
 ` : ''}          <button class="btn btn--light" type="button" data-est-copy>${E.copy}</button>
           <button class="btn btn--light" type="button" data-est-print>${E.print}</button>
         </div>
@@ -1107,7 +1107,7 @@ ${towns.map((t) => `        <li><a class="ulink" href="${up}${townCostPath(lang,
       </ul>
     </nav>
 `}
-    <section class="tw__sec grid" aria-labelledby="est-method">
+    <section class="tw__sec grid est__method" aria-labelledby="est-method">
       <h2 class="label tw__label" id="est-method">${E.method}</h2>
       <div class="tw__text guide__body">
         <h3 class="guide__h2">${E.methodTitle}</h3>
@@ -1162,7 +1162,7 @@ const BK = {
     helps: '(What helps)', helpsList: ['The location of the lot, or its cadastral plan', 'Photos of the lot and of houses you like', 'A budget range and when you would like to move in'],
   },
   es: {
-    link: 'Agende una llamada', title: 'Agende una llamada gratis con un arquitecto | Studio CAVA',
+    link: 'Agende una llamada gratis', title: 'Agende una llamada gratis con un arquitecto | Studio CAVA',
     description: 'Una videollamada gratis de 30 minutos con Studio CAVA sobre su lote y su proyecto en Costa Rica: qué permiten las reglas, cuánto podría costar y cuánto tarda. Elija la hora que le sirva.',
     label: '(Llamada gratis)', h1: ['Agende una', 'llamada gratis'],
     intro: 'Treinta minutos por video, gratis, con el arquitecto que diseñaría su proyecto: su lote, qué permiten las reglas, cuánto podría costar y cuánto tarda.',
@@ -1630,7 +1630,7 @@ const TC = {
     faq: '(Questions)', more: '(Also on this town)', arch: (n) => `Architects in ${n}: climate, permits and our work`, landLink: (n) => `Land prices in ${n}`,
     wa: (n) => `Hi Studio CAVA, I am looking at building in ${n} and would like to talk about it.`,
     q: {
-      cost: (n) => `How much does it cost to build a house in ${n}?`,
+      cost: (n) => `How much does it cost to build a house in ${n}, Costa Rica?`,
       costA: (n, e, s, l) => `A 250 m² house with a high finish, a 32 m² pool, solar panels and landscaping comes to about ${usdK(e.total[0])} to ${usdK(e.total[2])} in ${n}, likely ${usdK(e.total[1])}. That is construction at about US$${Math.round(e.rate[1]).toLocaleString('en-US')} a m², plus design, permits, VAT and a reserve. With a standard finish the likely figure drops to about ${usdK(s.total[1])}; with a luxury one it rises to about ${usdK(l.total[1])}.`,
       land: (n) => `How much is land in ${n}?`,
       landM: (n, m) => `Titled residential lots of 300 to 5,000 m² listed in ${n} ask a median of US$${m.median.toLocaleString('en-US')} a m², with the middle half between US$${m.p25.toLocaleString('en-US')} and ${m.p75.toLocaleString('en-US')} (${m.n} lots, October 2026). These are asking prices; sales close lower.`,
@@ -1639,13 +1639,15 @@ const TC = {
       when: (n) => `When is the best time to start building in ${n}?`,
       whenA: (n, dry, open, heavy) => `At the opening of the dry season, which in ${n} runs ${dry}: earthworks and foundations then start in ${open}, with ${heavy < 1 ? 'almost no days' : `about ${heavy} days`} of heavy rain in the first four months against many more in the rains. Design and permits take most of a year, so the time to start the design is the year before.`,
       whenNo: (n) => `${n} has no dry season to wait for: rain falls all year, so works start once the permits are in and are planned around the wettest months.`,
+      hotel: (n) => `How much does it cost to build a small hotel in ${n}, Costa Rica?`,
+      hotelA: (n, h) => `A boutique hotel of 12 rooms, about 600 m² over two storeys with a high finish, a 50 m² pool and furniture ready for guests, comes to about ${usdK(h.total[0])} to ${usdK(h.total[2])} in ${n}, likely ${usdK(h.total[1])}, with design, permits, VAT and a reserve. A hotel also passes the Health and Fire review in the CFIA's APC and must meet the accessibility law.`,
       who: (n) => `Who issues building permits in ${n}?`,
       whoA: (n, muni) => `${muni.charAt(0).toUpperCase() + muni.slice(1)} issues the licence, after the drawings are approved in the CFIA's APC. Under 500 m² a house does not need SETENA; between 500 and 1,000 m² it does only on fragile sites, and over 1,000 m² it does.`,
     },
   },
   es: {
     link: (n) => `Cuánto cuesta construir en ${n}`,
-    title: (n) => `Cuánto cuesta construir una casa en ${n} | Studio CAVA`,
+    title: (n) => `Cuánto cuesta construir una casa en ${n}, Costa Rica | Studio CAVA`,
     description: (n, e) => `Una casa de 250 m² con piscina en ${n} cuesta de ${usdK(e.total[0])} a ${usdK(e.total[2])}, con diseño, permisos e IVA. Cambie el tamaño, los acabados y los extras, y vea el cronograma ajustado a la época seca.`,
     label: '(Estimador)', h1: (n) => ['Construir', `en ${n}`],
     intro: (n, e) => `Una casa de 250 m² con acabados altos y piscina en ${n} sale en unos ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva. Cambie lo que quiera abajo y los números lo siguen.`,
@@ -1654,7 +1656,7 @@ const TC = {
     faq: '(Preguntas)', more: '(También de este pueblo)', arch: (n) => `Arquitectos en ${n}: clima, permisos y nuestro trabajo`, landLink: (n) => `Precio del terreno en ${n}`,
     wa: (n) => `Hola Studio CAVA, estoy pensando en construir en ${n} y quisiera conversarlo.`,
     q: {
-      cost: (n) => `¿Cuánto cuesta construir una casa en ${n}?`,
+      cost: (n) => `¿Cuánto cuesta construir una casa en ${n}, Costa Rica?`,
       costA: (n, e, s, l) => `Una casa de 250 m² con acabados altos, piscina de 32 m², paneles solares y paisajismo sale en unos ${usdK(e.total[0])} a ${usdK(e.total[2])} en ${n}, lo probable ${usdK(e.total[1])}. Es la construcción a unos US$${Math.round(e.rate[1]).toLocaleString('en-US')} el m², más diseño, permisos, IVA y una reserva. Con acabados estándar lo probable baja a unos ${usdK(s.total[1])}; con acabados de lujo sube a unos ${usdK(l.total[1])}.`,
       land: (n) => `¿Cuánto cuesta el terreno en ${n}?`,
       landM: (n, m) => `Los lotes residenciales titulados de 300 a 5,000 m² anunciados en ${n} piden una mediana de US$${m.median.toLocaleString('en-US')} el m², con la mitad central entre US$${m.p25.toLocaleString('en-US')} y ${m.p75.toLocaleString('en-US')} (${m.n} lotes, octubre de 2026). Son precios pedidos; las ventas cierran más abajo.`,
@@ -1663,6 +1665,8 @@ const TC = {
       when: (n) => `¿Cuál es el mejor momento para empezar a construir en ${n}?`,
       whenA: (n, dry, open, heavy) => `Al inicio de la época seca, que en ${n} va de ${dry}: el movimiento de tierra y las fundaciones arrancan entonces en ${open}, con ${heavy < 1 ? 'casi ningún día' : `unos ${heavy} días`} de lluvia fuerte en los primeros cuatro meses, contra muchos más en lluvias. El diseño y los permisos toman casi un año, así que el momento de empezar el diseño es el año anterior.`,
       whenNo: (n) => `En ${n} no hay época seca que esperar: llueve todo el año, así que la obra arranca cuando salen los permisos y se planifica alrededor de los meses más lluviosos.`,
+      hotel: (n) => `¿Cuánto cuesta construir un hotel pequeño en ${n}, Costa Rica?`,
+      hotelA: (n, h) => `Un hotel boutique de 12 habitaciones, unos 600 m² en dos pisos con acabados altos, piscina de 50 m² y mobiliario listo para huéspedes, sale en unos ${usdK(h.total[0])} a ${usdK(h.total[2])} en ${n}, lo probable ${usdK(h.total[1])}, con diseño, permisos, IVA y una reserva. Un hotel además pasa la revisión de Salud y Bomberos en el APC del CFIA y tiene que cumplir la ley de accesibilidad.`,
       who: (n) => `¿Quién da los permisos de construcción en ${n}?`,
       whoA: (n, muni) => `${muni.charAt(0).toUpperCase() + muni.slice(1)} da la licencia, después de que los planos se aprueban en el APC del CFIA. Con menos de 500 m² una casa no necesita SETENA; entre 500 y 1,000 m² solo en sitios frágiles, y con más de 1,000 m² sí.`,
     },
@@ -1677,6 +1681,7 @@ function townCostPage(lang, t) {
   const muni = L.municipality(t, d);
   const base = { ...EST_DEFAULT, town: t.slug };
   const e = estimateNode(D, base), es = estimateNode(D, { ...base, quality: 'standard' }), el = estimateNode(D, { ...base, quality: 'luxury' });
+  const eh = estimateNode(D, { ...base, type: 'hotel', area: 600, storeys: 2, pool: 50, deck: 150, furniture: true });
   const paths = { en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) };
   const up = upFrom(paths[lang]);
   const lnd = land?.towns[t.slug];
@@ -1687,6 +1692,7 @@ function townCostPage(lang, t) {
   const res = lnd?.official.residential?.map((z) => Math.round(z.v / costs.fx.crcPerUsd)) ?? [];
   const Q = [
     [C.q.cost(t.name), C.q.costA(t.name, e, es, el)],
+    [C.q.hotel(t.name), C.q.hotelA(t.name, eh)],
     [C.q.land(t.name), t.slug === 'papagayo' ? C.q.landP() : lnd?.market ? C.q.landM(t.name, lnd.market) : res.length ? C.q.landO(t.name, Math.min(...res), Math.max(...res), lnd.edition) : null],
     [C.q.when(t.name), c.dry ? C.q.whenA(t.name, dryText, MONTHS[lang][c.dry.start], heavy4) : C.q.whenNo(t.name)],
     [C.q.who(t.name), C.q.whoA(t.name, muni)],
@@ -1787,7 +1793,7 @@ const LTT = {
     wa: (n) => `Hi Studio CAVA, I am looking at land in ${n} and would like to talk about it.`,
   },
   es: {
-    title: (n) => `Precio del terreno en ${n}: valor por m² | Studio CAVA`,
+    title: (n) => `Precio del terreno en ${n}, Costa Rica: valor por m² | Studio CAVA`,
     description: (n, txt) => `Terreno en ${n}: ${txt} Cada zona en un mapa, con el año de su edición.`,
     label: '(Precio del terreno)', h1: (n) => ['Terreno', `en ${n}`],
     introO: (n, lo, hi, y) => `En ${n}, el Ministerio de Hacienda valora el terreno residencial y del centro en ₡${lo.toLocaleString('en-US')} a ₡${hi.toLocaleString('en-US')} el m² (US$${Math.round(lo / costs.fx.crcPerUsd)} a ${Math.round(hi / costs.fx.crcPerUsd).toLocaleString('en-US')}), en su edición ${y}.`,
@@ -1901,9 +1907,17 @@ const SCEN_PATH = join(ROOT, 'data', 'scenarios.json');
 const scenarios = existsSync(SCEN_PATH) ? JSON.parse(readFileSync(SCEN_PATH, 'utf8')).scenarios : [];
 const scenarioPath = (lang, sc) => `${estimatorPath(lang)}${sc.slug[lang]}/`;
 const lcFirst = (x) => x.charAt(0).toLowerCase() + x.slice(1);
+// months of design, permits and works, as the estimator's schedule counts them
+function scheduleNode(D, st) {
+  const M = D.durations, a = st.area, hotel = st.type === 'hotel';
+  const design = M.concept + M.schematic + a / M.schematicPerM2 + M.drawings + a / M.drawingsPerM2;
+  const permits = M.prepermits + (st.condo || st.town === 'papagayo' ? M.condo : 0) + (st.town === 'papagayo' ? M.ict : 0) + (a > 1000 ? M.setena : 0) + M.apc + (hotel ? M.hotelReview : 0);
+  const works = Math.min(M.maxWorks, (M.worksBase + a / M.worksPerM2) * M.qualityFactor[st.quality] * (hotel ? M.hotelFactor : 1));
+  return { design: Math.round(design), permits: Math.round(permits), works: Math.round(works) };
+}
 const SC = {
   en: {
-    title: (n) => `What ${lcFirst(n)} costs to build | Studio CAVA`,
+    title: (n) => `Cost to build ${lcFirst(n)}, Costa Rica | Studio CAVA`,
     total: (e) => ` The estimate comes to ${usdK(e.total[0])} to ${usdK(e.total[2])}, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve.`,
     project: '(The project)', moves: '(What moves the number)', more: '(More examples)',
     movesNote: 'The likely figure, with one thing changed and the rest as above.',
@@ -1911,9 +1925,22 @@ const SC = {
     alt: { down: (q) => `A ${q.toLowerCase()}`, up: (q) => `A ${q.toLowerCase()}`, noPool: 'Without the pool', steep: 'On a steep lot', smaller: '20% less area', noFurniture: 'Without furniture' },
     town: (n) => `What it costs to build in ${n}`, land: (n) => `Land prices in ${n}`,
     wa: (n) => `Hi Studio CAVA, I saw your estimate for ${lcFirst(n)} and would like to talk about my project.`,
+    faq: '(Questions)',
+    q: {
+      cost: (n) => `How much does it cost to build ${lcFirst(n)}, Costa Rica?`,
+      costA: (e, area) => `About ${usdK(e.total[0])} to ${usdK(e.total[2])}, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve: construction at about US$${Math.round(e.rate[1]).toLocaleString('en-US')} a m², and about US$${Math.round(e.total[1] / area).toLocaleString('en-US')} a m² with everything in.`,
+      time: (it) => `How long does it take to build ${it}?`,
+      timeA: (s, dry) => `About ${s.design} months of design, ${s.permits} of permits and ${s.works} of works${dry ? `, with the earthworks waiting for the dry season, which opens in ${dry}` : ''}. From the first meeting to moving in, plan on ${Math.round((s.design + s.permits + s.works) / 12 * 2) / 2} years or a little more.`,
+      moves: () => 'What makes it cost more or less?',
+      land: () => 'Does the estimate include the land?',
+      landM: (n, m) => `No. Titled lots of 300 to 5,000 m² listed in ${n} ask a median of US$${m.median.toLocaleString('en-US')} a m²; tick "The land" in the estimator above to add it.`,
+      landP: () => 'No: inside Península Papagayo the land is an ICT concession, with its own fees, and the estimate leaves it out.',
+      landX: () => 'No. Tick "The land" in the estimator above to add it at the asking prices of the town.',
+      it: { hotel: 'the hotel', house: 'the house' },
+    },
   },
   es: {
-    title: (n) => `Cuánto cuesta construir ${lcFirst(n)} | Studio CAVA`,
+    title: (n) => `Cuánto cuesta construir ${lcFirst(n)}, Costa Rica | Studio CAVA`,
     total: (e) => ` La estimación da de ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva.`,
     project: '(El proyecto)', moves: '(Qué mueve el número)', more: '(Más ejemplos)',
     movesNote: 'La cifra probable, cambiando una sola cosa y dejando el resto como arriba.',
@@ -1921,6 +1948,19 @@ const SC = {
     alt: { down: (q) => `${q}`, up: (q) => `${q}`, noPool: 'Sin piscina', steep: 'En pendiente fuerte', smaller: 'Un 20% menos de área', noFurniture: 'Sin mobiliario' },
     town: (n) => `Cuánto cuesta construir en ${n}`, land: (n) => `Precio del terreno en ${n}`,
     wa: (n) => `Hola Studio CAVA, vi su estimación de ${lcFirst(n)} y quisiera conversar sobre mi proyecto.`,
+    faq: '(Preguntas)',
+    q: {
+      cost: (n) => `¿Cuánto cuesta construir ${lcFirst(n)}, Costa Rica?`,
+      costA: (e, area) => `Unos ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva: la construcción a unos US$${Math.round(e.rate[1]).toLocaleString('en-US')} el m², y unos US$${Math.round(e.total[1] / area).toLocaleString('en-US')} el m² con todo.`,
+      time: (it) => `¿Cuánto tarda construir ${it}?`,
+      timeA: (s, dry) => `Unos ${s.design} meses de diseño, ${s.permits} de permisos y ${s.works} de obra${dry ? `, con el movimiento de tierra esperando la época seca, que abre en ${dry}` : ''}. De la primera reunión a la mudanza, cuente con ${String(Math.round((s.design + s.permits + s.works) / 12 * 2) / 2).replace('.', ',')} años o un poco más.`,
+      moves: () => '¿Qué lo hace costar más o menos?',
+      land: () => '¿La estimación incluye el terreno?',
+      landM: (n, m) => `No. Los lotes titulados de 300 a 5,000 m² anunciados en ${n} piden una mediana de US$${m.median.toLocaleString('en-US')} el m²; marque "El terreno" en el estimador de arriba para sumarlo.`,
+      landP: () => 'No: dentro de la Península Papagayo el terreno es una concesión del ICT, con sus propios cobros, y la estimación lo deja fuera.',
+      landX: () => 'No. Marque "El terreno" en el estimador de arriba para sumarlo a los precios pedidos del pueblo.',
+      it: { hotel: 'el hotel', house: 'la casa' },
+    },
   },
 };
 function scenarioPage(lang, sc) {
@@ -1945,6 +1985,16 @@ function scenarioPage(lang, sc) {
     st.furniture ? [S.alt.noFurniture, { furniture: false }] : null,
   ].filter(Boolean).map(([label, over]) => { const d = estimateNode(D, { ...st, ...over }).total[1] - e.total[1]; return [label, d]; });
   const sign = (d) => `${d > 0 ? '+' : '−'}${usdK(Math.abs(d))}`;
+  const intro = `${T.lede}${S.total(e)}`;
+  const sch = scheduleNode(D, st);
+  const dc = climate(townOf(t)).dry;
+  const lnd = land?.towns[st.town];
+  const QQ = [
+    [S.q.cost(T.name), S.q.costA(e, st.area)],
+    [S.q.time(S.q.it[st.type]), S.q.timeA(sch, dc ? MONTHS[lang][dc.start] : null)],
+    [S.q.moves(), alts.map(([l, d]) => `${l}: ${sign(d)}`).join('; ') + '.'],
+    [S.q.land(), st.town === 'papagayo' ? S.q.landP() : lnd?.market ? S.q.landM(t.name, lnd.market) : S.q.landX()],
+  ];
   const extra = `    <section class="tw__sec grid" aria-labelledby="sc-project">
       <h2 class="label tw__label" id="sc-project">${S.project}</h2>
       <div class="tw__text">
@@ -1959,6 +2009,12 @@ function scenarioPage(lang, sc) {
         <p class="note">${S.movesNote}</p>
       </div>
     </section>
+    <section class="tw__sec grid" aria-labelledby="sc-faq">
+      <h2 class="label tw__label" id="sc-faq">${S.faq}</h2>
+      <div class="faq">
+${QQ.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="large">${esc(a)}</p></div>`).join('\n')}
+      </div>
+    </section>
     <nav class="tw__sec grid" aria-labelledby="sc-more">
       <h2 class="label tw__label" id="sc-more">${S.more}</h2>
       <ul class="tw__aside guide__links">
@@ -1966,12 +2022,12 @@ ${scenarios.filter((o) => o !== sc).map((o) => `        <li><a class="ulink" hre
 ${t ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(S.town(t.name))} →</a></li>\n` : ''}${t && land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(S.land(t.name))} →</a></li>\n` : ''}      </ul>
     </nav>
 `;
-  const intro = `${T.lede}${S.total(e)}`;
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebPage', name: S.title(T.name).split(' | ')[0], description: intro, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}` },
       { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: ET[lang].h1.join(' '), item: `${ORIGIN}/${estimatorPath(lang)}` }, { '@type': 'ListItem', position: 3, name: T.name, item: `${ORIGIN}/${paths[lang]}` }] },
+      { '@type': 'FAQPage', mainEntity: QQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ],
   };
   return estimatorPage(lang, { paths, title: S.title(T.name), description: intro, h1: T.h1, intro, preset: st, photo: sc.photo, extra, ld, cls: 'est--town', wa: S.wa(T.name), q: `?town=${st.town}` });
@@ -2085,7 +2141,15 @@ function homeEs() {
   return html;
 }
 
-const write = (path, html) => { mkdirSync(join(SITE, dirname(path)), { recursive: true }); writeFileSync(join(SITE, path), html); };
+const write = (path, html) => {
+  // every page carries the floating WhatsApp button
+  if (path.endsWith('.html') && !/class="wa["\s]/.test(html)) {
+    const lang = /<html lang="es"/.test(html) ? 'es' : 'en';
+    html = html.replace('</body>', `${waButton(lang, UI[lang].wa.general)}</body>`);
+  }
+  mkdirSync(join(SITE, dirname(path)), { recursive: true });
+  writeFileSync(join(SITE, path), html);
+};
 
 for (const lang of ['en', 'es']) {
   write(`${projectsPath(lang)}index.html`, indexPage(lang));

@@ -750,12 +750,11 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 
 /* photos of Costa Rica: a full-width band, credit underneath */
 .place { margin: 0 var(--margin) var(--s-3); }
-.place img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; background: var(--light-grey); }
+.place img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 1; object-fit: cover; background: var(--light-grey); }
 .place__credit { margin-top: 0.5rem; font-size: 0.6875rem; color: var(--mid-grey); }
 .place__credit a { color: inherit; }
 .mf .place { margin-left: 0; margin-right: 0; }
 .place--hub { margin-bottom: var(--s-2); }
-.est .place img { aspect-ratio: 3 / 1; }
 .est > .place { margin-top: calc(-1 * var(--s-2)); }
 
 /* services: the list on the home, the cards, and each service page */
@@ -796,6 +795,32 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .svc__get li { position: relative; padding-left: 1.1rem; line-height: 1.35; }
 .svc__get li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.45rem; height: 0.45rem; border: 1px solid var(--black); border-radius: 50%; }
 .svc__work { padding-left: 0; padding-right: 0; }
+
+/* the free call in a sheet over any page (book-sheet.js) */
+.bks { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 3vh 2vw; }
+.bks.is-on { display: grid; }
+.bks__scrim { position: absolute; inset: 0; background: rgba(8, 8, 7, 0.5); opacity: 0; transition: opacity 0.4s var(--ease); }
+.bks.is-open .bks__scrim { opacity: 1; }
+.bks__panel { position: relative; width: min(74rem, 100%); max-height: 94vh; overflow: auto; overscroll-behavior: contain; background: var(--white); border-radius: 1.2rem; box-shadow: 0 30px 90px rgba(8, 8, 7, 0.28); opacity: 0; transform: translateY(2.5rem) scale(0.985); transition: opacity 0.4s var(--ease), transform 0.5s var(--ease); }
+.bks.is-open .bks__panel { opacity: 1; transform: none; }
+.bks__close { position: absolute; top: 0.9rem; right: 1rem; z-index: 3; padding: 0.45rem 0.8rem; border: 1px solid var(--grey); border-radius: 100vw; background: var(--white); color: var(--black); cursor: pointer; }
+.bks__close:hover { border-color: var(--black); }
+.bks__loading { padding: 4rem 2rem; text-align: center; }
+.bks .bk { margin: 0; border: 0; border-radius: 0; }
+.bks .bk__info { padding-top: 1.6rem; }
+.bks .bk__cal-head { padding-right: 0; }
+.bks .bk__times { padding-top: 3.9rem; }
+.bks .bk__times-head { flex-wrap: nowrap; white-space: nowrap; }
+html.bks-lock, html.bks-lock body { overflow: hidden; }
+/* the steps slide: forward to the form, back to the calendar */
+@keyframes bkNext { from { opacity: 0; transform: translateX(1.75rem); } to { opacity: 1; transform: none; } }
+@keyframes bkBack { from { opacity: 0; transform: translateX(-1.75rem); } to { opacity: 1; transform: none; } }
+@keyframes bkFade { from { opacity: 0; } to { opacity: 1; } }
+.bk[data-step="form"] .bk__form, .bk[data-step="done"] .bk__done { animation: bkNext 0.5s var(--ease) both; }
+.bk[data-dir="back"][data-step="pick"] .bk__cal, .bk[data-dir="back"][data-step="pick"] .bk__times { animation: bkBack 0.5s var(--ease) both; }
+.bk[data-step="form"] .bk__picked, .bk[data-step="done"] .bk__picked { animation: bkFade 0.5s var(--ease) both; }
+.bk__time { transition: background-color 0.15s, color 0.15s, transform 0.15s; }
+.bk__time:active { transform: scale(0.98); }
 
 /* book a free call: the call, a month, the times of a day; then the form */
 .bkp .tw__sec { margin-left: 0; margin-right: 0; }
@@ -1048,8 +1073,14 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .est__form, .est__out { grid-column: 1 / -1; }
   .est__scope { grid-template-columns: 1fr; }
   .lmap__canvas { aspect-ratio: 4 / 5; }
-  .place img { aspect-ratio: 4 / 3; }
+  .place img { aspect-ratio: 16 / 9; }
+  /* on the estimator the black total bar sits at the bottom: the WhatsApp button goes above it */
+  body:has(.est__sticky) .wa { bottom: calc(var(--margin) + 2.9rem); }
   .bk { grid-template-columns: 1fr; min-height: 0; }
+  .bks { padding: 0; place-items: end stretch; }
+  .bks__panel { width: 100%; max-height: 94vh; border-radius: 1.2rem 1.2rem 0 0; transform: translateY(100%); }
+  .bks .bk__times { padding-top: 1.3rem; }
+  .bks .bk__info { padding-top: 3.4rem; }
   .bk > * { padding: 1.3rem 1.1rem; }
   .bk__info { border-right: 0; border-bottom: 1px solid var(--grey); }
   .bk__times { border-left: 0; border-top: 1px solid var(--grey); }
@@ -1097,6 +1128,8 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .bks__scrim, .bks__panel { transition: none; }
+  .bk[data-step] .bk__form, .bk[data-step] .bk__done, .bk[data-step] .bk__cal, .bk[data-step] .bk__times, .bk[data-step] .bk__picked { animation: none; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
@@ -1111,7 +1144,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .bar, .wa, .footer, .reach, .cmap, .float, #top { display: none !important; }
   /* everything but the estimate itself */
   .est > :not(.est__print-head):not(.est__app):not(.est__print-foot) { display: none !important; }
-  .est__form, .est__actions, .est__budget, .est__guides, .est__work, .est__sticky { display: none !important; }
+  .est__form, .est__actions, .est__budget, .est__guides, .est__work, .est__sticky, .est__method, .est__scope + .note { display: none !important; }
   .est__print-head { display: grid; grid-template-columns: auto 1fr auto; gap: 4mm; align-items: center; padding-bottom: 4mm; margin-bottom: 5mm; border-bottom: 1px solid #080807; }
   .est__print-head img { width: 11mm; height: 11mm; }
   .est__print-head p { margin: 0; }
