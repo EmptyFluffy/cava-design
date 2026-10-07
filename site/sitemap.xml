@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://cava.design/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/portland-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/portland-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/portland-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/portland-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/portland-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/portland-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/portland-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/portland-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/papagayo-404/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/papagayo-404/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/papagayo-404/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/papagayo-404/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/papagayo-404/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/papagayo-404/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/papagayo-404/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/papagayo-404/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/hangars-b/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/hangars-b/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/hangars-b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/hangars-b/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/hangars-b/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/hangars-b/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/hangars-b/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/hangars-b/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/tragaluz-retreat/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tragaluz-retreat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tragaluz-retreat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tragaluz-retreat/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/tragaluz-retreat/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tragaluz-retreat/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tragaluz-retreat/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tragaluz-retreat/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/kauhane-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/kauhane-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/kauhane-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/kauhane-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/kauhane-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/kauhane-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/kauhane-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/kauhane-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/negra-mixed-use/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/negra-mixed-use/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/negra-mixed-use/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/negra-mixed-use/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/negra-mixed-use/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/negra-mixed-use/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/negra-mixed-use/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/negra-mixed-use/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/s3-houses/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/s3-houses/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/s3-houses/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/s3-houses/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/s3-houses/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/s3-houses/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/s3-houses/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/s3-houses/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/tree-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tree-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tree-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tree-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/tree-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tree-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tree-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tree-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/amacor-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/amacor-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/amacor-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/amacor-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/amacor-house/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/amacor-house/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/amacor-house/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/amacor-house/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/dawn-patrol-bakery/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/dawn-patrol-bakery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/dawn-patrol-bakery/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/dawn-patrol-bakery/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/projects/military-museum/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/military-museum/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/military-museum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/military-museum/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/military-museum/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/military-museum/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/military-museum/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/military-museum/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/studio/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/studio/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/estudio/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/studio/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/tamarindo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/tamarindo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/tamarindo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/tamarindo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/tamarindo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/tamarindo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/tamarindo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/tamarindo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/playa-grande/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playa-grande/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playa-grande/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playa-grande/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/playa-grande/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playa-grande/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playa-grande/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playa-grande/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/playa-negra/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playa-negra/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playa-negra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playa-negra/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/playa-negra/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playa-negra/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playa-negra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playa-negra/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/flamingo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/flamingo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/flamingo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/flamingo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/flamingo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/flamingo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/flamingo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/flamingo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/playas-del-coco/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playas-del-coco/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playas-del-coco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playas-del-coco/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/playas-del-coco/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/playas-del-coco/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/playas-del-coco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playas-del-coco/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/liberia/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/liberia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/liberia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/liberia/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/liberia/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/liberia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/liberia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/liberia/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/nosara/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/nosara/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/nosara/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/nosara/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/nosara/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/nosara/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/nosara/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/nosara/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/samara/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/samara/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/samara/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/samara/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/samara/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/samara/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/samara/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/samara/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/santa-teresa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/santa-teresa/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/santa-teresa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/santa-teresa/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/santa-teresa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/santa-teresa/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/santa-teresa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/santa-teresa/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/jaco/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/jaco/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/jaco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/jaco/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/jaco/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/jaco/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/jaco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/jaco/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/dominical/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/dominical/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/dominical/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/dominical/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/dominical/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/dominical/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/dominical/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/dominical/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/uvita/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/uvita/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/uvita/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/uvita/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/uvita/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/uvita/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/uvita/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/uvita/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/puerto-viejo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/puerto-viejo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/puerto-viejo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/puerto-viejo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/puerto-viejo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/puerto-viejo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/puerto-viejo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/puerto-viejo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/escazu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/escazu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/escazu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/escazu/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/escazu/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/escazu/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/escazu/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/escazu/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/santa-ana/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/santa-ana/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/santa-ana/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/santa-ana/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/santa-ana/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/santa-ana/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/santa-ana/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/santa-ana/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/atenas/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/atenas/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/atenas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/atenas/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/atenas/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/atenas/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/atenas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/atenas/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/heredia/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/heredia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/heredia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/heredia/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/heredia/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/heredia/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/heredia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/heredia/"/>
+  </url>
+</urlset>

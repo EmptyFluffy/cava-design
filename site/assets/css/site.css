@@ -490,6 +490,84 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .stage__title { grid-column: 3 / span 4; margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; }
 .stage__text { grid-column: 7 / span 6; max-width: 40rem; }
 
+/* ---------- Town pages: what building in one place involves, from its data ---------- */
+.tw__title { margin: 0; }
+.tw__title .display { display: block; margin-top: 0.6rem; }
+.tw__intro { padding: 0 var(--margin) var(--s-2); }
+.tw__lead { grid-column: 5 / -1; display: grid; gap: 1.25rem; justify-items: start; }
+.tw__standfirst { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.15; text-wrap: pretty; max-width: 40ch; }
+.tw__lead .large { max-width: 46ch; }
+.tw__facts { padding-bottom: var(--s-4); }
+.pmap__town { margin-top: 0.9rem; }
+.tw__sec { padding: var(--s-3) var(--margin) var(--s-4); border-top: 1px solid var(--grey); margin: 0 var(--margin); padding-left: 0; padding-right: 0; row-gap: var(--s-2); align-items: start; }
+.tw__label { grid-column: 1 / span 4; }
+.tw__fig { grid-column: 5 / -1; margin: 0; }
+.tw__text { grid-column: 5 / -1; display: grid; gap: 1em; max-width: 46rem; }
+.tw__aside { grid-column: 5 / -1; max-width: 46rem; }
+.tw__sources { grid-column: 1 / -1; margin: 0 var(--margin) var(--pad-v); padding-top: var(--s-2); border-top: 1px solid var(--grey); max-width: none; }
+
+/* rain by month: HTML bars, so the numbers stay readable at any width */
+.rain__plot { position: relative; height: clamp(11rem, 16vw, 15rem); margin-left: 2rem; border-bottom: 1px solid var(--black); }
+.rain__tick { position: absolute; left: 0; right: 0; bottom: calc(var(--v) * 100%); border-top: 1px solid var(--grey); }
+.rain__tick > span { position: absolute; right: calc(100% + 0.4rem); top: -0.6em; font-size: 0.6875rem; color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.rain__bars, .rain__months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(2px, 0.7vw, 0.75rem); list-style: none; margin: 0; padding: 0; }
+.rain__bars { position: absolute; inset: 0; }
+.rain__col { display: flex; flex-direction: column; justify-content: flex-end; min-width: 0; }
+.rain__bar { display: block; height: calc(var(--v) * 100%); min-height: 1px; background: var(--black); }
+.rain__col.is-dry .rain__bar { background: var(--mid-grey); }
+.rain__val { margin-bottom: 0.25rem; font-size: 0.6875rem; text-align: center; color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.rain__months { margin: 0.45rem 0 0 2rem; font-size: 0.6875rem; font-weight: var(--w-strong); text-transform: uppercase; text-align: center; }
+.rain figcaption { margin-top: 0.9rem; }
+
+/* sun path, seen from above */
+.sunpath { grid-column: 5 / span 4; }
+.sunpath svg { display: block; width: 100%; max-width: 26rem; height: auto; overflow: visible; }
+.sun__ring { fill: none; stroke: var(--black); stroke-width: 1; }
+.sun__ring--in { stroke: var(--grey); stroke-dasharray: 2 3; }
+.sun__axis { stroke: var(--grey); stroke-width: 1; fill: none; }
+.sun__card, .sun__hour { font-size: 10px; font-weight: 600; fill: var(--dark-grey); text-anchor: middle; }
+.sun__hour { font-weight: 440; font-size: 9px; }
+.sun__jun, .sun__equ, .sun__dec { fill: none; stroke-width: 1.6; stroke-linejoin: round; }
+.sun__jun { stroke: var(--black); }
+.sun__equ { stroke: var(--mid-grey); }
+.sun__dec { stroke: var(--black); stroke-dasharray: 5 3; }
+.sun__dot { fill: var(--black); }
+.sun__legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1rem; }
+.sun__key { display: inline-flex; align-items: center; gap: 0.5rem; }
+.sun__key::before { content: ""; width: 1.6rem; border-top: 2px solid var(--black); }
+.sun__key--equ::before { border-top-color: var(--mid-grey); }
+.sun__key--dec::before { border-top-style: dashed; }
+.tw__text--side { grid-column: 9 / -1; }
+
+.tw__steps { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--grey); }
+.tw__steps li { display: grid; grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.6fr); column-gap: var(--gap); align-items: baseline; padding: 0.9rem 0 1.1rem; border-top: 1px solid var(--grey); }
+.tw__steps .label { color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.tw__steps h3 { margin: 0; font-size: var(--f-large); font-weight: var(--w-strong); line-height: 1.2; }
+.tw__steps p { margin: 0; }
+
+.tw__work { display: grid; row-gap: var(--s-2); }
+.cards--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.faq { grid-column: 5 / -1; border-bottom: 1px solid var(--grey); }
+.faq__item { padding: 1rem 0 1.25rem; border-top: 1px solid var(--grey); display: grid; gap: 0.5rem; }
+.faq__item h3 { margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+.faq__item p { max-width: 46rem; }
+
+.near { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+.near li { display: flex; align-items: baseline; gap: 1rem; }
+.near a { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.15; }
+.near .label { color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.near .near__all { margin-top: 0.75rem; font-size: var(--f-large); }
+
+/* where we work: one table, every town */
+.hub__wrap { overflow-x: auto; margin-top: var(--s-2); -webkit-overflow-scrolling: touch; }
+.hub__table { width: 100%; min-width: 56rem; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.hub__table th, .hub__table td { text-align: left; vertical-align: baseline; padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--grey); }
+.hub__table thead th { font-size: var(--f-small); font-weight: var(--w-strong); text-transform: uppercase; color: var(--dark-grey); border-bottom-color: var(--black); }
+.hub__table tbody th { font-size: var(--f-large); font-weight: var(--w-strong); white-space: nowrap; }
+.hub__table td { font-size: var(--f-main); }
+.hub__region th { padding-top: 1.8rem; font-size: var(--f-small) !important; text-transform: uppercase; color: var(--dark-grey); border-bottom-color: var(--black); }
+
 /* Tablet */
 @media (max-width: 991px) {
   .nav__links, .bar__links { grid-column: 7 / span 3; }
@@ -508,6 +586,10 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .belief__text, .belief__img { grid-column: 3 / -1; }
   .stage__title { grid-column: 3 / span 5; }
   .stage__text { grid-column: 8 / span 5; }
+  .tw__lead, .tw__fig, .tw__text, .tw__aside, .tw__steps, .faq, .near { grid-column: 4 / -1; }
+  .tw__label { grid-column: 1 / span 3; }
+  .sunpath { grid-column: 4 / span 6; }
+  .tw__text--side { grid-column: 4 / -1; }
 }
 
 /* Phone */
@@ -577,6 +659,13 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .stage__n { grid-column: 1 / span 3; }
   .stage__title { grid-column: 4 / -1; }
   .stage__text { grid-column: 4 / -1; }
+
+  .tw__lead, .tw__label, .tw__fig, .tw__text, .tw__aside, .tw__steps, .faq, .near, .sunpath, .tw__text--side { grid-column: 1 / -1; }
+  .tw__steps li { grid-template-columns: 2.5rem minmax(0, 1fr); row-gap: 0.4rem; }
+  .tw__steps p { grid-column: 2; }
+  .cards--three { grid-template-columns: minmax(0, 1fr); }
+  .rain__val { font-size: 0.5625rem; }
+  .rain__plot, .rain__months { margin-left: 1.6rem; }
 }
 
 /* Phones where the project name and "View project" need the whole row */

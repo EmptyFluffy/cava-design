@@ -1,0 +1,34 @@
+{
+  "_note": "Town pages (/architects/<slug>/, /es/arquitectos/<slug>/). Hand-kept: name, the geocoding query, the canton only where OpenStreetMap leaves it out, region, whether the town is on the coast (the maritime zone law applies), and a short local note only where it is a fact we can stand behind. Everything else (coordinates, canton, elevation, rain, temperature, wind, roads) comes from scripts/towns-fetch.mjs and scripts/towns-rain.py into data/town-data.json. To add a town: add it here, run both scripts, then node scripts/build.mjs.",
+  "regions": {
+    "guanacaste": { "en": "Guanacaste", "es": "Guanacaste" },
+    "nicoya-south": { "en": "Southern Nicoya Peninsula", "es": "Sur de la península de Nicoya" },
+    "central-pacific": { "en": "Central Pacific", "es": "Pacífico central" },
+    "south-pacific": { "en": "South Pacific", "es": "Pacífico sur" },
+    "caribbean": { "en": "Caribbean", "es": "Caribe" },
+    "central-valley": { "en": "Central Valley", "es": "Valle Central" }
+  },
+  "towns": [
+    { "slug": "tamarindo", "name": "Tamarindo", "query": "Tamarindo, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "playa-grande", "name": "Playa Grande", "query": "Playa Grande, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true,
+      "note": { "en": "The beach belongs to Las Baulas National Marine Park, where leatherback turtles nest. Lights that can be seen from the sand are restricted, so exterior lighting is part of the design from the start.", "es": "La playa es parte del Parque Nacional Marino Las Baulas, donde anida la tortuga baula. Las luces que se ven desde la arena están restringidas, así que la iluminación exterior entra en el diseño desde el principio." } },
+    { "slug": "playa-negra", "name": "Playa Negra", "query": "Playa Negra, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "flamingo", "name": "Flamingo", "query": "Playa Flamingo, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "playas-del-coco", "name": "Playas del Coco", "query": "Playas del Coco, Carrillo, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "liberia", "name": "Liberia", "query": "Liberia, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": false },
+    { "slug": "nosara", "name": "Nosara", "query": "Nosara, Nicoya, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "samara", "name": "Sámara", "query": "Sámara, Nicoya, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
+    { "slug": "santa-teresa", "name": "Santa Teresa", "query": "Santa Teresa, Cóbano, Puntarenas, Costa Rica", "region": "nicoya-south", "coastal": true,
+      "council": { "en": "the Concejo Municipal de Distrito de Cóbano", "es": "el Concejo Municipal de Distrito de Cóbano" },
+      "note": { "en": "Santa Teresa and Mal País share a district, Cóbano, which runs its own permits through a district council instead of the municipality of Puntarenas.", "es": "Santa Teresa y Mal País comparten distrito, Cóbano, que tramita sus propios permisos con un concejo municipal de distrito en lugar de la Municipalidad de Puntarenas." } },
+    { "slug": "jaco", "name": "Jacó", "query": "Jacó, Garabito, Puntarenas, Costa Rica", "region": "central-pacific", "coastal": true },
+    { "slug": "dominical", "name": "Dominical", "query": "Dominical, Osa, Puntarenas, Costa Rica", "region": "south-pacific", "coastal": true },
+    { "slug": "uvita", "name": "Uvita", "query": "Uvita, Osa, Puntarenas, Costa Rica", "region": "south-pacific", "coastal": true,
+      "note": { "en": "The coast in front of Uvita is Marino Ballena National Park, so lots along the beach border a protected area.", "es": "La costa frente a Uvita es el Parque Nacional Marino Ballena, así que los lotes junto a la playa colindan con un área protegida." } },
+    { "slug": "puerto-viejo", "name": "Puerto Viejo", "query": "Puerto Viejo, Talamanca, Limón, Costa Rica", "region": "caribbean", "coastal": true },
+    { "slug": "escazu", "name": "Escazú", "query": "Escazú, San José, Costa Rica", "region": "central-valley", "coastal": false, "canton": "Escazú" },
+    { "slug": "santa-ana", "name": "Santa Ana", "query": "Santa Ana, San José, Costa Rica", "region": "central-valley", "coastal": false },
+    { "slug": "atenas", "name": "Atenas", "query": "Atenas, Alajuela, Costa Rica", "region": "central-valley", "coastal": false },
+    { "slug": "heredia", "name": "Heredia", "query": "Heredia, Heredia, Costa Rica", "region": "central-valley", "coastal": false }
+  ]
+}

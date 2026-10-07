@@ -41,6 +41,24 @@ Each project also has `location`, `coords` ([lng, lat]) and `pin`: `exact`, `app
 
 `/studio/` (`/es/estudio/`) is what the studio believes and the six stages of the process; the nav's Studio and Process links land there (Process on `#process`). The text lives in `data/studio.json`, both languages: each belief is one short word (set very large; it opens like a drawer, the first one starts open), a one-line sub, paragraphs and an image from a project. Edit the JSON and run `node scripts/build.mjs`.
 
+## Town pages
+
+`/architects/` (`/es/arquitectos/`) lists every town; each town has its own page in both languages. Unlike a template with the name swapped, every number on a page comes from that place:
+
+- **Rain by month** from the CHIRPS climatology (CHPclim v2, 5 km), which matches station records in Costa Rica far better than global models. A dry month is one under 60 mm.
+- **Temperature and the dry-season afternoon wind** from ECMWF reanalysis through Open-Meteo. Rainy-season coastal breezes are too local for a model, so the page does not state them.
+- **The sun**: its path on the solstices and equinoxes, sunrise and sunset, and the dates the noon sun passes north, calculated for the town's coordinates (`scripts/sun.mjs`).
+- **Canton, province and coordinates** from OpenStreetMap; **driving time** to Liberia and San José airports from OSRM.
+- Permit steps naming the municipality, the maritime zone rule on the coast, a local note where we can stand behind one, our nearest projects, five questions answered from the data, and FAQ and breadcrumb structured data.
+
+```sh
+node scripts/towns-fetch.mjs                          # new towns in data/towns.json -> data/town-data.json (--force: all)
+python3 scripts/towns-rain.py <folder of CHPclim2 tifs>  # rain; the 12 files (30 MB each) are listed in the script
+node scripts/build.mjs
+```
+
+**To add a town:** add it to `data/towns.json` (name, a geocoding query, region, whether it is on the coast), run the three commands, check the canton it found, commit. The text is written in `scripts/towns-text.mjs`. The build also writes `sitemap.xml` (every page with its pair in the other language) and `robots.txt`.
+
 ## Spanish
 
 English lives at the root, Spanish under `/es/`: `/es/` and `/es/proyectos/<slug>/`. Every page links to its pair with `hreflang`, and the last item of the nav row, the menu and the footer switch language.

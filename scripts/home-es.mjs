@@ -93,6 +93,8 @@ export const PAIRS = [
   ['San José, Costa Rica. Projects across Guanacaste, the Nicoya Peninsula and the Central Valley.',
     'San José, Costa Rica. Proyectos en Guanacaste, la península de Nicoya y el Valle Central.'],
   ['Open in Google Maps ↗', 'Abrir en Google Maps ↗'],
+  ['>Where we work →</a>', '>Dónde trabajamos →</a>'],
+  ['>Where we work</a>', '>Dónde trabajamos</a>'],
 
   // ---------- footer ----------
   ['aria-label="Footer"', 'aria-label="Pie de página"'],

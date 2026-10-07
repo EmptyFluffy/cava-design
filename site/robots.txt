@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cava.design/sitemap.xml
