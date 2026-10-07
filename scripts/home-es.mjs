@@ -97,6 +97,7 @@ export const PAIRS = [
   ['>Where we work →</a>', '>Dónde trabajamos →</a>'],
   ['>Where we work</a>', '>Dónde trabajamos</a>'],
   ['>Guides</a>', '>Guías</a>'],
+  ['>Cost estimator</a>', '>Estimador de costos</a>'],
 
   // ---------- footer ----------
   ['aria-label="Footer"', 'aria-label="Pie de página"'],

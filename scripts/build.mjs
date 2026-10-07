@@ -167,6 +167,7 @@ function footer(lang, up, paths) {
       <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
       <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
 ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
+` : ''}${costs ? `      <a class="footer__link" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
 ` : ''}      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
       <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     </nav>
@@ -650,8 +651,8 @@ ${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building her
 ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</span><h3>${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
       </ol>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
-${guides.length ? `      <ul class="tw__aside guide__links">
-${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${guides.length || costs ? `      <ul class="tw__aside guide__links">
+${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}?town=${t.slug}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
       </ul>` : ''}
     </section>
 ${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
@@ -736,7 +737,7 @@ ${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title"
     <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
     <ol class="stages">
 ${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
-    </ol>
+${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}    </ol>
   </section>
 ` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
@@ -824,7 +825,7 @@ ${(Array.isArray(G.sources) ? G.sources : g[G.sources].sources).map((s, k) => so
       <ul class="tw__aside guide__links">
 ${guides.filter((o) => o !== g).map((o) => `        <li><a class="ulink" href="${up}${guidePath(lang, o)}">${esc(o[lang].link)} →</a></li>`).join('\n')}
 ${towns.filter((t) => t.extra).map((t) => `        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(t.extra[lang].title)} →</a></li>`).join('\n')}
-        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
+${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)} →</a></li>\n` : ''}        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
       </ul>
     </nav>
   </article>
@@ -859,6 +860,225 @@ ${contact(lang, UI[lang].wa.general)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
+// ---------- /tools/cost-estimator/ and /es/herramientas/estimador-de-costos/ ----------
+// The numbers live in data/costs.json, each with its source; the build adds the towns' dry season and
+// solar yield and publishes it as site/assets/data/costs.json for site/assets/js/estimator.js.
+const COSTS_PATH = join(ROOT, 'data', 'costs.json');
+const costs = existsSync(COSTS_PATH) ? JSON.parse(readFileSync(COSTS_PATH, 'utf8')) : null;
+const estimatorPath = (lang) => (lang === 'en' ? 'tools/cost-estimator/' : 'es/herramientas/estimador-de-costos/');
+const ET = {
+  en: {
+    title: 'Building cost estimator for Costa Rica | Studio CAVA',
+    description: 'What a house or a small hotel costs to build in Costa Rica, from the Ministry of Finance\'s official values, CFIA fees, VAT and builders\' prices by town, with a schedule set to the dry season.',
+    label: '(Tool)', h1: ['Cost', 'estimator'],
+    intro: 'What a house or a small hotel costs to build in Costa Rica, and how long it takes, in a few choices. The numbers come from the Ministry of Finance, the CFIA and builders, and every one has its source below.',
+    where: 'Where', other: 'Somewhere else in Costa Rica', what: 'What', types: { house: 'House', hotel: 'Small hotel' },
+    size: 'Built area', storeys: 'Storeys', quality: 'Finish level', qualities: { standard: 'Standard', high: 'High', luxury: 'Luxury' },
+    qualityNotes: { standard: 'Three or four good bathrooms, a designed facade, some double heights', high: 'Very good bathrooms, ceilings of 3 to 5 m, large glazing', luxury: 'Marble, fine woods, imported finishes' },
+    site: 'Lot', slopes: { flat: 'Flat', gentle: 'Gentle slope', steep: 'Steep' },
+    extras: 'Extras', pool: 'Pool', pools: { 0: 'None', 15: 'Plunge, 15 m²', 32: 'Pool, 32 m²', 50: 'Large, 50 m²' }, deck: 'Terraces and decks',
+    solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture, ready to rent', condo: 'In a condominium or gated community', currency: 'Show in',
+    resultLabel: '(Estimate)', hard: 'Construction', soft: 'Design, permits and taxes', parts: '(Construction, by part)', softs: '(Design, permits and taxes)',
+    massing: '(The volume)', schedule: '(Schedule)', dry: 'Dry season', flags: '(To keep in mind)',
+    copy: 'Copy the link', print: 'Print or save as PDF', whatsapp: 'Send it to the studio on WhatsApp',
+    noscript: 'The estimator needs JavaScript.', failed: 'The estimator did not load. Try again in a moment.',
+    method: '(How we estimate)', methodTitle: 'Where the numbers come from',
+    sticky: 'Estimate',
+    link: 'Cost estimator', name: 'Building cost estimator', town: (n) => `What it costs to build in ${n}`,
+    budget: '(From a budget)', budgetNote: 'What a budget builds here, with the choices above. Pick one to use it.', budgetCur: { usd: 'US$', crc: '₡ million' },
+    scope: '(What the estimate covers)', inLabel: 'Included', outLabel: 'Not included',
+    included: ['Construction, with the builder\'s profit and administration', 'Design, drawings and technical direction, at the CFIA minimum', 'Municipal permit, CFIA charges and the INS work insurance', 'VAT at 13%', 'A reserve of 5 to 10%', 'The pool, terraces, solar, landscaping and furniture you pick, and condominium design reviews'],
+    excluded: ['The land, and its legal and transfer costs', 'The water letter, a long water line or a well', 'A power line to the lot', 'Access roads and long driveways', 'A septic tank or a treatment plant', 'Condominium review fees and deposits'],
+    dated: (fx) => `Rates updated ${fx.date}, at ₡${fx.crcPerUsd.toFixed(2)} to the dollar. They price houses designed by an architect; a typical local house (Hacienda types VC01 to VC04) runs about US$640 to 1,050 a m².`,
+    work: '(Our work at this size)', allWork: 'All projects',
+  },
+  es: {
+    title: 'Estimador de costos de construcción en Costa Rica | Studio CAVA',
+    description: 'Cuánto cuesta construir una casa o un hotel pequeño en Costa Rica, con los valores oficiales de Hacienda, los honorarios del CFIA, el IVA y precios de constructores por pueblo, y un cronograma ajustado a la época seca.',
+    label: '(Herramienta)', h1: ['Estimador', 'de costos'],
+    intro: 'Cuánto cuesta construir una casa o un hotel pequeño en Costa Rica, y cuánto tarda, en unas pocas decisiones. Los números salen del Ministerio de Hacienda, del CFIA y de constructores, y cada uno tiene su fuente abajo.',
+    where: 'Dónde', other: 'En otro lugar de Costa Rica', what: 'Qué', types: { house: 'Casa', hotel: 'Hotel pequeño' },
+    size: 'Área construida', storeys: 'Pisos', quality: 'Nivel de acabados', qualities: { standard: 'Estándar', high: 'Alto', luxury: 'Lujo' },
+    qualityNotes: { standard: 'Tres o cuatro baños buenos, fachada diseñada, algunas dobles alturas', high: 'Baños muy buenos, cielos de 3 a 5 m, grandes ventanales', luxury: 'Mármol, maderas finas, acabados importados' },
+    site: 'Lote', slopes: { flat: 'Plano', gentle: 'Pendiente suave', steep: 'Pendiente fuerte' },
+    extras: 'Extras', pool: 'Piscina', pools: { 0: 'Ninguna', 15: 'Pequeña, 15 m²', 32: 'Piscina, 32 m²', 50: 'Grande, 50 m²' }, deck: 'Terrazas y decks',
+    solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario, listo para alquilar', condo: 'En un condominio o residencial cerrado', currency: 'Mostrar en',
+    resultLabel: '(Estimación)', hard: 'Construcción', soft: 'Diseño, permisos e impuestos', parts: '(Construcción, por partida)', softs: '(Diseño, permisos e impuestos)',
+    massing: '(El volumen)', schedule: '(Cronograma)', dry: 'Época seca', flags: '(A tomar en cuenta)',
+    copy: 'Copiar el enlace', print: 'Imprimir o guardar en PDF', whatsapp: 'Enviarla al estudio por WhatsApp',
+    noscript: 'El estimador necesita JavaScript.', failed: 'El estimador no cargó. Intente de nuevo en un momento.',
+    method: '(Cómo estimamos)', methodTitle: 'De dónde salen los números',
+    sticky: 'Estimación',
+    link: 'Estimador de costos', name: 'Estimador de costos de construcción', town: (n) => `Cuánto cuesta construir en ${n}`,
+    budget: '(Desde un presupuesto)', budgetNote: 'Lo que construye un presupuesto aquí, con las decisiones de arriba. Elija una opción para usarla.', budgetCur: { usd: 'US$', crc: 'millones de ₡' },
+    scope: '(Qué incluye la estimación)', inLabel: 'Incluye', outLabel: 'No incluye',
+    included: ['La construcción, con la utilidad y la administración del constructor', 'Diseño, planos y dirección técnica, al mínimo del CFIA', 'Permiso municipal, cargos del CFIA y la póliza de riesgos del trabajo del INS', 'IVA del 13%', 'Una reserva del 5 al 10%', 'La piscina, las terrazas, los paneles, el paisajismo y el mobiliario que elija, y las revisiones de diseño del condominio'],
+    excluded: ['El terreno y sus gastos legales y de traspaso', 'La carta de agua, una tubería larga o un pozo', 'Una línea eléctrica hasta el lote', 'Caminos de acceso y entradas largas', 'Tanque séptico o planta de tratamiento', 'Cuotas y depósitos de revisión del condominio'],
+    dated: (fx) => `Tarifas al ${fx.date_es}, a ₡${fx.crcPerUsd.toFixed(2)} por dólar. Corresponden a casas diseñadas por un arquitecto; una casa local típica (tipologías VC01 a VC04 de Hacienda) sale en unos US$640 a 1,050 el m².`,
+    work: '(Obras de este tamaño)', allWork: 'Todos los proyectos',
+  },
+};
+// Resolves Hacienda's colón codes into dollars per m², so the browser only multiplies; drops the notes.
+function costsData() {
+  const H = costs.hacienda, fx = costs.fx.crcPerUsd;
+  const usd = (code, kind) => (H.values[code] * H.index[kind] * (1 + H.margin)) / fx;
+  const val = (c, kind) => (c == null ? null : Array.isArray(c) ? (usd(c[0], kind) + usd(c[1], kind)) / 2 : usd(c, kind));
+  const range = (codes, kind) => { const v = codes.map((c) => val(c, kind)); v[1] ??= (v[0] + v[2]) / 2; return v.map(Math.round); };
+  const tiers = (t, kind) => Object.fromEntries(Object.entries(t).filter(([k]) => k !== '_note').map(([k, codes]) => [k, range(codes, kind)]));
+  const clean = (o) => JSON.parse(JSON.stringify(o, (k, v) => (k === '_note' ? undefined : v)));
+  const X = costs.extras;
+  return {
+    updated: costs.updated,
+    fx: costs.fx,
+    perM2: { house: tiers(costs.tiers.house, 'house'), hotel: tiers(costs.tiers.hotel, 'building') },
+    place: clean(costs.place),
+    slope: clean(costs.slope),
+    shares: clean(costs.shares),
+    pool: { perM2Shell: range(X.pool.codes, 'house'), ratio: X.pool.ratio, depth: X.pool.depth },
+    deck: { perM2: range(X.deck.codes, 'house') },
+    solar: { ...clean(X.solar), perKwp: X.solar.perKwpCrc.map((v) => Math.round(v / fx)), perKwpCrc: undefined },
+    landscape: X.landscape.usd,
+    furniture: X.furniture.perM2,
+    connection: clean(X.connection),
+    review: clean(X.review),
+    soft: clean(costs.soft),
+    durations: clean(costs.durations),
+    towns: towns.map((t) => {
+      const d = townOf(t);
+      const c = climate(d);
+      return { slug: t.slug, name: t.name, region: t.region, coastal: !!t.coastal, pvout: d.pvout, dry: c.dry ? { start: c.dry.start, n: c.dry.n } : null, heavy: d.heavyDays };
+    }),
+  };
+}
+function estimatorPage(lang) {
+  const E = ET[lang];
+  const M = costs[lang];
+  const paths = { en: estimatorPath('en'), es: estimatorPath('es') };
+  const up = upFrom(paths[lang]);
+  // each option carries what it changes in the likely total, filled in by estimator.js
+  const seg = (name, opts, checked, labels, notes) => `<div class="est__seg" role="radiogroup">${opts.map((o) => `<label class="est__opt"><input type="radio" name="${name}" value="${o}"${String(o) === String(checked) ? ' checked' : ''}><span>${esc(labels[o])}</span>${notes ? `<small>${esc(notes[o])}</small>` : ''}${name === 'cur' ? '' : '<em class="est__delta" data-delta></em>'}</label>`).join('')}</div>`;
+  const kindOf = (p) => (p.typology === 'Residential' ? 'house' : ['Hospitality', 'Mixed use'].includes(p.typology) ? 'hotel' : null);
+  const work = projects.filter((p) => kindOf(p) && p.builtArea);
+  const ld = { '@context': 'https://schema.org', '@type': 'WebApplication', name: E.title.split(' | ')[0], applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` } };
+  return head(lang, { title: E.title, description: E.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up, script: 'estimator.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'tools')}
+<main class="page">
+  <article class="est" data-estimator aria-labelledby="est-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${E.label}</p>
+      <h1 class="display mf__title" id="est-title"><span>${esc(E.h1[0])}</span><span class="right">${esc(E.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(E.intro)}</p>
+    </header>
+    <noscript><p class="large est__noscript">${E.noscript}</p></noscript>
+    <p class="large est__failed">${E.failed}</p>
+    <div class="est__app grid">
+      <form class="est__form" data-est-form onsubmit="return false">
+        <fieldset class="est__field"><legend class="label">${E.where}</legend>
+          <select class="input est__select" name="town">${towns.map((t) => `<option value="${t.slug}"${t.slug === 'tamarindo' ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}<option value="other">${E.other}</option></select>
+        </fieldset>
+        <fieldset class="est__field"><legend class="label">${E.what}</legend>${seg('type', ['house', 'hotel'], 'house', E.types)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.size}</legend>
+          <div class="est__area"><input type="range" min="60" max="1500" step="10" value="250" data-est-area-range aria-label="${E.size}"><input class="input est__num" type="number" name="area" min="40" max="3000" step="10" value="250" data-est-area-box aria-label="${E.size}, m²"></div>
+          <p class="note" data-est-area-out></p>
+        </fieldset>
+        <fieldset class="est__field"><legend class="label">${E.storeys}</legend>${seg('storeys', [1, 2, 3], 1, { 1: '1', 2: '2', 3: '3' })}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.quality}</legend>${seg('quality', ['standard', 'high', 'luxury'], 'high', E.qualities, E.qualityNotes)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.site}</legend>${seg('slope', ['flat', 'gentle', 'steep'], 'flat', E.slopes)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.pool}</legend>${seg('pool', [0, 15, 32, 50], 32, E.pools)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.deck}</legend>
+          <div class="est__area"><input type="range" name="deck" min="0" max="300" step="10" value="40" aria-label="${E.deck}"></div>
+        </fieldset>
+        <fieldset class="est__field est__checks"><legend class="label">${E.extras}</legend>
+          <label><input type="checkbox" name="solar" checked> ${E.solar}<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="landscape" checked> ${E.landscape}<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="furniture"> ${E.furniture}<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="condo"> ${E.condo}</label>
+        </fieldset>
+        <fieldset class="est__field"><legend class="label">${E.currency}</legend>${seg('cur', ['usd', 'crc'], 'usd', { usd: 'US$', crc: '₡' })}</fieldset>
+      </form>
+      <div class="est__out" aria-live="polite">
+        <section class="est__block est__totals" aria-labelledby="est-result">
+          <h2 class="label" id="est-result">${E.resultLabel}</h2>
+          <p class="note est__choices" data-est-choices></p>
+          <p class="est__total" data-est-total></p>
+          <p class="est__likely label" data-est-likely></p>
+          <p class="note" data-est-rate></p>
+          <dl class="est__split"><div><dt class="label">${E.hard}</dt><dd data-est-hard></dd></div><div><dt class="label">${E.soft}</dt><dd data-est-soft></dd></div></dl>
+        </section>
+        <section class="est__block est__budget" aria-labelledby="est-budget-t">
+          <h2 class="label" id="est-budget-t">${E.budget}</h2>
+          <p class="note">${E.budgetNote}</p>
+          <label class="est__budget-in"><span class="label" data-est-budget-cur data-usd="${E.budgetCur.usd}" data-crc="${E.budgetCur.crc}">${E.budgetCur.usd}</span><input class="input est__num" type="text" inputmode="decimal" autocomplete="off" value="600,000" data-est-budget aria-label="${E.budget.replace(/[()]/g, '')}"></label>
+          <ul class="est__fits" data-est-fits></ul>
+        </section>
+        <section class="est__block" aria-labelledby="est-massing-t">
+          <h2 class="label" id="est-massing-t">${E.massing}</h2>
+          <svg class="est__massing" data-est-massing role="img" aria-label="${E.massing}"></svg>
+          <p class="note" data-est-massing-cap></p>
+        </section>
+        <section class="est__block" aria-labelledby="est-parts-t">
+          <h2 class="label" id="est-parts-t">${E.parts}</h2>
+          <div class="est__bar" data-est-bar></div>
+          <ul class="est__list" data-est-parts></ul>
+          <p class="note" data-est-solar></p>
+          <h2 class="label est__sub">${E.softs}</h2>
+          <ul class="est__list est__list--soft" data-est-softs></ul>
+        </section>
+        <section class="est__block" aria-labelledby="est-scope-t">
+          <h2 class="label" id="est-scope-t">${E.scope}</h2>
+          <div class="est__scope">
+            <div><h3 class="label">${E.inLabel}</h3><ul>${E.included.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+            <div><h3 class="label">${E.outLabel}</h3><ul>${E.excluded.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          </div>
+          <p class="note">${esc(E.dated(costs.fx))}</p>
+        </section>
+        <section class="est__block" aria-labelledby="est-sched-t">
+          <h2 class="label" id="est-sched-t">${E.schedule}</h2>
+          <div class="est__gantt" data-est-gantt></div>
+          <p class="est__legend label"><span class="est__key est__key--design">${lang === 'en' ? 'Design' : 'Diseño'}</span><span class="est__key est__key--permits">${lang === 'en' ? 'Permits' : 'Permisos'}</span><span class="est__key est__key--build">${lang === 'en' ? 'Construction' : 'Obra'}</span><span class="est__key est__key--dry" data-est-legend-dry>${E.dry}</span></p>
+          <p class="large" data-est-schedule-note></p>
+        </section>
+        <section class="est__block" aria-labelledby="est-flags-t">
+          <h2 class="label" id="est-flags-t">${E.flags}</h2>
+          <ul class="guide__tips" data-est-flags></ul>
+          <ul class="guide__links est__guides">
+${guides.map((g) => `            <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+          </ul>
+        </section>
+        <div class="est__actions">
+          <a class="btn btn--dark" data-est-wa data-phone="${WHATSAPP}" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">${E.whatsapp} <span class="btn__dot" aria-hidden="true"></span></a>
+          <button class="btn btn--light" type="button" data-est-copy>${E.copy}</button>
+          <button class="btn btn--light" type="button" data-est-print>${E.print}</button>
+        </div>
+      </div>
+    </div>
+    <section class="related est__work" aria-labelledby="est-work-t">
+      <div class="related__head"><h2 class="label" id="est-work-t">${E.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${E.allWork} →</a></div>
+      <ol class="cards cards--three">
+${work.map((p) => `        <li class="card" data-area="${p.builtArea}" data-kind="${kindOf(p)}">
+          <a class="card__link" href="${up}${projectPath(lang, p.slug)}">
+            <span class="card__media">${picture(up, p.slug, 1, altOf(lang, p, 1), '(min-width: 768px) 31vw, 92vw')}</span>
+            <span class="card__cap label"><span class="card__name">${esc(p.name)}</span><span class="card__meta">${esc(`${group(lang, p.builtArea)} m² · ${placeOf(lang, p)}`)}</span></span>
+          </a>
+        </li>`).join('\n')}
+      </ol>
+    </section>
+    <p class="est__sticky label" aria-hidden="true"><span>${E.sticky}</span><b data-est-sticky></b></p>
+    <section class="tw__sec grid" aria-labelledby="est-method">
+      <h2 class="label tw__label" id="est-method">${E.method}</h2>
+      <div class="tw__text guide__body">
+        <h3 class="guide__h2">${E.methodTitle}</h3>
+${M.method.map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
+        <ol class="guide__sources guide__sources--inline">
+${costs.sources.map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
+        </ol>
+      </div>
+    </section>
+  </article>
+${contact(lang, UI[lang].wa.general)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -870,6 +1090,7 @@ function sitemap() {
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
+    ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -939,6 +1160,7 @@ function homeEs() {
     if (u.startsWith('studio/')) return `${UI.es.studioDir}/${u.slice('studio/'.length)}`;
     if (u.startsWith('architects/')) return `${UI.es.townsDir}/${u.slice('architects/'.length)}`;
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
+    if (u.startsWith('tools/cost-estimator/')) return `herramientas/estimador-de-costos/${u.slice('tools/cost-estimator/'.length)}`;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -966,7 +1188,9 @@ for (const lang of ['en', 'es']) {
   towns.forEach((t) => write(`${townPath(lang, t.slug)}index.html`, townPage(lang, t)));
   guides.forEach((g) => write(`${guidePath(lang, g)}index.html`, guidePage(lang, g)));
   if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
+  if (costs) write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
 }
+if (costs) write('assets/data/costs.json', JSON.stringify(costsData()));
 write('sitemap.xml', sitemap());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 write('es/index.html', homeEs());
