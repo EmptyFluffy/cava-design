@@ -37,7 +37,7 @@ export const UI = {
     map: {
       label: '(Location)', approximate: 'Approximate', tbc: 'Location to be confirmed',
       placeholderNote: 'The pin is a placeholder until the site is confirmed.',
-      aria: (name, place) => `Map of Guanacaste with the location of ${name}: ${place}`,
+      aria: (name, place) => `Map showing where ${name} is: ${place}`,
       ariaPlaceholder: (name) => `Map of Guanacaste with a placeholder pin for ${name}`,
     },
   },
@@ -77,7 +77,7 @@ export const UI = {
     map: {
       label: '(Ubicación)', approximate: 'Aproximada', tbc: 'Ubicación por confirmar',
       placeholderNote: 'El pin es provisional hasta confirmar el sitio.',
-      aria: (name, place) => `Mapa de Guanacaste con la ubicación de ${name}: ${place}`,
+      aria: (name, place) => `Mapa con la ubicación de ${name}: ${place}`,
       ariaPlaceholder: (name) => `Mapa de Guanacaste con un pin provisional para ${name}`,
     },
   },

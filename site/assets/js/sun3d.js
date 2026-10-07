@@ -98,13 +98,17 @@ export function mount(fig) {
   const axes = new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([vec(0, 0), vec(0, 180), vec(0, 90), vec(0, 270)]), lineMat(0x8b8b88, 0.5));
   scene.add(axes);
 
-  // the house: walls, and a roof that overhangs them on every side
-  const white = new THREE.MeshStandardMaterial({ color: 0xfcfcfc, roughness: 0.9 });
-  const walls = new THREE.Mesh(new THREE.BoxGeometry(3.2, 1.3, 2.2), white);
-  walls.position.y = 0.65;
-  const roof = new THREE.Mesh(new THREE.BoxGeometry(4.6, 0.14, 3.6), new THREE.MeshStandardMaterial({ color: 0x545454, roughness: 0.8 }));
-  roof.position.y = 1.42;
-  for (const m of [walls, roof]) { m.castShadow = true; m.receiveShadow = true; scene.add(m); }
+  // the house: one gabled volume, walls and roof in the same dark material, the ridge running east to
+  // west, and a band of glass along the south side with the warm interior behind it
+  const HW = 1.35, EAVE = 1.25, RIDGE = 2.5, LEN = 4.6;
+  const profile = new THREE.Shape([[-HW, 0], [HW, 0], [HW, EAVE], [0, RIDGE], [-HW, EAVE]].map(([x, y]) => new THREE.Vector2(x, y)));
+  const body = new THREE.ExtrudeGeometry(profile, { depth: LEN, bevelEnabled: false });
+  body.translate(0, 0, -LEN / 2);
+  const house = new THREE.Mesh(body, new THREE.MeshStandardMaterial({ color: 0x3a3a38, roughness: 0.75 }));
+  house.rotation.y = Math.PI / 2; // the extrusion runs along z; turned, the ridge runs along x (east to west)
+  const glass = new THREE.Mesh(new THREE.BoxGeometry(LEN * 0.72, 0.78, 0.02), new THREE.MeshStandardMaterial({ color: 0xe9d6ae, emissive: 0x6b5634, roughness: 0.3 }));
+  glass.position.set(0, 0.62, HW + 0.011); // +z is south
+  for (const m of [house, glass]) { m.castShadow = true; m.receiveShadow = true; scene.add(m); }
 
   // the 21st of every month: the sun's daily track
   const tracks = [];

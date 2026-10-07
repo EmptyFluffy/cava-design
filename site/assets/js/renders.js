@@ -87,35 +87,35 @@ window.CAVA_RENDERS = [
  {
   "id": "casa-alcaravan-1",
   "src": "assets/img/projects/casa-alcaravan/1",
-  "v": "f1416d50",
+  "v": "4422641d",
   "title": "Casa Alcaraván",
   "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "assets/img/projects/casa-alcaravan/2",
-  "v": "2d40f94a",
+  "v": "a581f729",
   "title": "Casa Alcaraván",
   "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "assets/img/projects/casa-alcaravan/3",
-  "v": "650104d9",
+  "v": "8185e37c",
   "title": "Casa Alcaraván",
   "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "assets/img/projects/casa-alcaravan/4",
-  "v": "4c71c01e",
+  "v": "aa6c46fb",
   "title": "Casa Alcaraván",
   "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "assets/img/projects/casa-alcaravan/5",
-  "v": "d697e61f",
+  "v": "64608d6d",
   "title": "Casa Alcaraván",
   "alt": "Bathroom in polished concrete with a vessel sink on a timber counter"
  },
@@ -301,7 +301,7 @@ window.CAVA_HERO = [
   "h": 900,
   "alt": "Aerial view of a tensile canopy on a headland above a bay with islands",
   "name": "Military Museum",
-  "place": "Museum",
+  "place": "Isola della Maddalena",
   "href": "projects/military-museum/"
  },
  {

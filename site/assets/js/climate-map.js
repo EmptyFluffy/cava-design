@@ -83,8 +83,8 @@
       canvas.style.width = `${box.clientWidth}px`;
       canvas.style.height = `${box.clientHeight}px`;
     };
-    // degrees per frame for 1 m/s, so that 5 m/s crosses about 1.7 px a frame at any zoom
-    const step = () => 0.34 / ((512 * 2 ** map.getZoom()) / 360);
+    // degrees per frame for 1 m/s, so that 5 m/s crosses about 0.85 px a frame at any zoom
+    const step = () => 0.17 / ((512 * 2 ** map.getZoom()) / 360);
     const drawLine = (p, k) => {
       const v = sample(p.x, p.y);
       if (!v) return false;
@@ -123,7 +123,7 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ink();
       ctx.beginPath();
-      const k = step() * 2;
+      const k = step() * 4;
       for (let n = 0; n < N / 3; n++) {
         const p = spawn({});
         for (let s = 0; s < 28 && drawLine(p, k); s++);
@@ -152,7 +152,9 @@
       paint('landuse_residential', 'fill-color', '#ebeae6');
       const firstSymbol = map.getStyle().layers.find((l) => l.type === 'symbol')?.id;
       map.addSource('ghi', { type: 'image', url: asset('../img/ghi-cr.webp'), coordinates: ghi.corners });
-      map.addLayer({ id: 'ghi', type: 'raster', source: 'ghi', paint: { 'raster-opacity': 0.62, 'raster-resampling': 'linear' } }, firstSymbol);
+      // sunlight starts off; the button turns it on
+      const sunOn = fig.querySelector('[data-sun]')?.getAttribute('aria-pressed') === 'true';
+      map.addLayer({ id: 'ghi', type: 'raster', source: 'ghi', layout: { visibility: sunOn ? 'visible' : 'none' }, paint: { 'raster-opacity': 0.62, 'raster-resampling': 'linear' } }, firstSymbol);
       const font = map.getLayoutProperty('label_city', 'text-font') || ['Noto Sans Regular'];
       map.addSource('towns', {
         type: 'geojson',

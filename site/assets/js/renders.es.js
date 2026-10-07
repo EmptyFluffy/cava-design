@@ -87,35 +87,35 @@ window.CAVA_RENDERS = [
  {
   "id": "casa-alcaravan-1",
   "src": "../assets/img/projects/casa-alcaravan/1",
-  "v": "f1416d50",
+  "v": "4422641d",
   "title": "Casa Alcaraván",
   "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "../assets/img/projects/casa-alcaravan/2",
-  "v": "2d40f94a",
+  "v": "a581f729",
   "title": "Casa Alcaraván",
   "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "../assets/img/projects/casa-alcaravan/3",
-  "v": "650104d9",
+  "v": "8185e37c",
   "title": "Casa Alcaraván",
   "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "../assets/img/projects/casa-alcaravan/4",
-  "v": "4c71c01e",
+  "v": "aa6c46fb",
   "title": "Casa Alcaraván",
   "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "../assets/img/projects/casa-alcaravan/5",
-  "v": "d697e61f",
+  "v": "64608d6d",
   "title": "Casa Alcaraván",
   "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
  },
@@ -301,7 +301,7 @@ window.CAVA_HERO = [
   "h": 900,
   "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas",
   "name": "Military Museum",
-  "place": "Museo",
+  "place": "Isola della Maddalena",
   "href": "proyectos/military-museum/"
  },
  {

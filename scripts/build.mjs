@@ -477,9 +477,9 @@ function climateMap(lang, { center, zoom, bounds, pins, where }) {
         <div class="cmap__canvas" role="region" aria-label="${esc(M.aria(where))}"></div>
         <div class="cmap__controls">
           <div class="cmap__seg" role="group" aria-label="${M.season}"><button type="button" data-season="dry" aria-pressed="true">${M.dry}</button><button type="button" data-season="wet" aria-pressed="false">${M.wet}</button></div>
-          <button class="cmap__toggle" type="button" data-sun aria-pressed="true">${M.sun}</button>
+          <button class="cmap__toggle" type="button" data-sun aria-pressed="false">${M.sun}</button>
         </div>
-        <div class="cmap__sun label"><span>${M.scale}</span><span class="cmap__scale"><i class="cmap__bar" style="background: ${bar}"></i><span class="cmap__ticks"><span>${num(lang, ghi.low)}</span><span>${num(lang, (ghi.low + ghi.high) / 2)}</span><span>${num(lang, ghi.high)}</span></span></span></div>
+        <div class="cmap__sun label" hidden><span>${M.scale}</span><span class="cmap__scale"><i class="cmap__bar" style="background: ${bar}"></i><span class="cmap__ticks"><span>${num(lang, ghi.low)}</span><span>${num(lang, (ghi.low + ghi.high) / 2)}</span><span>${num(lang, ghi.high)}</span></span></span></div>
         <figcaption class="note">${M.caption}</figcaption>
       </figure>
 `;

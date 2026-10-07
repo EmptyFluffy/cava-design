@@ -133,27 +133,27 @@
       "builtArea": 200,
       "images": [
         {
-          "file": "U.webp",
+          "file": "nuevos/Casa tropical entre verdes naturales-1.png",
           "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree",
           "alt_es": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
         },
         {
-          "file": "Y.webp",
+          "file": "nuevos/Interior tropical de madera y luz-4.png",
           "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows",
           "alt_es": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
         },
         {
-          "file": "V.webp",
+          "file": "nuevos/Interior tropical con vista a la piscina-2.png",
           "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool",
           "alt_es": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
         },
         {
-          "file": "Z.webp",
+          "file": "nuevos/Baño tropical en tonos neutros-5.png",
           "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors",
           "alt_es": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
         },
         {
-          "file": "X.webp",
+          "file": "nuevos/Baño de concreto en tonos naturales-3.png",
           "alt": "Bathroom in polished concrete with a vessel sink on a timber counter",
           "alt_es": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
         }
@@ -306,16 +306,16 @@
       "type_es": "Casas",
       "typology": "Residential",
       "typology_es": "Habitacional",
-      "location": null,
+      "location": "Playa Langosta, Guanacaste",
       "coords": [
-        -85.69226,
-        10.55799
+        -85.8465,
+        10.2835
       ],
-      "pin": "placeholder",
+      "pin": "approximate",
       "status": null,
       "year": null,
       "siteArea": null,
-      "builtArea": null,
+      "builtArea": 550,
       "images": [
         {
           "file": "S3 Houses.png",
@@ -426,13 +426,15 @@
       "type_es": "Museo",
       "typology": "Cultural",
       "typology_es": "Cultural",
-      "location": null,
+      "location": "Isola della Maddalena, Sardinia, Italy",
+      "location_es": "Isola della Maddalena, Cerdeña, Italia",
       "coords": [
-        -85.43932,
-        10.63198
+        9.4085,
+        41.214
       ],
-      "pin": "placeholder",
-      "status": null,
+      "pin": "approximate",
+      "status": "Competition entry",
+      "status_es": "Concurso",
       "year": null,
       "siteArea": null,
       "builtArea": null,
