@@ -1,0 +1,419 @@
+{
+  "_note": "Guide: building inside a condominium or gated community. Research of 2026-10-06 (sources listed per language; [n] in the text points to them). Review every year: Ley 7933 changes often and its reglamento was replaced in 2026.",
+  "id": "gated",
+  "slug": {
+    "en": "gated-communities",
+    "es": "condominios"
+  },
+  "dir": {
+    "en": "architects",
+    "es": "arquitectos"
+  },
+  "reviewed": "2026-10-07",
+  "image": "papagayo-404/1",
+  "en": {
+    "title": "Building in a gated community in Costa Rica | Studio CAVA",
+    "description": "How condominiums and gated communities work in Costa Rica: the law, the design committee, setbacks, fees and the two approvals a house needs.",
+    "link": "Building in a gated community or condominium",
+    "crumb": "Where we work",
+    "h1": [
+      "Gated",
+      "communities"
+    ],
+    "intro": "Most lots in Guanacaste's developments are sold inside a condominium. That brings a second set of rules on top of the municipality's, and a design committee that approves the house before anyone else does.",
+    "sections": [
+      {
+        "id": "what",
+        "label": "(The law)",
+        "title": "A condominium is shared property with its own rules",
+        "body": [
+          "Under Costa Rica's condominium law, Ley 7933, each owner holds a finca filial, a lot or unit for independent use, and a share of the common areas: the internal roads, the wells and tanks, the water treatment plant and the green areas. Those common areas cannot be divided and are paid for by the owners, whether they use them or not [1].",
+          "That is the main difference with an urbanization, where the streets and parks are handed over to public use [11]. In a condominium the roads, the green areas and the wastewater plant stay private and are kept up with the owners' fees [1, 2].",
+          "Whoever buys is bound by the condominium's rules, the reglamento de condominio y administración, and is deemed to know the monthly fee [1, 2]. Since 19 January 2026 the law's regulation is Decreto 45214, which replaced the 2005 decree that many guides still quote [2]."
+        ]
+      },
+      {
+        "id": "rules",
+        "label": "(The rules)",
+        "title": "What the rules control",
+        "body": [
+          "The law lets each condominium decide whether owners may change facades, forms or colours away from the whole [1]. The condominium's approved plans fix, lot by lot, the maximum coverage, the height in storeys and the buildable area [2]. Setbacks are the stricter of two: the cantonal plan regulador or the national construction rules, or the condominium's own, if it asks for more [2]. Near rivers and springs the forestry law's protection strips apply as well [9].",
+          "Developments add their design guidelines. Two published ones, side by side:"
+        ],
+        "table": {
+          "head": [
+            "Rule",
+            "Península Papagayo [7]",
+            "Nativa Resort, Garabito [8]"
+          ],
+          "rows": [
+            [
+              "Height",
+              "10 m; up to 14 m with a variance",
+              "3 storeys, 2 above the street; 14 m"
+            ],
+            [
+              "Coverage",
+              "30% at most",
+              "Set by the registered site plan"
+            ],
+            [
+              "Setbacks",
+              "Set lot by lot on its diagram",
+              "3 or 5 m by lot type; 7 m on the main road"
+            ],
+            [
+              "Smallest house",
+              "140 to 372 m², by lot type",
+              "150 m²"
+            ],
+            [
+              "Roof",
+              "Eaves of 1.5 m or more; no Spanish tile, asphalt shingles or gravel",
+              "No Spanish tile"
+            ],
+            [
+              "Colour",
+              "Earth tones from the site, limits on brightness",
+              "Approved in writing by the committee"
+            ],
+            [
+              "Lighting",
+              "Shielded LED, no up-lighting, limits on light levels",
+              "Not stated"
+            ],
+            [
+              "Work hours",
+              "7:00 to 17:30, Monday to Saturday",
+              "No Sundays or holidays without approval"
+            ]
+          ]
+        },
+        "after": [
+          "Most guidelines also cover landscape (native plants from an approved list), walls and gates, pools, noise from equipment, construction fences and contractor rules [7, 8]."
+        ]
+      },
+      {
+        "id": "approvals",
+        "label": "(Approvals)",
+        "title": "Two approvals: the condominium's and the State's",
+        "steps": [
+          [
+            "Read before you buy",
+            "The reglamento, the design guidelines and the condominium's approved plans with the area table for your lot. They bind you from the day you buy [1, 2]."
+          ],
+          [
+            "Concept review",
+            "Most committees start with a meeting and a concept or schematic review. In Península Papagayo a schematic approval lasts one year [7]."
+          ],
+          [
+            "Final design approval",
+            "Península Papagayo requires it before the ICT, the CFIA platform and the municipal permit [7]; Nativa stamps the plans before they go to any institution [8]."
+          ],
+          [
+            "CFIA and institutional review",
+            "The drawings are filed in the CFIA's APC platform, where the national institutions review them [3]."
+          ],
+          [
+            "Municipal permit",
+            "No national rule requires a letter from the condominium [1, 2, 3, 4], but some municipalities do: Escazú asks for the written authorization of the condominium's administration or board [5], and Heredia for its approval of the project [6]."
+          ],
+          [
+            "Building under the condominium's rules",
+            "Deposits, approved contractors, inspections at set stages and working hours [7, 8]."
+          ],
+          [
+            "Completion",
+            "The committee inspects and issues its own certificate of completion; in Península Papagayo, the Certificate of Completion and Occupancy [7]."
+          ]
+        ]
+      },
+      {
+        "id": "costs",
+        "label": "(Costs)",
+        "title": "What it costs beyond the house",
+        "body": [
+          "The monthly fee is approved by the owners' assembly [2]. Unpaid fees become a lien on the lot that ranks just behind property tax, and the seller must hand the notary a certificate that fees are paid; otherwise the buyer becomes liable for them [1].",
+          "Review fees and deposits vary by development. Península Papagayo publishes its own: US$2,000 for the schematic review and US$2,000 for the final review, a compliance deposit of US$20,000 to US$50,000 depending on the size of the house, and a US$25,000 utility connection fee, plus tax [7]."
+        ]
+      },
+      {
+        "id": "before",
+        "label": "(Before you buy)",
+        "title": "Five checks before buying a lot",
+        "tips": [
+          "Ask whether the lot is titled or held under a concession. Lots in the maritime zone and in the Golfo de Papagayo tourism pole are concessions, and the ICT adds a layer of approvals [2].",
+          "Get water availability in writing: from AyA, the local ASADA or a well concession. Without it there is no building permit [4]. In 2026 a condominium in Nosara was reported with homes built without permits or proof of water [10].",
+          "Find out who maintains the roads, the green areas and the treatment plant, and how much of the fee goes to them [1, 2].",
+          "Check the setbacks on your lot against the plan regulador, the national rules, the condominium's rules and any river or spring nearby, and design to the strictest [2, 9].",
+          "Note how long each approval lasts and how long the condominium gives you to build: Nativa allows 18 months from groundbreaking [8]."
+        ],
+        "after": [
+          "Rules can change: changing the reglamento takes two thirds of the owners by value under the 2022 reform of the law, although another article still speaks of unanimity, so ask a lawyer before counting on a change [1]."
+        ]
+      }
+    ],
+    "faq": [
+      [
+        "Do I need the condominium's approval to get a building permit?",
+        "Nationally, no rule requires it, but the condominium's rules make it a condition of your purchase, and some municipalities ask for it: Escazú and Heredia among them [5, 6]. In practice, get the committee's approval first."
+      ],
+      [
+        "Who decides what my house can look like?",
+        "The condominium's reglamento and design guidelines, enforced by its design committee, within the limits of the municipality's rules. The approved condominium plans already fix each lot's coverage, height and buildable area [1, 2]."
+      ],
+      [
+        "What setbacks apply inside a condominium?",
+        "The larger of the plan regulador or national construction rules and the condominium's own. No front setback is required on internal roads [2]."
+      ],
+      [
+        "Is a lot in Península Papagayo titled?",
+        "No. It is held under a concession granted by the ICT, under a master declaration of covenants and restrictions [7]."
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Ley 7933, Ley Reguladora de la Propiedad en Condominio (current text, version of 16 March 2026)",
+        "publisher": "SINALEVI, Procuraduría General de la República",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=31131&param2=150920&param3=1",
+        "date": "2026",
+        "title_es": "Ley 7933, Ley Reguladora de la Propiedad en Condominio (texto vigente, versión del 16 de marzo de 2026)"
+      },
+      {
+        "title": "Decreto Ejecutivo 45214-MIVAH-MEIC-TUR, Reglamento a la Ley Reguladora de la Propiedad en Condominio (in force 19 January 2026)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=105605&param2=148266&param3=1",
+        "date": "2025",
+        "title_es": "Decreto Ejecutivo 45214-MIVAH-MEIC-TUR, Reglamento a la Ley Reguladora de la Propiedad en Condominio (vigente desde el 19 de enero de 2026)"
+      },
+      {
+        "title": "Decreto Ejecutivo 36550, Reglamento para el trámite de revisión de los planos para la construcción",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=70485&param2=129782&param3=1",
+        "date": "2021"
+      },
+      {
+        "title": "Reglamento de Construcciones",
+        "publisher": "INVU, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=86209&param2=130430&param3=1",
+        "date": "current",
+        "publisher_es": "INVU, en SINALEVI",
+        "date_es": "vigente"
+      },
+      {
+        "title": "Requisitos para licencia de obra mayor por APC",
+        "publisher": "Municipalidad de Escazú",
+        "url": "https://escazu.go.cr/wp-content/uploads/2026/01/requisitos_para_licencia_de_obra_mayor_apc.pdf",
+        "date": "January 2026",
+        "date_es": "enero de 2026"
+      },
+      {
+        "title": "Permisos de construcción, obra mayor",
+        "publisher": "Municipalidad de Heredia",
+        "url": "https://www.heredia.go.cr/es/tramites/desarrollo-territorial/permisos-de-construccion-obra-mayor",
+        "date": "September 2026",
+        "date_es": "setiembre de 2026"
+      },
+      {
+        "title": "Península Papagayo Master Design Guidelines",
+        "publisher": "Península Papagayo",
+        "url": "https://peninsulapapagayo.com/wp-content/uploads/2023/12/PPGY-Master-Design-Guidelines-2023-11-23.pdf",
+        "date": "November 2023",
+        "date_es": "noviembre de 2023"
+      },
+      {
+        "title": "Nativa Resort architectural guidelines",
+        "publisher": "Nativa Resort & Condominiums",
+        "url": "https://nativa-hoa.com/wp-content/uploads/2024/07/NATIVA-RESORT-ARCHITECTURAL-GUIDELINES.pdf",
+        "date": "July 2024",
+        "title_es": "Lineamientos arquitectónicos de Nativa Resort",
+        "date_es": "julio de 2024"
+      },
+      {
+        "title": "Ley Forestal 7575, article 33, protected areas",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=41661&param2=150775&param3=1",
+        "date": "current",
+        "title_es": "Ley Forestal 7575, artículo 33, áreas de protección",
+        "date_es": "vigente"
+      },
+      {
+        "title": "Mar Azul condominium in Nosara built with irregularities",
+        "publisher": "La Voz de Guanacaste",
+        "url": "https://vozdeguanacaste.com/en/mar-azul-condominium-nosara-built-irregularities/",
+        "date": "3 July 2026",
+        "date_es": "3 de julio de 2026"
+      },
+      {
+        "title": "Reglamento de Fraccionamiento y Urbanizaciones",
+        "publisher": "INVU, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=90010&param2=149628&param3=1",
+        "date": "2019, current version 2026",
+        "publisher_es": "INVU, en SINALEVI",
+        "date_es": "2019, versión vigente 2026"
+      }
+    ]
+  },
+  "es": {
+    "title": "Construir en un condominio en Costa Rica | Studio CAVA",
+    "description": "Cómo funcionan los condominios y las comunidades cerradas en Costa Rica: la ley, el comité de diseño, los retiros, las cuotas y las dos aprobaciones que necesita una casa.",
+    "link": "Construir en un condominio o comunidad cerrada",
+    "crumb": "Dónde trabajamos",
+    "h1": [
+      "Construir en",
+      "condominio"
+    ],
+    "intro": "La mayoría de los lotes en los desarrollos de Guanacaste se venden dentro de un condominio. Eso suma un segundo juego de reglas al de la municipalidad, y un comité de diseño que aprueba la casa antes que nadie.",
+    "sections": [
+      {
+        "id": "what",
+        "label": "(La ley)",
+        "title": "Un condominio es propiedad compartida con reglas propias",
+        "body": [
+          "Según la Ley Reguladora de la Propiedad en Condominio, Ley 7933, cada propietario tiene una finca filial, un lote o unidad de uso independiente, y una parte de las áreas comunes: las calles internas, los pozos y tanques, la planta de tratamiento y las zonas verdes. Esas áreas no se pueden dividir y las pagan los propietarios, las usen o no [1].",
+          "Esa es la gran diferencia con una urbanización, donde las calles y los parques se ceden al uso público [11]. En un condominio las calles, las zonas verdes y la planta de tratamiento siguen siendo privadas y se mantienen con las cuotas de los propietarios [1, 2].",
+          "Quien compra queda sujeto al reglamento de condominio y administración y se presume que conoce la cuota [1, 2]. Desde el 19 de enero de 2026 el reglamento de la ley es el Decreto 45214, que reemplazó al decreto de 2005 que muchas guías todavía citan [2]."
+        ]
+      },
+      {
+        "id": "rules",
+        "label": "(Las reglas)",
+        "title": "Qué controlan las reglas",
+        "body": [
+          "La ley permite que cada condominio decida si se pueden cambiar fachadas, formas o colores distintos de los del conjunto [1]. Los planos aprobados del condominio fijan, lote por lote, la cobertura máxima, la altura en pisos y el área construible [2]. Los retiros son los más estrictos entre dos: los del plan regulador o el reglamento nacional de construcciones, o los del propio condominio si pide más [2]. Cerca de ríos y nacientes rigen además las zonas de protección de la Ley Forestal [9].",
+          "Los desarrollos suman sus manuales de diseño. Dos publicados, lado a lado:"
+        ],
+        "table": {
+          "head": [
+            "Regla",
+            "Península Papagayo [7]",
+            "Nativa Resort, Garabito [8]"
+          ],
+          "rows": [
+            [
+              "Altura",
+              "10 m; hasta 14 m con variación",
+              "3 pisos, 2 sobre la calle; 14 m"
+            ],
+            [
+              "Cobertura",
+              "30% como máximo",
+              "La fija el plano inscrito"
+            ],
+            [
+              "Retiros",
+              "Fijados lote por lote en su diagrama",
+              "3 o 5 m según el lote; 7 m a la vía principal"
+            ],
+            [
+              "Casa mínima",
+              "140 a 372 m², según el lote",
+              "150 m²"
+            ],
+            [
+              "Techo",
+              "Aleros de 1.5 m o más; sin teja española, tejas asfálticas ni grava",
+              "Sin teja española"
+            ],
+            [
+              "Color",
+              "Tonos tierra del sitio, con límites de brillo",
+              "Aprobado por escrito por el comité"
+            ],
+            [
+              "Iluminación",
+              "LED apantallado, sin luz hacia arriba, con niveles máximos",
+              "No lo indica"
+            ],
+            [
+              "Horario de obra",
+              "7:00 a 17:30, de lunes a sábado",
+              "Sin domingos ni feriados sin permiso"
+            ]
+          ]
+        },
+        "after": [
+          "Casi todos los manuales cubren además el paisajismo (plantas nativas de una lista aprobada), muros y portones, piscinas, el ruido de los equipos, la malla de obra y las reglas para el constructor [7, 8]."
+        ]
+      },
+      {
+        "id": "approvals",
+        "label": "(Aprobaciones)",
+        "title": "Dos aprobaciones: la del condominio y la del Estado",
+        "steps": [
+          [
+            "Leer antes de comprar",
+            "El reglamento, el manual de diseño y los planos aprobados del condominio con la tabla de áreas de su lote. Lo obligan desde el día de la compra [1, 2]."
+          ],
+          [
+            "Revisión del concepto",
+            "Casi todos los comités empiezan con una reunión y una revisión del concepto o esquema. En Península Papagayo esa aprobación dura un año [7]."
+          ],
+          [
+            "Aprobación final del diseño",
+            "Península Papagayo la exige antes del ICT, de la plataforma del CFIA y del permiso municipal [7]; Nativa sella los planos antes de que vayan a cualquier institución [8]."
+          ],
+          [
+            "CFIA y revisión institucional",
+            "Los planos se presentan en la plataforma APC del CFIA, donde los revisan las instituciones [3]."
+          ],
+          [
+            "Permiso municipal",
+            "Ninguna norma nacional exige una carta del condominio [1, 2, 3, 4], pero algunas municipalidades sí: Escazú pide la autorización escrita de la administración o la junta del condominio [5], y Heredia su visto bueno del proyecto [6]."
+          ],
+          [
+            "Construir con las reglas del condominio",
+            "Depósitos, constructores aprobados, inspecciones en etapas fijas y horario de trabajo [7, 8]."
+          ],
+          [
+            "Final de obra",
+            "El comité inspecciona y emite su propio certificado de finalización; en Península Papagayo, el Certificate of Completion and Occupancy [7]."
+          ]
+        ]
+      },
+      {
+        "id": "costs",
+        "label": "(Costos)",
+        "title": "Lo que cuesta además de la casa",
+        "body": [
+          "La cuota la aprueba la asamblea de condóminos [2]. Las cuotas sin pagar son un gravamen sobre el lote que solo está detrás del impuesto de bienes inmuebles, y el vendedor debe darle al notario una certificación de que están al día; si no, el comprador responde por ellas [1].",
+          "Las tarifas de revisión y los depósitos cambian según el desarrollo. Península Papagayo publica las suyas: US$2,000 por la revisión del esquema y US$2,000 por la revisión final, un depósito de cumplimiento de US$20,000 a US$50,000 según el tamaño de la casa y una conexión de servicios de US$25,000, más impuestos [7]."
+        ]
+      },
+      {
+        "id": "before",
+        "label": "(Antes de comprar)",
+        "title": "Cinco revisiones antes de comprar un lote",
+        "tips": [
+          "Pregunte si el lote es inscrito o una concesión. Los lotes en la zona marítimo terrestre y en el Polo Turístico Golfo de Papagayo son concesiones, y el ICT suma una capa de aprobaciones [2].",
+          "Pida la disponibilidad de agua por escrito: de AyA, de la ASADA local o de una concesión de pozo. Sin ella no hay permiso de construcción [4]. En 2026 se reportó un condominio en Nosara con casas construidas sin permisos ni prueba de agua [10].",
+          "Averigüe quién mantiene las calles, las zonas verdes y la planta de tratamiento, y cuánto de la cuota va a eso [1, 2].",
+          "Compare los retiros de su lote según el plan regulador, el reglamento nacional, las reglas del condominio y cualquier río o naciente cercano, y diseñe con el más estricto [2, 9].",
+          "Anote cuánto dura cada aprobación y cuánto tiempo da el condominio para construir: Nativa da 18 meses desde el inicio de obra [8]."
+        ],
+        "after": [
+          "Las reglas pueden cambiar: modificar el reglamento requiere dos tercios del valor del condominio según la reforma de 2022, aunque otro artículo todavía habla de unanimidad, así que consulte a un abogado antes de contar con un cambio [1]."
+        ]
+      }
+    ],
+    "faq": [
+      [
+        "¿Necesito la aprobación del condominio para sacar el permiso de construcción?",
+        "A nivel nacional ninguna norma la exige, pero las reglas del condominio la vuelven condición de su compra, y algunas municipalidades la piden: Escazú y Heredia entre ellas [5, 6]. En la práctica, consiga primero la aprobación del comité."
+      ],
+      [
+        "¿Quién decide cómo puede verse mi casa?",
+        "El reglamento y el manual de diseño del condominio, aplicados por su comité de diseño, dentro de las reglas de la municipalidad. Los planos aprobados del condominio ya fijan la cobertura, la altura y el área construible de cada lote [1, 2]."
+      ],
+      [
+        "¿Qué retiros aplican dentro de un condominio?",
+        "El mayor entre el plan regulador o el reglamento nacional de construcciones y el del propio condominio. En las calles internas no se exige retiro frontal [2]."
+      ],
+      [
+        "¿Un lote en Península Papagayo es inscrito?",
+        "No. Se tiene en concesión otorgada por el ICT, bajo una declaración maestra de condiciones y restricciones [7]."
+      ]
+    ],
+    "sources": "en"
+  }
+}

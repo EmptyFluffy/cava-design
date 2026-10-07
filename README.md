@@ -71,6 +71,12 @@ python3 scripts/sun-map.py <unzipped Global Solar Atlas CR GeoTIFFs>  # overlay 
 
 **To add a town:** add it to `data/towns.json` (name, a geocoding query, region, whether it is on the coast), run the three commands, check the canton it found, commit. The text is written in `scripts/towns-text.mjs`. The build also writes `sitemap.xml` (every page with its pair in the other language) and `robots.txt`.
 
+## Guides
+
+Long pages with numbered sources live in `data/guides/*.json` (both languages; `"sources": "en"` reuses the English list, and each source may carry `title_es`, `publisher_es`, `date_es`). `[3]` in any text becomes a link to source 3. Each guide sets where it lives (`dir`): the permits guide under `/guides/`, the gated-communities guide under `/architects/`. A town can carry its own permits section (`extra` in `data/towns.json`, as Papagayo does) that replaces the usual steps and two of its answers. Guides list themselves on `/guides/`, on where we work, on every town page and in the footer.
+
+Every guide carries its review date and the note that it is general information, not legal advice. **Review them every year**: the SETENA thresholds and the Papagayo rules are before the Constitutional Court.
+
 ## Spanish
 
 English lives at the root, Spanish under `/es/`: `/es/` and `/es/proyectos/<slug>/`. Every page links to its pair with `hreflang`, and the last item of the nav row, the menu and the footer switch language.

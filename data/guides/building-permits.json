@@ -1,0 +1,721 @@
+{
+  "_note": "Guide: building permits in Costa Rica. Research of 2026-10-06 from official texts (SINALEVI). [n] in the text points to the sources. Review every year: the SETENA thresholds are under constitutional challenge.",
+  "id": "permits",
+  "slug": {
+    "en": "building-permits",
+    "es": "permisos-de-construccion"
+  },
+  "dir": {
+    "en": "guides",
+    "es": "guias"
+  },
+  "reviewed": "2026-10-07",
+  "image": "casa-alcaravan/1",
+  "en": {
+    "title": "Building permits in Costa Rica | Studio CAVA",
+    "description": "Every step to a building permit in Costa Rica, in order, with the law behind it: land use, water, SETENA, the CFIA platform, Health, the Fire Department, the municipality and the coast.",
+    "link": "Building permits in Costa Rica, step by step",
+    "crumb": "Guides",
+    "h1": [
+      "Building",
+      "permits"
+    ],
+    "intro": "A house needs a land use certificate, water, the CFIA's platform and a municipal licence. Larger buildings, fragile sites and businesses add SETENA, the Ministry of Health, the Fire Department and more. This is the order, with the law or the office behind each step.",
+    "sections": [
+      {
+        "id": "lot",
+        "label": "(Before you buy)",
+        "title": "What the lot already decides",
+        "body": [
+          "A municipality cannot issue a permit for a lot without an approved survey plan or without access to a public road, or for a project that does not fit the zoning in use, setbacks or coverage [1].",
+          "Fewer than half of Costa Rica's cantons have a plan regulador for their whole territory: 44 of 84 have one, and 22 of those cover only part of the canton. In Guanacaste, Abangares, Bagaces, Carrillo, Hojancha, La Cruz and Nandayure have none, and Liberia, Cañas, Nicoya, Santa Cruz and Tilarán have partial plans from the 1980s [21]. Where there is no plan, the national construction rules apply [2]."
+        ],
+        "tips": [
+          "Near water, the forestry law protects a 100 m radius around permanent springs, a strip of 15 m in the countryside and 10 m in town along rivers on flat land, 50 m on broken ground (an average slope over 40%), and 50 m around lakes [4, 5].",
+          "Within 200 m of the high-tide line, the maritime zone law applies (see the coast, below) [25].",
+          "Inside a condominium or a tourism pole such as Papagayo, there is a second set of rules and approvals: see our guide to gated communities and the Papagayo page."
+        ]
+      },
+      {
+        "id": "house",
+        "label": "(A house)",
+        "title": "The steps for a single-family house",
+        "steps": [
+          [
+            "Land use certificate",
+            "From the municipality. It states, at least, the permitted use, setbacks, coverage, density, height, frontage and minimum lot area, and it lasts as long as the plan regulador does not change [1, 2]."
+          ],
+          [
+            "Alignments",
+            "From MOPT if the lot faces a national road (up to 3 months), from the municipality for a cantonal road, and from INVU for rivers and springs (15 working days, valid 24 months) [3, 4, 5, 13]."
+          ],
+          [
+            "Water availability",
+            "From AyA, the local ASADA or a well concession. Every building needs it. AyA issues it free within 15 working days, valid 12 months and extendable to 24 [2, 6]."
+          ],
+          [
+            "Electricity",
+            "Not a national requirement, but some municipalities ask for it: Carrillo asks for a letter from Coopeguanacaste or ICE [7]."
+          ],
+          [
+            "SETENA, only when it applies",
+            "Over 1,000 m², or 500 to 1,000 m² on a fragile site. The environmental licence must come before the permit [8]. See below."
+          ],
+          [
+            "Drawings and contract in the CFIA platform",
+            "The design contract is registered in the CFIA's APC platform, and the CFIA charges about 0.27% of its own valuation of the work. The CFIA stamp lasts one year [10, 11]."
+          ],
+          [
+            "Review in the APC",
+            "For a house, the Ministry of Health approves on the professional's sworn declaration, and the Fire Department does not review it, though the house must still meet the fire rules [12]."
+          ],
+          [
+            "Municipal licence",
+            "The municipality charges a construction tax of up to 1% of the value of the work, and the licence needs the work-risk insurance policy first [1, 13, 14]."
+          ],
+          [
+            "Digital site logbook",
+            "Opened by the director of works, with its QR code visible on site, and closed within 30 days of finishing [15]."
+          ],
+          [
+            "When the work ends",
+            "Notify the municipality: occupying before giving notice is an infraction. There is no national occupancy certificate; some municipalities run a final inspection [13]."
+          ]
+        ]
+      },
+      {
+        "id": "business",
+        "label": "(Hotels and businesses)",
+        "title": "What changes for a hotel, a shop or a restaurant",
+        "body": [
+          "In the APC, the Ministry of Health and the Fire Department review every building other than a house: 15 working days for the first review and 5 for corrections, or 7 and 3 for simple shops and offices [12]. For buildings of 300 m² or less, Health accepts a sworn declaration instead of its review, except for treatment plants, wastewater systems, radiation shielding and boilers [12].",
+          "The Fire Department has no size threshold for non-residential buildings, and reviews apartment buildings from 4 units up. Its regulation adopts the NFPA codes, NFPA 101 (2021) among them [12, 18].",
+          "Buildings open to the public must meet the accessibility law: at least one accessible entrance, doors of 0.90 m, corridors of 1.20 m, ramps of 8 to 12% depending on their length, accessible toilets and 5% of parking, never fewer than two spaces. Without it, the permit is not processed [19, 20]."
+        ],
+        "steps": [
+          [
+            "Health operating permit",
+            "After construction, the Permiso Sanitario de Funcionamiento. For most risk groups it is issued on submission, and it lasts 5 years [16]."
+          ],
+          [
+            "Municipal business licence",
+            "The patente: the municipality has 30 calendar days to decide, and it cannot be granted without the land use certificate [1, 17]."
+          ]
+        ]
+      },
+      {
+        "id": "setena",
+        "label": "(SETENA)",
+        "title": "When SETENA's environmental review applies",
+        "body": [
+          "Since 20 August 2023, the threshold is the same for houses, hotels, shops and residential buildings [8, 9]:"
+        ],
+        "table": {
+          "head": [
+            "Built area",
+            "On an ordinary site",
+            "On a fragile site"
+          ],
+          "rows": [
+            [
+              "Under 500 m²",
+              "No SETENA",
+              "No SETENA"
+            ],
+            [
+              "500 to 1,000 m²",
+              "No SETENA",
+              "Form D1-C, resolved within 7 days"
+            ],
+            [
+              "Over 1,000 m²",
+              "Form D1",
+              "Form D1"
+            ]
+          ]
+        },
+        "after": [
+          "Earthworks follow the same thresholds in cubic metres [8]. Fragile sites include the maritime zone, forest, rivers and springs with their protection strips, aquifer recharge areas, high-hazard areas, protected areas, heritage sites and indigenous territories [8].",
+          "The 500 m² rule many people still quote came from the previous regulation, Decreto 31849, which was repealed in 2023 [8, 9]. The new thresholds are being challenged before the Constitutional Court, and the Procuraduría has said the change lacks technical support, so they could change [22, 23].",
+          "After a D1, the route depends on the project's environmental impact score: a sworn declaration of environmental commitments, an environmental management plan or a full impact study. Fees run from US$60 for a D1-C to US$1,500 for a full study, and the licence lasts 5 years before works start [8].",
+          "In Guanacaste, where several coastal aquifers are under pressure, SENARA's matrix limits density and paved area on highly vulnerable land; how binding it is has been argued in the courts [24]."
+        ]
+      },
+      {
+        "id": "defaults",
+        "label": "(No plan regulador)",
+        "title": "The national rules where there is no local plan",
+        "table": {
+          "head": [
+            "Rule",
+            "National construction rules [2]"
+          ],
+          "rows": [
+            [
+              "Coverage",
+              "75%; 80% on corner lots or lots as wide as they are deep; 70% on deep, narrow lots"
+            ],
+            [
+              "Front setback",
+              "2 m on cantonal roads; on national roads, as MOPT sets it"
+            ],
+            [
+              "Side and rear setbacks",
+              "None against a windowless, non-combustible boundary wall; otherwise 3 m for one storey and 4 m for two, plus 1 m for each extra storey"
+            ],
+            [
+              "Height",
+              "Up to 1.5 times the average width of the street"
+            ],
+            [
+              "Parking",
+              "One space for a house on a lot of 200 m² or more"
+            ],
+            [
+              "Lodging",
+              "A lot of at least 280 m²"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "coast",
+        "label": "(The coast)",
+        "title": "Building near the beach",
+        "body": [
+          "The maritime zone is the 200 m strip from the ordinary high-tide line. The first 50 m are the public zone, which cannot be occupied under any title; building there illegally can bring demolition without compensation and prison [25].",
+          "In the remaining 150 m, the restricted zone, only municipalities grant concessions, with the ICT's approval in tourist areas, for 5 to 20 years and against a yearly fee. A permanent building needs a registered concession that fits an approved coastal plan; a mere use permit allows only works that are easy to remove [25, 26].",
+          "Concessions cannot go to foreigners with less than 5 years of residence, or to companies more than half owned by foreigners [25, 26]. Coastal plans are still scarce: in a 2026 survey, only 6 of the 13 coastal cantons that answered had one for some of their beaches, and a 2025 law gave municipalities without plans 8 more years [27, 28]."
+        ]
+      },
+      {
+        "id": "timing",
+        "label": "(Timing)",
+        "title": "How long each step takes",
+        "table": {
+          "head": [
+            "Step",
+            "Legal time limit"
+          ],
+          "rows": [
+            [
+              "Water availability (AyA)",
+              "15 working days [6]"
+            ],
+            [
+              "River alignment (INVU)",
+              "15 working days [5]"
+            ],
+            [
+              "National road alignment (MOPT)",
+              "3 months [3]"
+            ],
+            [
+              "SETENA, form D1-C",
+              "7 days [8]"
+            ],
+            [
+              "Health and Fire review in the APC",
+              "15 working days, 5 for corrections [12]"
+            ],
+            [
+              "Business licence",
+              "30 calendar days [17]"
+            ]
+          ]
+        },
+        "after": [
+          "In practice the municipality makes the difference. In the CFIA's 2025 ranking, approving a permit in the APC took on average about 1 day in Escazú, 10 in Liberia and Santa Cruz, 12 in Santa Ana, 19 in Garabito, 26 in Carrillo and 35 in Quepos; Liberia approved 61% of files on the first submission, Santa Cruz 35% and Escazú 16% [29].",
+          "The most common reasons for sending a file back, in a Contraloría audit, were setbacks, windows on boundary walls, room sizes and ventilation, and missing documents such as the land use certificate [30]."
+        ]
+      }
+    ],
+    "faq": [
+      [
+        "Do I need SETENA to build a house?",
+        "Not if it is under 1,000 m², unless it measures 500 to 1,000 m² and sits on a fragile site such as the maritime zone, forest, a river's protection strip or an aquifer recharge area, in which case it files a D1-C [8]."
+      ],
+      [
+        "How much does a building permit cost?",
+        "The municipal construction tax is up to 1% of the value of the work, and the CFIA charges about 0.27% of its valuation. Add the work-risk insurance, SETENA's fee when it applies, and the condominium's review fees if there is one [1, 11, 14, 8]."
+      ],
+      [
+        "How long does it take?",
+        "The legal limits are short (15 working days for most reviews), but municipalities vary: from about a day in Escazú to over a month in Quepos in the CFIA's 2025 ranking. SETENA, alignments and a condominium's review add their own time [12, 29]."
+      ],
+      [
+        "Is there an occupancy permit at the end?",
+        "Not a national one. The owner must tell the municipality the work is finished before using it, and some municipalities inspect. A business also needs the Health operating permit and the municipal licence [13, 16, 17]."
+      ],
+      [
+        "Can a foreigner build near the beach?",
+        "Not in the 50 m public zone. In the restricted zone, concessions cannot go to foreigners with less than 5 years of residence or to companies more than half foreign-owned [25, 26]."
+      ]
+    ],
+    "sources": [
+      {
+        "title": "Ley 4240, Ley de Planificación Urbana (arts. 28, 29, 58 and 70)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=35669&param2=143656&param3=1",
+        "date": "current text, 2024",
+        "title_es": "Ley 4240, Ley de Planificación Urbana (arts. 28, 29, 58 y 70)",
+        "date_es": "texto vigente, 2024"
+      },
+      {
+        "title": "Reglamento de Construcciones",
+        "publisher": "INVU, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=86209&param2=130430&param3=1",
+        "date": "2018, reformed 2022",
+        "publisher_es": "INVU, en SINALEVI",
+        "date_es": "2018, reformado 2022"
+      },
+      {
+        "title": "Ley 5060, Ley General de Caminos Públicos (art. 19)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=38653&param2=138745&param3=1",
+        "date": "current text",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Ley Forestal 7575 (arts. 33 and 34)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=41661&param2=150775&param3=1",
+        "date": "current text",
+        "title_es": "Ley Forestal 7575 (arts. 33 y 34)",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Protocolo para el alineamiento de ríos, quebradas y nacientes",
+        "publisher": "INVU, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=91627&param2=121055&param3=1",
+        "date": "2020",
+        "publisher_es": "INVU, en SINALEVI"
+      },
+      {
+        "title": "Reglamento para la prestación de servicios a los usuarios (arts. 36 and 37)",
+        "publisher": "AyA, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=93632&param2=150995&param3=1",
+        "date": "2021, current version 2026",
+        "title_es": "Reglamento para la prestación de servicios a los usuarios (arts. 36 y 37)",
+        "publisher_es": "AyA, en SINALEVI",
+        "date_es": "2021, versión vigente 2026"
+      },
+      {
+        "title": "Reglamento de construcciones de la Municipalidad de Carrillo",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=86873&param2=128633&param3=1",
+        "date": "2018, current version 2022",
+        "date_es": "2018, versión vigente 2022"
+      },
+      {
+        "title": "Decreto 43898-MINAE-S-MOPT-MAG-MEIC, Reglamento de evaluación, control y seguimiento ambiental",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=99253&param2=135644&param3=1",
+        "date": "in force 20 August 2023",
+        "date_es": "vigente desde el 20 de agosto de 2023"
+      },
+      {
+        "title": "Preguntas frecuentes",
+        "publisher": "SETENA",
+        "url": "https://www.setena.go.cr/es/FAQs-SETENA",
+        "date": "read October 2026",
+        "date_es": "consultado en octubre de 2026"
+      },
+      {
+        "title": "Reglamento Especial del Administrador de Proyectos de Construcción (APC)",
+        "publisher": "CFIA",
+        "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/reglamento-apc.pdf",
+        "date": "2020, reformed 2024",
+        "date_es": "2020, reformado 2024"
+      },
+      {
+        "title": "Rubros de pago CFIA",
+        "publisher": "CFIA",
+        "url": "https://centrodeayuda.cfia.or.cr/hc/es/articles/229400327-Rubros-de-pago-CFIA",
+        "date": "August 2026",
+        "date_es": "agosto de 2026"
+      },
+      {
+        "title": "Decreto 36550-MP-MIVAH-S-MEIC, Reglamento para el trámite de revisión de los planos para la construcción",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=70485&param2=129782&param3=1",
+        "date": "2011, reformed 2022",
+        "date_es": "2011, reformado 2022"
+      },
+      {
+        "title": "Ley 833, Ley de Construcciones",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=36307&param2=143894&param3=1",
+        "date": "current text",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Código de Trabajo (arts. 202 and 203)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=8045&param2=151754&param3=1",
+        "date": "current text",
+        "title_es": "Código de Trabajo (arts. 202 y 203)",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Reglamento Especial de la Bitácora Digital para el Control de Proyectos",
+        "publisher": "CFIA, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=107734&param2=152199&param3=1",
+        "date": "in force 28 August 2026",
+        "publisher_es": "CFIA, en SINALEVI",
+        "date_es": "vigente desde el 28 de agosto de 2026"
+      },
+      {
+        "title": "Decreto 43432-S, Reglamento general para otorgar permisos sanitarios de funcionamiento",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=96613&param2=152175&param3=1",
+        "date": "2022, current version 2026",
+        "date_es": "2022, versión vigente 2026"
+      },
+      {
+        "title": "Código Municipal (art. 89)",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=40197&param2=151145&param3=1",
+        "date": "current text",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Reglamento Nacional de Protección contra Incendios",
+        "publisher": "Benemérito Cuerpo de Bomberos, via SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=93005&param2=136549&param3=1",
+        "date": "2020, republished 2023",
+        "publisher_es": "Benemérito Cuerpo de Bomberos, en SINALEVI",
+        "date_es": "2020, republicado 2023"
+      },
+      {
+        "title": "Ley 7600, Igualdad de oportunidades para las personas con discapacidad",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=23261&param2=121969&param3=1",
+        "date": "current text",
+        "date_es": "texto vigente"
+      },
+      {
+        "title": "Decreto 26831-MP, Reglamento de la Ley 7600",
+        "publisher": "SINALEVI",
+        "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=53160&param2=130269&param3=1",
+        "date": "current version 2022",
+        "date_es": "versión vigente 2022"
+      },
+      {
+        "title": "Estado de los planes reguladores (map layer)",
+        "publisher": "INVU",
+        "url": "https://services8.arcgis.com/q29uWmz7l6X8C9qc/arcgis/rest/services/Estado_Planes_Reguladores_Actualizado_11_Julio_2024/FeatureServer/0",
+        "date": "edited September 2026",
+        "title_es": "Estado de los planes reguladores (capa de mapa)",
+        "date_es": "editado en setiembre de 2026"
+      },
+      {
+        "title": "Boletín de la Sala Constitucional, abril de 2026",
+        "publisher": "Sala Constitucional",
+        "url": "https://salaconstitucional.poder-judicial.go.cr/index.php/jurisprudencia/boletines-mensuales/270-2026?download=6166%3Aot-61567-boletin-web-sala-constitucional-abril-2026",
+        "date": "April 2026",
+        "date_es": "abril de 2026"
+      },
+      {
+        "title": "Procuraduría coincide con ambientalistas en que reforma al reglamento de SETENA carece de fundamento técnico",
+        "publisher": "Semanario Universidad",
+        "url": "https://semanariouniversidad.com/pais/procuraduria-coincide-con-ambientalistas-en-que-reforma-al-reglamento-de-setena-carece-de-fundamento-tecnico/",
+        "date": "11 October 2023",
+        "date_es": "11 de octubre de 2023"
+      },
+      {
+        "title": "Matriz de criterios de uso del suelo según la vulnerabilidad a la contaminación de acuíferos (Acuerdo 3303)",
+        "publisher": "SENARA",
+        "url": "https://senara.or.cr/proyectos/aguassubterraneas/matriz%20proteccion%20acuiferos/Matriz%20Criterio%20Uso%20Suelo%20-%20Acuerdo%203303%20SENARA.pdf",
+        "date": "2006"
+      },
+      {
+        "title": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (consolidated text)",
+        "publisher": "SNIT",
+        "url": "https://www.snitcr.go.cr/pdfs/leyes/Ley-6043.pdf",
+        "date": "1977, consolidated 1999",
+        "title_es": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (texto consolidado)",
+        "date_es": "1977, consolidado 1999"
+      },
+      {
+        "title": "Criterio legal AL-A-0521-2024 on the maritime zone",
+        "publisher": "ICT",
+        "url": "https://www.ict.go.cr/en/documents/asesoria-legal-1/tesauros/3111-al-a-0521-2024/file.html",
+        "date": "2024",
+        "title_es": "Criterio legal AL-A-0521-2024 sobre la zona marítimo terrestre"
+      },
+      {
+        "title": "Ley 10735 (Alcance 95, La Gaceta 140)",
+        "publisher": "Imprenta Nacional",
+        "url": "https://www.imprentanacional.go.cr/pub/2025/07/30/ALCA95_30_07_2025.pdf",
+        "date": "30 July 2025",
+        "date_es": "30 de julio de 2025"
+      },
+      {
+        "title": "Planes reguladores en Costa Rica: hallazgos para orientar decisiones",
+        "publisher": "Revista CFIA",
+        "url": "https://revista.cfia.or.cr/planes-reguladores-en-costa-rica-hallazgos-para-orientar-decisiones/",
+        "date": "27 April 2026",
+        "date_es": "27 de abril de 2026"
+      },
+      {
+        "title": "Ranking municipal 2024-2025, memoria técnica",
+        "publisher": "CFIA",
+        "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/informes/memoria-tecnica-ranking-municipal-2025.pdf",
+        "date": "August 2025",
+        "date_es": "agosto de 2025"
+      },
+      {
+        "title": "Informe DFOE-DL-IF-00009-2019 on building permits in San José",
+        "publisher": "Contraloría General de la República",
+        "url": "https://cgrfiles.cgr.go.cr/publico/docs_cgr/2019/SIGYD_D_2019013415.pdf",
+        "date": "8 August 2019",
+        "title_es": "Informe DFOE-DL-IF-00009-2019 sobre permisos de construcción en San José",
+        "date_es": "8 de agosto de 2019"
+      }
+    ]
+  },
+  "es": {
+    "title": "Permisos de construcción en Costa Rica | Studio CAVA",
+    "description": "Cada paso hacia un permiso de construcción en Costa Rica, en orden y con la ley detrás: uso de suelo, agua, SETENA, la plataforma del CFIA, Salud, Bomberos, la municipalidad y la costa.",
+    "link": "Permisos de construcción en Costa Rica, paso a paso",
+    "crumb": "Guías",
+    "h1": [
+      "Permisos de",
+      "construcción"
+    ],
+    "intro": "Una casa necesita certificado de uso de suelo, agua, la plataforma del CFIA y la licencia municipal. Los edificios más grandes, los sitios frágiles y los negocios suman SETENA, el Ministerio de Salud, Bomberos y más. Este es el orden, con la ley o la oficina detrás de cada paso.",
+    "sections": [
+      {
+        "id": "lot",
+        "label": "(Antes de comprar)",
+        "title": "Lo que el lote ya decide",
+        "body": [
+          "Una municipalidad no puede dar permiso para un lote sin plano visado o sin salida a calle pública, ni para un proyecto que no cumpla la zonificación en uso, retiros o cobertura [1].",
+          "Menos de la mitad de los cantones tiene plan regulador para todo su territorio: 44 de 84 tienen uno, y 22 de esos cubren solo una parte del cantón. En Guanacaste no tienen Abangares, Bagaces, Carrillo, Hojancha, La Cruz ni Nandayure, y Liberia, Cañas, Nicoya, Santa Cruz y Tilarán tienen planes parciales de los años ochenta [21]. Donde no hay plan, rige el reglamento nacional de construcciones [2]."
+        ],
+        "tips": [
+          "Cerca del agua, la Ley Forestal protege un radio de 100 m alrededor de las nacientes permanentes, una franja de 15 m en zona rural y 10 m en zona urbana a lo largo de los ríos en terreno plano, 50 m en terreno quebrado (pendiente promedio mayor al 40%) y 50 m alrededor de los lagos [4, 5].",
+          "A menos de 200 m de la pleamar rige la Ley de la Zona Marítimo Terrestre (vea la costa, abajo) [25].",
+          "Dentro de un condominio o de un polo turístico como Papagayo hay un segundo juego de reglas y aprobaciones: vea nuestra guía de condominios y la página de Papagayo."
+        ]
+      },
+      {
+        "id": "house",
+        "label": "(Una casa)",
+        "title": "Los pasos para una vivienda unifamiliar",
+        "steps": [
+          [
+            "Certificado de uso de suelo",
+            "Lo da la municipalidad. Indica como mínimo el uso permitido, los retiros, la cobertura, la densidad, la altura, el frente y el área mínima del lote, y vale mientras no cambie el plan regulador [1, 2]."
+          ],
+          [
+            "Alineamientos",
+            "Del MOPT si el lote da a una ruta nacional (hasta 3 meses), de la municipalidad para un camino cantonal y del INVU para ríos y nacientes (15 días hábiles, vigente 24 meses) [3, 4, 5, 13]."
+          ],
+          [
+            "Disponibilidad de agua",
+            "De AyA, de la ASADA local o de una concesión de pozo. Toda edificación la necesita. AyA la da gratis en 15 días hábiles, vigente 12 meses y prorrogable a 24 [2, 6]."
+          ],
+          [
+            "Electricidad",
+            "No es un requisito nacional, pero algunas municipalidades la piden: Carrillo pide una carta de Coopeguanacaste o del ICE [7]."
+          ],
+          [
+            "SETENA, solo cuando aplica",
+            "Más de 1,000 m², o de 500 a 1,000 m² en un sitio frágil. La viabilidad ambiental va antes del permiso [8]. Vea abajo."
+          ],
+          [
+            "Planos y contrato en la plataforma del CFIA",
+            "El contrato de consultoría se inscribe en la plataforma APC del CFIA, y el CFIA cobra cerca del 0.27% de su propia tasación de la obra. El sello del CFIA dura un año [10, 11]."
+          ],
+          [
+            "Revisión en el APC",
+            "Para una casa, el Ministerio de Salud aprueba con la declaración jurada del profesional, y Bomberos no la revisa, aunque la casa debe cumplir igual las normas contra incendios [12]."
+          ],
+          [
+            "Licencia municipal",
+            "La municipalidad cobra un impuesto de construcción de hasta el 1% del valor de la obra, y la licencia exige antes la póliza de riesgos del trabajo [1, 13, 14]."
+          ],
+          [
+            "Bitácora digital",
+            "La abre el director técnico, con su código QR visible en la obra, y se cierra dentro de los 30 días después de terminar [15]."
+          ],
+          [
+            "Al terminar la obra",
+            "Avise a la municipalidad: ocupar antes de dar aviso es una infracción. No existe un certificado nacional de ocupación; algunas municipalidades hacen una inspección final [13]."
+          ]
+        ]
+      },
+      {
+        "id": "business",
+        "label": "(Hoteles y negocios)",
+        "title": "Qué cambia para un hotel, una tienda o un restaurante",
+        "body": [
+          "En el APC, el Ministerio de Salud y Bomberos revisan toda edificación que no sea vivienda: 15 días hábiles la primera revisión y 5 las correcciones, o 7 y 3 para comercios y oficinas sencillos [12]. Para edificios de 300 m² o menos, Salud acepta una declaración jurada en lugar de su revisión, salvo plantas de tratamiento, sistemas de aguas residuales, blindaje contra radiación y calderas [12].",
+          "Bomberos no tiene un umbral de tamaño para edificios no residenciales, y revisa los edificios de apartamentos desde 4 unidades. Su reglamento adopta las normas NFPA, entre ellas la NFPA 101 (2021) [12, 18].",
+          "Los edificios abiertos al público deben cumplir la Ley 7600: al menos una entrada accesible, puertas de 0.90 m, pasillos de 1.20 m, rampas del 8 al 12% según su largo, servicios sanitarios accesibles y el 5% de los parqueos, nunca menos de dos. Sin eso, el permiso no se tramita [19, 20]."
+        ],
+        "steps": [
+          [
+            "Permiso sanitario de funcionamiento",
+            "Después de construir. Para la mayoría de los grupos de riesgo se da al presentarlo, y dura 5 años [16]."
+          ],
+          [
+            "Patente municipal",
+            "La municipalidad tiene 30 días naturales para resolver, y no puede darla sin el certificado de uso de suelo [1, 17]."
+          ]
+        ]
+      },
+      {
+        "id": "setena",
+        "label": "(SETENA)",
+        "title": "Cuándo aplica la revisión ambiental de SETENA",
+        "body": [
+          "Desde el 20 de agosto de 2023 el umbral es el mismo para casas, hoteles, comercios y edificios residenciales [8, 9]:"
+        ],
+        "table": {
+          "head": [
+            "Área construida",
+            "En un sitio común",
+            "En un sitio frágil"
+          ],
+          "rows": [
+            [
+              "Menos de 500 m²",
+              "Sin SETENA",
+              "Sin SETENA"
+            ],
+            [
+              "De 500 a 1,000 m²",
+              "Sin SETENA",
+              "Formulario D1-C, resuelto en 7 días"
+            ],
+            [
+              "Más de 1,000 m²",
+              "Formulario D1",
+              "Formulario D1"
+            ]
+          ]
+        },
+        "after": [
+          "El movimiento de tierra sigue los mismos umbrales en metros cúbicos [8]. Los sitios frágiles incluyen la zona marítimo terrestre, el bosque, los ríos y nacientes con sus zonas de protección, las áreas de recarga acuífera, las zonas de alto riesgo, las áreas protegidas, los sitios patrimoniales y los territorios indígenas [8].",
+          "La regla de los 500 m² que mucha gente todavía cita venía del reglamento anterior, el Decreto 31849, derogado en 2023 [8, 9]. Los nuevos umbrales están impugnados ante la Sala Constitucional, y la Procuraduría dijo que el cambio carece de sustento técnico, así que podrían cambiar [22, 23].",
+          "Después de un D1, la ruta depende del puntaje de impacto ambiental del proyecto: una declaración jurada de compromisos ambientales, un plan de gestión ambiental o un estudio de impacto completo. Las tarifas van de US$60 por un D1-C a US$1,500 por un estudio completo, y la viabilidad dura 5 años antes de empezar la obra [8].",
+          "En Guanacaste, donde varios acuíferos costeros están bajo presión, la matriz de SENARA limita la densidad y el área impermeable en terrenos de alta vulnerabilidad; qué tan obligatoria es se ha discutido en los tribunales [24]."
+        ]
+      },
+      {
+        "id": "defaults",
+        "label": "(Sin plan regulador)",
+        "title": "Las reglas nacionales donde no hay plan local",
+        "table": {
+          "head": [
+            "Regla",
+            "Reglamento de Construcciones [2]"
+          ],
+          "rows": [
+            [
+              "Cobertura",
+              "75%; 80% en esquina o en lotes tan anchos como profundos; 70% en lotes profundos y angostos"
+            ],
+            [
+              "Antejardín",
+              "2 m frente a caminos cantonales; en rutas nacionales, lo que fije el MOPT"
+            ],
+            [
+              "Retiros laterales y posterior",
+              "Ninguno contra una pared colindante sin ventanas e incombustible; si no, 3 m para un piso y 4 m para dos, más 1 m por cada piso adicional"
+            ],
+            [
+              "Altura",
+              "Hasta 1.5 veces el ancho promedio de la calle"
+            ],
+            [
+              "Parqueo",
+              "Un espacio para una casa en un lote de 200 m² o más"
+            ],
+            [
+              "Hospedaje",
+              "Un lote de al menos 280 m²"
+            ]
+          ]
+        }
+      },
+      {
+        "id": "coast",
+        "label": "(La costa)",
+        "title": "Construir cerca de la playa",
+        "body": [
+          "La zona marítimo terrestre es la franja de 200 m desde la pleamar ordinaria. Los primeros 50 m son la zona pública, que no se puede ocupar bajo ningún título; construir ahí ilegalmente puede terminar en demolición sin indemnización y en prisión [25].",
+          "En los 150 m restantes, la zona restringida, solo las municipalidades dan concesiones, con aprobación del ICT en zonas turísticas, por 5 a 20 años y a cambio de un canon anual. Un edificio permanente necesita una concesión inscrita y acorde con un plan regulador costero aprobado; un simple permiso de uso solo permite obras fáciles de remover [25, 26].",
+          "Las concesiones no pueden darse a extranjeros con menos de 5 años de residencia ni a sociedades con más de la mitad de capital extranjero [25, 26]. Los planes costeros todavía son pocos: en una encuesta de 2026, solo 6 de los 13 cantones costeros que respondieron tenían uno para alguna de sus playas, y una ley de 2025 les dio 8 años más a las municipalidades sin plan [27, 28]."
+        ]
+      },
+      {
+        "id": "timing",
+        "label": "(Tiempos)",
+        "title": "Cuánto tarda cada paso",
+        "table": {
+          "head": [
+            "Paso",
+            "Plazo legal"
+          ],
+          "rows": [
+            [
+              "Disponibilidad de agua (AyA)",
+              "15 días hábiles [6]"
+            ],
+            [
+              "Alineamiento de río (INVU)",
+              "15 días hábiles [5]"
+            ],
+            [
+              "Alineamiento de ruta nacional (MOPT)",
+              "3 meses [3]"
+            ],
+            [
+              "SETENA, formulario D1-C",
+              "7 días [8]"
+            ],
+            [
+              "Revisión de Salud y Bomberos en el APC",
+              "15 días hábiles, 5 para correcciones [12]"
+            ],
+            [
+              "Patente municipal",
+              "30 días naturales [17]"
+            ]
+          ]
+        },
+        "after": [
+          "En la práctica, la diferencia la hace la municipalidad. En el ranking del CFIA de 2025, aprobar un permiso en el APC tomó en promedio cerca de 1 día en Escazú, 10 en Liberia y Santa Cruz, 12 en Santa Ana, 19 en Garabito, 26 en Carrillo y 35 en Quepos; Liberia aprobó el 61% de los expedientes en el primer ingreso, Santa Cruz el 35% y Escazú el 16% [29].",
+          "Los motivos más comunes para devolver un expediente, según una auditoría de la Contraloría, fueron los retiros, las ventanas en paredes colindantes, el tamaño y la ventilación de los cuartos y documentos faltantes como el certificado de uso de suelo [30]."
+        ]
+      }
+    ],
+    "faq": [
+      [
+        "¿Necesito SETENA para construir una casa?",
+        "No si mide menos de 1,000 m², salvo que mida entre 500 y 1,000 m² y esté en un sitio frágil, como la zona marítimo terrestre, un bosque, la zona de protección de un río o un área de recarga acuífera; en ese caso presenta un D1-C [8]."
+      ],
+      [
+        "¿Cuánto cuesta un permiso de construcción?",
+        "El impuesto municipal de construcción es de hasta el 1% del valor de la obra, y el CFIA cobra cerca del 0.27% de su tasación. Hay que sumar la póliza de riesgos del trabajo, la tarifa de SETENA cuando aplica y las tarifas de revisión del condominio si lo hay [1, 11, 14, 8]."
+      ],
+      [
+        "¿Cuánto tarda?",
+        "Los plazos legales son cortos (15 días hábiles para la mayoría de las revisiones), pero las municipalidades varían: de cerca de un día en Escazú a más de un mes en Quepos según el ranking del CFIA de 2025. SETENA, los alineamientos y la revisión de un condominio suman su propio tiempo [12, 29]."
+      ],
+      [
+        "¿Hay un permiso de ocupación al final?",
+        "No uno nacional. El propietario debe avisar a la municipalidad que terminó la obra antes de usarla, y algunas municipalidades inspeccionan. Un negocio necesita además el permiso sanitario de funcionamiento y la patente [13, 16, 17]."
+      ],
+      [
+        "¿Un extranjero puede construir cerca de la playa?",
+        "No en la zona pública de 50 m. En la zona restringida, las concesiones no pueden darse a extranjeros con menos de 5 años de residencia ni a sociedades con más de la mitad de capital extranjero [25, 26]."
+      ]
+    ],
+    "sources": "en"
+  }
+}

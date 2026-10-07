@@ -849,6 +849,56 @@
     4.3,
     1.1
    ]
+  },
+  "papagayo": {
+   "coords": [
+    -85.6764,
+    10.6285
+   ],
+   "osm": "Península Papagayo, Golfo de Papagayo, Guanacaste, Costa Rica",
+   "canton": "Liberia",
+   "province": "Guanacaste",
+   "elevation": 8,
+   "roads": {
+    "LIR": {
+     "km": 32,
+     "min": 57
+    },
+    "SJO": {
+     "km": 238,
+     "min": 284
+    }
+   },
+   "rain": [
+    4,
+    2,
+    2,
+    27,
+    183,
+    255,
+    145,
+    235,
+    390,
+    426,
+    105,
+    19
+   ],
+   "heavyDays": [
+    0,
+    0,
+    0,
+    0.7,
+    7.5,
+    7.5,
+    4.5,
+    7.2,
+    10.6,
+    11.3,
+    3.2,
+    0.2
+   ],
+   "ghi": 2097,
+   "pvout": 1690
   }
  },
  "fetched": "2026-10-07"

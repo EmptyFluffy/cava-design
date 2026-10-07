@@ -14,7 +14,7 @@
 //
 // Run scripts/images.py first when images change (it writes data/image-sizes.json).
 import { createHash } from 'node:crypto';
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { UI } from './strings.mjs';
@@ -31,6 +31,9 @@ const sizes = JSON.parse(readFileSync(join(ROOT, 'data', 'image-sizes.json'), 'u
 const { towns, regions } = JSON.parse(readFileSync(join(ROOT, 'data', 'towns.json'), 'utf8'));
 const townData = JSON.parse(readFileSync(join(ROOT, 'data', 'town-data.json'), 'utf8'));
 const { stations } = JSON.parse(readFileSync(join(ROOT, 'data', 'stations.json'), 'utf8'));
+// Guides (data/guides/*.json): long-form pages with sources. Each says where it lives in each language.
+const GUIDE_DIR = join(ROOT, 'data', 'guides');
+const guides = existsSync(GUIDE_DIR) ? readdirSync(GUIDE_DIR).filter((f) => f.endsWith('.json')).sort().map((f) => JSON.parse(readFileSync(join(GUIDE_DIR, f), 'utf8'))) : [];
 
 const ORIGIN = 'https://cava.design';
 const WHATSAPP = '50671737336';
@@ -163,7 +166,8 @@ function footer(lang, up, paths) {
       <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
       <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
       <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
-      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
+${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
+` : ''}      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
       <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     </nav>
     <div class="footer__info">
@@ -606,7 +610,7 @@ ${bar(lang, up, paths, 'towns')}
       <dl class="sheet">
 ${[
   fact(L.facts.canton, d.canton === d.province ? d.canton : L.facts.cantonV(d)),
-  fact(L.facts.permits, muni.replace(/^(the|la|el) /, '')),
+  fact(L.facts.permits, t.extra?.[lang]?.permitsFact ?? muni.replace(/^(the|la|el) /, '')),
   fact(L.facts.elevation, L.facts.elevationV(d)),
   fact(L.facts.rain, L.facts.rainV(c)),
   fact(L.facts.dry, L.facts.dryV(c)),
@@ -642,12 +646,15 @@ ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">${L.build.label}</h2>
-      <ol class="tw__steps">
+${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building here follows its own route, set out below.' : 'Construir aquí sigue su propia ruta, que se explica abajo.'}</p>` : `      <ol class="tw__steps">
 ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</span><h3>${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
-      </ol>
-${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${esc(x)}</p>`).join('\n')}
+      </ol>`}
+${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
+${guides.length ? `      <ul class="tw__aside guide__links">
+${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+      </ul>` : ''}
     </section>
-    <section class="tw__sec tw__work" aria-labelledby="work-title">
+${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
       <h2 class="label" id="work-title">${near ? L.work.near : L.work.far}</h2>
 ${projectCards(lang, up, work.map(({ p, km: dist }) => ({ p, meta: near ? L.work.km(Math.round(dist)) : tr(lang, p, 'type') })))}    </section>
     <section class="tw__sec grid" aria-labelledby="faq-title">
@@ -667,6 +674,29 @@ ${others.map(({ o, km: dist }) => `        <li><a class="ulink" href="../${o.slu
   </article>
 ${contact(lang, waText).replace(UI[lang].reach.text, esc(L.reach(t)))}</main>
 ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;
+}
+
+// A town's own permits section, when the place has rules beyond the usual (data/towns.json "extra").
+function townExtra(lang, t) {
+  const x = t.extra?.[lang];
+  if (!x) return '';
+  return `    <section class="tw__sec grid" id="${x.id}" aria-labelledby="extra-title">
+      <h2 class="label tw__label" id="extra-title">${x.label}</h2>
+      <div class="tw__text guide__body">
+        <h3 class="guide__h2">${esc(x.title)}</h3>
+${x.body.map((p) => `        <p class="large">${cite(p)}</p>`).join('\n')}
+${x.steps ? `        <ol class="tw__steps guide__steps">
+${x.steps.map(([h, p], k) => `          <li><span class="label">(${pad(k + 1)})</span><h3>${esc(h)}</h3><p>${cite(p)}</p></li>`).join('\n')}
+        </ol>` : ''}
+${x.tips ? `        <ul class="guide__tips">
+${x.tips.map((p) => `          <li>${cite(p)}</li>`).join('\n')}
+        </ul>` : ''}
+        <ol class="guide__sources guide__sources--inline">
+${(Array.isArray(x.sources) ? x.sources : t.extra[x.sources].sources).map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
+        </ol>
+      </div>
+    </section>
+`;
 }
 
 // ---------- /architects/ and /es/arquitectos/: where we work ----------
@@ -702,9 +732,129 @@ ${rows}
     </div>
     <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}</p>
   </article>
-  <section class="related" aria-labelledby="hub-work-title">
+${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title">
+    <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
+    <ol class="stages">
+${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
+    </ol>
+  </section>
+` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
 ${projectCards(lang, up, [...projects].sort((a, b) => (a.status === 'Built' ? 0 : 1) - (b.status === 'Built' ? 0 : 1)).slice(0, 6).map((p) => ({ p, meta: placeOf(lang, p) })))}  </section>
+${contact(lang, UI[lang].wa.general)}</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
+}
+
+// ---------- Guides: /guides/<slug>/, /es/guias/<slug>/ (or under where we work) ----------
+const guidePath = (lang, g) => `${UI[lang].dir}${g.dir[lang]}/${g.slug[lang]}/`;
+const GT = {
+  en: { label: '(Guide)', reviewed: (d) => `Reviewed ${d}. General information, not legal advice: rules change, and each municipality applies them its own way.`, contents: '(Contents)', faq: '(Questions)', sources: '(Sources)', guides: 'Guides' },
+  es: { label: '(Guía)', reviewed: (d) => `Revisada en ${d}. Información general, no asesoría legal: las reglas cambian y cada municipalidad las aplica a su manera.`, contents: '(Contenido)', faq: '(Preguntas)', sources: '(Fuentes)', guides: 'Guías' },
+};
+// One source line, in the page's language when the source has a Spanish version.
+const sourceItem = (lang, s, k, indent) => {
+  const f = (key) => (lang === 'es' && s[`${key}_es`]) || s[key];
+  return `${indent}<li id="source-${k + 1}"><a class="ulink" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(f('title'))}</a>${s.publisher ? `. ${esc(f('publisher'))}` : ''}${s.date ? `, ${esc(f('date'))}` : ''}.</li>`;
+};
+// "[3]" in a guide's text becomes a numbered link to its source
+const cite = (s) => esc(s).replace(/\[(\d+(?:,\s*\d+)*)\]/g, (m, ns) => `<sup class="cite">${ns.split(/,\s*/).map((n) => `<a href="#source-${n}">${n}</a>`).join(',')}</sup>`);
+function guidePage(lang, g) {
+  const G = g[lang];
+  const L = GT[lang];
+  const paths = { en: guidePath('en', g), es: guidePath('es', g) };
+  const up = upFrom(paths[lang]);
+  const [y, m] = g.reviewed.split('-');
+  const reviewed = lang === 'en' ? `${MONTHS.en[m - 1]} ${y}` : `${MONTHS.es[m - 1]} de ${y}`;
+  const sec = (s, i) => `    <section class="tw__sec grid" id="${s.id}" aria-labelledby="g-${s.id}">
+      <p class="label tw__label">${s.label ?? `(${pad(i + 1)})`}</p>
+      <div class="tw__text guide__body">
+        <h2 class="guide__h2" id="g-${s.id}">${esc(s.title)}</h2>
+${(s.body ?? []).map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
+${s.steps ? `        <ol class="tw__steps guide__steps">
+${s.steps.map(([h, x], k) => `          <li><span class="label">(${pad(k + 1)})</span><h3>${esc(h)}</h3><p>${cite(x)}</p></li>`).join('\n')}
+        </ol>` : ''}
+${s.table ? `        <div class="hub__wrap"><table class="hub__table guide__table"><thead><tr>${s.table.head.map((h) => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead><tbody>
+${s.table.rows.map((r) => `          <tr>${r.map((c, k) => (k === 0 ? `<th scope="row">${cite(c)}</th>` : `<td>${cite(c)}</td>`)).join('')}</tr>`).join('\n')}
+        </tbody></table></div>` : ''}
+${s.tips ? `        <ul class="guide__tips">
+${s.tips.map((x) => `          <li>${cite(x)}</li>`).join('\n')}
+        </ul>` : ''}
+${(s.after ?? []).map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
+      </div>
+    </section>
+`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'Article', headline: G.title.split(' | ')[0], description: G.description, inLanguage: lang, dateModified: g.reviewed, author: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` }, publisher: { '@type': 'Organization', name: 'Studio CAVA' }, mainEntityOfPage: `${ORIGIN}/${paths[lang]}` },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: G.crumb, item: `${ORIGIN}/${UI[lang].dir}${g.dir[lang]}/` }, { '@type': 'ListItem', position: 3, name: G.title.split(' | ')[0], item: `${ORIGIN}/${paths[lang]}` }] },
+      ...(G.faq?.length ? [{ '@type': 'FAQPage', mainEntity: G.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a.replace(/\s*\[\d+(?:,\s*\d+)*\]/g, '') } })) }] : []),
+    ],
+  };
+  return head(lang, { title: G.title, description: G.description, paths, image: `${imgBase(g.image.split('/')[0], g.image.split('/')[1])}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'guides')}
+<main class="page">
+  <article class="guide" aria-labelledby="guide-title">
+    <header class="mf__head grid guide__head">
+      <p class="label mf__label">${L.label}</p>
+      <h1 class="display mf__title" id="guide-title"><span>${esc(G.h1[0])}</span><span class="right">${esc(G.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${cite(G.intro)}</p>
+      <p class="note guide__reviewed">${L.reviewed(reviewed)}</p>
+    </header>
+    <nav class="tw__sec grid guide__toc" aria-labelledby="toc-title">
+      <h2 class="label tw__label" id="toc-title">${L.contents}</h2>
+      <ol class="guide__contents">
+${G.sections.map((s) => `        <li><a class="ulink" href="#${s.id}">${esc(s.title)}</a></li>`).join('\n')}
+      </ol>
+    </nav>
+${G.sections.map(sec).join('')}${G.faq?.length ? `    <section class="tw__sec grid" aria-labelledby="faq-title">
+      <h2 class="label tw__label" id="faq-title">${L.faq}</h2>
+      <div class="faq">
+${G.faq.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="large">${cite(a)}</p></div>`).join('\n')}
+      </div>
+    </section>
+` : ''}    <section class="tw__sec grid" aria-labelledby="sources-title">
+      <h2 class="label tw__label" id="sources-title">${L.sources}</h2>
+      <ol class="guide__sources">
+${(Array.isArray(G.sources) ? G.sources : g[G.sources].sources).map((s, k) => sourceItem(lang, s, k, '        ')).join('\n')}
+      </ol>
+    </section>
+    <nav class="tw__sec grid" aria-labelledby="related-guides">
+      <h2 class="label tw__label" id="related-guides">${lang === 'en' ? '(Related)' : '(Relacionado)'}</h2>
+      <ul class="tw__aside guide__links">
+${guides.filter((o) => o !== g).map((o) => `        <li><a class="ulink" href="${up}${guidePath(lang, o)}">${esc(o[lang].link)} →</a></li>`).join('\n')}
+${towns.filter((t) => t.extra).map((t) => `        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(t.extra[lang].title)} →</a></li>`).join('\n')}
+        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
+      </ul>
+    </nav>
+  </article>
+${contact(lang, UI[lang].wa.general)}</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
+}
+
+// /guides/ and /es/guias/: the list of guides
+const GUIDES_DIR = { en: 'guides', es: 'guias' };
+const guidesIndexPath = (lang) => `${UI[lang].dir}${GUIDES_DIR[lang]}/`;
+function guidesIndex(lang) {
+  const paths = { en: guidesIndexPath('en'), es: guidesIndexPath('es') };
+  const up = upFrom(paths[lang]);
+  const H = lang === 'en'
+    ? { title: 'Guides | Studio CAVA', description: 'What it takes to build in Costa Rica: permits, condominiums and the places we work, with sources.', h1: ['Guides', 'to building'], intro: 'What it takes to build in Costa Rica, step by step, with the law or the office behind every step.' }
+    : { title: 'Guías | Studio CAVA', description: 'Lo que hace falta para construir en Costa Rica: permisos, condominios y los lugares donde trabajamos, con fuentes.', h1: ['Guías', 'para construir'], intro: 'Lo que hace falta para construir en Costa Rica, paso a paso, con la ley o la oficina detrás de cada paso.' };
+  return head(lang, { title: H.title, description: H.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up }) + `<div id="top"></div>
+${bar(lang, up, paths, 'guides')}
+<main class="page">
+  <article class="mf" aria-labelledby="gi-title">
+    <header class="mf__head grid">
+      <span class="label mf__label">${GT[lang].label}</span>
+      <h1 class="display mf__title" id="gi-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(H.intro)}</p>
+    </header>
+    <ol class="stages">
+${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h2 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h2><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
+      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h2 class="stage__title"><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Where we work' : 'Dónde trabajamos'}</a></h2><p class="large stage__text">${lang === 'en' ? 'Rain, sun, wind and permits for every town where we design.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos.'}</p></li>
+    </ol>
+  </article>
 ${contact(lang, UI[lang].wa.general)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
@@ -718,6 +868,8 @@ function sitemap() {
     { en: studioPath('en'), es: studioPath('es') },
     { en: townsPath('en'), es: townsPath('es') },
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
+    ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
+    ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -786,6 +938,7 @@ function homeEs() {
     if (u.startsWith('projects/')) return `${UI.es.projectsDir}/${u.slice('projects/'.length)}`;
     if (u.startsWith('studio/')) return `${UI.es.studioDir}/${u.slice('studio/'.length)}`;
     if (u.startsWith('architects/')) return `${UI.es.townsDir}/${u.slice('architects/'.length)}`;
+    if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -811,6 +964,8 @@ for (const lang of ['en', 'es']) {
   write(`${studioPath(lang)}index.html`, studioPage(lang));
   write(`${townsPath(lang)}index.html`, hubPage(lang));
   towns.forEach((t) => write(`${townPath(lang, t.slug)}index.html`, townPage(lang, t)));
+  guides.forEach((g) => write(`${guidePath(lang, g)}index.html`, guidePage(lang, g)));
+  if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
 }
 write('sitemap.xml', sitemap());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);

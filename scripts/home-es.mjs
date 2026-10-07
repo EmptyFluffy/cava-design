@@ -96,6 +96,7 @@ export const PAIRS = [
   ['Open in Google Maps ↗', 'Abrir en Google Maps ↗'],
   ['>Where we work →</a>', '>Dónde trabajamos →</a>'],
   ['>Where we work</a>', '>Dónde trabajamos</a>'],
+  ['>Guides</a>', '>Guías</a>'],
 
   // ---------- footer ----------
   ['aria-label="Footer"', 'aria-label="Pie de página"'],

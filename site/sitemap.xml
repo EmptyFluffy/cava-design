@@ -253,6 +253,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/playas-del-coco/"/>
   </url>
   <url>
+    <loc>https://cava.design/architects/papagayo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/papagayo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/papagayo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/papagayo/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/papagayo/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/papagayo/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/papagayo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/papagayo/"/>
+  </url>
+  <url>
     <loc>https://cava.design/architects/liberia/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/liberia/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/liberia/"/>
@@ -395,5 +407,41 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/heredia/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/heredia/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/heredia/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/guides/building-permits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/guides/building-permits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/guias/permisos-de-construccion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/guides/building-permits/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/guias/permisos-de-construccion/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/guides/building-permits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/guias/permisos-de-construccion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/guides/building-permits/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/architects/gated-communities/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/gated-communities/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/condominios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/gated-communities/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/arquitectos/condominios/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/gated-communities/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/condominios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/architects/gated-communities/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/guides/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/guides/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/guias/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/guides/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/guias/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/guides/"/>
   </url>
 </urlset>

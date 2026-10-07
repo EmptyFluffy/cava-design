@@ -36,10 +36,11 @@ const get = async (url, headers = {}) => {
 for (const t of towns) {
   if (have.towns[t.slug] && !force) continue;
   process.stdout.write(`${t.slug}: `);
-  const [place] = await get(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(t.query)}&format=jsonv2&limit=1&countrycodes=cr`, UA);
+  // a town can give its own coordinates (a peninsula or an area has no single point to geocode)
+  const [place] = t.coords ? [{ lat: t.coords[1], lon: t.coords[0], display_name: t.query }] : await get(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(t.query)}&format=jsonv2&limit=1&countrycodes=cr`, UA);
   if (!place) throw new Error(`no geocode for ${t.query}`);
   const lat = +(+place.lat).toFixed(5), lng = +(+place.lon).toFixed(5);
-  await sleep(1100);
+  if (!t.coords) await sleep(1100);
   const rev = await get(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=jsonv2&zoom=10&accept-language=es`, UA);
   await sleep(1100);
   const elev = await get(`https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lng}`);

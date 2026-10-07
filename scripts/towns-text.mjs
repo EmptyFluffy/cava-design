@@ -316,7 +316,8 @@ export function paragraphs(lang, t, d, c, s, muni) {
         ['Planos en el CFIA', 'Se tramitan por la plataforma APC del CFIA, firmados por el profesional responsable.'],
         ['Permiso de construcción', `Lo emite ${muni}.`],
       ];
-  out.zmt = t.coastal
+  out.ownSteps = !!t.extra?.[lang]?.replaceSteps;
+  out.zmt = t.extra?.[lang]?.zmt ? t.extra[lang].zmt : t.coastal
     ? (en
       ? 'Within 200 m of the ordinary high-tide line the maritime zone law (Ley 6043) applies: the first 50 m are public and cannot be built on, and the next 150 m are held under a concession from the municipality, not owned. Check where a lot sits before you buy.'
       : 'A menos de 200 m de la pleamar ordinaria rige la Ley de la Zona Marítimo Terrestre (Ley 6043): los primeros 50 m son públicos y no se puede construir, y los 150 m siguientes se tienen en concesión de la municipalidad, no en propiedad. Conviene saber dónde está el lote antes de comprar.')
@@ -337,10 +338,12 @@ export function faq(lang, t, d, c, s, muni) {
       en ? `${win[0].toUpperCase() + win.slice(1)}${b.isDry ? ', the dry season' : ', the driest stretch of the year'}: ${num(lang, b.rain)} mm of rain in ${b.n} months. A ${b.phase}-month phase of earthworks, foundations and structure started in ${M[b.start]} loses ${b.phaseIn < 1 ? 'almost no days' : `about ${Math.round(b.phaseIn)} days`} to heavy rain, against about ${Math.round(b.phaseOut)} if it starts in ${M[b.after]}${saved >= 3 ? `, so a dry-season start saves about ${saved} days of crew and machinery` : ''}. Have the permit ready by ${M[(b.start + 11) % 12]}.`
         : `${win[0].toUpperCase() + win.slice(1)}${b.isDry ? ', la época seca' : ', el tramo más seco del año'}: ${num(lang, b.rain)} mm de lluvia en ${b.n} meses. Una etapa de ${b.phase} meses de movimiento de tierra, fundaciones y estructura que empieza en ${M[b.start]} pierde ${b.phaseIn < 1 ? 'casi ningún día' : `unos ${Math.round(b.phaseIn)} días`} por lluvia fuerte, contra unos ${Math.round(b.phaseOut)} si empieza en ${M[b.after]}${saved >= 3 ? `, así que empezar en época seca ahorra unos ${saved} días de cuadrilla y maquinaria` : ''}. Conviene tener el permiso listo en ${M[(b.start + 11) % 12]}.`]);
   }
-  q.push([en ? `Who issues building permits in ${t.name}?` : `¿Quién da los permisos de construcción en ${t.name}?`,
+  if (t.extra?.[lang]?.faq?.permits) q.push([en ? `Who issues building permits in ${t.name}?` : `¿Quién da los permisos de construcción en ${t.name}?`, t.extra[lang].faq.permits]);
+  else q.push([en ? `Who issues building permits in ${t.name}?` : `¿Quién da los permisos de construcción en ${t.name}?`,
     en ? `${muni[0].toUpperCase() + muni.slice(1)}. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter.`
       : `${muni[0].toUpperCase() + muni.slice(1)}. Los planos se tramitan primero en el CFIA, por su plataforma APC, y el permiso llega después del certificado de uso de suelo y de la carta de disponibilidad de agua.`]);
-  if (t.coastal) q.push([en ? `Can I build near the beach in ${t.name}?` : `¿Se puede construir cerca de la playa en ${t.name}?`,
+  if (t.extra?.[lang]?.faq?.beach) q.push([en ? `Can I build near the beach in ${t.name}?` : `¿Se puede construir cerca de la playa en ${t.name}?`, t.extra[lang].faq.beach]);
+  else if (t.coastal) q.push([en ? `Can I build near the beach in ${t.name}?` : `¿Se puede construir cerca de la playa en ${t.name}?`,
     en ? 'Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process.'
       : 'No en los primeros 50 m desde la pleamar ordinaria, que son públicos. Los 150 m siguientes se tienen en concesión de la municipalidad y no en propiedad, con sus propias reglas. Más allá de los 200 m, un lote inscrito sigue el trámite normal de permisos.']);
   q.push([en ? `How hot does it get in ${t.name}?` : `¿Qué tanto calor hace en ${t.name}?`,

@@ -1,34 +1,400 @@
 {
   "_note": "Town pages (/architects/<slug>/, /es/arquitectos/<slug>/). Hand-kept: name, the geocoding query, the canton only where OpenStreetMap leaves it out, region, whether the town is on the coast (the maritime zone law applies), and a short local note only where it is a fact we can stand behind. Everything else (coordinates, canton, elevation, rain, temperature, wind, roads) comes from scripts/towns-fetch.mjs and scripts/towns-rain.py into data/town-data.json. To add a town: add it here, run both scripts, then node scripts/build.mjs.",
   "regions": {
-    "guanacaste": { "en": "Guanacaste", "es": "Guanacaste" },
-    "nicoya-south": { "en": "Southern Nicoya Peninsula", "es": "Sur de la península de Nicoya" },
-    "central-pacific": { "en": "Central Pacific", "es": "Pacífico central" },
-    "south-pacific": { "en": "South Pacific", "es": "Pacífico sur" },
-    "caribbean": { "en": "Caribbean", "es": "Caribe" },
-    "central-valley": { "en": "Central Valley", "es": "Valle Central" }
+    "guanacaste": {
+      "en": "Guanacaste",
+      "es": "Guanacaste"
+    },
+    "nicoya-south": {
+      "en": "Southern Nicoya Peninsula",
+      "es": "Sur de la península de Nicoya"
+    },
+    "central-pacific": {
+      "en": "Central Pacific",
+      "es": "Pacífico central"
+    },
+    "south-pacific": {
+      "en": "South Pacific",
+      "es": "Pacífico sur"
+    },
+    "caribbean": {
+      "en": "Caribbean",
+      "es": "Caribe"
+    },
+    "central-valley": {
+      "en": "Central Valley",
+      "es": "Valle Central"
+    }
   },
   "towns": [
-    { "slug": "tamarindo", "name": "Tamarindo", "query": "Tamarindo, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "playa-grande", "name": "Playa Grande", "query": "Playa Grande, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true,
-      "note": { "en": "The beach belongs to Las Baulas National Marine Park, where leatherback turtles nest. Lights that can be seen from the sand are restricted, so exterior lighting is part of the design from the start.", "es": "La playa es parte del Parque Nacional Marino Las Baulas, donde anida la tortuga baula. Las luces que se ven desde la arena están restringidas, así que la iluminación exterior entra en el diseño desde el principio." } },
-    { "slug": "playa-negra", "name": "Playa Negra", "query": "Playa Negra, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "flamingo", "name": "Flamingo", "query": "Playa Flamingo, Santa Cruz, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "playas-del-coco", "name": "Playas del Coco", "query": "Playas del Coco, Carrillo, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "liberia", "name": "Liberia", "query": "Liberia, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": false },
-    { "slug": "nosara", "name": "Nosara", "query": "Nosara, Nicoya, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "samara", "name": "Sámara", "query": "Sámara, Nicoya, Guanacaste, Costa Rica", "region": "guanacaste", "coastal": true },
-    { "slug": "santa-teresa", "name": "Santa Teresa", "query": "Santa Teresa, Cóbano, Puntarenas, Costa Rica", "region": "nicoya-south", "coastal": true,
-      "council": { "en": "the Concejo Municipal de Distrito de Cóbano", "es": "el Concejo Municipal de Distrito de Cóbano" },
-      "note": { "en": "Santa Teresa and Mal País share a district, Cóbano, which runs its own permits through a district council instead of the municipality of Puntarenas.", "es": "Santa Teresa y Mal País comparten distrito, Cóbano, que tramita sus propios permisos con un concejo municipal de distrito en lugar de la Municipalidad de Puntarenas." } },
-    { "slug": "jaco", "name": "Jacó", "query": "Jacó, Garabito, Puntarenas, Costa Rica", "region": "central-pacific", "coastal": true },
-    { "slug": "dominical", "name": "Dominical", "query": "Dominical, Osa, Puntarenas, Costa Rica", "region": "south-pacific", "coastal": true },
-    { "slug": "uvita", "name": "Uvita", "query": "Uvita, Osa, Puntarenas, Costa Rica", "region": "south-pacific", "coastal": true,
-      "note": { "en": "The coast in front of Uvita is Marino Ballena National Park, so lots along the beach border a protected area.", "es": "La costa frente a Uvita es el Parque Nacional Marino Ballena, así que los lotes junto a la playa colindan con un área protegida." } },
-    { "slug": "puerto-viejo", "name": "Puerto Viejo", "query": "Puerto Viejo, Talamanca, Limón, Costa Rica", "region": "caribbean", "coastal": true },
-    { "slug": "escazu", "name": "Escazú", "query": "Escazú, San José, Costa Rica", "region": "central-valley", "coastal": false, "canton": "Escazú" },
-    { "slug": "santa-ana", "name": "Santa Ana", "query": "Santa Ana, San José, Costa Rica", "region": "central-valley", "coastal": false },
-    { "slug": "atenas", "name": "Atenas", "query": "Atenas, Alajuela, Costa Rica", "region": "central-valley", "coastal": false },
-    { "slug": "heredia", "name": "Heredia", "query": "Heredia, Heredia, Costa Rica", "region": "central-valley", "coastal": false }
+    {
+      "slug": "tamarindo",
+      "name": "Tamarindo",
+      "query": "Tamarindo, Santa Cruz, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "playa-grande",
+      "name": "Playa Grande",
+      "query": "Playa Grande, Santa Cruz, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true,
+      "note": {
+        "en": "The beach belongs to Las Baulas National Marine Park, where leatherback turtles nest. Lights that can be seen from the sand are restricted, so exterior lighting is part of the design from the start.",
+        "es": "La playa es parte del Parque Nacional Marino Las Baulas, donde anida la tortuga baula. Las luces que se ven desde la arena están restringidas, así que la iluminación exterior entra en el diseño desde el principio."
+      }
+    },
+    {
+      "slug": "playa-negra",
+      "name": "Playa Negra",
+      "query": "Playa Negra, Santa Cruz, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "flamingo",
+      "name": "Flamingo",
+      "query": "Playa Flamingo, Santa Cruz, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "playas-del-coco",
+      "name": "Playas del Coco",
+      "query": "Playas del Coco, Carrillo, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "papagayo",
+      "name": "Papagayo",
+      "query": "Península Papagayo, Golfo de Papagayo, Guanacaste, Costa Rica",
+      "coords": [
+        -85.6764,
+        10.6285
+      ],
+      "region": "guanacaste",
+      "coastal": true,
+      "canton": "Liberia",
+      "extra": {
+        "en": {
+          "id": "papagayo-permits",
+          "label": "(Permits in Papagayo)",
+          "replaceSteps": true,
+          "permitsFact": "ICT, then the Municipalidad de Liberia",
+          "title": "Building in the Golfo de Papagayo tourism pole",
+          "zmt": "The 50 m public zone along the beach stays public throughout the pole, and the coast here is administered by the ICT rather than the municipality [1, 3].",
+          "body": [
+            "Most of the land around Bahía Culebra, Península Papagayo included, is not private property. It is state land run by the ICT, the national tourism institute, under Ley 6758, and owners hold a concession of up to 50 years: every right of an owner except selling the land [1, 2]. The coast inside the pole is under the ICT as well [3].",
+            "What can be built is set by the ICT's Plan Maestro: at most 14 m high from natural ground, an average of 20 rooms per hectare counting hotel and residential rooms alike, at most 30% of the original concession built over, and no septic tanks, since every project needs a treatment plant [4]. The ICT also rules on colours, earth tones on at least 90% of visible facades, and on how much each roof or paving material counts toward the 30% [5, 6].",
+            "Inside Península Papagayo a private board, the Master Design Review Board (MDRB), reviews every house first, under the Master Design Guidelines [7, 8]."
+          ],
+          "steps": [
+            [
+              "MDRB, in Península Papagayo",
+              "A pre-design meeting, a schematic review and a final design review. Final approval comes before the ICT, the CFIA and the municipality. Each review costs US$2,000, plus a compliance deposit of US$20,000 to US$50,000 by house size [7]."
+            ],
+            [
+              "SETENA, in parallel",
+              "Environmental viability where the project's size and site require it. The ICT asks for the SETENA file number before it stamps the drawings [2, 9]."
+            ],
+            [
+              "ICT, the schematic project",
+              "The ICT's executive office approves the anteproyecto: site design, description, phases, budget and schedule [2]."
+            ],
+            [
+              "ICT, the final project",
+              "The full construction drawings, with water demand, the wastewater plant, the fire network and storm drains. The ICT must resolve a complete file within 30 calendar days and then stamps the drawings [2]."
+            ],
+            [
+              "CFIA and the municipality",
+              "Then the usual route: the CFIA's APC platform and the building permit, from the Municipalidad de Liberia on the peninsula, or from Carrillo on the Playa Panamá side [2, 10]."
+            ],
+            [
+              "Build within the deadline",
+              "For residential use, the house must be built within one fifth of the concession's original term [2]."
+            ]
+          ],
+          "tips": [
+            "Check the lot in the ICT's concession registry and on its concession map before buying: some boundaries and registry overlaps are under review [11].",
+            "Since April 2026 the Constitutional Court has suspended tree-felling permits for hotel projects in the pole, and construction authorizations that used the density compensation rule, which the government repealed in June 2026. The Procuraduría has also recommended annulling the 20 rooms per hectare and 30% rules. Check where both cases stand before committing [12, 13, 14, 16].",
+            "Water has held projects back here before: in 2017, nine concessions were stalled for lack of a water availability letter. Inside Península Papagayo the resort operator supplies water, with a US$25,000 connection fee [7, 15].",
+            "Every transfer or mortgage of a concession needs the ICT board's approval [1, 2]."
+          ],
+          "faq": {
+            "permits": "Several bodies, in order. Inside Península Papagayo the Master Design Review Board approves the design first; then the ICT approves the schematic and the final project and stamps the drawings; then the CFIA and the Municipalidad de Liberia (or Carrillo, on the Playa Panamá side) issue the usual permits. SETENA's environmental review runs in parallel.",
+            "beach": "The 50 m public zone stays public, and the land behind it is held under ICT concessions rather than municipal ones. What each lot allows is set by the ICT's Plan Maestro and, in Península Papagayo, by the lot's diagram in the design guidelines."
+          },
+          "sources": [
+            {
+              "title": "Ley 6758, Regula la ejecución del Proyecto Turístico de Papagayo",
+              "publisher": "SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=38228&param2=80878&param3=1",
+              "date": "1982"
+            },
+            {
+              "title": "Decreto Ejecutivo 25439-MP-TUR, Reglamento a la Ley 6758 (current text, with its annex)",
+              "publisher": "SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=54704&param2=151546&param3=1",
+              "date": "1996, reformed 2026",
+              "title_es": "Decreto Ejecutivo 25439-MP-TUR, Reglamento a la Ley 6758 (texto vigente, con su anexo)",
+              "date_es": "1996, reformado 2026"
+            },
+            {
+              "title": "Ley 6043, Ley sobre la Zona Marítimo Terrestre, article 74",
+              "publisher": "SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=32006&param2=131014&param3=1",
+              "date": "1977",
+              "title_es": "Ley 6043, Ley sobre la Zona Marítimo Terrestre, artículo 74"
+            },
+            {
+              "title": "Plan Maestro General del Polo Turístico Golfo de Papagayo (current text)",
+              "publisher": "ICT, via SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=52864&param2=94416&param3=1",
+              "date": "1995, reformed 2012",
+              "title_es": "Plan Maestro General del Polo Turístico Golfo de Papagayo (texto vigente)",
+              "publisher_es": "ICT, en SINALEVI",
+              "date_es": "1995, reformado 2012"
+            },
+            {
+              "title": "Acuerdo SJD-142-2023, exterior colours",
+              "publisher": "ICT, via SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=101741&param2=140411&param3=1",
+              "date": "2023",
+              "title_es": "Acuerdo SJD-142-2023, colores exteriores",
+              "publisher_es": "ICT, en SINALEVI"
+            },
+            {
+              "title": "Acuerdo SJD-385-2020, how materials count toward coverage",
+              "publisher": "ICT, via SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=92614&param2=127208&param3=1",
+              "date": "2020",
+              "title_es": "Acuerdo SJD-385-2020, cómo cuentan los materiales en la cobertura",
+              "publisher_es": "ICT, en SINALEVI"
+            },
+            {
+              "title": "Península Papagayo Master Design Guidelines",
+              "publisher": "Península Papagayo",
+              "url": "https://peninsulapapagayo.com/wp-content/uploads/2023/12/PPGY-Master-Design-Guidelines-2023-11-23.pdf",
+              "date": "November 2023",
+              "date_es": "noviembre de 2023"
+            },
+            {
+              "title": "Master Declaration for the Península Papagayo resort community",
+              "publisher": "La Gaceta 158, via SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=53315&param2=58115&param3=1",
+              "date": "2004",
+              "title_es": "Declaración Maestra de la comunidad del resort Península Papagayo",
+              "publisher_es": "La Gaceta 158, en SINALEVI"
+            },
+            {
+              "title": "Decreto 43898-MINAE-S-MOPT-MAG-MEIC, environmental impact assessment regulation",
+              "publisher": "SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=99253&param2=135644&param3=1",
+              "date": "2022",
+              "title_es": "Decreto 43898-MINAE-S-MOPT-MAG-MEIC, reglamento de evaluación de impacto ambiental"
+            },
+            {
+              "title": "SETENA confirma viabilidad ambiental de proyecto en Papagayo",
+              "publisher": "La Nación",
+              "url": "https://www.nacion.com/el-pais/setena-confirma-viabilidad-ambiental-de-proyecto/W277DZKEUNGZDNCCUFFEVLOPF4/story/",
+              "date": "23 March 2026",
+              "date_es": "23 de marzo de 2026"
+            },
+            {
+              "title": "Mapa mosaico de concesiones del PTGP",
+              "publisher": "ICT",
+              "url": "https://ict.go.cr/es/documentos-institucionales/instituto-costarricense-de-turísmo-ict/465-mapa-mosaico-de-concesiones-del-ptgp.html",
+              "date": "current",
+              "date_es": "vigente"
+            },
+            {
+              "title": "Medidas cautelares en el Polo Turístico Golfo de Papagayo",
+              "publisher": "Sala Constitucional",
+              "url": "https://salaconstitucional.poder-judicial.go.cr/index.php/sala-de-prensa/comunicados/magistrado-fernando-cruz-dicta-medidas-cautelares-con-el-fin-de-prevenir-posibles-danos-graves-e-irreparables-al-ambiente-en-el-polo-turistico-golfo-de-papagayo",
+              "date": "17 April 2026",
+              "date_es": "17 de abril de 2026"
+            },
+            {
+              "title": "Sala IV aclara alcance de la suspensión de construcciones en Papagayo",
+              "publisher": "Delfino",
+              "url": "https://delfino.cr/2026/05/sala-iv-aclara-alcance-de-la-suspension-de-construcciones-en-papagayo",
+              "date": "6 May 2026",
+              "date_es": "6 de mayo de 2026"
+            },
+            {
+              "title": "Procuraduría señala como inconstitucionales dos normas de construcción en el Polo Turístico Papagayo",
+              "publisher": "Delfino",
+              "url": "https://www.delfino.cr/2026/03/procuraduria-senala-como-inconstitucionales-dos-normas-de-construccion-en-el-polo-turistico-papagayo",
+              "date": "5 March 2026",
+              "date_es": "5 de marzo de 2026"
+            },
+            {
+              "title": "Agua pone en riesgo proyectos hoteleros en Costa Rica",
+              "publisher": "Revista EyN",
+              "url": "https://www.revistaeyn.com/centroamericaymundo/agua-pone-en-riesgo-proyectos-hoteleros-en-costa-rica-DWEN1053819",
+              "date": "17 March 2017",
+              "date_es": "17 de marzo de 2017"
+            },
+            {
+              "title": "Decreto 45823-MP, repeal of density compensation",
+              "publisher": "SINALEVI",
+              "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=107319&param2=151545&param3=1",
+              "date": "June 2026",
+              "title_es": "Decreto 45823-MP, derogatoria de la compensación de densidad",
+              "date_es": "junio de 2026"
+            }
+          ]
+        },
+        "es": {
+          "id": "papagayo-permits",
+          "label": "(Permisos en Papagayo)",
+          "replaceSteps": true,
+          "permitsFact": "ICT, y luego la Municipalidad de Liberia",
+          "title": "Construir en el Polo Turístico Golfo de Papagayo",
+          "zmt": "La zona pública de 50 m junto a la playa sigue siendo pública en todo el polo, y aquí la costa la administra el ICT y no la municipalidad [1, 3].",
+          "body": [
+            "Casi toda la tierra alrededor de Bahía Culebra, incluida la Península Papagayo, no es propiedad privada. Es tierra del Estado que administra el ICT según la Ley 6758, y los dueños tienen una concesión de hasta 50 años: todos los derechos de un propietario menos vender el terreno [1, 2]. La costa dentro del polo también está bajo el ICT [3].",
+            "Lo que se puede construir lo fija el Plan Maestro del ICT: 14 m de altura como máximo desde el terreno natural, un promedio de 20 habitaciones por hectárea contando por igual las de hotel y las residenciales, como máximo el 30% de la concesión original construido y nada de tanques sépticos, porque cada proyecto necesita planta de tratamiento [4]. El ICT regula además los colores, tonos tierra en al menos el 90% de las fachadas visibles, y cuánto cuenta cada material de techo o de piso en ese 30% [5, 6].",
+            "Dentro de la Península Papagayo una junta privada, el Master Design Review Board (MDRB), revisa primero cada casa, según su manual de diseño [7, 8]."
+          ],
+          "steps": [
+            [
+              "MDRB, en la Península Papagayo",
+              "Una reunión previa, la revisión del esquema y la revisión final del diseño. La aprobación final va antes del ICT, del CFIA y de la municipalidad. Cada revisión cuesta US$2,000, más un depósito de cumplimiento de US$20,000 a US$50,000 según el tamaño de la casa [7]."
+            ],
+            [
+              "SETENA, en paralelo",
+              "La viabilidad ambiental, cuando el tamaño del proyecto y el sitio la requieren. El ICT pide el número de expediente de SETENA antes de visar los planos [2, 9]."
+            ],
+            [
+              "ICT, el anteproyecto",
+              "La Dirección Ejecutiva del ICT aprueba el anteproyecto: diseño de sitio, descripción, etapas, presupuesto y cronograma [2]."
+            ],
+            [
+              "ICT, el proyecto final",
+              "Los planos constructivos completos, con la demanda de agua, la planta de tratamiento, la red contra incendios y el pluvial. El ICT debe resolver un expediente completo en 30 días naturales y luego visa los planos [2]."
+            ],
+            [
+              "CFIA y la municipalidad",
+              "Después, la ruta de siempre: la plataforma APC del CFIA y el permiso de construcción, de la Municipalidad de Liberia en la península o de Carrillo del lado de Playa Panamá [2, 10]."
+            ],
+            [
+              "Construir a tiempo",
+              "En uso residencial, la casa debe estar construida dentro de una quinta parte del plazo original de la concesión [2]."
+            ]
+          ],
+          "tips": [
+            "Revise el lote en el registro de concesiones del ICT y en su mapa de concesiones antes de comprar: hay linderos y traslapes registrales en revisión [11].",
+            "Desde abril de 2026 la Sala Constitucional suspendió los permisos de tala para proyectos hoteleros en el polo, y las autorizaciones de construcción que usaron la compensación de densidad, que el gobierno derogó en junio de 2026. La Procuraduría recomendó además anular las reglas de 20 habitaciones por hectárea y de 30%. Revise cómo van ambos casos antes de comprometerse [12, 13, 14, 16].",
+            "El agua ya ha frenado proyectos aquí: en 2017 había nueve concesiones detenidas por falta de carta de disponibilidad de agua. Dentro de la Península Papagayo el agua la da el operador del resort, con una conexión de US$25,000 [7, 15].",
+            "Todo traspaso o hipoteca de una concesión necesita la aprobación de la junta directiva del ICT [1, 2]."
+          ],
+          "faq": {
+            "permits": "Varias instancias, en orden. Dentro de la Península Papagayo el Master Design Review Board aprueba primero el diseño; luego el ICT aprueba el anteproyecto y el proyecto final y visa los planos; después el CFIA y la Municipalidad de Liberia (o la de Carrillo, del lado de Playa Panamá) dan los permisos de siempre. La revisión ambiental de SETENA corre en paralelo.",
+            "beach": "La zona pública de 50 m sigue siendo pública, y la tierra detrás se tiene en concesión del ICT y no de la municipalidad. Lo que permite cada lote lo fija el Plan Maestro del ICT y, en la Península Papagayo, el diagrama del lote en el manual de diseño."
+          },
+          "sources": "en"
+        }
+      }
+    },
+    {
+      "slug": "liberia",
+      "name": "Liberia",
+      "query": "Liberia, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": false
+    },
+    {
+      "slug": "nosara",
+      "name": "Nosara",
+      "query": "Nosara, Nicoya, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "samara",
+      "name": "Sámara",
+      "query": "Sámara, Nicoya, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "santa-teresa",
+      "name": "Santa Teresa",
+      "query": "Santa Teresa, Cóbano, Puntarenas, Costa Rica",
+      "region": "nicoya-south",
+      "coastal": true,
+      "council": {
+        "en": "the Concejo Municipal de Distrito de Cóbano",
+        "es": "el Concejo Municipal de Distrito de Cóbano"
+      },
+      "note": {
+        "en": "Santa Teresa and Mal País share a district, Cóbano, which runs its own permits through a district council instead of the municipality of Puntarenas.",
+        "es": "Santa Teresa y Mal País comparten distrito, Cóbano, que tramita sus propios permisos con un concejo municipal de distrito en lugar de la Municipalidad de Puntarenas."
+      }
+    },
+    {
+      "slug": "jaco",
+      "name": "Jacó",
+      "query": "Jacó, Garabito, Puntarenas, Costa Rica",
+      "region": "central-pacific",
+      "coastal": true
+    },
+    {
+      "slug": "dominical",
+      "name": "Dominical",
+      "query": "Dominical, Osa, Puntarenas, Costa Rica",
+      "region": "south-pacific",
+      "coastal": true
+    },
+    {
+      "slug": "uvita",
+      "name": "Uvita",
+      "query": "Uvita, Osa, Puntarenas, Costa Rica",
+      "region": "south-pacific",
+      "coastal": true,
+      "note": {
+        "en": "The coast in front of Uvita is Marino Ballena National Park, so lots along the beach border a protected area.",
+        "es": "La costa frente a Uvita es el Parque Nacional Marino Ballena, así que los lotes junto a la playa colindan con un área protegida."
+      }
+    },
+    {
+      "slug": "puerto-viejo",
+      "name": "Puerto Viejo",
+      "query": "Puerto Viejo, Talamanca, Limón, Costa Rica",
+      "region": "caribbean",
+      "coastal": true
+    },
+    {
+      "slug": "escazu",
+      "name": "Escazú",
+      "query": "Escazú, San José, Costa Rica",
+      "region": "central-valley",
+      "coastal": false,
+      "canton": "Escazú"
+    },
+    {
+      "slug": "santa-ana",
+      "name": "Santa Ana",
+      "query": "Santa Ana, San José, Costa Rica",
+      "region": "central-valley",
+      "coastal": false
+    },
+    {
+      "slug": "atenas",
+      "name": "Atenas",
+      "query": "Atenas, Alajuela, Costa Rica",
+      "region": "central-valley",
+      "coastal": false
+    },
+    {
+      "slug": "heredia",
+      "name": "Heredia",
+      "query": "Heredia, Heredia, Costa Rica",
+      "region": "central-valley",
+      "coastal": false
+    }
   ]
 }
