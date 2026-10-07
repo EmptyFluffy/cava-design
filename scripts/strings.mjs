@@ -11,6 +11,7 @@ export const UI = {
       aria: 'Footer', nav: '(Navigation)', home: 'Home', where: 'Where we work', contactUs: 'Contact us', studio: '(Studio)',
       about: 'Studio CAVA is an architecture and interiors practice based in San José, working across Costa Rica. Formerly AVARQ.',
       info: '(Info)', address: 'A:', hoursKey: 'H:', hours: 'Monday to Friday, 8:00 to 17:00', top: 'Back to top ↑',
+      careers: '(Careers)', careersText: 'Architects, interior designers and students who want to work with us: send a portfolio.', careersCta: 'Work with us',
     },
     wa: {
       aria: 'Chat on WhatsApp, opens in a new tab',
@@ -51,6 +52,7 @@ export const UI = {
       aria: 'Pie de página', nav: '(Navegación)', home: 'Inicio', where: 'Dónde trabajamos', contactUs: 'Contáctenos', studio: '(Estudio)',
       about: 'Studio CAVA es un estudio de arquitectura e interiores con base en San José que trabaja en todo Costa Rica. Antes AVARQ.',
       info: '(Info)', address: 'D:', hoursKey: 'H:', hours: 'Lunes a viernes, 8:00 a 17:00', top: 'Volver arriba ↑',
+      careers: '(Empleo)', careersText: 'Arquitectos, diseñadores de interiores y estudiantes que quieran trabajar con nosotros: envíen su portafolio.', careersCta: 'Trabaje con nosotros',
     },
     wa: {
       aria: 'Escribir por WhatsApp, se abre en otra pestaña',

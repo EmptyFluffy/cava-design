@@ -1,0 +1,317 @@
+{
+  "_note": "Services: /services/ and /es/servicios/, one page each. Text cites shared sources by key, [@key]; each page numbers only the ones it uses, in order. Studio policies marked _confirm are drafts for Carlos to confirm.",
+  "_confirm": "Two rounds of changes per design phase; lot study at a fixed fee credited to the design; a written report with photos after every site visit; interiors at an agreed fee; design meetings by video with a visit to the lot at the start.",
+  "sources": {
+    "reg": { "title": "Reglamento para la contratación de servicios de consultoría en ingeniería y arquitectura", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/reglamento-para-la-contratacion-de-servicios-de-consultoria-ingenieria-arquitectura.pdf", "date": "in force since 3 February 2020", "date_es": "vigente desde el 3 de febrero de 2020" },
+    "arancel": { "title": "Arancel de servicios profesionales de consultoría para edificaciones (Decreto 18636-MOPT)", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/arancel-de-servicios-profesionales-de-consultoria-para-edificaciones.pdf", "date": "1988, reformed 2010", "date_es": "1988, reformado en 2010" },
+    "sala": { "title": "Sala IV anula decreto de Rodrigo Chaves sobre honorarios de CFIA", "publisher": "La Nación", "url": "https://www.nacion.com/politica/sala-iv-anula-decreto-de-rodrigo-chaves-sobre/ADCH3EIXJVD53F4YIOKOIRNXSI/story/", "date": "29 September 2024", "date_es": "29 de setiembre de 2024" },
+    "iva": { "title": "¿Cuál es la gradualidad que establece el Transitorio V Bis a la Ley 9635?", "publisher": "CFIA, centro de ayuda", "url": "https://centrodeayuda.cfia.or.cr/hc/es/articles/4406294784023", "date": "2021" },
+    "rubros": { "title": "Rubros de pago CFIA", "publisher": "CFIA, centro de ayuda", "url": "https://centrodeayuda.cfia.or.cr/hc/es/articles/229400327-Rubros-de-pago-CFIA", "date": "17 February 2026", "date_es": "17 de febrero de 2026" },
+    "lak": { "title": "¿Cuánto cuesta construir una casa en Costa Rica 2024?", "publisher": "LAK Arquitectos", "url": "https://www.lakarquitectos.com/blog/cuanto-cuesta-construir-una-casa-en-costa-rica-2024", "date": "28 March 2024", "date_es": "28 de marzo de 2024" },
+    "temp": { "title": "Incorporación de miembros temporales: requisitos", "publisher": "CFIA", "url": "https://cfia.or.cr/site/en/incorporacion-y-colegiatura/proceso-de-incorporacion-al-cfia-listado-requisitos-miembros-temporales/", "date": "2026" },
+    "setena": { "title": "Decreto 43898-MINAE-S-MOPT-MAG-MEIC, Reglamento de evaluación, control y seguimiento ambiental", "publisher": "SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=99253&param2=135644&param3=1", "date": "in force 20 August 2023", "date_es": "vigente desde el 20 de agosto de 2023" },
+    "aya": { "title": "Reglamento para la prestación de servicios a los usuarios (arts. 36 and 37)", "title_es": "Reglamento para la prestación de servicios a los usuarios (arts. 36 y 37)", "publisher": "AyA, via SINALEVI", "publisher_es": "AyA, en SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=93632&param2=150995&param3=1", "date": "2021, current version 2026", "date_es": "2021, versión vigente 2026" },
+    "zmt": { "title": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (consolidated text)", "title_es": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (texto consolidado)", "publisher": "SNIT", "url": "https://www.snitcr.go.cr/pdfs/leyes/Ley-6043.pdf", "date": "1977, consolidated 1999", "date_es": "1977, consolidado 1999" },
+    "ranking": { "title": "Ranking municipal 2024-2025, memoria técnica", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/informes/memoria-tecnica-ranking-municipal-2025.pdf", "date": "August 2025", "date_es": "agosto de 2025" },
+    "salud": { "title": "Decreto 36550-MP-MIVAH-S-MEIC, Reglamento para el trámite de revisión de los planos para la construcción", "publisher": "SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=70485&param2=129782&param3=1", "date": "2011, reformed 2022", "date_es": "2011, reformado en 2022" }
+  },
+  "services": [
+    {
+      "slug": { "en": "lot-study", "es": "estudio-de-lote" },
+      "image": "kauhane-house/1",
+      "projects": ["kauhane-house", "casa-alcaravan", "papagayo-404"],
+      "en": {
+        "name": "Lot study",
+        "h1": ["Lot", "study"],
+        "card": "Before you buy: what the rules, the water and the slope let you build on a lot, and roughly what it costs.",
+        "time": "2 to 4 weeks",
+        "fee": "Fixed fee",
+        "title": "Lot study before you buy in Costa Rica | Studio CAVA",
+        "description": "What a lot in Costa Rica lets you build, before you buy it: land use, water, setbacks, the maritime zone, SETENA, condominium rules, slope, climate and a cost range, in 2 to 4 weeks.",
+        "lead": "A short report on what the rules, the water, the slope and the climate let you build on a lot, what it would cost, and what to check before you sign.",
+        "for": ["Buyers before closing on a lot", "Owners not sure what fits on the land they have", "Investors comparing two or three lots"],
+        "glance": [["Time", "2 to 4 weeks, most of it waiting for the institutions"], ["Fee", "A fixed fee agreed up front; if we then design the house, it counts toward the design"], ["You receive", "A written report and a meeting to go through it"], ["CFIA name", "Estudios preliminares [@reg]"]],
+        "phases": [
+          { "name": "Visit and documents", "time": "Week 1", "do": "We walk the lot, read the cadastral plan and the registry entry, and look up the regulating plan or the national rules that apply.", "get": ["Photos and notes from the visit", "The rules for the lot: coverage, height, setbacks, density"] },
+          { "name": "Consultations", "time": "Weeks 1 to 3", "do": "We ask the municipality for the land use certificate, check the water supply with AyA or the local ASADA, and read the condominium rules if there are any.", "get": ["The land use certificate, or what it requires", "How water reaches the lot: AyA, an ASADA or a well [@aya]", "The alignments the project will need: roads, rivers, power lines", "Whether any of it lies in the maritime zone [@zmt]"] },
+          { "name": "Report", "time": "Weeks 3 to 4", "do": "We test what fits with a simple volume, set it against the sun, the wind and the rain of the place, and price it with our estimator.", "get": ["The buildable envelope, drawn", "The environmental route that applies [@setena]", "Sun, wind, rain and the best months to build", "A cost range for what fits", "The technical studies to order: topography, soils", "A plain answer: buy, negotiate or walk away"] }
+        ],
+        "fees": ["The CFIA calls this stage estudios preliminares, and every building project needs it [@reg]; its minimum fee is 0.5% of the estimated value of the project [@arancel]. Before there is a project we agree a fixed fee instead, and it counts toward the design if we go on to design the house. A topographic survey or a soil study, if the lot needs one before you buy, is paid to the surveyor or the engineer [@reg]."],
+        "not": ["A legal review of the title, which is a lawyer's job and worth doing in parallel", "An appraisal", "Topographic and soil studies, which we order and coordinate for you"],
+        "faq": [
+          ["Should I study a lot before buying it?", "Yes, if you will build on it. Most of what stops a project is on record before the sale: a land use that does not allow it, no water available, a river setback that takes half the lot, a maritime-zone concession instead of a title. A study takes a few weeks and costs a fraction of a mistake."],
+          ["How long does the water letter take?", "AyA answers a request for water availability within 15 working days, and the letter is valid for 12 months, renewable to 24 [@aya]. Where an ASADA supplies the water, it issues its own letter."],
+          ["Can a foreigner hold land in the maritime zone?", "Within 200 m of the high-tide line the land is not sold but granted in concession, and the law does not grant concessions to foreigners with less than five years of residence, or to companies more than half foreign-owned [@zmt]. Titled land outside the zone can be bought freely."],
+          ["Will my project need SETENA?", "Since August 2023: under 500 m², no; from 500 to 1,000 m², only on a fragile site such as the maritime zone, forest or the banks of a river; over 1,000 m², yes [@setena]. The rule is challenged before the Constitutional Court, so we check it again for each project."]
+        ]
+      },
+      "es": {
+        "name": "Estudio de lote",
+        "h1": ["Estudio", "de lote"],
+        "card": "Antes de comprar: lo que las reglas, el agua y la pendiente le permiten construir en un lote, y cuánto costaría.",
+        "time": "2 a 4 semanas",
+        "fee": "Monto fijo",
+        "title": "Estudio de lote antes de comprar en Costa Rica | Studio CAVA",
+        "description": "Lo que un lote en Costa Rica le permite construir, antes de comprarlo: uso de suelo, agua, retiros, zona marítimo terrestre, SETENA, reglas del condominio, pendiente, clima y un rango de costo, en 2 a 4 semanas.",
+        "lead": "Un informe corto sobre lo que las reglas, el agua, la pendiente y el clima le permiten construir en un lote, cuánto costaría y qué revisar antes de firmar.",
+        "for": ["Compradores antes de cerrar la compra de un lote", "Dueños que no saben qué cabe en el terreno que tienen", "Inversionistas que comparan dos o tres lotes"],
+        "glance": [["Tiempo", "2 a 4 semanas, casi todo esperando a las instituciones"], ["Honorarios", "Un monto fijo acordado al inicio; si después diseñamos la casa, se abona al diseño"], ["Recibe", "Un informe escrito y una reunión para revisarlo"], ["Nombre en el CFIA", "Estudios preliminares [@reg]"]],
+        "phases": [
+          { "name": "Visita y documentos", "time": "Semana 1", "do": "Recorremos el lote, leemos el plano catastrado y el registro, y buscamos el plan regulador o las reglas nacionales que aplican.", "get": ["Fotos y notas de la visita", "Las reglas del lote: cobertura, altura, retiros, densidad"] },
+          { "name": "Consultas", "time": "Semanas 1 a 3", "do": "Pedimos el certificado de uso de suelo a la municipalidad, revisamos el agua con AyA o la ASADA y leemos el reglamento del condominio si lo hay.", "get": ["El certificado de uso de suelo, o lo que pide", "Cómo llega el agua: AyA, una ASADA o un pozo [@aya]", "Los alineamientos que va a necesitar: caminos, ríos, líneas eléctricas", "Si una parte está en la zona marítimo terrestre [@zmt]"] },
+          { "name": "Informe", "time": "Semanas 3 a 4", "do": "Probamos qué cabe con un volumen sencillo, lo ponemos frente al sol, el viento y la lluvia del lugar, y le damos precio con nuestro estimador.", "get": ["La envolvente construible, dibujada", "La ruta ambiental que aplica [@setena]", "Sol, viento, lluvia y los mejores meses para construir", "Un rango de costo para lo que cabe", "Los estudios técnicos que hay que pedir: topografía, suelos", "Una respuesta clara: comprar, negociar o retirarse"] }
+        ],
+        "fees": ["El CFIA llama a esta etapa estudios preliminares, y todo proyecto de construcción la necesita [@reg]; su honorario mínimo es el 0.5% del valor estimado del proyecto [@arancel]. Antes de que haya un proyecto acordamos un monto fijo, que se abona al diseño si después diseñamos la casa. Un levantamiento topográfico o un estudio de suelos, si el lote lo necesita antes de comprar, se le paga al topógrafo o al ingeniero [@reg]."],
+        "not": ["La revisión legal del título, que es trabajo de un abogado y conviene hacer en paralelo", "Un avalúo", "Los estudios de topografía y de suelos, que pedimos y coordinamos por usted"],
+        "faq": [
+          ["¿Conviene estudiar un lote antes de comprarlo?", "Sí, si va a construir. Casi todo lo que detiene un proyecto ya consta antes de la venta: un uso de suelo que no lo permite, falta de disponibilidad de agua, un retiro de río que se come medio lote, una concesión en zona marítimo terrestre en vez de un título. Un estudio toma unas semanas y cuesta una fracción de un error."],
+          ["¿Cuánto tarda la carta de agua?", "AyA responde una solicitud de disponibilidad de agua en 15 días hábiles, y la carta vale 12 meses, prorrogables a 24 [@aya]. Donde el agua la da una ASADA, ella emite su propia carta."],
+          ["¿Un extranjero puede tener terreno en la zona marítimo terrestre?", "En los 200 m desde la pleamar el terreno no se vende, se da en concesión, y la ley no da concesiones a extranjeros con menos de cinco años de residencia ni a sociedades con más de la mitad de capital extranjero [@zmt]. El terreno titulado fuera de la zona se puede comprar sin esa limitación."],
+          ["¿Mi proyecto necesita SETENA?", "Desde agosto de 2023: con menos de 500 m², no; de 500 a 1,000 m², solo en un sitio frágil, como la zona marítimo terrestre, un bosque o la orilla de un río; con más de 1,000 m², sí [@setena]. La regla está impugnada ante la Sala Constitucional, así que la revisamos de nuevo en cada proyecto."]
+        ]
+      }
+    },
+    {
+      "slug": { "en": "architecture", "es": "arquitectura" },
+      "image": "casa-alcaravan/1",
+      "projects": ["casa-alcaravan", "papagayo-404", "portland-house"],
+      "en": {
+        "name": "Architecture",
+        "h1": ["Architectural", "design"],
+        "card": "Houses, rental villas and small hotels, from the first sketch on the lot to the drawings the permit and the builder need.",
+        "time": "About 5 months for 250 m²",
+        "fee": "CFIA: from 6% of the works",
+        "title": "Architects in Costa Rica: house and hotel design | Studio CAVA",
+        "description": "How we design a house, a villa or a small hotel in Costa Rica: the phases, what you receive in each, how long it takes, and the CFIA fees, from 6% of the cost of the works.",
+        "lead": "Your house or hotel drawn for its lot, its sun and its rain, in phases that each end with drawings you approve, finishing with the full set the permit and the builder need.",
+        "for": ["A house to live in or to come back to", "A villa to rent", "A small hotel or a group of cabins"],
+        "glance": [["Time", "About 5 months of design for a 250 m² house, then about 3 months of permits"], ["Fee", "From 6% of the cost of the works, the CFIA minimum, plus VAT [@arancel]"], ["Changes", "Two rounds in each phase"], ["You approve", "Each phase, before the next begins"]],
+        "phases": [
+          { "name": "Preliminary studies", "cfia": "Estudios preliminares, 0.5%", "time": "2 to 3 weeks", "do": "We write the brief with you, read the rules of the lot and consult the institutions.", "get": ["The programme: rooms, areas and how you will use the house", "The rules and limits of the lot", "The technical studies the project needs"] },
+          { "name": "Concept", "cfia": "Part of the anteproyecto", "time": "About 1 month", "do": "Two or three ways to place the house on the lot, tested against the sun, the wind and the views.", "get": ["Plans and sections of each option", "Images of the house in its place", "A first cost range"] },
+          { "name": "Anteproyecto", "cfia": "Anteproyecto, 1%", "time": "1 to 1.5 months", "do": "The option you choose, developed with the structure and the services in mind.", "get": ["Floor plans, sections, elevations, roof plan and site plan", "The structural and services approach", "Images of the main spaces", "A preliminary cost estimate"] },
+          { "name": "Construction drawings", "cfia": "Planos y especificaciones, 4%", "time": "2 to 2.5 months for 250 m²", "do": "The full set, coordinated with the structural, electrical and mechanical engineers [@reg].", "get": ["Location, site and levels", "Floor plans, sections and elevations", "Storm and waste water", "Foundations, structure and details, backed by calculations", "Roof plan", "Electrical and telecoms, plumbing and mechanical", "Construction details and specifications"] },
+          { "name": "Cost estimate", "cfia": "Estimación global de costos, 0.5%", "time": "With the drawings", "do": "Quantities taken from the drawings and priced at market rates.", "get": ["A cost estimate to read the builders' quotes against"] }
+        ],
+        "fees": [
+          "Four services are compulsory in every building project in Costa Rica: preliminary studies, anteproyecto, construction drawings and a global cost estimate [@reg]. Their minimum fees add up to 6% of the estimated cost of the works: 0.5%, 1%, 4% and 0.5% [@arancel]. The Constitutional Court made those minimums binding again in 2024 [@sala], and the estimate they are applied to cannot be lower than the CFIA's own valuation of the works.",
+          "Each stage is paid before it starts. The drawings are adjusted to the builder's contract if it is signed within six months, a remodel pays one and a half times the rates, and professional services carry 13% VAT [@iva]. Asking for more options, or reopening a phase you approved, is billed as extra [@reg]."
+        ],
+        "not": ["Topographic and soil studies, paid to the surveyor and the engineer [@reg]", "What the institutions charge for the permit: the municipal tax, the CFIA charges and the INS policy", "Shop drawings by suppliers", "Interiors beyond the architecture, which are their own service"],
+        "faq": [
+          ["What do architects charge in Costa Rica?", "At least 6% of the cost of the works to design a new building: 0.5% for preliminary studies, 1% for the anteproyecto, 4% for the construction drawings and 0.5% for the cost estimate, plus 13% VAT [@arancel, @iva]. Supervising the works is separate, 3% or 5%. These minimums are mandatory again since a ruling of the Constitutional Court in September 2024 [@sala]."],
+          ["What exactly do I receive with the drawings?", "The set the CFIA requires: location and levels, floor plans, sections and elevations, storm and waste water, foundations, structural plans and details, roof plan, electrical and telecoms, plumbing and mechanical, and construction details, backed by the engineers' calculations and with the specifications on the sheets [@reg]."],
+          ["How many changes are included?", "Two rounds of changes in each design phase. A phase counts as approved if you do not object within ten working days of receiving it; asking for more options, or reopening a phase you approved, is billed as extra under the CFIA rules [@reg]."],
+          ["How long from the first meeting to the permit?", "For a 250 m² house, about five months of design and about three of permits. SETENA, a condominium committee or the ICT add time, and municipalities differ: in 2025 the CFIA measured an average of about 10 days to approve in Liberia and Santa Cruz, and 35 in Quepos [@ranking]."],
+          ["Do I need to be in Costa Rica?", "No. Most of the design runs by video, with a visit to the lot at the start and on site whenever a decision needs the place."],
+          ["How are the fees paid?", "Before each stage, on the estimated cost of the works. The drawings are adjusted to the builder's contract, and supervision to the final cost of the works, extras included [@arancel]."]
+        ]
+      },
+      "es": {
+        "name": "Arquitectura",
+        "h1": ["Diseño", "arquitectónico"],
+        "card": "Casas, villas de alquiler y hoteles pequeños, del primer croquis en el lote a los planos que piden el permiso y el constructor.",
+        "time": "Unos 5 meses para 250 m²",
+        "fee": "CFIA: desde 6% de la obra",
+        "title": "Arquitectos en Costa Rica: diseño de casas y hoteles | Studio CAVA",
+        "description": "Cómo diseñamos una casa, una villa o un hotel pequeño en Costa Rica: las fases, lo que recibe en cada una, cuánto tarda y los honorarios del CFIA, desde el 6% del costo de la obra.",
+        "lead": "Su casa u hotel dibujado para su lote, su sol y su lluvia, en fases que terminan con planos que usted aprueba, hasta el juego completo que piden el permiso y el constructor.",
+        "for": ["Una casa para vivir o para volver", "Una villa para alquilar", "Un hotel pequeño o un grupo de cabinas"],
+        "glance": [["Tiempo", "Unos 5 meses de diseño para una casa de 250 m², y luego unos 3 meses de permisos"], ["Honorarios", "Desde el 6% del costo de la obra, el mínimo del CFIA, más IVA [@arancel]"], ["Cambios", "Dos rondas en cada fase"], ["Usted aprueba", "Cada fase, antes de empezar la siguiente"]],
+        "phases": [
+          { "name": "Estudios preliminares", "cfia": "Estudios preliminares, 0.5%", "time": "2 a 3 semanas", "do": "Escribimos el programa con usted, leemos las reglas del lote y consultamos a las instituciones.", "get": ["El programa: espacios, áreas y cómo va a usar la casa", "Las reglas y los límites del lote", "Los estudios técnicos que necesita el proyecto"] },
+          { "name": "Concepto", "cfia": "Parte del anteproyecto", "time": "Cerca de 1 mes", "do": "Dos o tres maneras de poner la casa en el lote, probadas contra el sol, el viento y las vistas.", "get": ["Plantas y cortes de cada opción", "Imágenes de la casa en su lugar", "Un primer rango de costo"] },
+          { "name": "Anteproyecto", "cfia": "Anteproyecto, 1%", "time": "1 a 1.5 meses", "do": "La opción que usted elija, desarrollada pensando en la estructura y las instalaciones.", "get": ["Plantas, cortes, elevaciones, planta de techos y de localización", "El planteamiento estructural y de instalaciones", "Imágenes de los espacios principales", "Una estimación preliminar de costo"] },
+          { "name": "Planos constructivos", "cfia": "Planos y especificaciones, 4%", "time": "2 a 2.5 meses para 250 m²", "do": "El juego completo, coordinado con los ingenieros estructural, eléctrico y mecánico [@reg].", "get": ["Localización, sitio y niveles", "Plantas, cortes y elevaciones", "Aguas pluviales y residuales", "Cimientos, estructura y detalles, respaldados por cálculos", "Planta de techos", "Eléctrico y telecomunicaciones, mecánico y sanitario", "Detalles constructivos y especificaciones"] },
+          { "name": "Estimación de costos", "cfia": "Estimación global de costos, 0.5%", "time": "Con los planos", "do": "Cantidades sacadas de los planos y valoradas a precios de mercado.", "get": ["Una estimación de costo para leer contra las ofertas de los constructores"] }
+        ],
+        "fees": [
+          "Cuatro servicios son obligatorios en todo proyecto de construcción en Costa Rica: estudios preliminares, anteproyecto, planos constructivos y una estimación global de costos [@reg]. Sus honorarios mínimos suman el 6% del costo estimado de la obra: 0.5%, 1%, 4% y 0.5% [@arancel]. La Sala Constitucional volvió obligatorios esos mínimos en 2024 [@sala], y la estimación sobre la que se calculan no puede ser menor que la valoración que hace el propio CFIA de la obra.",
+          "Cada etapa se paga antes de empezar. Los planos se ajustan al contrato del constructor si se firma dentro de seis meses, una remodelación paga una vez y media las tarifas, y los servicios profesionales llevan 13% de IVA [@iva]. Pedir más opciones, o reabrir una fase que usted aprobó, se cobra aparte [@reg]."
+        ],
+        "not": ["Los estudios de topografía y de suelos, que se le pagan al topógrafo y al ingeniero [@reg]", "Lo que cobran las instituciones por el permiso: el impuesto municipal, los cargos del CFIA y la póliza del INS", "Los planos de taller de los proveedores", "El interiorismo más allá de la arquitectura, que es su propio servicio"],
+        "faq": [
+          ["¿Cuánto cobra un arquitecto en Costa Rica?", "Al menos el 6% del costo de la obra por diseñar una edificación nueva: 0.5% por estudios preliminares, 1% por el anteproyecto, 4% por los planos constructivos y 0.5% por la estimación de costos, más 13% de IVA [@arancel, @iva]. La dirección de la obra va aparte, 3% o 5%. Esos mínimos son obligatorios otra vez desde un fallo de la Sala Constitucional de setiembre de 2024 [@sala]."],
+          ["¿Qué recibo exactamente con los planos?", "El juego que pide el CFIA: localización y niveles, plantas, cortes y elevaciones, aguas pluviales y residuales, cimientos, plantas y detalles estructurales, planta de techos, eléctrico y telecomunicaciones, mecánico y sanitario, y detalles constructivos, respaldados por los cálculos de los ingenieros y con las especificaciones en las láminas [@reg]."],
+          ["¿Cuántos cambios incluye?", "Dos rondas de cambios en cada fase de diseño. Una fase se da por aprobada si usted no la objeta en diez días hábiles desde que la recibe; pedir más opciones, o reabrir una fase aprobada, se cobra aparte según las reglas del CFIA [@reg]."],
+          ["¿Cuánto tarda de la primera reunión al permiso?", "Para una casa de 250 m², unos cinco meses de diseño y unos tres de permisos. SETENA, un comité de condominio o el ICT suman tiempo, y las municipalidades varían: en 2025 el CFIA midió un promedio de unos 10 días para aprobar en Liberia y en Santa Cruz, y 35 en Quepos [@ranking]."],
+          ["¿Tengo que estar en Costa Rica?", "No. Casi todo el diseño se hace por video, con una visita al lote al inicio y en el sitio cada vez que una decisión necesita el lugar."],
+          ["¿Cómo se pagan los honorarios?", "Antes de cada etapa, sobre el costo estimado de la obra. Los planos se ajustan al contrato del constructor, y la dirección de obra al costo final de la obra, extras incluidos [@arancel]."]
+        ]
+      }
+    },
+    {
+      "slug": { "en": "permits", "es": "permisos" },
+      "image": "papagayo-404/1",
+      "projects": ["papagayo-404", "tragaluz-retreat", "s3-houses"],
+      "en": {
+        "name": "Permits",
+        "h1": ["Building", "permits"],
+        "card": "We file the project with the CFIA and the municipality, and answer every observation until the licence is issued.",
+        "time": "About 3 months",
+        "fee": "Included when we design",
+        "title": "Building permits in Costa Rica, filed for you | Studio CAVA",
+        "description": "We file your project in the CFIA's APC and with the municipality, and answer every observation until the licence is issued: about 3 months, more with SETENA or a condominium.",
+        "lead": "From the land use certificate to the municipal licence: we file the project, answer each observation and open the site logbook, so the builder can start.",
+        "for": ["Projects we design: the permits are part of the work", "Drawings made abroad that need a Costa Rican architect to adapt them, sign them and file them"],
+        "glance": [["Time", "About 3 months, plus SETENA, a condominium or the ICT when they apply"], ["Fee", "Included in our design; for drawings made elsewhere, agreed by scope"], ["Paid to the institutions", "Up to 1% municipal tax, 0.265% CFIA and about 1.3% INS policy"], ["You sign", "The CFIA contract and the requests"]],
+        "phases": [
+          { "name": "Before the drawings", "time": "About 1.5 months, alongside the design", "do": "Land use certificate, water availability, alignments for roads, rivers or power lines, and the condominium committee's approval if there is one.", "get": ["Land use certificate", "Water availability letter [@aya]", "Alignments"] },
+          { "name": "Environment", "time": "When it applies", "do": "SETENA's environmental viability, by form D1-C or D1 depending on the area and the site [@setena].", "get": ["Environmental viability"] },
+          { "name": "CFIA and institutions", "time": "About 1.5 months", "do": "We register the contract with the CFIA and file the drawings in the APC, where the institutions review them; for a house, Health approves on the professional's sworn declaration [@salud]. We answer each observation.", "get": ["Drawings approved in the APC"] },
+          { "name": "Licence", "time": "A few weeks", "do": "The municipality issues the licence once the construction tax and the INS work-risk policy are paid, and we open the digital site logbook.", "get": ["Municipal building licence", "Site logbook opened"] }
+        ],
+        "fees": ["When we design the project, filing it is part of the work. What the institutions charge is paid by the owner: the municipal construction tax, up to 1% of the value of the works; the CFIA charges, 0.265% [@rubros]; and the INS work-risk policy, about 1.3% [@lak]. For drawings made elsewhere we agree a fee by scope once we have seen them."],
+        "not": ["What the institutions charge, paid by the owner", "Redrawing a foreign design to Costa Rican codes, quoted separately"],
+        "guide": true,
+        "faq": [
+          ["I have plans from an architect abroad. Can you permit them?", "Yes. Drawings filed in Costa Rica need a CFIA member responsible for them, so we review the design against Costa Rican codes, adapt what needs adapting and sign. A foreign architect can also join the CFIA as a temporary member, working with a local member and with local liability insurance [@temp]."],
+          ["What does a permit cost on top of the design?", "About 2.6% of the value of the works: up to 1% for the municipality, 0.265% for the CFIA and about 1.3% for the INS policy [@lak, @rubros]. SETENA charges its own fee when it applies."],
+          ["How long does the APC take?", "It depends on the municipality more than on the CFIA. In 2025 the CFIA measured averages of about 10 days to approve in Liberia and Santa Cruz, 19 in Garabito, 26 in Carrillo and 35 in Quepos [@ranking], before observations and corrections."],
+          ["Who is responsible for the project before the CFIA?", "The professionals registered in the APC: the architect for the design, the engineers for their parts, and a professional responsible for the works once they start [@reg]."]
+        ]
+      },
+      "es": {
+        "name": "Permisos",
+        "h1": ["Permisos", "de construcción"],
+        "card": "Tramitamos el proyecto en el CFIA y la municipalidad, y respondemos cada observación hasta que sale la licencia.",
+        "time": "Unos 3 meses",
+        "fee": "Incluido si diseñamos",
+        "title": "Permisos de construcción en Costa Rica, tramitados | Studio CAVA",
+        "description": "Tramitamos su proyecto en el APC del CFIA y en la municipalidad, y respondemos cada observación hasta que sale la licencia: unos 3 meses, más con SETENA o un condominio.",
+        "lead": "Del certificado de uso de suelo a la licencia municipal: presentamos el proyecto, respondemos cada observación y abrimos la bitácora, para que el constructor pueda empezar.",
+        "for": ["Proyectos que diseñamos: los permisos son parte del trabajo", "Planos hechos en el extranjero que necesitan un arquitecto costarricense que los adapte, los firme y los tramite"],
+        "glance": [["Tiempo", "Unos 3 meses, más SETENA, un condominio o el ICT cuando aplican"], ["Honorarios", "Incluido en nuestro diseño; para planos hechos por otros, según el alcance"], ["Se paga a las instituciones", "Hasta 1% de impuesto municipal, 0.265% del CFIA y cerca de 1.3% de póliza del INS"], ["Usted firma", "El contrato del CFIA y las solicitudes"]],
+        "phases": [
+          { "name": "Antes de los planos", "time": "Cerca de 1.5 meses, junto con el diseño", "do": "Certificado de uso de suelo, disponibilidad de agua, alineamientos de caminos, ríos o líneas eléctricas, y la aprobación del comité del condominio si lo hay.", "get": ["Certificado de uso de suelo", "Carta de disponibilidad de agua [@aya]", "Alineamientos"] },
+          { "name": "Ambiente", "time": "Cuando aplica", "do": "La viabilidad ambiental de SETENA, por formulario D1-C o D1 según el área y el sitio [@setena].", "get": ["Viabilidad ambiental"] },
+          { "name": "CFIA e instituciones", "time": "Cerca de 1.5 meses", "do": "Registramos el contrato en el CFIA y subimos los planos al APC, donde los revisan las instituciones; en una casa, Salud aprueba con la declaración jurada del profesional [@salud]. Respondemos cada observación.", "get": ["Planos aprobados en el APC"] },
+          { "name": "Licencia", "time": "Unas semanas", "do": "La municipalidad da la licencia cuando se pagan el impuesto de construcción y la póliza de riesgos del trabajo del INS, y abrimos la bitácora digital.", "get": ["Licencia municipal de construcción", "Bitácora abierta"] }
+        ],
+        "fees": ["Si diseñamos el proyecto, tramitarlo es parte del trabajo. Lo que cobran las instituciones lo paga el dueño: el impuesto municipal de construcción, hasta un 1% del valor de la obra; los cargos del CFIA, 0.265% [@rubros]; y la póliza de riesgos del trabajo del INS, cerca de un 1.3% [@lak]. Para planos hechos por otros acordamos los honorarios según el alcance, después de verlos."],
+        "not": ["Lo que cobran las instituciones, que paga el dueño", "Redibujar un diseño extranjero a los códigos de Costa Rica, que se cotiza aparte"],
+        "guide": true,
+        "faq": [
+          ["Tengo planos de un arquitecto del extranjero. ¿Pueden tramitarlos?", "Sí. Los planos que se presentan en Costa Rica necesitan un miembro del CFIA responsable, así que revisamos el diseño contra los códigos de Costa Rica, adaptamos lo necesario y firmamos. Un arquitecto extranjero también puede incorporarse al CFIA como miembro temporal, trabajando con un miembro local y con un seguro de responsabilidad local [@temp]."],
+          ["¿Cuánto cuesta el permiso además del diseño?", "Cerca del 2.6% del valor de la obra: hasta 1% para la municipalidad, 0.265% para el CFIA y cerca de 1.3% para la póliza del INS [@lak, @rubros]. SETENA cobra su propia tarifa cuando aplica."],
+          ["¿Cuánto tarda el APC?", "Depende más de la municipalidad que del CFIA. En 2025 el CFIA midió promedios de unos 10 días para aprobar en Liberia y en Santa Cruz, 19 en Garabito, 26 en Carrillo y 35 en Quepos [@ranking], antes de observaciones y correcciones."],
+          ["¿Quién responde por el proyecto ante el CFIA?", "Los profesionales registrados en el APC: el arquitecto por el diseño, los ingenieros por sus partes, y un profesional responsable de la obra cuando empieza [@reg]."]
+        ]
+      }
+    },
+    {
+      "slug": { "en": "interiors", "es": "interiores" },
+      "image": "dawn-patrol-bakery/1",
+      "projects": ["dawn-patrol-bakery", "casa-alcaravan", "tragaluz-retreat"],
+      "en": {
+        "name": "Interiors",
+        "h1": ["Interior", "design"],
+        "card": "Kitchens, bathrooms, built-in furniture, lighting and finishes, designed with the house or for a remodel.",
+        "time": "With the architecture, or 2 to 4 months",
+        "fee": "Agreed fee",
+        "title": "Interior design in Costa Rica: kitchens, joinery, finishes | Studio CAVA",
+        "description": "Interiors designed with the house or for a remodel in Costa Rica: palette, layouts, kitchens, bathrooms, built-in furniture, lighting and a priced list of finishes and furniture.",
+        "lead": "The rooms finished as one piece with the architecture: materials, kitchens, bathrooms, built-in furniture and light, drawn so a carpenter can make them and priced so you can buy them.",
+        "for": ["A new house, designed together with the architecture", "A remodel of a house, a villa or a hotel", "A rental that needs to be ready to let"],
+        "glance": [["Time", "Within the architecture, or 2 to 4 months for a remodel"], ["Fee", "Agreed by scope; the CFIA schedule does not set one"], ["You receive", "Drawings for the carpenter and a priced list of everything to buy"], ["Changes", "Two rounds in each phase"]],
+        "phases": [
+          { "name": "Direction", "time": "2 to 3 weeks", "do": "How the rooms should feel and work, set out in materials, colours and references.", "get": ["A palette of materials and colours", "References for each room"] },
+          { "name": "Layouts", "time": "2 to 4 weeks", "do": "Furniture, kitchen and bathroom layouts and the lighting, fixed before the electrical and plumbing drawings close.", "get": ["Furniture layouts", "Lighting plan", "Kitchen and bathroom layouts"] },
+          { "name": "Details", "time": "3 to 6 weeks", "do": "The pieces a carpenter or a workshop will make.", "get": ["Kitchen, bathroom and built-in furniture drawings", "A finishes schedule, room by room"] },
+          { "name": "Selection", "time": "2 to 4 weeks", "do": "Furniture, lamps and fittings chosen and priced with suppliers.", "get": ["A furniture and fittings list with suppliers and prices"] },
+          { "name": "Follow-up", "time": "Optional, until installation", "do": "Orders, deliveries and installation checked against the drawings.", "get": ["Purchases followed", "A final walk-through"] }
+        ],
+        "fees": ["The CFIA schedule sets no fee for interiors, so we agree one by scope: the rooms, the pieces to design, and whether we follow purchases and installation. If a remodel needs a permit, its drawings follow the CFIA rates for remodelling, one and a half times those of new work [@arancel]."],
+        "not": ["The furniture and materials themselves", "Making the joinery: we draw it and check it, a workshop makes it"],
+        "faq": [
+          ["Do you design the interiors with the house?", "Yes, and that is when it pays most: the furniture, kitchens and lighting are laid out before the electrical and plumbing drawings close, so sockets, drains and lights end up where the furniture needs them."],
+          ["How is interior design charged?", "By scope, agreed before we start, because the CFIA schedule sets no fee for it. A remodel that needs a permit pays the CFIA remodelling rates for its drawings [@arancel]."],
+          ["Can you work with furniture I already have?", "Yes. We survey what stays and design around it."],
+          ["Can you get a rental ready to let?", "Yes: furniture, lighting and the details that last in a rental, chosen and priced with suppliers. Our cost estimator includes a rental-ready furniture option."]
+        ]
+      },
+      "es": {
+        "name": "Interiores",
+        "h1": ["Diseño", "de interiores"],
+        "card": "Cocinas, baños, muebles empotrados, iluminación y acabados, diseñados con la casa o para una remodelación.",
+        "time": "Con la arquitectura, o 2 a 4 meses",
+        "fee": "Monto acordado",
+        "title": "Diseño de interiores en Costa Rica: cocinas, muebles, acabados | Studio CAVA",
+        "description": "Interiores diseñados con la casa o para una remodelación en Costa Rica: paleta, distribución, cocinas, baños, muebles empotrados, iluminación y una lista con precios de acabados y mobiliario.",
+        "lead": "Los espacios terminados como una sola pieza con la arquitectura: materiales, cocinas, baños, muebles empotrados y luz, dibujados para que un carpintero los haga y con precio para que usted los compre.",
+        "for": ["Una casa nueva, diseñada junto con la arquitectura", "La remodelación de una casa, una villa o un hotel", "Un alquiler que tiene que quedar listo para alquilar"],
+        "glance": [["Tiempo", "Dentro de la arquitectura, o 2 a 4 meses para una remodelación"], ["Honorarios", "Según el alcance; el arancel del CFIA no fija uno"], ["Recibe", "Planos para el carpintero y una lista con precios de todo lo que hay que comprar"], ["Cambios", "Dos rondas en cada fase"]],
+        "phases": [
+          { "name": "Dirección", "time": "2 a 3 semanas", "do": "Cómo deben sentirse y funcionar los espacios, en materiales, colores y referencias.", "get": ["Una paleta de materiales y colores", "Referencias para cada espacio"] },
+          { "name": "Distribución", "time": "2 a 4 semanas", "do": "La distribución de muebles, cocina y baños, y la iluminación, fijadas antes de cerrar los planos eléctricos y sanitarios.", "get": ["Distribución de muebles", "Plano de iluminación", "Distribución de cocina y baños"] },
+          { "name": "Detalles", "time": "3 a 6 semanas", "do": "Las piezas que va a hacer un carpintero o un taller.", "get": ["Planos de cocina, baños y muebles empotrados", "Un cuadro de acabados, espacio por espacio"] },
+          { "name": "Selección", "time": "2 a 4 semanas", "do": "Muebles, lámparas y accesorios elegidos y cotizados con proveedores.", "get": ["Una lista de mobiliario y accesorios con proveedores y precios"] },
+          { "name": "Seguimiento", "time": "Opcional, hasta la instalación", "do": "Pedidos, entregas e instalación revisados contra los planos.", "get": ["Compras con seguimiento", "Un recorrido final"] }
+        ],
+        "fees": ["El arancel del CFIA no fija honorarios para interiores, así que los acordamos según el alcance: los espacios, las piezas que hay que diseñar y si seguimos las compras y la instalación. Si una remodelación necesita permiso, sus planos siguen las tarifas del CFIA para remodelaciones, una vez y media las de obra nueva [@arancel]."],
+        "not": ["Los muebles y los materiales en sí", "Fabricar los muebles: nosotros los dibujamos y los revisamos, un taller los hace"],
+        "faq": [
+          ["¿Diseñan los interiores junto con la casa?", "Sí, y es cuando más rinde: los muebles, las cocinas y la iluminación se distribuyen antes de cerrar los planos eléctricos y sanitarios, así los tomacorrientes, los desagües y las luces quedan donde los necesitan los muebles."],
+          ["¿Cómo se cobra el diseño de interiores?", "Según el alcance, acordado antes de empezar, porque el arancel del CFIA no fija honorarios para esto. Una remodelación que necesita permiso paga las tarifas de remodelación del CFIA por sus planos [@arancel]."],
+          ["¿Pueden trabajar con muebles que ya tengo?", "Sí. Levantamos lo que se queda y diseñamos alrededor."],
+          ["¿Pueden dejar un alquiler listo para alquilar?", "Sí: muebles, iluminación y los detalles que aguantan en un alquiler, elegidos y cotizados con proveedores. Nuestro estimador de costos incluye una opción de mobiliario listo para alquilar."]
+        ]
+      }
+    },
+    {
+      "slug": { "en": "construction-supervision", "es": "direccion-de-obra" },
+      "image": "papagayo-404/2",
+      "projects": ["papagayo-404", "casa-alcaravan", "hangars-b"],
+      "en": {
+        "name": "Construction supervision",
+        "h1": ["Construction", "supervision"],
+        "card": "Weekly site visits, the site logbook, payments checked against work done, and a report with photos after every visit.",
+        "time": "The length of the works",
+        "fee": "CFIA: 3% or 5% of the works",
+        "title": "Construction supervision in Costa Rica | Studio CAVA",
+        "description": "Weekly site visits, the CFIA site logbook, payments checked against work done and a report with photos after each visit, for owners in Costa Rica or abroad. CFIA fees: 3% or 5% of the works.",
+        "lead": "We work for you on site: we check that the builder builds what was drawn, approve materials and payments, and send a report with photos after every visit.",
+        "for": ["Owners who live abroad", "Projects we design", "Projects drawn by others that need someone on site"],
+        "glance": [["Visits", "At least once a week, the legal minimum [@reg]"], ["Fee", "3% for inspection or 5% for technical direction, on the final cost of the works [@arancel]"], ["Reports", "Written, with photos, after each visit"], ["Ends with", "The final reception of the works"]],
+        "phases": [
+          { "name": "Choosing the builder", "cfia": "Asesoría para contratación, 0.5%", "time": "4 to 6 weeks, before the works", "do": "We prepare the tender for three or more builders, compare their bids line by line and recommend one.", "get": ["Tender documents", "A line-by-line comparison of the bids", "A recommendation and the contract terms to watch"] },
+          { "name": "During the works", "cfia": "Inspección, 3%, or dirección técnica, 5%", "time": "Weekly", "do": "At least one visit every seven days, and more at the moments that matter: foundations, each concrete pour, the roof, the installations before they are closed [@reg].", "get": ["An entry in the site logbook after each visit", "A written report with photos after each visit", "Materials approved before they are installed", "Each payment checked against the work done", "Changes priced and recorded before they are built"] },
+          { "name": "Handover", "time": "The last weeks", "do": "We walk the works with the builder, list what is missing or wrong, and receive the works when it is done.", "get": ["A punch list", "The final reception of the works"] }
+        ],
+        "fees": ["Supervision is paid on the final cost of the works, extras included: at least 3% for inspection, when the builder provides the professional responsible for the works, and 5% for technical direction, when that responsibility is ours [@arancel]. Helping you choose the builder costs at least 0.5% of the contract. The law asks every owner to hire one of the two arrangements [@reg], and professional services carry 13% VAT [@iva]."],
+        "not": ["Building: the builder's contract is with you, and we work for you", "Handling your money and hiring the workers, which the CFIA calls administración, at a minimum of 12% [@arancel]"],
+        "faq": [
+          ["What is the difference between inspection and technical direction?", "With inspection, the builder provides the professional responsible for the works and we check the work for you; with technical direction, that responsibility is ours. Both visit at least every seven days; inspection starts at 3% of the cost of the works and technical direction at 5% [@reg, @arancel]."],
+          ["How often do you visit the site?", "At least once a week, the legal minimum, and more at the moments that matter: foundations, each concrete pour, the roof, and the installations before they are closed [@reg]."],
+          ["I live abroad. How will I know how it is going?", "After each visit you receive a written report with photos: what was done, what was checked, what was approved and what needs a decision from you."],
+          ["Do you help choose the builder?", "Yes: tender documents for three or more builders, a line-by-line comparison of their bids and a recommendation. The CFIA minimum for it is 0.5% of the contract [@arancel]."]
+        ]
+      },
+      "es": {
+        "name": "Dirección de obra",
+        "h1": ["Dirección", "de obra"],
+        "card": "Visitas semanales, la bitácora, pagos revisados contra el avance y un informe con fotos después de cada visita.",
+        "time": "Lo que dure la obra",
+        "fee": "CFIA: 3% o 5% de la obra",
+        "title": "Dirección e inspección de obra en Costa Rica | Studio CAVA",
+        "description": "Visitas semanales, la bitácora del CFIA, pagos revisados contra el avance y un informe con fotos después de cada visita, para dueños en Costa Rica o afuera. Honorarios del CFIA: 3% o 5% de la obra.",
+        "lead": "Trabajamos para usted en la obra: revisamos que el constructor haga lo que está en los planos, aprobamos materiales y pagos, y le mandamos un informe con fotos después de cada visita.",
+        "for": ["Dueños que viven fuera del país", "Proyectos que diseñamos", "Proyectos de otros que necesitan a alguien en la obra"],
+        "glance": [["Visitas", "Al menos una por semana, el mínimo legal [@reg]"], ["Honorarios", "3% por inspección o 5% por dirección técnica, sobre el costo final de la obra [@arancel]"], ["Informes", "Escritos, con fotos, después de cada visita"], ["Termina con", "La recepción final de la obra"]],
+        "phases": [
+          { "name": "Elegir al constructor", "cfia": "Asesoría para contratación, 0.5%", "time": "4 a 6 semanas, antes de la obra", "do": "Preparamos el concurso para tres o más constructores, comparamos sus ofertas partida por partida y recomendamos una.", "get": ["Documentos del concurso", "Una comparación de las ofertas, partida por partida", "Una recomendación y las cláusulas del contrato que hay que cuidar"] },
+          { "name": "Durante la obra", "cfia": "Inspección, 3%, o dirección técnica, 5%", "time": "Semanal", "do": "Al menos una visita cada siete días, y más en los momentos que importan: fundaciones, cada chorrea, el techo, las instalaciones antes de cerrarlas [@reg].", "get": ["Una anotación en la bitácora después de cada visita", "Un informe escrito con fotos después de cada visita", "Materiales aprobados antes de instalarse", "Cada pago revisado contra el avance", "Cambios con precio y registrados antes de construirse"] },
+          { "name": "Entrega", "time": "Las últimas semanas", "do": "Recorremos la obra con el constructor, anotamos lo que falta o está mal, y recibimos la obra cuando está lista.", "get": ["Una lista de pendientes", "La recepción final de la obra"] }
+        ],
+        "fees": ["La dirección se paga sobre el costo final de la obra, extras incluidos: al menos 3% por inspección, cuando el constructor aporta el profesional responsable de la obra, y 5% por dirección técnica, cuando esa responsabilidad es nuestra [@arancel]. Ayudarle a elegir al constructor cuesta al menos el 0.5% del contrato. La ley pide a todo dueño contratar uno de los dos esquemas [@reg], y los servicios profesionales llevan 13% de IVA [@iva]."],
+        "not": ["Construir: el contrato del constructor es con usted, y nosotros trabajamos para usted", "Manejar su dinero y contratar a los trabajadores, lo que el CFIA llama administración, con un mínimo del 12% [@arancel]"],
+        "faq": [
+          ["¿Qué diferencia hay entre inspección y dirección técnica?", "Con inspección, el constructor aporta el profesional responsable de la obra y nosotros revisamos el trabajo por usted; con dirección técnica, esa responsabilidad es nuestra. Las dos visitan al menos cada siete días; la inspección parte del 3% del costo de la obra y la dirección técnica del 5% [@reg, @arancel]."],
+          ["¿Cada cuánto visitan la obra?", "Al menos una vez por semana, el mínimo legal, y más en los momentos que importan: fundaciones, cada chorrea, el techo y las instalaciones antes de cerrarlas [@reg]."],
+          ["Vivo fuera del país. ¿Cómo voy a saber cómo va?", "Después de cada visita recibe un informe escrito con fotos: qué se hizo, qué se revisó, qué se aprobó y qué necesita una decisión suya."],
+          ["¿Ayudan a elegir al constructor?", "Sí: documentos del concurso para tres o más constructores, una comparación de sus ofertas partida por partida y una recomendación. El mínimo del CFIA para eso es el 0.5% del contrato [@arancel]."]
+        ]
+      }
+    }
+  ]
+}

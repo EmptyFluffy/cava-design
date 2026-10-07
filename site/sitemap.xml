@@ -468,4 +468,76 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/herramientas/precios-de-terrenos/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/tools/land-prices/"/>
   </url>
+  <url>
+    <loc>https://cava.design/services/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/services/lot-study/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/lot-study/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/estudio-de-lote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/lot-study/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/estudio-de-lote/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/lot-study/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/estudio-de-lote/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/lot-study/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/services/architecture/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/architecture/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/arquitectura/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/architecture/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/arquitectura/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/architecture/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/arquitectura/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/architecture/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/services/permits/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/permits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/permisos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/permits/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/permisos/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/permits/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/permisos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/permits/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/services/interiors/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/interiors/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/interiores/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/interiors/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/interiores/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/interiors/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/interiores/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/interiors/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/services/construction-supervision/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/construction-supervision/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/direccion-de-obra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/construction-supervision/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/direccion-de-obra/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/construction-supervision/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/direccion-de-obra/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/construction-supervision/"/>
+  </url>
 </urlset>

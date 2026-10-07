@@ -97,6 +97,7 @@ export const PAIRS = [
   ['>Where we work →</a>', '>Dónde trabajamos →</a>'],
   ['>Where we work</a>', '>Dónde trabajamos</a>'],
   ['>Guides</a>', '>Guías</a>'],
+  ['>Services</a>', '>Servicios</a>'],
   ['>Cost estimator</a>', '>Estimador de costos</a>'],
   ['>Land prices</a>', '>Precio del terreno</a>'],
 
@@ -110,6 +111,9 @@ export const PAIRS = [
   ['<dt>A:</dt>', '<dt>D:</dt>'],
   ['Monday to Friday, 8:00 to 17:00', 'Lunes a viernes, 8:00 a 17:00'],
   ['Back to top ↑', 'Volver arriba ↑'],
+  ['(Careers)', '(Empleo)'],
+  ['Architects, interior designers and students who want to work with us: send a portfolio.', 'Arquitectos, diseñadores de interiores y estudiantes que quieran trabajar con nosotros: envíen su portafolio.'],
+  ['>Work with us: careers@cava.design →</a>', '>Trabaje con nosotros: careers@cava.design →</a>'],
 
   // ---------- enquiry ----------
   ['(Project enquiry)', '(Consulta de proyecto)'],

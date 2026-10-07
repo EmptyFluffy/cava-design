@@ -139,7 +139,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: var(--margin) var(--margin) 0;
 }
 .nav__brand { grid-column: 1 / span 6; justify-self: start; font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; }
-.nav__links { grid-column: 7 / span 4; }
+.nav__links { grid-column: 6 / span 5; }
 .nav__cta { grid-column: 11 / span 2; justify-self: end; }
 .nav__menu { display: none; }
 /* The same page in the other language: last in the nav row (after an en space, so a wrapped
@@ -273,6 +273,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .footer__info { grid-column: 9 / span 4; display: flex; flex-direction: column; gap: 2.5rem; }
 .footer__info .label { display: block; margin-bottom: 1rem; }
 .footer__info p { max-width: 36ch; }
+.footer__careers { display: inline-block; margin-top: 0.6rem; font-weight: var(--w-strong); }
 .info div { display: flex; gap: 0.3rem; }
 .info dt { font-weight: var(--w-strong); }
 .footer__mark { width: 3.5rem; height: 3.5rem; }
@@ -376,7 +377,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   border-bottom: 1px solid var(--grey);
 }
 .bar__brand { grid-column: 1 / span 5; justify-self: start; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1; }
-.bar__links { grid-column: 7 / span 4; }
+.bar__links { grid-column: 6 / span 5; }
 .bar__links [aria-current="page"] { background-size: 100% 1px; background-position: 0 100%; }
 .bar__cta { grid-column: 11 / span 2; justify-self: end; }
 
@@ -747,6 +748,44 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__scope li { padding-bottom: 0.35rem; border-bottom: 1px solid var(--grey); line-height: 1.3; }
 .est__work .card[hidden] { display: none; }
 
+/* services: the list on the home, the cards, and each service page */
+.svc-home { padding: var(--pad-v) var(--margin) 0; row-gap: var(--s-2); align-items: start; }
+.svc-home__label { grid-column: 1 / span 4; }
+.svc-home__list { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--grey); }
+.svc-home__row { display: grid; grid-template-columns: 3rem minmax(0, 17rem) minmax(0, 1fr) 1.5rem; column-gap: var(--gap); row-gap: 0.45rem; align-items: baseline; padding: 1.1rem 0 1.25rem; border-top: 1px solid var(--grey); color: inherit; text-decoration: none; }
+.svc-home__name { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.1; }
+.svc-home__card { grid-column: 3; color: var(--dark-grey); line-height: 1.35; max-width: 34rem; }
+.svc-home__meta { grid-column: 3; color: var(--black); font-weight: var(--w-strong); }
+.svc-home__go { grid-column: 4; grid-row: 1; text-align: right; transition: transform 0.25s var(--ease); }
+.svc-home__row:hover .svc-home__go, .svc-home__row:focus-visible .svc-home__go { transform: translateX(0.3rem); }
+.svc-home__row:hover .svc-home__name { text-decoration: underline; text-underline-offset: 0.15em; text-decoration-thickness: 1px; }
+.svc__cards { margin-bottom: var(--s-4); }
+.svc__card-text { display: block; margin-top: 0.5rem; color: var(--dark-grey); line-height: 1.35; max-width: 34rem; }
+.svc__card-fee { display: inline-block; margin-top: 0.6rem; padding: 0.3rem 0.6rem; border: 1px solid var(--black); border-radius: 100vw; font-size: 0.6875rem; }
+.svc .tw__sec { margin-left: 0; margin-right: 0; }
+.svc__cta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; }
+.svc__glance { grid-column: 5 / -1; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem var(--gap); }
+.svc__glance dt { margin-bottom: 0.4rem; color: var(--dark-grey); }
+.svc__glance dd { margin: 0; font-size: var(--f-large); line-height: 1.3; }
+.svc__for { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; }
+.svc__for li { padding: 0.8rem 0; border-top: 1px solid var(--grey); font-size: var(--f-large); }
+.svc__for li:last-child { border-bottom: 1px solid var(--grey); }
+.svc__not li { color: var(--dark-grey); }
+.svc__phases { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; }
+.svc__phase { display: grid; gap: 0.6rem; padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--grey); }
+.svc__phase:last-child { border-bottom: 1px solid var(--grey); }
+.svc__ph-head { display: grid; grid-template-columns: 3rem minmax(0, 1fr) auto; column-gap: 1rem; align-items: baseline; }
+.svc__ph-head h3 { margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.1; }
+.svc__time { color: var(--dark-grey); font-weight: var(--w-text); text-align: right; }
+.svc__cfia { margin: 0 0 0 4rem; color: var(--dark-grey); font-weight: var(--w-text); }
+.svc__phase > .large, .svc__get-label, .svc__get { margin-left: 4rem; }
+.svc__phase > .large { margin-top: 0; margin-bottom: 0; max-width: 46rem; }
+.svc__get-label { margin-top: 0.4rem; margin-bottom: 0; }
+.svc__get { list-style: none; padding: 0; margin-top: 0; margin-bottom: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.35rem var(--gap); }
+.svc__get li { position: relative; padding-left: 1.1rem; line-height: 1.35; }
+.svc__get li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 0.45rem; height: 0.45rem; border: 1px solid var(--black); border-radius: 50%; }
+.svc__work { padding-left: 0; padding-right: 0; }
+
 /* land prices: the zone map and the town table */
 .lt .tw__sec { margin-left: 0; margin-right: 0; }
 .lt__map-wrap { margin-bottom: var(--s-3); }
@@ -805,9 +844,19 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .hub__table td { font-size: var(--f-main); }
 .hub__region th { padding-top: 1.8rem; font-size: var(--f-small) !important; text-transform: uppercase; color: var(--dark-grey); border-bottom-color: var(--black); }
 
+/* Spanish nav words are longer: between 992 and 1099 px a smaller size keeps them on one line, clear of the button */
+@media (min-width: 992px) and (max-width: 1099px) {
+  :lang(es) .bar__links, :lang(es) .nav__links { font-size: 0.75rem; white-space: nowrap; }
+}
+
 /* Tablet */
 @media (max-width: 991px) {
-  .nav__links, .bar__links { grid-column: 7 / span 3; }
+  .nav__links, .bar__links { grid-column: 6 / span 5; }
+  .svc-home__label, .svc-home__list { grid-column: 1 / -1; }
+  .svc-home__row { grid-template-columns: 2.4rem minmax(0, 1fr) 1.2rem; row-gap: 0.35rem; }
+  .svc-home__card, .svc-home__meta { grid-column: 2 / 3; }
+  .svc-home__meta { text-align: left; white-space: normal; }
+  .svc-home__go { grid-row: 1; grid-column: 3; }
   /* "View project" is wider than its column here: keep it clear of the place name */
   .hero__row > :nth-child(1) { grid-column: 1 / span 3; }
   .hero__row > :nth-child(2) { grid-column: 4 / span 4; }
@@ -903,6 +952,17 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .est__form, .est__out { grid-column: 1 / -1; }
   .est__scope { grid-template-columns: 1fr; }
   .lmap__canvas { aspect-ratio: 4 / 5; }
+  .svc-home__label, .svc-home__list { grid-column: 1 / -1; }
+  .svc-home__row { grid-template-columns: 2.4rem minmax(0, 1fr) 1.2rem; row-gap: 0.35rem; }
+  .svc-home__card, .svc-home__meta { grid-column: 2 / 3; }
+  .svc-home__meta { text-align: left; white-space: normal; }
+  .svc-home__go { grid-row: 1; grid-column: 3; }
+  .svc__glance { grid-template-columns: 1fr; }
+  .svc__glance, .svc__for, .svc__phases { grid-column: 1 / -1; }
+  .svc__ph-head { grid-template-columns: 2.4rem minmax(0, 1fr); }
+  .svc__time { grid-column: 2; text-align: left; margin-top: 0.3rem; }
+  .svc__cfia, .svc__phase > .large, .svc__get-label, .svc__get { margin-left: 3.4rem; }
+  .svc__get { grid-template-columns: 1fr; }
   .est__out { position: static; }
   .est__sticky { display: flex; justify-content: space-between; gap: 1rem; position: sticky; bottom: 0; z-index: 30; margin: 0; padding: 0.85rem var(--margin); background: var(--black); color: var(--white); }
   .g-head, .g-row, .g-bands { grid-template-columns: 6.5rem minmax(0, 1fr); }
@@ -915,6 +975,8 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 
 /* Phones where the project name and "View project" need the whole row */
 @media (max-width: 479px) {
+  /* service names run to 14 letters ("arquitectónico"): scale them to the screen */
+  .svc .mf__title { font-size: min(var(--f-display), 10.4vw); }
   .hero__row > :first-child { display: none; }
 }
 

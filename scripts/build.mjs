@@ -39,6 +39,7 @@ const ORIGIN = 'https://cava.design';
 const WHATSAPP = '50671737336';
 const WHATSAPP_SHOWN = '+506 7173 7336';
 const EMAIL = 'hola@cava.design';
+const CAREERS = 'careers@cava.design';
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = (n) => String(n).padStart(2, '0');
@@ -127,7 +128,7 @@ function bar(lang, up, paths, current) {
   return `<header class="bar">
   <a class="bar__brand" href="${home}" aria-label="${t.home}">${MARK}<span>Studio CAVA</span></a>
   <nav class="bar__links label" aria-label="${t.aria}">
-    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${link(studioHref, t.studio, 'studio')}, ${link(`${studioHref}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
+    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, ${link(`${studioHref}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
   <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
 </header>
@@ -163,7 +164,8 @@ function footer(lang, up, paths) {
       <span class="label">${t.nav}</span>
       <a class="footer__link" href="${home}">${t.home}</a>
       <a class="footer__link" href="${up}${projectsPath(lang)}">${n.projects}</a>
-      <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
+${services.length ? `      <a class="footer__link" href="${up}${servicesPath(lang)}">${SVT[lang].link}</a>
+` : ''}      <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
       <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
       <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
 ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
@@ -185,6 +187,11 @@ ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(la
           <div><dt>E:</dt><dd><a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a></dd></div>
           <div><dt>${t.hoursKey}</dt><dd>${t.hours}</dd></div>
         </dl>
+      </div>
+      <div>
+        <span class="label">${t.careers}</span>
+        <p>${t.careersText}</p>
+        <a class="footer__careers ulink" href="mailto:${CAREERS}?subject=Portfolio">${t.careersCta}: ${CAREERS} →</a>
       </div>
       <img class="footer__mark" src="${up}assets/mark.svg" width="56" height="56" alt="">
     </div>
@@ -888,7 +895,7 @@ const ET = {
     link: 'Cost estimator', name: 'Building cost estimator', town: (n) => `What it costs to build in ${n}`,
     budget: '(From a budget)', budgetNote: 'What a budget builds here, with the choices above. Pick one to use it.', budgetCur: { usd: 'US$', crc: '₡ million' },
     scope: '(What the estimate covers)', inLabel: 'Included', outLabel: 'Not included',
-    included: ['Construction, with the builder\'s profit and administration', 'Design, drawings and technical direction, at the CFIA minimum', 'Municipal permit, CFIA charges and the INS work insurance', 'VAT at 13%', 'A reserve of 5 to 10%', 'The pool, terraces, solar, landscaping and furniture you pick, and condominium design reviews'],
+    included: ['Construction, with the builder\'s profit and administration', 'Studies, design, drawings, cost estimate and technical direction, at the CFIA minimum', 'Municipal permit, CFIA charges and the INS work insurance', 'VAT at 13%', 'A reserve of 5 to 10%', 'The pool, terraces, solar, landscaping and furniture you pick, and condominium design reviews'],
     excluded: ['The land unless you tick it, and its legal and transfer costs', 'The water letter, a long water line or a well', 'A power line to the lot', 'Access roads and long driveways', 'A septic tank or a treatment plant', 'Condominium review fees and deposits'],
     dated: (fx) => `Rates updated ${fx.date}, at ₡${fx.crcPerUsd.toFixed(2)} to the dollar. They price houses designed by an architect; a typical local house (Hacienda types VC01 to VC04) runs about US$640 to 1,050 a m².`,
     work: '(Our work at this size)', allWork: 'All projects',
@@ -913,7 +920,7 @@ const ET = {
     link: 'Estimador de costos', name: 'Estimador de costos de construcción', town: (n) => `Cuánto cuesta construir en ${n}`,
     budget: '(Desde un presupuesto)', budgetNote: 'Lo que construye un presupuesto aquí, con las decisiones de arriba. Elija una opción para usarla.', budgetCur: { usd: 'US$', crc: 'millones de ₡' },
     scope: '(Qué incluye la estimación)', inLabel: 'Incluye', outLabel: 'No incluye',
-    included: ['La construcción, con la utilidad y la administración del constructor', 'Diseño, planos y dirección técnica, al mínimo del CFIA', 'Permiso municipal, cargos del CFIA y la póliza de riesgos del trabajo del INS', 'IVA del 13%', 'Una reserva del 5 al 10%', 'La piscina, las terrazas, los paneles, el paisajismo y el mobiliario que elija, y las revisiones de diseño del condominio'],
+    included: ['La construcción, con la utilidad y la administración del constructor', 'Estudios, diseño, planos, estimación de costos y dirección técnica, al mínimo del CFIA', 'Permiso municipal, cargos del CFIA y la póliza de riesgos del trabajo del INS', 'IVA del 13%', 'Una reserva del 5 al 10%', 'La piscina, las terrazas, los paneles, el paisajismo y el mobiliario que elija, y las revisiones de diseño del condominio'],
     excluded: ['El terreno si no lo marca, y sus gastos legales y de traspaso', 'La carta de agua, una tubería larga o un pozo', 'Una línea eléctrica hasta el lote', 'Caminos de acceso y entradas largas', 'Tanque séptico o planta de tratamiento', 'Cuotas y depósitos de revisión del condominio'],
     dated: (fx) => `Tarifas al ${fx.date_es}, a ₡${fx.crcPerUsd.toFixed(2)} por dólar. Corresponden a casas diseñadas por un arquitecto; una casa local típica (tipologías VC01 a VC04 de Hacienda) sale en unos US$640 a 1,050 el m².`,
     work: '(Obras de este tamaño)', allWork: 'Todos los proyectos',
@@ -1088,6 +1095,181 @@ ${contact(lang, UI[lang].wa.general)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
+// ---------- /services/ and /es/servicios/: one page per service ----------
+// Text lives in data/services.json; "[@key]" cites a shared source, numbered per page in order of use.
+const SERVICES_PATH = join(ROOT, 'data', 'services.json');
+const svcData = existsSync(SERVICES_PATH) ? JSON.parse(readFileSync(SERVICES_PATH, 'utf8')) : null;
+const services = svcData?.services ?? [];
+const servicesPath = (lang) => (lang === 'en' ? 'services/' : 'es/servicios/');
+const servicePath = (lang, s) => `${servicesPath(lang)}${s.slug[lang]}/`;
+const SVT = {
+  en: {
+    link: 'Services', label: '(Services)', service: '(Service)', h1: ['Our', 'services'],
+    title: 'Architecture services in Costa Rica | Studio CAVA',
+    description: 'What we do, from the study of a lot before you buy it to supervising the works: what each service includes, what you receive, how long it takes and how it is charged.',
+    intro: 'From the study of a lot before you buy it to the last visit to the works: what each service includes, what you receive, how long it takes and how it is charged.',
+    order: '(In order)', orderText: 'A project usually takes them in this order: a study of the lot before buying, the design with its interiors, the permits, and supervision while it is built. Each one can also be hired on its own.',
+    glance: '(At a glance)', for: '(Who it is for)', how: '(How it runs)', get: 'You receive', fees: '(Fees)', not: '(Not included)',
+    work: '(Projects)', all: 'All projects', faq: '(Questions)', others: '(Other services)', sources: '(Sources)',
+    estimator: 'What it comes to for your project, in our cost estimator', guide: 'Every step of the permit, with its rules, in our guide',
+    talk: 'Talk to us on WhatsApp', start: 'Start a project', wa: (n) => `Hi Studio CAVA, I would like to talk about ${n.toLowerCase()}.`, more: 'More',
+  },
+  es: {
+    link: 'Servicios', label: '(Servicios)', service: '(Servicio)', h1: ['Nuestros', 'servicios'],
+    title: 'Servicios de arquitectura en Costa Rica | Studio CAVA',
+    description: 'Lo que hacemos, del estudio de un lote antes de comprarlo a la dirección de la obra: qué incluye cada servicio, qué recibe, cuánto tarda y cómo se cobra.',
+    intro: 'Del estudio de un lote antes de comprarlo a la última visita a la obra: qué incluye cada servicio, qué recibe, cuánto tarda y cómo se cobra.',
+    order: '(En orden)', orderText: 'Un proyecto suele pasar por ellos en este orden: el estudio del lote antes de comprar, el diseño con sus interiores, los permisos y la dirección mientras se construye. Cada uno también se puede contratar por separado.',
+    glance: '(En resumen)', for: '(Para quién)', how: '(Cómo funciona)', get: 'Recibe', fees: '(Honorarios)', not: '(No incluye)',
+    work: '(Proyectos)', all: 'Todos los proyectos', faq: '(Preguntas)', others: '(Otros servicios)', sources: '(Fuentes)',
+    estimator: 'Cuánto da para su proyecto, en nuestro estimador de costos', guide: 'Cada paso del permiso, con sus reglas, en nuestra guía',
+    talk: 'Escríbanos por WhatsApp', start: 'Empezar un proyecto', wa: (n) => `Hola Studio CAVA, quisiera conversar sobre ${n.toLowerCase()}.`, more: 'Ver más',
+  },
+};
+// "[@a, @b]" -> "[1, 2]", numbering each source the first time a page cites it
+function citer() {
+  const order = [];
+  const num = (txt) => txt.replace(/\[(@[a-z0-9]+(?:,\s*@[a-z0-9]+)*)\]/g, (m, ks) => `[${ks.split(/,\s*/).map((k) => { const key = k.slice(1); if (!svcData.sources[key]) throw new Error(`services.json: unknown source ${key}`); if (!order.includes(key)) order.push(key); return order.indexOf(key) + 1; }).join(', ')}]`);
+  return { order, c: (txt) => cite(num(txt)) };
+}
+const plain = (txt) => txt.replace(/\s*\[@[^\]]+\]/g, '');
+// the home's list of services, between <!-- services --> markers; `up` is the path from that home to site/
+function servicesHome(lang, up, dir) {
+  const S = SVT[lang];
+  return `<!-- services -->
+  <section class="svc-home grid" id="services" aria-labelledby="svc-home-title">
+    <span class="label svc-home__label" id="svc-home-title">${S.label}</span>
+    <ol class="svc-home__list">
+${services.map((s, i) => { const T = s[lang]; return `      <li><a class="svc-home__row" href="${dir}${s.slug[lang]}/"><span class="label">(${pad(i + 1)})</span><span class="svc-home__name">${esc(T.name)}</span><span class="svc-home__card">${esc(T.card)}</span><span class="svc-home__meta label">${esc(T.time)} · ${esc(T.fee)}</span><span class="svc-home__go" aria-hidden="true">→</span></a></li>`; }).join('\n')}
+    </ol>
+  </section>
+  <!-- /services -->`;
+}
+function servicesIndex(lang) {
+  const S = SVT[lang];
+  const paths = { en: servicesPath('en'), es: servicesPath('es') };
+  const up = upFrom(paths[lang]);
+  const cards = `      <ol class="cards cards--three svc__cards">
+${services.map((s, i) => { const T = s[lang]; const [slug, n] = s.image.split('/'); return `        <li class="card">
+          <a class="card__link" href="${s.slug[lang]}/">
+            <span class="card__media">${picture(up, slug, +n, altOf(lang, projects.find((p) => p.slug === slug), +n), '(min-width: 768px) 31vw, 92vw')}</span>
+            <span class="card__cap label"><span>(${pad(i + 1)})</span><span class="card__name">${esc(T.name)}</span><span class="card__meta">${esc(T.time)}</span></span>
+            <span class="svc__card-text">${esc(T.card)}</span>
+            <span class="svc__card-fee label">${esc(T.fee)}</span>
+          </a>
+        </li>`; }).join('\n')}
+      </ol>`;
+  const ld = { '@context': 'https://schema.org', '@type': 'ItemList', name: S.title.split(' | ')[0], itemListElement: services.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: `${ORIGIN}/${servicePath(lang, s)}`, name: s[lang].name })) };
+  return head(lang, { title: S.title, description: S.description, paths, image: `${imgBase('casa-alcaravan', 1)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'services')}
+<main class="page">
+  <article class="mf svc" aria-labelledby="svc-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${S.label}</p>
+      <h1 class="display mf__title" id="svc-title"><span>${esc(S.h1[0])}</span><span class="right">${esc(S.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(S.intro)}</p>
+    </header>
+${cards}
+    <section class="tw__sec grid" aria-labelledby="svc-order">
+      <h2 class="label tw__label" id="svc-order">${S.order}</h2>
+      <p class="h3 tw__text">${esc(S.orderText)}</p>
+    </section>
+  </article>
+${contact(lang, UI[lang].wa.general)}</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
+}
+function servicePage(lang, s, i) {
+  const S = SVT[lang];
+  const T = s[lang];
+  const paths = { en: servicePath('en', s), es: servicePath('es', s) };
+  const up = upFrom(paths[lang]);
+  const { order, c } = citer();
+  const work = s.projects.map((slug) => projects.find((p) => p.slug === slug)).filter(Boolean);
+  const body = `    <header class="mf__head grid">
+      <p class="label mf__label"><a class="ulink" href="${up}${servicesPath(lang)}">${S.label}</a> (${pad(i + 1)})</p>
+      <h1 class="display mf__title" id="svc-title"><span>${esc(T.h1[0])}</span><span class="right">${esc(T.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(T.lead)}</p>
+      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${wa(S.wa(T.name))}" target="_blank" rel="noopener">${S.talk} <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="${up}${UI[lang].dir}#enquiry">${S.start} <span class="btn__dot" aria-hidden="true"></span></a></p>
+    </header>
+    <section class="tw__sec grid" aria-labelledby="svc-glance">
+      <h2 class="label tw__label" id="svc-glance">${S.glance}</h2>
+      <dl class="svc__glance">
+${T.glance.map(([k, v]) => `        <div><dt class="label">${esc(k)}</dt><dd>${c(v)}</dd></div>`).join('\n')}
+      </dl>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="svc-for">
+      <h2 class="label tw__label" id="svc-for">${S.for}</h2>
+      <ul class="svc__for">
+${T.for.map((x) => `        <li>${esc(x)}</li>`).join('\n')}
+      </ul>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="svc-how">
+      <h2 class="label tw__label" id="svc-how">${S.how}</h2>
+      <ol class="svc__phases">
+${T.phases.map((ph, k) => `        <li class="svc__phase">
+          <div class="svc__ph-head"><span class="label">(${pad(k + 1)})</span><h3>${esc(ph.name)}</h3><span class="label svc__time">${esc(ph.time)}</span></div>
+          ${ph.cfia ? `<p class="svc__cfia label">CFIA: ${esc(ph.cfia)}</p>\n          ` : ''}<p class="large">${c(ph.do)}</p>
+          <p class="label svc__get-label">${S.get}</p>
+          <ul class="svc__get">${ph.get.map((g) => `<li>${c(g)}</li>`).join('')}</ul>
+        </li>`).join('\n')}
+      </ol>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="svc-fees">
+      <h2 class="label tw__label" id="svc-fees">${S.fees}</h2>
+      <div class="tw__text guide__body">
+${T.fees.map((x) => `        <p class="large">${c(x)}</p>`).join('\n')}
+        <ul class="guide__links">
+${costs ? `          <li><a class="ulink" href="${up}${estimatorPath(lang)}">${S.estimator} →</a></li>\n` : ''}${T.guide && guides[0] ? `          <li><a class="ulink" href="${up}${guidePath(lang, guides[0])}">${S.guide} →</a></li>\n` : ''}        </ul>
+      </div>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="svc-not">
+      <h2 class="label tw__label" id="svc-not">${S.not}</h2>
+      <ul class="svc__for svc__not">
+${T.not.map((x) => `        <li>${c(x)}</li>`).join('\n')}
+      </ul>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="svc-faq">
+      <h2 class="label tw__label" id="svc-faq">${S.faq}</h2>
+      <div class="faq">
+${T.faq.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="large">${c(a)}</p></div>`).join('\n')}
+      </div>
+    </section>
+`;
+  const sources = order.length ? `    <section class="tw__sec grid" aria-labelledby="svc-sources">
+      <h2 class="label tw__label" id="svc-sources">${S.sources}</h2>
+      <ol class="guide__sources">
+${order.map((k, n) => sourceItem(lang, svcData.sources[k], n, '        ')).join('\n')}
+      </ol>
+    </section>
+` : '';
+  const others = `    <nav class="tw__sec grid" aria-labelledby="svc-others">
+      <h2 class="label tw__label" id="svc-others">${S.others}</h2>
+      <ul class="tw__aside guide__links">
+${services.filter((o) => o !== s).map((o) => `        <li><a class="ulink" href="${up}${servicePath(lang, o)}">${esc(o[lang].name)} →</a></li>`).join('\n')}
+      </ul>
+    </nav>
+`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'Service', name: T.name, serviceType: T.name, description: T.description, url: `${ORIGIN}/${paths[lang]}`, inLanguage: lang, areaServed: { '@type': 'Country', name: 'Costa Rica' }, provider: { '@type': 'ProfessionalService', name: 'Studio CAVA', url: `${ORIGIN}/`, telephone: WHATSAPP_SHOWN, email: EMAIL, address: { '@type': 'PostalAddress', addressLocality: 'San José', addressCountry: 'CR' } } },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: S.link, item: `${ORIGIN}/${servicesPath(lang)}` }, { '@type': 'ListItem', position: 3, name: T.name, item: `${ORIGIN}/${paths[lang]}` }] },
+      { '@type': 'FAQPage', mainEntity: T.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: plain(a) } })) },
+    ],
+  };
+  const [slug, n] = s.image.split('/');
+  return head(lang, { title: T.title, description: T.description, paths, image: `${imgBase(slug, +n)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'services')}
+<main class="page">
+  <article class="mf svc" aria-labelledby="svc-title">
+${body}${work.length ? `    <section class="related svc__work" aria-labelledby="svc-work">
+      <div class="related__head"><h2 class="label" id="svc-work">${S.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${S.all} →</a></div>
+${projectCards(lang, up, work.map((p) => ({ p, meta: placeOf(lang, p) })))}    </section>
+` : ''}${others}${sources}  </article>
+${contact(lang, S.wa(T.name))}</main>
+${footer(lang, up, paths)}${waButton(lang, S.wa(T.name))}${end}`;
+}
+
 // ---------- /tools/land-prices/ and /es/herramientas/precios-de-terrenos/ ----------
 // The map reads site/assets/data/land.pmtiles (scripts/land-fetch.mjs); the town table reads data/land/towns.json.
 const LAND_PATH = join(ROOT, 'data', 'land', 'towns.json');
@@ -1244,6 +1426,7 @@ function sitemap() {
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
     ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }] : []),
     ...(land ? [{ en: landPath('en'), es: landPath('es') }] : []),
+    ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -1288,7 +1471,9 @@ function homeCounts() {
   const after = before
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
     .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.length, 0)})`)
-    .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`);
+    .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)
+    // the services list, from data/services.json: between its markers, or first put before the process
+    .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m));
   if (after !== before) writeFileSync(path, after);
 }
 
@@ -1315,12 +1500,15 @@ function homeEs() {
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
     if (u.startsWith('tools/cost-estimator/')) return `herramientas/estimador-de-costos/${u.slice('tools/cost-estimator/'.length)}`;
     if (u.startsWith('tools/land-prices/')) return `herramientas/precios-de-terrenos/${u.slice('tools/land-prices/'.length)}`;
+    if (u.startsWith('services/')) return `servicios/${u.slice('services/'.length)}`;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
     const v = /srcset$/.test(attr) ? val.split(',').map((part) => { const [u, ...rest] = part.trim().split(/\s+/); return [fix(u), ...rest].join(' '); }).join(', ') : fix(val);
     return ` ${attr}="${v}"`;
   });
+  // the services list is written from data in each language, not translated pair by pair
+  if (services.length) html = html.replace(/<!-- services -->[\s\S]*?<!-- \/services -->/, servicesHome('es', '../', 'servicios/'));
   const names = new Set(projects.map((p) => p.name));
   const enTexts = texts(en);
   const left = [...texts(html)].filter((t) => enTexts.has(t) && !SAME.has(t) && !names.has(t));
@@ -1344,6 +1532,10 @@ for (const lang of ['en', 'es']) {
   if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
   if (costs) write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
   if (land && costs) write(`${landPath(lang)}index.html`, landPage(lang));
+  if (services.length) {
+    write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
+    services.forEach((x, i) => write(`${servicePath(lang, x)}index.html`, servicePage(lang, x, i)));
+  }
 }
 if (costs) write('assets/data/costs.json', JSON.stringify(costsData()));
 write('sitemap.xml', sitemap());
