@@ -14,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = join(ROOT, 'site');
-const { projects } = JSON.parse(readFileSync(join(ROOT, 'data', 'projects.json'), 'utf8'));
+const { projects, hero } = JSON.parse(readFileSync(join(ROOT, 'data', 'projects.json'), 'utf8'));
 const sizes = JSON.parse(readFileSync(join(ROOT, 'data', 'image-sizes.json'), 'utf8'));
 
 const ORIGIN = 'https://cava.design';
@@ -37,7 +37,7 @@ function picture(up, slug, n, alt, sizesAttr, { eager = false, cls = '' } = {}) 
   return `<img${cls ? ` class="${cls}"` : ''} src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="${sizesAttr}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(alt)}">`;
 }
 
-function head({ title, description, path, image, up }) {
+function head({ title, description, path, image, up, script }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -59,7 +59,8 @@ function head({ title, description, path, image, up }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="${up}assets/css/site.css">
-</head>
+${script ? `<script defer src="${up}assets/js/${script}"></script>
+` : ''}</head>
 <body class="sub">
 `;
 }
@@ -176,6 +177,18 @@ const FACTS = [
   ['program', 'Program'], ['structure', 'Structure'], ['materials', 'Materials'], ['climate', 'Climate strategy'], ['team', 'Team'],
 ];
 
+const PIN_NOTE = { exact: '', approximate: 'Approximate', placeholder: 'Placeholder pin, location to be confirmed' };
+function mapFigure(p) {
+  const [lng, lat] = p.coords;
+  const place = p.location ? p.location.split(',').slice(0, 2).join(',') : 'Guanacaste';
+  const label = p.pin === 'placeholder' ? 'Location to be confirmed' : place;
+  return `      <figure class="pmap" data-pmap data-lng="${lng}" data-lat="${lat}" data-label="${esc(label)}" data-pin="${p.pin}">
+        <div class="pmap__canvas" role="img" aria-label="${esc(p.pin === 'placeholder' ? `Map of Guanacaste with a placeholder pin for ${p.name}` : `Map of Guanacaste with the location of ${p.name}: ${place}`)}"></div>
+        <figcaption class="pmap__cap label"><span>(Location)</span><span>${esc(label)}</span>${PIN_NOTE[p.pin] && p.pin !== 'placeholder' ? `<span class="pmap__note">${PIN_NOTE[p.pin]}</span>` : ''}</figcaption>
+${p.pin === 'placeholder' ? '        <p class="note pmap__ph">The pin is a placeholder until the site is confirmed.</p>\n' : ''}      </figure>
+`;
+}
+
 function projectPage(p, i) {
   const up = '../../';
   const next = projects[(i + 1) % projects.length];
@@ -187,8 +200,11 @@ function projectPage(p, i) {
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? TBC)}</dd></div>`).join('\n');
   const placeholders = FACTS.some(([k]) => p[k] == null);
   const rest = p.images.slice(1);
-  const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : ''}" aria-label="More images of ${esc(p.name)}">
-${rest.map((im, j) => `      <figure class="gallery__item">${picture(up, p.slug, j + 2, im.alt, rest.length === 1 ? '92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
+  // Every image in the gallery shares the narrowest image's proportion, so rows line up
+  // and wider renders are cropped at the sides, never at the top or bottom.
+  const ratio = Math.min(...rest.map((_, j) => { const [w, h] = sizes[`${p.slug}/${j + 2}`]; return w / h; }));
+  const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : rest.length === 3 ? ' gallery--three' : ''}" style="--ratio: ${ratio.toFixed(3)}" aria-label="More images of ${esc(p.name)}">
+${rest.map((im, j) => `      <figure class="gallery__item">${picture(up, p.slug, j + 2, im.alt, rest.length === 1 ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
     </section>
 ` : '';
   const waText = `Hi Studio CAVA, I saw ${p.name} on your site and would like to talk about a project.`;
@@ -198,6 +214,7 @@ ${rest.map((im, j) => `      <figure class="gallery__item">${picture(up, p.slug,
     path: `/projects/${p.slug}/`,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
+    script: 'project.js',
   }) + `<div id="top"></div>
 ${bar(up, 'projects')}
 <main class="page">
@@ -212,7 +229,7 @@ ${bar(up, 'projects')}
       <dl class="sheet">
 ${rows}
       </dl>
-${placeholders ? '      <p class="note sheet__note">Entries marked "To be confirmed" are placeholders until the studio confirms them.</p>\n' : ''}    </section>
+${placeholders ? '      <p class="note sheet__note">Entries marked "To be confirmed" are placeholders until the studio confirms them.</p>\n' : ''}${mapFigure(p)}    </section>
 ${gallery}    <nav class="next" aria-label="Next project">
       <a class="next__link" href="../${next.slug}/">
         <span class="label">(Next project)</span>
@@ -227,7 +244,14 @@ ${footer(up)}${waButton(waText)}${end}`;
 // ---------- Viewer list for the home page ----------
 function rendersJs() {
   const list = projects.flatMap((p) => p.images.map((im, j) => ({ id: `${p.slug}-${j + 1}`, src: imgBase(p.slug, j + 1), title: p.name, alt: im.alt })));
-  return `/* Generated by scripts/build.mjs from data/projects.json. Do not edit by hand. */\nwindow.CAVA_RENDERS = ${JSON.stringify(list, null, 1)};\n`;
+  const bySlug = new Map(projects.map((p) => [p.slug, p]));
+  const slides = hero.map((key) => {
+    const [slug, n] = key.split('/');
+    const p = bySlug.get(slug);
+    const [w, h] = sizes[key];
+    return { src: imgBase(slug, n), w, h, alt: p.images[n - 1].alt, name: p.name, place: p.location ? p.location.split(',')[0] : p.type, href: `projects/${slug}/` };
+  });
+  return `/* Generated by scripts/build.mjs from data/projects.json. Do not edit by hand. */\nwindow.CAVA_RENDERS = ${JSON.stringify(list, null, 1)};\nwindow.CAVA_HERO = ${JSON.stringify(slides, null, 1)};\n`;
 }
 
 mkdirSync(join(SITE, 'projects'), { recursive: true });

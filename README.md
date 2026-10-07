@@ -33,6 +33,8 @@ node scripts/build.mjs                      # -> site/projects/, site/projects/<
 
 The renders folder holds one folder per project, named as `folder` in the data (for example `Portland House/Portland House C.png`). `images.py` needs Pillow. `build.mjs` also writes the list the home page render viewer walks (`renders.js`). The home page's featured works, interiors and hero link to the project pages by hand.
 
+Each project also has `location`, `coords` ([lng, lat]) and `pin`: `exact`, `approximate` or `placeholder` (an invented spot in Guanacaste until the real site is known; the page says so). The technical sheet shows a small still map (MapLibre with OpenFreeMap, loaded by `assets/js/project.js` when it nears the viewport). Gallery images share the narrowest image's proportion, so rows line up and wider renders crop at the sides. `hero` lists the home page slides, which take turns every 6.5 s (not with reduced motion, not in a hidden tab).
+
 **To add a project:** put its folder of renders in the source folder, add an entry to `data/projects.json`, run both scripts, commit.
 
 ## Font

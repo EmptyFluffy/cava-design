@@ -145,3 +145,50 @@ window.CAVA_RENDERS = [
   "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
  }
 ];
+window.CAVA_HERO = [
+ {
+  "src": "assets/img/projects/portland-house/1",
+  "w": 1600,
+  "h": 900,
+  "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
+  "name": "Portland House",
+  "place": "Near Huacas",
+  "href": "projects/portland-house/"
+ },
+ {
+  "src": "assets/img/projects/kauhane-house/1",
+  "w": 1600,
+  "h": 900,
+  "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
+ },
+ {
+  "src": "assets/img/projects/tragaluz-retreat/1",
+  "w": 1600,
+  "h": 900,
+  "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk",
+  "name": "Tragaluz Retreat",
+  "place": "Playa Negra",
+  "href": "projects/tragaluz-retreat/"
+ },
+ {
+  "src": "assets/img/projects/military-museum/1",
+  "w": 1600,
+  "h": 900,
+  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands",
+  "name": "Military Museum",
+  "place": "Museum",
+  "href": "projects/military-museum/"
+ },
+ {
+  "src": "assets/img/projects/negra-mixed-use/1",
+  "w": 1600,
+  "h": 900,
+  "alt": "Two-storey timber and glass building with lit interiors at dusk",
+  "name": "Negra Mixed Use",
+  "place": "Mixed use",
+  "href": "projects/negra-mixed-use/"
+ }
+];

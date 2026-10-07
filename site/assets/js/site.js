@@ -342,6 +342,51 @@
     loadMapLib().then(initMap).catch(mapFallback);
   }
 
+  /* ---------- Hero: the best exterior views take turns (data/projects.json "hero") ---------- */
+  const SLIDES = window.CAVA_HERO || [];
+  const heroImg = $('.hero__img');
+  const heroRow = $('.hero__row');
+  if (heroImg && heroRow && SLIDES.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const nameEl = $('[data-hero-name]', heroRow);
+    const placeEl = $('[data-hero-place]', heroRow);
+    const linkEl = $('[data-hero-link]', heroRow);
+    const layer = heroImg.cloneNode(false);
+    layer.removeAttribute('fetchpriority');
+    layer.classList.add('is-off');
+    layer.setAttribute('aria-hidden', 'true');
+    heroImg.after(layer);
+    let shown = heroImg, waiting = layer, idx = 0, busy = false;
+    const load = (img, sl) => {
+      img.srcset = `${sl.src}-800.webp 800w, ${sl.src}-1600.webp 1600w`;
+      img.src = `${sl.src}-1600.webp`;
+      img.width = sl.w; img.height = sl.h; img.alt = sl.alt;
+    };
+    const advance = () => {
+      // only while the hero is on screen and the tab is visible
+      if (busy || document.hidden || window.scrollY > window.innerHeight * 0.9) return;
+      busy = true;
+      const next = (idx + 1) % SLIDES.length;
+      const sl = SLIDES[next];
+      load(waiting, sl);
+      const swap = () => {
+        waiting.classList.remove('is-off'); waiting.removeAttribute('aria-hidden');
+        shown.classList.add('is-off'); shown.setAttribute('aria-hidden', 'true');
+        [shown, waiting] = [waiting, shown];
+        idx = next;
+        heroRow.classList.add('is-fading');
+        setTimeout(() => {
+          nameEl.textContent = sl.name;
+          placeEl.textContent = sl.place;
+          linkEl.href = sl.href;
+          heroRow.classList.remove('is-fading');
+          busy = false;
+        }, 350);
+      };
+      (waiting.decode ? waiting.decode() : Promise.resolve()).then(swap, () => { busy = false; });
+    };
+    setInterval(advance, 6500);
+  }
+
   /* ---------- "Get in touch" from the project pages lands on /#enquiry ---------- */
   if (location.hash === '#enquiry') {
     history.replaceState(null, '', location.pathname + location.search);

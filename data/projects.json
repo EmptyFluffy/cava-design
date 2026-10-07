@@ -1,13 +1,25 @@
 {
-  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover.",
+  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order.",
+  "hero": [
+    "portland-house/1",
+    "kauhane-house/1",
+    "tragaluz-retreat/1",
+    "military-museum/1",
+    "negra-mixed-use/1"
+  ],
   "projects": [
     {
       "slug": "portland-house",
       "name": "Portland House",
       "folder": "Portland House",
       "type": "House",
+      "location": "Near Huacas, Guanacaste",
+      "coords": [
+        -85.765,
+        10.372
+      ],
+      "pin": "approximate",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -36,8 +48,13 @@
       "name": "Papagayo 404",
       "folder": "Papagayo 404",
       "type": "House",
+      "location": "Península Papagayo, Guanacaste",
+      "coords": [
+        -85.668,
+        10.635
+      ],
+      "pin": "approximate",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -62,8 +79,13 @@
       "name": "Hangars B",
       "folder": "Hangars B",
       "type": "Hangars",
+      "location": "Huacas, Guanacaste",
+      "coords": [
+        -85.77496,
+        10.36717
+      ],
+      "pin": "exact",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -87,9 +109,14 @@
       "slug": "tragaluz-retreat",
       "name": "Tragaluz Retreat",
       "folder": "Tragaluz Retreat",
-      "type": "Retreat",
+      "type": "Hotel",
+      "location": "Playa Negra, Guanacaste",
+      "coords": [
+        -85.83015,
+        10.19456
+      ],
+      "pin": "exact",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -118,8 +145,13 @@
       "name": "Kauhane House",
       "folder": "Kauhane House",
       "type": "House",
+      "location": "Playa Grande, Guanacaste",
+      "coords": [
+        -85.84702,
+        10.33463
+      ],
+      "pin": "exact",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -156,8 +188,13 @@
       "name": "Negra Mixed Use",
       "folder": "Negra Mixed Use",
       "type": "Mixed use",
-      "status": null,
       "location": null,
+      "coords": [
+        -85.79334,
+        10.4284
+      ],
+      "pin": "placeholder",
+      "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -178,8 +215,13 @@
       "name": "S3 Houses",
       "folder": "S3 Houses",
       "type": "Houses",
-      "status": null,
       "location": null,
+      "coords": [
+        -85.69226,
+        10.55799
+      ],
+      "pin": "placeholder",
+      "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -200,8 +242,13 @@
       "name": "Tree House",
       "folder": "Tree House",
       "type": "Tree house",
-      "status": null,
       "location": null,
+      "coords": [
+        -85.6279,
+        9.97837
+      ],
+      "pin": "placeholder",
+      "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -222,8 +269,13 @@
       "name": "Amacor House",
       "folder": "Amacor House",
       "type": "House",
-      "status": null,
       "location": null,
+      "coords": [
+        -85.5289,
+        9.88342
+      ],
+      "pin": "placeholder",
+      "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -244,8 +296,13 @@
       "name": "Dawn Patrol Bakery",
       "folder": "Dawn Patrol Bakery",
       "type": "Bakery and café",
+      "location": "Tamarindo, Guanacaste, across from Bar El Vaquero",
+      "coords": [
+        -85.8391,
+        10.30378
+      ],
+      "pin": "exact",
       "status": null,
-      "location": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
@@ -278,8 +335,13 @@
       "name": "Military Museum",
       "folder": "Military Museum",
       "type": "Museum",
-      "status": null,
       "location": null,
+      "coords": [
+        -85.43932,
+        10.63198
+      ],
+      "pin": "placeholder",
+      "status": null,
       "year": null,
       "siteArea": null,
       "builtArea": null,
