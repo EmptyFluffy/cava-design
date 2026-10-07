@@ -540,4 +540,16 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/direccion-de-obra/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/construction-supervision/"/>
   </url>
+  <url>
+    <loc>https://cava.design/book/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/book/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/agendar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/book/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/agendar/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/book/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/agendar/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/book/"/>
+  </url>
 </urlset>

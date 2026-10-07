@@ -128,14 +128,14 @@ function bar(lang, up, paths, current) {
   return `<header class="bar">
   <a class="bar__brand" href="${home}" aria-label="${t.home}">${MARK}<span>Studio CAVA</span></a>
   <nav class="bar__links label" aria-label="${t.aria}">
-    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, ${link(`${studioHref}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
+    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, <span class="nav__process">${link(`${studioHref}#process`, t.process)}, </span>${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
   <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
 </header>
 `;
 }
 
-function contact(lang, waText) {
+function contact(lang, waText, up = null, q = '') {
   const t = UI[lang].reach;
   return `<section class="reach grid" aria-labelledby="reach-title">
   <span class="label reach__label" id="reach-title">${t.label}</span>
@@ -143,7 +143,8 @@ function contact(lang, waText) {
     <p class="h3">${t.text}</p>
     <div class="reach__actions">
       <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
-      <a class="btn btn--light reach__mail" href="mailto:${EMAIL}">${EMAIL} <span class="btn__dot" aria-hidden="true"></span></a>
+${up !== null && booking ? `      <a class="btn btn--light" href="${up}${bookPath(lang)}${q}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>
+` : ''}      <a class="btn btn--light reach__mail" href="mailto:${EMAIL}">${EMAIL} <span class="btn__dot" aria-hidden="true"></span></a>
     </div>
   </div>
 </section>
@@ -240,7 +241,7 @@ ${bar(lang, up, paths, 'projects')}
 ${cards}
     </ol>
   </section>
-${contact(lang, t.wa.projects)}</main>
+${contact(lang, t.wa.projects, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.projects)}${end}`;
 }
 
@@ -345,7 +346,7 @@ ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) }
       </a>
     </nav>
   </article>
-${contact(lang, waText)}</main>
+${contact(lang, waText, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;
 }
 
@@ -404,7 +405,7 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
-${contact(lang, t.wa.general)}</main>
+${contact(lang, t.wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.general)}${end}`;
 }
 
@@ -677,7 +678,7 @@ ${others.map(({ o, km: dist }) => `        <li><a class="ulink" href="../${o.slu
     </nav>
     <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang), d.station))}</p>
   </article>
-${contact(lang, waText).replace(UI[lang].reach.text, esc(L.reach(t)))}</main>
+${contact(lang, waText, up, `?town=${t.slug}`).replace(UI[lang].reach.text, esc(L.reach(t)))}</main>
 ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;
 }
 
@@ -746,7 +747,7 @@ ${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.le
 ` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
 ${projectCards(lang, up, [...projects].sort((a, b) => (a.status === 'Built' ? 0 : 1) - (b.status === 'Built' ? 0 : 1)).slice(0, 6).map((p) => ({ p, meta: placeOf(lang, p) })))}  </section>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
@@ -833,7 +834,7 @@ ${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc
       </ul>
     </nav>
   </article>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
@@ -860,7 +861,7 @@ ${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${
       <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h2 class="stage__title"><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Where we work' : 'Dónde trabajamos'}</a></h2><p class="large stage__text">${lang === 'en' ? 'Rain, sun, wind and permits for every town where we design.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos.'}</p></li>
     </ol>
   </article>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
@@ -1059,7 +1060,8 @@ ${land ? `            <li><a class="ulink" href="${up}${landPath(lang)}">${esc(L
         </section>
         <div class="est__actions">
           <a class="btn btn--dark" data-est-wa data-phone="${WHATSAPP}" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">${E.whatsapp} <span class="btn__dot" aria-hidden="true"></span></a>
-          <button class="btn btn--light" type="button" data-est-copy>${E.copy}</button>
+${booking ? `          <a class="btn btn--light" data-est-book href="${up}${bookPath(lang)}">${lang === 'en' ? 'Book a free call about it' : 'Agendar una llamada sobre esto'} <span class="btn__dot" aria-hidden="true"></span></a>
+` : ''}          <button class="btn btn--light" type="button" data-est-copy>${E.copy}</button>
           <button class="btn btn--light" type="button" data-est-print>${E.print}</button>
         </div>
       </div>
@@ -1087,7 +1089,131 @@ ${costs.sources.map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
       </div>
     </section>
   </article>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
+// ---------- /book/ and /es/agendar/: book a free call ----------
+// site/assets/js/booking.js draws the calendar; data/booking.json says where the open times come from.
+const BOOKING_PATH = join(ROOT, 'data', 'booking.json');
+const booking = existsSync(BOOKING_PATH) ? JSON.parse(readFileSync(BOOKING_PATH, 'utf8')) : null;
+const bookPath = (lang) => (lang === 'en' ? 'book/' : 'es/agendar/');
+const BK = {
+  en: {
+    link: 'Book a free call', title: 'Book a free call with an architect | Studio CAVA',
+    description: 'A free 30-minute video call with Studio CAVA about your lot and your project in Costa Rica: what the rules allow, what it could cost and how long it takes. Pick a time that suits you.',
+    label: '(Free call)', h1: ['Book a', 'free call'],
+    intro: 'Thirty minutes by video, free, with the architect who would design your project: your lot, what the rules allow, what it could cost and how long it takes.',
+    callTitle: (m) => `Free ${m}-minute call`, callText: 'Bring the location of the lot and what you have in mind. We come having looked at the place.',
+    minutes: (m) => `${m} min`, video: 'Video call, link by email', prev: 'Previous month', next: 'Next month',
+    name: 'Your name', email: 'Email', phone: 'WhatsApp, with country code', optional: 'optional',
+    where: 'Where is the project?', other: 'Elsewhere in Costa Rica', unsure: 'Not sure yet',
+    what: 'What do you want to build?', whats: { house: 'House', villa: 'Villa to rent', hotel: 'Small hotel', remodel: 'Remodel', unsure: 'Not sure yet' },
+    lot: 'The lot', lots: { have: 'I have it', buying: 'I am buying it', looking: 'Still looking' },
+    budget: 'Budget for the works', budgets: ['Not sure yet', 'Under US$300,000', 'US$300,000 to 600,000', 'US$600,000 to 1 million', 'Over US$1 million'],
+    notes: 'Anything we should look at before the call?', notesHint: 'A link to the lot, its cadastral plan number, references you like.',
+    legalLive: 'By confirming you agree to the terms and privacy policy of Cal.com, which handles the booking.', legalReq: 'We use your details only to confirm and prepare the call.',
+    back: 'Back', confirm: 'Confirm', confirmReq: 'Send by WhatsApp',
+    cover: '(What we cover)', covers: ['Your lot: what the land use, the setbacks, the water and the slope allow', 'What it could cost and how long it takes, with our estimator', 'How we work, our fees and the next step'],
+    helps: '(What helps)', helpsList: ['The location of the lot, or its cadastral plan', 'Photos of the lot and of houses you like', 'A budget range and when you would like to move in'],
+  },
+  es: {
+    link: 'Agende una llamada', title: 'Agende una llamada gratis con un arquitecto | Studio CAVA',
+    description: 'Una videollamada gratis de 30 minutos con Studio CAVA sobre su lote y su proyecto en Costa Rica: qué permiten las reglas, cuánto podría costar y cuánto tarda. Elija la hora que le sirva.',
+    label: '(Llamada gratis)', h1: ['Agende una', 'llamada gratis'],
+    intro: 'Treinta minutos por video, gratis, con el arquitecto que diseñaría su proyecto: su lote, qué permiten las reglas, cuánto podría costar y cuánto tarda.',
+    callTitle: (m) => `Llamada gratis de ${m} minutos`, callText: 'Traiga la ubicación del lote y lo que tiene en mente. Llegamos habiendo visto el lugar.',
+    minutes: (m) => `${m} min`, video: 'Videollamada, el enlace llega por correo', prev: 'Mes anterior', next: 'Mes siguiente',
+    name: 'Su nombre', email: 'Correo', phone: 'WhatsApp, con código de país', optional: 'opcional',
+    where: '¿Dónde es el proyecto?', other: 'En otro lugar de Costa Rica', unsure: 'Todavía no sé',
+    what: '¿Qué quiere construir?', whats: { house: 'Casa', villa: 'Villa de alquiler', hotel: 'Hotel pequeño', remodel: 'Remodelación', unsure: 'Todavía no sé' },
+    lot: 'El lote', lots: { have: 'Ya lo tengo', buying: 'Lo estoy comprando', looking: 'Todavía busco' },
+    budget: 'Presupuesto de la obra', budgets: ['Todavía no sé', 'Menos de US$300,000', 'US$300,000 a 600,000', 'US$600,000 a 1 millón', 'Más de US$1 millón'],
+    notes: '¿Algo que debamos revisar antes de la llamada?', notesHint: 'Un enlace al lote, el número de plano catastrado, referencias que le gusten.',
+    legalLive: 'Al confirmar acepta los términos y la política de privacidad de Cal.com, que gestiona la reserva.', legalReq: 'Usamos sus datos solo para confirmar y preparar la llamada.',
+    back: 'Atrás', confirm: 'Confirmar', confirmReq: 'Enviar por WhatsApp',
+    cover: '(De qué hablamos)', covers: ['Su lote: lo que permiten el uso de suelo, los retiros, el agua y la pendiente', 'Cuánto podría costar y cuánto tarda, con nuestro estimador', 'Cómo trabajamos, nuestros honorarios y el siguiente paso'],
+    helps: '(Lo que ayuda)', helpsList: ['La ubicación del lote, o su plano catastrado', 'Fotos del lote y de casas que le gusten', 'Un rango de presupuesto y cuándo quisiera mudarse'],
+  },
+};
+const ZONES = ['America/Costa_Rica', 'America/New_York', 'America/Chicago', 'America/Denver', 'America/Los_Angeles', 'America/Toronto', 'America/Vancouver', 'America/Mexico_City', 'America/Bogota', 'Europe/London', 'Europe/Madrid', 'Europe/Paris', 'Europe/Berlin', 'Europe/Zurich', 'Europe/Amsterdam'];
+const ICON = {
+  clock: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 5.5V10l3 2"/></svg>',
+  video: '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="5.5" width="10.5" height="9" rx="1.5"/><path d="M13 9l4.5-2.5v7L13 11"/></svg>',
+  globe: '<svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M2.5 10h15M10 2.5c2.2 2.3 2.2 12.7 0 15M10 2.5c-2.2 2.3-2.2 12.7 0 15"/></svg>',
+  cal: '<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12.5" rx="1.5"/><path d="M3 8.5h14M7 2.5v4M13 2.5v4"/></svg>',
+};
+function bookPage(lang) {
+  const B = BK[lang];
+  const paths = { en: bookPath('en'), es: bookPath('es') };
+  const up = upFrom(paths[lang]);
+  const b = booking;
+  const live = !!b.username;
+  const seg = (name, opts) => `<div class="est__seg bk__seg" role="radiogroup">${Object.entries(opts).map(([v, l]) => `<label class="est__opt"><input type="radio" name="${name}" value="${v}"><span>${esc(l)}</span></label>`).join('')}</div>`;
+  const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: B.title.split(' | ')[0], description: B.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, potentialAction: { '@type': 'ReserveAction', name: B.link } };
+  return head(lang, { title: B.title, description: B.description, paths, image: `${imgBase('casa-alcaravan', 1)}-1600.webp`, up, script: 'booking.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'book')}
+<main class="page">
+  <article class="mf bkp" aria-labelledby="bk-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${B.label}</p>
+      <h1 class="display mf__title" id="bk-title"><span>${esc(B.h1[0])}</span><span class="right">${esc(B.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(B.intro)}</p>
+    </header>
+    <div class="bk" data-booking data-username="${esc(b.username)}" data-event="${esc(b.event)}" data-duration="${b.duration}" data-days="${b.days.join(',')}" data-from="${b.from}" data-to="${b.to}" data-notice="${b.noticeHours}" data-weeks="${b.weeks}" data-phone="${WHATSAPP}" data-live="${live ? '1' : '0'}">
+      <aside class="bk__info">
+        <img class="bk__mark" src="${up}assets/mark.svg" width="36" height="36" alt="">
+        <p class="label bk__who">Studio CAVA</p>
+        <h2 class="bk__title">${esc(B.callTitle(b.duration))}</h2>
+        <p class="bk__text">${esc(B.callText)}</p>
+        <ul class="bk__facts">
+          <li class="bk__picked">${ICON.cal}<span><span data-bk-when></span></span></li>
+          <li>${ICON.clock}<span>${B.minutes(b.duration)}</span></li>
+          <li>${ICON.video}<span>${B.video}</span></li>
+          <li class="bk__tzrow">${ICON.globe}<label class="bk__tz"><span class="sr-only">Time zone</span><select data-bk-tz>${ZONES.map((z) => `<option value="${z}">${z.replace(/_/g, ' ')}</option>`).join('')}</select></label></li>
+          <li class="bk__picked bk__picked-tz"><span></span><span data-bk-when-tz></span></li>
+        </ul>
+      </aside>
+      <section class="bk__cal" aria-label="${lang === 'en' ? 'Days' : 'Días'}">
+        <div class="bk__cal-head"><p class="bk__month" data-bk-month></p><div class="bk__nav"><button type="button" data-bk-prev aria-label="${B.prev}">‹</button><button type="button" data-bk-next aria-label="${B.next}">›</button></div></div>
+        <div class="bk__grid" data-bk-days></div>
+        <p class="note bk__status" data-bk-status aria-live="polite"></p>
+      </section>
+      <section class="bk__times" aria-label="${lang === 'en' ? 'Times' : 'Horas'}">
+        <div class="bk__times-head"><p class="bk__day" data-bk-day></p><div class="cmap__seg bk__h24" role="group" aria-label="${lang === 'en' ? 'Clock' : 'Formato'}"><button type="button" data-h24="0" aria-pressed="true">12 h</button><button type="button" data-h24="1" aria-pressed="false">24 h</button></div></div>
+        <ul class="bk__list" data-bk-times></ul>
+      </section>
+      <form class="bk__form" data-bk-form novalidate>
+        <label class="bk__field"><span class="label">${B.name} *</span><input class="input" name="name" autocomplete="name" required></label>
+        <label class="bk__field"><span class="label">${B.email} *</span><input class="input" type="email" name="email" autocomplete="email" required></label>
+        <label class="bk__field"><span class="label">${B.phone} <i>(${B.optional})</i></span><input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+1 555 123 4567"></label>
+        <label class="bk__field"><span class="label">${B.where}</span><select class="input" name="where"><option value="unsure">${B.unsure}</option>${towns.map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}<option value="other">${B.other}</option></select></label>
+        <fieldset class="bk__field bk__wide"><legend class="label">${B.what}</legend>${seg('what', B.whats)}</fieldset>
+        <fieldset class="bk__field bk__wide"><legend class="label">${B.lot}</legend>${seg('lot', B.lots)}</fieldset>
+        <label class="bk__field"><span class="label">${B.budget} <i>(${B.optional})</i></span><select class="input" name="budget">${B.budgets.map((x, i) => `<option value="${i}">${esc(x)}</option>`).join('')}</select></label>
+        <label class="bk__field bk__wide"><span class="label">${B.notes} <i>(${B.optional})</i></span><textarea class="input" name="notes" rows="3" placeholder="${esc(B.notesHint)}"></textarea></label>
+        <input type="hidden" name="est">
+        <p class="note bk__legal bk__wide">${live ? B.legalLive : B.legalReq}</p>
+        <p class="bk__error bk__wide" data-bk-error role="alert"></p>
+        <div class="bk__actions bk__wide"><button class="btn btn--light" type="button" data-bk-back>${B.back}</button><button class="btn btn--dark" type="submit">${live ? B.confirm : B.confirmReq} <span class="btn__dot" aria-hidden="true"></span></button></div>
+      </form>
+      <section class="bk__done" aria-live="polite">
+        <h3 class="bk__done-title" data-bk-done-title></h3>
+        <p class="large" data-bk-done-when></p>
+        <p class="large bk__done-text" data-bk-done-text></p>
+        <button class="btn btn--light" type="button" data-bk-again>${lang === 'en' ? 'Book another time' : 'Agendar otra hora'}</button>
+      </section>
+    </div>
+    <section class="tw__sec grid" aria-labelledby="bk-cover">
+      <h2 class="label tw__label" id="bk-cover">${B.cover}</h2>
+      <ul class="svc__for">${B.covers.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="bk-helps">
+      <h2 class="label tw__label" id="bk-helps">${B.helps}</h2>
+      <ul class="svc__for">${B.helpsList.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    </section>
+  </article>
+</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
@@ -1171,7 +1297,7 @@ ${cards}
       <p class="h3 tw__text">${esc(S.orderText)}</p>
     </section>
   </article>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 function servicePage(lang, s, i) {
@@ -1185,7 +1311,7 @@ function servicePage(lang, s, i) {
       <p class="label mf__label"><a class="ulink" href="${up}${servicesPath(lang)}">${S.label}</a> (${pad(i + 1)})</p>
       <h1 class="display mf__title" id="svc-title"><span>${esc(T.h1[0])}</span><span class="right">${esc(T.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(T.lead)}</p>
-      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${wa(S.wa(T.name))}" target="_blank" rel="noopener">${S.talk} <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="${up}${UI[lang].dir}#enquiry">${S.start} <span class="btn__dot" aria-hidden="true"></span></a></p>
+      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${wa(S.wa(T.name))}" target="_blank" rel="noopener">${S.talk} <span class="btn__dot" aria-hidden="true"></span></a> ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light" href="${up}${UI[lang].dir}#enquiry">${S.start} <span class="btn__dot" aria-hidden="true"></span></a>`}</p>
     </header>
     <section class="tw__sec grid" aria-labelledby="svc-glance">
       <h2 class="label tw__label" id="svc-glance">${S.glance}</h2>
@@ -1262,7 +1388,7 @@ ${body}${work.length ? `    <section class="related svc__work" aria-labelledby="
       <div class="related__head"><h2 class="label" id="svc-work">${S.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${S.all} →</a></div>
 ${projectCards(lang, up, work.map((p) => ({ p, meta: placeOf(lang, p) })))}    </section>
 ` : ''}${others}${sources}  </article>
-${contact(lang, S.wa(T.name))}</main>
+${contact(lang, S.wa(T.name), up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, S.wa(T.name))}${end}`;
 }
 
@@ -1405,7 +1531,7 @@ ${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc
       </ul>
     </nav>
   </article>
-${contact(lang, UI[lang].wa.general)}</main>
+${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
@@ -1423,6 +1549,7 @@ function sitemap() {
     ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }] : []),
     ...(land ? [{ en: landPath('en'), es: landPath('es') }] : []),
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
+    ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -1528,6 +1655,7 @@ for (const lang of ['en', 'es']) {
   if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
   if (costs) write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
   if (land && costs) write(`${landPath(lang)}index.html`, landPage(lang));
+  if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
     services.forEach((x, i) => write(`${servicePath(lang, x)}index.html`, servicePage(lang, x, i)));

@@ -1,0 +1,11 @@
+{
+  "_note": "Free call scheduler (/book/, /es/agendar/). With 'username' empty it offers the hours below and sends the request by WhatsApp. Once the studio has a Cal.com event, put the Cal.com username and the event's slug here: open times then come from the studio's calendar and bookings land there with a video link.",
+  "username": "",
+  "event": "free-call",
+  "duration": 30,
+  "days": [1, 2, 3, 4, 5],
+  "from": "09:00",
+  "to": "16:30",
+  "noticeHours": 24,
+  "weeks": 8
+}

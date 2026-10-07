@@ -396,6 +396,8 @@
     renderWork(e);
     $('[data-est-area-out]').textContent = `${num(state.area)} m² · ${num(state.area * 10.7639)} ${T.ft2}`;
     toUrl();
+    const book = $('[data-est-book]');
+    if (book) { book.dataset.base ||= book.getAttribute('href'); book.href = `${book.dataset.base}?town=${encodeURIComponent(state.town)}&est=${encodeURIComponent(location.href)}`; }
     const wa = $('[data-est-wa]');
     wa.href = `https://wa.me/${wa.dataset.phone}?text=${encodeURIComponent(T.wa(summary(e)) + ' ' + location.href)}`;
   }
