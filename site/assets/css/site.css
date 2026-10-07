@@ -1102,9 +1102,33 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 }
 
 /* printing the estimate: just the result and its sources */
+.est__print-head, .est__print-foot { display: none; }
+/* The estimate on paper: two A4 pages with the studio's mark, every block whole */
+@page { size: A4; margin: 14mm 14mm 18mm; @bottom-right { content: counter(page) " / " counter(pages); font: 8pt sans-serif; color: #8b8b88; } }
 @media print {
-  .bar, .wa, .footer, .reach, .est__form, .est__actions, .est__sticky, .est__budget, .est__work, .cmap, .float { display: none !important; }
-  .est__out { grid-column: 1 / -1; position: static; }
-  body { background: #fff; }
+  html { font-size: 10px; }
+  html, body, .page, main, .est, .est__app, .est__out { background: #fff !important; }
+  .bar, .wa, .footer, .reach, .cmap, .float, #top { display: none !important; }
+  /* everything but the estimate itself */
+  .est > :not(.est__print-head):not(.est__app):not(.est__print-foot) { display: none !important; }
+  .est__form, .est__actions, .est__budget, .est__guides, .est__work, .est__sticky { display: none !important; }
+  .est__print-head { display: grid; grid-template-columns: auto 1fr auto; gap: 4mm; align-items: center; padding-bottom: 4mm; margin-bottom: 5mm; border-bottom: 1px solid #080807; }
+  .est__print-head img { width: 11mm; height: 11mm; }
+  .est__print-head p { margin: 0; }
+  .est__print-brand { font-size: 15pt; font-weight: 700; letter-spacing: -0.02em; }
+  .est__print-kind { font-size: 9pt; color: #545454; }
+  .est__print-meta { text-align: right; font-size: 8.5pt; color: #545454; }
+  .est__app { display: block; padding: 0; }
+  .est__out { display: block; position: static; }
+  .est__block { break-inside: avoid; page-break-inside: avoid; padding-top: 3.5mm; margin-bottom: 4mm; }
+  .est__totals { border-top: 0; padding-top: 0; }
+  .est__total { font-size: 24pt; }
+  .est__massing { max-height: 52mm; }
+  .est__list li { break-inside: avoid; }
+  /* the second page starts with what the estimate covers */
+  .est__block:has(.est__scope) { break-before: page; page-break-before: always; }
+  .est__print-foot { display: block; margin-top: 6mm; padding-top: 3mm; border-top: 1px solid #dcddde; font-size: 8pt; color: #545454; break-inside: avoid; }
+  .est__print-foot p { margin: 0 0 1mm; word-break: break-all; }
+  a[href]::after { content: none !important; }
 }
 

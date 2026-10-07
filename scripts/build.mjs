@@ -985,6 +985,11 @@ ${bar(lang, up, paths, 'tools')}
       <p class="h3 mf__intro">${esc(H.intro)}</p>
 ${pg ? `      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${up}${bookPath(lang)}${pg.q ?? ''}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="${wa(pg.wa ?? UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a></p>\n` : ''}    </header>
 ${pg?.photo ? placePhoto(lang, up, pg.photo, { eager: true }) : ''}
+    <header class="est__print-head" aria-hidden="true">
+      <img src="${up}assets/mark.svg" width="40" height="40" alt="">
+      <div><p class="est__print-brand">Studio CAVA</p><p class="est__print-kind">${lang === 'en' ? 'Building cost estimate' : 'Estimación de costos de construcción'}${pg ? ` · ${esc(pg.h1.join(' '))}` : ''}</p></div>
+      <div class="est__print-meta"><p data-est-print-date></p><p>cava.design</p></div>
+    </header>
     <noscript><p class="large est__noscript">${E.noscript}</p></noscript>
     <p class="large est__failed">${E.failed}</p>
     <div class="est__app grid">
@@ -1085,6 +1090,10 @@ ${work.map((p) => `        <li class="card" data-area="${p.builtArea}" data-kind
       </ol>
     </section>
     <p class="est__sticky label" aria-hidden="true"><span>${E.sticky}</span><b data-est-sticky></b></p>
+    <footer class="est__print-foot" aria-hidden="true">
+      <p>${lang === 'en' ? 'An estimate to start a budget, not a quote: a builder prices drawings. Reopen and change it at' : 'Una estimación para empezar un presupuesto, no una cotización: un constructor cotiza planos. Ábrala y cámbiela en'} <span data-est-print-url></span></p>
+      <p>Studio CAVA · hola@cava.design · +${WHATSAPP_SHOWN.replace(/^\+/, '')} · cava.design</p>
+    </footer>
 ${pg || !scenarios.length ? '' : `    <nav class="tw__sec grid" aria-labelledby="est-examples">
       <h2 class="label tw__label" id="est-examples">${lang === 'en' ? '(Examples)' : '(Ejemplos)'}</h2>
       <ul class="tw__aside guide__links">

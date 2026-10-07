@@ -396,6 +396,11 @@
     renderWork(e);
     $('[data-est-area-out]').textContent = `${num(state.area)} m² · ${num(state.area * 10.7639)} ${T.ft2}`;
     toUrl();
+    // the printed copy carries the date and the link that reopens this estimate
+    const pd = $('[data-est-print-date]');
+    if (pd && !pd.textContent) pd.textContent = new Intl.DateTimeFormat(ES ? 'es-CR' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
+    const pu = $('[data-est-print-url]');
+    if (pu) pu.textContent = location.href;
     const book = $('[data-est-book]');
     if (book) { book.dataset.base ||= book.getAttribute('href'); book.href = `${book.dataset.base}?town=${encodeURIComponent(state.town)}&est=${encodeURIComponent(location.href)}`; }
     const wa = $('[data-est-wa]');
