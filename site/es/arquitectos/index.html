@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="../../assets/css/site.css">
+<script defer src="../../assets/js/climate-map.js"></script>
 </head>
 <body class="sub">
 <div id="top"></div>
@@ -41,43 +42,54 @@
       <h1 class="display mf__title" id="hub-title"><span>Dónde</span><span class="right">trabajamos</span></h1>
       <p class="h3 mf__intro">Diseñamos y firmamos proyectos en cualquier parte de Costa Rica. Cada página reúne lo que importa antes de construir en ese lugar: la lluvia, el sol, el viento, los permisos y el viaje desde el aeropuerto.</p>
     </header>
+    <div class="hub__map">
+      <figure class="cmap" data-cmap data-center="-84.25,9.85" data-zoom="6.9" data-bounds="[[-85.95,8],[-82.55,11.22]]" data-pins="[{&quot;n&quot;:&quot;Tamarindo&quot;,&quot;c&quot;:[-85.83995,10.29841],&quot;h&quot;:&quot;tamarindo/&quot;},{&quot;n&quot;:&quot;Playa Grande&quot;,&quot;c&quot;:[-85.84702,10.33463],&quot;h&quot;:&quot;playa-grande/&quot;},{&quot;n&quot;:&quot;Playa Negra&quot;,&quot;c&quot;:[-85.83015,10.19456],&quot;h&quot;:&quot;playa-negra/&quot;},{&quot;n&quot;:&quot;Flamingo&quot;,&quot;c&quot;:[-85.79334,10.4284],&quot;h&quot;:&quot;flamingo/&quot;},{&quot;n&quot;:&quot;Playas del Coco&quot;,&quot;c&quot;:[-85.69226,10.55799],&quot;h&quot;:&quot;playas-del-coco/&quot;},{&quot;n&quot;:&quot;Liberia&quot;,&quot;c&quot;:[-85.43932,10.63198],&quot;h&quot;:&quot;liberia/&quot;},{&quot;n&quot;:&quot;Nosara&quot;,&quot;c&quot;:[-85.6279,9.97837],&quot;h&quot;:&quot;nosara/&quot;},{&quot;n&quot;:&quot;Sámara&quot;,&quot;c&quot;:[-85.5289,9.88342],&quot;h&quot;:&quot;samara/&quot;},{&quot;n&quot;:&quot;Santa Teresa&quot;,&quot;c&quot;:[-85.16436,9.64164],&quot;h&quot;:&quot;santa-teresa/&quot;},{&quot;n&quot;:&quot;Jacó&quot;,&quot;c&quot;:[-84.62813,9.61564],&quot;h&quot;:&quot;jaco/&quot;},{&quot;n&quot;:&quot;Dominical&quot;,&quot;c&quot;:[-83.8627,9.25357],&quot;h&quot;:&quot;dominical/&quot;},{&quot;n&quot;:&quot;Uvita&quot;,&quot;c&quot;:[-83.7364,9.1731],&quot;h&quot;:&quot;uvita/&quot;},{&quot;n&quot;:&quot;Puerto Viejo&quot;,&quot;c&quot;:[-82.75357,9.65649],&quot;h&quot;:&quot;puerto-viejo/&quot;},{&quot;n&quot;:&quot;Escazú&quot;,&quot;c&quot;:[-84.14096,9.91599],&quot;h&quot;:&quot;escazu/&quot;},{&quot;n&quot;:&quot;Santa Ana&quot;,&quot;c&quot;:[-84.19157,9.91798],&quot;h&quot;:&quot;santa-ana/&quot;},{&quot;n&quot;:&quot;Atenas&quot;,&quot;c&quot;:[-84.39903,9.97949],&quot;h&quot;:&quot;atenas/&quot;},{&quot;n&quot;:&quot;Heredia&quot;,&quot;c&quot;:[-84.11712,9.99843],&quot;h&quot;:&quot;heredia/&quot;}]">
+        <div class="cmap__canvas" role="region" aria-label="Mapa de Costa Rica con el viento promedio en movimiento y la radiación solar que recibe el suelo en un año"></div>
+        <div class="cmap__controls">
+          <div class="cmap__seg" role="group" aria-label="Época"><button type="button" data-season="dry" aria-pressed="true">Época seca</button><button type="button" data-season="wet" aria-pressed="false">Época lluviosa</button></div>
+          <button class="cmap__toggle" type="button" data-sun aria-pressed="true">Radiación</button>
+        </div>
+        <div class="cmap__sun label"><span>Radiación solar al año, kWh/m²</span><span class="cmap__scale"><i class="cmap__bar" style="background: linear-gradient(90deg, #f4ecd6 0%, #ecc878 35%, #e28c40 70%, #c24622 100%)"></i><span class="cmap__ticks"><span>1500</span><span>1850</span><span>2200</span></span></span></div>
+        <figcaption class="note">Las líneas se mueven con el viento promedio de la época que elija; entre más rápido se mueven, más fuerte el viento. El color es la radiación solar que recibe el suelo en un año. Viento: NASA POWER (MERRA-2), 2001 a 2020. Radiación: Global Solar Atlas (Grupo Banco Mundial, Solargis), CC BY 4.0.</figcaption>
+      </figure>
+    </div>
     <div class="hub__wrap">
       <table class="hub__table">
-        <thead><tr><th scope="col">Pueblo</th><th scope="col">Cantón</th><th scope="col">Lluvia al año</th><th scope="col">Época seca</th><th scope="col">Tardes más calientes</th><th scope="col">Desde el aeropuerto de Liberia</th><th scope="col">Desde el aeropuerto de San José</th></tr></thead>
+        <thead><tr><th scope="col">Pueblo</th><th scope="col">Cantón</th><th scope="col">Lluvia al año</th><th scope="col">Época seca</th><th scope="col">Tardes más calientes</th><th scope="col">Radiación al año</th><th scope="col">Desde el aeropuerto de Liberia</th><th scope="col">Desde el aeropuerto de San José</th></tr></thead>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Guanacaste</th></tr>
-          <tr><th scope="row"><a class="ulink" href="tamarindo/">Tamarindo</a></th><td>Santa Cruz</td><td>1741 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>1 h 25 min</td><td>4 h 55 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="playa-grande/">Playa Grande</a></th><td>Santa Cruz</td><td>1726 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>1 h 20 min</td><td>5 h 5 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="playa-negra/">Playa Negra</a></th><td>Santa Cruz</td><td>1792 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>1 h 35 min</td><td>4 h 55 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="flamingo/">Flamingo</a></th><td>Santa Cruz</td><td>1755 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>1 h</td><td>4 h 50 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="playas-del-coco/">Playas del Coco</a></th><td>Carrillo</td><td>1694 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>30 min</td><td>4 h 15 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="liberia/">Liberia</a></th><td>Liberia</td><td>1779 mm</td><td>diciembre a abril</td><td>33 °C, abril</td><td>15 min</td><td>3 h 35 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="nosara/">Nosara</a></th><td>Nicoya</td><td>2070 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2 h 20 min</td><td>4 h 50 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="samara/">Sámara</a></th><td>Nicoya</td><td>2091 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2 h 15 min</td><td>4 h 40 min</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Guanacaste</th></tr>
+          <tr><th scope="row"><a class="ulink" href="tamarindo/">Tamarindo</a></th><td>Santa Cruz</td><td>1741 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2080 kWh/m²</td><td>1 h 25 min</td><td>4 h 55 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="playa-grande/">Playa Grande</a></th><td>Santa Cruz</td><td>1726 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>2089 kWh/m²</td><td>1 h 20 min</td><td>5 h 5 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="playa-negra/">Playa Negra</a></th><td>Santa Cruz</td><td>1792 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2080 kWh/m²</td><td>1 h 35 min</td><td>4 h 55 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="flamingo/">Flamingo</a></th><td>Santa Cruz</td><td>1755 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>2081 kWh/m²</td><td>1 h</td><td>4 h 50 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="playas-del-coco/">Playas del Coco</a></th><td>Carrillo</td><td>1694 mm</td><td>diciembre a abril</td><td>34 °C, abril</td><td>2097 kWh/m²</td><td>30 min</td><td>4 h 15 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="liberia/">Liberia</a></th><td>Liberia</td><td>1779 mm</td><td>diciembre a abril</td><td>33 °C, abril</td><td>2091 kWh/m²</td><td>15 min</td><td>3 h 35 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="nosara/">Nosara</a></th><td>Nicoya</td><td>2070 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2004 kWh/m²</td><td>2 h 20 min</td><td>4 h 50 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="samara/">Sámara</a></th><td>Nicoya</td><td>2091 mm</td><td>diciembre a abril</td><td>35 °C, abril</td><td>2082 kWh/m²</td><td>2 h 15 min</td><td>4 h 40 min</td></tr>
         </tbody>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Sur de la península de Nicoya</th></tr>
-          <tr><th scope="row"><a class="ulink" href="santa-teresa/">Santa Teresa</a></th><td>Puntarenas</td><td>2841 mm</td><td>diciembre a marzo</td><td>30 °C, febrero</td><td>3 h 25 min</td><td>5 h 25 min</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Sur de la península de Nicoya</th></tr>
+          <tr><th scope="row"><a class="ulink" href="santa-teresa/">Santa Teresa</a></th><td>Puntarenas</td><td>2841 mm</td><td>diciembre a marzo</td><td>30 °C, febrero</td><td>2036 kWh/m²</td><td>3 h 25 min</td><td>5 h 25 min</td></tr>
         </tbody>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Pacífico central</th></tr>
-          <tr><th scope="row"><a class="ulink" href="jaco/">Jacó</a></th><td>Garabito</td><td>2757 mm</td><td>enero a marzo</td><td>28 °C, marzo</td><td>3 h 30 min</td><td>1 h 40 min</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Pacífico central</th></tr>
+          <tr><th scope="row"><a class="ulink" href="jaco/">Jacó</a></th><td>Garabito</td><td>2757 mm</td><td>enero a marzo</td><td>28 °C, marzo</td><td>2011 kWh/m²</td><td>3 h 30 min</td><td>1 h 40 min</td></tr>
         </tbody>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Pacífico sur</th></tr>
-          <tr><th scope="row"><a class="ulink" href="dominical/">Dominical</a></th><td>Osa</td><td>3765 mm</td><td>enero a marzo</td><td>29 °C, marzo</td><td>5 h 35 min</td><td>3 h 40 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="uvita/">Uvita</a></th><td>Osa</td><td>2751 mm</td><td>enero a marzo</td><td>28 °C, marzo</td><td>5 h 50 min</td><td>4 h</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Pacífico sur</th></tr>
+          <tr><th scope="row"><a class="ulink" href="dominical/">Dominical</a></th><td>Osa</td><td>3765 mm</td><td>enero a marzo</td><td>29 °C, marzo</td><td>1993 kWh/m²</td><td>5 h 35 min</td><td>3 h 40 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="uvita/">Uvita</a></th><td>Osa</td><td>2751 mm</td><td>enero a marzo</td><td>28 °C, marzo</td><td>1925 kWh/m²</td><td>5 h 50 min</td><td>4 h</td></tr>
         </tbody>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Caribe</th></tr>
-          <tr><th scope="row"><a class="ulink" href="puerto-viejo/">Puerto Viejo</a></th><td>Talamanca</td><td>2940 mm</td><td>No hay, llueve todos los meses</td><td>28 °C, junio</td><td>7 h 40 min</td><td>4 h 45 min</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Caribe</th></tr>
+          <tr><th scope="row"><a class="ulink" href="puerto-viejo/">Puerto Viejo</a></th><td>Talamanca</td><td>2940 mm</td><td>No hay, llueve todos los meses</td><td>28 °C, junio</td><td>1781 kWh/m²</td><td>7 h 40 min</td><td>4 h 45 min</td></tr>
         </tbody>
         <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">Valle Central</th></tr>
-          <tr><th scope="row"><a class="ulink" href="escazu/">Escazú</a></th><td>Escazú</td><td>1994 mm</td><td>diciembre a marzo</td><td>27 °C, abril</td><td>3 h 45 min</td><td>25 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="santa-ana/">Santa Ana</a></th><td>Santa Ana</td><td>2142 mm</td><td>diciembre a marzo</td><td>28 °C, abril</td><td>3 h 40 min</td><td>25 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="atenas/">Atenas</a></th><td>Atenas</td><td>2307 mm</td><td>diciembre a marzo</td><td>31 °C, abril</td><td>3 h 20 min</td><td>35 min</td></tr>
-          <tr><th scope="row"><a class="ulink" href="heredia/">Heredia</a></th><td>Heredia</td><td>2384 mm</td><td>febrero a marzo</td><td>27 °C, abril</td><td>3 h 50 min</td><td>20 min</td></tr>
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">Valle Central</th></tr>
+          <tr><th scope="row"><a class="ulink" href="escazu/">Escazú</a></th><td>Escazú</td><td>1994 mm</td><td>diciembre a marzo</td><td>27 °C, abril</td><td>1737 kWh/m²</td><td>3 h 45 min</td><td>25 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="santa-ana/">Santa Ana</a></th><td>Santa Ana</td><td>2142 mm</td><td>diciembre a marzo</td><td>28 °C, abril</td><td>1755 kWh/m²</td><td>3 h 40 min</td><td>25 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="atenas/">Atenas</a></th><td>Atenas</td><td>2307 mm</td><td>diciembre a marzo</td><td>31 °C, abril</td><td>2028 kWh/m²</td><td>3 h 20 min</td><td>35 min</td></tr>
+          <tr><th scope="row"><a class="ulink" href="heredia/">Heredia</a></th><td>Heredia</td><td>2384 mm</td><td>febrero a marzo</td><td>27 °C, abril</td><td>1988 kWh/m²</td><td>3 h 50 min</td><td>20 min</td></tr>
         </tbody>
       </table>
     </div>

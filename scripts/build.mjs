@@ -103,8 +103,8 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="${up}assets/css/site.css">
-${script ? `<script defer src="${up}assets/js/${script}"></script>
-` : ''}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
+${[].concat(script ?? []).map((s) => `<script defer src="${up}assets/js/${s}"></script>
+`).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 ` : ''}</head>
 <body class="sub">
 `;
@@ -468,6 +468,23 @@ ${P.wind.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
 `;
 }
 
+// The wind and sun map (site/assets/js/climate-map.js). `pins` = [{ n: name, c: [lng, lat], h: href, here }].
+function climateMap(lang, { center, zoom, bounds, pins, where }) {
+  const M = TT[lang].map;
+  const ghi = JSON.parse(readFileSync(join(SITE, 'assets', 'data', 'ghi.json'), 'utf8'));
+  const bar = `linear-gradient(90deg, ${ghi.stops.map(([a, c]) => `${c} ${Math.round(a * 100)}%`).join(', ')})`;
+  return `      <figure class="cmap" data-cmap data-center="${center.join(',')}" data-zoom="${zoom}"${bounds ? ` data-bounds="${JSON.stringify(bounds)}"` : ''} data-pins="${esc(JSON.stringify(pins))}">
+        <div class="cmap__canvas" role="region" aria-label="${esc(M.aria(where))}"></div>
+        <div class="cmap__controls">
+          <div class="cmap__seg" role="group" aria-label="${M.season}"><button type="button" data-season="dry" aria-pressed="true">${M.dry}</button><button type="button" data-season="wet" aria-pressed="false">${M.wet}</button></div>
+          <button class="cmap__toggle" type="button" data-sun aria-pressed="true">${M.sun}</button>
+        </div>
+        <div class="cmap__sun label"><span>${M.scale}</span><span class="cmap__scale"><i class="cmap__bar" style="background: ${bar}"></i><span class="cmap__ticks"><span>${num(lang, ghi.low)}</span><span>${num(lang, (ghi.low + ghi.high) / 2)}</span><span>${num(lang, ghi.high)}</span></span></span></div>
+        <figcaption class="note">${M.caption}</figcaption>
+      </figure>
+`;
+}
+
 // The sun's track over the town, seen from above, north at the top: the horizon is the outer ring,
 // overhead is the centre, and the inner rings are 30 and 60 degrees above the horizon.
 function sunDiagram(lang, t, d) {
@@ -531,7 +548,7 @@ function townPage(lang, t) {
   const fact = (k, v) => `        <div><dt>${k}</dt><dd>${esc(v)}</dd></div>`;
   return head(lang, {
     title: L.title(t), description: L.description(t, d, c, muni), paths,
-    image: `${imgBase(work[0].p.slug, 1)}-1600.webp`, up, script: 'project.js', jsonld: ld,
+    image: `${imgBase(work[0].p.slug, 1)}-1600.webp`, up, script: ['project.js', 'climate-map.js'], jsonld: ld,
   }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'towns')}
 <main class="page">
@@ -561,6 +578,8 @@ ${[
   fact(L.facts.dry, L.facts.dryV(c)),
   fact(L.facts.lir, L.facts.road(d.roads.LIR)),
   fact(L.facts.sjo, L.facts.road(d.roads.SJO)),
+  fact(L.facts.sun, L.facts.sunV(d)),
+  fact(L.facts.pv, L.facts.pvV(d)),
 ].join('\n')}
       </dl>
       <figure class="pmap" data-pmap data-lng="${d.coords[0]}" data-lat="${d.coords[1]}" data-label="${esc(t.name)}" data-pin="exact">
@@ -574,7 +593,10 @@ ${rainChart(lang, t, d)}      <div class="tw__text">
 ${P.year.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
-${windSection(lang, t, d, c, P)}    <section class="tw__sec grid" aria-labelledby="sun-title">
+${windSection(lang, t, d, c, P)}    <section class="tw__sec grid" aria-labelledby="map-title">
+      <h2 class="label tw__label" id="map-title">${L.map.label}</h2>
+${climateMap(lang, { center: d.coords, zoom: 8.2, where: t.name, pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: o.slug === t.slug ? '' : `../${o.slug}/`, here: o.slug === t.slug })) })}    </section>
+    <section class="tw__sec grid" aria-labelledby="sun-title">
       <h2 class="label tw__label" id="sun-title">${L.sun.label}</h2>
 ${sunDiagram(lang, t, d)}      <div class="tw__text tw__text--side">
 ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
@@ -627,11 +649,11 @@ function hubPage(lang) {
     const list = towns.filter((t) => t.region === r);
     if (!list.length) return '';
     return `        <tbody>
-          <tr class="hub__region"><th colspan="7" scope="rowgroup">${regions[r][lang]}</th></tr>
-${list.map((t) => { const d = townOf(t); const c = climate(d); return `          <tr><th scope="row"><a class="ulink" href="${t.slug}/">${esc(t.name)}</a></th><td>${esc(d.canton)}</td><td>${num(lang, c.total)} mm</td><td>${esc(L.facts.dryV(c))}</td><td>${c.tmaxHot} °C, ${MONTHS[lang][c.hottest]}</td><td>${duration(d.roads.LIR.min)}</td><td>${duration(d.roads.SJO.min)}</td></tr>`; }).join('\n')}
+          <tr class="hub__region"><th colspan="8" scope="rowgroup">${regions[r][lang]}</th></tr>
+${list.map((t) => { const d = townOf(t); const c = climate(d); return `          <tr><th scope="row"><a class="ulink" href="${t.slug}/">${esc(t.name)}</a></th><td>${esc(d.canton)}</td><td>${num(lang, c.total)} mm</td><td>${esc(L.facts.dryV(c))}</td><td>${c.tmaxHot} °C, ${MONTHS[lang][c.hottest]}</td><td>${num(lang, d.ghi)} kWh/m²</td><td>${duration(d.roads.LIR.min)}</td><td>${duration(d.roads.SJO.min)}</td></tr>`; }).join('\n')}
         </tbody>`;
   }).join('\n');
-  return head(lang, { title: H.title, description: H.description, paths, image: `${imgBase('tragaluz-retreat', 3)}-1600.webp`, up }) + `<div id="top"></div>
+  return head(lang, { title: H.title, description: H.description, paths, image: `${imgBase('tragaluz-retreat', 3)}-1600.webp`, up, script: 'climate-map.js' }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'towns')}
 <main class="page">
   <article class="mf" aria-labelledby="hub-title">
@@ -640,6 +662,8 @@ ${bar(lang, up, paths, 'towns')}
       <h1 class="display mf__title" id="hub-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
     </header>
+    <div class="hub__map">
+${climateMap(lang, { center: [-84.25, 9.85], zoom: 6.9, bounds: [[-85.95, 8.0], [-82.55, 11.22]], where: 'Costa Rica', pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: `${o.slug}/` })) })}    </div>
     <div class="hub__wrap">
       <table class="hub__table">
         <thead><tr>${H.cols.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead>

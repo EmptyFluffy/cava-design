@@ -110,6 +110,13 @@ export const T = {
       cantonV: (d) => `${d.canton}, ${d.province}`, elevationV: (d) => (d.elevation < 5 ? 'Sea level' : `${num('en', d.elevation)} m`),
       rainV: (c) => `${num('en', c.total)} mm a year`, dryV: (c) => factsDry('en', c),
       road: (r) => `${duration(r.min)} by road, ${num('en', r.km)} km`,
+      sun: 'Sunlight', sunV: (d) => `${num('en', d.ghi)} kWh/m² a year`, pv: 'Solar power', pvV: (d) => `${num('en', d.pvout)} kWh a year per kW of panels`,
+    },
+    map: {
+      label: '(Wind and sun)', dry: 'Dry season', wet: 'Rainy season', sun: 'Sunlight', season: 'Season',
+      scale: 'Sunlight a year, kWh/m²',
+      aria: (where) => `Map of ${where} with the average wind moving across it and the sunlight the ground gets in a year`,
+      caption: 'The lines drift with the average wind of the season you pick; the faster they move, the stronger the wind. The colour is the sunlight the ground gets in a year. Wind: NASA POWER (MERRA-2), 2001 to 2020. Sunlight: Global Solar Atlas (World Bank Group, Solargis), CC BY 4.0.',
     },
     year: { label: '(The year)', chart: (t, d) => `Rain by month in ${t.name}, in mm: ${d.rain.map((r, i) => `${MONTHS.en[i]} ${r}`).join(', ')}`, caption: `Rain by month, in mm. Grey: months under ${DRY} mm.` },
     sun: {
@@ -135,7 +142,7 @@ export const T = {
       description: 'Architects across Costa Rica. Rain, dry season, permits and the drive from the airport for every town where we design houses and hotels.',
       label: '(Where we work)', h1: ['Where we', 'work'],
       intro: 'We design and sign projects anywhere in Costa Rica. Each page gathers what matters before building in that place: the rain, the sun, the wind, the permits and the drive from the airport.',
-      cols: ['Town', 'Canton', 'Rain a year', 'Dry season', 'Hottest afternoons', 'From Liberia airport', 'From San José airport'],
+      cols: ['Town', 'Canton', 'Rain a year', 'Dry season', 'Hottest afternoons', 'Sunlight a year', 'From Liberia airport', 'From San José airport'],
     },
     crumb: 'Where we work',
   },
@@ -154,6 +161,13 @@ export const T = {
       cantonV: (d) => `${d.canton}, ${d.province}`, elevationV: (d) => (d.elevation < 5 ? 'Nivel del mar' : `${num('es', d.elevation)} m`),
       rainV: (c) => `${num('es', c.total)} mm al año`, dryV: (c) => factsDry('es', c),
       road: (r) => `${duration(r.min)} por carretera, ${num('es', r.km)} km`,
+      sun: 'Radiación solar', sunV: (d) => `${num('es', d.ghi)} kWh/m² al año`, pv: 'Energía solar', pvV: (d) => `${num('es', d.pvout)} kWh al año por kW de paneles`,
+    },
+    map: {
+      label: '(Viento y sol)', dry: 'Época seca', wet: 'Época lluviosa', sun: 'Radiación', season: 'Época',
+      scale: 'Radiación solar al año, kWh/m²',
+      aria: (where) => `Mapa de ${where} con el viento promedio en movimiento y la radiación solar que recibe el suelo en un año`,
+      caption: 'Las líneas se mueven con el viento promedio de la época que elija; entre más rápido se mueven, más fuerte el viento. El color es la radiación solar que recibe el suelo en un año. Viento: NASA POWER (MERRA-2), 2001 a 2020. Radiación: Global Solar Atlas (Grupo Banco Mundial, Solargis), CC BY 4.0.',
     },
     year: { label: '(El año)', chart: (t, d) => `Lluvia por mes en ${t.name}, en mm: ${d.rain.map((r, i) => `${MONTHS.es[i]} ${r}`).join(', ')}`, caption: `Lluvia por mes, en mm. En gris, los meses con menos de ${DRY} mm.` },
     sun: {
@@ -179,7 +193,7 @@ export const T = {
       description: 'Arquitectos en todo Costa Rica. Lluvia, época seca, permisos y distancia al aeropuerto de cada pueblo donde diseñamos casas y hoteles.',
       label: '(Dónde trabajamos)', h1: ['Dónde', 'trabajamos'],
       intro: 'Diseñamos y firmamos proyectos en cualquier parte de Costa Rica. Cada página reúne lo que importa antes de construir en ese lugar: la lluvia, el sol, el viento, los permisos y el viaje desde el aeropuerto.',
-      cols: ['Pueblo', 'Cantón', 'Lluvia al año', 'Época seca', 'Tardes más calientes', 'Desde el aeropuerto de Liberia', 'Desde el aeropuerto de San José'],
+      cols: ['Pueblo', 'Cantón', 'Lluvia al año', 'Época seca', 'Tardes más calientes', 'Radiación al año', 'Desde el aeropuerto de Liberia', 'Desde el aeropuerto de San José'],
     },
     crumb: 'Dónde trabajamos',
   },
@@ -233,6 +247,9 @@ export function paragraphs(lang, t, d, c, s, muni) {
   sun.push(en
     ? `Sunrise falls between ${clock(s.riseRange[0])} and ${clock(s.riseRange[1])} all year, and sunset between ${clock(s.setRange[0])} and ${clock(s.setRange[1])}.`
     : `El sol sale entre las ${clock(s.riseRange[0])} y las ${clock(s.riseRange[1])} todo el año, y se pone entre las ${clock(s.setRange[0])} y las ${clock(s.setRange[1])}.`);
+  sun.push(en
+    ? `The ground here gets ${num(lang, d.ghi)} kWh of sunlight per m² a year, and solar panels make about ${num(lang, d.pvout)} kWh a year for each kW installed.`
+    : `El suelo recibe aquí ${num(lang, d.ghi)} kWh de sol por m² al año, y los paneles solares producen unos ${num(lang, d.pvout)} kWh al año por cada kW instalado.`);
   out.sun = sun;
 
   // building here

@@ -27,8 +27,9 @@
   const placeholder = fig.dataset.pin === 'placeholder';
   const ES = document.documentElement.lang === 'es';
 
+  // one MapLibre for the whole page, shared with climate-map.js
   function loadMapLib() {
-    return new Promise((resolve, reject) => {
+    return (window.CAVA_MAPLIBRE ||= new Promise((resolve, reject) => {
       if (window.maplibregl) return resolve();
       const css = document.createElement('link');
       css.rel = 'stylesheet';
@@ -39,7 +40,7 @@
       js.onload = () => resolve();
       js.onerror = reject;
       document.head.appendChild(js);
-    });
+    }));
   }
 
   function init() {

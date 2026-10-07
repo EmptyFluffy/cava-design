@@ -58,6 +58,15 @@ python3 scripts/towns-rain.py <folder of CHPclim2 tifs>  # rain; the 12 files (3
 node scripts/build.mjs
 ```
 
+**The sun in 3D** (`site/assets/js/sun3d.js`): a Ladybug-style sun path over the lot, every whole hour's figure-eight coloured by the station's typical temperature, a small house with a deep roof casting the sun's shadow, date and hour sliders. three.js 0.186.1 loads from jsDelivr only when the section nears the viewport and only with WebGL; the SVG diagram stays as the fallback. The browser imports the same `sun.mjs` the build uses (the build copies it to `site/assets/js/`).
+
+**The wind and sun map** (`site/assets/js/climate-map.js`), on every town page and on `/architects/`: lines that drift with the season's average wind over a colour layer of yearly sunlight, with the towns marked. Its data comes from two scripts, run once:
+
+```sh
+node scripts/wind-map.mjs                                  # NASA POWER (MERRA-2) wind by season -> site/assets/data/wind.json
+python3 scripts/sun-map.py <unzipped Global Solar Atlas CR GeoTIFFs>  # overlay + ghi.json, and ghi/pvout per town
+```
+
 **To add a town:** add it to `data/towns.json` (name, a geocoding query, region, whether it is on the coast), run the three commands, check the canton it found, commit. The text is written in `scripts/towns-text.mjs`. The build also writes `sitemap.xml` (every page with its pair in the other language) and `robots.txt`.
 
 ## Spanish

@@ -1,0 +1,1 @@
+{"source": "Global Solar Atlas 2.0 (World Bank Group, Solargis), CC BY 4.0, 1999 to 2018", "corners": [[-86.0, 11.25], [-82.5, 11.25], [-82.5, 8.0], [-86.0, 8.0]], "low": 1500, "high": 2200, "stops": [[0.0, "#f4ecd6"], [0.35, "#ecc878"], [0.7, "#e28c40"], [1.0, "#c24622"]]}

@@ -519,6 +519,25 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .rain__months { margin: 0.45rem 0 0 2rem; font-size: 0.6875rem; font-weight: var(--w-strong); text-transform: uppercase; text-align: center; }
 .rain figcaption { margin-top: 0.9rem; }
 
+/* wind and sun map */
+.cmap { margin: 0; }
+.cmap__canvas { position: relative; aspect-ratio: 16 / 10; background: var(--light-grey); overflow: hidden; }
+.cmap__wind { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.cmap__canvas .maplibregl-ctrl-top-left, .cmap__canvas .maplibregl-ctrl-bottom-right { z-index: 3; }
+.cmap__controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-top: 0.9rem; }
+.cmap__seg { display: inline-flex; border: 1px solid var(--black); border-radius: 100vw; overflow: hidden; }
+.cmap__seg button, .cmap__toggle { padding: 0.6rem 0.95rem; border: 0; background: transparent; color: var(--black); font: inherit; font-size: var(--f-small); font-weight: var(--w-strong); text-transform: uppercase; line-height: 1; cursor: pointer; }
+.cmap__toggle { border: 1px solid var(--black); border-radius: 100vw; }
+.cmap__seg button[aria-pressed="true"], .cmap__toggle[aria-pressed="true"] { background: var(--black); color: var(--white); }
+.cmap__sun { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 0.9rem; color: var(--dark-grey); }
+.cmap__sun[hidden] { display: none; }
+.cmap__scale { display: inline-grid; width: min(16rem, 100%); gap: 0.25rem; }
+.cmap__bar { display: block; height: 0.55rem; opacity: 0.85; }
+.cmap__ticks { display: flex; justify-content: space-between; font-weight: var(--w-text); font-variant-numeric: tabular-nums; }
+.cmap figcaption { margin-top: 0.7rem; }
+.hub__map { margin-top: var(--s-2); }
+.tw__sec > .cmap { grid-column: 5 / -1; }
+
 /* wind roses: petals point into the wind */
 .roses__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); max-width: 44rem; }
 .roses__row--one { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
@@ -635,7 +654,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .tw__label { grid-column: 1 / span 3; }
   .sunpath { grid-column: 4 / span 6; }
   .tw__text--side { grid-column: 4 / -1; }
-  .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side { grid-column: 4 / -1; }
+  .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side, .tw__sec > .cmap { grid-column: 4 / -1; }
 }
 
 /* Phone */
@@ -711,8 +730,9 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .tw__steps p { grid-column: 2; }
   .cards--three { grid-template-columns: minmax(0, 1fr); }
   .roses__row { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
-  .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side { grid-column: 1 / -1; }
+  .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side, .tw__sec > .cmap { grid-column: 1 / -1; }
   .sun3d { aspect-ratio: 1; }
+  .cmap__canvas { aspect-ratio: 4 / 5; }
   .sun3d__controls { grid-template-columns: minmax(0, 1fr); }
   .rain__val { font-size: 0.5625rem; }
   .rain__plot, .rain__months { margin-left: 1.6rem; }
