@@ -7,33 +7,9 @@
   const root = document.documentElement;
 
   /* ---------- Renders (the viewer walks this list) ---------- */
-  const RENDERS = [
-    ['a', 'Concept render', 'Timber cabin cantilevered over a forested hillside at sunset'],
-    ['b', 'Concept render', 'Open kitchen and living room facing a green valley through full-height glass'],
-    ['c', 'Concept render', 'Two-storey house with an infinity pool on a concrete plinth above dry forest'],
-    ['d', 'Casa Papagayo', 'Single-storey pool house under a deep flat roof, looking over a bay'],
-    ['e', 'Concept render', 'Two-storey timber and glass building with lit interiors at dusk'],
-    ['f', 'Concept render', 'Stepped two-storey house on a dry hillside with a plunge pool and deck'],
-    ['g', 'Concept render', 'Low white house with a timber-clad wall under a wide roof'],
-    ['h', 'Refugio Guaitil', 'Pavilion house with a timber deck and a reflecting pool among trees at dusk'],
-    ['i', 'Concept render', 'Timber boardwalk to a pavilion with a perforated screen wall and a pool'],
-    ['j', 'Casa Celosía', 'Dark perforated screen facade with an exterior stair under a floating roof'],
-    ['k', 'Hangar Nº1', 'Two-storey hangar building marked 01 with a deep roof over open bays'],
-    ['l', 'Concept render', 'Sunken lounge terrace with built-in sofas and a fire pit under a shade sail'],
-    ['m', 'Casa Voladiza', 'White cubic house raised on slender steel columns above a pool deck'],
-    ['o', 'Concept render', 'Aerial view of a tensile canopy on a headland above a bay with islands'],
-    ['p', 'Concept render', 'Two figures walking past a board-formed concrete wall'],
-    ['q', 'Café interior', 'Café counter with a pastry case and rattan pendant lamps'],
-    ['r', 'Café interior', 'Café lounge with a timber wall, sofas and ceiling fans'],
-    ['s', 'Café interior', 'Café counter in timber and stone under woven pendant lamps'],
-    ['t', 'Café interior', 'Café seating area with timber panelling, a low sofa and graphic prints'],
-    ['u', 'Concept render', 'Living room with full-height glass opening to a garden'],
-    ['v', 'Concept render', 'Kitchen island under a timber ceiling with garden views on both sides'],
-    ['x', 'Concept render', 'Dining room under a slatted timber ceiling with glass walls'],
-    ['y', 'Concept render', 'Stone and timber house around a pool in a tropical garden'],
-    ['z', 'Casa Piedra', 'Two-storey house with a stone wall, a glass balcony and a pool among trees'],
-    ['zz', 'Casa Piedra', 'Double-height living room with a stair, a timber kitchen and courtyard light'],
-  ].map(([id, title, alt]) => ({ id, title, alt }));
+  // Generated from data/projects.json by scripts/build.mjs (assets/js/renders.js):
+  // { id: '<slug>-<n>', src: 'assets/img/projects/<slug>/<n>', title, alt }
+  const RENDERS = window.CAVA_RENDERS || [];
 
   /* ---------- Dialog plumbing shared by the sheets and the viewer ---------- */
   let openDialog = null;
@@ -107,6 +83,32 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ---------- WhatsApp button: after the hero, and out of the way of text it would cover ---------- */
+  const wa = $('[data-wa]');
+  let waOn = null;
+  let waTick = false;
+  const waUpdate = () => {
+    waTick = false;
+    let on = window.scrollY > window.innerHeight * 0.55;
+    if (on) {
+      const a = wa.getBoundingClientRect();
+      // queried each time: the map's credit line only exists once the map has loaded
+      on = !$$('.map__card, .footer__bottom, .maplibregl-ctrl-bottom-right').some((el) => {
+        const b = el.getBoundingClientRect();
+        return b.width > 0 && a.left < b.right + 8 && a.right > b.left - 8 && a.top < b.bottom + 8 && a.bottom > b.top - 8;
+      });
+    }
+    if (on === waOn) return;
+    waOn = on;
+    wa.classList.toggle('is-on', on);
+    wa.setAttribute('aria-hidden', String(!on));
+    wa.tabIndex = on ? 0 : -1;
+  };
+  const waSchedule = () => { if (!waTick) { waTick = true; requestAnimationFrame(waUpdate); } };
+  window.addEventListener('scroll', waSchedule, { passive: true });
+  window.addEventListener('resize', waSchedule);
+  waUpdate();
+
   /* ---------- Render viewer ---------- */
   const lb = $('#lightbox');
   const lbImg = $('[data-lb-img]', lb);
@@ -115,14 +117,14 @@
   function lbShow(i) {
     lbIndex = (i + RENDERS.length) % RENDERS.length;
     const r = RENDERS[lbIndex];
-    lbImg.src = `assets/img/${r.id}-1600.webp`;
+    lbImg.src = `${r.src}-1600.webp`;
     lbImg.alt = r.alt;
     $('[data-lb-count]', lb).textContent = `(${String(lbIndex + 1).padStart(2, '0')}/${RENDERS.length})`;
     $('[data-lb-title]', lb).textContent = r.title;
     $('[data-lb-alt]', lb).textContent = r.alt;
     // warm the next one
     const n = RENDERS[(lbIndex + 1) % RENDERS.length];
-    new Image().src = `assets/img/${n.id}-1600.webp`;
+    new Image().src = `${n.src}-1600.webp`;
   }
   function lbGo(step) { lbShow(lbIndex + step); }
 
@@ -338,5 +340,11 @@
     io.observe(mapEl);
   } else {
     loadMapLib().then(initMap).catch(mapFallback);
+  }
+
+  /* ---------- "Get in touch" from the project pages lands on /#enquiry ---------- */
+  if (location.hash === '#enquiry') {
+    history.replaceState(null, '', location.pathname + location.search);
+    open(modal);
   }
 })();

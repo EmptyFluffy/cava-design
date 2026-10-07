@@ -1,0 +1,299 @@
+{
+  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover.",
+  "projects": [
+    {
+      "slug": "portland-house",
+      "name": "Portland House",
+      "folder": "Portland House",
+      "type": "House",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Portland House C.png",
+          "alt": "Single-storey pool house under a deep flat roof, looking over a bay"
+        },
+        {
+          "file": "Portland House B.png",
+          "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest"
+        },
+        {
+          "file": "Portland House.png",
+          "alt": "Open kitchen and living room facing a green valley through full-height glass"
+        }
+      ]
+    },
+    {
+      "slug": "papagayo-404",
+      "name": "Papagayo 404",
+      "folder": "Papagayo 404",
+      "type": "House",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Papagayo 404 B.png",
+          "alt": "White cubic house raised on slender steel columns above a pool deck"
+        },
+        {
+          "file": "Papagayo 404.png",
+          "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
+        }
+      ]
+    },
+    {
+      "slug": "hangars-b",
+      "name": "Hangars B",
+      "folder": "Hangars B",
+      "type": "Hangars",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Hangars.png",
+          "alt": "Two-storey hangar building marked 01 with a deep roof over open bays"
+        },
+        {
+          "file": "Hangars B.png",
+          "alt": "Dark perforated screen facade with an exterior stair under a floating roof"
+        }
+      ]
+    },
+    {
+      "slug": "tragaluz-retreat",
+      "name": "Tragaluz Retreat",
+      "folder": "Tragaluz Retreat",
+      "type": "Retreat",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Tragaluz Retreat B.png",
+          "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk"
+        },
+        {
+          "file": "Tragaluz Retreat C.png",
+          "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool"
+        },
+        {
+          "file": "Tragaluz Retreat.png",
+          "alt": "Low white house with a timber-clad wall under a wide roof"
+        }
+      ]
+    },
+    {
+      "slug": "kauhane-house",
+      "name": "Kauhane House",
+      "folder": "Kauhane House",
+      "type": "House",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Kauhane House E.png",
+          "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees"
+        },
+        {
+          "file": "Kauhane House D.png",
+          "alt": "Stone and timber house around a pool in a tropical garden"
+        },
+        {
+          "file": "Kauhane House.png",
+          "alt": "Living room with full-height glass opening to a garden"
+        },
+        {
+          "file": "Kauhane House B.png",
+          "alt": "Kitchen island under a timber ceiling with garden views on both sides"
+        },
+        {
+          "file": "Kauhane House C.png",
+          "alt": "Dining room under a slatted timber ceiling with glass walls"
+        }
+      ]
+    },
+    {
+      "slug": "negra-mixed-use",
+      "name": "Negra Mixed Use",
+      "folder": "Negra Mixed Use",
+      "type": "Mixed use",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Negra Mixed Use.png",
+          "alt": "Two-storey timber and glass building with lit interiors at dusk"
+        }
+      ]
+    },
+    {
+      "slug": "s3-houses",
+      "name": "S3 Houses",
+      "folder": "S3 Houses",
+      "type": "Houses",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "S3 Houses.png",
+          "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck"
+        }
+      ]
+    },
+    {
+      "slug": "tree-house",
+      "name": "Tree House",
+      "folder": "Tree House",
+      "type": "Tree house",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Tree House.png",
+          "alt": "Timber cabin cantilevered over a forested hillside at sunset"
+        }
+      ]
+    },
+    {
+      "slug": "amacor-house",
+      "name": "Amacor House",
+      "folder": "Amacor House",
+      "type": "House",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Amacor House.png",
+          "alt": "Double-height living room with a stair, a timber kitchen and courtyard light"
+        }
+      ]
+    },
+    {
+      "slug": "dawn-patrol-bakery",
+      "name": "Dawn Patrol Bakery",
+      "folder": "Dawn Patrol Bakery",
+      "type": "Bakery and café",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Dawn Patrol Bakery.png",
+          "alt": "Café counter with a pastry case and rattan pendant lamps"
+        },
+        {
+          "file": "Dawn Patrol Bakery B.png",
+          "alt": "Café lounge with a timber wall, sofas and ceiling fans"
+        },
+        {
+          "file": "Dawn Patrol Bakery C.png",
+          "alt": "Café counter in timber and stone under woven pendant lamps"
+        },
+        {
+          "file": "T.png",
+          "alt": "Café seating area with timber panelling, a low sofa and graphic prints"
+        }
+      ]
+    },
+    {
+      "slug": "military-museum",
+      "name": "Military Museum",
+      "folder": "Military Museum",
+      "type": "Museum",
+      "status": null,
+      "location": null,
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "Military Museum.png",
+          "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
+        }
+      ]
+    }
+  ]
+}
