@@ -35,7 +35,16 @@ The renders folder holds one folder per project, named as `folder` in the data (
 
 Each project also has `location`, `coords` ([lng, lat]) and `pin`: `exact`, `approximate` or `placeholder` (an invented spot in Guanacaste until the real site is known; the page says so). The technical sheet shows a small still map (MapLibre with OpenFreeMap, loaded by `assets/js/project.js` when it nears the viewport). Gallery images share the narrowest image's proportion, so rows line up and wider renders crop at the sides. `hero` lists the home page slides, which take turns every 6.5 s (not with reduced motion, not in a hidden tab).
 
-**To add a project:** put its folder of renders in the source folder, add an entry to `data/projects.json`, run both scripts, commit.
+**To add a project:** put its folder of renders in the source folder, add an entry to `data/projects.json` (with its Spanish `type_es` and an `alt_es` on each image), run both scripts, commit.
+
+## Spanish
+
+English lives at the root, Spanish under `/es/`: `/es/` and `/es/proyectos/<slug>/`. Every page links to its pair with `hreflang`, and the last item of the nav row, the menu and the footer switch language.
+
+- **Project pages** come out of `build.mjs` in both languages. Their interface text is in `scripts/strings.mjs`; project text comes from the data, where any field can carry a Spanish version as `<field>_es` (`type_es`, `alt_es`, `location_es`).
+- **The Spanish home** (`site/es/index.html`) is generated, not hand-written: `build.mjs` takes `site/index.html` and applies the replacements in `scripts/home-es.mjs`. Edit the English home, then add the Spanish of any new text to `home-es.mjs`. The build stops if a replacement no longer matches or if English text from the home is left on `/es/`, and names what to fix.
+- **The scripts** (`site.js`, `project.js`) read `<html lang>` for the few strings they write themselves (form buttons and the emailed answers, the clock, map fallbacks).
+- Spanish copy uses *usted*, the Costa Rican default for a studio.
 
 ## Font
 

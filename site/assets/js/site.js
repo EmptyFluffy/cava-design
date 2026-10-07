@@ -5,6 +5,8 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const root = document.documentElement;
+  // The Spanish home (/es/) runs this same file; text written from here picks its language.
+  const ES = root.lang === 'es';
 
   /* ---------- Renders (the viewer walks this list) ---------- */
   // Generated from data/projects.json by scripts/build.mjs (assets/js/renders.js):
@@ -109,7 +111,7 @@
   window.addEventListener('resize', waSchedule);
   waUpdate();
 
-  /* ---------- Render viewer ---------- */
+  /* ---------- Image viewer ---------- */
   const lb = $('#lightbox');
   const lbImg = $('[data-lb-img]', lb);
   let lbIndex = 0;
@@ -164,7 +166,7 @@
     steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
     bar.style.width = `${((i + 1) / steps.length) * 100}%`;
     back.hidden = i === 0;
-    next.textContent = i === steps.length - 1 ? 'Submit form →' : 'Next →';
+    next.textContent = i === steps.length - 1 ? (ES ? 'Enviar →' : 'Submit form →') : (ES ? 'Siguiente →' : 'Next →');
     if (focus) {
       const first = $('input, textarea', steps[i]);
       if (first) first.focus({ preventScroll: true });
@@ -221,21 +223,23 @@
   function answers() {
     const d = new FormData(form);
     const all = (k) => d.getAll(k).filter(Boolean).join(', ');
+    const keys = ES
+      ? ['Nombre', 'Correo', 'Teléfono o WhatsApp', 'Tiene el lote', 'Proyecto', 'Lote', 'Inicio de obra', 'Presupuesto de construcción', 'Constructor', 'Datos del constructor', 'Sobre el proyecto', 'Nos encontró por']
+      : ['Name', 'Email', 'Phone or WhatsApp', 'Owns the land', 'Planning', 'Site', 'Start of construction', 'Construction budget', 'Builder', 'Builder details', 'About the project', 'Found us through'];
     return [
-      ['Name', d.get('name')], ['Email', d.get('email')], ['Phone or WhatsApp', d.get('phone')],
-      ['Owns the land', d.get('land')], ['Planning', all('type')], ['Site', d.get('site')],
-      ['Start of construction', d.get('start')], ['Construction budget', d.get('budget')],
-      ['Builder', d.get('builder')], ['Builder details', d.get('builderDetails')],
-      ['About the project', d.get('brief')], ['Found us through', [d.get('source'), d.get('sourceOther')].filter(Boolean).join(': ')],
-    ].filter(([, v]) => v && String(v).trim());
+      d.get('name'), d.get('email'), d.get('phone'), d.get('land'), all('type'), d.get('site'), d.get('start'), d.get('budget'),
+      d.get('builder'), d.get('builderDetails'), d.get('brief'), [d.get('source'), d.get('sourceOther')].filter(Boolean).join(': '),
+    ].map((v, k) => [keys[k], v]).filter(([, v]) => v && String(v).trim());
   }
 
   function finish() {
     const a = answers();
     const first = String(new FormData(form).get('name') || '').trim().split(/\s+/)[0];
-    $('[data-thanks]').textContent = first ? `Thank you, ${first}.` : 'Thank you.';
+    $('[data-thanks]').textContent = ES ? (first ? `Gracias, ${first}.` : 'Gracias.') : (first ? `Thank you, ${first}.` : 'Thank you.');
     const d = new FormData(form);
-    const subject = `Project enquiry: ${d.getAll('type').join(', ') || 'new project'} in ${d.get('site') || 'Costa Rica'}`;
+    const subject = ES
+      ? `Consulta de proyecto: ${d.getAll('type').join(', ') || 'proyecto nuevo'} en ${d.get('site') || 'Costa Rica'}`
+      : `Project enquiry: ${d.getAll('type').join(', ') || 'new project'} in ${d.get('site') || 'Costa Rica'}`;
     const body = a.map(([k, v]) => `${k}: ${v}`).join('\n');
     $('[data-mailto]').href = `mailto:hola@cava.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     form.hidden = true;
@@ -260,14 +264,14 @@
   /* ---------- Footer clock, Costa Rica time ---------- */
   const clock = $('[data-clock]');
   const tz = 'America/Costa_Rica';
-  const fmt = new Intl.DateTimeFormat('en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' });
+  const fmt = new Intl.DateTimeFormat(ES ? 'es-CR' : 'en-US', { timeZone: tz, hour: 'numeric', minute: '2-digit' });
   const parts = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short', hour: 'numeric', hourCycle: 'h23' });
   function tick() {
     const now = new Date();
     const p = Object.fromEntries(parts.formatToParts(now).map((x) => [x.type, x.value]));
     const h = Number(p.hour);
     const open = !['Sat', 'Sun'].includes(p.weekday) && h >= 8 && h < 17;
-    clock.textContent = `${fmt.format(now)} CR, we are ${open ? 'open' : 'closed'}`;
+    clock.textContent = ES ? `${fmt.format(now)} CR, estamos ${open ? 'abiertos' : 'cerrados'}` : `${fmt.format(now)} CR, we are ${open ? 'open' : 'closed'}`;
   }
   tick();
   setInterval(tick, 30000);
@@ -295,7 +299,7 @@
   }
 
   function mapFallback() {
-    mapEl.innerHTML = '<div class="map__fallback"><p>The map did not load. <a class="ulink" href="https://www.google.com/maps/search/?api=1&amp;query=San+Jos%C3%A9%2C+Costa+Rica" target="_blank" rel="noopener">Open San José in Google Maps ↗</a></p></div>';
+    mapEl.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'} <a class="ulink" href="https://www.google.com/maps/search/?api=1&amp;query=San+Jos%C3%A9%2C+Costa+Rica" target="_blank" rel="noopener">${ES ? 'Abrir San José en Google Maps ↗' : 'Open San José in Google Maps ↗'}</a></p></div>`;
   }
 
   function initMap() {

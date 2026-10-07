@@ -1,5 +1,5 @@
 {
-  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order.",
+  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
   "hero": [
     "portland-house/1",
     "papagayo-404/1",
@@ -13,6 +13,7 @@
       "name": "Portland House",
       "folder": "Portland House",
       "type": "House",
+      "type_es": "Casa",
       "location": "Huacas, Guanacaste",
       "coords": [
         -85.765,
@@ -31,15 +32,18 @@
       "images": [
         {
           "file": "Portland House C.png",
-          "alt": "Single-storey pool house under a deep flat roof, looking over a bay"
+          "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
+          "alt_es": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía"
         },
         {
           "file": "Portland House B.png",
-          "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest"
+          "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest",
+          "alt_es": "Casa de dos pisos con piscina infinita sobre una base de concreto, encima del bosque seco"
         },
         {
           "file": "Portland House.png",
-          "alt": "Open kitchen and living room facing a green valley through full-height glass"
+          "alt": "Open kitchen and living room facing a green valley through full-height glass",
+          "alt_es": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo"
         }
       ]
     },
@@ -48,6 +52,7 @@
       "name": "Papagayo 404",
       "folder": "Papagayo 404",
       "type": "House",
+      "type_es": "Casa",
       "location": "Península Papagayo, Guanacaste",
       "coords": [
         -85.668,
@@ -66,11 +71,13 @@
       "images": [
         {
           "file": "Papagayo 404 B.png",
-          "alt": "White cubic house raised on slender steel columns above a pool deck"
+          "alt": "White cubic house raised on slender steel columns above a pool deck",
+          "alt_es": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
         },
         {
           "file": "Papagayo 404.png",
-          "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
+          "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail",
+          "alt_es": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
         }
       ]
     },
@@ -79,6 +86,7 @@
       "name": "Hangars B",
       "folder": "Hangars B",
       "type": "Hangars",
+      "type_es": "Hangares",
       "location": "Huacas, Guanacaste",
       "coords": [
         -85.77496,
@@ -97,11 +105,13 @@
       "images": [
         {
           "file": "Hangars.png",
-          "alt": "Two-storey hangar building marked 01 with a deep roof over open bays"
+          "alt": "Two-storey hangar building marked 01 with a deep roof over open bays",
+          "alt_es": "Edificio de hangares de dos pisos marcado 01, con un techo profundo sobre naves abiertas"
         },
         {
           "file": "Hangars B.png",
-          "alt": "Dark perforated screen facade with an exterior stair under a floating roof"
+          "alt": "Dark perforated screen facade with an exterior stair under a floating roof",
+          "alt_es": "Fachada de celosía oscura perforada con una escalera exterior bajo un techo que parece flotar"
         }
       ]
     },
@@ -110,6 +120,7 @@
       "name": "Tragaluz Retreat",
       "folder": "Tragaluz Retreat",
       "type": "Hotel",
+      "type_es": "Hotel",
       "location": "Playa Negra, Guanacaste",
       "coords": [
         -85.83015,
@@ -128,15 +139,18 @@
       "images": [
         {
           "file": "Tragaluz Retreat B.png",
-          "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk"
+          "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk",
+          "alt_es": "Pabellón con deck de madera y un espejo de agua entre árboles al atardecer"
         },
         {
           "file": "Tragaluz Retreat C.png",
-          "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool"
+          "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool",
+          "alt_es": "Pasarela de madera hacia un pabellón con un muro de celosía perforada y una piscina"
         },
         {
           "file": "Tragaluz Retreat.png",
-          "alt": "Low white house with a timber-clad wall under a wide roof"
+          "alt": "Low white house with a timber-clad wall under a wide roof",
+          "alt_es": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio"
         }
       ]
     },
@@ -145,6 +159,7 @@
       "name": "Kauhane House",
       "folder": "Kauhane House",
       "type": "House",
+      "type_es": "Casa",
       "location": "Playa Grande, Guanacaste",
       "coords": [
         -85.84702,
@@ -163,23 +178,28 @@
       "images": [
         {
           "file": "Kauhane House E.png",
-          "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees"
+          "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees",
+          "alt_es": "Casa de dos pisos con un muro de piedra, un balcón de vidrio y una piscina entre árboles"
         },
         {
           "file": "Kauhane House D.png",
-          "alt": "Stone and timber house around a pool in a tropical garden"
+          "alt": "Stone and timber house around a pool in a tropical garden",
+          "alt_es": "Casa de piedra y madera alrededor de una piscina en un jardín tropical"
         },
         {
           "file": "Kauhane House.png",
-          "alt": "Living room with full-height glass opening to a garden"
+          "alt": "Living room with full-height glass opening to a garden",
+          "alt_es": "Sala con ventanales de piso a techo que abren al jardín"
         },
         {
           "file": "Kauhane House B.png",
-          "alt": "Kitchen island under a timber ceiling with garden views on both sides"
+          "alt": "Kitchen island under a timber ceiling with garden views on both sides",
+          "alt_es": "Isla de cocina bajo un cielo raso de madera, con vista al jardín por los dos lados"
         },
         {
           "file": "Kauhane House C.png",
-          "alt": "Dining room under a slatted timber ceiling with glass walls"
+          "alt": "Dining room under a slatted timber ceiling with glass walls",
+          "alt_es": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio"
         }
       ]
     },
@@ -188,6 +208,7 @@
       "name": "Negra Mixed Use",
       "folder": "Negra Mixed Use",
       "type": "Mixed use",
+      "type_es": "Uso mixto",
       "location": null,
       "coords": [
         -85.79334,
@@ -206,7 +227,8 @@
       "images": [
         {
           "file": "Negra Mixed Use.png",
-          "alt": "Two-storey timber and glass building with lit interiors at dusk"
+          "alt": "Two-storey timber and glass building with lit interiors at dusk",
+          "alt_es": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer"
         }
       ]
     },
@@ -215,6 +237,7 @@
       "name": "S3 Houses",
       "folder": "S3 Houses",
       "type": "Houses",
+      "type_es": "Casas",
       "location": null,
       "coords": [
         -85.69226,
@@ -233,7 +256,8 @@
       "images": [
         {
           "file": "S3 Houses.png",
-          "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck"
+          "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck",
+          "alt_es": "Casa de dos niveles escalonada en una ladera seca, con una piscina pequeña y un deck"
         }
       ]
     },
@@ -242,6 +266,7 @@
       "name": "Tree House",
       "folder": "Tree House",
       "type": "Tree house",
+      "type_es": "Casa del árbol",
       "location": null,
       "coords": [
         -85.6279,
@@ -260,7 +285,8 @@
       "images": [
         {
           "file": "Tree House.png",
-          "alt": "Timber cabin cantilevered over a forested hillside at sunset"
+          "alt": "Timber cabin cantilevered over a forested hillside at sunset",
+          "alt_es": "Cabaña de madera en voladizo sobre una ladera boscosa al atardecer"
         }
       ]
     },
@@ -269,6 +295,7 @@
       "name": "Amacor House",
       "folder": "Amacor House",
       "type": "House",
+      "type_es": "Casa",
       "location": null,
       "coords": [
         -85.5289,
@@ -287,7 +314,8 @@
       "images": [
         {
           "file": "Amacor House.png",
-          "alt": "Double-height living room with a stair, a timber kitchen and courtyard light"
+          "alt": "Double-height living room with a stair, a timber kitchen and courtyard light",
+          "alt_es": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
         }
       ]
     },
@@ -296,7 +324,9 @@
       "name": "Dawn Patrol Bakery",
       "folder": "Dawn Patrol Bakery",
       "type": "Bakery and café",
+      "type_es": "Panadería y café",
       "location": "Tamarindo, Guanacaste, across from Bar El Vaquero",
+      "location_es": "Tamarindo, Guanacaste, frente al Bar El Vaquero",
       "coords": [
         -85.8391,
         10.30378
@@ -314,19 +344,23 @@
       "images": [
         {
           "file": "Dawn Patrol Bakery.png",
-          "alt": "Café counter with a pastry case and rattan pendant lamps"
+          "alt": "Café counter with a pastry case and rattan pendant lamps",
+          "alt_es": "Barra de café con vitrina de repostería y lámparas colgantes de ratán"
         },
         {
           "file": "Dawn Patrol Bakery B.png",
-          "alt": "Café lounge with a timber wall, sofas and ceiling fans"
+          "alt": "Café lounge with a timber wall, sofas and ceiling fans",
+          "alt_es": "Sala del café con pared de madera, sillones y abanicos de techo"
         },
         {
           "file": "Dawn Patrol Bakery C.png",
-          "alt": "Café counter in timber and stone under woven pendant lamps"
+          "alt": "Café counter in timber and stone under woven pendant lamps",
+          "alt_es": "Barra de café en madera y piedra bajo lámparas colgantes tejidas"
         },
         {
           "file": "T.png",
-          "alt": "Café seating area with timber panelling, a low sofa and graphic prints"
+          "alt": "Café seating area with timber panelling, a low sofa and graphic prints",
+          "alt_es": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos"
         }
       ]
     },
@@ -335,6 +369,7 @@
       "name": "Military Museum",
       "folder": "Military Museum",
       "type": "Museum",
+      "type_es": "Museo",
       "location": null,
       "coords": [
         -85.43932,
@@ -353,7 +388,8 @@
       "images": [
         {
           "file": "Military Museum.png",
-          "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
+          "alt": "Aerial view of a tensile canopy on a headland above a bay with islands",
+          "alt_es": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas"
         }
       ]
     }

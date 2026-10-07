@@ -142,6 +142,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .nav__links { grid-column: 7 / span 4; }
 .nav__cta { grid-column: 11 / span 2; justify-self: end; }
 .nav__menu { display: none; }
+/* The same page in the other language: last in the nav row (after an en space, so a wrapped
+   line starts flush), in the menu and in the footer */
+.menu__links .menu__lang { margin-top: 0.9rem; font-size: var(--f-h4); color: var(--mid-grey); }
+.menu__links .menu__lang:hover { color: inherit; }
 
 .hero__row {
   position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-50%); z-index: 1;
@@ -442,7 +446,11 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 
 /* Tablet */
 @media (max-width: 991px) {
-  .nav__links { grid-column: 7 / span 3; }
+  .nav__links, .bar__links { grid-column: 7 / span 3; }
+  /* "View project" is wider than its column here: keep it clear of the place name */
+  .hero__row > :nth-child(1) { grid-column: 1 / span 3; }
+  .hero__row > :nth-child(2) { grid-column: 4 / span 4; }
+  .hero__row > :nth-child(3) { grid-column: 8 / span 3; }
   .about__img, .about__text { grid-column: 4 / span 6; }
   .process__aside { grid-column: 1 / span 4; }
   .process__main { grid-column: 6 / span 7; }
@@ -453,9 +461,10 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 
 /* Phone */
 @media (max-width: 767px) {
-  .nav__brand { grid-column: 1 / span 8; font-size: 1.55rem; }
-  .nav__links, .nav__cta { display: none; }
-  .nav__menu { display: inline-flex; grid-column: 9 / span 4; justify-self: end; }
+  .nav { display: flex; align-items: center; gap: 1rem; }
+  .nav__brand { margin-right: auto; font-size: 1.55rem; }
+  .nav__cta, .nav__sec { display: none; }
+  .nav__menu { display: inline-flex; }
   .hero__row { display: flex; justify-content: space-between; gap: 0.75rem; font-size: 0.8125rem; }
   .hero__row > * { white-space: nowrap; }
   .hero__place { display: none; }
@@ -510,9 +519,13 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .next__name { text-align: left; }
 }
 
+/* Phones where the project name and "View project" need the whole row */
+@media (max-width: 479px) {
+  .hero__row > :first-child { display: none; }
+}
+
 /* Small phones */
 @media (max-width: 359px) {
-  .hero__row > :first-child { display: none; }
   .bar__cta .btn__dot { display: none; }
   .bar__cta { padding: 0.8rem 0.85rem; }
   .works__head { flex-wrap: wrap; }

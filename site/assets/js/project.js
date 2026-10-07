@@ -11,6 +11,7 @@
   const lng = Number(fig.dataset.lng), lat = Number(fig.dataset.lat);
   const label = fig.dataset.label.split(',')[0];
   const placeholder = fig.dataset.pin === 'placeholder';
+  const ES = document.documentElement.lang === 'es';
 
   function loadMapLib() {
     return new Promise((resolve, reject) => {
@@ -50,12 +51,12 @@
     });
     const pin = document.createElement('div');
     pin.className = placeholder ? 'pin pin--placeholder' : 'pin';
-    pin.innerHTML = `<span class="pin__label">${placeholder ? 'To be confirmed' : label}</span><span class="pin__dot"></span>`;
+    pin.innerHTML = `<span class="pin__label">${placeholder ? (ES ? 'Por confirmar' : 'To be confirmed') : label}</span><span class="pin__dot"></span>`;
     new gl.Marker({ element: pin, anchor: 'bottom', offset: [0, 7] }).setLngLat([lng, lat]).addTo(map);
   }
 
   function fallback() {
-    canvas.innerHTML = '<div class="map__fallback"><p>The map did not load.</p></div>';
+    canvas.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`;
   }
 
   const start = () => loadMapLib().then(init).catch(fallback);
