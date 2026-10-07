@@ -657,7 +657,7 @@ ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</s
       </ol>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
 ${guides.length || costs ? `      <ul class="tw__aside guide__links">
-${costs ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${costs ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
       </ul>` : ''}
     </section>
 ${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
@@ -1485,6 +1485,23 @@ const LAND_METHOD = {
     'Nada de esto es un avalúo. Un lote vale lo que diga un avalúo de ese lote, y antes de comprar conviene pedirlo, junto con el estudio registral de la propiedad y el certificado de uso de suelo.',
   ],
 };
+// the zone map; `start` opens it on a town
+function landFigure(lang, start = '') {
+  const E = LT[lang];
+  const pins = towns.filter((t) => land.towns[t.slug]).map((t) => ({ slug: t.slug, n: t.name, c: land.towns[t.slug].center }));
+  const cantonNames = Object.fromEntries(Object.entries(landEditions.cantons).map(([c, v]) => [c, v.name]));
+  return `    <div class="lt__map-wrap">
+      <figure class="lmap" data-lmap data-fx="${costs.fx.crcPerUsd}" data-town="${start}" data-towns="${esc(JSON.stringify(pins))}" data-cantons="${esc(JSON.stringify(cantonNames))}">
+        <div class="lmap__canvas" role="region" aria-label="${esc(E.aria)}"></div>
+        <div class="cmap__controls lmap__controls">
+          <label class="lmap__go"><span class="label">${E.go}</span><select class="lmap__select" data-lmap-town><option value="">${E.all}</option>${towns.filter((t) => land.towns[t.slug]).map((t) => `<option value="${t.slug}"${t.slug === start ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>
+          <div class="cmap__seg" role="group" aria-label="${E.show}"><button type="button" data-cur="usd" aria-pressed="true">US$</button><button type="button" data-cur="crc" aria-pressed="false">₡</button></div>
+        </div>
+        <div class="lmap__legend"><span class="label">${E.legend}</span><ol data-lmap-legend></ol></div>
+        <figcaption class="note">${esc(E.caption)}</figcaption>
+      </figure>
+    </div>`;
+}
 function landPage(lang) {
   const E = LT[lang];
   const paths = { en: landPath('en'), es: landPath('es') };
@@ -1505,7 +1522,7 @@ function landPage(lang) {
   const rows = towns.map((t) => {
     const L = land.towns[t.slug];
     if (!L) return '';
-    return `        <tr><th scope="row"><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(t.name)}</a> <a class="lt__map label ulink" href="?town=${t.slug}" data-lmap-fly="${t.slug}">${E.map}</a></th>${cell(L.official.centre)}${cell(L.official.residential)}${cell(L.official.beach)}<td>${L.edition ?? '–'}</td>${market(L.market)}</tr>`;
+    return `        <tr><th scope="row"><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(t.name)}</a> <a class="lt__map label ulink" href="?town=${t.slug}" data-lmap-fly="${t.slug}">${E.map}</a></th>${cell(L.official.centre)}${cell(L.official.residential)}${cell(L.official.beach)}<td>${L.edition ?? '–'}</td>${market(L.market)}</tr>`;
   }).join('\n');
   const pins = towns.filter((t) => land.towns[t.slug]).map((t) => ({ slug: t.slug, n: t.name, c: land.towns[t.slug].center }));
   const cantonNames = Object.fromEntries(Object.entries(landEditions.cantons).map(([c, v]) => [c, v.name]));
@@ -1519,17 +1536,7 @@ ${bar(lang, up, paths, 'tools')}
       <h1 class="display mf__title" id="lt-title"><span>${esc(E.h1[0])}</span><span class="right">${esc(E.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(E.intro)}</p>
     </header>
-    <div class="lt__map-wrap">
-      <figure class="lmap" data-lmap data-fx="${fx}" data-towns="${esc(JSON.stringify(pins))}" data-cantons="${esc(JSON.stringify(cantonNames))}">
-        <div class="lmap__canvas" role="region" aria-label="${esc(E.aria)}"></div>
-        <div class="cmap__controls lmap__controls">
-          <label class="lmap__go"><span class="label">${E.go}</span><select class="lmap__select" data-lmap-town><option value="">${E.all}</option>${towns.filter((t) => land.towns[t.slug]).map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}</select></label>
-          <div class="cmap__seg" role="group" aria-label="${E.show}"><button type="button" data-cur="usd" aria-pressed="true">US$</button><button type="button" data-cur="crc" aria-pressed="false">₡</button></div>
-        </div>
-        <div class="lmap__legend"><span class="label">${E.legend}</span><ol data-lmap-legend></ol></div>
-        <figcaption class="note">${esc(E.caption)}</figcaption>
-      </figure>
-    </div>
+${landFigure(lang)}
     <section class="tw__sec lt__towns" aria-labelledby="lt-table">
       <h2 class="label" id="lt-table">${E.table}</h2>
       <div class="hub__wrap">
@@ -1693,7 +1700,7 @@ ${Q.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="
       <h2 class="label tw__label" id="tc-more">${C.more}</h2>
       <ul class="tw__aside guide__links">
         <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(C.arch(t.name))} →</a></li>
-${land ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(C.landLink(t.name))} →</a></li>\n` : ''}${services.length ? `        <li><a class="ulink" href="${up}${servicePath(lang, services.find((x) => x.slug.en === 'lot-study') ?? services[0])}">${esc(services.find((x) => x.slug.en === 'lot-study')?.[lang].name ?? '')} →</a></li>\n` : ''}      </ul>
+${land ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(C.landLink(t.name))} →</a></li>\n` : ''}${services.length ? `        <li><a class="ulink" href="${up}${servicePath(lang, services.find((x) => x.slug.en === 'lot-study') ?? services[0])}">${esc(services.find((x) => x.slug.en === 'lot-study')?.[lang].name ?? '')} →</a></li>\n` : ''}      </ul>
     </nav>
 `;
   const ld = {
@@ -1710,6 +1717,170 @@ ${land ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slu
   });
 }
 
+// ---------- "Land prices in <town>": the map on the town, its zones, its lots for sale ----------
+const landTownPath = (lang, slug) => `${landPath(lang)}${slug}/`;
+const ZONES_NEAR_PATH = join(ROOT, 'data', 'land', 'zones-by-town.json');
+const zonesNear = existsSync(ZONES_NEAR_PATH) ? JSON.parse(readFileSync(ZONES_NEAR_PATH, 'utf8')) : {};
+// the asking prices behind the market column, per town (data/land/market-sample.csv)
+const marketSample = (() => {
+  const f = join(ROOT, 'data', 'land', 'market-sample.csv');
+  if (!existsSync(f)) return {};
+  const [headRow, ...rows] = readFileSync(f, 'utf8').trim().split('\n');
+  const keys = headRow.split(',');
+  const out = {};
+  for (const line of rows) { const v = line.split(','); const o = Object.fromEntries(keys.map((k, i) => [k, v[i]])); if (+o.area_m2 >= 300 && +o.area_m2 <= 5000) (out[o.town] ||= []).push(+o.usd_m2); }
+  return out;
+})();
+// each lot for sale as a dot on a log scale of US$ a m², with the middle half and the median
+function lotStrip(lang, vals, m) {
+  const W = 640, H = 96, L = 8, R = 8, lo = 10, hi = 2500;
+  const x = (v) => L + ((Math.log(Math.max(lo, Math.min(hi, v))) - Math.log(lo)) / (Math.log(hi) - Math.log(lo))) * (W - L - R);
+  const dots = vals.map((v, i) => `<circle cx="${x(v).toFixed(1)}" cy="${(30 + ((i * 37) % 23)).toFixed(1)}" r="3.4"/>`).join('');
+  const ticks = [25, 50, 100, 200, 400, 800, 1600].map((t) => `<g class="ls__tick"><line x1="${x(t).toFixed(1)}" x2="${x(t).toFixed(1)}" y1="62" y2="67"/><text x="${x(t).toFixed(1)}" y="82">${t}</text></g>`).join('');
+  return `<svg class="ls" viewBox="0 0 ${W} ${H}" role="img" aria-label="${lang === 'en' ? `Asking prices of ${vals.length} lots, US$ a m²; median ${m.median}` : `Precios pedidos de ${vals.length} lotes, US$ por m²; mediana ${m.median}`}">
+        <rect class="ls__iqr" x="${x(m.p25).toFixed(1)}" y="22" width="${(x(m.p75) - x(m.p25)).toFixed(1)}" height="36" rx="3"/>
+        <g class="ls__dots">${dots}</g>
+        <line class="ls__median" x1="${x(m.median).toFixed(1)}" x2="${x(m.median).toFixed(1)}" y1="16" y2="62"/>
+        <text class="ls__label" x="${x(m.median).toFixed(1)}" y="10">${lang === 'en' ? 'median' : 'mediana'} US$${m.median.toLocaleString('en-US')}</text>
+        <text class="ls__unit" x="${W - R}" y="96">US$ ${lang === 'en' ? 'a' : 'por'} m²</text>
+        <line class="ls__axis" x1="${L}" x2="${W - R}" y1="62" y2="62"/>${ticks}
+      </svg>`;
+}
+const LTT = {
+  en: {
+    title: (n) => `Land prices in ${n}, Costa Rica: price per m² | Studio CAVA`,
+    description: (n, txt) => `Land in ${n}: ${txt} Every zone on a map, with the year of its edition.`,
+    label: '(Land prices)', h1: (n) => ['Land prices', `in ${n}`],
+    introO: (n, lo, hi, y) => `In ${n}, the Ministry of Finance values residential and central land at ₡${lo.toLocaleString('en-US')} to ₡${hi.toLocaleString('en-US')} a m² (US$${Math.round(lo / costs.fx.crcPerUsd)} to ${Math.round(hi / costs.fx.crcPerUsd).toLocaleString('en-US')}), in its ${y} edition.`,
+    introM: (m) => ` Lots for sale ask a median of US$${m.median.toLocaleString('en-US')} a m².`,
+    introP: () => 'Inside Península Papagayo the land is not sold: it is a concession of the ICT. Around it, the Ministry of Finance values the tourism pole at ₡325,000 a m² (2025 edition).',
+    study: 'Study the lot first', zones: '(Zones around the town)', zcols: ['Zone', 'Name', 'Official value, ₡/m²', 'US$/m²', 'Set for a lot of', 'Edition'],
+    zonesNote: (y) => `Official values of the Ministry of Finance (Órgano de Normalización Técnica), as published, for the zones whose centre lies within 3 km of the town; ${y} edition. Each value is set for a typical lot of the zone.`,
+    lots: '(Lots for sale)', lotsText: (m) => `Each dot is a titled residential lot of 300 to 5,000 m² listed for sale on 7 October 2026: ${m.n} lots, a median of US$${m.median.toLocaleString('en-US')} a m², and half of them between US$${m.p25.toLocaleString('en-US')} and ${m.p75.toLocaleString('en-US')}. Asking prices run above closing prices.`,
+    few: ' Few lots are listed here, so read it as a hint.', noLots: 'Too few lots are listed here to give a market figure.',
+    faq: '(Questions)', more: '(Also on this town)', work: '(Our work nearby)', all: 'All projects',
+    cost: (n) => `What it costs to build in ${n}`, arch: (n) => `Architects in ${n}: climate, permits and our work`, map: 'Land prices across Costa Rica',
+    q: {
+      price: (n) => `How much is land in ${n}?`,
+      what: () => "What are the Ministry of Finance's land values for?",
+      whatA: (y, c) => `They are the base of the property tax: each municipality is split into zones with an official value per m² for a typical lot, and publishes them in La Gaceta. ${c} is on its ${y} edition. When an edition is made its values sit close to the sales in each zone; the older the edition, the further the market has moved.`,
+      zmt: (n) => `Can I buy beachfront land in ${n}?`,
+      zmtA: () => 'Within 200 m of the high-tide line the land is not sold but granted in concession by the municipality, which charges a yearly fee, and the law does not grant concessions to foreigners with less than five years of residence. Titled land beyond that strip can be bought freely.',
+      check: () => 'How do I check a lot before buying it?',
+      checkA: () => 'Ask for the land use certificate, the water availability letter and the alignments, read the cadastral plan and the registry, and check slope, access and any condominium rules. Our lot study does all of it in two to four weeks, with a cost range for what fits.',
+    },
+    wa: (n) => `Hi Studio CAVA, I am looking at land in ${n} and would like to talk about it.`,
+  },
+  es: {
+    title: (n) => `Precio del terreno en ${n}: valor por m² | Studio CAVA`,
+    description: (n, txt) => `Terreno en ${n}: ${txt} Cada zona en un mapa, con el año de su edición.`,
+    label: '(Precio del terreno)', h1: (n) => ['Terreno', `en ${n}`],
+    introO: (n, lo, hi, y) => `En ${n}, el Ministerio de Hacienda valora el terreno residencial y del centro en ₡${lo.toLocaleString('en-US')} a ₡${hi.toLocaleString('en-US')} el m² (US$${Math.round(lo / costs.fx.crcPerUsd)} a ${Math.round(hi / costs.fx.crcPerUsd).toLocaleString('en-US')}), en su edición ${y}.`,
+    introM: (m) => ` Los lotes en venta piden una mediana de US$${m.median.toLocaleString('en-US')} el m².`,
+    introP: () => 'Dentro de la Península Papagayo el terreno no se vende: es una concesión del ICT. Alrededor, Hacienda valora el polo turístico en ₡325,000 el m² (edición 2025).',
+    study: 'Estudiar el lote', zones: '(Zonas alrededor del pueblo)', zcols: ['Zona', 'Nombre', 'Valor oficial, ₡/m²', 'US$/m²', 'Fijado para un lote de', 'Edición'],
+    zonesNote: (y) => `Valores oficiales del Ministerio de Hacienda (Órgano de Normalización Técnica), tal como se publican, para las zonas cuyo centro está a menos de 3 km del pueblo; edición ${y}. Cada valor está fijado para un lote típico de la zona.`,
+    lots: '(Lotes en venta)', lotsText: (m) => `Cada punto es un lote residencial titulado de 300 a 5,000 m² anunciado el 7 de octubre de 2026: ${m.n} lotes, una mediana de US$${m.median.toLocaleString('en-US')} el m² y la mitad de ellos entre US$${m.p25.toLocaleString('en-US')} y ${m.p75.toLocaleString('en-US')}. El precio pedido suele quedar por encima del de cierre.`,
+    few: ' Aquí hay pocos lotes anunciados, así que tómelo como una pista.', noLots: 'Aquí hay muy pocos lotes anunciados para dar una cifra de mercado.',
+    faq: '(Preguntas)', more: '(También de este pueblo)', work: '(Nuestro trabajo cerca)', all: 'Todos los proyectos',
+    cost: (n) => `Cuánto cuesta construir en ${n}`, arch: (n) => `Arquitectos en ${n}: clima, permisos y nuestro trabajo`, map: 'Precio del terreno en todo Costa Rica',
+    q: {
+      price: (n) => `¿Cuánto cuesta el terreno en ${n}?`,
+      what: () => '¿Para qué sirven los valores de terreno de Hacienda?',
+      whatA: (y, c) => `Son la base del impuesto de bienes inmuebles: cada municipalidad se divide en zonas con un valor oficial por m² para un lote típico, y las publica en La Gaceta. ${c} está en su edición ${y}. Cuando se hace una edición, sus valores quedan cerca de las ventas de cada zona; entre más vieja la edición, más se ha movido el mercado.`,
+      zmt: (n) => `¿Puedo comprar un terreno frente a la playa en ${n}?`,
+      zmtA: () => 'En los 200 m desde la pleamar el terreno no se vende: la municipalidad lo da en concesión y cobra un canon anual, y la ley no da concesiones a extranjeros con menos de cinco años de residencia. El terreno titulado más allá de esa franja se puede comprar sin esa limitación.',
+      check: () => '¿Cómo reviso un lote antes de comprarlo?',
+      checkA: () => 'Pida el certificado de uso de suelo, la carta de disponibilidad de agua y los alineamientos, lea el plano catastrado y el registro, y revise la pendiente, el acceso y las reglas del condominio si lo hay. Nuestro estudio de lote hace todo eso en dos a cuatro semanas, con un rango de costo para lo que cabe.',
+    },
+    wa: (n) => `Hola Studio CAVA, estoy viendo terrenos en ${n} y quisiera conversarlo.`,
+  },
+};
+function landTownPage(lang, t) {
+  const E = LTT[lang];
+  const Lmap = LT[lang];
+  const L = land.towns[t.slug];
+  const zs = zonesNear[t.slug] ?? [];
+  const fx = costs.fx.crcPerUsd;
+  const paths = { en: landTownPath('en', t.slug), es: landTownPath('es', t.slug) };
+  const up = upFrom(paths[lang]);
+  const d = townOf(t);
+  const pick = [...(L.official.centre ?? []), ...(L.official.residential ?? [])].map((z) => z.v);
+  const year = L.edition;
+  const cantonName = landEditions.cantons[zs[0]?.c]?.name ?? d.canton;
+  const intro = t.slug === 'papagayo' ? E.introP() : `${pick.length ? E.introO(t.name, Math.min(...pick), Math.max(...pick), year) : ''}${L.market ? E.introM(L.market) : ''}`;
+  const lot = services.find((x) => x.slug.en === 'lot-study');
+  const vals = marketSample[t.slug] ?? [];
+  const priceA = t.slug === 'papagayo' ? E.introP() : `${intro}${L.market && L.market.n < 10 ? E.few : ''}`;
+  const Q = [
+    [E.q.price(t.name), priceA.trim()],
+    [E.q.what(), E.q.whatA(year, cantonName)],
+    ...(t.coastal ? [[E.q.zmt(t.name), E.q.zmtA()]] : []),
+    [E.q.check(), E.q.checkA()],
+  ];
+  const work = projects.filter((p) => p.pin !== 'placeholder').map((p) => ({ p, km: km(d.coords, p.coords) })).sort((a, b) => a.km - b.km).slice(0, 3);
+  const rows = zs.map((z) => `            <tr><td class="label">${esc(z.z)}</td><th scope="row">${esc(z.n)}${z.zmt ? ` <span class="lt__tag">ZMT</span>` : ''}</th><td>₡${z.v.toLocaleString('en-US')}</td><td>US$${Math.round(z.v / fx).toLocaleString('en-US')}</td><td>${z.a ? `${z.a.toLocaleString('en-US')} m²` : '–'}</td><td>${z.y ?? '–'}</td></tr>`).join('\n');
+  const desc = E.description(t.name, intro.trim());
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebPage', name: E.title(t.name).split(' | ')[0], description: desc, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}` },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: Lmap.name, item: `${ORIGIN}/${landPath(lang)}` }, { '@type': 'ListItem', position: 3, name: t.name, item: `${ORIGIN}/${paths[lang]}` }] },
+      { '@type': 'FAQPage', mainEntity: Q.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    ],
+  };
+  return head(lang, { title: E.title(t.name), description: desc, paths, image: `${imgBase(work[0].p.slug, 1)}-1600.webp`, up, script: 'land-map.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'tools')}
+<main class="page">
+  <article class="mf lt lt--town" aria-labelledby="lt-title">
+    <header class="mf__head grid">
+      <p class="label mf__label"><a class="ulink" href="${up}${landPath(lang)}">${Lmap.label}</a></p>
+      <h1 class="display mf__title" id="lt-title"><span>${esc(E.h1(t.name)[0])}</span><span class="right">${esc(E.h1(t.name)[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(intro.trim())}</p>
+      <p class="svc__cta mf__intro">${lot ? `<a class="btn btn--dark" href="${up}${servicePath(lang, lot)}">${E.study} <span class="btn__dot" aria-hidden="true"></span></a> ` : ''}${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}?town=${t.slug}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : ''}</p>
+    </header>
+${landFigure(lang, t.slug)}
+${zs.length ? `    <section class="tw__sec lt__towns" aria-labelledby="ltt-zones">
+      <h2 class="label" id="ltt-zones">${E.zones}</h2>
+      <div class="hub__wrap">
+        <table class="hub__table lt__table lt__zones">
+          <thead><tr>${E.zcols.map((c) => `<th scope="col">${c}</th>`).join('')}</tr></thead>
+          <tbody>
+${rows}
+          </tbody>
+        </table>
+      </div>
+      <p class="note">${esc(E.zonesNote(year))}</p>
+    </section>
+` : ''}    <section class="tw__sec grid" aria-labelledby="ltt-lots">
+      <h2 class="label tw__label" id="ltt-lots">${E.lots}</h2>
+      <div class="tw__text">
+${L.market && vals.length ? `      ${lotStrip(lang, vals, L.market)}
+        <p class="note">${esc(E.lotsText(L.market))}${L.market.n < 10 ? esc(E.few) : ''}</p>` : `        <p class="large">${esc(E.noLots)}</p>`}
+      </div>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="ltt-faq">
+      <h2 class="label tw__label" id="ltt-faq">${E.faq}</h2>
+      <div class="faq">
+${Q.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="large">${esc(a)}</p></div>`).join('\n')}
+      </div>
+    </section>
+    <section class="related lt__work" aria-labelledby="ltt-work">
+      <div class="related__head"><h2 class="label" id="ltt-work">${E.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${E.all} →</a></div>
+${projectCards(lang, up, work.map(({ p }) => ({ p, meta: placeOf(lang, p) })))}    </section>
+    <nav class="tw__sec grid" aria-labelledby="ltt-more">
+      <h2 class="label tw__label" id="ltt-more">${E.more}</h2>
+      <ul class="tw__aside guide__links">
+        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(E.cost(t.name))} →</a></li>
+        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(E.arch(t.name))} →</a></li>
+        <li><a class="ulink" href="${up}${landPath(lang)}">${E.map} →</a></li>
+      </ul>
+    </nav>
+  </article>
+${contact(lang, E.wa(t.name), up, `?town=${t.slug}`)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -1722,7 +1893,7 @@ function sitemap() {
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
     ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }, ...towns.map((t) => ({ en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) }))] : []),
-    ...(land ? [{ en: landPath('en'), es: landPath('es') }] : []),
+    ...(land ? [{ en: landPath('en'), es: landPath('es') }, ...towns.filter((t) => land.towns[t.slug]).map((t) => ({ en: landTownPath('en', t.slug), es: landTownPath('es', t.slug) }))] : []),
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
   ];
@@ -1832,7 +2003,10 @@ for (const lang of ['en', 'es']) {
     write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
     towns.forEach((t) => write(`${townCostPath(lang, t.slug)}index.html`, townCostPage(lang, t)));
   }
-  if (land && costs) write(`${landPath(lang)}index.html`, landPage(lang));
+  if (land && costs) {
+    write(`${landPath(lang)}index.html`, landPage(lang));
+    towns.filter((t) => land.towns[t.slug]).forEach((t) => write(`${landTownPath(lang, t.slug)}index.html`, landTownPage(lang, t)));
+  }
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));

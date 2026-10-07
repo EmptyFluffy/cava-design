@@ -73,7 +73,7 @@
     const protocol = new window.pmtiles.Protocol();
     gl.addProtocol('pmtiles', protocol.tile);
     const box = fig.querySelector('.lmap__canvas');
-    const start = towns.find((t) => t.slug === new URLSearchParams(location.search).get('town'));
+    const start = towns.find((t) => t.slug === (new URLSearchParams(location.search).get('town') || fig.dataset.town));
     const map = new gl.Map({
       container: box,
       style: STYLE,

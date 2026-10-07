@@ -111,4 +111,21 @@ for (const [code, ys] of Object.entries(years)) {
   summary[code] = { name: cantons[code], edition, zones: features.filter((f) => f.properties.c === code).length };
 }
 writeFileSync(join(ROOT, 'data', 'land', 'editions.json'), JSON.stringify({ fetched: new Date().toISOString().slice(0, 10), cantons: summary }, null, 1) + '\n');
+
+// ---- 5. the zones around each town, for its own land page ----
+// Zones whose centre lies within 3 km of the town's centre (data/land/towns.json), dearest first.
+const townsLand = JSON.parse(readFileSync(join(ROOT, 'data', 'land', 'towns.json'), 'utf8')).towns;
+const centre = (g) => { let x = 0, y = 0, n = 0; const ring = g.type === 'Polygon' ? g.coordinates[0] : g.coordinates[0][0]; for (const [a, b] of ring) { x += a; y += b; n++; } return [x / n, y / n]; };
+const kmTo = ([a, b], [c, d]) => { const R = 6371, dl = ((c - a) * Math.PI) / 180, dp = ((d - b) * Math.PI) / 180; const h = Math.sin(dp / 2) ** 2 + Math.cos((b * Math.PI) / 180) * Math.cos((d * Math.PI) / 180) * Math.sin(dl / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); };
+const near = {};
+for (const [slug, tl] of Object.entries(townsLand)) {
+  const list = features.map((f) => ({ f, km: kmTo(tl.center, centre(f.geometry)) })).filter((x) => x.km <= 3)
+    .sort((a, b) => b.f.properties.v - a.f.properties.v)
+    .map(({ f, km }) => { const p = f.properties; return { z: p.z, n: p.n, c: p.c, v: p.v, ...(p.v2 ? { v2: p.v2 } : {}), ...(p.r ? { r: p.r } : {}), y: p.y, ...(p.a ? { a: p.a } : {}), ...(p.zmt ? { zmt: 1 } : {}), u: p.u, km: +km.toFixed(1) }; });
+  // one row per zone code: a zone can be split into several polygons
+  const seen = new Set();
+  near[slug] = list.filter((x) => { const k = `${x.c}-${x.z}`; if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, 24);
+}
+writeFileSync(join(ROOT, 'data', 'land', 'zones-by-town.json'), JSON.stringify(near) + '\n');
+console.log(`zones near each town: ${Object.values(near).map((l) => l.length).join(', ')}`);
 console.log(`${features.length} zones in ${Object.keys(summary).length} cantons -> site/assets/data/land.pmtiles`);

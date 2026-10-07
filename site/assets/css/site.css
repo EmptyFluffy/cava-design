@@ -774,6 +774,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .svc__card-fee { display: inline-block; margin-top: 0.6rem; padding: 0.3rem 0.6rem; border: 1px solid var(--black); border-radius: 100vw; font-size: 0.6875rem; }
 .svc .tw__sec { margin-left: 0; margin-right: 0; }
 .svc__cta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; }
+.svc__cta .btn { white-space: normal; text-align: left; }
 .svc__glance { grid-column: 5 / -1; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem var(--gap); }
 .svc__glance dt { margin-bottom: 0.4rem; color: var(--dark-grey); }
 .svc__glance dd { margin: 0; font-size: var(--f-large); line-height: 1.3; }
@@ -889,6 +890,19 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .lt__na { color: var(--mid-grey); }
 .lt__map { margin-left: 0.4rem; font-size: 0.6875rem; color: var(--dark-grey); }
 .lt__towns > .note { margin-top: 0.9rem; max-width: 62rem; }
+.lt__zones { min-width: 52rem; }
+.lt__zones tbody th { font-size: var(--f-main); font-weight: var(--w-strong); white-space: normal; }
+.lt__zones td.label { color: var(--dark-grey); }
+.ls { display: block; width: 100%; max-width: 46rem; height: auto; overflow: visible; }
+.ls__dots circle { fill: var(--black); fill-opacity: 0.32; }
+.ls__iqr { fill: var(--light-grey); stroke: var(--grey); }
+.ls__median { stroke: var(--black); stroke-width: 2; }
+.ls__axis, .ls__tick line { stroke: var(--mid-grey); stroke-width: 1; }
+.ls__tick text { fill: var(--dark-grey); font-size: 11px; text-anchor: middle; font-variant-numeric: tabular-nums; }
+.ls__label { fill: var(--black); font-size: 11px; font-weight: 600; text-anchor: middle; }
+.ls__unit { fill: var(--dark-grey); font-size: 11px; text-anchor: end; }
+.lt--town .lt__map-wrap { margin-bottom: var(--s-3); }
+.lt__work { padding-left: 0; padding-right: 0; }
 
 /* other projects at the foot of a page: similar projects, our work */
 .related { display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }
@@ -1067,7 +1081,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 /* Phones where the project name and "View project" need the whole row */
 @media (max-width: 479px) {
   /* service names run to 14 letters ("arquitectónico"): scale them to the screen */
-  .svc .mf__title, .est--town .mf__title { font-size: min(var(--f-display), 10.4vw); }
+  .svc .mf__title, .est--town .mf__title, .lt--town .mf__title { font-size: min(var(--f-display), 10.4vw); }
   .hero__row > :first-child { display: none; }
 }
 
