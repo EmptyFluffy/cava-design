@@ -613,7 +613,18 @@ function texts(html) {
   return out;
 }
 
+// The home page's counts follow the data: "All projects (N)" and "View all images (N)".
+function homeCounts() {
+  const path = join(SITE, 'index.html');
+  const before = readFileSync(path, 'utf8');
+  const after = before
+    .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
+    .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.length, 0)})`);
+  if (after !== before) writeFileSync(path, after);
+}
+
 function homeEs() {
+  homeCounts();
   const en = readFileSync(join(SITE, 'index.html'), 'utf8');
   let html = en;
   const missing = [];

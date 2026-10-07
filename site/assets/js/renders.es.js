@@ -22,13 +22,85 @@ window.CAVA_RENDERS = [
   "id": "papagayo-404-1",
   "src": "../assets/img/projects/papagayo-404/1",
   "title": "Papagayo 404",
-  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
+  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa"
  },
  {
   "id": "papagayo-404-2",
   "src": "../assets/img/projects/papagayo-404/2",
   "title": "Papagayo 404",
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito"
+ },
+ {
+  "id": "papagayo-404-3",
+  "src": "../assets/img/projects/papagayo-404/3",
+  "title": "Papagayo 404",
+  "alt": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo"
+ },
+ {
+  "id": "papagayo-404-4",
+  "src": "../assets/img/projects/papagayo-404/4",
+  "title": "Papagayo 404",
+  "alt": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía"
+ },
+ {
+  "id": "papagayo-404-5",
+  "src": "../assets/img/projects/papagayo-404/5",
+  "title": "Papagayo 404",
+  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco"
+ },
+ {
+  "id": "papagayo-404-6",
+  "src": "../assets/img/projects/papagayo-404/6",
+  "title": "Papagayo 404",
+  "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo"
+ },
+ {
+  "id": "papagayo-404-7",
+  "src": "../assets/img/projects/papagayo-404/7",
+  "title": "Papagayo 404",
+  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
+ },
+ {
+  "id": "papagayo-404-8",
+  "src": "../assets/img/projects/papagayo-404/8",
+  "title": "Papagayo 404",
   "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
+ },
+ {
+  "id": "papagayo-404-9",
+  "src": "../assets/img/projects/papagayo-404/9",
+  "title": "Papagayo 404",
+  "alt": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
+ },
+ {
+  "id": "casa-alcaravan-1",
+  "src": "../assets/img/projects/casa-alcaravan/1",
+  "title": "Casa Alcaraván",
+  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
+ },
+ {
+  "id": "casa-alcaravan-2",
+  "src": "../assets/img/projects/casa-alcaravan/2",
+  "title": "Casa Alcaraván",
+  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
+ },
+ {
+  "id": "casa-alcaravan-3",
+  "src": "../assets/img/projects/casa-alcaravan/3",
+  "title": "Casa Alcaraván",
+  "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
+ },
+ {
+  "id": "casa-alcaravan-4",
+  "src": "../assets/img/projects/casa-alcaravan/4",
+  "title": "Casa Alcaraván",
+  "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
+ },
+ {
+  "id": "casa-alcaravan-5",
+  "src": "../assets/img/projects/casa-alcaravan/5",
+  "title": "Casa Alcaraván",
+  "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
  },
  {
   "id": "hangars-b-1",
@@ -157,9 +229,9 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/papagayo-404/1",
-  "w": 1448,
-  "h": 1086,
-  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"

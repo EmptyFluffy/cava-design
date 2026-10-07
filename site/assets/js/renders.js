@@ -22,13 +22,85 @@ window.CAVA_RENDERS = [
   "id": "papagayo-404-1",
   "src": "assets/img/projects/papagayo-404/1",
   "title": "Papagayo 404",
-  "alt": "White cubic house raised on slender steel columns above a pool deck"
+  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside"
  },
  {
   "id": "papagayo-404-2",
   "src": "assets/img/projects/papagayo-404/2",
   "title": "Papagayo 404",
+  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge"
+ },
+ {
+  "id": "papagayo-404-3",
+  "src": "assets/img/projects/papagayo-404/3",
+  "title": "Papagayo 404",
+  "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms"
+ },
+ {
+  "id": "papagayo-404-4",
+  "src": "assets/img/projects/papagayo-404/4",
+  "title": "Papagayo 404",
+  "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay"
+ },
+ {
+  "id": "papagayo-404-5",
+  "src": "assets/img/projects/papagayo-404/5",
+  "title": "Papagayo 404",
+  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest"
+ },
+ {
+  "id": "papagayo-404-6",
+  "src": "assets/img/projects/papagayo-404/6",
+  "title": "Papagayo 404",
+  "alt": "Double-height living room with a timber wall, open to the garden through full-height glass"
+ },
+ {
+  "id": "papagayo-404-7",
+  "src": "assets/img/projects/papagayo-404/7",
+  "title": "Papagayo 404",
+  "alt": "White cubic house raised on slender steel columns above a pool deck"
+ },
+ {
+  "id": "papagayo-404-8",
+  "src": "assets/img/projects/papagayo-404/8",
+  "title": "Papagayo 404",
   "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
+ },
+ {
+  "id": "papagayo-404-9",
+  "src": "assets/img/projects/papagayo-404/9",
+  "title": "Papagayo 404",
+  "alt": "Site plan of the house, with the long pool, the terraces and the trees around them"
+ },
+ {
+  "id": "casa-alcaravan-1",
+  "src": "assets/img/projects/casa-alcaravan/1",
+  "title": "Casa Alcaraván",
+  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree"
+ },
+ {
+  "id": "casa-alcaravan-2",
+  "src": "assets/img/projects/casa-alcaravan/2",
+  "title": "Casa Alcaraván",
+  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows"
+ },
+ {
+  "id": "casa-alcaravan-3",
+  "src": "assets/img/projects/casa-alcaravan/3",
+  "title": "Casa Alcaraván",
+  "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool"
+ },
+ {
+  "id": "casa-alcaravan-4",
+  "src": "assets/img/projects/casa-alcaravan/4",
+  "title": "Casa Alcaraván",
+  "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors"
+ },
+ {
+  "id": "casa-alcaravan-5",
+  "src": "assets/img/projects/casa-alcaravan/5",
+  "title": "Casa Alcaraván",
+  "alt": "Bathroom in polished concrete with a vessel sink on a timber counter"
  },
  {
   "id": "hangars-b-1",
@@ -157,9 +229,9 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/1",
-  "w": 1448,
-  "h": 1086,
-  "alt": "White cubic house raised on slender steel columns above a pool deck",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"

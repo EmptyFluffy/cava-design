@@ -62,13 +62,44 @@
       "status": null,
       "year": null,
       "siteArea": null,
-      "builtArea": null,
+      "builtArea": "1,100 m²",
+      "builtArea_es": "1100 m²",
       "program": null,
       "structure": null,
       "materials": null,
       "climate": null,
       "team": null,
       "images": [
+        {
+          "file": "Arquitectura moderna restaurada con precisión-5.png",
+          "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
+          "alt_es": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa"
+        },
+        {
+          "file": "Arquitectura moderna en alta definición-1.png",
+          "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge",
+          "alt_es": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito"
+        },
+        {
+          "file": "Residencia moderna con piscina y jardines-6.png",
+          "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms",
+          "alt_es": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo"
+        },
+        {
+          "file": "Arquitectura moderna con piscina y jardines-3.png",
+          "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay",
+          "alt_es": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía"
+        },
+        {
+          "file": "Restauración fiel de fotografía arquitectónica-2.png",
+          "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest",
+          "alt_es": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco"
+        },
+        {
+          "file": "Arquitectura con piscina, jardines y columnas-4.png",
+          "alt": "Double-height living room with a timber wall, open to the garden through full-height glass",
+          "alt_es": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo"
+        },
         {
           "file": "Papagayo 404 B.png",
           "alt": "White cubic house raised on slender steel columns above a pool deck",
@@ -78,6 +109,61 @@
           "file": "Papagayo 404.png",
           "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail",
           "alt_es": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
+        },
+        {
+          "file": "G.webp",
+          "alt": "Site plan of the house, with the long pool, the terraces and the trees around them",
+          "alt_es": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
+        }
+      ]
+    },
+    {
+      "slug": "casa-alcaravan",
+      "name": "Casa Alcaraván",
+      "folder": "CASA ALCARABAN",
+      "type": "House",
+      "type_es": "Casa",
+      "location": "Playa Grande, Guanacaste",
+      "coords": [
+        -85.842,
+        10.336
+      ],
+      "pin": "approximate",
+      "status": "Built",
+      "status_es": "Construida",
+      "year": null,
+      "siteArea": null,
+      "builtArea": "200 m²",
+      "program": null,
+      "structure": null,
+      "materials": null,
+      "climate": null,
+      "team": null,
+      "images": [
+        {
+          "file": "U.webp",
+          "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree",
+          "alt_es": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
+        },
+        {
+          "file": "Y.webp",
+          "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows",
+          "alt_es": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
+        },
+        {
+          "file": "V.webp",
+          "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool",
+          "alt_es": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
+        },
+        {
+          "file": "Z.webp",
+          "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors",
+          "alt_es": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
+        },
+        {
+          "file": "X.webp",
+          "alt": "Bathroom in polished concrete with a vessel sink on a timber counter",
+          "alt_es": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
         }
       ]
     },
