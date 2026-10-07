@@ -657,7 +657,7 @@ ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</s
       </ol>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
 ${guides.length || costs ? `      <ul class="tw__aside guide__links">
-${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}?town=${t.slug}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${costs ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
       </ul>` : ''}
     </section>
 ${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
@@ -959,52 +959,59 @@ function costsData() {
     }),
   };
 }
-function estimatorPage(lang) {
+// `pg` (optional) makes a preset page: { paths, title, description, label, h1, intro, preset, photo, extra, ld, cls }
+const EST_DEFAULT = { town: 'tamarindo', type: 'house', area: 250, storeys: 1, quality: 'high', slope: 'flat', pool: 32, deck: 40, solar: true, landscape: true, furniture: false, land: false, lot: 1000, condo: false };
+function estimatorPage(lang, pg = null) {
   const E = ET[lang];
   const M = costs[lang];
-  const paths = { en: estimatorPath('en'), es: estimatorPath('es') };
+  const P = { ...EST_DEFAULT, ...(pg?.preset ?? {}) };
+  const paths = pg?.paths ?? { en: estimatorPath('en'), es: estimatorPath('es') };
   const up = upFrom(paths[lang]);
+  const on = (k) => (P[k] ? ' checked' : '');
   // each option carries what it changes in the likely total, filled in by estimator.js
   const seg = (name, opts, checked, labels, notes) => `<div class="est__seg" role="radiogroup">${opts.map((o) => `<label class="est__opt"><input type="radio" name="${name}" value="${o}"${String(o) === String(checked) ? ' checked' : ''}><span>${esc(labels[o])}</span>${notes ? `<small>${esc(notes[o])}</small>` : ''}${name === 'cur' ? '' : '<em class="est__delta" data-delta></em>'}</label>`).join('')}</div>`;
   const kindOf = (p) => (p.typology === 'Residential' ? 'house' : ['Hospitality', 'Mixed use'].includes(p.typology) ? 'hotel' : null);
   const work = projects.filter((p) => kindOf(p) && p.builtArea);
-  const ld = { '@context': 'https://schema.org', '@type': 'WebApplication', name: E.title.split(' | ')[0], applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` } };
-  return head(lang, { title: E.title, description: E.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up, script: 'estimator.js', jsonld: ld }) + `<div id="top"></div>
+  const ld = pg?.ld ?? { '@context': 'https://schema.org', '@type': 'WebApplication', name: E.title.split(' | ')[0], applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` } };
+  const H = pg ?? E;
+  const image = pg?.photo ? `assets/img/places/${pg.photo}-1600.webp` : `${imgBase('papagayo-404', 1)}-1600.webp`;
+  return head(lang, { title: H.title, description: H.description, paths, image, up, script: 'estimator.js', jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'tools')}
 <main class="page">
-  <article class="est" data-estimator aria-labelledby="est-title">
+  <article class="est${pg?.cls ? ` ${pg.cls}` : ''}" data-estimator aria-labelledby="est-title">
     <header class="mf__head grid">
-      <p class="label mf__label">${E.label}</p>
-      <h1 class="display mf__title" id="est-title"><span>${esc(E.h1[0])}</span><span class="right">${esc(E.h1[1])}</span></h1>
-      <p class="h3 mf__intro">${esc(E.intro)}</p>
-    </header>
+      <p class="label mf__label">${pg ? `<a class="ulink" href="${up}${estimatorPath(lang)}">${E.label}</a>` : E.label}</p>
+      <h1 class="display mf__title" id="est-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(H.intro)}</p>
+${pg ? `      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${up}${bookPath(lang)}${pg.q ?? ''}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="${wa(pg.wa ?? UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a></p>\n` : ''}    </header>
+${pg?.photo ? placePhoto(lang, up, pg.photo, { eager: true }) : ''}
     <noscript><p class="large est__noscript">${E.noscript}</p></noscript>
     <p class="large est__failed">${E.failed}</p>
     <div class="est__app grid">
       <form class="est__form" data-est-form onsubmit="return false">
         <fieldset class="est__field"><legend class="label">${E.where}</legend>
-          <select class="input est__select" name="town">${towns.map((t) => `<option value="${t.slug}"${t.slug === 'tamarindo' ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}<option value="other">${E.other}</option></select>
+          <select class="input est__select" name="town">${towns.map((t) => `<option value="${t.slug}"${t.slug === P.town ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}<option value="other">${E.other}</option></select>
         </fieldset>
-        <fieldset class="est__field"><legend class="label">${E.what}</legend>${seg('type', ['house', 'hotel'], 'house', E.types)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.what}</legend>${seg('type', ['house', 'hotel'], P.type, E.types)}</fieldset>
         <fieldset class="est__field"><legend class="label">${E.size}</legend>
-          <div class="est__area"><input type="range" min="60" max="1500" step="10" value="250" data-est-area-range aria-label="${E.size}"><input class="input est__num" type="number" name="area" min="40" max="3000" step="10" value="250" data-est-area-box aria-label="${E.size}, m²"></div>
+          <div class="est__area"><input type="range" min="60" max="1500" step="10" value="${P.area}" data-est-area-range aria-label="${E.size}"><input class="input est__num" type="number" name="area" min="40" max="3000" step="10" value="${P.area}" data-est-area-box aria-label="${E.size}, m²"></div>
           <p class="note" data-est-area-out></p>
         </fieldset>
-        <fieldset class="est__field"><legend class="label">${E.storeys}</legend>${seg('storeys', [1, 2, 3], 1, { 1: '1', 2: '2', 3: '3' })}</fieldset>
-        <fieldset class="est__field"><legend class="label">${E.quality}</legend>${seg('quality', ['standard', 'high', 'luxury'], 'high', E.qualities, E.qualityNotes)}</fieldset>
-        <fieldset class="est__field"><legend class="label">${E.site}</legend>${seg('slope', ['flat', 'gentle', 'steep'], 'flat', E.slopes)}</fieldset>
-        <fieldset class="est__field"><legend class="label">${E.pool}</legend>${seg('pool', [0, 15, 32, 50], 32, E.pools)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.storeys}</legend>${seg('storeys', [1, 2, 3], P.storeys, { 1: '1', 2: '2', 3: '3' })}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.quality}</legend>${seg('quality', ['standard', 'high', 'luxury'], P.quality, E.qualities, E.qualityNotes)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.site}</legend>${seg('slope', ['flat', 'gentle', 'steep'], P.slope, E.slopes)}</fieldset>
+        <fieldset class="est__field"><legend class="label">${E.pool}</legend>${seg('pool', [0, 15, 32, 50], P.pool, E.pools)}</fieldset>
         <fieldset class="est__field"><legend class="label">${E.deck}</legend>
-          <div class="est__area"><input type="range" name="deck" min="0" max="300" step="10" value="40" aria-label="${E.deck}"></div>
+          <div class="est__area"><input type="range" name="deck" min="0" max="300" step="10" value="${P.deck}" aria-label="${E.deck}"></div>
         </fieldset>
         <fieldset class="est__field est__checks"><legend class="label">${E.extras}</legend>
-          <label><input type="checkbox" name="solar" checked> ${E.solar}<em class="est__delta" data-delta></em></label>
-          <label><input type="checkbox" name="landscape" checked> ${E.landscape}<em class="est__delta" data-delta></em></label>
-          <label><input type="checkbox" name="furniture"> ${E.furniture}<em class="est__delta" data-delta></em></label>
-${land ? `          <label><input type="checkbox" name="land"> ${E.land}<em class="est__delta" data-delta></em></label>
-          <label class="est__lot"><span>${E.lot}</span><input class="input est__num" type="number" name="lot" min="100" max="100000" step="50" value="1000" aria-label="${E.lot}"></label>
+          <label><input type="checkbox" name="solar"${on('solar')}> ${E.solar}<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="landscape"${on('landscape')}> ${E.landscape}<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="furniture"${on('furniture')}> ${E.furniture}<em class="est__delta" data-delta></em></label>
+${land ? `          <label><input type="checkbox" name="land"${on('land')}> ${E.land}<em class="est__delta" data-delta></em></label>
+          <label class="est__lot"><span>${E.lot}</span><input class="input est__num" type="number" name="lot" min="100" max="100000" step="50" value="${P.lot}" aria-label="${E.lot}"></label>
 ` : ''}
-          <label><input type="checkbox" name="condo"> ${E.condo}</label>
+          <label><input type="checkbox" name="condo"${on('condo')}> ${E.condo}</label>
         </fieldset>
         <fieldset class="est__field"><legend class="label">${E.currency}</legend>${seg('cur', ['usd', 'crc'], 'usd', { usd: 'US$', crc: '₡' })}</fieldset>
       </form>
@@ -1066,7 +1073,7 @@ ${booking ? `          <a class="btn btn--light" data-est-book href="${up}${book
         </div>
       </div>
     </div>
-    <section class="related est__work" aria-labelledby="est-work-t">
+${pg?.extra ?? ''}    <section class="related est__work" aria-labelledby="est-work-t">
       <div class="related__head"><h2 class="label" id="est-work-t">${E.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${E.allWork} →</a></div>
       <ol class="cards cards--three">
 ${work.map((p) => `        <li class="card" data-area="${p.builtArea}" data-kind="${kindOf(p)}">
@@ -1078,6 +1085,13 @@ ${work.map((p) => `        <li class="card" data-area="${p.builtArea}" data-kind
       </ol>
     </section>
     <p class="est__sticky label" aria-hidden="true"><span>${E.sticky}</span><b data-est-sticky></b></p>
+${pg ? '' : `    <nav class="tw__sec grid" aria-labelledby="est-towns">
+      <h2 class="label tw__label" id="est-towns">${lang === 'en' ? '(By town)' : '(Por pueblo)'}</h2>
+      <ul class="tw__aside guide__links est__towns">
+${towns.map((t) => `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(TC[lang].link(t.name))} →</a></li>`).join('\n')}
+      </ul>
+    </nav>
+`}
     <section class="tw__sec grid" aria-labelledby="est-method">
       <h2 class="label tw__label" id="est-method">${E.method}</h2>
       <div class="tw__text guide__body">
@@ -1089,7 +1103,7 @@ ${costs.sources.map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
       </div>
     </section>
   </article>
-${contact(lang, UI[lang].wa.general, up)}</main>
+${contact(lang, pg?.wa ?? UI[lang].wa.general, up, pg?.q ?? '')}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
@@ -1550,6 +1564,152 @@ ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
+// ---------- "What it costs to build in <town>": the estimator preset for one town ----------
+// Also the landing page for that town's ads: the number first, then the tool, the place, the answers, the call.
+const townCostPath = (lang, slug) => `${estimatorPath(lang)}${slug}/`;
+// the estimator's sums, here so the page can quote them (site/assets/js/estimator.js does the same in the browser)
+function estimateNode(D, st) {
+  const town = D.towns.find((t) => t.slug === st.town) ?? null;
+  const place = (town && D.place.town[town.slug]) || D.place.region[town ? town.region : 'other'] || 1;
+  const hotel = st.type === 'hotel';
+  const rate = D.perM2[hotel ? 'hotel' : 'house'][st.quality].map((x) => x * place);
+  const base = rate.map((x) => x * st.area);
+  let works = [...base];
+  const sl = D.slope[st.slope];
+  if (sl[1] > 0) works = works.map((w, i) => w + base[i] * sl[i]);
+  if (st.pool) { const w = Math.sqrt(st.pool * D.pool.ratio), dd = st.pool / w, shell = st.pool + 2 * (w + dd) * D.pool.depth; works = works.map((x, i) => x + D.pool.perM2Shell[i] * shell * place); }
+  if (st.deck) works = works.map((x, i) => x + D.deck.perM2[i] * st.deck * place);
+  let bought = [0, 0, 0];
+  if (st.solar) { const kwp = Math.max(D.solar.minKwp, Math.min(D.solar.maxKwp, Math.round(st.area / D.solar.m2PerKwp))); bought = bought.map((x, i) => x + D.solar.perKwp[i] * kwp); }
+  if (st.landscape) bought = bought.map((x, i) => x + D.landscape[i]);
+  if (st.furniture) bought = bought.map((x, i) => x + D.furniture[i] * st.area);
+  const S = D.soft, pick = (v, i) => (Array.isArray(v) ? v[i] : v);
+  const total = [0, 1, 2].map((i) => {
+    const w = works[i], des = w * pick(S.design, i), sup = w * pick(S.supervision, i);
+    let soft = des + sup + w * (S.municipal + S.cfia) + w * pick(S.insurance, i) + (w + des + sup) * S.vat + (w + bought[i]) * pick(S.contingency, i);
+    if (town && D.connection[town.slug]) soft += D.connection[town.slug];
+    if (town?.slug === 'papagayo') soft += D.review.papagayo.perReview * D.review.papagayo.rounds;
+    else if (st.condo) soft += D.review.perReview[i] * D.review.rounds;
+    const lnd = st.land && town?.land ? town.land.r[i] * st.lot : 0;
+    return w + bought[i] + soft + lnd;
+  });
+  return { rate, total };
+}
+const usdK = (n) => `US$${(Math.round(n / 1000) * 1000).toLocaleString('en-US')}`;
+const TC = {
+  en: {
+    link: (n) => `What it costs to build in ${n}`,
+    title: (n) => `Cost to build a house in ${n}, Costa Rica | Studio CAVA`,
+    description: (n, e) => `A 250 m² house with a pool in ${n} costs about ${usdK(e.total[0])} to ${usdK(e.total[2])} to build, with design, permits and VAT. Change the size, finish and extras, and see the schedule set to its dry season.`,
+    label: '(Estimator)', h1: (n) => ['Cost to build', `in ${n}`],
+    intro: (n, e) => `A 250 m² house with a high finish and a pool in ${n} comes to about ${usdK(e.total[0])} to ${usdK(e.total[2])}, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve. Change anything below and the numbers follow.`,
+    facts: (n) => `(${n}, in numbers)`, rate: 'Construction, high finish', landM: 'Land, lots for sale', landO: 'Land, Hacienda residential values', dry: 'Dry season', rainDays: 'Days of heavy rain a year', permits: 'Permits', drive: 'From Liberia airport',
+    perM2: (v) => `US$${v.toLocaleString('en-US')} a m²`, lots: (m) => `US$${m.median.toLocaleString('en-US')} a m², median of ${m.n} lots`, none: 'No dry season', days: (n) => `about ${n}`,
+    faq: '(Questions)', more: '(Also on this town)', arch: (n) => `Architects in ${n}: climate, permits and our work`, landLink: (n) => `Land prices in ${n}`,
+    wa: (n) => `Hi Studio CAVA, I am looking at building in ${n} and would like to talk about it.`,
+    q: {
+      cost: (n) => `How much does it cost to build a house in ${n}?`,
+      costA: (n, e, s, l) => `A 250 m² house with a high finish, a 32 m² pool, solar panels and landscaping comes to about ${usdK(e.total[0])} to ${usdK(e.total[2])} in ${n}, likely ${usdK(e.total[1])}. That is construction at about US$${Math.round(e.rate[1]).toLocaleString('en-US')} a m², plus design, permits, VAT and a reserve. With a standard finish the likely figure drops to about ${usdK(s.total[1])}; with a luxury one it rises to about ${usdK(l.total[1])}.`,
+      land: (n) => `How much is land in ${n}?`,
+      landM: (n, m) => `Titled residential lots of 300 to 5,000 m² listed in ${n} ask a median of US$${m.median.toLocaleString('en-US')} a m², with the middle half between US$${m.p25.toLocaleString('en-US')} and ${m.p75.toLocaleString('en-US')} (${m.n} lots, October 2026). These are asking prices; sales close lower.`,
+      landO: (n, lo, hi, y) => `Few lots are listed in ${n}. Hacienda's official values for its residential zones run from about US$${lo} to ${hi} a m² (${y} edition), and the market usually sits above them.`,
+      landP: () => 'Inside Península Papagayo the land is not sold: it is a concession from the ICT, with its own fees.',
+      when: (n) => `When is the best time to start building in ${n}?`,
+      whenA: (n, dry, open, heavy) => `At the opening of the dry season, which in ${n} runs ${dry}: earthworks and foundations then start in ${open}, with ${heavy < 1 ? 'almost no days' : `about ${heavy} days`} of heavy rain in the first four months against many more in the rains. Design and permits take most of a year, so the time to start the design is the year before.`,
+      whenNo: (n) => `${n} has no dry season to wait for: rain falls all year, so works start once the permits are in and are planned around the wettest months.`,
+      who: (n) => `Who issues building permits in ${n}?`,
+      whoA: (n, muni) => `${muni.charAt(0).toUpperCase() + muni.slice(1)} issues the licence, after the drawings are approved in the CFIA's APC. Under 500 m² a house does not need SETENA; between 500 and 1,000 m² it does only on fragile sites, and over 1,000 m² it does.`,
+    },
+  },
+  es: {
+    link: (n) => `Cuánto cuesta construir en ${n}`,
+    title: (n) => `Cuánto cuesta construir una casa en ${n} | Studio CAVA`,
+    description: (n, e) => `Una casa de 250 m² con piscina en ${n} cuesta de ${usdK(e.total[0])} a ${usdK(e.total[2])}, con diseño, permisos e IVA. Cambie el tamaño, los acabados y los extras, y vea el cronograma ajustado a la época seca.`,
+    label: '(Estimador)', h1: (n) => ['Construir', `en ${n}`],
+    intro: (n, e) => `Una casa de 250 m² con acabados altos y piscina en ${n} sale en unos ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva. Cambie lo que quiera abajo y los números lo siguen.`,
+    facts: (n) => `(${n}, en números)`, rate: 'Construcción, acabados altos', landM: 'Terreno, lotes en venta', landO: 'Terreno, valores residenciales de Hacienda', dry: 'Época seca', rainDays: 'Días de lluvia fuerte al año', permits: 'Permisos', drive: 'Desde el aeropuerto de Liberia',
+    perM2: (v) => `US$${v.toLocaleString('en-US')} el m²`, lots: (m) => `US$${m.median.toLocaleString('en-US')} el m², mediana de ${m.n} lotes`, none: 'No hay época seca', days: (n) => `unos ${n}`,
+    faq: '(Preguntas)', more: '(También de este pueblo)', arch: (n) => `Arquitectos en ${n}: clima, permisos y nuestro trabajo`, landLink: (n) => `Precio del terreno en ${n}`,
+    wa: (n) => `Hola Studio CAVA, estoy pensando en construir en ${n} y quisiera conversarlo.`,
+    q: {
+      cost: (n) => `¿Cuánto cuesta construir una casa en ${n}?`,
+      costA: (n, e, s, l) => `Una casa de 250 m² con acabados altos, piscina de 32 m², paneles solares y paisajismo sale en unos ${usdK(e.total[0])} a ${usdK(e.total[2])} en ${n}, lo probable ${usdK(e.total[1])}. Es la construcción a unos US$${Math.round(e.rate[1]).toLocaleString('en-US')} el m², más diseño, permisos, IVA y una reserva. Con acabados estándar lo probable baja a unos ${usdK(s.total[1])}; con acabados de lujo sube a unos ${usdK(l.total[1])}.`,
+      land: (n) => `¿Cuánto cuesta el terreno en ${n}?`,
+      landM: (n, m) => `Los lotes residenciales titulados de 300 a 5,000 m² anunciados en ${n} piden una mediana de US$${m.median.toLocaleString('en-US')} el m², con la mitad central entre US$${m.p25.toLocaleString('en-US')} y ${m.p75.toLocaleString('en-US')} (${m.n} lotes, octubre de 2026). Son precios pedidos; las ventas cierran más abajo.`,
+      landO: (n, lo, hi, y) => `En ${n} hay pocos lotes anunciados. Los valores oficiales de Hacienda para sus zonas residenciales van de unos US$${lo} a ${hi} el m² (edición ${y}), y el mercado suele estar por encima.`,
+      landP: () => 'Dentro de la Península Papagayo el terreno no se vende: es una concesión del ICT, con sus propios cobros.',
+      when: (n) => `¿Cuál es el mejor momento para empezar a construir en ${n}?`,
+      whenA: (n, dry, open, heavy) => `Al inicio de la época seca, que en ${n} va de ${dry}: el movimiento de tierra y las fundaciones arrancan entonces en ${open}, con ${heavy < 1 ? 'casi ningún día' : `unos ${heavy} días`} de lluvia fuerte en los primeros cuatro meses, contra muchos más en lluvias. El diseño y los permisos toman casi un año, así que el momento de empezar el diseño es el año anterior.`,
+      whenNo: (n) => `En ${n} no hay época seca que esperar: llueve todo el año, así que la obra arranca cuando salen los permisos y se planifica alrededor de los meses más lluviosos.`,
+      who: (n) => `¿Quién da los permisos de construcción en ${n}?`,
+      whoA: (n, muni) => `${muni.charAt(0).toUpperCase() + muni.slice(1)} da la licencia, después de que los planos se aprueban en el APC del CFIA. Con menos de 500 m² una casa no necesita SETENA; entre 500 y 1,000 m² solo en sitios frágiles, y con más de 1,000 m² sí.`,
+    },
+  },
+};
+function townCostPage(lang, t) {
+  const C = TC[lang];
+  const L = TT[lang];
+  const D = costsData();
+  const d = townOf(t);
+  const c = climate(d);
+  const muni = L.municipality(t, d);
+  const base = { ...EST_DEFAULT, town: t.slug };
+  const e = estimateNode(D, base), es = estimateNode(D, { ...base, quality: 'standard' }), el = estimateNode(D, { ...base, quality: 'luxury' });
+  const paths = { en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) };
+  const up = upFrom(paths[lang]);
+  const lnd = land?.towns[t.slug];
+  const T = D.towns.find((x) => x.slug === t.slug);
+  const heavyYear = Math.round((T.heavy ?? []).reduce((a, b) => a + b, 0));
+  const dryText = c.dry ? `${MONTHS[lang][c.dry.start]} ${lang === 'en' ? 'to' : 'a'} ${MONTHS[lang][(c.dry.start + c.dry.n - 1) % 12]}` : null;
+  const heavy4 = c.dry ? Math.round([0, 1, 2, 3].reduce((n, k) => n + (T.heavy?.[(c.dry.start + k) % 12] ?? 0), 0)) : 0;
+  const res = lnd?.official.residential?.map((z) => Math.round(z.v / costs.fx.crcPerUsd)) ?? [];
+  const Q = [
+    [C.q.cost(t.name), C.q.costA(t.name, e, es, el)],
+    [C.q.land(t.name), t.slug === 'papagayo' ? C.q.landP() : lnd?.market ? C.q.landM(t.name, lnd.market) : res.length ? C.q.landO(t.name, Math.min(...res), Math.max(...res), lnd.edition) : null],
+    [C.q.when(t.name), c.dry ? C.q.whenA(t.name, dryText, MONTHS[lang][c.dry.start], heavy4) : C.q.whenNo(t.name)],
+    [C.q.who(t.name), C.q.whoA(t.name, muni)],
+  ].filter(([, a]) => a);
+  const fact = (k, v) => `        <div><dt>${k}</dt><dd>${esc(v)}</dd></div>`;
+  const extra = `    <section class="proj__body grid tw__facts est__facts" aria-labelledby="tc-facts">
+      <h2 class="label sheet__label" id="tc-facts">${C.facts(t.name)}</h2>
+      <dl class="sheet">
+${[
+  fact(C.rate, C.perM2(Math.round(e.rate[1]))),
+  lnd?.market ? fact(C.landM, C.lots(lnd.market)) : res.length ? fact(C.landO, `US$${Math.min(...res)}–${Math.max(...res)} ${lang === 'en' ? 'a m²' : 'el m²'}`) : '',
+  fact(C.dry, dryText ?? C.none),
+  fact(C.rainDays, C.days(heavyYear)),
+  fact(C.permits, muni.replace(/^(the|la|el) /, '')),
+  d.roads?.LIR ? fact(C.drive, L.facts.road(d.roads.LIR)) : '',
+].filter(Boolean).join('\n')}
+      </dl>
+    </section>
+    <section class="tw__sec grid est__faq" aria-labelledby="tc-faq">
+      <h2 class="label tw__label" id="tc-faq">${C.faq}</h2>
+      <div class="faq">
+${Q.map(([q, a]) => `        <div class="faq__item"><h3>${esc(q)}</h3><p class="large">${esc(a)}</p></div>`).join('\n')}
+      </div>
+    </section>
+    <nav class="tw__sec grid" aria-labelledby="tc-more">
+      <h2 class="label tw__label" id="tc-more">${C.more}</h2>
+      <ul class="tw__aside guide__links">
+        <li><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(C.arch(t.name))} →</a></li>
+${land ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(C.landLink(t.name))} →</a></li>\n` : ''}${services.length ? `        <li><a class="ulink" href="${up}${servicePath(lang, services.find((x) => x.slug.en === 'lot-study') ?? services[0])}">${esc(services.find((x) => x.slug.en === 'lot-study')?.[lang].name ?? '')} →</a></li>\n` : ''}      </ul>
+    </nav>
+`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebPage', name: C.title(t.name).split(' | ')[0], description: C.description(t.name, e), inLanguage: lang, url: `${ORIGIN}/${paths[lang]}` },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` }, { '@type': 'ListItem', position: 2, name: ET[lang].h1.join(' '), item: `${ORIGIN}/${estimatorPath(lang)}` }, { '@type': 'ListItem', position: 3, name: t.name, item: `${ORIGIN}/${paths[lang]}` }] },
+      { '@type': 'FAQPage', mainEntity: Q.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+    ],
+  };
+  return estimatorPage(lang, {
+    paths, title: C.title(t.name), description: C.description(t.name, e), h1: C.h1(t.name), intro: C.intro(t.name, e),
+    preset: base, photo: places?.towns[t.slug], extra, ld, cls: 'est--town', wa: C.wa(t.name), q: `?town=${t.slug}`,
+  });
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -1561,7 +1721,7 @@ function sitemap() {
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
-    ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }] : []),
+    ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }, ...towns.map((t) => ({ en: townCostPath('en', t.slug), es: townCostPath('es', t.slug) }))] : []),
     ...(land ? [{ en: landPath('en'), es: landPath('es') }] : []),
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
@@ -1668,7 +1828,10 @@ for (const lang of ['en', 'es']) {
   towns.forEach((t) => write(`${townPath(lang, t.slug)}index.html`, townPage(lang, t)));
   guides.forEach((g) => write(`${guidePath(lang, g)}index.html`, guidePage(lang, g)));
   if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
-  if (costs) write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
+  if (costs) {
+    write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
+    towns.forEach((t) => write(`${townCostPath(lang, t.slug)}index.html`, townCostPage(lang, t)));
+  }
   if (land && costs) write(`${landPath(lang)}index.html`, landPage(lang));
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
   if (services.length) {

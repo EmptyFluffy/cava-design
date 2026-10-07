@@ -755,6 +755,8 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .place__credit a { color: inherit; }
 .mf .place { margin-left: 0; margin-right: 0; }
 .place--hub { margin-bottom: var(--s-2); }
+.est .place img { aspect-ratio: 3 / 1; }
+.est > .place { margin-top: calc(-1 * var(--s-2)); }
 
 /* services: the list on the home, the cards, and each service page */
 .svc-home { padding: var(--pad-v) var(--margin) 0; row-gap: var(--s-2); align-items: start; }
@@ -1065,7 +1067,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 /* Phones where the project name and "View project" need the whole row */
 @media (max-width: 479px) {
   /* service names run to 14 letters ("arquitectónico"): scale them to the screen */
-  .svc .mf__title { font-size: min(var(--f-display), 10.4vw); }
+  .svc .mf__title, .est--town .mf__title { font-size: min(var(--f-display), 10.4vw); }
   .hero__row > :first-child { display: none; }
 }
 
