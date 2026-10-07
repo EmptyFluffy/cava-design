@@ -444,6 +444,52 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .reach__actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .reach__mail { background: var(--light-grey); }
 
+/* ---------- Studio: what we believe (one word per belief, opens like a drawer), then the process ---------- */
+:root { --f-belief: clamp(2.5rem, 1.4rem + 4.8vw, 6.75rem); }
+.mf { padding: var(--s-3) var(--margin) var(--pad-v); }
+.mf__head { row-gap: var(--s-2); margin-bottom: var(--s-4); }
+.mf__label, .mf__title { grid-column: 1 / -1; }
+.mf__intro { grid-column: 5 / -1; text-wrap: pretty; }
+.beliefs { border-bottom: 1px solid var(--grey); }
+.belief { border-top: 1px solid var(--grey); }
+.belief__head {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: center;
+  padding: 1rem 0 0.85rem; cursor: pointer; list-style: none;
+}
+.belief__head::-webkit-details-marker { display: none; }
+.belief__word {
+  grid-column: 3 / span 9; font-size: var(--f-belief); font-weight: var(--w-display); line-height: 0.95;
+  letter-spacing: -0.03em; text-transform: uppercase; transition: color 0.3s var(--ease);
+}
+.belief__head:hover .belief__word { color: var(--dark-grey); }
+.belief__sign { grid-column: 12; justify-self: end; font-size: var(--f-h4); font-weight: 300; line-height: 1; }
+.belief__sign::before { content: "+"; }
+.belief[open] .belief__sign::before { content: "\2212"; }
+.belief__body {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2);
+  align-items: start; padding: 0.6rem 0 var(--s-4);
+}
+.belief[open] .belief__body { animation: belief-in 0.6s var(--ease); }
+@keyframes belief-in { from { opacity: 0; transform: translateY(-0.4rem); } }
+.belief__sub { grid-column: 3 / span 3; color: var(--dark-grey); }
+.belief__text { grid-column: 6 / span 6; display: grid; gap: 1em; max-width: 44rem; }
+.belief__img { grid-column: 6 / -1; }
+.belief__img img { width: 100%; }
+.belief__img figcaption { margin-top: 0.6rem; }
+
+.stages-sec { padding: var(--pad-v) var(--margin) var(--s-4); scroll-margin-top: 4.5rem; }
+.stages__head { row-gap: var(--s-2); margin-bottom: var(--s-4); }
+.stages__label, .stages__title { grid-column: 1 / -1; }
+.stages__intro { grid-column: 5 / -1; text-wrap: pretty; }
+.stages { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--grey); }
+.stage {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 0.6rem;
+  align-items: baseline; padding: 1.1rem 0 1.5rem; border-top: 1px solid var(--grey);
+}
+.stage__n { grid-column: 1 / span 2; color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.stage__title { grid-column: 3 / span 4; margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; }
+.stage__text { grid-column: 7 / span 6; max-width: 40rem; }
+
 /* Tablet */
 @media (max-width: 991px) {
   .nav__links, .bar__links { grid-column: 7 / span 3; }
@@ -457,6 +503,11 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .interiors__left { grid-column: 1 / span 6; }
   .interiors__right { grid-column: 7 / span 6; }
   .pmap { grid-column: 1 / span 4; }
+  .mf__intro, .stages__intro { grid-column: 3 / -1; }
+  .belief__sub { grid-column: 3 / span 4; }
+  .belief__text, .belief__img { grid-column: 3 / -1; }
+  .stage__title { grid-column: 3 / span 5; }
+  .stage__text { grid-column: 8 / span 5; }
 }
 
 /* Phone */
@@ -517,6 +568,15 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .proj__cover img { max-height: none; }
   .next__link { flex-direction: column; align-items: flex-start; }
   .next__name { text-align: left; }
+
+  .mf__intro, .stages__intro { grid-column: 1 / -1; }
+  .belief__word { grid-column: 1 / span 10; }
+  .belief__sign { grid-column: 11 / span 2; }
+  .belief__sub, .belief__text, .belief__img { grid-column: 1 / -1; }
+  .stages-sec { scroll-margin-top: 6.5rem; }
+  .stage__n { grid-column: 1 / span 3; }
+  .stage__title { grid-column: 4 / -1; }
+  .stage__text { grid-column: 4 / -1; }
 }
 
 /* Phones where the project name and "View project" need the whole row */

@@ -1,0 +1,133 @@
+{
+  "_note": "Text of /studio/ and /es/estudio/: what we believe, and the process. First draft written for Carlos to refine. Each belief: word (keep it short, it is set very large), sub (one line), text (paragraphs), image (\"<project slug>/<n>\" from data/projects.json, set on the English beliefs and shared with the Spanish ones). The first belief starts open.",
+  "image": "tragaluz-retreat/3",
+  "en": {
+    "title": "What we believe | Studio CAVA",
+    "description": "What Studio CAVA believes about building in Costa Rica, and why: climate, place, time, detail and clarity. With the six stages of every project.",
+    "label": "(Manifesto)",
+    "h1": ["What we", "believe"],
+    "intro": "Five ideas we hold to on every project, from a bakery in Tamarindo to a hotel in Playa Negra, each with the reason behind it.",
+    "beliefs": [
+      {
+        "word": "Climate",
+        "sub": "The climate draws first",
+        "text": [
+          "Before there is a floor plan there is a sun path. We note where the afternoon sun hits, where the breeze comes from in the dry season and where the water runs in the rainy one, and the house takes its shape from that.",
+          "A house that needs air conditioning all day was designed for somewhere else. Deep roofs, shaded glass and rooms open on two sides use less power and are easier to live in."
+        ],
+        "image": "tragaluz-retreat/3"
+      },
+      {
+        "word": "Place",
+        "sub": "The lot is the brief",
+        "text": [
+          "We walk every lot twice, in the morning and in the afternoon, before drawing a line. The slope, the big trees, the rock, the view and the neighbours decide more than any style does.",
+          "The lot is the one part of a project that cannot be changed later. A house that follows the slope moves less earth, keeps more trees and sits better on the hill."
+        ],
+        "image": "s3-houses/1"
+      },
+      {
+        "word": "Time",
+        "sub": "Built to age, not to wear out",
+        "text": [
+          "Salt air, humidity and six months of rain are hard on any building. We choose materials that age instead of wearing out: teak, board-formed concrete, local stone, steel galvanised for the coast.",
+          "A house is lived in for decades and its maintenance is paid every year. We would rather spend on the roof and on the details that keep water out than on finishes that look tired after two rainy seasons."
+        ],
+        "image": "kauhane-house/2"
+      },
+      {
+        "word": "Detail",
+        "sub": "One set of drawings, from the roof to the shelves",
+        "text": [
+          "We draw the inside with the outside: kitchens, built-in furniture, lighting, the handrail and the joint where the timber meets the stone. The same materials run from the facade to the shelves.",
+          "Most of what people touch every day is a detail. Details left to be solved on site get solved in a hurry."
+        ],
+        "image": "dawn-patrol-bakery/3"
+      },
+      {
+        "word": "Clarity",
+        "sub": "No surprises in cost or time",
+        "text": [
+          "Building in Costa Rica has its own order: land use, then design, then permits through the CFIA and the municipality. We follow it, we tell you how long each step usually takes, and every stage ends with drawings you approve.",
+          "Design fees are quoted per project, in writing, after the first meeting. If we are not the right studio for your project, we say so at that meeting."
+        ],
+        "image": "papagayo-404/1"
+      }
+    ],
+    "process": {
+      "label": "(Our process)",
+      "h2": ["How we", "work"],
+      "intro": "Six stages, in the order Costa Rica asks for. Each one ends with drawings you approve before the next begins.",
+      "stages": [
+        ["Site visit and uso de suelo", "We walk the lot with you, read the slope, the sun, the access and the services, and check what the municipality's land use allows before any design starts."],
+        ["Concept design", "Two or three ways of placing the project on the lot, in plans, sections and images. You pick one, or a mix."],
+        ["Design development", "The chosen idea, measured and resolved: plans, elevations, materials and a first cost estimate."],
+        ["Permit drawings for CFIA", "The drawings the CFIA and the municipality ask for. We file them and follow them up until the permit is granted."],
+        ["Construction documents", "Details, specifications and schedules a builder can price and build from."],
+        ["Site supervision", "Regular visits during construction to check that what gets built matches the drawings, and to answer the builder's questions as they come up."]
+      ]
+    }
+  },
+  "es": {
+    "title": "Lo que creemos | Studio CAVA",
+    "description": "Lo que Studio CAVA cree sobre construir en Costa Rica, y por qué: clima, lugar, tiempo, detalle y claridad. Con las seis etapas de cada proyecto.",
+    "label": "(Manifiesto)",
+    "h1": ["Lo que", "creemos"],
+    "intro": "Cinco ideas que sostenemos en cada proyecto, de una panadería en Tamarindo a un hotel en Playa Negra, cada una con su razón.",
+    "beliefs": [
+      {
+        "word": "Clima",
+        "sub": "El clima dibuja primero",
+        "text": [
+          "Antes de la planta está el recorrido del sol. Anotamos dónde pega el sol de la tarde, de dónde viene la brisa en verano y por dónde corre el agua en invierno, y la casa toma forma a partir de eso.",
+          "Una casa que necesita aire acondicionado todo el día fue diseñada para otro lugar. Los aleros profundos, el vidrio a la sombra y los espacios abiertos hacia dos lados gastan menos electricidad y se viven mejor."
+        ]
+      },
+      {
+        "word": "Lugar",
+        "sub": "El lote es el encargo",
+        "text": [
+          "Caminamos cada lote dos veces, en la mañana y en la tarde, antes de trazar una línea. La pendiente, los árboles grandes, la roca, la vista y los vecinos deciden más que cualquier estilo.",
+          "El lote es lo único del proyecto que no se puede cambiar después. Una casa que sigue la pendiente mueve menos tierra, conserva más árboles y se asienta mejor en el cerro."
+        ]
+      },
+      {
+        "word": "Tiempo",
+        "sub": "Hecho para envejecer, no para gastarse",
+        "text": [
+          "El salitre, la humedad y seis meses de lluvia castigan cualquier edificio. Escogemos materiales que envejecen en lugar de gastarse: teca, concreto con formaleta de tabla, piedra local y acero galvanizado para la costa.",
+          "Una casa se vive por décadas y su mantenimiento se paga todos los años. Preferimos invertir en el techo y en los detalles que sacan el agua antes que en acabados que se ven cansados después de dos inviernos."
+        ]
+      },
+      {
+        "word": "Detalle",
+        "sub": "Un solo juego de planos, del techo a las repisas",
+        "text": [
+          "Diseñamos el interior junto con el exterior: cocinas, muebles a la medida, iluminación, la baranda y la unión donde la madera se encuentra con la piedra. Los mismos materiales van de la fachada a las repisas.",
+          "Casi todo lo que uno toca a diario es un detalle. Los detalles que se dejan para resolver en obra se resuelven a la carrera."
+        ]
+      },
+      {
+        "word": "Claridad",
+        "sub": "Sin sorpresas en costo ni en tiempo",
+        "text": [
+          "Construir en Costa Rica tiene su propio orden: uso de suelo, después diseño y luego permisos en el CFIA y la municipalidad. Lo seguimos, le decimos cuánto suele tardar cada paso y cada etapa termina con planos que usted aprueba.",
+          "Los honorarios de diseño se cotizan por proyecto y por escrito después de la primera reunión. Si no somos el estudio indicado para su proyecto, se lo decimos en esa reunión."
+        ]
+      }
+    ],
+    "process": {
+      "label": "(El proceso)",
+      "h2": ["Cómo", "trabajamos"],
+      "intro": "Seis etapas, en el orden que pide Costa Rica. Cada una termina con planos que usted aprueba antes de pasar a la siguiente.",
+      "stages": [
+        ["Visita al lote y uso de suelo", "Recorremos el lote con usted, leemos la pendiente, el sol, el acceso y los servicios, y revisamos qué permite el uso de suelo de la municipalidad antes de empezar a diseñar."],
+        ["Diseño conceptual", "Dos o tres formas de ubicar el proyecto en el lote, en plantas, cortes e imágenes. Usted elige una, o una mezcla."],
+        ["Anteproyecto", "La idea elegida, medida y resuelta: plantas, elevaciones, materiales y una primera estimación de costo."],
+        ["Planos para el permiso del CFIA", "Los planos que piden el CFIA y la municipalidad. Los tramitamos y les damos seguimiento hasta que sale el permiso."],
+        ["Planos constructivos", "Detalles, especificaciones y cuadros con los que un constructor puede cotizar y construir."],
+        ["Supervisión de obra", "Visitas periódicas durante la construcción para revisar que lo construido coincida con los planos y responder las dudas del constructor cuando aparecen."]
+      ]
+    }
+  }
+}

@@ -6,6 +6,7 @@
 //   site/projects/index.html                 all projects
 //   site/projects/<slug>/index.html          one page per project: images and technical sheet
 //   site/es/proyectos/...                    the same pages in Spanish (text in scripts/strings.mjs)
+//   site/studio/index.html, site/es/estudio/ what we believe, and the process (text in data/studio.json)
 //   site/es/index.html                       the Spanish home: site/index.html with scripts/home-es.mjs applied
 //   site/assets/js/renders.js, renders.es.js the list the home page image viewer and hero walk
 //
@@ -19,6 +20,8 @@ import { PAIRS, SAME } from './home-es.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = join(ROOT, 'site');
 const { projects, hero } = JSON.parse(readFileSync(join(ROOT, 'data', 'projects.json'), 'utf8'));
+const studio = JSON.parse(readFileSync(join(ROOT, 'data', 'studio.json'), 'utf8'));
+const bySlug = new Map(projects.map((p) => [p.slug, p]));
 const sizes = JSON.parse(readFileSync(join(ROOT, 'data', 'image-sizes.json'), 'utf8'));
 
 const ORIGIN = 'https://cava.design';
@@ -39,6 +42,7 @@ const altOf = (lang, p, n) => tr(lang, p.images[n - 1], 'alt');
 // Site paths of each page, per language, from the site root.
 const projectsPath = (lang) => `${UI[lang].dir}${UI[lang].projectsDir}/`;
 const projectPath = (lang, slug) => `${projectsPath(lang)}${slug}/`;
+const studioPath = (lang) => `${UI[lang].dir}${UI[lang].studioDir}/`;
 const otherLang = (lang) => (lang === 'en' ? 'es' : 'en');
 
 // Image helpers. `up` is the path back to site/ ("../", "../../" or "../../../").
@@ -93,10 +97,11 @@ function bar(lang, up, paths, current) {
   const t = UI[lang].nav;
   const home = up + UI[lang].dir;
   const link = (href, label, key) => `<a class="ulink" href="${href}"${current === key ? ' aria-current="page"' : ''}>${label}</a>`;
+  const studioHref = up + studioPath(lang);
   return `<header class="bar">
   <a class="bar__brand" href="${home}" aria-label="${t.home}">${MARK}<span>Studio CAVA</span></a>
   <nav class="bar__links label" aria-label="${t.aria}">
-    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${link(`${home}#studio`, t.studio)}, ${link(`${home}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}&ensp;${langLink(lang, up, paths, 'ulink lang')}
+    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${link(studioHref, t.studio, 'studio')}, ${link(`${studioHref}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
   <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
 </header>
@@ -132,8 +137,8 @@ function footer(lang, up, paths) {
       <span class="label">${t.nav}</span>
       <a class="footer__link" href="${home}">${t.home}</a>
       <a class="footer__link" href="${up}${projectsPath(lang)}">${n.projects}</a>
-      <a class="footer__link" href="${home}#studio">${n.studio}</a>
-      <a class="footer__link" href="${home}#process">${n.process}</a>
+      <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
+      <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
       <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
       <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     </nav>
@@ -278,11 +283,69 @@ ${contact(lang, waText)}</main>
 ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;
 }
 
+// ---------- /studio/ and /es/estudio/: what we believe, and the process ----------
+function studioPage(lang) {
+  const t = UI[lang];
+  const d = studio[lang];
+  const paths = { en: studioPath('en'), es: studioPath('es') };
+  const up = upFrom(paths[lang]);
+  const beliefs = d.beliefs.map((b, i) => {
+    // images are set on the English beliefs and shared by both languages
+    const [slug, n] = (b.image ?? studio.en.beliefs[i].image).split('/');
+    const p = bySlug.get(slug);
+    return `      <details class="belief"${i === 0 ? ' open' : ''}>
+        <summary class="belief__head"><span class="belief__word">${esc(b.word)}</span><span class="belief__sign" aria-hidden="true"></span></summary>
+        <div class="belief__body">
+          <p class="label belief__sub">${esc(b.sub)}</p>
+          <div class="belief__text">
+${b.text.map((x) => `            <p class="large">${esc(x)}</p>`).join('\n')}
+          </div>
+          <figure class="belief__img">${picture(up, slug, Number(n), altOf(lang, p, Number(n)), '(min-width: 768px) 56vw, 92vw')}<figcaption class="label"><a class="ulink" href="${up}${projectPath(lang, slug)}">${esc(p.name)}</a></figcaption></figure>
+        </div>
+      </details>`;
+  }).join('\n');
+  const stages = d.process.stages.map(([title, text], i) => `      <li class="stage">
+        <span class="label stage__n">(${pad(i + 1)})</span>
+        <h3 class="stage__title">${esc(title)}</h3>
+        <p class="large stage__text">${esc(text)}</p>
+      </li>`).join('\n');
+  return head(lang, {
+    title: d.title,
+    description: d.description,
+    paths,
+    image: `${imgBase(...studio.image.split('/'))}-1600.webp`,
+    up,
+  }) + `<div id="top"></div>
+${bar(lang, up, paths, 'studio')}
+<main class="page">
+  <article class="mf" aria-labelledby="mf-title">
+    <header class="mf__head grid">
+      <span class="label mf__label">${d.label}</span>
+      <h1 class="display mf__title" id="mf-title"><span>${esc(d.h1[0])}</span><span class="indent-2">${esc(d.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(d.intro)}</p>
+    </header>
+    <div class="beliefs">
+${beliefs}
+    </div>
+  </article>
+  <section class="stages-sec" id="process" aria-labelledby="process-title">
+    <div class="stages__head grid">
+      <span class="label stages__label">${d.process.label}</span>
+      <h2 class="display stages__title" id="process-title"><span>${esc(d.process.h2[0])}</span><span class="right">${esc(d.process.h2[1])}</span></h2>
+      <p class="h3 stages__intro">${esc(d.process.intro)}</p>
+    </div>
+    <ol class="stages">
+${stages}
+    </ol>
+  </section>
+${contact(lang, t.wa.general)}</main>
+${footer(lang, up, paths)}${waButton(lang, t.wa.general)}${end}`;
+}
+
 // ---------- Viewer list and hero slides for each home page ----------
 // `up` is the path from that home page back to site/.
 function rendersJs(lang, up) {
   const list = projects.flatMap((p) => p.images.map((_, j) => ({ id: `${p.slug}-${j + 1}`, src: up + imgBase(p.slug, j + 1), title: p.name, alt: altOf(lang, p, j + 1) })));
-  const bySlug = new Map(projects.map((p) => [p.slug, p]));
   const slides = hero.map((key) => {
     const [slug, n] = key.split('/');
     const p = bySlug.get(slug);
@@ -326,6 +389,7 @@ function homeEs() {
   const fix = (u) => {
     if (!u || /^(https?:|mailto:|tel:|data:|#|\/|\.\.\/)/.test(u)) return u;
     if (u.startsWith('projects/')) return `${UI.es.projectsDir}/${u.slice('projects/'.length)}`;
+    if (u.startsWith('studio/')) return `${UI.es.studioDir}/${u.slice('studio/'.length)}`;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -348,8 +412,9 @@ const write = (path, html) => { mkdirSync(join(SITE, dirname(path)), { recursive
 for (const lang of ['en', 'es']) {
   write(`${projectsPath(lang)}index.html`, indexPage(lang));
   projects.forEach((p, i) => write(`${projectPath(lang, p.slug)}index.html`, projectPage(lang, p, i)));
+  write(`${studioPath(lang)}index.html`, studioPage(lang));
 }
 write('es/index.html', homeEs());
 write('assets/js/renders.js', rendersJs('en', ''));
 write('assets/js/renders.es.js', rendersJs('es', '../'));
-console.log(`built /projects/, /es/proyectos/ and ${projects.length} project pages in each language, ${projects.reduce((n, p) => n + p.images.length, 0)} images; /es/ home`);
+console.log(`built /studio/, /es/estudio/, /projects/, /es/proyectos/ and ${projects.length} project pages in each language, ${projects.reduce((n, p) => n + p.images.length, 0)} images; /es/ home`);

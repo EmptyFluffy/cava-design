@@ -3,7 +3,7 @@
 
 export const UI = {
   en: {
-    lang: 'en', locale: 'en_US', dir: '', projectsDir: 'projects',
+    lang: 'en', locale: 'en_US', dir: '', projectsDir: 'projects', studioDir: 'studio',
     other: { code: 'ES', name: 'Español', lang: 'es' },
     nav: { aria: 'Main', home: 'Studio CAVA, home', projects: 'Projects', studio: 'Studio', process: 'Process', contact: 'Contact', cta: 'Get in touch' },
     reach: { label: '(Start a project)', text: 'Tell us about your lot and what you want to build. We answer within a working day.' },
@@ -45,7 +45,7 @@ export const UI = {
   },
 
   es: {
-    lang: 'es', locale: 'es_CR', dir: 'es/', projectsDir: 'proyectos',
+    lang: 'es', locale: 'es_CR', dir: 'es/', projectsDir: 'proyectos', studioDir: 'estudio',
     other: { code: 'EN', name: 'English', lang: 'en' },
     nav: { aria: 'Principal', home: 'Studio CAVA, inicio', projects: 'Proyectos', studio: 'Estudio', process: 'Proceso', contact: 'Contacto', cta: 'Escríbanos' },
     reach: { label: '(Empezar un proyecto)', text: 'Cuéntenos sobre su lote y lo que quiere construir. Respondemos en un día hábil.' },

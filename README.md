@@ -37,6 +37,10 @@ Each project also has `location`, `coords` ([lng, lat]) and `pin`: `exact`, `app
 
 **To add a project:** put its folder of renders in the source folder, add an entry to `data/projects.json` (with its Spanish `type_es` and an `alt_es` on each image), run both scripts, commit.
 
+## Studio page
+
+`/studio/` (`/es/estudio/`) is what the studio believes and the six stages of the process; the nav's Studio and Process links land there (Process on `#process`). The text lives in `data/studio.json`, both languages: each belief is one short word (set very large; it opens like a drawer, the first one starts open), a one-line sub, paragraphs and an image from a project. Edit the JSON and run `node scripts/build.mjs`.
+
 ## Spanish
 
 English lives at the root, Spanish under `/es/`: `/es/` and `/es/proyectos/<slug>/`. Every page links to its pair with `hreflang`, and the last item of the nav row, the menu and the footer switch language.

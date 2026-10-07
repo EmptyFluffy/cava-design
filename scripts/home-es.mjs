@@ -56,7 +56,7 @@ export const PAIRS = [
     'Cada proyecto empieza con una visita al lote. Lo recorremos en la mañana y otra vez en la tarde, anotamos dónde pega el sol y de dónde viene la brisa, y solo entonces empezamos a dibujar.'],
   ['Deep roofs keep the afternoon sun off the glass. Rooms open on two sides so the breeze does the cooling. Materials are picked for salt air and humidity: teak, board-formed concrete, local stone.',
     'Los aleros profundos protegen el vidrio del sol de la tarde. Los espacios abren hacia dos lados para que la brisa refresque la casa. Los materiales se escogen por cómo aguantan el salitre y la humedad: teca, concreto con formaleta de tabla y piedra local.'],
-  ['How we work <span', 'Cómo trabajamos <span'],
+  ['What we believe <span', 'Lo que creemos <span'],
   ['(Our studio)', '(El estudio)'],
 
   // ---------- works ----------
