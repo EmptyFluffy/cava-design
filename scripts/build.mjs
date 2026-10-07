@@ -168,6 +168,7 @@ function footer(lang, up, paths) {
       <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
 ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
 ` : ''}${costs ? `      <a class="footer__link" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
+` : ''}${land ? `      <a class="footer__link" href="${up}${landPath(lang)}">${LT[lang].link}</a>
 ` : ''}      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
       <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     </nav>
@@ -652,7 +653,7 @@ ${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</s
       </ol>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
 ${guides.length || costs ? `      <ul class="tw__aside guide__links">
-${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}?town=${t.slug}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}?town=${t.slug}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landPath(lang)}?town=${t.slug}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
       </ul>` : ''}
     </section>
 ${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
@@ -737,7 +738,7 @@ ${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title"
     <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
     <ol class="stages">
 ${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
-${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}    </ol>
+${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}${land ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 2 : 1))})</span><h3 class="stage__title"><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)}</a></h3><p class="large stage__text">${esc(LT[lang].description)}</p></li>\n` : ''}    </ol>
   </section>
 ` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
@@ -877,7 +878,7 @@ const ET = {
     qualityNotes: { standard: 'Three or four good bathrooms, a designed facade, some double heights', high: 'Very good bathrooms, ceilings of 3 to 5 m, large glazing', luxury: 'Marble, fine woods, imported finishes' },
     site: 'Lot', slopes: { flat: 'Flat', gentle: 'Gentle slope', steep: 'Steep' },
     extras: 'Extras', pool: 'Pool', pools: { 0: 'None', 15: 'Plunge, 15 m²', 32: 'Pool, 32 m²', 50: 'Large, 50 m²' }, deck: 'Terraces and decks',
-    solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture, ready to rent', condo: 'In a condominium or gated community', currency: 'Show in',
+    solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture, ready to rent', land: 'The land', lot: 'Lot, m²', condo: 'In a condominium or gated community', currency: 'Show in',
     resultLabel: '(Estimate)', hard: 'Construction', soft: 'Design, permits and taxes', parts: '(Construction, by part)', softs: '(Design, permits and taxes)',
     massing: '(The volume)', schedule: '(Schedule)', dry: 'Dry season', flags: '(To keep in mind)',
     copy: 'Copy the link', print: 'Print or save as PDF', whatsapp: 'Send it to the studio on WhatsApp',
@@ -888,7 +889,7 @@ const ET = {
     budget: '(From a budget)', budgetNote: 'What a budget builds here, with the choices above. Pick one to use it.', budgetCur: { usd: 'US$', crc: '₡ million' },
     scope: '(What the estimate covers)', inLabel: 'Included', outLabel: 'Not included',
     included: ['Construction, with the builder\'s profit and administration', 'Design, drawings and technical direction, at the CFIA minimum', 'Municipal permit, CFIA charges and the INS work insurance', 'VAT at 13%', 'A reserve of 5 to 10%', 'The pool, terraces, solar, landscaping and furniture you pick, and condominium design reviews'],
-    excluded: ['The land, and its legal and transfer costs', 'The water letter, a long water line or a well', 'A power line to the lot', 'Access roads and long driveways', 'A septic tank or a treatment plant', 'Condominium review fees and deposits'],
+    excluded: ['The land unless you tick it, and its legal and transfer costs', 'The water letter, a long water line or a well', 'A power line to the lot', 'Access roads and long driveways', 'A septic tank or a treatment plant', 'Condominium review fees and deposits'],
     dated: (fx) => `Rates updated ${fx.date}, at ₡${fx.crcPerUsd.toFixed(2)} to the dollar. They price houses designed by an architect; a typical local house (Hacienda types VC01 to VC04) runs about US$640 to 1,050 a m².`,
     work: '(Our work at this size)', allWork: 'All projects',
   },
@@ -902,7 +903,7 @@ const ET = {
     qualityNotes: { standard: 'Tres o cuatro baños buenos, fachada diseñada, algunas dobles alturas', high: 'Baños muy buenos, cielos de 3 a 5 m, grandes ventanales', luxury: 'Mármol, maderas finas, acabados importados' },
     site: 'Lote', slopes: { flat: 'Plano', gentle: 'Pendiente suave', steep: 'Pendiente fuerte' },
     extras: 'Extras', pool: 'Piscina', pools: { 0: 'Ninguna', 15: 'Pequeña, 15 m²', 32: 'Piscina, 32 m²', 50: 'Grande, 50 m²' }, deck: 'Terrazas y decks',
-    solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario, listo para alquilar', condo: 'En un condominio o residencial cerrado', currency: 'Mostrar en',
+    solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario, listo para alquilar', land: 'El terreno', lot: 'Lote, m²', condo: 'En un condominio o residencial cerrado', currency: 'Mostrar en',
     resultLabel: '(Estimación)', hard: 'Construcción', soft: 'Diseño, permisos e impuestos', parts: '(Construcción, por partida)', softs: '(Diseño, permisos e impuestos)',
     massing: '(El volumen)', schedule: '(Cronograma)', dry: 'Época seca', flags: '(A tomar en cuenta)',
     copy: 'Copiar el enlace', print: 'Imprimir o guardar en PDF', whatsapp: 'Enviarla al estudio por WhatsApp',
@@ -913,7 +914,7 @@ const ET = {
     budget: '(Desde un presupuesto)', budgetNote: 'Lo que construye un presupuesto aquí, con las decisiones de arriba. Elija una opción para usarla.', budgetCur: { usd: 'US$', crc: 'millones de ₡' },
     scope: '(Qué incluye la estimación)', inLabel: 'Incluye', outLabel: 'No incluye',
     included: ['La construcción, con la utilidad y la administración del constructor', 'Diseño, planos y dirección técnica, al mínimo del CFIA', 'Permiso municipal, cargos del CFIA y la póliza de riesgos del trabajo del INS', 'IVA del 13%', 'Una reserva del 5 al 10%', 'La piscina, las terrazas, los paneles, el paisajismo y el mobiliario que elija, y las revisiones de diseño del condominio'],
-    excluded: ['El terreno y sus gastos legales y de traspaso', 'La carta de agua, una tubería larga o un pozo', 'Una línea eléctrica hasta el lote', 'Caminos de acceso y entradas largas', 'Tanque séptico o planta de tratamiento', 'Cuotas y depósitos de revisión del condominio'],
+    excluded: ['El terreno si no lo marca, y sus gastos legales y de traspaso', 'La carta de agua, una tubería larga o un pozo', 'Una línea eléctrica hasta el lote', 'Caminos de acceso y entradas largas', 'Tanque séptico o planta de tratamiento', 'Cuotas y depósitos de revisión del condominio'],
     dated: (fx) => `Tarifas al ${fx.date_es}, a ₡${fx.crcPerUsd.toFixed(2)} por dólar. Corresponden a casas diseñadas por un arquitecto; una casa local típica (tipologías VC01 a VC04 de Hacienda) sale en unos US$640 a 1,050 el m².`,
     work: '(Obras de este tamaño)', allWork: 'Todos los proyectos',
   },
@@ -946,7 +947,11 @@ function costsData() {
     towns: towns.map((t) => {
       const d = townOf(t);
       const c = climate(d);
-      return { slug: t.slug, name: t.name, region: t.region, coastal: !!t.coastal, pvout: d.pvout, dry: c.dry ? { start: c.dry.start, n: c.dry.n } : null, heavy: d.heavyDays };
+      // land, US$ a m²: lots for sale (middle half and median), or Hacienda's residential values where too few are listed
+      const L = land?.towns[t.slug];
+      const res = L?.official.residential?.map((z) => z.v / costs.fx.crcPerUsd);
+      const lnd = !L || t.slug === 'papagayo' ? null : L.market ? { src: 'market', r: [L.market.p25, L.market.median, L.market.p75], n: L.market.n } : res?.length ? { src: 'official', r: [Math.min(...res), (Math.min(...res) + Math.max(...res)) / 2, Math.max(...res)].map(Math.round), y: L.edition } : null;
+      return { slug: t.slug, name: t.name, region: t.region, coastal: !!t.coastal, pvout: d.pvout, dry: c.dry ? { start: c.dry.start, n: c.dry.n } : null, heavy: d.heavyDays, land: lnd };
     }),
   };
 }
@@ -992,6 +997,9 @@ ${bar(lang, up, paths, 'tools')}
           <label><input type="checkbox" name="solar" checked> ${E.solar}<em class="est__delta" data-delta></em></label>
           <label><input type="checkbox" name="landscape" checked> ${E.landscape}<em class="est__delta" data-delta></em></label>
           <label><input type="checkbox" name="furniture"> ${E.furniture}<em class="est__delta" data-delta></em></label>
+${land ? `          <label><input type="checkbox" name="land"> ${E.land}<em class="est__delta" data-delta></em></label>
+          <label class="est__lot"><span>${E.lot}</span><input class="input est__num" type="number" name="lot" min="100" max="100000" step="50" value="1000" aria-label="${E.lot}"></label>
+` : ''}
           <label><input type="checkbox" name="condo"> ${E.condo}</label>
         </fieldset>
         <fieldset class="est__field"><legend class="label">${E.currency}</legend>${seg('cur', ['usd', 'crc'], 'usd', { usd: 'US$', crc: '₡' })}</fieldset>
@@ -1021,6 +1029,7 @@ ${bar(lang, up, paths, 'tools')}
           <div class="est__bar" data-est-bar></div>
           <ul class="est__list" data-est-parts></ul>
           <p class="note" data-est-solar></p>
+          <p class="note" data-est-land></p>
           <h2 class="label est__sub">${E.softs}</h2>
           <ul class="est__list est__list--soft" data-est-softs></ul>
         </section>
@@ -1042,7 +1051,7 @@ ${bar(lang, up, paths, 'tools')}
           <h2 class="label" id="est-flags-t">${E.flags}</h2>
           <ul class="guide__tips" data-est-flags></ul>
           <ul class="guide__links est__guides">
-${guides.map((g) => `            <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+${land ? `            <li><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)} →</a></li>\n` : ''}${guides.map((g) => `            <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
           </ul>
         </section>
         <div class="est__actions">
@@ -1079,6 +1088,149 @@ ${contact(lang, UI[lang].wa.general)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
+// ---------- /tools/land-prices/ and /es/herramientas/precios-de-terrenos/ ----------
+// The map reads site/assets/data/land.pmtiles (scripts/land-fetch.mjs); the town table reads data/land/towns.json.
+const LAND_PATH = join(ROOT, 'data', 'land', 'towns.json');
+const land = existsSync(LAND_PATH) ? JSON.parse(readFileSync(LAND_PATH, 'utf8')) : null;
+const landEditions = land ? JSON.parse(readFileSync(join(ROOT, 'data', 'land', 'editions.json'), 'utf8')) : null;
+const landPath = (lang) => (lang === 'en' ? 'tools/land-prices/' : 'es/herramientas/precios-de-terrenos/');
+const LT = {
+  en: {
+    title: 'Land prices in Costa Rica by zone | Studio CAVA',
+    description: 'The official land value of every zone in Costa Rica on one map, from the Ministry of Finance, next to what lots ask in 18 towns. In colones and dollars, with the year of each edition.',
+    label: '(Map)', h1: ['Land', 'prices'], link: 'Land prices', name: 'Land prices by zone', town: (n) => `Land prices in ${n}`,
+    intro: 'What land is worth per square metre in every zone of Costa Rica, by the official values the Ministry of Finance sets for the property tax, and what lots ask today in the towns where we work.',
+    go: 'Go to', all: 'All of Costa Rica', show: 'Show in', legend: 'Official value per m²',
+    caption: 'Official value per m² of each homogeneous zone, as the Ministry of Finance publishes it, each canton on its own edition. Tap a zone for its value, the lot it is set for and its year. Source: Órgano de Normalización Técnica, Ministerio de Hacienda.',
+    aria: 'Map of land values per zone in Costa Rica',
+    table: '(Town by town)', cols: ['Town', 'Centre', 'Residential', 'Beach', 'Edition', 'Lots for sale, asking'],
+    tableNote: 'Official values in colones per m², as Hacienda sets them, and in dollars at ₡457.80. Lots for sale: the median asking price per m² of titled residential lots of 300 to 5,000 m², the middle half of them and how many, seen on 7 October 2026.',
+    map: 'Map', lots: (n) => `${n} lots`, few: 'few listings', none: 'Too few listings', zmt: 'ZMT',
+    method: '(How to read it)', methodTitle: 'Where the numbers come from',
+    more: '(Related)', estimator: 'What it costs to build',
+  },
+  es: {
+    title: 'Precio del terreno en Costa Rica por zona | Studio CAVA',
+    description: 'El valor oficial del terreno de cada zona de Costa Rica en un mapa, del Ministerio de Hacienda, junto a lo que piden por un lote en 18 pueblos. En colones y dólares, con el año de cada edición.',
+    label: '(Mapa)', h1: ['Precio', 'del terreno'], link: 'Precio del terreno', name: 'Precio del terreno por zona', town: (n) => `Precio del terreno en ${n}`,
+    intro: 'Cuánto vale el metro cuadrado de terreno en cada zona de Costa Rica, según los valores oficiales que fija Hacienda para el impuesto de bienes inmuebles, y cuánto piden hoy por un lote en los pueblos donde trabajamos.',
+    go: 'Ir a', all: 'Todo Costa Rica', show: 'Mostrar en', legend: 'Valor oficial por m²',
+    caption: 'Valor oficial por m² de cada zona homogénea, tal como lo publica el Ministerio de Hacienda, cada cantón con su propia edición. Toque una zona para ver su valor, el lote para el que está fijado y su año. Fuente: Órgano de Normalización Técnica, Ministerio de Hacienda.',
+    aria: 'Mapa de valores del terreno por zona en Costa Rica',
+    table: '(Pueblo por pueblo)', cols: ['Pueblo', 'Centro', 'Residencial', 'Playa', 'Edición', 'Lotes en venta, precio pedido'],
+    tableNote: 'Valores oficiales en colones por m², como los fija Hacienda, y en dólares a ₡457.80. Lotes en venta: la mediana del precio pedido por m² de lotes residenciales titulados de 300 a 5,000 m², la mitad central y cuántos, vistos el 7 de octubre de 2026.',
+    map: 'Mapa', lots: (n) => `${n} lotes`, few: 'pocos anuncios', none: 'Muy pocos anuncios', zmt: 'ZMT',
+    method: '(Cómo leerlo)', methodTitle: 'De dónde salen los números',
+    more: '(Relacionado)', estimator: 'Cuánto cuesta construir',
+  },
+};
+const LAND_SOURCES = [
+  { title: 'Plataformas de valores de terrenos por zonas homogéneas (servicio de mapas)', publisher: 'Ministerio de Hacienda, Órgano de Normalización Técnica', url: 'https://sig.hacienda.go.cr/server/rest/services/Zonas_Homogeneas_ONT/MapServer', date: 'downloaded 7 October 2026', date_es: 'descargado el 7 de octubre de 2026' },
+  { title: 'Plataformas de valores de terrenos por zonas homogéneas: ediciones por cantón', publisher: 'Ministerio de Hacienda', url: 'https://www.hacienda.go.cr/docs/PlataformasDeValoresDeTerrenosPorZonasHomogeneas.pdf', date: '15 June 2026', date_es: '15 de junio de 2026' },
+  { title: 'Tipo de cambio de referencia', publisher: 'Banco Central de Costa Rica', url: 'https://gee.bccr.fi.cr/indicadoreseconomicos/Cuadros/frmVerCatCuadro.aspx?idioma=1&CodCuadro=%20400', date: '7 October 2026', date_es: '7 de octubre de 2026' },
+  { title: 'Referencias de valor de terreno (servicio de mapas)', publisher: 'Ministerio de Hacienda, Órgano de Normalización Técnica', url: 'https://sig.hacienda.go.cr/server/rest/services/Referencias_Valor_terreno/MapServer', date: 'downloaded 7 October 2026', date_es: 'descargado el 7 de octubre de 2026' },
+  { title: 'Ley 7509, Ley de Impuesto sobre Bienes Inmuebles', publisher: 'SINALEVI', url: 'https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=26598&param2=148757&param3=1', date: '1995' },
+  { title: 'Reglamento a la Ley sobre la Zona Marítimo Terrestre (Decreto 7841-P), artículos 49 y 50', publisher: 'SINALEVI', url: 'https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=18579&param2=93916&param3=1', date: '2013' },
+  { title: 'ICT, acuerdo SJD-196-2022: base del canon en el Polo Turístico Golfo de Papagayo', publisher: 'La Gaceta 158', url: 'https://www.pgr.go.cr/wp-content/uploads/2025/12/RG-220822.pdf', date: '22 August 2022', date_es: '22 de agosto de 2022' },
+  { title: 'Lots for sale, the sample behind the market column', title_es: 'Lotes en venta, la muestra detrás de la columna de mercado', publisher: 'Studio CAVA', url: 'https://github.com/EmptyFluffy/cava-design/blob/main/data/land/market-sample.csv', date: '7 October 2026', date_es: '7 de octubre de 2026' },
+];
+const LAND_METHOD = {
+  en: [
+    'Every municipality in Costa Rica is split into homogeneous zones, and the Ministry of Finance sets an official value per square metre for each, for a typical lot of that zone [1]. These are the values the property tax starts from, and each municipality makes them law by publishing them in La Gaceta [2, 5]. The map shows them as they are published, 8,750 zones in 82 cantons, with dollars at ₡457.80 [3].',
+    'Each canton is on its own edition. Santa Cruz, Carrillo, Liberia, Nicoya and Santa Ana are on 2025 and Escazú on 2024, but Cóbano (Santa Teresa), Garabito (Jacó) and Osa (Dominical and Uvita) are still on 2018, Talamanca on 2020 and Atenas on 2016 [2]. When an edition is made, its values sit close to the sales Hacienda samples in the same zones [4]; the gap with today\'s market grows with the age of the edition. The 2025 edition put the centre of Tamarindo 70% above 2017.',
+    'A zone\'s value is for the lot it describes: in the centre of Tamarindo, 800 m² with 20 m of street front. A larger lot is worth less per m², and a corner, a view or a short walk to the beach more. Mixed zones carry a second value, and their rural part a much lower one for large parcels.',
+    'Within 200 m of the high-tide line the land is not sold. The municipality grants a concession and charges a yearly fee on an appraisal, up to 3% for a home and 4% for tourism [6]; the map still shows Hacienda\'s value there. In the Papagayo tourism pole the ICT sets the base itself, US$3.39 a m² until July 2027 [7].',
+    'The last column is what sellers ask, not what lots sell for: 1,303 titled lots listed on public sites on 7 October 2026, counted only between 300 and 5,000 m², without concessions, farms or commercial lots [8]. A town needs five lots to get a number, and fewer than ten are marked. Asking prices run above closing prices.',
+    'None of this is an appraisal. A lot is worth what a valuation of that lot says, and before buying it is worth asking for one, along with the registry study of the property and the zoning certificate.',
+  ],
+  es: [
+    'Cada municipalidad de Costa Rica está dividida en zonas homogéneas, y el Ministerio de Hacienda fija para cada una un valor oficial por metro cuadrado, para un lote típico de esa zona [1]. Son los valores de los que parte el impuesto de bienes inmuebles, y cada municipalidad los vuelve oficiales al publicarlos en La Gaceta [2, 5]. El mapa los muestra tal como se publican, 8,750 zonas en 82 cantones, con los dólares a ₡457.80 [3].',
+    'Cada cantón tiene su propia edición. Santa Cruz, Carrillo, Liberia, Nicoya y Santa Ana están en 2025 y Escazú en 2024, pero Cóbano (Santa Teresa), Garabito (Jacó) y Osa (Dominical y Uvita) siguen en 2018, Talamanca en 2020 y Atenas en 2016 [2]. Cuando se hace una edición, sus valores quedan cerca de las ventas que Hacienda muestrea en las mismas zonas [4]; la distancia con el mercado de hoy crece con la edad de la edición. La edición 2025 puso el centro de Tamarindo un 70% por encima de la de 2017.',
+    'El valor de una zona es para el lote que describe: en el centro de Tamarindo, 800 m² con 20 m de frente. Un lote más grande vale menos por m², y una esquina, una vista o la playa a pocos pasos, más. Las zonas mixtas llevan un segundo valor, y su parte rural uno mucho más bajo para fincas grandes.',
+    'En los 200 m desde la pleamar el terreno no se vende. La municipalidad da una concesión y cobra un canon anual sobre un avalúo, de hasta un 3% para vivienda y un 4% para turismo [6]; el mapa igual muestra ahí el valor de Hacienda. En el Polo Turístico de Papagayo la base la fija el ICT, US$3.39 el m² hasta julio de 2027 [7].',
+    'La última columna es lo que piden los vendedores, no lo que se paga: 1,303 lotes titulados anunciados en sitios públicos el 7 de octubre de 2026, contados solo entre 300 y 5,000 m², sin concesiones, fincas ni lotes comerciales [8]. Un pueblo necesita cinco lotes para tener un número, y si son menos de diez se marca. El precio pedido suele quedar por encima del precio de cierre.',
+    'Nada de esto es un avalúo. Un lote vale lo que diga un avalúo de ese lote, y antes de comprar conviene pedirlo, junto con el estudio registral de la propiedad y el certificado de uso de suelo.',
+  ],
+};
+function landPage(lang) {
+  const E = LT[lang];
+  const paths = { en: landPath('en'), es: landPath('es') };
+  const up = upFrom(paths[lang]);
+  const fx = costs.fx.crcPerUsd;
+  const money = (v) => `₡${Math.round(v).toLocaleString('en-US')}`;
+  const usd = (v) => `US$${Math.round(v / fx).toLocaleString('en-US')}`;
+  // a range of official values: one cell, colones above and dollars below
+  const cell = (zs) => {
+    if (!zs?.length) return '<td class="lt__na">–</td>';
+    const v = zs.map((z) => z.v), lo = Math.min(...v), hi = Math.max(...v);
+    const z = zs.some((x) => x.zmt) ? ` <span class="lt__tag">${E.zmt}</span>` : '';
+    return `<td><span class="lt__v">${lo === hi ? money(lo) : `${money(lo)}–${Math.round(hi).toLocaleString('en-US')}`}${z}</span><span class="lt__u">${lo === hi ? usd(lo) : `${usd(lo)}–${Math.round(hi / fx).toLocaleString('en-US')}`}</span></td>`;
+  };
+  const market = (m) => (m
+    ? `<td><span class="lt__v">US$${m.median.toLocaleString('en-US')}</span><span class="lt__u">US$${m.p25.toLocaleString('en-US')}–${m.p75.toLocaleString('en-US')} · ${E.lots(m.n)}${m.n < 10 ? `, ${E.few}` : ''}</span></td>`
+    : `<td class="lt__na">${E.none}</td>`);
+  const rows = towns.map((t) => {
+    const L = land.towns[t.slug];
+    if (!L) return '';
+    return `        <tr><th scope="row"><a class="ulink" href="${up}${townPath(lang, t.slug)}">${esc(t.name)}</a> <a class="lt__map label ulink" href="?town=${t.slug}" data-lmap-fly="${t.slug}">${E.map}</a></th>${cell(L.official.centre)}${cell(L.official.residential)}${cell(L.official.beach)}<td>${L.edition ?? '–'}</td>${market(L.market)}</tr>`;
+  }).join('\n');
+  const pins = towns.filter((t) => land.towns[t.slug]).map((t) => ({ slug: t.slug, n: t.name, c: land.towns[t.slug].center }));
+  const cantonNames = Object.fromEntries(Object.entries(landEditions.cantons).map(([c, v]) => [c, v.name]));
+  const ld = { '@context': 'https://schema.org', '@type': 'Dataset', name: E.title.split(' | ')[0], description: E.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, creator: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` }, isBasedOn: LAND_SOURCES[0].url, spatialCoverage: 'Costa Rica', temporalCoverage: '2016/2026' };
+  return head(lang, { title: E.title, description: E.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up, script: 'land-map.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'tools')}
+<main class="page">
+  <article class="mf lt" aria-labelledby="lt-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${E.label}</p>
+      <h1 class="display mf__title" id="lt-title"><span>${esc(E.h1[0])}</span><span class="right">${esc(E.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(E.intro)}</p>
+    </header>
+    <div class="lt__map-wrap">
+      <figure class="lmap" data-lmap data-fx="${fx}" data-towns="${esc(JSON.stringify(pins))}" data-cantons="${esc(JSON.stringify(cantonNames))}">
+        <div class="lmap__canvas" role="region" aria-label="${esc(E.aria)}"></div>
+        <div class="cmap__controls lmap__controls">
+          <label class="lmap__go"><span class="label">${E.go}</span><select class="lmap__select" data-lmap-town><option value="">${E.all}</option>${towns.filter((t) => land.towns[t.slug]).map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}</select></label>
+          <div class="cmap__seg" role="group" aria-label="${E.show}"><button type="button" data-cur="usd" aria-pressed="true">US$</button><button type="button" data-cur="crc" aria-pressed="false">₡</button></div>
+        </div>
+        <div class="lmap__legend"><span class="label">${E.legend}</span><ol data-lmap-legend></ol></div>
+        <figcaption class="note">${esc(E.caption)}</figcaption>
+      </figure>
+    </div>
+    <section class="tw__sec lt__towns" aria-labelledby="lt-table">
+      <h2 class="label" id="lt-table">${E.table}</h2>
+      <div class="hub__wrap">
+        <table class="hub__table lt__table">
+          <thead><tr>${E.cols.map((c) => `<th scope="col">${c}</th>`).join('')}</tr></thead>
+          <tbody>
+${rows}
+          </tbody>
+        </table>
+      </div>
+      <p class="note">${esc(E.tableNote)}</p>
+    </section>
+    <section class="tw__sec grid" aria-labelledby="lt-method">
+      <h2 class="label tw__label" id="lt-method">${E.method}</h2>
+      <div class="tw__text guide__body">
+        <h3 class="guide__h2">${E.methodTitle}</h3>
+${LAND_METHOD[lang].map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
+        <ol class="guide__sources guide__sources--inline">
+${LAND_SOURCES.map((x, k) => sourceItem(lang, x, k, '          ')).join('\n')}
+        </ol>
+      </div>
+    </section>
+    <nav class="tw__sec grid" aria-labelledby="lt-more">
+      <h2 class="label tw__label" id="lt-more">${E.more}</h2>
+      <ul class="tw__aside guide__links">
+${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
+        <li><a class="ulink" href="${up}${townsPath(lang)}">${lang === 'en' ? 'Rain, sun, wind and permits, town by town' : 'Lluvia, sol, viento y permisos, pueblo por pueblo'} →</a></li>
+      </ul>
+    </nav>
+  </article>
+${contact(lang, UI[lang].wa.general)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -1091,6 +1243,7 @@ function sitemap() {
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
     ...(guides.length ? [{ en: guidesIndexPath('en'), es: guidesIndexPath('es') }] : []),
     ...(costs ? [{ en: estimatorPath('en'), es: estimatorPath('es') }] : []),
+    ...(land ? [{ en: landPath('en'), es: landPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -1161,6 +1314,7 @@ function homeEs() {
     if (u.startsWith('architects/')) return `${UI.es.townsDir}/${u.slice('architects/'.length)}`;
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
     if (u.startsWith('tools/cost-estimator/')) return `herramientas/estimador-de-costos/${u.slice('tools/cost-estimator/'.length)}`;
+    if (u.startsWith('tools/land-prices/')) return `herramientas/precios-de-terrenos/${u.slice('tools/land-prices/'.length)}`;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -1189,6 +1343,7 @@ for (const lang of ['en', 'es']) {
   guides.forEach((g) => write(`${guidePath(lang, g)}index.html`, guidePage(lang, g)));
   if (guides.length) write(`${guidesIndexPath(lang)}index.html`, guidesIndex(lang));
   if (costs) write(`${estimatorPath(lang)}index.html`, estimatorPage(lang));
+  if (land && costs) write(`${landPath(lang)}index.html`, landPage(lang));
 }
 if (costs) write('assets/data/costs.json', JSON.stringify(costsData()));
 write('sitemap.xml', sitemap());

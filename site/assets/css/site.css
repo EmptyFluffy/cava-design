@@ -727,6 +727,9 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__delta:empty { display: none; }
 .est__opt:has(input:checked) .est__delta { display: none; }
 .est__checks .est__delta { margin-left: auto; }
+.est__checks .est__lot { display: grid; grid-template-columns: minmax(0, 1fr) 8rem; gap: 0.8rem; margin-left: 1.7rem; font-size: var(--f-main); color: var(--dark-grey); }
+.est__checks:not(:has(input[name=land]:checked)) .est__lot { display: none; }
+.est__list .est__land { border-top: 1px solid var(--black); padding-top: 0.35rem; }
 /* from a budget */
 .est__budget-in { display: grid; grid-template-columns: auto minmax(0, 12rem); align-items: center; gap: 0.8rem; }
 .est__fits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
@@ -743,6 +746,39 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__scope ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
 .est__scope li { padding-bottom: 0.35rem; border-bottom: 1px solid var(--grey); line-height: 1.3; }
 .est__work .card[hidden] { display: none; }
+
+/* land prices: the zone map and the town table */
+.lt .tw__sec { margin-left: 0; margin-right: 0; }
+.lt__map-wrap { margin-bottom: var(--s-3); }
+.lmap { margin: 0; }
+.lmap__canvas { position: relative; aspect-ratio: 16 / 10; max-height: 80vh; width: 100%; background: var(--light-grey); overflow: hidden; }
+.lmap__canvas .maplibregl-ctrl-top-left, .lmap__canvas .maplibregl-ctrl-bottom-right { z-index: 3; }
+.lmap__controls { justify-content: space-between; }
+.lmap__go { display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
+.lmap__select { padding: 0.55rem 2rem 0.55rem 0.9rem; border: 1px solid var(--black); border-radius: 100vw; background-color: var(--white); color: var(--black); font-size: var(--f-small); font-weight: var(--w-strong); text-transform: uppercase; }
+.lmap__legend { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 0.9rem; color: var(--dark-grey); }
+.lmap__legend ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 0.9rem; font-size: var(--f-small); font-variant-numeric: tabular-nums; color: var(--black); }
+.lmap__legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
+.lmap__legend i { display: inline-block; width: 0.9rem; height: 0.9rem; box-shadow: inset 0 0 0 1px rgba(8, 8, 7, 0.08); }
+.lmap figcaption { margin-top: 0.7rem; max-width: 62rem; }
+.lmap__pop .maplibregl-popup-content { padding: 0.95rem 1.05rem 0.9rem; border-radius: 0.9rem; font: inherit; color: var(--black); box-shadow: 0 6px 24px rgba(8, 8, 7, 0.16); }
+.lmap__pop .maplibregl-popup-close-button { font-size: 1.2rem; padding: 0.2rem 0.5rem; }
+.lmap__pop p, .lmap__pop ul { margin: 0; }
+.lmap__name { padding-right: 1.2rem; font-size: var(--f-large); font-weight: var(--w-strong); line-height: 1.15; }
+.lmap__where, .lmap__meta { margin-top: 0.25rem !important; font-size: var(--f-small); color: var(--dark-grey); }
+.lmap__value { margin-top: 0.7rem !important; font-variant-numeric: tabular-nums; }
+.lmap__value b { font-size: 1.6rem; font-weight: var(--w-strong); letter-spacing: -0.02em; }
+.lmap__value span { margin-left: 0.4rem; color: var(--dark-grey); }
+.lmap__more { list-style: none; padding: 0; margin-top: 0.35rem !important; font-size: var(--f-small); font-variant-numeric: tabular-nums; }
+.lmap__warn { margin-top: 0.55rem !important; padding-top: 0.55rem; border-top: 1px solid var(--grey); font-size: var(--f-small); line-height: 1.3; }
+.lt__table { min-width: 62rem; }
+.lt__table td, .lt__table tbody th { vertical-align: top; }
+.lt__v { display: block; font-weight: var(--w-strong); }
+.lt__u { display: block; margin-top: 0.15rem; font-size: var(--f-small); color: var(--dark-grey); }
+.lt__tag { padding: 0.05rem 0.35rem; border: 1px solid currentColor; border-radius: 100vw; font-size: 0.6875rem; font-weight: var(--w-strong); color: var(--dark-grey); vertical-align: 0.1em; }
+.lt__na { color: var(--mid-grey); }
+.lt__map { margin-left: 0.4rem; font-size: 0.6875rem; color: var(--dark-grey); }
+.lt__towns > .note { margin-top: 0.9rem; max-width: 62rem; }
 
 /* other projects at the foot of a page: similar projects, our work */
 .related { display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }
@@ -866,6 +902,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .sun3d { aspect-ratio: 1; }
   .est__form, .est__out { grid-column: 1 / -1; }
   .est__scope { grid-template-columns: 1fr; }
+  .lmap__canvas { aspect-ratio: 4 / 5; }
   .est__out { position: static; }
   .est__sticky { display: flex; justify-content: space-between; gap: 1rem; position: sticky; bottom: 0; z-index: 30; margin: 0; padding: 0.85rem var(--margin); background: var(--black); color: var(--white); }
   .g-head, .g-row, .g-bands { grid-template-columns: 6.5rem minmax(0, 1fr); }

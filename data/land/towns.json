@@ -1,0 +1,833 @@
+{
+ "_note": "Official: ONT zone values (₡/m²) picked per town, see scripts/land-fetch.mjs for the full layer. Market: asking prices of titled residential lots of 300 to 5,000 m², seen 2026-10-07 on public listing pages (data/land/market-sample.csv); published only with 5 or more lots.",
+ "seen": "2026-10-07",
+ "towns": {
+  "tamarindo": {
+   "center": [
+    -85.83995,
+    10.29841
+   ],
+   "edition": 2025,
+   "canton": "Santa Cruz",
+   "official": {
+    "centre": [
+     {
+      "zone": "50309-U03",
+      "name": "Vindi Tamarindo - Banco Nacional",
+      "v": 255000,
+      "lot": 800
+     },
+     {
+      "zone": "50309-U04",
+      "name": "Calle la Cruz - Avenida Central",
+      "v": 240000,
+      "lot": 470
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50309-R05/U05",
+      "name": "Residencial del Este",
+      "v": 140000,
+      "lot": 550
+     },
+     {
+      "zone": "50309-U73",
+      "name": "Condominio el Matapalo - Apartamentos Diria",
+      "v": 650000,
+      "lot": 1586
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50309-U01/U02",
+      "name": "ZMT Tamarindo Centro",
+      "v": 355000,
+      "v2": 295000,
+      "lot": 270,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 125,
+    "median": 418,
+    "p25": 191,
+    "p75": 576
+   }
+  },
+  "playa-grande": {
+   "center": [
+    -85.84702,
+    10.33463
+   ],
+   "edition": 2025,
+   "canton": "Santa Cruz",
+   "official": {
+    "centre": [
+     {
+      "zone": "50308-U44",
+      "name": "Playa Grande Centro",
+      "v": 105000,
+      "lot": 800
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50308-R43/U43",
+      "name": "Playa Grande",
+      "v": 45000,
+      "lot": 920
+     },
+     {
+      "zone": "50308-R40/U40",
+      "name": "Residencial Palm Beach Estates",
+      "v": 65000,
+      "lot": 1000
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50308-R45",
+      "name": "ZMT Parque Nacional Marino las Baulas",
+      "v": 2200,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 81,
+    "median": 203,
+    "p25": 143,
+    "p75": 351
+   }
+  },
+  "playa-negra": {
+   "center": [
+    -85.83015,
+    10.19456
+   ],
+   "edition": 2025,
+   "canton": "Santa Cruz",
+   "official": {
+    "residential": [
+     {
+      "zone": "50303-R10/U10",
+      "name": "Paraiso - Carretera Paraiso - Avellanas - Calle Playa Negra",
+      "v": 35000,
+      "lot": 250
+     },
+     {
+      "zone": "50303-R07/U07",
+      "name": "Pochotes",
+      "v": 50000,
+      "lot": 510
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50303-U08/U09",
+      "name": "ZMT Playas Avellana - Callejones - Negra - Lagartillos",
+      "v": 55000,
+      "v2": 34000,
+      "lot": 1100,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 14,
+    "median": 78,
+    "p25": 56,
+    "p75": 116
+   }
+  },
+  "flamingo": {
+   "center": [
+    -85.79334,
+    10.4284
+   ],
+   "edition": 2025,
+   "canton": "Santa Cruz",
+   "official": {
+    "centre": [
+     {
+      "zone": "50308-R11/U11",
+      "name": "Comercio Flamingo",
+      "v": 70000,
+      "lot": 785
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50308-R07/U07",
+      "name": "Playa Punta Pelencho - Flamingo Cove",
+      "v": 120000,
+      "lot": 1020
+     },
+     {
+      "zone": "50308-U05",
+      "name": "Urbanizacion Cerros de Matapalo",
+      "v": 65000,
+      "lot": 1000
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50308-U01/U02",
+      "name": "Marina Flamingo - Playa Flamingo",
+      "v": 330000,
+      "v2": 175000,
+      "lot": 1300
+     }
+    ]
+   },
+   "market": {
+    "n": 72,
+    "median": 278,
+    "p25": 170,
+    "p75": 507
+   }
+  },
+  "playas-del-coco": {
+   "center": [
+    -85.7035,
+    10.553
+   ],
+   "edition": 2025,
+   "canton": "Carrillo",
+   "official": {
+    "centre": [
+     {
+      "zone": "50503-U01",
+      "name": "Zona Comercial Playas del Coco",
+      "v": 345000,
+      "lot": 250
+     },
+     {
+      "zone": "50503-U02",
+      "name": "Parque Paseo Amor de Temporada",
+      "v": 235000,
+      "lot": 500
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50503-U05",
+      "name": "El Ebais",
+      "v": 97000,
+      "lot": 300
+     },
+     {
+      "zone": "50503-U06/U12",
+      "name": "Urbanizacion las Palmas",
+      "v": 240000,
+      "v2": 130000,
+      "lot": 7000
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50503-U03/U04",
+      "name": "ZMT la Chorrera",
+      "v": 185000,
+      "v2": 160000,
+      "lot": 1500,
+      "zmt": 1
+     },
+     {
+      "zone": "50503-U29/U30",
+      "name": "ZMT Iglesia",
+      "v": 160000,
+      "v2": 130000,
+      "lot": 500,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 97,
+    "median": 208,
+    "p25": 104,
+    "p75": 324
+   }
+  },
+  "papagayo": {
+   "center": [
+    -85.6764,
+    10.6285
+   ],
+   "edition": 2025,
+   "canton": "Liberia",
+   "official": {
+    "beach": [
+     {
+      "zone": "50104-U13/U22",
+      "name": "ZMT Proyecto Turistico Golfo de Papagayo",
+      "v": 325000,
+      "v2": 150000,
+      "lot": 330,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": null
+  },
+  "liberia": {
+   "center": [
+    -85.43932,
+    10.63198
+   ],
+   "edition": 2025,
+   "canton": "Liberia",
+   "official": {
+    "centre": [
+     {
+      "zone": "50101-U01/U12",
+      "name": "Hotel Boyeros",
+      "v": 440000,
+      "v2": 115000,
+      "lot": 440
+     },
+     {
+      "zone": "50101-U03",
+      "name": "Municipalidad - Museo Regional de Guanacaste",
+      "v": 250000,
+      "lot": 280
+     },
+     {
+      "zone": "50101-U29",
+      "name": "Avenida 25 de Julio",
+      "v": 330000,
+      "lot": 350
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50101-U15",
+      "name": "Los Cerros",
+      "v": 95000,
+      "lot": 170
+     },
+     {
+      "zone": "50101-U26",
+      "name": "Condega",
+      "v": 165000,
+      "lot": 300
+     }
+    ]
+   },
+   "market": {
+    "n": 16,
+    "median": 82,
+    "p25": 58,
+    "p75": 110
+   }
+  },
+  "nosara": {
+   "center": [
+    -85.6279,
+    9.97837
+   ],
+   "edition": 2025,
+   "canton": "Nicoya",
+   "official": {
+    "residential": [
+     {
+      "zone": "50206-R05/U05",
+      "name": "Arenales - San Pedro - Santa Teresita",
+      "v": 20000,
+      "lot": 300
+     },
+     {
+      "zone": "50206-R01/U01",
+      "name": "Residencial Proyecto Americano",
+      "v": 145000,
+      "lot": 1050
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50206-R17/U17",
+      "name": "Refugio de Vida Silvestre Ostional",
+      "v": 35000,
+      "lot": 1100
+     }
+    ]
+   },
+   "market": {
+    "n": 6,
+    "median": 232,
+    "p25": 177,
+    "p75": 308
+   }
+  },
+  "samara": {
+   "center": [
+    -85.5289,
+    9.88342
+   ],
+   "edition": 2025,
+   "canton": "Nicoya",
+   "official": {
+    "centre": [
+     {
+      "zone": "50205-U01",
+      "name": "Samara Zona Comercial",
+      "v": 240000,
+      "lot": 200
+     }
+    ],
+    "residential": [
+     {
+      "zone": "50205-U22",
+      "name": "Barrio el Canto de los Gavilanes",
+      "v": 88000,
+      "lot": 450
+     },
+     {
+      "zone": "50205-R23/U23",
+      "name": "Barrio Cantarrana",
+      "v": 118000,
+      "lot": 180
+     }
+    ],
+    "beach": [
+     {
+      "zone": "50205-U12",
+      "name": "ZMT Playa Samara",
+      "v": 230000,
+      "lot": 260,
+      "zmt": 1
+     },
+     {
+      "zone": "50205-U17",
+      "name": "ZMT Samara Palm Lodge",
+      "v": 140000,
+      "lot": 300,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 8,
+    "median": 96,
+    "p25": 77,
+    "p75": 116
+   }
+  },
+  "santa-teresa": {
+   "center": [
+    -85.16436,
+    9.64164
+   ],
+   "edition": 2018,
+   "canton": "Puntarenas (Concejo Municipal de Distrito de Cóbano)",
+   "official": {
+    "centre": [
+     {
+      "zone": "60111-U64",
+      "name": "Santa Teresa - Carmen Centro",
+      "v": 110000,
+      "lot": 225
+     },
+     {
+      "zone": "60111-U84",
+      "name": "Santa Teresa Centro Sector Noroeste",
+      "v": 90000,
+      "lot": 300
+     }
+    ],
+    "residential": [
+     {
+      "zone": "60111-R57/U57",
+      "name": "Montaña Santa Teresa - Mal Pais",
+      "v": 35000,
+      "lot": 1025
+     }
+    ],
+    "beach": [
+     {
+      "zone": "60111-R79/U79",
+      "name": "ZMT Playa Carmen - Playa Santa Teresa",
+      "v": 30000,
+      "lot": 700,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 25,
+    "median": 130,
+    "p25": 73,
+    "p75": 288
+   }
+  },
+  "jaco": {
+   "center": [
+    -84.62813,
+    9.61564
+   ],
+   "edition": 2018,
+   "canton": "Garabito",
+   "official": {
+    "centre": [
+     {
+      "zone": "61101-R01/U01",
+      "name": "Jaco Centro",
+      "v": 550000,
+      "lot": 150
+     }
+    ],
+    "residential": [
+     {
+      "zone": "61101-U14",
+      "name": "Rio Copey",
+      "v": 160000,
+      "lot": 120
+     },
+     {
+      "zone": "61101-R16/U16",
+      "name": "Residencial el Rio",
+      "v": 125000,
+      "lot": 400
+     },
+     {
+      "zone": "61101-U15",
+      "name": "INVU Jaco",
+      "v": 70000,
+      "lot": 200
+     }
+    ],
+    "beach": [
+     {
+      "zone": "61101-U24/U25",
+      "name": "Playa Jaco",
+      "v": 450000,
+      "v2": 370000,
+      "lot": 250
+     }
+    ]
+   },
+   "market": {
+    "n": 48,
+    "median": 226,
+    "p25": 67,
+    "p75": 298
+   }
+  },
+  "dominical": {
+   "center": [
+    -83.8627,
+    9.25357
+   ],
+   "edition": 2018,
+   "canton": "Osa",
+   "official": {
+    "centre": [
+     {
+      "zone": "60504-R20/U20",
+      "name": "Dominical Centro",
+      "v": 60000,
+      "lot": 1100
+     }
+    ],
+    "residential": [
+     {
+      "zone": "60504-R15/U15",
+      "name": "Escaleras - Dominicalito - Puerto Nuevo",
+      "v": 50000,
+      "lot": 500
+     }
+    ],
+    "beach": [
+     {
+      "zone": "60504-R18/U18",
+      "name": "ZMT Dominical Centro",
+      "v": 57000,
+      "lot": 1000,
+      "zmt": 1
+     },
+     {
+      "zone": "60504-R17/U17",
+      "name": "ZMT Playa Dominical - Playa Dominicalito",
+      "v": 50000,
+      "lot": 600,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 8,
+    "median": 118,
+    "p25": 75,
+    "p75": 138
+   }
+  },
+  "uvita": {
+   "center": [
+    -83.7364,
+    9.1731
+   ],
+   "edition": 2018,
+   "canton": "Osa",
+   "official": {
+    "centre": [
+     {
+      "zone": "60504-R01/U01",
+      "name": "Comercio Uvita",
+      "v": 110000,
+      "lot": 450
+     },
+     {
+      "zone": "60504-R02/U02",
+      "name": "Uvita Este - Cementerio",
+      "v": 70000,
+      "lot": 200
+     }
+    ],
+    "residential": [
+     {
+      "zone": "60504-R11/U11",
+      "name": "Uvita",
+      "v": 25000,
+      "lot": 400
+     }
+    ],
+    "beach": [
+     {
+      "zone": "60504-R10/U10",
+      "name": "Centro Bahia Ballena",
+      "v": 45000,
+      "lot": 420
+     }
+    ]
+   },
+   "market": {
+    "n": 57,
+    "median": 110,
+    "p25": 57,
+    "p75": 163
+   }
+  },
+  "puerto-viejo": {
+   "center": [
+    -82.75357,
+    9.65649
+   ],
+   "edition": 2020,
+   "canton": "Talamanca",
+   "official": {
+    "centre": [
+     {
+      "zone": "70403-U31",
+      "name": "Puerto Viejo Centro",
+      "v": 75000,
+      "lot": 800
+     }
+    ],
+    "residential": [
+     {
+      "zone": "70403-U30",
+      "name": "Puerto Viejo Sur",
+      "v": 35000,
+      "lot": 300
+     }
+    ],
+    "beach": [
+     {
+      "zone": "70403-U01/U02",
+      "name": "ZMT Puerto Viejo",
+      "v": 95000,
+      "v2": 80000,
+      "lot": 800,
+      "zmt": 1
+     }
+    ]
+   },
+   "market": {
+    "n": 32,
+    "median": 74,
+    "p25": 48,
+    "p75": 86
+   }
+  },
+  "escazu": {
+   "center": [
+    -84.14096,
+    9.91599
+   ],
+   "edition": 2024,
+   "canton": "Escazú",
+   "official": {
+    "centre": [
+     {
+      "zone": "10201-U04",
+      "name": "Parque",
+      "v": 290000,
+      "lot": 220
+     },
+     {
+      "zone": "10201-U05",
+      "name": "Manuel Zavaleta",
+      "v": 250000,
+      "lot": 150
+     }
+    ],
+    "residential": [
+     {
+      "zone": "10201-U03",
+      "name": "Colegio Nuestra Señora del Pilar",
+      "v": 150000,
+      "lot": 220
+     },
+     {
+      "zone": "10202-U10",
+      "name": "Liceo de Escazu",
+      "v": 120000,
+      "lot": 200
+     }
+    ]
+   },
+   "market": {
+    "n": 91,
+    "median": 323,
+    "p25": 200,
+    "p75": 434
+   }
+  },
+  "santa-ana": {
+   "center": [
+    -84.1826,
+    9.9326
+   ],
+   "edition": 2025,
+   "canton": "Santa Ana",
+   "official": {
+    "centre": [
+     {
+      "zone": "10901-U01",
+      "name": "Centro de Comercio Santa Ana",
+      "v": 332000,
+      "lot": 300
+     },
+     {
+      "zone": "10901-U07",
+      "name": "Santa Ana Centro",
+      "v": 290000,
+      "lot": 200
+     }
+    ],
+    "residential": [
+     {
+      "zone": "10901-U15",
+      "name": "Amberes - Compostela",
+      "v": 190000,
+      "lot": 200
+     },
+     {
+      "zone": "10903-U09/U10",
+      "name": "Calle Corrogres - Dendera Lindora - Villas del Sol - la Hacienda",
+      "v": 260000,
+      "v2": 70000,
+      "lot": 135
+     }
+    ]
+   },
+   "market": {
+    "n": 140,
+    "median": 285,
+    "p25": 199,
+    "p75": 400
+   }
+  },
+  "atenas": {
+   "center": [
+    -84.3786,
+    9.9786
+   ],
+   "edition": 2016,
+   "canton": "Atenas",
+   "official": {
+    "centre": [
+     {
+      "zone": "20501-U01",
+      "name": "Mercado",
+      "v": 225000,
+      "lot": 250
+     },
+     {
+      "zone": "20501-U03",
+      "name": "Plaza Feria",
+      "v": 150000,
+      "lot": 175
+     }
+    ],
+    "residential": [
+     {
+      "zone": "20501-U04",
+      "name": "Escuela Central",
+      "v": 105000,
+      "lot": 175
+     },
+     {
+      "zone": "20501-R07/U07",
+      "name": "Liceo de Atenas - Escuela los Angeles",
+      "v": 75000,
+      "lot": 150
+     }
+    ]
+   },
+   "market": {
+    "n": 27,
+    "median": 75,
+    "p25": 57,
+    "p75": 131
+   }
+  },
+  "heredia": {
+   "center": [
+    -84.11712,
+    9.99843
+   ],
+   "edition": 2019,
+   "canton": "Heredia",
+   "official": {
+    "centre": [
+     {
+      "zone": "40101-U01",
+      "name": "Heredia Centro",
+      "v": 500000,
+      "lot": 160
+     },
+     {
+      "zone": "40101-U33",
+      "name": "Periferia Heredia Centro",
+      "v": 400000,
+      "lot": 160
+     }
+    ],
+    "residential": [
+     {
+      "zone": "40101-U03",
+      "name": "Barrio Corazon de Jesus",
+      "v": 150000,
+      "lot": 160
+     },
+     {
+      "zone": "40101-U16",
+      "name": "Sector Angeles",
+      "v": 130000,
+      "lot": 100
+     }
+    ]
+   },
+   "market": {
+    "n": 17,
+    "median": 495,
+    "p25": 323,
+    "p75": 685
+   }
+  }
+ }
+}

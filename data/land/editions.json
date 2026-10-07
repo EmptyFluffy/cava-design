@@ -1,0 +1,415 @@
+{
+ "fetched": "2026-10-07",
+ "cantons": {
+  "101": {
+   "name": "San José",
+   "edition": 2021,
+   "zones": 322
+  },
+  "102": {
+   "name": "Escazú",
+   "edition": 2024,
+   "zones": 250
+  },
+  "103": {
+   "name": "Desamparados",
+   "edition": 2024,
+   "zones": 210
+  },
+  "104": {
+   "name": "Puriscal",
+   "edition": 2025,
+   "zones": 81
+  },
+  "105": {
+   "name": "Tarrazú",
+   "edition": 2021,
+   "zones": 24
+  },
+  "106": {
+   "name": "Aserrí",
+   "edition": 2024,
+   "zones": 76
+  },
+  "107": {
+   "name": "Mora",
+   "edition": 2021,
+   "zones": 57
+  },
+  "108": {
+   "name": "Goicoechea",
+   "edition": 2016,
+   "zones": 142
+  },
+  "109": {
+   "name": "Santa Ana",
+   "edition": 2025,
+   "zones": 216
+  },
+  "110": {
+   "name": "Alajuelita",
+   "edition": 2024,
+   "zones": 95
+  },
+  "111": {
+   "name": "Vázquez de Coronado",
+   "edition": 2020,
+   "zones": 102
+  },
+  "112": {
+   "name": "Acosta",
+   "edition": 2016,
+   "zones": 23
+  },
+  "113": {
+   "name": "Tibás",
+   "edition": 2026,
+   "zones": 87
+  },
+  "114": {
+   "name": "Moravia",
+   "edition": 2016,
+   "zones": 127
+  },
+  "115": {
+   "name": "Montes de Oca",
+   "edition": 2021,
+   "zones": 100
+  },
+  "116": {
+   "name": "Turrubares",
+   "edition": 2016,
+   "zones": 36
+  },
+  "117": {
+   "name": "Dota",
+   "edition": 2020,
+   "zones": 30
+  },
+  "118": {
+   "name": "Curridabat",
+   "edition": 2018,
+   "zones": 103
+  },
+  "119": {
+   "name": "Pérez Zeledón",
+   "edition": 2018,
+   "zones": 201
+  },
+  "120": {
+   "name": "León Cortés",
+   "edition": 2020,
+   "zones": 47
+  },
+  "201": {
+   "name": "Alajuela",
+   "edition": 2025,
+   "zones": 472
+  },
+  "202": {
+   "name": "San Ramón",
+   "edition": 2017,
+   "zones": 246
+  },
+  "203": {
+   "name": "Grecia",
+   "edition": 2022,
+   "zones": 108
+  },
+  "204": {
+   "name": "San Mateo",
+   "edition": 2026,
+   "zones": 67
+  },
+  "205": {
+   "name": "Atenas",
+   "edition": 2016,
+   "zones": 73
+  },
+  "206": {
+   "name": "Naranjo",
+   "edition": 2016,
+   "zones": 96
+  },
+  "207": {
+   "name": "Palmares",
+   "edition": 2024,
+   "zones": 96
+  },
+  "208": {
+   "name": "Poás",
+   "edition": 2024,
+   "zones": 27
+  },
+  "209": {
+   "name": "Orotina",
+   "edition": 2025,
+   "zones": 109
+  },
+  "210": {
+   "name": "San Carlos",
+   "edition": 2024,
+   "zones": 158
+  },
+  "211": {
+   "name": "Zarcero",
+   "edition": 2024,
+   "zones": 67
+  },
+  "212": {
+   "name": "Sarchí",
+   "edition": 2024,
+   "zones": 85
+  },
+  "213": {
+   "name": "Upala",
+   "edition": 2018,
+   "zones": 77
+  },
+  "214": {
+   "name": "Los Chiles",
+   "edition": 2018,
+   "zones": 62
+  },
+  "215": {
+   "name": "Guatuso",
+   "edition": 2018,
+   "zones": 57
+  },
+  "216": {
+   "name": "Río Claro",
+   "edition": 2024,
+   "zones": 19
+  },
+  "301": {
+   "name": "Cartago",
+   "edition": 2024,
+   "zones": 270
+  },
+  "302": {
+   "name": "Paraíso",
+   "edition": 2020,
+   "zones": 63
+  },
+  "303": {
+   "name": "La Unión",
+   "edition": 2020,
+   "zones": 160
+  },
+  "304": {
+   "name": "Jiménez",
+   "edition": 2020,
+   "zones": 50
+  },
+  "305": {
+   "name": "Turrialba",
+   "edition": 2020,
+   "zones": 132
+  },
+  "306": {
+   "name": "Alvarado",
+   "edition": 2016,
+   "zones": 23
+  },
+  "307": {
+   "name": "Oreamuno",
+   "edition": 2020,
+   "zones": 120
+  },
+  "308": {
+   "name": "Guarco",
+   "edition": 2020,
+   "zones": 90
+  },
+  "401": {
+   "name": "Heredia",
+   "edition": 2019,
+   "zones": 166
+  },
+  "402": {
+   "name": "Barva",
+   "edition": 2024,
+   "zones": 64
+  },
+  "403": {
+   "name": "Santo Domingo",
+   "edition": 2024,
+   "zones": 58
+  },
+  "404": {
+   "name": "Santa Bárbara",
+   "edition": 2023,
+   "zones": 46
+  },
+  "405": {
+   "name": "San Rafael",
+   "edition": 2024,
+   "zones": 69
+  },
+  "406": {
+   "name": "San Isidro",
+   "edition": 2023,
+   "zones": 81
+  },
+  "407": {
+   "name": "Belén",
+   "edition": 2022,
+   "zones": 61
+  },
+  "408": {
+   "name": "Flores",
+   "edition": 2025,
+   "zones": 41
+  },
+  "409": {
+   "name": "San Pablo",
+   "edition": 2022,
+   "zones": 63
+  },
+  "410": {
+   "name": "Sarapiquí",
+   "edition": 2020,
+   "zones": 126
+  },
+  "501": {
+   "name": "Liberia",
+   "edition": 2025,
+   "zones": 145
+  },
+  "502": {
+   "name": "Nicoya",
+   "edition": 2025,
+   "zones": 160
+  },
+  "503": {
+   "name": "Santa Cruz",
+   "edition": 2025,
+   "zones": 286
+  },
+  "504": {
+   "name": "Bagaces",
+   "edition": 2025,
+   "zones": 45
+  },
+  "505": {
+   "name": "Carrillo",
+   "edition": 2025,
+   "zones": 151
+  },
+  "506": {
+   "name": "Cañas",
+   "edition": 2025,
+   "zones": 38
+  },
+  "507": {
+   "name": "Abangares",
+   "edition": 2025,
+   "zones": 38
+  },
+  "508": {
+   "name": "Tilarán",
+   "edition": 2025,
+   "zones": 93
+  },
+  "509": {
+   "name": "Nandayure",
+   "edition": 2025,
+   "zones": 69
+  },
+  "510": {
+   "name": "La Cruz",
+   "edition": 2025,
+   "zones": 68
+  },
+  "511": {
+   "name": "Hojancha",
+   "edition": 2025,
+   "zones": 46
+  },
+  "601": {
+   "name": "Puntarenas",
+   "edition": 2018,
+   "zones": 305
+  },
+  "602": {
+   "name": "Esparza",
+   "edition": 2024,
+   "zones": 86
+  },
+  "604": {
+   "name": "Montes de Oro",
+   "edition": 2018,
+   "zones": 43
+  },
+  "605": {
+   "name": "Osa",
+   "edition": 2018,
+   "zones": 113
+  },
+  "606": {
+   "name": "Quepos",
+   "edition": 2018,
+   "zones": 87
+  },
+  "608": {
+   "name": "Coto Brus",
+   "edition": 2018,
+   "zones": 85
+  },
+  "609": {
+   "name": "Parrita",
+   "edition": 2018,
+   "zones": 61
+  },
+  "610": {
+   "name": "Corredores",
+   "edition": 2018,
+   "zones": 91
+  },
+  "611": {
+   "name": "Garabito",
+   "edition": 2018,
+   "zones": 139
+  },
+  "612": {
+   "name": "Monteverde",
+   "edition": 2024,
+   "zones": 19
+  },
+  "613": {
+   "name": "Puerto Jiménez",
+   "edition": 2025,
+   "zones": 18
+  },
+  "701": {
+   "name": "Limón",
+   "edition": 2020,
+   "zones": 92
+  },
+  "702": {
+   "name": "Pococí",
+   "edition": 2020,
+   "zones": 177
+  },
+  "703": {
+   "name": "Siquirres",
+   "edition": 2020,
+   "zones": 111
+  },
+  "704": {
+   "name": "Talamanca",
+   "edition": 2020,
+   "zones": 76
+  },
+  "705": {
+   "name": "Matina",
+   "edition": 2020,
+   "zones": 83
+  },
+  "706": {
+   "name": "Guácimo",
+   "edition": 2020,
+   "zones": 56
+  }
+ }
+}

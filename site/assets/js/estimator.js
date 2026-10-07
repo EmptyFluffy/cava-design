@@ -16,7 +16,7 @@
   const T = ES ? {
     months: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'dic'],
     likely: 'probable', perM2: 'por m²', perFt2: 'por pie²', construction: 'Construcción', soft: 'Diseño, permisos e impuestos', total: 'Total del proyecto',
-    parts: { foundations: 'Fundaciones y contrapiso', structure: 'Paredes y estructura', roof: 'Techo', openings: 'Puertas y ventanas', finishes: 'Divisiones, pisos, enchapes y cielos', mep: 'Instalaciones mecánicas y eléctricas', slope: 'Pendiente: fundaciones, muros y drenajes', pool: 'Piscina', deck: 'Terrazas y decks', solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario' },
+    parts: { land: 'Terreno', foundations: 'Fundaciones y contrapiso', structure: 'Paredes y estructura', roof: 'Techo', openings: 'Puertas y ventanas', finishes: 'Divisiones, pisos, enchapes y cielos', mep: 'Instalaciones mecánicas y eléctricas', slope: 'Pendiente: fundaciones, muros y drenajes', pool: 'Piscina', deck: 'Terrazas y decks', solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario' },
     softs: { design: 'Diseño y planos (CFIA, desde 5%)', supervision: 'Dirección técnica (CFIA, desde 5%)', permits: 'Permiso municipal y cargos del CFIA', insurance: 'Póliza de riesgos del trabajo (INS)', connection: 'Conexión de agua en Península Papagayo', review: 'Revisiones de diseño del condominio', vat: 'IVA, 13% sobre obra y honorarios', contingency: 'Reserva para imprevistos' },
     phases: { design: 'Diseño', concept: 'Concepto', schematic: 'Anteproyecto', drawings: 'Planos constructivos', permits: 'Permisos', prepermits: 'Uso de suelo, agua y alineamientos', setena: 'SETENA', condo: 'Revisión del condominio', ict: 'ICT', apc: 'CFIA y municipalidad', build: 'Obra', earth: 'Tierra y fundaciones', struct: 'Estructura y techo', closing: 'Cerramientos e instalaciones', finish: 'Acabados', outdoor: 'Exteriores' },
     dry: 'Época seca', today: 'Hoy',
@@ -33,12 +33,15 @@
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, que aquí producen unos ${kwh} kWh al año.`,
     rate: (b, ft, all) => `Construcción ${b} por m² de casa (${ft} por pie²); todo incluido, ${all} por m² de casa.`,
+    landNote: (t, L) => L.src === 'market' ? `Terreno a lo que piden los lotes en ${t}: US$${L.r[0]} a ${L.r[2]} el m², la mitad central de ${L.n} lotes en venta (octubre de 2026).` : `En ${t} hay pocos lotes anunciados: el terreno va a los valores residenciales de Hacienda, US$${L.r[0]} a ${L.r[2]} el m² (edición ${L.y}).`,
+    landPapagayo: 'En la Península Papagayo el terreno es una concesión del ICT, no se compra: queda fuera.',
+    landNone: 'Aquí no tenemos un precio del terreno con fuente: queda fuera.',
     share: 'Enlace copiado', wa: (sum) => `Hola Studio CAVA, hice una estimación en su sitio: ${sum}. Quisiera conversar sobre el proyecto.`,
     ft2: 'pie²',
   } : {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     likely: 'likely', perM2: 'per m²', perFt2: 'per ft²', construction: 'Construction', soft: 'Design, permits and taxes', total: 'Project total',
-    parts: { foundations: 'Foundations and ground slab', structure: 'Walls and structure', roof: 'Roof', openings: 'Doors and windows', finishes: 'Partitions, floors, tiling and ceilings', mep: 'Plumbing and electrical', slope: 'Slope: foundations, walls and drainage', pool: 'Pool', deck: 'Terraces and decks', solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture' },
+    parts: { land: 'Land', foundations: 'Foundations and ground slab', structure: 'Walls and structure', roof: 'Roof', openings: 'Doors and windows', finishes: 'Partitions, floors, tiling and ceilings', mep: 'Plumbing and electrical', slope: 'Slope: foundations, walls and drainage', pool: 'Pool', deck: 'Terraces and decks', solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture' },
     softs: { design: 'Design and drawings (CFIA, from 5%)', supervision: 'Technical direction (CFIA, from 5%)', permits: 'Municipal permit and CFIA charges', insurance: 'Work-risk insurance (INS)', connection: 'Water connection in Península Papagayo', review: 'Condominium design reviews', vat: 'VAT, 13% on works and fees', contingency: 'Contingency reserve' },
     phases: { design: 'Design', concept: 'Concept', schematic: 'Schematic design', drawings: 'Construction drawings', permits: 'Permits', prepermits: 'Land use, water and alignments', setena: 'SETENA', condo: 'Condominium review', ict: 'ICT', apc: 'CFIA and municipality', build: 'Construction', earth: 'Earthworks and foundations', struct: 'Structure and roof', closing: 'Envelope and services', finish: 'Finishes', outdoor: 'Outdoors' },
     dry: 'Dry season', today: 'Today',
@@ -55,6 +58,9 @@
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, which make about ${kwh} kWh a year here.`,
     rate: (b, ft, all) => `Construction ${b} a m² of house (${ft} a ft²); everything in, ${all} a m² of house.`,
+    landNote: (t, L) => L.src === 'market' ? `Land at what lots ask in ${t}: US$${L.r[0]} to ${L.r[2]} a m², the middle half of ${L.n} lots for sale (October 2026).` : `Few lots are listed in ${t}: the land goes at Hacienda's residential values, US$${L.r[0]} to ${L.r[2]} a m² (${L.y} edition).`,
+    landPapagayo: 'In Península Papagayo the land is an ICT concession and is not sold: it is left out.',
+    landNone: 'We have no sourced land price here: it is left out.',
     share: 'Link copied', wa: (sum) => `Hi Studio CAVA, I made an estimate on your site: ${sum}. I would like to talk about the project.`,
     ft2: 'ft²',
   };
@@ -77,6 +83,7 @@
     for (const [k, v] of f.entries()) state[k] = v;
     for (const el of $$('input[type=checkbox]', form)) state[el.name] = el.checked ? '1' : '0';
     state.area = Math.max(40, Math.min(3000, +state.area || 250));
+    state.lot = Math.max(100, Math.min(100000, +state.lot || 1000));
   };
   const toUrl = () => {
     const q = new URLSearchParams(state);
@@ -141,8 +148,10 @@
     softs.push(['contingency', works.map((c, i) => (c + bought[i]) * pick(S.contingency, i))]);
     const all = [...parts, ...extras];
     const hard = sum(all), soft = sum(softs);
-    const total = [0, 1, 2].map((i) => hard[i] + soft[i]);
-    return { town, area, rate, parts: all, softs, hard, soft, total, solar };
+    // the land, at what lots ask in the town: no fees, VAT or reserve on top
+    const lnd = state.land === '1' && town?.land ? town.land.r.map((r) => r * state.lot) : [0, 0, 0];
+    const total = [0, 1, 2].map((i) => hard[i] + soft[i] + lnd[i]);
+    return { town, area, rate, parts: all, softs, hard, soft, land: lnd, total, solar };
   }
 
   // ---------- schedule: design, permits, works; works open with the dry season ----------
@@ -181,7 +190,7 @@
   }
 
   // ---------- drawing ----------
-  const COLORS = { foundations: '#2f2f2d', structure: '#4a4a48', roof: '#666663', openings: '#83837f', finishes: '#a5a5a0', mep: '#c4c3bd', slope: '#8a7356', pool: '#7fa6bd', deck: '#b58a5e', solar: '#e2b45c', landscape: '#7d9a6a', furniture: '#d8c6a8' };
+  const COLORS = { land: '#6b5a3e', foundations: '#2f2f2d', structure: '#4a4a48', roof: '#666663', openings: '#83837f', finishes: '#a5a5a0', mep: '#c4c3bd', slope: '#8a7356', pool: '#7fa6bd', deck: '#b58a5e', solar: '#e2b45c', landscape: '#7d9a6a', furniture: '#d8c6a8' };
 
   function renderTotals(e) {
     $('[data-est-total]').textContent = `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
@@ -203,6 +212,13 @@
     $('[data-est-softs]').innerHTML = e.softs.map(([k, v]) => `<li><span>${T.softs[k]}</span><b>${money(v[1])}</b></li>`).join('');
     const sn = $('[data-est-solar]');
     if (sn) sn.textContent = e.solar ? T.solarNote(e.solar.kwp, num(e.solar.kwh)) : '';
+    // the land sits apart from the construction, after it
+    if (e.land[1]) list.insertAdjacentHTML('beforeend', `<li class="est__land"><i style="background:${COLORS.land}"></i><span>${T.parts.land}, ${num(state.lot)} m²</span><b>${money(e.land[1])}</b><em></em></li>`);
+    const ln = $('[data-est-land]');
+    if (ln) {
+      const L = e.town?.land;
+      ln.textContent = state.land !== '1' ? '' : e.town?.slug === 'papagayo' ? T.landPapagayo : !L ? T.landNone : T.landNote(e.town.name, L);
+    }
   }
 
   // a simple massing, isometric, with a person for scale

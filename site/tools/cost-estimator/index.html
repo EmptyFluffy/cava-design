@@ -66,6 +66,9 @@
           <label><input type="checkbox" name="solar" checked> Solar panels<em class="est__delta" data-delta></em></label>
           <label><input type="checkbox" name="landscape" checked> Landscaping<em class="est__delta" data-delta></em></label>
           <label><input type="checkbox" name="furniture"> Furniture, ready to rent<em class="est__delta" data-delta></em></label>
+          <label><input type="checkbox" name="land"> The land<em class="est__delta" data-delta></em></label>
+          <label class="est__lot"><span>Lot, m²</span><input class="input est__num" type="number" name="lot" min="100" max="100000" step="50" value="1000" aria-label="Lot, m²"></label>
+
           <label><input type="checkbox" name="condo"> In a condominium or gated community</label>
         </fieldset>
         <fieldset class="est__field"><legend class="label">Show in</legend><div class="est__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="cur" value="usd" checked><span>US$</span></label><label class="est__opt"><input type="radio" name="cur" value="crc"><span>₡</span></label></div></fieldset>
@@ -95,6 +98,7 @@
           <div class="est__bar" data-est-bar></div>
           <ul class="est__list" data-est-parts></ul>
           <p class="note" data-est-solar></p>
+          <p class="note" data-est-land></p>
           <h2 class="label est__sub">(Design, permits and taxes)</h2>
           <ul class="est__list est__list--soft" data-est-softs></ul>
         </section>
@@ -102,7 +106,7 @@
           <h2 class="label" id="est-scope-t">(What the estimate covers)</h2>
           <div class="est__scope">
             <div><h3 class="label">Included</h3><ul><li>Construction, with the builder's profit and administration</li><li>Design, drawings and technical direction, at the CFIA minimum</li><li>Municipal permit, CFIA charges and the INS work insurance</li><li>VAT at 13%</li><li>A reserve of 5 to 10%</li><li>The pool, terraces, solar, landscaping and furniture you pick, and condominium design reviews</li></ul></div>
-            <div><h3 class="label">Not included</h3><ul><li>The land, and its legal and transfer costs</li><li>The water letter, a long water line or a well</li><li>A power line to the lot</li><li>Access roads and long driveways</li><li>A septic tank or a treatment plant</li><li>Condominium review fees and deposits</li></ul></div>
+            <div><h3 class="label">Not included</h3><ul><li>The land unless you tick it, and its legal and transfer costs</li><li>The water letter, a long water line or a well</li><li>A power line to the lot</li><li>Access roads and long driveways</li><li>A septic tank or a treatment plant</li><li>Condominium review fees and deposits</li></ul></div>
           </div>
           <p class="note">Rates updated 7 October 2026, at ₡457.80 to the dollar. They price houses designed by an architect; a typical local house (Hacienda types VC01 to VC04) runs about US$640 to 1,050 a m².</p>
         </section>
@@ -116,6 +120,7 @@
           <h2 class="label" id="est-flags-t">(To keep in mind)</h2>
           <ul class="guide__tips" data-est-flags></ul>
           <ul class="guide__links est__guides">
+            <li><a class="ulink" href="../../tools/land-prices/">Land prices by zone →</a></li>
             <li><a class="ulink" href="../../guides/building-permits/">Building permits in Costa Rica, step by step →</a></li>
             <li><a class="ulink" href="../../architects/gated-communities/">Building in a gated community or condominium →</a></li>
           </ul>
@@ -253,6 +258,7 @@
       <a class="footer__link" href="../../architects/">Where we work</a>
       <a class="footer__link" href="../../guides/">Guides</a>
       <a class="footer__link" href="../../tools/cost-estimator/">Cost estimator</a>
+      <a class="footer__link" href="../../tools/land-prices/">Land prices</a>
       <a class="footer__link" href="../../#enquiry">Contact us</a>
       <a class="footer__link" href="../../es/herramientas/estimador-de-costos/" hreflang="es" lang="es">Español</a>
     </nav>
