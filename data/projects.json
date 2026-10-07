@@ -3,11 +3,13 @@
   "hero": [
     "portland-house/1",
     "papagayo-404/1",
+    "casa-alcaravan/2",
     "tragaluz-retreat/3",
-    "papagayo-404/5",
+    "papagayo-404/6",
     "military-museum/1",
     "papagayo-404/2",
-    "negra-mixed-use/1"
+    "negra-mixed-use/1",
+    "papagayo-404/3"
   ],
   "projects": [
     {
@@ -71,6 +73,11 @@
           "file": "Arquitectura moderna restaurada con precisión-5.png",
           "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
           "alt_es": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa"
+        },
+        {
+          "file": "Terraza de hora azul y fuego.png",
+          "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond",
+          "alt_es": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás"
         },
         {
           "file": "Arquitectura moderna en alta definición-1.png",
@@ -138,6 +145,11 @@
           "file": "nuevos/Casa tropical entre verdes naturales-1.png",
           "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree",
           "alt_es": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
+        },
+        {
+          "file": "nuevos/Alero de madera sin luces empotradas.png",
+          "alt": "The house at dusk, its timber eave and louvres lit from inside, behind a gravel garden and a tree",
+          "alt_es": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol"
         },
         {
           "file": "nuevos/Interior tropical de madera y luz-4.png",

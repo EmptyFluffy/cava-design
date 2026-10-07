@@ -31,55 +31,62 @@ window.CAVA_RENDERS = [
  {
   "id": "papagayo-404-2",
   "src": "../assets/img/projects/papagayo-404/2",
+  "v": "de9744c2",
+  "title": "Papagayo 404",
+  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás"
+ },
+ {
+  "id": "papagayo-404-3",
+  "src": "../assets/img/projects/papagayo-404/3",
   "v": "67c9f923",
   "title": "Papagayo 404",
   "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito"
  },
  {
-  "id": "papagayo-404-3",
-  "src": "../assets/img/projects/papagayo-404/3",
+  "id": "papagayo-404-4",
+  "src": "../assets/img/projects/papagayo-404/4",
   "v": "63a72a6d",
   "title": "Papagayo 404",
   "alt": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo"
  },
  {
-  "id": "papagayo-404-4",
-  "src": "../assets/img/projects/papagayo-404/4",
+  "id": "papagayo-404-5",
+  "src": "../assets/img/projects/papagayo-404/5",
   "v": "ba6a3662",
   "title": "Papagayo 404",
   "alt": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía"
  },
  {
-  "id": "papagayo-404-5",
-  "src": "../assets/img/projects/papagayo-404/5",
+  "id": "papagayo-404-6",
+  "src": "../assets/img/projects/papagayo-404/6",
   "v": "1e2cac83",
   "title": "Papagayo 404",
   "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco"
  },
  {
-  "id": "papagayo-404-6",
-  "src": "../assets/img/projects/papagayo-404/6",
+  "id": "papagayo-404-7",
+  "src": "../assets/img/projects/papagayo-404/7",
   "v": "6e0b5e06",
   "title": "Papagayo 404",
   "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo"
  },
  {
-  "id": "papagayo-404-7",
-  "src": "../assets/img/projects/papagayo-404/7",
+  "id": "papagayo-404-8",
+  "src": "../assets/img/projects/papagayo-404/8",
   "v": "5252a1a7",
   "title": "Papagayo 404",
   "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
  },
  {
-  "id": "papagayo-404-8",
-  "src": "../assets/img/projects/papagayo-404/8",
+  "id": "papagayo-404-9",
+  "src": "../assets/img/projects/papagayo-404/9",
   "v": "f432f563",
   "title": "Papagayo 404",
   "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
  },
  {
-  "id": "papagayo-404-9",
-  "src": "../assets/img/projects/papagayo-404/9",
+  "id": "papagayo-404-10",
+  "src": "../assets/img/projects/papagayo-404/10",
   "v": "a4122b91",
   "title": "Papagayo 404",
   "alt": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
@@ -94,27 +101,34 @@ window.CAVA_RENDERS = [
  {
   "id": "casa-alcaravan-2",
   "src": "../assets/img/projects/casa-alcaravan/2",
+  "v": "8b80842b",
+  "title": "Casa Alcaraván",
+  "alt": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol"
+ },
+ {
+  "id": "casa-alcaravan-3",
+  "src": "../assets/img/projects/casa-alcaravan/3",
   "v": "a581f729",
   "title": "Casa Alcaraván",
   "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
  },
  {
-  "id": "casa-alcaravan-3",
-  "src": "../assets/img/projects/casa-alcaravan/3",
+  "id": "casa-alcaravan-4",
+  "src": "../assets/img/projects/casa-alcaravan/4",
   "v": "8185e37c",
   "title": "Casa Alcaraván",
   "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
  },
  {
-  "id": "casa-alcaravan-4",
-  "src": "../assets/img/projects/casa-alcaravan/4",
+  "id": "casa-alcaravan-5",
+  "src": "../assets/img/projects/casa-alcaravan/5",
   "v": "aa6c46fb",
   "title": "Casa Alcaraván",
   "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
  },
  {
-  "id": "casa-alcaravan-5",
-  "src": "../assets/img/projects/casa-alcaravan/5",
+  "id": "casa-alcaravan-6",
+  "src": "../assets/img/projects/casa-alcaravan/6",
   "v": "64608d6d",
   "title": "Casa Alcaraván",
   "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
@@ -275,6 +289,16 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
+  "src": "../assets/img/projects/casa-alcaravan/2",
+  "v": "8b80842b",
+  "w": 1536,
+  "h": 1024,
+  "alt": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "proyectos/casa-alcaravan/"
+ },
+ {
   "src": "../assets/img/projects/tragaluz-retreat/3",
   "v": "b0bd601c",
   "w": 1600,
@@ -285,7 +309,7 @@ window.CAVA_HERO = [
   "href": "proyectos/tragaluz-retreat/"
  },
  {
-  "src": "../assets/img/projects/papagayo-404/5",
+  "src": "../assets/img/projects/papagayo-404/6",
   "v": "1e2cac83",
   "w": 1484,
   "h": 1060,
@@ -306,10 +330,10 @@ window.CAVA_HERO = [
  },
  {
   "src": "../assets/img/projects/papagayo-404/2",
-  "v": "67c9f923",
-  "w": 1484,
-  "h": 1060,
-  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito",
+  "v": "de9744c2",
+  "w": 1448,
+  "h": 1086,
+  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
@@ -323,5 +347,15 @@ window.CAVA_HERO = [
   "name": "Negra Mixed Use",
   "place": "Playa Negra",
   "href": "proyectos/negra-mixed-use/"
+ },
+ {
+  "src": "../assets/img/projects/papagayo-404/3",
+  "v": "67c9f923",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "proyectos/papagayo-404/"
  }
 ];
