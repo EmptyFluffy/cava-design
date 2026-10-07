@@ -151,7 +151,7 @@ function indexPage() {
     </li>`).join('\n');
   return head({
     title: 'Projects | Studio CAVA',
-    description: `${projects.length} projects by Studio CAVA: houses, retreats, hangars, a bakery and a museum, each with its renders and technical sheet.`,
+    description: `${projects.length} projects by Studio CAVA: houses, retreats, hangars, a bakery and a museum, each with its images and technical sheet.`,
     path: '/projects/',
     image: `${imgBase(projects[0].slug, 1)}-1600.webp`,
     up,
@@ -196,7 +196,7 @@ function projectPage(p, i) {
     ['Project', p.name],
     ['Type', p.type],
     ...FACTS.map(([k, label]) => [label, p[k]]),
-    ['Images', `${p.images.length} concept render${p.images.length > 1 ? 's' : ''}`],
+    ['Images', `${p.images.length} image${p.images.length > 1 ? 's' : ''}`],
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? TBC)}</dd></div>`).join('\n');
   const placeholders = FACTS.some(([k]) => p[k] == null);
   const rest = p.images.slice(1);
@@ -210,7 +210,7 @@ ${rest.map((im, j) => `      <figure class="gallery__item">${picture(up, p.slug,
   const waText = `Hi Studio CAVA, I saw ${p.name} on your site and would like to talk about a project.`;
   return head({
     title: `${p.name} | Studio CAVA`,
-    description: `${p.name}, ${p.type.toLowerCase()} by Studio CAVA. Renders and technical sheet.`,
+    description: `${p.name}, ${p.type.toLowerCase()} by Studio CAVA. Images and technical sheet.`,
     path: `/projects/${p.slug}/`,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
@@ -261,4 +261,4 @@ projects.forEach((p, i) => {
   writeFileSync(join(SITE, 'projects', p.slug, 'index.html'), projectPage(p, i));
 });
 writeFileSync(join(SITE, 'assets', 'js', 'renders.js'), rendersJs());
-console.log(`built /projects/ and ${projects.length} project pages, ${projects.reduce((n, p) => n + p.images.length, 0)} renders`);
+console.log(`built /projects/ and ${projects.length} project pages, ${projects.reduce((n, p) => n + p.images.length, 0)} images`);

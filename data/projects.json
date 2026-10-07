@@ -2,8 +2,8 @@
   "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order.",
   "hero": [
     "portland-house/1",
-    "kauhane-house/1",
-    "tragaluz-retreat/1",
+    "papagayo-404/1",
+    "tragaluz-retreat/3",
     "military-museum/1",
     "negra-mixed-use/1"
   ],
@@ -13,7 +13,7 @@
       "name": "Portland House",
       "folder": "Portland House",
       "type": "House",
-      "location": "Near Huacas, Guanacaste",
+      "location": "Huacas, Guanacaste",
       "coords": [
         -85.765,
         10.372

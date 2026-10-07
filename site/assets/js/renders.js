@@ -152,23 +152,23 @@ window.CAVA_HERO = [
   "h": 900,
   "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
   "name": "Portland House",
-  "place": "Near Huacas",
+  "place": "Huacas",
   "href": "projects/portland-house/"
  },
  {
-  "src": "assets/img/projects/kauhane-house/1",
-  "w": 1600,
-  "h": 900,
-  "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees",
-  "name": "Kauhane House",
-  "place": "Playa Grande",
-  "href": "projects/kauhane-house/"
+  "src": "assets/img/projects/papagayo-404/1",
+  "w": 1448,
+  "h": 1086,
+  "alt": "White cubic house raised on slender steel columns above a pool deck",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/tragaluz-retreat/1",
+  "src": "assets/img/projects/tragaluz-retreat/3",
   "w": 1600,
   "h": 900,
-  "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk",
+  "alt": "Low white house with a timber-clad wall under a wide roof",
   "name": "Tragaluz Retreat",
   "place": "Playa Negra",
   "href": "projects/tragaluz-retreat/"
