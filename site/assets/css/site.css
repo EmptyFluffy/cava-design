@@ -139,7 +139,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: var(--margin) var(--margin) 0;
 }
 .nav__brand { grid-column: 1 / span 6; justify-self: start; font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; }
-.nav__links { grid-column: 6 / span 5; }
+.nav__links { grid-column: 7 / span 4; }
 .nav__cta { grid-column: 11 / span 2; justify-self: end; }
 .nav__menu { display: none; }
 /* The same page in the other language: last in the nav row (after an en space, so a wrapped
@@ -377,7 +377,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   border-bottom: 1px solid var(--grey);
 }
 .bar__brand { grid-column: 1 / span 5; justify-self: start; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1; }
-.bar__links { grid-column: 6 / span 5; }
+.bar__links { grid-column: 7 / span 4; }
 .bar__links [aria-current="page"] { background-size: 100% 1px; background-position: 0 100%; }
 .bar__cta { grid-column: 11 / span 2; justify-self: end; }
 
@@ -844,14 +844,17 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .hub__table td { font-size: var(--f-main); }
 .hub__region th { padding-top: 1.8rem; font-size: var(--f-small) !important; text-transform: uppercase; color: var(--dark-grey); border-bottom-color: var(--black); }
 
-/* Spanish nav words are longer: between 992 and 1099 px a smaller size keeps them on one line, clear of the button */
-@media (min-width: 992px) and (max-width: 1099px) {
-  :lang(es) .bar__links, :lang(es) .nav__links { font-size: 0.75rem; white-space: nowrap; }
-}
+/* The links stay on one line on desktop. Below 1280 px six of them no longer fit beside the button:
+   Process leaves the bar (it stays in the footer, the menu and on the Studio page), and below 1200 px
+   the size steps down a little. */
+@media (min-width: 992px) { .bar__links, .nav__links { white-space: nowrap; } }
+@media (min-width: 992px) and (max-width: 1279px) { .nav__process { display: none; } }
+@media (min-width: 1100px) and (max-width: 1199px) { .bar__links, .nav__links { font-size: 0.8125rem; } }
+@media (min-width: 992px) and (max-width: 1099px) { .bar__links, .nav__links { font-size: 0.72rem; } }
 
 /* Tablet */
 @media (max-width: 991px) {
-  .nav__links, .bar__links { grid-column: 6 / span 5; }
+  .nav__links, .bar__links { grid-column: 7 / span 3; }
   .svc-home__label, .svc-home__list { grid-column: 1 / -1; }
   .svc-home__row { grid-template-columns: 2.4rem minmax(0, 1fr) 1.2rem; row-gap: 0.35rem; }
   .svc-home__card, .svc-home__meta { grid-column: 2 / 3; }

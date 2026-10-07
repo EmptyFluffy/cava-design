@@ -128,7 +128,7 @@ function bar(lang, up, paths, current) {
   return `<header class="bar">
   <a class="bar__brand" href="${home}" aria-label="${t.home}">${MARK}<span>Studio CAVA</span></a>
   <nav class="bar__links label" aria-label="${t.aria}">
-    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, ${link(`${studioHref}#process`, t.process)}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
+    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, <span class="nav__process">${link(`${studioHref}#process`, t.process)}, </span>${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
   <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
 </header>
