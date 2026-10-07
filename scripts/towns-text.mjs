@@ -59,10 +59,32 @@ export function climate(d) {
     const s = months.reduce((a, m) => ({ x: a.x + d.wind[m].x, y: a.y + d.wind[m].y, s: a.s + d.wind[m].s }), { x: 0, y: 0, s: 0 });
     return { dir: ((Math.atan2(s.x, s.y) * 180) / Math.PI + 360) % 360, steady: Math.hypot(s.x, s.y) / s.s };
   };
+  // The build window: the dry season, or where there is none, the two driest months in a row. A
+  // four-month phase of earthworks, foundations and structure started at the window's opening is set
+  // against the same phase started the month the window closes: the difference in heavy-rain days is
+  // the time a dry-season start saves.
+  const run = (s, n) => Array.from({ length: n }, (_, k) => (s + k) % 12);
+  let win = best;
+  if (!win) {
+    let lo = null;
+    for (let s = 0; s < 12; s++) { const r = rain[s] + rain[(s + 1) % 12]; if (!lo || r < lo.r) lo = { start: s, n: 2, r }; }
+    win = { start: lo.start, n: 2 };
+  }
+  const heavy = d.heavyDays ?? Array(12).fill(0);
+  const sum = (ms, a) => ms.reduce((x, m) => x + a[m], 0);
+  const after = (win.start + win.n) % 12;
+  const PHASE = 4;
+  const build = {
+    start: win.start, n: win.n, after, isDry: !!best, phase: PHASE,
+    rain: sum(run(win.start, win.n), rain), other: total - sum(run(win.start, win.n), rain),
+    heavyIn: sum(run(win.start, win.n), heavy), heavy,
+    phaseIn: sum(run(win.start, PHASE), heavy), phaseOut: sum(run(after, PHASE), heavy),
+  };
+  build.saved = build.phaseOut - build.phaseIn;
   const dryMonths = best ? Array.from({ length: best.n }, (_, k) => (best.start + k) % 12) : [];
   const wetMonths = Array.from({ length: 12 }, (_, m) => m).filter((m) => !dryMonths.includes(m));
   return {
-    total, dry: best, wet, wetShare, wettest, veranillo,
+    total, dry: best, wet, wetShare, wettest, veranillo, build, chartStart: after,
     driest: [order[0][1], order[1][1]].sort((a, b) => a - b), driestMin: order[0][0],
     hottest, coolest, tmaxHot: Math.round(d.tmax[hottest]), tmaxCool: Math.round(d.tmax[coolest]),
     nights: [Math.round(Math.min(...d.tmin)), Math.round(Math.max(...d.tmin))],
@@ -118,7 +140,11 @@ export const T = {
       aria: (where) => `Map of ${where} with the average wind moving across it and the sunlight the ground gets in a year`,
       caption: 'The lines drift with the average wind of the season you pick; the faster they move, the stronger the wind. The colour is the sunlight the ground gets in a year. Wind: NASA POWER (MERRA-2), 2001 to 2020. Sunlight: Global Solar Atlas (World Bank Group, Solargis), CC BY 4.0.',
     },
-    year: { label: '(The year)', chart: (t, d) => `Rain by month in ${t.name}, in mm: ${d.rain.map((r, i) => `${MONTHS.en[i]} ${r}`).join(', ')}`, caption: `Rain by month, in mm. Grey: months under ${DRY} mm.` },
+    year: {
+      label: '(The year)', chart: (t, d) => `Rain by month in ${t.name}, in mm: ${d.rain.map((r, i) => `${MONTHS.en[i]} ${r}`).join(', ')}`,
+      caption: `Rain by month, in mm, starting with the rains. Grey: months under ${DRY} mm. Hatched: the best time to build. Bottom row: days a month with 10 mm of rain or more, when earthworks usually stop (NASA POWER, 2001 to 2020).`,
+      best: 'Best time to build', heavy: (n) => `${n < 1 ? '< 1' : Math.round(n)} ${n >= 1.5 ? 'days' : 'day'} ≥ 10 mm`, row: '≥10',
+    },
     sun: {
       label: '(The sun)', legend: ['June 21', 'March 20 and September 22', 'December 21'], aria: (t) => `Sun path over ${t.name}, seen from above with north at the top: the sun's track on the June solstice, the equinoxes and the December solstice`, compass: ['N', 'E', 'S', 'W'],
       temps: 'Typical temperature at that hour', bands: ['Under 22 °C', '22 to 25', '25 to 28', '28 to 31', '31 °C and up'],
@@ -130,7 +156,7 @@ export const T = {
     nearby: { label: '(Nearby)', km: (n) => `${num('en', n)} km`, all: 'All the places we work' },
     reach: (t) => `Tell us about your lot in ${t.name} and what you want to build. We answer within a working day.`,
     wa: (t) => `Hi Studio CAVA, I have a lot in ${t.name} and would like to talk about a project.`,
-    sources: (fetched, st) => `Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: ${st ? `measured at ${st.name}, ${num('en', st.km)} km away` : 'the nearest of 12 weather stations'}, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered ${fetched}.`,
+    sources: (fetched, st) => `Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: ${st ? `measured at ${st.name}, ${num('en', st.km)} km away` : 'the nearest of 12 weather stations'}, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Heavy-rain days: NASA POWER (MERRA-2), 2001 to 2020. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered ${fetched}.`,
     wind: {
       label: '(The wind)', dry: '(Dry season)', wet: '(Rainy season)', all: '(All year)', calm: (p) => `Calm ${p}%`,
       caption: (st) => `Share of hours the wind blows from each direction, by speed. Measured at ${st.name}, ${num('en', st.km)} km away, 2011 to 2025.`,
@@ -169,7 +195,11 @@ export const T = {
       aria: (where) => `Mapa de ${where} con el viento promedio en movimiento y la radiación solar que recibe el suelo en un año`,
       caption: 'Las líneas se mueven con el viento promedio de la época que elija; entre más rápido se mueven, más fuerte el viento. El color es la radiación solar que recibe el suelo en un año. Viento: NASA POWER (MERRA-2), 2001 a 2020. Radiación: Global Solar Atlas (Grupo Banco Mundial, Solargis), CC BY 4.0.',
     },
-    year: { label: '(El año)', chart: (t, d) => `Lluvia por mes en ${t.name}, en mm: ${d.rain.map((r, i) => `${MONTHS.es[i]} ${r}`).join(', ')}`, caption: `Lluvia por mes, en mm. En gris, los meses con menos de ${DRY} mm.` },
+    year: {
+      label: '(El año)', chart: (t, d) => `Lluvia por mes en ${t.name}, en mm: ${d.rain.map((r, i) => `${MONTHS.es[i]} ${r}`).join(', ')}`,
+      caption: `Lluvia por mes, en mm, empezando con las lluvias. En gris, los meses con menos de ${DRY} mm. Con rayado, la mejor época para construir. Fila de abajo: días al mes con 10 mm de lluvia o más, cuando el movimiento de tierra suele detenerse (NASA POWER, 2001 a 2020).`,
+      best: 'Mejor época para construir', heavy: (n) => `${n < 1 ? '< 1' : Math.round(n)} ${n >= 1.5 ? 'días' : 'día'} ≥ 10 mm`, row: '≥10',
+    },
     sun: {
       label: '(El sol)', legend: ['21 de junio', '20 de marzo y 22 de setiembre', '21 de diciembre'], aria: (t) => `Recorrido del sol sobre ${t.name}, visto desde arriba con el norte hacia arriba: el camino del sol en el solsticio de junio, los equinoccios y el solsticio de diciembre`, compass: ['N', 'E', 'S', 'O'],
       temps: 'Temperatura típica a esa hora', bands: ['Menos de 22 °C', '22 a 25', '25 a 28', '28 a 31', '31 °C o más'],
@@ -181,7 +211,7 @@ export const T = {
     nearby: { label: '(Cerca)', km: (n) => `${num('es', n)} km`, all: 'Todos los lugares donde trabajamos' },
     reach: (t) => `Cuéntenos sobre su lote en ${t.name} y lo que quiere construir. Respondemos en un día hábil.`,
     wa: (t) => `Hola Studio CAVA, tengo un lote en ${t.name} y quisiera conversar sobre un proyecto.`,
-    sources: (fetched, st) => `Lluvia: climatología CHIRPS (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperatura y viento: ${st ? `medidos en ${enSt(st.name_es)}, a ${num('es', st.km)} km` : 'la más cercana de 12 estaciones meteorológicas'}, año típico 2011 a 2025 (Climate.OneBuilding.org TMYx, a partir de observaciones de la NOAA), con la temperatura ajustada por altitud. Sol: calculado para las coordenadas del pueblo. Altitud: SRTM. Carreteras y lugares: OpenStreetMap. Datos reunidos en ${fetched}.`,
+    sources: (fetched, st) => `Lluvia: climatología CHIRPS (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperatura y viento: ${st ? `medidos en ${enSt(st.name_es)}, a ${num('es', st.km)} km` : 'la más cercana de 12 estaciones meteorológicas'}, año típico 2011 a 2025 (Climate.OneBuilding.org TMYx, a partir de observaciones de la NOAA), con la temperatura ajustada por altitud. Días de lluvia fuerte: NASA POWER (MERRA-2), 2001 a 2020. Sol: calculado para las coordenadas del pueblo. Altitud: SRTM. Carreteras y lugares: OpenStreetMap. Datos reunidos en ${fetched}.`,
     wind: {
       label: '(El viento)', dry: '(Época seca)', wet: '(Época lluviosa)', all: '(Todo el año)', calm: (p) => `Calma ${p}%`,
       caption: (st) => `Porcentaje de horas en que el viento sopla desde cada dirección, por velocidad. Medido en ${enSt(st.name_es)}, a ${num('es', st.km)} km, 2011 a 2025.`,
@@ -224,6 +254,24 @@ export function paragraphs(lang, t, d, c, s, muni) {
     ? `Afternoons are hottest in ${M[c.hottest]}, at ${c.tmaxHot} °C on average, and coolest in ${M[c.coolest]}, at ${c.tmaxCool} °C. ${heat}`
     : `Las tardes más calientes son en ${M[c.hottest]}, con ${c.tmaxHot} °C en promedio, y las más frescas en ${M[c.coolest]}, con ${c.tmaxCool} °C. ${heat}`);
   out.year = rain;
+
+  // the best time to build, and what starting then saves
+  const b = c.build;
+  const win = range(lang, { start: b.start, n: b.n });
+  const ratio = b.rain >= 5 ? Math.round(b.other / b.rain) : null;
+  const saved = Math.round(b.saved), weeks = Math.max(1, Math.round(b.saved / 7));
+  const before = M[(b.start + 11) % 12];
+  out.build = en
+    ? [
+        `The best time to build here is ${win}${b.isDry ? '' : ', the driest stretch of the year'}. Those ${b.n} months bring ${num(lang, b.rain)} mm of rain in total; the other ${12 - b.n} bring ${num(lang, b.other)} mm${ratio && ratio >= 3 ? `, ${ratio} times as much` : ''}.`,
+        'Earthworks, foundations and concrete pours need dry ground, and many roads to the lots only stay passable without rain. On a day with 10 mm of rain or more, that work usually stops.',
+        `A ${b.phase}-month phase of earthworks, foundations and structure that starts in ${M[b.start]} meets ${b.phaseIn < 1 ? 'almost no such days' : `about ${Math.round(b.phaseIn)} such days`} here; the same phase started in ${M[b.after]} meets about ${Math.round(b.phaseOut)}.${saved >= 3 ? ` Starting in ${M[b.start]} saves about ${saved} days of stopped work: some ${weeks} ${weeks === 1 ? 'week' : 'weeks'} of crew and machinery paid to wait, and the pumping and drainage that wet excavations need. So the permit should be ready by ${before}.` : ''}`,
+      ]
+    : [
+        `La mejor época para construir aquí es ${win}${b.isDry ? '' : ', el tramo más seco del año'}. Esos ${b.n} meses suman ${num(lang, b.rain)} mm de lluvia; los otros ${12 - b.n} suman ${num(lang, b.other)} mm${ratio && ratio >= 3 ? `, ${ratio} veces más` : ''}.`,
+        'El movimiento de tierra, las fundaciones y las chorreas de concreto necesitan suelo seco, y muchos caminos a los lotes solo se mantienen transitables sin lluvia. Un día con 10 mm de lluvia o más, ese trabajo casi siempre se detiene.',
+        `Una etapa de ${b.phase} meses de movimiento de tierra, fundaciones y estructura que empieza en ${M[b.start]} tiene aquí ${b.phaseIn < 1 ? 'casi ninguno de esos días' : `unos ${Math.round(b.phaseIn)} de esos días`}; la misma etapa empezando en ${M[b.after]} tiene unos ${Math.round(b.phaseOut)}.${saved >= 3 ? ` Empezar en ${M[b.start]} ahorra unos ${saved} días de obra detenida: unas ${weeks} ${weeks === 1 ? 'semana' : 'semanas'} de cuadrilla y maquinaria pagadas sin avanzar, y el bombeo y el drenaje que piden las excavaciones mojadas. Por eso conviene tener el permiso listo en ${before}.` : ''}`,
+      ];
 
   // the wind, measured at the station: where the afternoon wind comes from
   const wd = c.windDry && windPhrase(lang, c.windDry);
@@ -279,13 +327,14 @@ export function faq(lang, t, d, c, s, muni) {
   const en = lang === 'en';
   const M = MONTHS[lang];
   const q = [];
-  q.push(c.dry
-    ? [en ? `When is the best time to build in ${t.name}?` : `¿Cuál es la mejor época para construir en ${t.name}?`,
-      en ? `The dry season, ${range(lang, c.dry)}, when each month gets less than ${DRY} mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before ${M[c.dry.start]}.`
-        : `La época seca, ${range(lang, c.dry)}, cuando cada mes llueve menos de ${DRY} mm. El movimiento de tierra, las fundaciones y el techo avanzan más rápido, así que conviene tener el permiso antes de ${M[c.dry.start]}.`]
-    : [en ? `When is the best time to build in ${t.name}?` : `¿Cuál es la mejor época para construir en ${t.name}?`,
-      en ? `${t.name} has no real dry season: every month gets at least ${num(lang, c.driestMin)} mm of rain. The least rainy months, ${list2(lang, M[c.driest[0]], M[c.driest[1]])}, are the best window for earthworks and foundations.`
-        : `${t.name} no tiene una época seca de verdad: todos los meses llueven al menos ${num(lang, c.driestMin)} mm. Los meses menos lluviosos, ${list2(lang, M[c.driest[0]], M[c.driest[1]])}, son la mejor ventana para el movimiento de tierra y las fundaciones.`]);
+  {
+    const b = c.build;
+    const win = range(lang, { start: b.start, n: b.n });
+    const saved = Math.round(b.saved);
+    q.push([en ? `When is the best time to build in ${t.name}?` : `¿Cuál es la mejor época para construir en ${t.name}?`,
+      en ? `${win[0].toUpperCase() + win.slice(1)}${b.isDry ? ', the dry season' : ', the driest stretch of the year'}: ${num(lang, b.rain)} mm of rain in ${b.n} months. A ${b.phase}-month phase of earthworks, foundations and structure started in ${M[b.start]} loses ${b.phaseIn < 1 ? 'almost no days' : `about ${Math.round(b.phaseIn)} days`} to heavy rain, against about ${Math.round(b.phaseOut)} if it starts in ${M[b.after]}${saved >= 3 ? `, so a dry-season start saves about ${saved} days of crew and machinery` : ''}. Have the permit ready by ${M[(b.start + 11) % 12]}.`
+        : `${win[0].toUpperCase() + win.slice(1)}${b.isDry ? ', la época seca' : ', el tramo más seco del año'}: ${num(lang, b.rain)} mm de lluvia en ${b.n} meses. Una etapa de ${b.phase} meses de movimiento de tierra, fundaciones y estructura que empieza en ${M[b.start]} pierde ${b.phaseIn < 1 ? 'casi ningún día' : `unos ${Math.round(b.phaseIn)} días`} por lluvia fuerte, contra unos ${Math.round(b.phaseOut)} si empieza en ${M[b.after]}${saved >= 3 ? `, así que empezar en época seca ahorra unos ${saved} días de cuadrilla y maquinaria` : ''}. Conviene tener el permiso listo en ${M[(b.start + 11) % 12]}.`]);
+  }
   q.push([en ? `Who issues building permits in ${t.name}?` : `¿Quién da los permisos de construcción en ${t.name}?`,
     en ? `${muni[0].toUpperCase() + muni.slice(1)}. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter.`
       : `${muni[0].toUpperCase() + muni.slice(1)}. Los planos se tramitan primero en el CFIA, por su plataforma APC, y el permiso llega después del certificado de uso de suelo y de la carta de disponibilidad de agua.`]);

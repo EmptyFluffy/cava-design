@@ -24,10 +24,11 @@
         10.372
       ],
       "pin": "approximate",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2023,
+      "siteArea": 1150,
+      "builtArea": 420,
       "images": [
         {
           "file": "Portland House C.png",
@@ -60,9 +61,10 @@
         10.635
       ],
       "pin": "approximate",
-      "status": null,
-      "year": null,
-      "siteArea": null,
+      "status": "Built",
+      "status_es": "Construida",
+      "year": 2020,
+      "siteArea": 2900,
       "builtArea": 1100,
       "images": [
         {
@@ -128,8 +130,8 @@
       "pin": "approximate",
       "status": "Built",
       "status_es": "Construida",
-      "year": null,
-      "siteArea": null,
+      "year": 2015,
+      "siteArea": 520,
       "builtArea": 200,
       "images": [
         {
@@ -173,10 +175,11 @@
         10.36717
       ],
       "pin": "exact",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2024,
+      "siteArea": 4000,
+      "builtArea": 1600,
       "images": [
         {
           "file": "Hangars.png",
@@ -204,10 +207,11 @@
         10.19456
       ],
       "pin": "exact",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2022,
+      "siteArea": 1900,
+      "builtArea": 680,
       "images": [
         {
           "file": "Tragaluz Retreat B.png",
@@ -240,10 +244,11 @@
         10.33463
       ],
       "pin": "exact",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2021,
+      "siteArea": 1050,
+      "builtArea": 380,
       "images": [
         {
           "file": "Kauhane House E.png",
@@ -286,10 +291,11 @@
         10.201
       ],
       "pin": "approximate",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2025,
+      "siteArea": 1200,
+      "builtArea": 450,
       "images": [
         {
           "file": "Negra Mixed Use.png",
@@ -312,9 +318,10 @@
         10.2835
       ],
       "pin": "approximate",
-      "status": null,
-      "year": null,
-      "siteArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2023,
+      "siteArea": 1500,
       "builtArea": 550,
       "images": [
         {
@@ -338,10 +345,11 @@
         9.97837
       ],
       "pin": "placeholder",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2024,
+      "siteArea": 210,
+      "builtArea": 75,
       "images": [
         {
           "file": "Tree House.png",
@@ -364,10 +372,11 @@
         9.88342
       ],
       "pin": "placeholder",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2022,
+      "siteArea": 850,
+      "builtArea": 320,
       "images": [
         {
           "file": "Amacor House.png",
@@ -391,10 +400,11 @@
         10.30378
       ],
       "pin": "exact",
-      "status": null,
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "status": "In progress",
+      "status_es": "En proceso",
+      "year": 2021,
+      "siteArea": 420,
+      "builtArea": 160,
       "images": [
         {
           "file": "Dawn Patrol Bakery.png",
@@ -435,9 +445,9 @@
       "pin": "approximate",
       "status": "Competition entry",
       "status_es": "Concurso",
-      "year": null,
-      "siteArea": null,
-      "builtArea": null,
+      "year": 2025,
+      "siteArea": 6500,
+      "builtArea": 2400,
       "images": [
         {
           "file": "Military Museum.png",

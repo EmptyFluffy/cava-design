@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="../../assets/css/site.css">
 <script defer src="../../assets/js/project.js"></script>
 <script defer src="../../assets/js/climate-map.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Uvita, Osa, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.1731,"longitude":-83.7364}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Uvita","item":"https://cava.design/architects/uvita/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Uvita?","acceptedAnswer":{"@type":"Answer","text":"The dry season, from January to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before January."}},{"@type":"Question","name":"Who issues building permits in Uvita?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Uvita?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Uvita?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 28 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Uvita from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 5 h 50 min from Daniel Oduber airport in Liberia (320 km) and 4 h from Juan Santamaría airport in San José (208 km)."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Uvita, Osa, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.1731,"longitude":-83.7364}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Uvita","item":"https://cava.design/architects/uvita/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Uvita?","acceptedAnswer":{"@type":"Answer","text":"From January to March, the dry season: 87 mm of rain in 3 months. A 4-month phase of earthworks, foundations and structure started in January loses about 8 days to heavy rain, against about 35 if it starts in April, so a dry-season start saves about 27 days of crew and machinery. Have the permit ready by December."}},{"@type":"Question","name":"Who issues building permits in Uvita?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Uvita?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Uvita?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 28 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Uvita from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 5 h 50 min from Daniel Oduber airport in Liberia (320 km) and 4 h from Juan Santamaría airport in San José (208 km)."}}]}]}</script>
 </head>
 <body class="sub">
 <div id="top"></div>
@@ -73,16 +73,18 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="year-title">
       <h2 class="label tw__label" id="year-title">(The year)</h2>
-      <figure class="rain tw__fig">
-        <div class="rain__plot" role="img" aria-label="Rain by month in Uvita, in mm: January 23, February 28, March 36, April 140, May 363, June 297, July 243, August 324, September 423, October 531, November 268, December 75">
+      <figure class="rain tw__fig" style="--wn: 3">
+        <div class="rain__plot" role="img" aria-label="Rain by month in Uvita, in mm: January 23, February 28, March 36, April 140, May 363, June 297, July 243, August 324, September 423, October 531, November 268, December 75. Best time to build: Jan → Mar · Σ 87 mm · 5 days ≥ 10 mm">
           <span class="rain__tick" style="--v: 0.250"><span>200</span></span>
           <span class="rain__tick" style="--v: 0.500"><span>400</span></span>
           <span class="rain__tick" style="--v: 0.750"><span>600</span></span>
           <span class="rain__tick" style="--v: 1.000"><span>800</span></span>
+          <div class="rain__window" aria-hidden="true">
+            <span class="rain__hatch"></span>
+            <span class="rain__dim"></span>
+            <span class="rain__dimlabel"><b>Best time to build</b><span>Jan → Mar · Σ 87 mm · 5 days ≥ 10 mm</span></span>
+          </div>
           <ol class="rain__bars" aria-hidden="true">
-            <li class="rain__col is-dry" style="--v: 0.029"><span class="rain__val">23</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.035"><span class="rain__val">28</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.045"><span class="rain__val">36</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.175"><span class="rain__val">140</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.454"><span class="rain__val">363</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.371"><span class="rain__val">297</span><span class="rain__bar"></span></li>
@@ -92,15 +94,25 @@
             <li class="rain__col" style="--v: 0.664"><span class="rain__val">531</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.335"><span class="rain__val">268</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.094"><span class="rain__val">75</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.029"><span class="rain__val">23</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.035"><span class="rain__val">28</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.045"><span class="rain__val">36</span><span class="rain__bar"></span></li>
           </ol>
         </div>
-        <ol class="rain__months" aria-hidden="true"><li>Jan</li><li>Feb</li><li>Mar</li><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li></ol>
-        <figcaption class="note">Rain by month, in mm. Grey: months under 60 mm.</figcaption>
+        <ol class="rain__months" aria-hidden="true"><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li><li>Jan</li><li>Feb</li><li>Mar</li></ol>
+        <ol class="rain__days" aria-hidden="true" data-row="≥10"><li>4</li><li class="is-many">10</li><li class="is-many">10</li><li class="is-many">12</li><li class="is-many">10</li><li class="is-many">9</li><li class="is-many">10</li><li class="is-many">10</li><li>4</li><li>3</li><li>1</li><li>1</li></ol>
+        <figcaption class="note">Rain by month, in mm, starting with the rains. Grey: months under 60 mm. Hatched: the best time to build. Bottom row: days a month with 10 mm of rain or more, when earthworks usually stop (NASA POWER, 2001 to 2020).</figcaption>
       </figure>
       <div class="tw__text">
         <p class="large">The dry season runs from January to March: 3 months under 60 mm of rain. The wettest month is October, with 531 mm.</p>
         <p class="large">July rains less than June and August: the short break known as the veranillo de San Juan.</p>
         <p class="large">Afternoons are hottest in March, at 28 °C on average, and coolest in October, at 27 °C. Nights stay between 21 and 23 °C.</p>
+      </div>
+      <div class="tw__text tw__build">
+        <h3 class="tw__build-title">Best time to build</h3>
+        <p class="large">The best time to build here is from January to March. Those 3 months bring 87 mm of rain in total; the other 9 bring 2,664 mm, 31 times as much.</p>
+        <p class="large">Earthworks, foundations and concrete pours need dry ground, and many roads to the lots only stay passable without rain. On a day with 10 mm of rain or more, that work usually stops.</p>
+        <p class="large">A 4-month phase of earthworks, foundations and structure that starts in January meets about 8 such days here; the same phase started in April meets about 35. Starting in January saves about 27 days of stopped work: some 4 weeks of crew and machinery paid to wait, and the pumping and drainage that wet excavations need. So the permit should be ready by December.</p>
       </div>
     </section>
     <section class="tw__sec grid" aria-labelledby="wind-title">
@@ -189,7 +201,7 @@
     <section class="tw__sec grid" aria-labelledby="faq-title">
       <h2 class="label tw__label" id="faq-title">(Questions)</h2>
       <div class="faq">
-        <div class="faq__item"><h3>When is the best time to build in Uvita?</h3><p class="large">The dry season, from January to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before January.</p></div>
+        <div class="faq__item"><h3>When is the best time to build in Uvita?</h3><p class="large">From January to March, the dry season: 87 mm of rain in 3 months. A 4-month phase of earthworks, foundations and structure started in January loses about 8 days to heavy rain, against about 35 if it starts in April, so a dry-season start saves about 27 days of crew and machinery. Have the permit ready by December.</p></div>
         <div class="faq__item"><h3>Who issues building permits in Uvita?</h3><p class="large">The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter.</p></div>
         <div class="faq__item"><h3>Can I build near the beach in Uvita?</h3><p class="large">Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process.</p></div>
         <div class="faq__item"><h3>How hot does it get in Uvita?</h3><p class="large">Afternoons average 28 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else.</p></div>
@@ -205,7 +217,7 @@
         <li><a class="ulink near__all" href="../">All the places we work →</a></li>
       </ul>
     </nav>
-    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Paso Canoas, 32 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
+    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Paso Canoas, 32 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Heavy-rain days: NASA POWER (MERRA-2), 2001 to 2020. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
   </article>
 <section class="reach grid" aria-labelledby="reach-title">
   <span class="label reach__label" id="reach-title">(Start a project)</span>

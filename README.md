@@ -58,6 +58,8 @@ python3 scripts/towns-rain.py <folder of CHPclim2 tifs>  # rain; the 12 files (3
 node scripts/build.mjs
 ```
 
+**The best time to build** is dimensioned on the rain chart like a drawing (extension lines, a dimension line with 45° ticks, hatching), with its total rain and heavy-rain days; the chart's year starts with the rains so the window closes it in one block. The text sets a four-month phase of earthworks, foundations and structure started at the window's opening against the same phase started when it closes, using days with 10 mm of rain or more from NASA POWER (`node scripts/rain-days.mjs`, once).
+
 **The sun in 3D** (`site/assets/js/sun3d.js`): a Ladybug-style sun path over the lot, every whole hour's figure-eight coloured by the station's typical temperature, a small house with a deep roof casting the sun's shadow, date and hour sliders. three.js 0.186.1 loads from jsDelivr only when the section nears the viewport and only with WebGL; the SVG diagram stays as the fallback. The browser imports the same `sun.mjs` the build uses (the build copies it to `site/assets/js/`).
 
 **The wind and sun map** (`site/assets/js/climate-map.js`), on every town page and on `/architects/`: lines that drift with the season's average wind over a colour layer of yearly sunlight, with the towns marked. Its data comes from two scripts, run once:

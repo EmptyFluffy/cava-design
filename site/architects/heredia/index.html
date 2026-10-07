@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="../../assets/css/site.css">
 <script defer src="../../assets/js/project.js"></script>
 <script defer src="../../assets/js/climate-map.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Heredia, Heredia, Heredia, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.99843,"longitude":-84.11712}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Heredia","item":"https://cava.design/architects/heredia/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Heredia?","acceptedAnswer":{"@type":"Answer","text":"The dry season, from February to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before February."}},{"@type":"Question","name":"Who issues building permits in Heredia?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Heredia. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"How hot does it get in Heredia?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 27 °C in April, the hottest month, and 24 °C in December. Nights stay between 14 and 16 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Heredia from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 3 h 50 min from Daniel Oduber airport in Liberia (216 km) and 20 min from Juan Santamaría airport in San José (13 km)."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Heredia, Heredia, Heredia, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.99843,"longitude":-84.11712}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Heredia","item":"https://cava.design/architects/heredia/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Heredia?","acceptedAnswer":{"@type":"Answer","text":"From February to March, the dry season: 84 mm of rain in 2 months. A 4-month phase of earthworks, foundations and structure started in February loses about 10 days to heavy rain, against about 22 if it starts in April, so a dry-season start saves about 12 days of crew and machinery. Have the permit ready by January."}},{"@type":"Question","name":"Who issues building permits in Heredia?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Heredia. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"How hot does it get in Heredia?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 27 °C in April, the hottest month, and 24 °C in December. Nights stay between 14 and 16 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Heredia from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 3 h 50 min from Daniel Oduber airport in Liberia (216 km) and 20 min from Juan Santamaría airport in San José (13 km)."}}]}]}</script>
 </head>
 <body class="sub">
 <div id="top"></div>
@@ -73,16 +73,18 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="year-title">
       <h2 class="label tw__label" id="year-title">(The year)</h2>
-      <figure class="rain tw__fig">
-        <div class="rain__plot" role="img" aria-label="Rain by month in Heredia, in mm: January 60, February 46, March 38, April 116, May 281, June 282, July 243, August 292, September 373, October 354, November 203, December 96">
+      <figure class="rain tw__fig" style="--wn: 2">
+        <div class="rain__plot" role="img" aria-label="Rain by month in Heredia, in mm: January 60, February 46, March 38, April 116, May 281, June 282, July 243, August 292, September 373, October 354, November 203, December 96. Best time to build: Feb → Mar · Σ 84 mm · &lt; 1 day ≥ 10 mm">
           <span class="rain__tick" style="--v: 0.250"><span>200</span></span>
           <span class="rain__tick" style="--v: 0.500"><span>400</span></span>
           <span class="rain__tick" style="--v: 0.750"><span>600</span></span>
           <span class="rain__tick" style="--v: 1.000"><span>800</span></span>
+          <div class="rain__window" aria-hidden="true">
+            <span class="rain__hatch"></span>
+            <span class="rain__dim"></span>
+            <span class="rain__dimlabel"><b>Best time to build</b><span>Feb → Mar · Σ 84 mm · < 1 day ≥ 10 mm</span></span>
+          </div>
           <ol class="rain__bars" aria-hidden="true">
-            <li class="rain__col" style="--v: 0.075"><span class="rain__val">60</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.058"><span class="rain__val">46</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.048"><span class="rain__val">38</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.145"><span class="rain__val">116</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.351"><span class="rain__val">281</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.352"><span class="rain__val">282</span><span class="rain__bar"></span></li>
@@ -92,14 +94,24 @@
             <li class="rain__col" style="--v: 0.443"><span class="rain__val">354</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.254"><span class="rain__val">203</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.120"><span class="rain__val">96</span><span class="rain__bar"></span></li>
+            <li class="rain__col" style="--v: 0.075"><span class="rain__val">60</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.058"><span class="rain__val">46</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.048"><span class="rain__val">38</span><span class="rain__bar"></span></li>
           </ol>
         </div>
-        <ol class="rain__months" aria-hidden="true"><li>Jan</li><li>Feb</li><li>Mar</li><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li></ol>
-        <figcaption class="note">Rain by month, in mm. Grey: months under 60 mm.</figcaption>
+        <ol class="rain__months" aria-hidden="true"><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li><li>Jan</li><li>Feb</li><li>Mar</li></ol>
+        <ol class="rain__days" aria-hidden="true" data-row="≥10"><li>2</li><li class="is-many">8</li><li class="is-many">7</li><li class="is-many">5</li><li class="is-many">6</li><li class="is-many">9</li><li class="is-many">10</li><li>4</li><li>1</li><li>1</li><li>0</li><li>0</li></ol>
+        <figcaption class="note">Rain by month, in mm, starting with the rains. Grey: months under 60 mm. Hatched: the best time to build. Bottom row: days a month with 10 mm of rain or more, when earthworks usually stop (NASA POWER, 2001 to 2020).</figcaption>
       </figure>
       <div class="tw__text">
         <p class="large">The dry season runs from February to March: 2 months under 60 mm of rain. The wettest month is September, with 373 mm.</p>
         <p class="large">Afternoons are hottest in April, at 27 °C on average, and coolest in December, at 24 °C. Nights stay between 14 and 16 °C.</p>
+      </div>
+      <div class="tw__text tw__build">
+        <h3 class="tw__build-title">Best time to build</h3>
+        <p class="large">The best time to build here is from February to March. Those 2 months bring 84 mm of rain in total; the other 10 bring 2,300 mm, 27 times as much.</p>
+        <p class="large">Earthworks, foundations and concrete pours need dry ground, and many roads to the lots only stay passable without rain. On a day with 10 mm of rain or more, that work usually stops.</p>
+        <p class="large">A 4-month phase of earthworks, foundations and structure that starts in February meets about 10 such days here; the same phase started in April meets about 22. Starting in February saves about 12 days of stopped work: some 2 weeks of crew and machinery paid to wait, and the pumping and drainage that wet excavations need. So the permit should be ready by January.</p>
       </div>
     </section>
     <section class="tw__sec grid" aria-labelledby="wind-title">
@@ -187,7 +199,7 @@
     <section class="tw__sec grid" aria-labelledby="faq-title">
       <h2 class="label tw__label" id="faq-title">(Questions)</h2>
       <div class="faq">
-        <div class="faq__item"><h3>When is the best time to build in Heredia?</h3><p class="large">The dry season, from February to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before February.</p></div>
+        <div class="faq__item"><h3>When is the best time to build in Heredia?</h3><p class="large">From February to March, the dry season: 84 mm of rain in 2 months. A 4-month phase of earthworks, foundations and structure started in February loses about 10 days to heavy rain, against about 22 if it starts in April, so a dry-season start saves about 12 days of crew and machinery. Have the permit ready by January.</p></div>
         <div class="faq__item"><h3>Who issues building permits in Heredia?</h3><p class="large">The Municipalidad de Heredia. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter.</p></div>
         <div class="faq__item"><h3>How hot does it get in Heredia?</h3><p class="large">Afternoons average 27 °C in April, the hottest month, and 24 °C in December. Nights stay between 14 and 16 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else.</p></div>
         <div class="faq__item"><h3>How far is Heredia from the airports?</h3><p class="large">By road, without traffic, 3 h 50 min from Daniel Oduber airport in Liberia (216 km) and 20 min from Juan Santamaría airport in San José (13 km).</p></div>
@@ -202,7 +214,7 @@
         <li><a class="ulink near__all" href="../">All the places we work →</a></li>
       </ul>
     </nav>
-    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Tobías Bolaños airport, 5 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
+    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Tobías Bolaños airport, 5 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Heavy-rain days: NASA POWER (MERRA-2), 2001 to 2020. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
   </article>
 <section class="reach grid" aria-labelledby="reach-title">
   <span class="label reach__label" id="reach-title">(Start a project)</span>

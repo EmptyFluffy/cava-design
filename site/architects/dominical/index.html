@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="../../assets/css/site.css">
 <script defer src="../../assets/js/project.js"></script>
 <script defer src="../../assets/js/climate-map.js"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Dominical, Osa, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.25357,"longitude":-83.8627}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Dominical","item":"https://cava.design/architects/dominical/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Dominical?","acceptedAnswer":{"@type":"Answer","text":"The dry season, from January to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before January."}},{"@type":"Question","name":"Who issues building permits in Dominical?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Dominical?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Dominical?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 29 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Dominical from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 5 h 35 min from Daniel Oduber airport in Liberia (302 km) and 3 h 40 min from Juan Santamaría airport in San José (190 km)."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Dominical, Osa, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.25357,"longitude":-83.8627}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Dominical","item":"https://cava.design/architects/dominical/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to build in Dominical?","acceptedAnswer":{"@type":"Answer","text":"From January to March, the dry season: 116 mm of rain in 3 months. A 4-month phase of earthworks, foundations and structure started in January loses about 8 days to heavy rain, against about 30 if it starts in April, so a dry-season start saves about 22 days of crew and machinery. Have the permit ready by December."}},{"@type":"Question","name":"Who issues building permits in Dominical?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Dominical?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Dominical?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 29 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Dominical from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 5 h 35 min from Daniel Oduber airport in Liberia (302 km) and 3 h 40 min from Juan Santamaría airport in San José (190 km)."}}]}]}</script>
 </head>
 <body class="sub">
 <div id="top"></div>
@@ -73,16 +73,18 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="year-title">
       <h2 class="label tw__label" id="year-title">(The year)</h2>
-      <figure class="rain tw__fig">
-        <div class="rain__plot" role="img" aria-label="Rain by month in Dominical, in mm: January 41, February 35, March 40, April 183, May 448, June 375, July 392, August 460, September 551, October 719, November 408, December 113">
+      <figure class="rain tw__fig" style="--wn: 3">
+        <div class="rain__plot" role="img" aria-label="Rain by month in Dominical, in mm: January 41, February 35, March 40, April 183, May 448, June 375, July 392, August 460, September 551, October 719, November 408, December 113. Best time to build: Jan → Mar · Σ 116 mm · 5 days ≥ 10 mm">
           <span class="rain__tick" style="--v: 0.250"><span>200</span></span>
           <span class="rain__tick" style="--v: 0.500"><span>400</span></span>
           <span class="rain__tick" style="--v: 0.750"><span>600</span></span>
           <span class="rain__tick" style="--v: 1.000"><span>800</span></span>
+          <div class="rain__window" aria-hidden="true">
+            <span class="rain__hatch"></span>
+            <span class="rain__dim"></span>
+            <span class="rain__dimlabel"><b>Best time to build</b><span>Jan → Mar · Σ 116 mm · 5 days ≥ 10 mm</span></span>
+          </div>
           <ol class="rain__bars" aria-hidden="true">
-            <li class="rain__col is-dry" style="--v: 0.051"><span class="rain__val">41</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.044"><span class="rain__val">35</span><span class="rain__bar"></span></li>
-            <li class="rain__col is-dry" style="--v: 0.050"><span class="rain__val">40</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.229"><span class="rain__val">183</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.560"><span class="rain__val">448</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.469"><span class="rain__val">375</span><span class="rain__bar"></span></li>
@@ -92,14 +94,24 @@
             <li class="rain__col" style="--v: 0.899"><span class="rain__val">719</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.510"><span class="rain__val">408</span><span class="rain__bar"></span></li>
             <li class="rain__col" style="--v: 0.141"><span class="rain__val">113</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.051"><span class="rain__val">41</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.044"><span class="rain__val">35</span><span class="rain__bar"></span></li>
+            <li class="rain__col is-dry" style="--v: 0.050"><span class="rain__val">40</span><span class="rain__bar"></span></li>
           </ol>
         </div>
-        <ol class="rain__months" aria-hidden="true"><li>Jan</li><li>Feb</li><li>Mar</li><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li></ol>
-        <figcaption class="note">Rain by month, in mm. Grey: months under 60 mm.</figcaption>
+        <ol class="rain__months" aria-hidden="true"><li>Apr</li><li>May</li><li>Jun</li><li>Jul</li><li>Aug</li><li>Sep</li><li>Oct</li><li>Nov</li><li>Dec</li><li>Jan</li><li>Feb</li><li>Mar</li></ol>
+        <ol class="rain__days" aria-hidden="true" data-row="≥10"><li>3</li><li class="is-many">9</li><li class="is-many">9</li><li class="is-many">9</li><li class="is-many">8</li><li class="is-many">8</li><li class="is-many">9</li><li class="is-many">8</li><li>4</li><li>3</li><li>1</li><li>1</li></ol>
+        <figcaption class="note">Rain by month, in mm, starting with the rains. Grey: months under 60 mm. Hatched: the best time to build. Bottom row: days a month with 10 mm of rain or more, when earthworks usually stop (NASA POWER, 2001 to 2020).</figcaption>
       </figure>
       <div class="tw__text">
         <p class="large">The dry season runs from January to March: 3 months under 60 mm of rain. The wettest month is October, with 719 mm.</p>
         <p class="large">Afternoons are hottest in March, at 29 °C on average, and coolest in October, at 27 °C. Nights stay between 21 and 23 °C.</p>
+      </div>
+      <div class="tw__text tw__build">
+        <h3 class="tw__build-title">Best time to build</h3>
+        <p class="large">The best time to build here is from January to March. Those 3 months bring 116 mm of rain in total; the other 9 bring 3,649 mm, 31 times as much.</p>
+        <p class="large">Earthworks, foundations and concrete pours need dry ground, and many roads to the lots only stay passable without rain. On a day with 10 mm of rain or more, that work usually stops.</p>
+        <p class="large">A 4-month phase of earthworks, foundations and structure that starts in January meets about 8 such days here; the same phase started in April meets about 30. Starting in January saves about 22 days of stopped work: some 3 weeks of crew and machinery paid to wait, and the pumping and drainage that wet excavations need. So the permit should be ready by December.</p>
       </div>
     </section>
     <section class="tw__sec grid" aria-labelledby="wind-title">
@@ -187,7 +199,7 @@
     <section class="tw__sec grid" aria-labelledby="faq-title">
       <h2 class="label tw__label" id="faq-title">(Questions)</h2>
       <div class="faq">
-        <div class="faq__item"><h3>When is the best time to build in Dominical?</h3><p class="large">The dry season, from January to March, when each month gets less than 60 mm of rain. Earthworks, foundations and the roof go faster then, so it helps to have the permit in hand before January.</p></div>
+        <div class="faq__item"><h3>When is the best time to build in Dominical?</h3><p class="large">From January to March, the dry season: 116 mm of rain in 3 months. A 4-month phase of earthworks, foundations and structure started in January loses about 8 days to heavy rain, against about 30 if it starts in April, so a dry-season start saves about 22 days of crew and machinery. Have the permit ready by December.</p></div>
         <div class="faq__item"><h3>Who issues building permits in Dominical?</h3><p class="large">The Municipalidad de Osa. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter.</p></div>
         <div class="faq__item"><h3>Can I build near the beach in Dominical?</h3><p class="large">Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process.</p></div>
         <div class="faq__item"><h3>How hot does it get in Dominical?</h3><p class="large">Afternoons average 29 °C in March, the hottest month, and 27 °C in October. Nights stay between 21 and 23 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else.</p></div>
@@ -203,7 +215,7 @@
         <li><a class="ulink near__all" href="../">All the places we work →</a></li>
       </ul>
     </nav>
-    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Paso Canoas, 48 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
+    <p class="note tw__sources">Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: measured at Paso Canoas, 48 km away, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Heavy-rain days: NASA POWER (MERRA-2), 2001 to 2020. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered October 2026.</p>
   </article>
 <section class="reach grid" aria-labelledby="reach-title">
   <span class="label reach__label" id="reach-title">(Start a project)</span>

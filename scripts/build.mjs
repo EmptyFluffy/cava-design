@@ -406,17 +406,30 @@ const townOf = (t) => {
 const RAIN_MAX = Math.ceil(Math.max(...towns.flatMap((t) => townData.towns[t.slug].rain)) / 200) * 200; // one scale for every town
 const fetchedLabel = (lang) => { const [y, m] = townData.fetched.split('-'); return lang === 'en' ? `${MONTHS.en[m - 1]} ${y}` : `${MONTHS.es[m - 1]} de ${y}`; };
 
-function rainChart(lang, t, d) {
+// Rain by month. The year starts with the rains, so the best time to build closes the chart in one
+// block; it is dimensioned like a drawing: hatched, with extension lines and a dimension line carrying
+// its total rain and its heavy-rain days. A bottom row counts the heavy-rain days of every month.
+function rainChart(lang, t, d, c) {
   const L = TT[lang];
+  const b = c.build;
+  const order = Array.from({ length: 12 }, (_, k) => (c.chartStart + k) % 12);
   const ticks = Array.from({ length: RAIN_MAX / 200 }, (_, i) => (i + 1) * 200);
-  return `      <figure class="rain tw__fig">
-        <div class="rain__plot" role="img" aria-label="${esc(L.year.chart(t, d))}">
+  const MS = MONTHS_SHORT[lang];
+  const label = `${MS[b.start]} → ${MS[(b.start + b.n - 1) % 12]} · Σ ${num(lang, b.rain)} mm · ${L.year.heavy(b.heavyIn)}`;
+  return `      <figure class="rain tw__fig" style="--wn: ${b.n}">
+        <div class="rain__plot" role="img" aria-label="${esc(L.year.chart(t, d))}. ${esc(L.year.best)}: ${esc(label)}">
 ${ticks.map((v) => `          <span class="rain__tick" style="--v: ${(v / RAIN_MAX).toFixed(3)}"><span>${v}</span></span>`).join('\n')}
+          <div class="rain__window" aria-hidden="true">
+            <span class="rain__hatch"></span>
+            <span class="rain__dim"></span>
+            <span class="rain__dimlabel"><b>${L.year.best}</b><span>${label}</span></span>
+          </div>
           <ol class="rain__bars" aria-hidden="true">
-${d.rain.map((r) => `            <li class="rain__col${r < 60 ? ' is-dry' : ''}" style="--v: ${(r / RAIN_MAX).toFixed(3)}"><span class="rain__val">${r}</span><span class="rain__bar"></span></li>`).join('\n')}
+${order.map((m) => `            <li class="rain__col${d.rain[m] < 60 ? ' is-dry' : ''}" style="--v: ${(d.rain[m] / RAIN_MAX).toFixed(3)}"><span class="rain__val">${d.rain[m]}</span><span class="rain__bar"></span></li>`).join('\n')}
           </ol>
         </div>
-        <ol class="rain__months" aria-hidden="true">${MONTHS_SHORT[lang].map((m) => `<li>${m}</li>`).join('')}</ol>
+        <ol class="rain__months" aria-hidden="true">${order.map((m) => `<li>${MS[m]}</li>`).join('')}</ol>
+        <ol class="rain__days" aria-hidden="true" data-row="${L.year.row}">${order.map((m) => `<li${b.heavy[m] >= 5 ? ' class="is-many"' : ''}>${Math.round(b.heavy[m])}</li>`).join('')}</ol>
         <figcaption class="note">${L.year.caption}</figcaption>
       </figure>
 `;
@@ -589,8 +602,12 @@ ${[
     </section>
     <section class="tw__sec grid" aria-labelledby="year-title">
       <h2 class="label tw__label" id="year-title">${L.year.label}</h2>
-${rainChart(lang, t, d)}      <div class="tw__text">
+${rainChart(lang, t, d, c)}      <div class="tw__text">
 ${P.year.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+      <div class="tw__text tw__build">
+        <h3 class="tw__build-title">${TT[lang].year.best}</h3>
+${P.build.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
 ${windSection(lang, t, d, c, P)}    <section class="tw__sec grid" aria-labelledby="map-title">
