@@ -30,6 +30,7 @@ const bySlug = new Map(projects.map((p) => [p.slug, p]));
 const sizes = JSON.parse(readFileSync(join(ROOT, 'data', 'image-sizes.json'), 'utf8'));
 const { towns, regions } = JSON.parse(readFileSync(join(ROOT, 'data', 'towns.json'), 'utf8'));
 const townData = JSON.parse(readFileSync(join(ROOT, 'data', 'town-data.json'), 'utf8'));
+const { stations } = JSON.parse(readFileSync(join(ROOT, 'data', 'stations.json'), 'utf8'));
 
 const ORIGIN = 'https://cava.design';
 const WHATSAPP = '50671737336';
@@ -383,7 +384,25 @@ const km = ([lng1, lat1], [lng2, lat2]) => {
   const a = Math.sin(r(lat2 - lat1) / 2) ** 2 + Math.cos(r(lat1)) * Math.cos(r(lat2)) * Math.sin(r(lng2 - lng1) / 2) ** 2;
   return 6371 * 2 * Math.asin(Math.sqrt(a));
 };
-const townOf = (t) => ({ ...townData.towns[t.slug], canton: townData.towns[t.slug].canton ?? t.canton });
+// A town's data, with temperature and wind from its nearest weather station. Temperatures are moved
+// to the town's elevation at the standard lapse rate, 0.65 °C per 100 m.
+const LAPSE = 0.0065;
+const townCache = new Map();
+const townOf = (t) => {
+  if (townCache.has(t.slug)) return townCache.get(t.slug);
+  const base = townData.towns[t.slug];
+  const [wmo, st, dist] = Object.entries(stations).map(([w, s]) => [w, s, km(base.coords, s.coords)]).sort((a, b) => a[2] - b[2])[0];
+  const dt = -LAPSE * (base.elevation - st.elevation);
+  const adj = (v) => +(v + dt).toFixed(1);
+  const d = {
+    ...base, canton: base.canton ?? t.canton,
+    station: { wmo, name: st.name, name_es: st.name_es, km: Math.round(dist), elevation: st.elevation },
+    tmax: st.tmax.map(adj), tmin: st.tmin.map(adj), temp: st.temp.map((row) => row.map(adj)),
+    wind: st.noon, rose: st.rose, calm: st.calm,
+  };
+  townCache.set(t.slug, d);
+  return d;
+};
 const RAIN_MAX = Math.ceil(Math.max(...towns.flatMap((t) => townData.towns[t.slug].rain)) / 200) * 200; // one scale for every town
 const fetchedLabel = (lang) => { const [y, m] = townData.fetched.split('-'); return lang === 'en' ? `${MONTHS.en[m - 1]} ${y}` : `${MONTHS.es[m - 1]} de ${y}`; };
 
@@ -400,6 +419,52 @@ ${d.rain.map((r) => `            <li class="rain__col${r < 60 ? ' is-dry' : ''}"
         <ol class="rain__months" aria-hidden="true">${MONTHS_SHORT[lang].map((m) => `<li>${m}</li>`).join('')}</ol>
         <figcaption class="note">${L.year.caption}</figcaption>
       </figure>
+`;
+}
+
+// Wind roses: where the wind comes from (petals point into the wind), how often, how strong.
+// Months are the season's months; every rose on a page shares one scale.
+function roseShares(d, months) {
+  const total = months.reduce((n, m) => n + d.calm[m] + d.rose[m].flat().reduce((a, b) => a + b, 0), 0);
+  return { calm: months.reduce((n, m) => n + d.calm[m], 0) / total, dirs: d.rose[0].map((_, k) => d.rose[0][k].map((_, b) => months.reduce((n, m) => n + d.rose[m][k][b], 0) / total)) };
+}
+function roseSvg(lang, t, sh, max, season) {
+  const L = TT[lang];
+  const R = 100;
+  const step = max > 0.3 ? 0.1 : 0.05;
+  const top = Math.ceil(max / step) * step;
+  const r = (v) => (v / top) * R;
+  const pt = (rad, deg) => [rad * Math.sin((deg * Math.PI) / 180), -rad * Math.cos((deg * Math.PI) / 180)].map((n) => n.toFixed(1));
+  const sector = (r0, r1, a0, a1) => { const [x0, y0] = pt(r1, a0), [x1, y1] = pt(r1, a1), [x2, y2] = pt(r0, a1), [x3, y3] = pt(r0, a0); return `M${x0} ${y0}A${r1.toFixed(1)} ${r1.toFixed(1)} 0 0 1 ${x1} ${y1}L${x2} ${y2}${r0 > 0 ? `A${r0.toFixed(1)} ${r0.toFixed(1)} 0 0 0 ${x3} ${y3}` : ''}Z`; };
+  const petals = sh.dirs.map((bands, k) => {
+    let acc = 0;
+    return bands.map((v, b) => { if (!v) return ''; const r0 = r(acc); acc += v; return `<path class="rose__b${b}" d="${sector(r0, r(acc), k * 22.5 - 9, k * 22.5 + 9)}"/>`; }).join('');
+  }).join('');
+  const rings = Array.from({ length: Math.round(top / step) }, (_, i) => (i + 1) * step).map((v) => `<circle class="rose__ring" r="${r(v).toFixed(1)}"/>`).join('');
+  const ringLabel = `<text class="rose__pct" x="3" y="${(-r(top) + 9).toFixed(1)}">${Math.round(top * 100)}%</text>`;
+  const [N, E, S, W] = L.sun.compass;
+  return `<svg viewBox="-125 -125 250 250" role="img" aria-label="${esc(L.wind.aria(t, season.replace(/[()]/g, '').toLowerCase()))}">${rings}<path class="rose__axis" d="M0 -${R}V${R}M-${R} 0H${R}"/>${petals}${ringLabel}<text class="rose__card" x="0" y="-108">${N}</text><text class="rose__card" x="113" y="4">${E}</text><text class="rose__card" x="0" y="116">${S}</text><text class="rose__card" x="-113" y="4">${W}</text></svg>`;
+}
+function windSection(lang, t, d, c, P) {
+  const L = TT[lang];
+  const dry = c.dry ? Array.from({ length: c.dry.n }, (_, k) => (c.dry.start + k) % 12) : [];
+  const wet = Array.from({ length: 12 }, (_, m) => m).filter((m) => !dry.includes(m));
+  const seasons = dry.length ? [[L.wind.dry, dry], [L.wind.wet, wet]] : [[L.wind.all, wet]];
+  const shares = seasons.map(([label, months]) => [label, roseShares(d, months)]);
+  const max = Math.max(...shares.flatMap(([, sh]) => sh.dirs.map((b) => b.reduce((x, y) => x + y, 0))));
+  return `    <section class="tw__sec grid" aria-labelledby="wind-title">
+      <h2 class="label tw__label" id="wind-title">${L.wind.label}</h2>
+      <figure class="roses tw__fig">
+        <div class="roses__row${shares.length === 1 ? ' roses__row--one' : ''}">
+${shares.map(([label, sh]) => `          <figure class="rose">${roseSvg(lang, t, sh, max, label)}<figcaption class="label"><span>${label}</span><span class="rose__calm">${L.wind.calm(Math.round(sh.calm * 100))}</span></figcaption></figure>`).join('\n')}
+        </div>
+        <p class="rose__legend label">${L.wind.speeds.map((x, b) => `<span class="rose__key"><i class="rose__b${b}"></i>${x}</span>`).join('')}</p>
+        <figcaption class="note">${esc(L.wind.caption(d.station))}</figcaption>
+      </figure>
+      <div class="tw__text">
+${P.wind.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+    </section>
 `;
 }
 
@@ -507,7 +572,7 @@ ${rainChart(lang, t, d)}      <div class="tw__text">
 ${P.year.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
-    <section class="tw__sec grid" aria-labelledby="sun-title">
+${windSection(lang, t, d, c, P)}    <section class="tw__sec grid" aria-labelledby="sun-title">
       <h2 class="label tw__label" id="sun-title">${L.sun.label}</h2>
 ${sunDiagram(lang, t, d)}      <div class="tw__text tw__text--side">
 ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
@@ -544,7 +609,7 @@ ${others.map(({ o, km: dist }) => `        <li><a class="ulink" href="../${o.slu
         <li><a class="ulink near__all" href="../">${L.nearby.all} →</a></li>
       </ul>
     </nav>
-    <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}</p>
+    <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang), d.station))}</p>
   </article>
 ${contact(lang, waText).replace(UI[lang].reach.text, esc(L.reach(t)))}</main>
 ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;

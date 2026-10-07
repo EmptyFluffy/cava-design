@@ -519,6 +519,26 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .rain__months { margin: 0.45rem 0 0 2rem; font-size: 0.6875rem; font-weight: var(--w-strong); text-transform: uppercase; text-align: center; }
 .rain figcaption { margin-top: 0.9rem; }
 
+/* wind roses: petals point into the wind */
+.roses__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); max-width: 44rem; }
+.roses__row--one { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
+.rose { margin: 0; }
+.rose svg { display: block; width: 100%; height: auto; overflow: visible; }
+.rose figcaption { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.4rem; }
+.rose__calm { color: var(--dark-grey); font-weight: var(--w-text); }
+.rose__ring { fill: none; stroke: var(--grey); stroke-dasharray: 2 3; }
+.rose__axis { fill: none; stroke: var(--grey); }
+.rose__card { font-size: 11px; font-weight: 600; fill: var(--dark-grey); text-anchor: middle; }
+.rose__pct { font-size: 9px; fill: var(--mid-grey); }
+.rose__b0 { fill: var(--grey); background: var(--grey); }
+.rose__b1 { fill: color-mix(in srgb, var(--grey), var(--mid-grey)); background: color-mix(in srgb, var(--grey), var(--mid-grey)); }
+.rose__b2 { fill: var(--mid-grey); background: var(--mid-grey); }
+.rose__b3 { fill: var(--dark-grey); background: var(--dark-grey); }
+.rose__b4 { fill: var(--black); background: var(--black); }
+.rose__legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin: 1.1rem 0 0.7rem; }
+.rose__key { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: var(--w-text); }
+.rose__key i { display: inline-block; width: 0.75rem; height: 0.75rem; }
+
 /* sun path, seen from above */
 .sunpath { grid-column: 5 / span 4; }
 .sunpath svg { display: block; width: 100%; max-width: 26rem; height: auto; overflow: visible; }
@@ -664,6 +684,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .tw__steps li { grid-template-columns: 2.5rem minmax(0, 1fr); row-gap: 0.4rem; }
   .tw__steps p { grid-column: 2; }
   .cards--three { grid-template-columns: minmax(0, 1fr); }
+  .roses__row { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
   .rain__val { font-size: 0.5625rem; }
   .rain__plot, .rain__months { margin-left: 1.6rem; }
 }

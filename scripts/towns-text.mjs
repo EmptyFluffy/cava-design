@@ -20,6 +20,8 @@ const COMPASS8 = {
 export const compass16 = (lang, az) => COMPASS16[lang][Math.round(az / 22.5) % 16];
 const compass8 = (lang, az) => COMPASS8[lang][Math.round(az / 45) % 8];
 
+// "en el aeropuerto de Liberia" but "en Parrita": only airports take the article.
+export const enSt = (name) => (/^aeropuerto/.test(name) ? `el ${name}` : name);
 export const num = (lang, n) => (lang === 'en' ? Math.round(n).toLocaleString('en-US') : String(Math.round(n)));
 export const clock = (min) => `${Math.floor(min / 60)}:${String(Math.round(min % 60)).padStart(2, '0')}`;
 export const duration = (min) => {
@@ -117,7 +119,13 @@ export const T = {
     nearby: { label: '(Nearby)', km: (n) => `${num('en', n)} km`, all: 'All the places we work' },
     reach: (t) => `Tell us about your lot in ${t.name} and what you want to build. We answer within a working day.`,
     wa: (t) => `Hi Studio CAVA, I have a lot in ${t.name} and would like to talk about a project.`,
-    sources: (fetched) => `Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: ECMWF reanalysis through Open-Meteo, 2015 to 2024. Sun: calculated for the town's coordinates. Roads and places: OpenStreetMap. Gathered ${fetched}.`,
+    sources: (fetched, st) => `Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: ${st ? `measured at ${st.name}, ${num('en', st.km)} km away` : 'the nearest of 12 weather stations'}, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered ${fetched}.`,
+    wind: {
+      label: '(The wind)', dry: '(Dry season)', wet: '(Rainy season)', all: '(All year)', calm: (p) => `Calm ${p}%`,
+      caption: (st) => `Share of hours the wind blows from each direction, by speed. Measured at ${st.name}, ${num('en', st.km)} km away, 2011 to 2025.`,
+      speeds: ['Up to 7 km/h', '7 to 14', '14 to 22', '22 to 29', 'Over 29'],
+      aria: (t, season) => `Wind rose for ${t.name}, ${season}`,
+    },
     hub: {
       title: 'Where we work | Studio CAVA',
       description: 'Architects across Costa Rica. Rain, dry season, permits and the drive from the airport for every town where we design houses and hotels.',
@@ -151,7 +159,13 @@ export const T = {
     nearby: { label: '(Cerca)', km: (n) => `${num('es', n)} km`, all: 'Todos los lugares donde trabajamos' },
     reach: (t) => `Cuéntenos sobre su lote en ${t.name} y lo que quiere construir. Respondemos en un día hábil.`,
     wa: (t) => `Hola Studio CAVA, tengo un lote en ${t.name} y quisiera conversar sobre un proyecto.`,
-    sources: (fetched) => `Lluvia: climatología CHIRPS (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperatura y viento: reanálisis del ECMWF por medio de Open-Meteo, 2015 a 2024. Sol: calculado para las coordenadas del pueblo. Carreteras y lugares: OpenStreetMap. Datos reunidos en ${fetched}.`,
+    sources: (fetched, st) => `Lluvia: climatología CHIRPS (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperatura y viento: ${st ? `medidos en ${enSt(st.name_es)}, a ${num('es', st.km)} km` : 'la más cercana de 12 estaciones meteorológicas'}, año típico 2011 a 2025 (Climate.OneBuilding.org TMYx, a partir de observaciones de la NOAA), con la temperatura ajustada por altitud. Sol: calculado para las coordenadas del pueblo. Altitud: SRTM. Carreteras y lugares: OpenStreetMap. Datos reunidos en ${fetched}.`,
+    wind: {
+      label: '(El viento)', dry: '(Época seca)', wet: '(Época lluviosa)', all: '(Todo el año)', calm: (p) => `Calma ${p}%`,
+      caption: (st) => `Porcentaje de horas en que el viento sopla desde cada dirección, por velocidad. Medido en ${enSt(st.name_es)}, a ${num('es', st.km)} km, 2011 a 2025.`,
+      speeds: ['Hasta 7 km/h', '7 a 14', '14 a 22', '22 a 29', 'Más de 29'],
+      aria: (t, season) => `Rosa de los vientos de ${t.name}, ${season}`,
+    },
     hub: {
       title: 'Dónde trabajamos | Studio CAVA',
       description: 'Arquitectos en todo Costa Rica. Lluvia, época seca, permisos y distancia al aeropuerto de cada pueblo donde diseñamos casas y hoteles.',
@@ -187,13 +201,18 @@ export function paragraphs(lang, t, d, c, s, muni) {
   rain.push(en
     ? `Afternoons are hottest in ${M[c.hottest]}, at ${c.tmaxHot} °C on average, and coolest in ${M[c.coolest]}, at ${c.tmaxCool} °C. ${heat}`
     : `Las tardes más calientes son en ${M[c.hottest]}, con ${c.tmaxHot} °C en promedio, y las más frescas en ${M[c.coolest]}, con ${c.tmaxCool} °C. ${heat}`);
-  // wind: the dry-season trade wind only. Models get it right; the coast's rainy-season afternoon
-  // breezes are too local for them, so the page does not guess at those.
-  const wd = c.windDry && windPhrase(lang, c.windDry);
-  if (wd) rain.push(en
-    ? `In the dry season the afternoon wind comes from the ${wd}. Rooms that open to it on one side and away from it on the other cool themselves.`
-    : `En la época seca el viento de la tarde viene del ${wd}. Los espacios que se abren hacia ese lado y también hacia el opuesto se ventilan solos.`);
   out.year = rain;
+
+  // the wind, measured at the station: where the afternoon wind comes from
+  const wd = c.windDry && windPhrase(lang, c.windDry);
+  const wa = !c.dry && c.windWet && windPhrase(lang, c.windWet);
+  const st = lang === 'en' ? d.station.name : enSt(d.station.name_es);
+  out.wind = [];
+  if (wd) out.wind.push(en ? `In the dry season the afternoon wind at ${st} comes from the ${wd}.` : `En la época seca el viento de la tarde en ${st} viene del ${wd}.`);
+  else if (wa) out.wind.push(en ? `The afternoon wind at ${st} comes from the ${wa} most of the year.` : `El viento de la tarde en ${st} viene del ${wa} casi todo el año.`);
+  out.wind.push(en
+    ? 'Rooms that open to the wind on one side and away from it on the other cool themselves, and a roof that sheds the rain lets them stay open in the wet months too.'
+    : 'Los espacios que se abren hacia el viento de un lado y hacia el lado opuesto del otro se ventilan solos, y un techo que bota bien el agua permite dejarlos abiertos también en los meses de lluvia.');
 
   // the sun
   const sun = [];

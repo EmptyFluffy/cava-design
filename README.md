@@ -46,12 +46,13 @@ Each project also has `location`, `coords` ([lng, lat]) and `pin`: `exact`, `app
 `/architects/` (`/es/arquitectos/`) lists every town; each town has its own page in both languages. Unlike a template with the name swapped, every number on a page comes from that place:
 
 - **Rain by month** from the CHIRPS climatology (CHPclim v2, 5 km), which matches station records in Costa Rica far better than global models. A dry month is one under 60 mm.
-- **Temperature and the dry-season afternoon wind** from ECMWF reanalysis through Open-Meteo. Rainy-season coastal breezes are too local for a model, so the page does not state them.
+- **Temperature and wind** measured at the nearest of 12 weather stations (Climate.OneBuilding.org TMYx 2011 to 2025, from NOAA observations; `scripts/stations.mjs` keeps a summary in `data/stations.json`). Temperatures are moved to the town's elevation at 0.65 °C per 100 m. Each page names the station and its distance, and shows wind roses for the dry and rainy seasons.
 - **The sun**: its path on the solstices and equinoxes, sunrise and sunset, and the dates the noon sun passes north, calculated for the town's coordinates (`scripts/sun.mjs`).
-- **Canton, province and coordinates** from OpenStreetMap; **driving time** to Liberia and San José airports from OSRM.
+- **Canton, province and coordinates** from OpenStreetMap; **elevation** from SRTM (OpenTopoData); **driving time** to Liberia and San José airports from OSRM. Every source allows commercial use; Open-Meteo's free API does not, so it is not used.
 - Permit steps naming the municipality, the maritime zone rule on the coast, a local note where we can stand behind one, our nearest projects, five questions answered from the data, and FAQ and breadcrumb structured data.
 
 ```sh
+node scripts/stations.mjs                             # once: the 12 station files -> data/stations.json
 node scripts/towns-fetch.mjs                          # new towns in data/towns.json -> data/town-data.json (--force: all)
 python3 scripts/towns-rain.py <folder of CHPclim2 tifs>  # rain; the 12 files (30 MB each) are listed in the script
 node scripts/build.mjs
