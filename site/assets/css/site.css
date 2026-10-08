@@ -86,6 +86,12 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .display > span { display: block; }
 .indent-2 { padding-left: calc(2 * (var(--col) + var(--gap))); }
 .display .right { text-align: right; }
+/* a two-line title steps down: the second line starts where the first ends, a little before it
+   (titles.js sets it right instead when it is too long for the room left) */
+.display:has(> .right) { display: grid; grid-template-columns: max-content minmax(0, 1fr); }
+.display:has(> .right) > span:first-child { grid-column: 1; }
+.display:has(> .right) > .right { grid-column: 2; grid-row: 2; text-align: left; margin-left: -0.3em; }
+.display:has(> .right) > .right.is-wide { grid-column: 1 / -1; text-align: right; margin-left: 0; }
 
 /* Links and buttons */
 .ulink {
@@ -1023,29 +1029,29 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .lmap__legend li { display: inline-flex; align-items: center; gap: 0.35rem; }
 .lmap__legend i { display: inline-block; width: 0.9rem; height: 0.9rem; box-shadow: inset 0 0 0 1px rgba(8, 8, 7, 0.08); }
 .lmap figcaption { margin-top: 0.7rem; max-width: 62rem; }
-.lmap__pop .maplibregl-popup-content { padding: 0.95rem 1.05rem 0.9rem; border-radius: 0.9rem; font: inherit; color: var(--black); box-shadow: 0 6px 24px rgba(8, 8, 7, 0.16); }
-.lmap__pop .maplibregl-popup-close-button { top: 0.45rem; right: 0.45rem; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; font-size: 1.25rem; line-height: 1; color: var(--black); background: transparent; transition: background-color 0.2s var(--ease); }
-.lmap__pop .maplibregl-popup-close-button:hover { background: var(--light-grey); }
-.lmap__pop .maplibregl-popup-close-button:focus { outline: none; }
-.lmap__pop .maplibregl-popup-close-button:focus-visible { outline: 2px solid var(--black); outline-offset: 1px; }
-/* the bubble that follows the pointer over a zone */
-.lmap__tip { position: absolute; left: 0; top: 0; z-index: 4; display: grid; gap: 0.1rem; max-width: 15rem; padding: 0.55rem 0.7rem 0.5rem; border-radius: 0.7rem; background: var(--black); color: var(--white); pointer-events: none; font-variant-numeric: tabular-nums; box-shadow: 0 6px 20px rgba(8, 8, 7, 0.22); }
-.lmap__tip[hidden] { display: none; }
-.lmap__tip-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.75rem; color: #b9b8b3; }
-.lmap__tip b { font-size: 1.05rem; font-weight: var(--w-strong); letter-spacing: -0.01em; line-height: 1.15; }
-.lmap__tip b + b { font-size: 0.875rem; }
-.lmap__tip small { font-size: 0.75rem; font-weight: var(--w-text); }
-.lmap__tip em { margin-top: 0.3rem; font-style: normal; font-size: 0.6875rem; font-weight: var(--w-strong); letter-spacing: 0.04em; text-transform: uppercase; }
-.lmap__pop p, .lmap__pop ul { margin: 0; }
-.lmap__name { padding-right: 1.2rem; font-size: var(--f-large); font-weight: var(--w-strong); line-height: 1.15; }
-.lmap__where, .lmap__meta { margin-top: 0.25rem !important; font-size: var(--f-small); color: var(--dark-grey); }
-.lmap__value { margin-top: 0.7rem !important; font-variant-numeric: tabular-nums; }
-.lmap__value b { font-size: 1.6rem; font-weight: var(--w-strong); letter-spacing: -0.02em; }
-.lmap__value--ft { margin-top: 0.15rem !important; }
-.lmap__value--ft b { font-size: 1.15rem; }
-.lmap__value span { margin-left: 0.4rem; color: var(--dark-grey); }
-.lmap__more { list-style: none; padding: 0; margin-top: 0.35rem !important; font-size: var(--f-small); font-variant-numeric: tabular-nums; }
-.lmap__warn { margin-top: 0.55rem !important; padding-top: 0.55rem; border-top: 1px solid var(--grey); font-size: var(--f-small); line-height: 1.3; }
+/* a zone's card: a bubble that follows the pointer and opens in place into the zone's detail */
+.lmap__card { position: absolute; left: 0; top: 0; z-index: 4; overflow: hidden; width: max-content; max-width: min(16rem, calc(100% - 16px)); border-radius: 0.8rem; background: var(--white); color: var(--black); box-shadow: 0 1px 2px rgba(8, 8, 7, 0.1), 0 8px 26px rgba(8, 8, 7, 0.18); pointer-events: none; font-variant-numeric: tabular-nums; transform-origin: 0 0; }
+.lmap__card[hidden] { display: none; }
+.lmap__card.is-open { width: min(19rem, calc(100% - 16px)); max-width: none; pointer-events: auto; }
+.lmap__c-in { position: relative; display: grid; gap: 0.12rem; padding: 0.6rem 0.75rem 0.6rem; }
+.is-open .lmap__c-in { padding: 0.85rem 1rem 0.95rem; }
+.lmap__card p, .lmap__card ul { margin: 0; }
+.lmap__c-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.8125rem; font-weight: var(--w-strong); line-height: 1.3; }
+.is-open .lmap__c-name { padding-right: 2rem; white-space: normal; font-size: 1rem; line-height: 1.2; margin-bottom: 0.35rem; }
+.lmap__c-v b { font-size: 1.15rem; font-weight: var(--w-strong); letter-spacing: -0.02em; }
+.is-open .lmap__c-v b { font-size: 1.55rem; }
+.lmap__c-v--ft b { font-size: 0.9375rem; }
+.is-open .lmap__c-v--ft b { font-size: 1.1rem; }
+.lmap__c-v i { font-style: normal; font-size: 0.75rem; color: var(--dark-grey); }
+.lmap__c-v span { margin-left: 0.35rem; font-size: 0.75rem; color: var(--mid-grey); }
+.lmap__c-cta { margin-top: 0.4rem !important; font-size: 0.6875rem; font-weight: var(--w-strong); letter-spacing: 0.04em; text-transform: uppercase; color: var(--dark-grey); }
+.lmap__c-more { display: grid; gap: 0.25rem; margin-top: 0.5rem; padding-top: 0.55rem; border-top: 1px solid var(--grey); font-size: var(--f-small); line-height: 1.35; color: var(--dark-grey); }
+.lmap__c-list { list-style: none; padding: 0; }
+.lmap__c-warn { margin-top: 0.2rem !important; color: var(--black); }
+.lmap__c-x { position: absolute; top: 0.5rem; right: 0.5rem; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: transparent; color: var(--black); font-size: 1.2rem; line-height: 1; cursor: pointer; transition: background-color 0.2s var(--ease); }
+.lmap__c-x:hover { background: var(--light-grey); }
+.lmap__c-x:focus { outline: none; }
+.lmap__c-x:focus-visible { outline: 2px solid var(--black); outline-offset: 1px; }
 .lt__table { min-width: 62rem; }
 .lt__table td, .lt__table tbody th { vertical-align: top; }
 .lt__v { display: block; font-weight: var(--w-strong); }

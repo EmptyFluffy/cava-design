@@ -22,13 +22,13 @@
   const TONES = ['#f1ebdf', '#e0cfae', '#c9aa76', '#a9824b', '#82592b', '#55381a', '#24170a'];
 
   const T = ES ? {
-    m2: 'el m²', ft2: 'el pie²', expand: 'Clic para ver el detalle', lot: (a) => `Fijado para un lote de ${a.toLocaleString('en-US')} m²`, edition: (y) => `Edición ${y}`,
+    m2: 'el m²', ft2: 'el pie²', expand: 'Clic para ver el detalle', close: 'Cerrar', lot: (a) => `Fijado para un lote de ${a.toLocaleString('en-US')} m²`, edition: (y) => `Edición ${y}`,
     old: (y) => `Edición de ${y}: el mercado se ha movido desde entonces.`,
     second: 'Segunda parte de la zona', rural: 'Lotes rurales grandes',
     zmt: 'Zona marítimo terrestre: aquí no se compra el terreno, se da en concesión y se paga un canon anual.',
     failed: 'El mapa no cargó.', zone: 'zona',
   } : {
-    m2: 'a m²', ft2: 'a ft²', expand: 'Click to expand', lot: (a) => `Set for a lot of ${a.toLocaleString('en-US')} m²`, edition: (y) => `${y} edition`,
+    m2: 'a m²', ft2: 'a ft²', expand: 'Click to expand', close: 'Close', lot: (a) => `Set for a lot of ${a.toLocaleString('en-US')} m²`, edition: (y) => `${y} edition`,
     old: (y) => `${y} edition: the market has moved since.`,
     second: 'Second part of the zone', rural: 'Large rural lots',
     zmt: 'Maritime zone: the land here is not sold; it is granted in concession for a yearly fee.',
@@ -119,63 +119,124 @@
       map.addLayer({ id: 'towns-label', type: 'symbol', source: 'towns', layout: { 'text-field': ['get', 'name'], 'text-font': font, 'text-size': 12, 'text-offset': [0, 1.1], 'text-anchor': 'top' }, paint: { 'text-color': '#080807', 'text-halo-color': '#fcfcfc', 'text-halo-width': 1.6 } });
       box.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
 
-      // hover outline and the zone card
+      // hover outline
       let hovered = null;
       const setHover = (id) => {
         if (hovered !== null) map.setFeatureState({ source: 'zones', sourceLayer: 'zones', id: hovered }, { hover: false });
         hovered = id;
         if (id !== null) map.setFeatureState({ source: 'zones', sourceLayer: 'zones', id }, { hover: true });
       };
-      // a bubble that follows the pointer with the zone's price, so it is plain that a click opens it
-      const tip = document.createElement('div');
-      tip.className = 'lmap__tip';
-      tip.hidden = true;
-      tip.setAttribute('aria-hidden', 'true');
-      box.appendChild(tip);
+
+      // One card for a zone: a small bubble that follows the pointer, which opens in place into the
+      // zone's detail when clicked (or tapped), and folds away again.
+      const card = document.createElement('div');
+      card.className = 'lmap__card';
+      card.hidden = true;
+      box.appendChild(card);
       const canHover = window.matchMedia('(hover: hover)').matches;
-      let tipFor = null;
-      const hideTip = () => { tip.hidden = true; tipFor = null; };
+      const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+      let mode = null; // null, 'tip' or 'open'
+      let tipFor = null, openAt = null, openP = null, anim = null;
+      const now = new Date().getFullYear();
+      const priceRows = (p, full) => `<p class="lmap__c-v"><b>${pick(p.v)[0]}</b> <i>${T.m2}</i>${full ? ` <span>${pick(p.v)[1]}</span>` : ''}</p>
+          <p class="lmap__c-v lmap__c-v--ft"><b>${perFt(p.v)[0]}</b> <i>${T.ft2}</i>${full ? ` <span>${perFt(p.v)[1]}</span>` : ''}</p>`;
+      const tipHTML = (p) => `<div class="lmap__c-in"><p class="lmap__c-name">${esc(p.n)}</p>${priceRows(p, false)}<p class="lmap__c-cta">${T.expand}</p></div>`;
+      const openHTML = (p) => {
+        const rows = [];
+        if (p.v2) rows.push(`<li>${T.second}: ${pick(p.v2)[0]} ${T.m2} (${pick(p.v2)[1]})</li>`);
+        if (p.r) rows.push(`<li>${T.rural}: ${pick(p.r)[0]} ${T.m2} (${pick(p.r)[1]})</li>`);
+        return `<div class="lmap__c-in">
+          <button class="lmap__c-x" type="button" aria-label="${T.close}">×</button>
+          <p class="lmap__c-name">${esc(p.n)}</p>
+          ${priceRows(p, true)}
+          <div class="lmap__c-more">
+            <p class="lmap__c-where">${esc(cantons[p.c] ?? '')} · ${T.zone} ${esc(p.z)}</p>
+            ${rows.length ? `<ul class="lmap__c-list">${rows.join('')}</ul>` : ''}
+            <p class="lmap__c-meta">${[p.a ? T.lot(p.a) : '', p.y ? T.edition(p.y) : ''].filter(Boolean).join(' · ')}</p>
+            ${p.y && now - p.y >= 5 ? `<p class="lmap__c-warn">${T.old(p.y)}</p>` : ''}
+            ${p.zmt ? `<p class="lmap__c-warn">${T.zmt}</p>` : ''}
+          </div>
+        </div>`;
+      };
+      // where the card's top left goes for a point: below right of it, turned back inside the map
+      const spot = (x, y) => {
+        const W = box.clientWidth, H = box.clientHeight, w = card.offsetWidth, h = card.offsetHeight;
+        let l = x + 14, t = y + 14;
+        if (l + w > W - 8) l = x - 14 - w;
+        if (t + h > H - 8) t = y - 14 - h;
+        return [Math.max(8, Math.min(l, W - 8 - w)), Math.max(8, Math.min(t, H - 8 - h))];
+      };
+      const put = ([l, t]) => { card.style.transform = `translate(${l}px, ${t}px)`; };
+      const at = () => { const m = /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(card.style.transform); return m ? [+m[1], +m[2]] : [0, 0]; };
+      const stop = () => { if (anim) { anim.cancel(); anim = null; } };
+      const showTip = (p, id, pt) => {
+        if (tipFor !== id || mode !== 'tip') { stop(); card.className = 'lmap__card'; card.innerHTML = tipHTML(p); tipFor = id; }
+        mode = 'tip';
+        card.hidden = false;
+        put(spot(pt.x, pt.y));
+      };
+      const hideTip = () => { if (mode === 'tip') { card.hidden = true; mode = null; tipFor = null; } };
+      function open(p, lngLat, pt) {
+        stop();
+        const before = !card.hidden ? { pos: at(), w: card.offsetWidth, h: card.offsetHeight } : null;
+        card.className = 'lmap__card is-open';
+        card.innerHTML = openHTML(p);
+        card.hidden = false;
+        mode = 'open'; openAt = lngLat; openP = p; tipFor = null;
+        const end = spot(pt.x, pt.y);
+        put(end);
+        if (still) return;
+        const w = card.offsetWidth, h = card.offsetHeight;
+        const inner = card.firstElementChild;
+        inner.style.width = `${w}px`; // the detail is laid out at its full size and revealed as the card grows
+        const from = before ?? { pos: [end[0], end[1]], w: Math.min(w, 140), h: Math.min(h, 60) };
+        anim = card.animate([
+          { transform: `translate(${from.pos[0]}px, ${from.pos[1]}px)`, width: `${from.w}px`, height: `${from.h}px`, opacity: before ? 1 : 0 },
+          { transform: `translate(${end[0]}px, ${end[1]}px)`, width: `${w}px`, height: `${h}px`, opacity: 1 },
+        ], { duration: 460, easing: EASE });
+        card.querySelector('.lmap__c-more')?.animate([{ opacity: 0, transform: 'translateY(-4px)' }, { opacity: 1, transform: 'none' }], { duration: 320, delay: 140, easing: EASE, fill: 'backwards' });
+        anim.onfinish = () => { inner.style.width = ''; anim = null; };
+      }
+      function close() {
+        if (mode !== 'open') return;
+        stop();
+        mode = null; openAt = null; openP = null;
+        if (still) { card.hidden = true; return; }
+        const [l, t] = at();
+        anim = card.animate([
+          { transform: `translate(${l}px, ${t}px)`, opacity: 1 },
+          { transform: `translate(${l}px, ${t}px) scale(0.85)`, opacity: 0 },
+        ], { duration: 220, easing: 'ease-in' });
+        anim.onfinish = () => { card.hidden = true; anim = null; };
+      }
+      card.addEventListener('click', (e) => { if (e.target.closest('.lmap__c-x')) close(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
       map.on('mousemove', 'zones-fill', (e) => {
         map.getCanvas().style.cursor = 'pointer';
         const f = e.features[0];
         setHover(f.id ?? null);
-        if (!canHover) return;
+        if (!canHover || mode === 'open') return;
         // not over a town's dot or name, which fly to the town instead
         if (map.queryRenderedFeatures(e.point, { layers: ['towns-dot', 'towns-label'] }).length) { hideTip(); return; }
-        const p = f.properties;
-        if (tipFor !== f.id) {
-          tipFor = f.id;
-          tip.innerHTML = `<span class="lmap__tip-name">${esc(p.n)}</span><b>${pick(p.v)[0]} <small>${T.m2}</small></b><b>${perFt(p.v)[0]} <small>${T.ft2}</small></b><em>${T.expand}</em>`;
-        }
-        tip.hidden = false;
-        const W = box.clientWidth, H = box.clientHeight, w = tip.offsetWidth, h = tip.offsetHeight;
-        const x = e.point.x + 16 + w > W ? e.point.x - 16 - w : e.point.x + 16;
-        const y = e.point.y + 16 + h > H ? e.point.y - 16 - h : e.point.y + 16;
-        tip.style.transform = `translate(${Math.max(4, x)}px, ${Math.max(4, y)}px)`;
+        showTip(f.properties, f.id, e.point);
       });
       map.on('mouseleave', 'zones-fill', () => { map.getCanvas().style.cursor = ''; setHover(null); hideTip(); });
       map.on('dragstart', hideTip);
-      // a new currency closes an open card; the next one opens in it
-      fig.addEventListener('lmap:cur', () => { popup.remove(); hideTip(); });
       map.on('zoomstart', hideTip);
-      const popup = new gl.Popup({ closeButton: true, maxWidth: '20rem', className: 'lmap__pop' });
-      map.on('click', 'zones-fill', (e) => {
+      // an open card stays with its point while the map moves
+      map.on('move', () => { if (mode === 'open' && openAt && !anim) { const pt = map.project(openAt); put(spot(pt.x, pt.y)); } });
+      map.on('click', (e) => {
         if (map.queryRenderedFeatures(e.point, { layers: ['towns-dot', 'towns-label'] }).length) return;
-        const p = e.features[0].properties;
-        const now = new Date().getFullYear();
-        const rows = [];
-        if (p.v2) rows.push(`<li>${T.second}: ${pick(p.v2)[0]} ${T.m2} (${pick(p.v2)[1]})</li>`);
-        if (p.r) rows.push(`<li>${T.rural}: ${pick(p.r)[0]} ${T.m2} (${pick(p.r)[1]})</li>`);
-        const html = `<p class="lmap__name">${esc(p.n)}</p>
-          <p class="lmap__where">${esc(cantons[p.c] ?? '')} · ${T.zone} ${esc(p.z)}</p>
-          <p class="lmap__value"><b>${pick(p.v)[0]}</b> ${T.m2} <span>${pick(p.v)[1]}</span></p>
-          <p class="lmap__value lmap__value--ft"><b>${perFt(p.v)[0]}</b> ${T.ft2} <span>${perFt(p.v)[1]}</span></p>
-          ${rows.length ? `<ul class="lmap__more">${rows.join('')}</ul>` : ''}
-          <p class="lmap__meta">${[p.a ? T.lot(p.a) : '', p.y ? T.edition(p.y) : ''].filter(Boolean).join(' · ')}</p>
-          ${p.y && now - p.y >= 5 ? `<p class="lmap__warn">${T.old(p.y)}</p>` : ''}
-          ${p.zmt ? `<p class="lmap__warn">${T.zmt}</p>` : ''}`;
-        hideTip();
-        popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
+        const f = map.queryRenderedFeatures(e.point, { layers: ['zones-fill'] })[0];
+        if (f) open(f.properties, e.lngLat, e.point);
+        else close();
+      });
+      // a new currency redraws the card in it
+      fig.addEventListener('lmap:cur', () => {
+        if (mode === 'open') { card.innerHTML = openHTML(openP); }
+        else hideTip();
       });
       for (const id of ['towns-dot', 'towns-label']) {
         map.on('click', id, (e) => { const t = towns.find((x) => x.slug === e.features[0].properties.slug); fly(t); });
