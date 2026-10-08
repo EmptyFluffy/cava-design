@@ -299,14 +299,14 @@ window.CAVA_HERO = [
   "href": "proyectos/casa-alcaravan/"
  },
  {
-  "src": "../assets/img/projects/tragaluz-retreat/3",
-  "v": "b0bd601c",
+  "src": "../assets/img/projects/portland-house/3",
+  "v": "c4fa6d01",
   "w": 1600,
-  "h": 900,
-  "alt": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio",
-  "name": "Tragaluz Retreat",
-  "place": "Playa Negra",
-  "href": "proyectos/tragaluz-retreat/"
+  "h": 793,
+  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo",
+  "name": "Portland House",
+  "place": "Huacas",
+  "href": "proyectos/portland-house/"
  },
  {
   "src": "../assets/img/projects/papagayo-404/6",
