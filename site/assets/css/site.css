@@ -1003,12 +1003,25 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .lmap__legend i { display: inline-block; width: 0.9rem; height: 0.9rem; box-shadow: inset 0 0 0 1px rgba(8, 8, 7, 0.08); }
 .lmap figcaption { margin-top: 0.7rem; max-width: 62rem; }
 .lmap__pop .maplibregl-popup-content { padding: 0.95rem 1.05rem 0.9rem; border-radius: 0.9rem; font: inherit; color: var(--black); box-shadow: 0 6px 24px rgba(8, 8, 7, 0.16); }
-.lmap__pop .maplibregl-popup-close-button { font-size: 1.2rem; padding: 0.2rem 0.5rem; }
+.lmap__pop .maplibregl-popup-close-button { top: 0.45rem; right: 0.45rem; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; font-size: 1.25rem; line-height: 1; color: var(--black); background: transparent; transition: background-color 0.2s var(--ease); }
+.lmap__pop .maplibregl-popup-close-button:hover { background: var(--light-grey); }
+.lmap__pop .maplibregl-popup-close-button:focus { outline: none; }
+.lmap__pop .maplibregl-popup-close-button:focus-visible { outline: 2px solid var(--black); outline-offset: 1px; }
+/* the bubble that follows the pointer over a zone */
+.lmap__tip { position: absolute; left: 0; top: 0; z-index: 4; display: grid; gap: 0.1rem; max-width: 15rem; padding: 0.55rem 0.7rem 0.5rem; border-radius: 0.7rem; background: var(--black); color: var(--white); pointer-events: none; font-variant-numeric: tabular-nums; box-shadow: 0 6px 20px rgba(8, 8, 7, 0.22); }
+.lmap__tip[hidden] { display: none; }
+.lmap__tip-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.75rem; color: #b9b8b3; }
+.lmap__tip b { font-size: 1.05rem; font-weight: var(--w-strong); letter-spacing: -0.01em; line-height: 1.15; }
+.lmap__tip b + b { font-size: 0.875rem; }
+.lmap__tip small { font-size: 0.75rem; font-weight: var(--w-text); }
+.lmap__tip em { margin-top: 0.3rem; font-style: normal; font-size: 0.6875rem; font-weight: var(--w-strong); letter-spacing: 0.04em; text-transform: uppercase; }
 .lmap__pop p, .lmap__pop ul { margin: 0; }
 .lmap__name { padding-right: 1.2rem; font-size: var(--f-large); font-weight: var(--w-strong); line-height: 1.15; }
 .lmap__where, .lmap__meta { margin-top: 0.25rem !important; font-size: var(--f-small); color: var(--dark-grey); }
 .lmap__value { margin-top: 0.7rem !important; font-variant-numeric: tabular-nums; }
 .lmap__value b { font-size: 1.6rem; font-weight: var(--w-strong); letter-spacing: -0.02em; }
+.lmap__value--ft { margin-top: 0.15rem !important; }
+.lmap__value--ft b { font-size: 1.15rem; }
 .lmap__value span { margin-left: 0.4rem; color: var(--dark-grey); }
 .lmap__more { list-style: none; padding: 0; margin-top: 0.35rem !important; font-size: var(--f-small); font-variant-numeric: tabular-nums; }
 .lmap__warn { margin-top: 0.55rem !important; padding-top: 0.55rem; border-top: 1px solid var(--grey); font-size: var(--f-small); line-height: 1.3; }

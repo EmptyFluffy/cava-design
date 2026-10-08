@@ -22,13 +22,13 @@
   const TONES = ['#f1ebdf', '#e0cfae', '#c9aa76', '#a9824b', '#82592b', '#55381a', '#24170a'];
 
   const T = ES ? {
-    m2: 'el m²', lot: (a) => `Fijado para un lote de ${a.toLocaleString('en-US')} m²`, edition: (y) => `Edición ${y}`,
+    m2: 'el m²', ft2: 'el pie²', expand: 'Clic para ver el detalle', lot: (a) => `Fijado para un lote de ${a.toLocaleString('en-US')} m²`, edition: (y) => `Edición ${y}`,
     old: (y) => `Edición de ${y}: el mercado se ha movido desde entonces.`,
     second: 'Segunda parte de la zona', rural: 'Lotes rurales grandes',
     zmt: 'Zona marítimo terrestre: aquí no se compra el terreno, se da en concesión y se paga un canon anual.',
     failed: 'El mapa no cargó.', zone: 'zona',
   } : {
-    m2: 'a m²', lot: (a) => `Set for a lot of ${a.toLocaleString('en-US')} m²`, edition: (y) => `${y} edition`,
+    m2: 'a m²', ft2: 'a ft²', expand: 'Click to expand', lot: (a) => `Set for a lot of ${a.toLocaleString('en-US')} m²`, edition: (y) => `${y} edition`,
     old: (y) => `${y} edition: the market has moved since.`,
     second: 'Second part of the zone', rural: 'Large rural lots',
     zmt: 'Maritime zone: the land here is not sold; it is granted in concession for a yearly fee.',
@@ -38,6 +38,10 @@
   let cur = 'usd';
   const crc = (v) => `₡${Math.round(v).toLocaleString('en-US')}`;
   const usd = (v) => { const d = v / FX; return `US$${d < 10 ? d.toFixed(1) : Math.round(d).toLocaleString('en-US')}`; };
+  // a value in the currency picked first, the other one after; per m² or per ft²
+  const FT2 = 10.7639;
+  const pick = (v) => (cur === 'crc' ? [crc(v), usd(v)] : [usd(v), crc(v)]);
+  const perFt = (v) => pick(v / FT2);
   const short = (v) => (cur === 'crc' ? (v >= 1000 ? `₡${v / 1000}k` : `₡${v}`) : `US$${Math.round(v / FX)}`);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -122,23 +126,55 @@
         hovered = id;
         if (id !== null) map.setFeatureState({ source: 'zones', sourceLayer: 'zones', id }, { hover: true });
       };
-      map.on('mousemove', 'zones-fill', (e) => { map.getCanvas().style.cursor = 'pointer'; setHover(e.features[0].id ?? null); });
-      map.on('mouseleave', 'zones-fill', () => { map.getCanvas().style.cursor = ''; setHover(null); });
+      // a bubble that follows the pointer with the zone's price, so it is plain that a click opens it
+      const tip = document.createElement('div');
+      tip.className = 'lmap__tip';
+      tip.hidden = true;
+      tip.setAttribute('aria-hidden', 'true');
+      box.appendChild(tip);
+      const canHover = window.matchMedia('(hover: hover)').matches;
+      let tipFor = null;
+      const hideTip = () => { tip.hidden = true; tipFor = null; };
+      map.on('mousemove', 'zones-fill', (e) => {
+        map.getCanvas().style.cursor = 'pointer';
+        const f = e.features[0];
+        setHover(f.id ?? null);
+        if (!canHover) return;
+        // not over a town's dot or name, which fly to the town instead
+        if (map.queryRenderedFeatures(e.point, { layers: ['towns-dot', 'towns-label'] }).length) { hideTip(); return; }
+        const p = f.properties;
+        if (tipFor !== f.id) {
+          tipFor = f.id;
+          tip.innerHTML = `<span class="lmap__tip-name">${esc(p.n)}</span><b>${pick(p.v)[0]} <small>${T.m2}</small></b><b>${perFt(p.v)[0]} <small>${T.ft2}</small></b><em>${T.expand}</em>`;
+        }
+        tip.hidden = false;
+        const W = box.clientWidth, H = box.clientHeight, w = tip.offsetWidth, h = tip.offsetHeight;
+        const x = e.point.x + 16 + w > W ? e.point.x - 16 - w : e.point.x + 16;
+        const y = e.point.y + 16 + h > H ? e.point.y - 16 - h : e.point.y + 16;
+        tip.style.transform = `translate(${Math.max(4, x)}px, ${Math.max(4, y)}px)`;
+      });
+      map.on('mouseleave', 'zones-fill', () => { map.getCanvas().style.cursor = ''; setHover(null); hideTip(); });
+      map.on('dragstart', hideTip);
+      // a new currency closes an open card; the next one opens in it
+      fig.addEventListener('lmap:cur', () => { popup.remove(); hideTip(); });
+      map.on('zoomstart', hideTip);
       const popup = new gl.Popup({ closeButton: true, maxWidth: '20rem', className: 'lmap__pop' });
       map.on('click', 'zones-fill', (e) => {
         if (map.queryRenderedFeatures(e.point, { layers: ['towns-dot', 'towns-label'] }).length) return;
         const p = e.features[0].properties;
         const now = new Date().getFullYear();
         const rows = [];
-        if (p.v2) rows.push(`<li>${T.second}: ${crc(p.v2)} (${usd(p.v2)})</li>`);
-        if (p.r) rows.push(`<li>${T.rural}: ${crc(p.r)} (${usd(p.r)})</li>`);
+        if (p.v2) rows.push(`<li>${T.second}: ${pick(p.v2)[0]} ${T.m2} (${pick(p.v2)[1]})</li>`);
+        if (p.r) rows.push(`<li>${T.rural}: ${pick(p.r)[0]} ${T.m2} (${pick(p.r)[1]})</li>`);
         const html = `<p class="lmap__name">${esc(p.n)}</p>
           <p class="lmap__where">${esc(cantons[p.c] ?? '')} · ${T.zone} ${esc(p.z)}</p>
-          <p class="lmap__value"><b>${crc(p.v)}</b> ${T.m2} <span>${usd(p.v)}</span></p>
+          <p class="lmap__value"><b>${pick(p.v)[0]}</b> ${T.m2} <span>${pick(p.v)[1]}</span></p>
+          <p class="lmap__value lmap__value--ft"><b>${perFt(p.v)[0]}</b> ${T.ft2} <span>${perFt(p.v)[1]}</span></p>
           ${rows.length ? `<ul class="lmap__more">${rows.join('')}</ul>` : ''}
           <p class="lmap__meta">${[p.a ? T.lot(p.a) : '', p.y ? T.edition(p.y) : ''].filter(Boolean).join(' · ')}</p>
           ${p.y && now - p.y >= 5 ? `<p class="lmap__warn">${T.old(p.y)}</p>` : ''}
           ${p.zmt ? `<p class="lmap__warn">${T.zmt}</p>` : ''}`;
+        hideTip();
         popup.setLngLat(e.lngLat).setHTML(html).addTo(map);
       });
       for (const id of ['towns-dot', 'towns-label']) {
@@ -173,6 +209,7 @@
     cur = b.dataset.cur;
     fig.querySelectorAll('[data-cur]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
     legend();
+    fig.dispatchEvent(new CustomEvent('lmap:cur'));
   }));
   legend();
 
