@@ -35,7 +35,8 @@
       coastal: 'Cerca de la playa: a menos de 200 m de la pleamar rige la Ley de la Zona Marítimo Terrestre.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, que aquí producen unos ${kwh} kWh al año.`,
-    rate: (b, ft, all) => `Construcción ${b} por m² construido (${ft} por pie²); todo incluido, ${all} por m².`,
+    perArea: (m2, ft2) => `<span>${m2} por m² construido · ${ft2} por pie²</span><small>Lo probable, con todo incluido</small>`,
+    rate: (b, ft) => `Solo la construcción: ${b} por m² (${ft} por pie²).`,
     landNote: (t, L) => L.src === 'market' ? `Terreno a lo que piden los lotes en ${t}: US$${L.r[0]} a ${L.r[2]} el m², la mitad central de ${L.n} lotes en venta (octubre de 2026).` : `En ${t} hay pocos lotes anunciados: el terreno va a los valores residenciales de Hacienda, US$${L.r[0]} a ${L.r[2]} el m² (edición ${L.y}).`,
     landPapagayo: 'En la Península Papagayo el terreno es una concesión del ICT, no se compra: queda fuera.',
     landNone: 'Aquí no tenemos un precio del terreno con fuente: queda fuera.',
@@ -63,7 +64,8 @@
       coastal: 'Near the beach: within 200 m of the high-tide line the maritime zone law applies.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, which make about ${kwh} kWh a year here.`,
-    rate: (b, ft, all) => `Construction ${b} a m² built (${ft} a ft²); everything in, ${all} a m².`,
+    perArea: (m2, ft2) => `<span>${m2} a m² built · ${ft2} a ft²</span><small>Likely, with everything in</small>`,
+    rate: (b, ft) => `Construction alone: ${b} a m² (${ft} a ft²).`,
     landNote: (t, L) => L.src === 'market' ? `Land at what lots ask in ${t}: US$${L.r[0]} to ${L.r[2]} a m², the middle half of ${L.n} lots for sale (October 2026).` : `Few lots are listed in ${t}: the land goes at Hacienda's residential values, US$${L.r[0]} to ${L.r[2]} a m² (${L.y} edition).`,
     landPapagayo: 'In Península Papagayo the land is an ICT concession and is not sold: it is left out.',
     landNone: 'We have no sourced land price here: it is left out.',
@@ -202,14 +204,19 @@
   const inkOn = (hex) => { const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.5 ? '#080807' : '#fcfcfc'; };
 
   function renderTotals(e) {
-    $('[data-est-total]').textContent = `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
+    // in colones the word "millions" is said once: ₡315.6 to ₡486.9 million
+    const range = state.cur === 'crc' ? `${fmtCrc(e.total[0]).split(' ')[0]} ${ES ? 'a' : 'to'} ${fmtCrc(e.total[2])}` : `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
+    const tot = $('[data-est-total]');
+    tot.textContent = range;
+    tot.style.setProperty('--len', range.length); // the range keeps to one line: its size follows its length
     $('[data-est-likely]').textContent = `${T.likely} ${money(e.total[1])}`;
     const exact = (n) => (state.cur === 'crc' ? `₡${num(n * D.fx.crcPerUsd)}` : `US$${num(n)}`);
-    $('[data-est-rate]').textContent = T.rate(exact(e.rate[1]), exact(e.rate[1] / 10.7639), exact(e.total[1] / e.area));
+    $('[data-est-perarea]').innerHTML = T.perArea(`<b>${exact(e.total[1] / e.area)}</b>`, `<b>${exact(e.total[1] / e.area / 10.7639)}</b>`);
+    $('[data-est-rate]').textContent = T.rate(exact(e.rate[1]), exact(e.rate[1] / 10.7639));
     $('[data-est-hard]').textContent = money(e.hard[1]);
     $('[data-est-soft]').textContent = money(e.soft[1]);
     const sticky = $('[data-est-sticky]');
-    if (sticky) sticky.textContent = `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
+    if (sticky) sticky.textContent = range;
   }
 
   function renderBreakdown(e) {
@@ -231,9 +238,10 @@
     }
   }
 
-  // ---------- the volume, to scale: white faces, a heavy outline, thin seams, two people and a tree ----------
-  // Storeys are 3.2 m and the roof keeps its pitch, so a wider house gets a taller ridge; the drawing
-  // is fitted to its box, so the people and the tree shrink as the building grows.
+  // ---------- the volume: white faces, a heavy outline, thin seams, two people and a tree ----------
+  // True to scale up to a floor of 120 m² (3.2 m storeys); past that the whole volume grows together,
+  // walls and roof with the floor, so it keeps its shape. The people and the tree stay true to scale,
+  // so they shrink as the building grows.
   const ISO = (x, y, z) => [(x - y) * 0.866, (x + y) * 0.5 - z];
   const pts = (list) => list.map((p) => ISO(...p).map((n) => n.toFixed(2)).join(',')).join(' ');
   // a tree of branches, always the same one
@@ -256,7 +264,8 @@
     const pr = prog();
     const storeys = pr.roof === 'aframe' || pr.roof === 'dome' ? 1 : +state.storeys;
     const foot = e.area / storeys;
-    const H = 3.2 * storeys;
+    const k = Math.max(1, Math.sqrt(foot / 120));
+    const H = 3.2 * storeys * k;
     const faces = []; // [class, points]: drawn in this order, back to front
     const seams = []; // polylines
     let W, Dp, outline; // outline: points of the volume, for its shadow
@@ -275,12 +284,13 @@
     } else {
       W = Math.sqrt(foot * 1.8); Dp = foot / W;
       if (pr.roof === 'flat') {
-        const T = H + 0.45;
+        const T = H + 0.45 * k;
         faces.push(['m-face m-s', pts([[0, Dp, 0], [W, Dp, 0], [W, Dp, T], [0, Dp, T]])]);
         faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp, T], [W, 0, T]])]);
         faces.push(['m-face m-rf', pts([[0, 0, T], [W, 0, T], [W, Dp, T], [0, Dp, T]])]);
-        seams.push([[0.35, 0.35, T], [W - 0.35, 0.35, T], [W - 0.35, Dp - 0.35, T], [0.35, Dp - 0.35, T], [0.35, 0.35, T]].map((p) => ISO(...p)));
-        for (let k = 1; k <= storeys; k++) seams.push([[0, Dp, 3.2 * k], [W, Dp, 3.2 * k], [W, 0, 3.2 * k]].map((p) => ISO(...p)));
+        const q = 0.35 * k;
+        seams.push([[q, q, T], [W - q, q, T], [W - q, Dp - q, T], [q, Dp - q, T], [q, q, T]].map((p) => ISO(...p)));
+        for (let f = 1; f <= storeys; f++) seams.push([[0, Dp, (H * f) / storeys], [W, Dp, (H * f) / storeys], [W, 0, (H * f) / storeys]].map((p) => ISO(...p)));
         outline = [[0, 0, T], [W, 0, T], [W, Dp, T], [0, Dp, T], [0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0]];
       } else if (pr.roof === 'aframe') {
         const R = (Dp / 2) * Math.tan(Math.PI / 3);
@@ -290,16 +300,14 @@
         seams.push([[W, Dp * 0.21, 3.2 * 0.95], [W, Dp * 0.79, 3.2 * 0.95]].map((p) => ISO(...p)));
         outline = [[0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0], [0, Dp / 2, R], [W, Dp / 2, R]];
       } else {
-        // a gable along the long side, pitched at 22 degrees, with a 0.6 m overhang
-        const o = 0.6, t = 0.25, tan = Math.tan((22 * Math.PI) / 180), R = H + (Dp / 2 + o) * tan, eave = H;
-        faces.push(['m-face m-rb', pts([[-o, -o, eave], [W + o, -o, eave], [W + o, Dp / 2, R], [-o, Dp / 2, R]])]);
+        // the house a child draws: a gable along the long side at 35 degrees, no eaves
+        const R = H + (Dp / 2) * Math.tan((35 * Math.PI) / 180);
+        faces.push(['m-face m-rb', pts([[0, 0, H], [W, 0, H], [W, Dp / 2, R], [0, Dp / 2, R]])]);
         faces.push(['m-face m-s', pts([[0, Dp, 0], [W, Dp, 0], [W, Dp, H], [0, Dp, H]])]);
-        faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp, H + o * tan], [W, Dp / 2, R - t], [W, 0, H + o * tan]])]);
-        faces.push(['m-face m-e', pts([[W + o, -o, eave], [W + o, Dp / 2, R], [W + o, Dp + o, eave], [W + o, Dp + o, eave - t], [W + o, Dp / 2, R - t], [W + o, -o, eave - t]])]);
-        faces.push(['m-face m-rf', pts([[-o, Dp / 2, R], [W + o, Dp / 2, R], [W + o, Dp + o, eave], [-o, Dp + o, eave]])]);
-        faces.push(['m-face m-s', pts([[-o, Dp + o, eave], [W + o, Dp + o, eave], [W + o, Dp + o, eave - t], [-o, Dp + o, eave - t]])]);
-        for (let k = 1; k < storeys; k++) seams.push([[0, Dp, 3.2 * k], [W, Dp, 3.2 * k], [W, 0, 3.2 * k]].map((p) => ISO(...p)));
-        outline = [[-o, -o, eave], [W + o, -o, eave], [W + o, Dp + o, eave], [-o, Dp + o, eave], [-o, Dp / 2, R], [W + o, Dp / 2, R], [0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0]];
+        faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp, H], [W, Dp / 2, R], [W, 0, H]])]);
+        faces.push(['m-face m-rf', pts([[0, Dp / 2, R], [W, Dp / 2, R], [W, Dp, H], [0, Dp, H]])]);
+        for (let f = 1; f < storeys; f++) seams.push([[0, Dp, (H * f) / storeys], [W, Dp, (H * f) / storeys], [W, 0, (H * f) / storeys]].map((p) => ISO(...p)));
+        outline = [[0, 0, H], [W, 0, H], [W, Dp, H], [0, Dp, H], [0, Dp / 2, R], [W, Dp / 2, R], [0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0]];
       }
     }
     // a short shadow to the west, on the ground
@@ -307,7 +315,7 @@
     // the pool, in front
     const pool = +state.pool;
     const pw = pool ? Math.sqrt(pool * 2.5) : 0, pd = pool ? pool / pw : 0;
-    const py = Dp + (pr.roof === 'gable' ? 2.4 : 1.8);
+    const py = Dp + 1.8;
     // people, 1.75 and 1.62 m, beside the east end, and a tree behind them
     const person = (x, y, h) => { const [px, pz] = ISO(x, y, 0); return `<g class="m-person"><circle cx="${px.toFixed(2)}" cy="${(pz - h + 0.13).toFixed(2)}" r="0.14"/><rect x="${(px - 0.2).toFixed(2)}" y="${(pz - h + 0.32).toFixed(2)}" width="0.4" height="${(h - 0.32).toFixed(2)}" rx="0.16"/></g>`; };
     const tpos = [W + 4.6, Dp * 0.15];

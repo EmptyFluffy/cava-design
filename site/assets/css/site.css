@@ -710,8 +710,12 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__checks label { display: flex; align-items: center; gap: 0.6rem; font-size: var(--f-large); }
 .est__checks input { width: 1.1rem; height: 1.1rem; accent-color: var(--black); }
 .est__block { display: grid; gap: 0.8rem; padding-top: 1rem; border-top: 1px solid var(--grey); }
-.est__totals { border-top: 1px solid var(--black); }
-.est__total { margin: 0; font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.02; font-variant-numeric: tabular-nums; text-wrap: balance; }
+.est__totals { border-top: 1px solid var(--black); container-type: inline-size; }
+/* the range on one line: as large as the column allows for its length */
+.est__total { margin: 0; font-size: min(var(--f-h3), calc(100cqi / (var(--len, 26) * 0.6))); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.02; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.est__perarea { margin: 0.2rem 0 0; display: grid; gap: 0.3rem; font-size: var(--f-h4); font-weight: var(--w-text); letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.est__perarea b { font-weight: var(--w-strong); }
+.est__perarea small { font-size: var(--f-small); letter-spacing: 0; color: var(--dark-grey); }
 .est__likely { color: var(--dark-grey); }
 .est__split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin: 0.4rem 0 0; }
 .est__split dd { margin: 0.3rem 0 0; font-size: var(--f-large); font-variant-numeric: tabular-nums; }
