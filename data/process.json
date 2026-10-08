@@ -1,0 +1,50 @@
+{
+  "_note": "Images for the six stages of the process and for the services, until our own photos replace them. 'ours' are drawings made by the studio (G-numbers), in English and Spanish where they carry words; the rest are Unsplash or Pexels photos (no credit required; we credit anyway). scripts/process-images.py crops each to 3:2 around 'focus' (0 top, 1 bottom) and writes site/assets/img/process/<id>[-es]-{1600,800}.webp. The alt text says what the image shows, never that it is a particular town.",
+  "images": {
+    "G1": { "ours": true, "lang": true, "alt_en": "Drone photo of dry pasture and forest with a sketched five-sided site, setbacks, the house, the breeze, the afternoon sun and the trees to keep", "alt_es": "Foto de dron de un potrero seco y bosque con un lote de cinco lados dibujado a mano, los retiros, la casa, la brisa, el sol de la tarde y los árboles a conservar" },
+    "G2": { "ours": true, "lang": true, "alt_en": "The same drone photo with the site analysis drawn as a clean diagram", "alt_es": "La misma foto de dron con el análisis del lote dibujado como diagrama limpio" },
+    "G3": { "ours": true, "lang": true, "alt_en": "Drone photo of forest beside a dirt road with a sketched site, its front setback, the access and a dead tree to remove", "alt_es": "Foto de dron de un bosque junto a un camino de tierra con un lote dibujado, su retiro frontal, el acceso y un árbol seco que se quita" },
+    "site-6": { "src": "site-6.jpg", "focus": 0.5, "by": "Pok Rie", "site": "Pexels", "url": "https://www.pexels.com/photo/17181932/", "alt_en": "A palm grove beside a cleared field, seen from directly above", "alt_es": "Un palmar junto a un terreno despejado, visto desde arriba" },
+    "site-8": { "src": "site-8.jpg", "focus": 0.5, "by": "Jess Ruyter", "site": "Pexels", "url": "https://www.pexels.com/photo/9413447/", "alt_en": "A red dirt road through dense forest, seen from directly above", "alt_es": "Un camino de tierra roja entre bosque denso, visto desde arriba" },
+    "site-9": { "src": "site-9.jpg", "focus": 0.55, "by": "iuliu illes", "site": "Unsplash", "url": "https://unsplash.com/photos/k_AGmFBnc4s", "alt_en": "A long green clearing enclosed by forest, seen from above", "alt_es": "Un claro verde y largo rodeado de bosque, visto desde arriba" },
+    "analysis-1": { "src": "analysis-1.jpg", "focus": 0.5, "by": "Sofia IDIR", "site": "Unsplash", "url": "https://unsplash.com/photos/J1pGOtG8h2I", "alt_en": "A layered cardboard contour model of a hillside with black building blocks", "alt_es": "Una maqueta de curvas de nivel en cartón con bloques negros por edificios" },
+    "G5": { "ours": true, "lang": true, "alt_en": "White massing model of a house on a contour base, with branch trees and diagrams of the cross breeze, the afternoon sun and the view to the sea", "alt_es": "Maqueta blanca de una casa sobre curvas de nivel, con árboles de ramas y diagramas de la brisa cruzada, el sol de la tarde y la vista al mar" },
+    "concept-1": { "src": "concept-1.jpg", "focus": 0.5, "by": "Fernando Andrade", "site": "Unsplash", "url": "https://unsplash.com/photos/UW4_FYJ_jRc", "alt_en": "A white card model of a cantilevered house with a palm tree", "alt_es": "Una maqueta blanca de cartón de una casa en voladizo con una palmera" },
+    "concept-7": { "src": "concept-7.jpg", "focus": 0.5, "by": "Tima Miroshnichenko", "site": "Pexels", "url": "https://www.pexels.com/photo/6615188/", "alt_en": "A white card house model on a desk in soft daylight", "alt_es": "Una maqueta de casa en cartón blanco sobre un escritorio, con luz suave" },
+    "G7": { "ours": true, "lang": true, "alt_en": "Trace paper over a printed floor plan with red and graphite pencil notes: a longer island, a deeper roof and the December noon sun", "alt_es": "Papel mantequilla sobre una planta impresa con notas en lápiz rojo y grafito: una isla más larga, un alero más profundo y el sol de mediodía de diciembre" },
+    "development-11": { "src": "development-11.jpg", "focus": 0.5, "by": "Edward Jenner", "site": "Pexels", "url": "https://www.pexels.com/photo/4249585/", "alt_en": "Marble and stone tiles laid out side by side", "alt_es": "Muestras de mármol y piedra lado a lado" },
+    "G8": { "ours": true, "alt_en": "A 30 by 40 drawing sheet with the studio's title block: floor plan, section, elevation, roof edge detail and a box for the CFIA stamp", "alt_es": "Una lámina de 30 por 40 con el membrete del estudio: planta, corte, elevación, detalle de alero y el recuadro para el sello del CFIA" },
+    "G10": { "ours": true, "alt_en": "Close-up of the title block, the sheet index and the key plan of sheet A-101", "alt_es": "Acercamiento al membrete, el índice de láminas y la ubicación en el lote de la lámina A-101" },
+    "permits-2": { "src": "permits-2.jpg", "focus": 0.5, "by": "Mikhail Nilov", "site": "Pexels", "url": "https://www.pexels.com/photo/6894105/", "alt_en": "A marble desk from above with a laptop, notebooks, a ruler and hands on a floor plan", "alt_es": "Un escritorio de mármol visto desde arriba con una laptop, cuadernos, una regla y manos sobre una planta" },
+    "permits-1": { "src": "permits-1.jpg", "focus": 0.5, "by": "Thirdman", "site": "Pexels", "url": "https://www.pexels.com/photo/5584052/", "alt_en": "Hands with pencils reviewing a printed drawing set", "alt_es": "Manos con lápices revisando un juego de planos impreso" },
+    "G9": { "ours": true, "alt_en": "The drawing sheet A-101 lying on a dark table", "alt_es": "La lámina A-101 sobre una mesa oscura" },
+    "G11": { "ours": true, "alt_en": "Close-up of the floor plan: walls, doors, grid lines, dimensions and floor levels", "alt_es": "Acercamiento a la planta: muros, puertas, ejes, cotas y niveles de piso" },
+    "documents-5": { "src": "documents-5.jpg", "focus": 0.5, "by": "Ivan S", "site": "Pexels", "url": "https://www.pexels.com/photo/4458193/", "alt_en": "Close-up of a construction detail drawing with notes", "alt_es": "Acercamiento a un detalle constructivo con anotaciones" },
+    "documents-6": { "src": "documents-6.jpg", "focus": 0.5, "by": "Ivan S", "site": "Pexels", "url": "https://www.pexels.com/photo/4458200/", "alt_en": "Close-up of plan linework with red column marks", "alt_es": "Acercamiento a las líneas de una planta con columnas marcadas en rojo" },
+    "construction-8": { "src": "construction-8.jpg", "focus": 0.5, "by": "Vadym Alyekseyenko", "site": "Pexels", "url": "https://www.pexels.com/photo/38520003/", "alt_en": "Rebar cages and formwork for concrete walls, with forest behind", "alt_es": "Armaduras de varilla y formaleta para muros de concreto, con bosque detrás" },
+    "construction-12": { "src": "construction-12.jpg", "focus": 0.45, "by": "女子 正真", "site": "Pexels", "url": "https://www.pexels.com/photo/33407086/", "alt_en": "A concrete frame seen through dark foliage, in black and white", "alt_es": "Una estructura de concreto vista entre el follaje, en blanco y negro" },
+    "construction-2": { "src": "construction-2.jpg", "focus": 0.5, "by": "Doğan Alpaslan Demir", "site": "Pexels", "url": "https://www.pexels.com/photo/39893047/", "alt_en": "A concrete frame and slab going up on a forested hillside, from the air", "alt_es": "Una estructura y una losa de concreto en obra en una ladera con bosque, desde el aire" },
+    "interiors-10": { "src": "interiors-10.jpg", "focus": 0.72, "by": "Andreas Haslinger", "site": "Unsplash", "url": "https://unsplash.com/photos/safXxEsD-fs", "alt_en": "Linen pillows and a striped throw against a slatted timber headboard", "alt_es": "Almohadas de lino y una manta a rayas contra un respaldar de reglas de madera" },
+    "interiors-1": { "src": "interiors-1.jpg", "focus": 0.5, "by": "Sanju Pandita", "site": "Unsplash", "url": "https://unsplash.com/photos/MVOHAGI1APA", "alt_en": "A dining room with a long timber table, woven pendants and full-height glass onto jungle", "alt_es": "Un comedor con una mesa larga de madera, lámparas tejidas y vidrio de piso a cielo hacia la selva" },
+    "interiors-5": { "src": "interiors-5.jpg", "focus": 0.55, "by": "Steffen Lemmerzahl", "site": "Unsplash", "url": "https://unsplash.com/photos/LskRLbXaDQ4", "alt_en": "A timber kitchen with an oak island", "alt_es": "Una cocina de madera con una isla de roble" },
+    "interiors-3": { "src": "interiors-3.jpg", "focus": 0.5, "by": "Gabriel Quintana", "site": "Unsplash", "url": "https://unsplash.com/photos/UQldrGC1EZM", "alt_en": "A living room with concrete walls and low seating, a pool and greenery beyond", "alt_es": "Una sala con paredes de concreto y asientos bajos, con piscina y vegetación al fondo" },
+    "interiors-4": { "src": "interiors-4.jpg", "focus": 0.5, "by": "Maria Orlova", "site": "Pexels", "url": "https://www.pexels.com/photo/4940760/", "alt_en": "Timber-framed windows and a bench facing a tropical garden", "alt_es": "Ventanas con marcos de madera y una banca frente a un jardín tropical" },
+    "interiors-6": { "src": "interiors-6.jpg", "focus": 0.5, "by": "Caroline Badran", "site": "Unsplash", "url": "https://unsplash.com/photos/aDtv0uDomA0", "alt_en": "A living room with a board-marked concrete ceiling and a glass corner onto green hills", "alt_es": "Una sala con cielo de concreto marcado por la formaleta y una esquina de vidrio hacia cerros verdes" }
+  },
+  "stages": [
+    ["G1", "G2", "G3", "site-6", "site-8", "site-9", "analysis-1"],
+    ["G5", "concept-1", "concept-7"],
+    ["G7", "development-11"],
+    ["G8", "G10", "permits-2", "permits-1"],
+    ["G9", "G11", "documents-5", "documents-6"],
+    ["construction-8", "construction-12", "construction-2"]
+  ],
+  "interiors": ["interiors-10", "interiors-1", "interiors-5", "interiors-3", "interiors-4", "interiors-6"],
+  "services": {
+    "lot-study": [0],
+    "architecture": [1, 2, 4],
+    "permits": [3],
+    "interiors": ["interiors"],
+    "construction-supervision": [5]
+  }
+}

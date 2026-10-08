@@ -391,6 +391,20 @@
     setInterval(advance, 6500);
   }
 
+  /* ---------- The process: each step shows its stage's image ---------- */
+  const psteps = $('[data-psteps]'), pfig = $('[data-pfig]');
+  if (psteps && pfig) {
+    const show = (i) => {
+      $$('[data-pstep]', psteps).forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.pstep === i)));
+      $$('[data-pic]', pfig).forEach((p) => p.classList.toggle('is-on', +p.dataset.pic === i));
+      $$('[data-cap]', pfig).forEach((c) => c.classList.toggle('is-on', +c.dataset.cap === i));
+    };
+    const pick = (e) => { const b = e.target.closest('[data-pstep]'); if (b) show(+b.dataset.pstep); };
+    psteps.addEventListener('click', pick);
+    psteps.addEventListener('focusin', pick);
+    if (window.matchMedia('(hover: hover)').matches) psteps.addEventListener('mouseover', pick);
+  }
+
   /* ---------- "Get in touch" from the project pages lands on /#enquiry ---------- */
   if (location.hash === '#enquiry') {
     history.replaceState(null, '', location.pathname + location.search);

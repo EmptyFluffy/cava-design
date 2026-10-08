@@ -20,19 +20,22 @@
     softs: { design: 'Estudios, diseño, planos y presupuesto (CFIA, desde 6%)', supervision: 'Dirección técnica (CFIA, desde 5%)', permits: 'Permiso municipal y cargos del CFIA', insurance: 'Póliza de riesgos del trabajo (INS)', connection: 'Conexión de agua en Península Papagayo', review: 'Revisiones de diseño del condominio', vat: 'IVA, 13% sobre obra y honorarios', contingency: 'Reserva para imprevistos' },
     phases: { design: 'Diseño', concept: 'Concepto', schematic: 'Anteproyecto', drawings: 'Planos constructivos', permits: 'Permisos', prepermits: 'Uso de suelo, agua y alineamientos', setena: 'SETENA', condo: 'Revisión del condominio', ict: 'ICT', apc: 'CFIA y municipalidad', build: 'Obra', earth: 'Tierra y fundaciones', struct: 'Estructura y techo', closing: 'Cerramientos e instalaciones', finish: 'Acabados', outdoor: 'Exteriores' },
     dry: 'Época seca', today: 'Hoy',
-    startNote: (permit, start) => `Los permisos estarían listos hacia ${permit}; el movimiento de tierra y las fundaciones arrancan con la época seca, en ${start}.`,
-    rainNote: (now, nowDays, start, startDays) => ` Arrancar de una vez en ${now} significaría unos ${nowDays} días de lluvia fuerte en los primeros cuatro meses, contra ${startDays < 1 ? 'casi ninguno' : `unos ${startDays}`} empezando en ${start}.`,
-    noDry: 'Aquí no hay época seca: el cronograma arranca la obra apenas salen los permisos.',
+    monthsLong: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre'], and: 'y', to: 'a',
+    startNote: (permit) => `Los permisos estarían listos hacia ${permit}, y la obra arranca entonces y sigue sin pausa: en lluvias se construye igual, sobre todo de mañana.`,
+    rainNote: (months, days) => ` El movimiento de tierra caería en ${months}, con unos ${days} días de lluvia fuerte: lo programamos según el clima, o corremos el inicio unas semanas si el calendario lo permite.`,
+    noDry: 'Aquí no hay época seca: la obra arranca apenas salen los permisos y sigue todo el año.',
     flags: {
       setena: 'Más de 1,000 m²: necesita viabilidad ambiental de SETENA (formulario D1) antes del permiso.',
       setenaFragile: 'Entre 500 y 1,000 m²: necesita SETENA (formulario D1-C) solo si el lote es un sitio frágil: zona marítimo terrestre, bosque, cerca de un río o naciente, o en recarga acuífera.',
-      hotel: 'Un hotel pasa por la revisión de Salud y Bomberos en el APC, y debe cumplir la Ley 7600 de accesibilidad.',
+      public: 'Un edificio para huéspedes o público pasa por la revisión de Salud y Bomberos en el APC y debe cumplir la Ley 7600 de accesibilidad.',
+      apartments: 'Un edificio de apartamentos pasa por la revisión de Bomberos en el APC, y sus áreas comunes deben cumplir la Ley 7600 de accesibilidad.',
+      industrial: 'Una bodega o una nave industrial pasa por la revisión de Bomberos en el APC, y por la de Salud si en ella trabaja gente.',
       condo: 'En condominio, el comité de diseño aprueba antes que la municipalidad. La estimación suma dos revisiones; los depósitos y las cuotas cambian según el desarrollo.',
       papagayo: 'En Papagayo el ICT y el MDRB aprueban antes que la municipalidad. Las tres revisiones de diseño (US$2,000 cada una) y la conexión de agua (US$25,000) ya van en la estimación; aparte va un depósito de cumplimiento de US$20,000 a US$50,000 según el tamaño, que se devuelve.',
       coastal: 'Cerca de la playa: a menos de 200 m de la pleamar rige la Ley de la Zona Marítimo Terrestre.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, que aquí producen unos ${kwh} kWh al año.`,
-    rate: (b, ft, all) => `Construcción ${b} por m² de casa (${ft} por pie²); todo incluido, ${all} por m² de casa.`,
+    rate: (b, ft, all) => `Construcción ${b} por m² construido (${ft} por pie²); todo incluido, ${all} por m².`,
     landNote: (t, L) => L.src === 'market' ? `Terreno a lo que piden los lotes en ${t}: US$${L.r[0]} a ${L.r[2]} el m², la mitad central de ${L.n} lotes en venta (octubre de 2026).` : `En ${t} hay pocos lotes anunciados: el terreno va a los valores residenciales de Hacienda, US$${L.r[0]} a ${L.r[2]} el m² (edición ${L.y}).`,
     landPapagayo: 'En la Península Papagayo el terreno es una concesión del ICT, no se compra: queda fuera.',
     landNone: 'Aquí no tenemos un precio del terreno con fuente: queda fuera.',
@@ -45,19 +48,22 @@
     softs: { design: 'Studies, design, drawings and estimate (CFIA, from 6%)', supervision: 'Technical direction (CFIA, from 5%)', permits: 'Municipal permit and CFIA charges', insurance: 'Work-risk insurance (INS)', connection: 'Water connection in Península Papagayo', review: 'Condominium design reviews', vat: 'VAT, 13% on works and fees', contingency: 'Contingency reserve' },
     phases: { design: 'Design', concept: 'Concept', schematic: 'Schematic design', drawings: 'Construction drawings', permits: 'Permits', prepermits: 'Land use, water and alignments', setena: 'SETENA', condo: 'Condominium review', ict: 'ICT', apc: 'CFIA and municipality', build: 'Construction', earth: 'Earthworks and foundations', struct: 'Structure and roof', closing: 'Envelope and services', finish: 'Finishes', outdoor: 'Outdoors' },
     dry: 'Dry season', today: 'Today',
-    startNote: (permit, start) => `Permits would be ready around ${permit}; earthworks and foundations start with the dry season, in ${start}.`,
-    rainNote: (now, nowDays, start, startDays) => ` Starting straight away in ${now} would mean about ${nowDays} days of heavy rain in the first four months, against ${startDays < 1 ? 'almost none' : `about ${startDays}`} from ${start}.`,
-    noDry: 'There is no dry season here: the schedule starts work as soon as the permits are in.',
+    monthsLong: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], and: 'and', to: 'to',
+    startNote: (permit) => `Permits would be ready around ${permit}, and the works start then and run straight through: building goes on in the rains, mostly in the mornings.`,
+    rainNote: (months, days) => ` The earthworks would fall in ${months}, with about ${days} days of heavy rain: we plan them around the weather, or move the start a few weeks if the calendar allows.`,
+    noDry: 'There is no dry season here: the works start as soon as the permits are in and run all year.',
     flags: {
       setena: 'Over 1,000 m²: it needs SETENA environmental viability (form D1) before the permit.',
       setenaFragile: 'Between 500 and 1,000 m²: it needs SETENA (form D1-C) only if the lot is a fragile site: the maritime zone, forest, near a river or spring, or an aquifer recharge area.',
-      hotel: 'A hotel goes through the Health and Fire review in the APC and must meet the Ley 7600 accessibility rules.',
+      public: 'A building for guests or the public goes through the Health and Fire review in the APC and must meet the Ley 7600 accessibility rules.',
+      apartments: 'An apartment building goes through the Fire review in the APC, and its shared areas must meet the Ley 7600 accessibility rules.',
+      industrial: 'A warehouse or industrial building goes through the Fire review in the APC, and the Health review if people work in it.',
       condo: 'In a condominium, the design committee approves before the municipality. The estimate adds two reviews; deposits and dues vary by development.',
       papagayo: 'In Papagayo the ICT and the MDRB approve before the municipality. The three design reviews (US$2,000 each) and the water connection (US$25,000) are in the estimate; a compliance deposit of US$20,000 to US$50,000 by house size comes on top and is returned.',
       coastal: 'Near the beach: within 200 m of the high-tide line the maritime zone law applies.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, which make about ${kwh} kWh a year here.`,
-    rate: (b, ft, all) => `Construction ${b} a m² of house (${ft} a ft²); everything in, ${all} a m² of house.`,
+    rate: (b, ft, all) => `Construction ${b} a m² built (${ft} a ft²); everything in, ${all} a m².`,
     landNote: (t, L) => L.src === 'market' ? `Land at what lots ask in ${t}: US$${L.r[0]} to ${L.r[2]} a m², the middle half of ${L.n} lots for sale (October 2026).` : `Few lots are listed in ${t}: the land goes at Hacienda's residential values, US$${L.r[0]} to ${L.r[2]} a m² (${L.y} edition).`,
     landPapagayo: 'In Península Papagayo the land is an ICT concession and is not sold: it is left out.',
     landNone: 'We have no sourced land price here: it is left out.',
@@ -102,15 +108,19 @@
   };
 
   // ---------- the estimate ----------
+  // the type being built (data/costs.json, programs) and the town's price factor
+  const prog = () => D.programs.list.find((p) => p.key === state.type) ?? D.programs.list[0];
+  const townOf = () => D.towns.find((t) => t.slug === state.town) ?? null;
+  const placeOf = (town) => (town && D.place.town[town.slug]) || D.place.region[town ? town.region : 'other'] || 1;
   function estimate() {
-    const town = D.towns.find((t) => t.slug === state.town) ?? null;
-    const place = (town && D.place.town[town.slug]) || D.place.region[town ? town.region : 'other'] || 1;
-    const hotel = state.type === 'hotel';
-    const rate = D.perM2[hotel ? 'hotel' : 'house'][state.quality].map((r) => r * place); // US$ a m²: low, likely, high
+    const town = townOf();
+    const place = placeOf(town);
+    const pr = prog();
+    const rate = (D.perM2[pr.key] ?? D.perM2.house)[state.quality].map((r) => r * place); // US$ a m²: low, likely, high
     const area = state.area;
     const base = rate.map((r) => r * area);
     // the building, by part (Hacienda's weights), then what the lot and the outdoors add
-    const shares = D.shares[hotel || +state.storeys > 1 ? '2' : '1'];
+    const shares = D.shares[pr.multi || +state.storeys > 1 ? '2' : '1'];
     const parts = Object.entries(shares).map(([k, s]) => [k, base.map((b) => b * s)]);
     const slope = D.slope[state.slope];
     if (slope[1] > 0) parts.push(['slope', base.map((b, i) => b * slope[i])]);
@@ -154,9 +164,10 @@
     return { town, area, rate, parts: all, softs, hard, soft, land: lnd, total, solar };
   }
 
-  // ---------- schedule: design, permits, works; works open with the dry season ----------
+  // ---------- schedule: design, permits, works; the works start with the permits and run through the rains ----------
   function schedule(e) {
     const Dd = D.durations;
+    const pr = prog();
     const a = e.area;
     const qf = Dd.qualityFactor[state.quality];
     const design = [
@@ -168,8 +179,8 @@
     if (state.condo === '1' || e.town?.slug === 'papagayo') permits.push(['condo', Dd.condo]);
     if (e.town?.slug === 'papagayo') permits.push(['ict', Dd.ict]);
     if (a > 1000) permits.push(['setena', Dd.setena]);
-    permits.push(['apc', Dd.apc + (state.type === 'hotel' ? Dd.hotelReview : 0)]);
-    const works = Math.min(Dd.maxWorks, (Dd.worksBase + a / Dd.worksPerM2) * qf * (state.type === 'hotel' ? Dd.hotelFactor : 1));
+    permits.push(['apc', Dd.apc + (pr.permit !== 'home' ? Dd.publicReview : 0)]);
+    const works = Math.min(Dd.maxWorks, (Dd.worksBase + a / Dd.worksPerM2) * qf * pr.works);
     const split = Dd.worksSplit; // shares of the works time
     const now = new Date();
     const start = now.getFullYear() * 12 + now.getMonth(); // months since year 0
@@ -178,19 +189,17 @@
     for (const [k, m] of design) { rows.push({ k, group: 'design', from: t, to: t + m }); t += m; }
     for (const [k, m] of permits) { rows.push({ k, group: 'permits', from: t, to: t + m }); t += m; }
     const permitReady = t;
-    let buildStart = Math.ceil(t);
+    const buildStart = Math.ceil(t);
     const dry = e.town?.dry;
-    if (dry) {
-      // the next opening of the dry season at or after the permits
-      while (((buildStart % 12) + 12) % 12 !== dry.start) buildStart++;
-    }
     let b = buildStart;
     for (const [k, s] of Object.entries(split)) { rows.push({ k, group: 'build', from: b, to: b + works * s }); b += works * s; }
     return { rows, start, end: b, permitReady, buildStart, dry };
   }
 
   // ---------- drawing ----------
-  const COLORS = { land: '#6b5a3e', foundations: '#2f2f2d', structure: '#4a4a48', roof: '#666663', openings: '#83837f', finishes: '#a5a5a0', mep: '#c4c3bd', slope: '#8a7356', pool: '#7fa6bd', deck: '#b58a5e', solar: '#e2b45c', landscape: '#7d9a6a', furniture: '#d8c6a8' };
+  // one colour per part, each after its material, told apart by hue and by lightness
+  const COLORS = { foundations: '#5e4b35', structure: '#3a3d40', roof: '#b4502e', openings: '#4f7fa8', finishes: '#dcc7a1', mep: '#2c7a73', slope: '#8d8a3f', pool: '#8fc6db', deck: '#b47b45', solar: '#e6b53f', landscape: '#6c9a52', furniture: '#c99599', land: '#9e8f72' };
+  const inkOn = (hex) => { const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.5 ? '#080807' : '#fcfcfc'; };
 
   function renderTotals(e) {
     $('[data-est-total]').textContent = `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
@@ -207,8 +216,9 @@
     const bar = $('[data-est-bar]');
     const list = $('[data-est-parts]');
     const tot = e.hard[1];
-    bar.innerHTML = e.parts.map(([k, v]) => `<span style="flex-grow:${v[1].toFixed(0)};background:${COLORS[k]}" title="${T.parts[k]}"></span>`).join('');
-    list.innerHTML = e.parts.map(([k, v]) => `<li><i style="background:${COLORS[k]}"></i><span>${T.parts[k]}</span><b>${money(v[1])}</b><em>${Math.round((100 * v[1]) / tot)}%</em></li>`).join('');
+    const pc = (v) => Math.round((100 * v[1]) / tot);
+    bar.innerHTML = e.parts.map(([k, v]) => `<span data-k="${k}" style="flex-grow:${v[1].toFixed(0)};background:${COLORS[k]};color:${inkOn(COLORS[k])}" title="${T.parts[k]}, ${pc(v)}%">${pc(v) >= 8 ? `${pc(v)}%` : ''}</span>`).join('');
+    list.innerHTML = e.parts.map(([k, v]) => `<li data-k="${k}"><i style="background:${COLORS[k]}"></i><span>${T.parts[k]}</span><b>${money(v[1])}</b><em>${pc(v)}%</em></li>`).join('');
     $('[data-est-softs]').innerHTML = e.softs.map(([k, v]) => `<li><span>${T.softs[k]}</span><b>${money(v[1])}</b></li>`).join('');
     const sn = $('[data-est-solar]');
     if (sn) sn.textContent = e.solar ? T.solarNote(e.solar.kwp, num(e.solar.kwh)) : '';
@@ -221,39 +231,115 @@
     }
   }
 
-  // a simple massing, isometric, with a person for scale
+  // ---------- the volume, to scale: white faces, a heavy outline, thin seams, two people and a tree ----------
+  // Storeys are 3.2 m and the roof keeps its pitch, so a wider house gets a taller ridge; the drawing
+  // is fitted to its box, so the people and the tree shrink as the building grows.
+  const ISO = (x, y, z) => [(x - y) * 0.866, (x + y) * 0.5 - z];
+  const pts = (list) => list.map((p) => ISO(...p).map((n) => n.toFixed(2)).join(',')).join(' ');
+  // a tree of branches, always the same one
+  const TREE = (() => {
+    let seed = 7;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const segs = [];
+    const grow = (x, z, ang, len, depth) => {
+      const x2 = x + Math.sin(ang) * len, z2 = z + Math.cos(ang) * len;
+      segs.push([x, z, x2, z2, depth]);
+      if (!depth) return;
+      const n = depth > 2 ? 2 : 2 + (rnd() > 0.5 ? 1 : 0);
+      for (let i = 0; i < n; i++) grow(x2, z2, ang + (i - (n - 1) / 2) * (0.5 + rnd() * 0.25) + (rnd() - 0.5) * 0.2, len * (0.68 + rnd() * 0.1), depth - 1);
+    };
+    grow(0, 0, 0, 2.6, 5);
+    return segs;
+  })();
   function renderMassing(e) {
     const svg = $('[data-est-massing]');
-    const storeys = +state.storeys;
+    const pr = prog();
+    const storeys = pr.roof === 'aframe' || pr.roof === 'dome' ? 1 : +state.storeys;
     const foot = e.area / storeys;
-    const W = Math.sqrt(foot * 1.8), Dp = foot / W, H = 3.2 * storeys, R = 1.6;
-    const iso = (x, y, z) => [(x - y) * Math.cos(Math.PI / 6), (x + y) * Math.sin(Math.PI / 6) - z];
-    const P = (pts) => pts.map((p) => iso(...p).map((n) => n.toFixed(2)).join(',')).join(' ');
+    const H = 3.2 * storeys;
+    const faces = []; // [class, points]: drawn in this order, back to front
+    const seams = []; // polylines
+    let W, Dp, outline; // outline: points of the volume, for its shadow
+    if (pr.roof === 'dome') {
+      const r = Math.sqrt(foot / Math.PI);
+      W = Dp = 2 * r;
+      const at = (th, ph) => [r + r * Math.cos(ph) * Math.cos(th), r + r * Math.cos(ph) * Math.sin(th), r * Math.sin(ph)];
+      const shell = [];
+      for (let a = 0; a < 48; a++) for (let b = 0; b <= 8; b++) shell.push(ISO(...at((a / 48) * 2 * Math.PI, (b / 8) * (Math.PI / 2))));
+      faces.push(['m-face m-rf', hull(shell)]);
+      // the geodesic lines on the side we see (facing the viewer, who looks down along -1,-1,-1)
+      const seen = (th, ph) => Math.cos(ph) * (Math.cos(th) + Math.sin(th)) + Math.sin(ph) > 0;
+      for (const ph of [Math.PI / 6, Math.PI / 3]) { const l = []; for (let a = 0; a <= 96; a++) { const th = (a / 96) * 2 * Math.PI; if (seen(th, ph)) l.push(ISO(...at(th, ph))); else if (l.length) { seams.push(l.splice(0)); } } if (l.length) seams.push(l); }
+      for (let k = 0; k < 10; k++) { const th = (k / 10) * 2 * Math.PI; const l = []; for (let b = 0; b <= 20; b++) { const ph = (b / 20) * (Math.PI / 2); if (seen(th, ph)) l.push(ISO(...at(th, ph))); } if (l.length > 1) seams.push(l); }
+      outline = Array.from({ length: 24 }, (_, a) => at((a / 24) * 2 * Math.PI, 0)).concat([[r, r, r]]);
+    } else {
+      W = Math.sqrt(foot * 1.8); Dp = foot / W;
+      if (pr.roof === 'flat') {
+        const T = H + 0.45;
+        faces.push(['m-face m-s', pts([[0, Dp, 0], [W, Dp, 0], [W, Dp, T], [0, Dp, T]])]);
+        faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp, T], [W, 0, T]])]);
+        faces.push(['m-face m-rf', pts([[0, 0, T], [W, 0, T], [W, Dp, T], [0, Dp, T]])]);
+        seams.push([[0.35, 0.35, T], [W - 0.35, 0.35, T], [W - 0.35, Dp - 0.35, T], [0.35, Dp - 0.35, T], [0.35, 0.35, T]].map((p) => ISO(...p)));
+        for (let k = 1; k <= storeys; k++) seams.push([[0, Dp, 3.2 * k], [W, Dp, 3.2 * k], [W, 0, 3.2 * k]].map((p) => ISO(...p)));
+        outline = [[0, 0, T], [W, 0, T], [W, Dp, T], [0, Dp, T], [0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0]];
+      } else if (pr.roof === 'aframe') {
+        const R = (Dp / 2) * Math.tan(Math.PI / 3);
+        faces.push(['m-face m-rb', pts([[0, 0, 0], [W, 0, 0], [W, Dp / 2, R], [0, Dp / 2, R]])]);
+        faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp / 2, R]])]);
+        faces.push(['m-face m-rf', pts([[0, Dp / 2, R], [W, Dp / 2, R], [W, Dp, 0], [0, Dp, 0]])]);
+        seams.push([[W, Dp * 0.21, 3.2 * 0.95], [W, Dp * 0.79, 3.2 * 0.95]].map((p) => ISO(...p)));
+        outline = [[0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0], [0, Dp / 2, R], [W, Dp / 2, R]];
+      } else {
+        // a gable along the long side, pitched at 22 degrees, with a 0.6 m overhang
+        const o = 0.6, t = 0.25, tan = Math.tan((22 * Math.PI) / 180), R = H + (Dp / 2 + o) * tan, eave = H;
+        faces.push(['m-face m-rb', pts([[-o, -o, eave], [W + o, -o, eave], [W + o, Dp / 2, R], [-o, Dp / 2, R]])]);
+        faces.push(['m-face m-s', pts([[0, Dp, 0], [W, Dp, 0], [W, Dp, H], [0, Dp, H]])]);
+        faces.push(['m-face m-e', pts([[W, 0, 0], [W, Dp, 0], [W, Dp, H + o * tan], [W, Dp / 2, R - t], [W, 0, H + o * tan]])]);
+        faces.push(['m-face m-e', pts([[W + o, -o, eave], [W + o, Dp / 2, R], [W + o, Dp + o, eave], [W + o, Dp + o, eave - t], [W + o, Dp / 2, R - t], [W + o, -o, eave - t]])]);
+        faces.push(['m-face m-rf', pts([[-o, Dp / 2, R], [W + o, Dp / 2, R], [W + o, Dp + o, eave], [-o, Dp + o, eave]])]);
+        faces.push(['m-face m-s', pts([[-o, Dp + o, eave], [W + o, Dp + o, eave], [W + o, Dp + o, eave - t], [-o, Dp + o, eave - t]])]);
+        for (let k = 1; k < storeys; k++) seams.push([[0, Dp, 3.2 * k], [W, Dp, 3.2 * k], [W, 0, 3.2 * k]].map((p) => ISO(...p)));
+        outline = [[-o, -o, eave], [W + o, -o, eave], [W + o, Dp + o, eave], [-o, Dp + o, eave], [-o, Dp / 2, R], [W + o, Dp / 2, R], [0, 0, 0], [W, 0, 0], [W, Dp, 0], [0, Dp, 0]];
+      }
+    }
+    // a short shadow to the west, on the ground
+    const shade = hull(outline.map(([x, y, z]) => ISO(x - z * 0.55, y + z * 0.18, 0)).concat(outline.filter((p) => !p[2]).map((p) => ISO(...p))));
+    // the pool, in front
     const pool = +state.pool;
     const pw = pool ? Math.sqrt(pool * 2.5) : 0, pd = pool ? pool / pw : 0;
-    const shapes = [];
-    // ground pad
-    shapes.push(`<polygon class="m-ground" points="${P([[-3, -3, 0], [W + 3, -3, 0], [W + 3, Dp + 4 + pd + 2, 0], [-3, Dp + 4 + pd + 2, 0]])}"/>`);
-    if (pool) shapes.push(`<polygon class="m-pool" points="${P([[1, Dp + 2, 0], [1 + pw, Dp + 2, 0], [1 + pw, Dp + 2 + pd, 0], [1, Dp + 2 + pd, 0]])}"/>`);
-    // walls: the two faces we see (south and east), then the gabled roof along x
-    shapes.push(`<polygon class="m-wall-s" points="${P([[0, Dp, 0], [W, Dp, 0], [W, Dp, H], [0, Dp, H]])}"/>`);
-    shapes.push(`<polygon class="m-wall-e" points="${P([[W, 0, 0], [W, Dp, 0], [W, Dp, H], [W, 0, H]])}"/>`);
-    shapes.push(`<polygon class="m-gable" points="${P([[W, 0, H], [W, Dp, H], [W, Dp / 2, H + R]])}"/>`);
-    shapes.push(`<polygon class="m-roof" points="${P([[0, Dp / 2, H + R], [W, Dp / 2, H + R], [W, Dp, H], [0, Dp, H]])}"/>`);
-    for (let s = 1; s < storeys; s++) shapes.push(`<polyline class="m-line" points="${P([[0, Dp, 3.2 * s], [W, Dp, 3.2 * s], [W, 0, 3.2 * s]])}"/>`);
-    // a person, 1.75 m, in front
-    const [px, py] = iso(W + 1.5, Dp + 1.5, 0), [, ph] = iso(W + 1.5, Dp + 1.5, 1.75);
-    shapes.push(`<line class="m-person" x1="${px}" y1="${py}" x2="${px}" y2="${ph}"/><circle class="m-person-head" cx="${px}" cy="${ph - 0.25}" r="0.25"/>`);
-    // dimensions
-    const [lx1, ly1] = iso(0, Dp + 0.8, 0), [lx2, ly2] = iso(W, Dp + 0.8, 0);
-    shapes.push(`<line class="m-dim" x1="${lx1}" y1="${ly1}" x2="${lx2}" y2="${ly2}"/><text class="m-text" x="${(lx1 + lx2) / 2}" y="${(ly1 + ly2) / 2 + 1.6}">${Math.round(W)} m</text>`);
-    const all = shapes.join('').match(/-?\d+\.?\d*,-?\d+\.?\d*/g).map((s) => s.split(',').map(Number));
+    const py = Dp + (pr.roof === 'gable' ? 2.4 : 1.8);
+    // people, 1.75 and 1.62 m, beside the east end, and a tree behind them
+    const person = (x, y, h) => { const [px, pz] = ISO(x, y, 0); return `<g class="m-person"><circle cx="${px.toFixed(2)}" cy="${(pz - h + 0.13).toFixed(2)}" r="0.14"/><rect x="${(px - 0.2).toFixed(2)}" y="${(pz - h + 0.32).toFixed(2)}" width="0.4" height="${(h - 0.32).toFixed(2)}" rx="0.16"/></g>`; };
+    const tpos = [W + 4.6, Dp * 0.15];
+    const [tx, tz] = ISO(tpos[0], tpos[1], 0);
+    const tree = TREE.map(([x1, z1, x2, z2, d]) => `<line x1="${(tx + x1).toFixed(2)}" y1="${(tz - z1).toFixed(2)}" x2="${(tx + x2).toFixed(2)}" y2="${(tz - z2).toFixed(2)}" style="stroke-width:${(0.5 + d * 0.28).toFixed(2)}px"/>`).join('');
+    const line = (l) => `<polyline class="m-seam" points="${l.map((p) => p.map((n) => n.toFixed(2)).join(',')).join(' ')}"/>`;
+    const body = faces.map(([c, p]) => `<polygon class="${c}" points="${Array.isArray(p) ? p.map((q) => q.map((n) => n.toFixed(2)).join(',')).join(' ') : p}"/>`).join('');
+    const sil = faces.map(([, p]) => `<polygon class="m-sil" points="${Array.isArray(p) ? p.map((q) => q.map((n) => n.toFixed(2)).join(',')).join(' ') : p}"/>`).join('');
+    // the width, measured along the front
+    const [lx1, ly1] = ISO(0, Dp + (pool ? py - Dp + pd + 1.2 : 1.4), 0), [lx2, ly2] = ISO(W, Dp + (pool ? py - Dp + pd + 1.2 : 1.4), 0);
+    const all = [...faces.flatMap(([, p]) => (Array.isArray(p) ? p : p.split(' ').map((q) => q.split(',').map(Number)))), ...shade, ISO(tpos[0], tpos[1], 8.5), [tx + 3.2, tz - 6], [tx - 3.2, tz - 6], [lx1, ly1], [lx2, ly2], ISO(W + 3.2, Dp * 0.85, 0)];
+    if (pool) all.push(ISO(1, py + pd, 0), ISO(1 + pw, py + pd, 0), ISO(1 + pw, py, 0));
     const xs = all.map((p) => p[0]), ys = all.map((p) => p[1]);
-    const pad = 3;
-    const vb = [Math.min(...xs) - pad, Math.min(...ys) - pad - 2, Math.max(...xs) - Math.min(...xs) + pad * 2, Math.max(...ys) - Math.min(...ys) + pad * 2 + 4];
-    svg.setAttribute('viewBox', vb.map((n) => n.toFixed(1)).join(' '));
-    svg.innerHTML = shapes.join('');
+    const x0 = Math.min(...xs), y0 = Math.min(...ys), w = Math.max(...xs) - x0, h = Math.max(...ys) - y0;
+    const pad = Math.max(w, h) * 0.06;
+    svg.setAttribute('viewBox', [x0 - pad, y0 - pad, w + 2 * pad, h + 2 * pad + Math.max(w, h) * 0.04].map((n) => n.toFixed(1)).join(' '));
+    const fs = Math.max(w, h) * 0.032;
+    svg.innerHTML = `<polygon class="m-shadow" points="${shade.map((q) => q.map((n) => n.toFixed(2)).join(',')).join(' ')}"/>`
+      + (pool ? `<polygon class="m-pool" points="${pts([[1, py, 0], [1 + pw, py, 0], [1 + pw, py + pd, 0], [1, py + pd, 0]])}"/>` : '')
+      + sil + body + seams.map(line).join('') + `<g class="m-tree">${tree}</g>`
+      + person(W + 2.1, Dp * 0.85, 1.75) + person(W + 2.9, Dp * 0.66, 1.62)
+      + `<line class="m-dim" x1="${lx1.toFixed(2)}" y1="${ly1.toFixed(2)}" x2="${lx2.toFixed(2)}" y2="${ly2.toFixed(2)}"/>${[[lx1, ly1], [lx2, ly2]].map(([x, y]) => `<line class="m-dim" x1="${(x - fs * 0.35).toFixed(2)}" y1="${(y - fs * 0.35).toFixed(2)}" x2="${(x + fs * 0.35).toFixed(2)}" y2="${(y + fs * 0.35).toFixed(2)}"/>`).join('')}<text class="m-text" x="${((lx1 + lx2) / 2).toFixed(2)}" y="${((ly1 + ly2) / 2 + fs * 1.4).toFixed(2)}" style="font-size:${fs.toFixed(2)}px">${Math.round(W)} m</text>`;
     $('[data-est-massing-cap]').textContent = `${num(e.area)} m² · ${storeys} ${storeys === 1 ? (ES ? 'piso' : 'storey') : (ES ? 'pisos' : 'storeys')} · ${Math.round(W)} × ${Math.round(Dp)} m${pool ? ` · ${ES ? 'piscina' : 'pool'} ${pool} m²` : ''}`;
+  }
+  // the convex outline of a set of points (monotone chain)
+  function hull(p) {
+    const q = [...p].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lo = [], up = [];
+    for (const v of q) { while (lo.length >= 2 && cross(lo[lo.length - 2], lo[lo.length - 1], v) <= 0) lo.pop(); lo.push(v); }
+    for (const v of q.reverse()) { while (up.length >= 2 && cross(up[up.length - 2], up[up.length - 1], v) <= 0) up.pop(); up.push(v); }
+    return lo.slice(0, -1).concat(up.slice(0, -1));
   }
 
   function renderSchedule(e) {
@@ -277,11 +363,16 @@
     for (let m = first; m <= s.start + months; m++) if (((m % 12) + 12) % 12 === 0 || (m === first && toJan >= 4)) ticks.push(`<span class="g-tick${(m - s.start) / months > 0.8 ? ' g-tick--end' : ''}" style="left:${pct(m)}">${mlabel(m)}</span>`);
     const rows = s.rows.map((r) => `<li class="g-row g-${r.group}"><span class="g-name">${T.phases[r.k]}</span><span class="g-track"><span class="g-bar" style="left:${pct(r.from)};width:${(((r.to - r.from) / months) * 100).toFixed(2)}%"></span></span></li>`).join('');
     el.innerHTML = `<div class="g-head"><span class="g-name"></span><span class="g-track">${ticks.join('')}</span></div><ol class="g-rows"><li class="g-bands"><span class="g-name"></span><span class="g-track">${bands}<span class="g-now" style="left:0"></span></span></li>${rows}</ol>`;
-    // what waiting for the dry season saves: heavy-rain days in the first four months of work
-    const heavy4 = (m0) => (e.town?.heavy ? [0, 1, 2, 3].reduce((n, k) => n + e.town.heavy[(((m0 + k) % 12) + 12) % 12], 0) : 0);
-    const nowStart = Math.ceil(s.permitReady);
-    let note = s.dry ? T.startNote(mlabel(s.permitReady), mlabel(s.buildStart)) : T.noDry;
-    if (s.dry && s.buildStart - nowStart >= 2 && e.town?.heavy) note += T.rainNote(mlabel(nowStart), Math.round(heavy4(nowStart)), mlabel(s.buildStart), Math.round(heavy4(s.buildStart)));
+    // the earthworks, the part the rain slows most: which months they fall in, and how wet those are
+    const earth = s.rows.find((r) => r.k === 'earth');
+    const em = [];
+    for (let m = Math.floor(earth.from); m < Math.ceil(earth.to); m++) em.push(((m % 12) + 12) % 12);
+    const heavy = e.town?.heavy ? em.reduce((n, m) => n + e.town.heavy[m], 0) : 0;
+    const inDry = (m) => s.dry && (m - s.dry.start + 12) % 12 < s.dry.n;
+    const names = em.map((m) => T.monthsLong[m]);
+    const span = names.length === 1 ? names[0] : names.length === 2 ? `${names[0]} ${T.and} ${names[1]}` : `${names[0]} ${T.to} ${names[names.length - 1]}`;
+    let note = s.dry ? T.startNote(mlabel(s.permitReady)) : T.noDry;
+    if (s.dry && em.some((m) => !inDry(m)) && heavy >= 4) note += T.rainNote(span, Math.round(heavy));
     $('[data-est-schedule-note]').textContent = note;
     $('[data-est-legend-dry]').hidden = !s.dry;
   }
@@ -290,7 +381,8 @@
     const f = [];
     if (e.area > 1000) f.push(T.flags.setena);
     else if (e.area >= 500) f.push(T.flags.setenaFragile);
-    if (state.type === 'hotel') f.push(T.flags.hotel);
+    const permit = prog().permit;
+    if (T.flags[permit]) f.push(T.flags[permit]);
     if (e.town?.slug === 'papagayo') f.push(T.flags.papagayo);
     else if (state.condo === '1') f.push(T.flags.condo);
     if (e.town?.coastal) f.push(T.flags.coastal);
@@ -301,7 +393,8 @@
   function renderChoices(e) {
     const label = (n) => $(`[name=${n}]:checked + span`)?.textContent ?? '';
     const sel = $('[name=town]');
-    const bits = [sel.options[sel.selectedIndex]?.text, label('type'), `${num(e.area)} m²`, `${state.storeys} ${+state.storeys === 1 ? (ES ? 'piso' : 'storey') : (ES ? 'pisos' : 'storeys')}`, `${ES ? 'acabados' : 'finish'}: ${label('quality').toLowerCase()}`, `${ES ? 'lote' : 'lot'}: ${label('slope').toLowerCase()}`];
+    const ts = $('[name=type]');
+    const bits = [sel.options[sel.selectedIndex]?.text, ts.options[ts.selectedIndex]?.text, `${num(e.area)} m²`, `${state.storeys} ${+state.storeys === 1 ? (ES ? 'piso' : 'storey') : (ES ? 'pisos' : 'storeys')}`, `${ES ? 'acabados' : 'finish'}: ${label('quality').toLowerCase()}`, `${ES ? 'lote' : 'lot'}: ${label('slope').toLowerCase()}`];
     if (+state.pool) bits.push(`${ES ? 'piscina' : 'pool'} ${state.pool} m²`);
     $('[data-est-choices]').textContent = bits.join(' · ');
   }
@@ -369,7 +462,7 @@
 
   // ---------- our projects nearest this size, houses for a house and hospitality for a hotel ----------
   function renderWork(e) {
-    const kind = state.type === 'hotel' ? 'hotel' : 'house';
+    const kind = prog().group === 'homes' ? 'house' : 'hotel';
     const cards = $$('.est__work [data-area]');
     const ranked = cards.map((c) => ({ c, d: (c.dataset.kind === kind ? 0 : 10) + Math.abs(Math.log(+c.dataset.area / e.area)) })).sort((a, b) => a.d - b.d);
     const show = new Set(ranked.slice(0, 3).map((x) => x.c));
@@ -384,6 +477,8 @@
 
   function update() {
     read();
+    comboSync();
+    $('[data-est-single]').hidden = !prog().single;
     const e = estimate();
     renderTotals(e);
     renderBreakdown(e);
@@ -406,6 +501,92 @@
     const wa = $('[data-est-wa]');
     wa.href = `https://wa.me/${wa.dataset.phone}?text=${encodeURIComponent(T.wa(summary(e)) + ' ' + location.href)}`;
   }
+
+  // a part pointed at in the bar or in the list lights up in both
+  const lightPart = (k) => { for (const el of $$('[data-est-bar] [data-k], [data-est-parts] [data-k]')) el.classList.toggle('is-dim', !!k && el.dataset.k !== k); };
+  for (const sel of ['[data-est-bar]', '[data-est-parts]']) {
+    $(sel).addEventListener('pointerover', (e) => lightPart(e.target.closest('[data-k]')?.dataset.k));
+    $(sel).addEventListener('pointerleave', () => lightPart(null));
+  }
+
+  // ---------- what you are building: a search over every type, laid over the plain select ----------
+  // Type to filter (names and everyday words in both languages), or open the whole list; each type
+  // shows what a m² costs at the finish and town chosen. Without this script the select still works.
+  const combo = $('[data-est-combo]');
+  const tsel = $('select[name=type]', combo);
+  const fold = (x) => x.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const cq = Object.assign(document.createElement('input'), { className: 'input est__combo-in', type: 'text', id: 'est-type-q', autocomplete: 'off', spellcheck: false, placeholder: combo.dataset.ph });
+  for (const [k, v] of Object.entries({ role: 'combobox', 'aria-expanded': 'false', 'aria-controls': 'est-type-list', 'aria-autocomplete': 'list', 'aria-label': tsel.getAttribute('aria-label') })) cq.setAttribute(k, v);
+  const caret = Object.assign(document.createElement('button'), { type: 'button', className: 'est__combo-caret', tabIndex: -1 });
+  caret.setAttribute('aria-hidden', 'true');
+  const clist = Object.assign(document.createElement('ul'), { className: 'est__combo-list', id: 'est-type-list', hidden: true });
+  clist.setAttribute('role', 'listbox');
+  tsel.hidden = true;
+  tsel.tabIndex = -1;
+  combo.append(cq, caret, clist);
+  let active = -1, shown = [];
+  const comboSync = () => { if (document.activeElement !== cq) cq.value = tsel.options[tsel.selectedIndex]?.text ?? ''; };
+  const perM2 = (key) => {
+    if (!D) return '';
+    const v = D.perM2[key][state.quality][1] * placeOf(townOf());
+    return state.cur === 'crc' ? `₡${num((v * D.fx.crcPerUsd) / 1000)}k/m²` : `US$${num(v)}/m²`;
+  };
+  function setActive(i, center) {
+    active = i;
+    let el = null;
+    for (const li of clist.querySelectorAll('.est__combo-opt')) { const on = +li.dataset.i === i; li.classList.toggle('is-active', on); if (on) el = li; }
+    if (!el) { cq.removeAttribute('aria-activedescendant'); return; }
+    cq.setAttribute('aria-activedescendant', el.id);
+    const top = el.offsetTop, bot = top + el.offsetHeight;
+    if (center) clist.scrollTop = top - clist.clientHeight / 2 + el.offsetHeight / 2;
+    else if (top < clist.scrollTop) clist.scrollTop = top;
+    else if (bot > clist.scrollTop + clist.clientHeight) clist.scrollTop = bot - clist.clientHeight;
+  }
+  function drawList(q) {
+    const words = fold(q.trim()).split(/\s+/).filter(Boolean);
+    shown = [];
+    let html = '';
+    for (const og of tsel.querySelectorAll('optgroup')) {
+      const items = [...og.children].filter((o) => {
+        if (!words.length) return true;
+        const p = D?.programs.list.find((x) => x.key === o.value);
+        const hay = fold(`${o.text} ${og.label} ${p ? `${p.en} ${p.es} ${p.aliases}` : ''}`);
+        return words.every((w) => hay.includes(w));
+      });
+      if (!items.length) continue;
+      html += `<li class="est__combo-group label" role="presentation">${og.label}</li>`;
+      for (const o of items) {
+        const i = shown.push(o.value) - 1;
+        html += `<li class="est__combo-opt" role="option" id="est-type-${o.value}" data-i="${i}" aria-selected="${o.value === tsel.value}"><span>${o.text}</span><em>${perM2(o.value)}</em></li>`;
+      }
+    }
+    clist.innerHTML = html || `<li class="est__combo-none note" role="presentation">${combo.dataset.none}</li>`;
+    const cur = shown.indexOf(tsel.value);
+    setActive(!words.length && cur >= 0 ? cur : shown.length ? 0 : -1, !words.length);
+  }
+  const openList = () => { if (!clist.hidden) return; clist.hidden = false; combo.classList.add('is-open'); cq.setAttribute('aria-expanded', 'true'); drawList(''); };
+  const closeList = () => { clist.hidden = true; combo.classList.remove('is-open'); cq.setAttribute('aria-expanded', 'false'); cq.removeAttribute('aria-activedescendant'); cq.value = tsel.options[tsel.selectedIndex]?.text ?? ''; };
+  const choose = (key) => { if (key && tsel.value !== key) { tsel.value = key; tsel.dispatchEvent(new Event('change', { bubbles: true })); } closeList(); };
+  cq.addEventListener('focus', () => { openList(); cq.select(); });
+  cq.addEventListener('click', openList);
+  cq.addEventListener('blur', closeList);
+  // typing in the search is not a change to the estimate
+  for (const ev of ['input', 'change']) cq.addEventListener(ev, (e) => e.stopPropagation());
+  cq.addEventListener('input', () => { if (clist.hidden) openList(); drawList(cq.value); });
+  cq.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (clist.hidden) openList();
+      else if (shown.length) setActive((active + (e.key === 'ArrowDown' ? 1 : -1) + shown.length) % shown.length);
+    } else if (e.key === 'Enter') { e.preventDefault(); if (!clist.hidden && active >= 0) choose(shown[active]); }
+    else if (e.key === 'Escape' && !clist.hidden) { e.preventDefault(); e.stopPropagation(); closeList(); }
+  });
+  // the list keeps the focus in the field, so a click chooses before the field blurs
+  clist.addEventListener('mousedown', (e) => e.preventDefault());
+  clist.addEventListener('click', (e) => { const li = e.target.closest('.est__combo-opt'); if (li) choose(shown[+li.dataset.i]); });
+  clist.addEventListener('mousemove', (e) => { const li = e.target.closest('.est__combo-opt'); if (li && +li.dataset.i !== active) setActive(+li.dataset.i); });
+  caret.addEventListener('mousedown', (e) => e.preventDefault());
+  caret.addEventListener('click', () => { if (clist.hidden) cq.focus(); else closeList(); });
 
   // ---------- wiring ----------
   form.addEventListener('input', update);

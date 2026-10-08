@@ -69,12 +69,6 @@ export const PAIRS = [
 
   // ---------- process ----------
   ['(Our process)', '(El proceso)'],
-  ['<span>(01)</span>Site visit and uso de suelo', '<span>(01)</span>Visita al lote y uso de suelo'],
-  ['<span>(02)</span>Concept design', '<span>(02)</span>Diseño conceptual'],
-  ['<span>(03)</span>Design development', '<span>(03)</span>Anteproyecto'],
-  ['<span>(04)</span>Permit drawings for CFIA', '<span>(04)</span>Planos para el permiso del CFIA'],
-  ['<span>(05)</span>Construction documents', '<span>(05)</span>Planos constructivos'],
-  ['<span>(06)</span>Site supervision', '<span>(06)</span>Supervisión de obra'],
   ['Building in Costa Rica has its own order: land use first, then design, then permits through CFIA and the municipality.',
     'Construir en Costa Rica tiene su propio orden: primero el uso de suelo, después el diseño y luego los permisos en el CFIA y la municipalidad.'],
   ['Our six stages follow that order, and each one ends with drawings you approve before the next begins.',
@@ -116,8 +110,8 @@ export const PAIRS = [
   // ---------- enquiry ----------
   ['(Project enquiry)', '(Consulta de proyecto)'],
   ['>Close</button>', '>Cerrar</button>'],
-  ['A few questions about your site and your plans. It takes about three minutes, and it tells us whether we are the right studio for the project.',
-    'Unas preguntas sobre su lote y sus planes. Toma unos tres minutos y nos dice si somos el estudio indicado para el proyecto.'],
+  ['A few questions about your property and your plans. It takes about three minutes, and it tells us whether we are the right studio for the project.',
+    'Unas preguntas sobre su propiedad y sus planes. Toma unos tres minutos y nos dice si somos el estudio indicado para el proyecto.'],
   [/Your details, step (\d) of 8/g, 'Sus datos, paso $1 de 8'],
   [/The project, step (\d) of 8/g, 'El proyecto, paso $1 de 8'],
   ['Last question, step 8 of 8', 'Última pregunta, paso 8 de 8'],
