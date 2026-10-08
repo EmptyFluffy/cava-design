@@ -342,12 +342,33 @@ function projectPage(lang, p, i) {
   // the gallery: every image after the cover, except those shown in the day/night comparison
   const cmp = p.compare ?? null;
   const rest = p.images.map((_, j) => j + 1).filter((n) => n > 1 && !cmp?.images.includes(n) && !p.images[n - 1].plan);
-  // a numbered plan, with its key beside it in the page's language
-  const plans = p.images.map((im, j) => [im, j + 1]).filter(([im]) => im.plan).map(([im, n]) => `    <figure class="pplan grid">
-      <div class="pplan__img">${picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
+  // a numbered plan, with its key beside it in the page's language. With a plate (the studio's titled
+  // sheet, key included) a wide screen shows the plate in the page's language; a phone keeps the bare
+  // plan, larger, with the key in text under it.
+  const plans = p.images.map((im, j) => [im, j + 1]).filter(([im]) => im.plan).map(([im, n]) => {
+    const pk = `${p.slug}/${n}-${lang}`, pb = up + imgBase(p.slug, `${n}-${lang}`), pv = `?v=${imgVer(pk)}`;
+    const plate = im.plate ? `<source media="(min-width: 768px)" srcset="${pb}-800.webp${pv} 800w, ${pb}-1600.webp${pv} 1600w, ${pb}-2400.webp${pv} 2400w" sizes="96vw" width="${sizes[pk][0]}" height="${sizes[pk][1]}">` : '';
+    return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}">
+      <div class="pplan__img">${im.plate ? `<picture>${plate}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture>` : picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
       <figcaption class="pplan__key"><p class="label">${lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
     </figure>
-`).join('');
+`;
+  }).join('');
+  // construction drawings, one row per part of the house. The drawings in a row share one scale: each
+  // takes width in proportion to what it covers on site (span, in metres), and they sit on one line.
+  const drawings = p.drawings?.length ? `    <section class="pdraw" aria-labelledby="pdraw-title">
+      <h2 class="label" id="pdraw-title">${lang === 'en' ? '(Drawings)' : '(Planos)'}</h2>
+${p.drawings.map((set) => {
+    const total = set.items.reduce((a, d) => a + d.span, 0);
+    return `      <div class="pdraw__set">
+${set.items.map((d) => `        <figure class="pdraw__fig" style="--span: ${d.span}">
+          ${picture(up, p.slug, `d-${d.id}`, lang === 'en' ? d.alt : d.alt_es, `(min-width: 768px) ${Math.round((96 * d.span) / total)}vw, 92vw`)}
+          <figcaption class="label pdraw__cap"><span>${esc(set[lang])}</span><span class="pdraw__view">${esc(d[lang])}</span></figcaption>
+        </figure>`).join('\n')}
+      </div>`;
+  }).join('\n')}
+    </section>
+` : '';
   // Every image in the gallery shares the narrowest image's proportion, so rows line up
   // and wider images are cropped at the sides, never at the top or bottom.
   const ratio = Math.min(...rest.map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
@@ -394,7 +415,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}${compare}${plans}    <section class="related" aria-labelledby="related-title">
+${gallery}${compare}${plans}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

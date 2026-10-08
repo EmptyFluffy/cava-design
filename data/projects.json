@@ -120,8 +120,38 @@
           "alt_es": "Planta de conjunto de la casa, numerada: la piscina larga con el jacuzzi y la crioterapia en su cabecera, los decks, la terraza, la cocina y la sala, y la terraza baja, con los árboles alrededor del lote",
           "plan": true,
           "key": ["Outdoor shower", "Jacuzzi", "Cryotherapy", "Pool", "Reflecting pool", "Main deck", "Deck", "Deck walk", "Terrace", "Kitchen and dining", "Living room", "Sunken terrace and fire pit", "Sun deck"],
-          "key_es": ["Ducha exterior", "Jacuzzi", "Crioterapia", "Piscina", "Espejo de agua", "Deck principal", "Deck", "Pasarela de deck", "Terraza", "Cocina y comedor", "Sala", "Terraza baja y fogata", "Deck de sol"]
+          "key_es": ["Ducha exterior", "Jacuzzi", "Crioterapia", "Piscina", "Espejo de agua", "Deck principal", "Deck", "Pasarela de deck", "Terraza", "Cocina y comedor", "Sala", "Terraza baja y fogata", "Deck de sol"],
+          "plate": { "en": "Planta de conjunto/web/site-plan-en.png", "es": "Planta de conjunto/web/site-plan-es.png" }
         }
+      ],
+      "drawings": [
+        { "en": "Sunken terrace", "es": "Terraza baja", "items": [
+          { "id": "terrace-plan", "span": 13.14, "file": "Planta de conjunto/web/terrace-plan.png", "en": "Plan", "es": "Planta",
+            "alt": "Plan of the sunken terrace: rings of built-in seating stepping down to a square fire pit, with deck boards along one side, dimensioned in metres",
+            "alt_es": "Planta de la terraza baja: anillos de asientos empotrados que bajan hacia un fogón cuadrado, con tablones de deck a un lado, acotada en metros" },
+          { "id": "terrace-section", "span": 12.52, "file": "Planta de conjunto/web/terrace-section.png", "en": "Section", "es": "Corte",
+            "alt": "Section through the sunken terrace: the seats step down on both sides to the fire pit, under a canopy on two raked posts 3.58 m high",
+            "alt_es": "Corte de la terraza baja: los asientos bajan a ambos lados hacia el fogón, bajo una cubierta sobre dos postes inclinados de 3.58 m" }
+        ] },
+        { "en": "Outdoor kitchen", "es": "Cocina exterior", "items": [
+          { "id": "bbq-plan", "span": 17.16, "file": "Planta de conjunto/web/bbq-plan.png", "en": "Plan", "es": "Planta",
+            "alt": "Plan of the outdoor kitchen: the grill and sink counter between two timber decks at different levels, with perimeter LED lighting",
+            "alt_es": "Planta de la cocina exterior: el mueble con parrilla y fregadero entre dos decks de madera a distinto nivel, con iluminación LED perimetral" },
+          { "id": "bbq-elevation", "span": 17.8, "file": "Planta de conjunto/web/bbq-elevation.png", "en": "Interior elevation", "es": "Elevación interna",
+            "alt": "Interior elevation of the outdoor kitchen: the counter, 1.00 m high, with the grill and sink, between the columns on axes C5, C6 and C8",
+            "alt_es": "Elevación interna de la cocina exterior: el mueble de 1.00 m de alto, con la parrilla y el fregadero, entre las columnas de los ejes C5, C6 y C8" }
+        ] },
+        { "en": "Bathroom", "es": "Baño", "items": [
+          { "id": "bath-plan", "span": 12.06, "file": "Planta de conjunto/web/bath-plan.png", "en": "Plan", "es": "Planta",
+            "alt": "Plan of the bathroom: the shower with a niche, the washbasin and the toilet, under the projection of the roof",
+            "alt_es": "Planta del baño: la ducha con su nicho, el lavamanos y el inodoro, bajo la proyección de la cubierta" },
+          { "id": "bath-elevation-1", "span": 8.99, "file": "Planta de conjunto/web/bath-elevation-1.png", "en": "Elevation, axes 15 to 14", "es": "Elevación, ejes 15 a 14",
+            "alt": "Interior elevation of the bathroom between axes 15 and 14: the shower and its niche under a sloping ceiling, 2.40 m at the low side",
+            "alt_es": "Elevación interna del baño entre los ejes 15 y 14: la ducha y su nicho bajo un cielo inclinado, de 2.40 m en el lado bajo" },
+          { "id": "bath-elevation-2", "span": 8.57, "file": "Planta de conjunto/web/bath-elevation-2.png", "en": "Elevation, axes D to A", "es": "Elevación, ejes D a A",
+            "alt": "Interior elevation of the bathroom between axes D and A: the shower wall tiled to 2.15 m, with the niche and the shower head",
+            "alt_es": "Elevación interna del baño entre los ejes D y A: la pared de la ducha enchapada hasta 2.15 m, con el nicho y la regadera" }
+        ] }
       ]
     },
     {

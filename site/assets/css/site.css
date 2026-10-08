@@ -1618,3 +1618,21 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .pplan__img, .pplan__key { grid-column: 1 / -1; }
   .pplan__key ol { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); font-size: var(--f-small); }
 }
+/* the titled plate carries its own key on a wide screen */
+@media (min-width: 768px) {
+  .pplan--plate .pplan__img { grid-column: 1 / -1; }
+  .pplan--plate .pplan__key { display: none; }
+}
+
+/* ---------- a project's construction drawings: one row per part of the house, one scale per row ---------- */
+.pdraw { display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }
+.pdraw__set { display: flex; align-items: flex-end; gap: var(--s-2); }
+.pdraw__set + .pdraw__set { margin-top: var(--s-3); }
+.pdraw__fig { margin: 0; flex: var(--span) 1 0; min-width: 0; display: grid; gap: 0.7rem; }
+.pdraw__fig img { width: 100%; height: auto; display: block; background: #fcfcfc; }
+.pdraw__cap { display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding-top: 0.7rem; border-top: 1px solid var(--grey); }
+.pdraw__view { color: var(--mid-grey); }
+@media (max-width: 767px) {
+  .pdraw__set { flex-direction: column; align-items: stretch; gap: var(--s-2); }
+  .pdraw__fig { flex: none; }
+}

@@ -87,7 +87,7 @@ window.CAVA_RENDERS = [
  {
   "id": "papagayo-404-10",
   "src": "assets/img/projects/papagayo-404/10",
-  "v": "7d9bd435",
+  "v": "70156e5e",
   "title": "Papagayo 404",
   "alt": "Site plan of the house, numbered: the long pool with the jacuzzi and cryotherapy at its head, the decks, the terrace, kitchen and living room, and the sunken terrace, with the trees around the lot"
  },
