@@ -191,16 +191,13 @@
         "items": {
           "stationery": "Letter and cards",
           "tote": "Tote bag",
-          "cap": "Cap, embroidered",
           "brochure": "Project book, Papagayo 404",
           "cards": "Business cards, front and back",
           "booklet": "Selected projects",
           "poster": "Poster",
           "laptop": "Client presentation",
           "mugs": "Mugs",
-          "tshirt": "T-shirt",
-          "notebook": "Notebook, debossed",
-          "tab": "Browser tab"
+          "notebook": "Notebook, debossed"
         }
       }
     }
@@ -359,16 +356,13 @@
         "items": {
           "stationery": "Carta y tarjetas",
           "tote": "Bolsa de tela",
-          "cap": "Gorra, bordada",
           "brochure": "Libro de proyectos, Papagayo 404",
           "cards": "Tarjetas, frente y dorso",
           "booklet": "Proyectos selectos",
           "poster": "Afiche",
           "laptop": "Presentación para un cliente",
           "mugs": "Tazas",
-          "tshirt": "Camiseta",
-          "notebook": "Libreta, en bajorrelieve",
-          "tab": "Pestaña del navegador"
+          "notebook": "Libreta, en bajorrelieve"
         }
       }
     }
