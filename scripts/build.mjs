@@ -803,6 +803,18 @@ const sourceItem = (lang, s, k, indent) => {
   const f = (key) => (lang === 'es' && s[`${key}_es`]) || s[key];
   return `${indent}<li id="source-${k + 1}"><a class="ulink" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(f('title'))}</a>${s.publisher ? `. ${esc(f('publisher'))}` : ''}${s.date ? `, ${esc(f('date'))}` : ''}.</li>`;
 };
+// The method and its sources as a product page sets its footnotes: small, light, in a centred column at
+// the foot of the page, after the contact block.
+const finePrint = (lang, id, title, paras, sources, cls = '') => `  <section class="fine${cls ? ` ${cls}` : ''}" aria-labelledby="${id}">
+    <div class="fine__in">
+      <h2 class="fine__title" id="${id}">${esc(title)}</h2>
+${paras.map((x) => `      <p>${cite(x)}</p>`).join('\n')}
+      <ol class="fine__sources">
+${sources.map((x, k) => sourceItem(lang, x, k, '        ')).join('\n')}
+      </ol>
+    </div>
+  </section>
+`;
 // "[3]" in a guide's text becomes a numbered link to its source
 const cite = (s) => esc(s).replace(/\[(\d+(?:,\s*\d+)*)\]/g, (m, ns) => `<sup class="cite">${ns.split(/,\s*/).map((n) => `<a href="#source-${n}">${n}</a>`).join(',')}</sup>`);
 function guidePage(lang, g) {
@@ -1164,18 +1176,8 @@ ${towns.map((t) => `        <li><a class="ulink" href="${up}${townCostPath(lang,
       </ul>
     </nav>
 `}
-    <section class="tw__sec grid est__method" aria-labelledby="est-method">
-      <h2 class="label tw__label" id="est-method">${E.method}</h2>
-      <div class="tw__text guide__body">
-        <h3 class="guide__h2">${E.methodTitle}</h3>
-${M.method.map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
-        <ol class="guide__sources guide__sources--inline">
-${costs.sources.map((s, k) => sourceItem(lang, s, k, '          ')).join('\n')}
-        </ol>
-      </div>
-    </section>
   </article>
-${contact(lang, pg?.wa ?? UI[lang].wa.general, up, pg?.q ?? '')}</main>
+${contact(lang, pg?.wa ?? UI[lang].wa.general, up, pg?.q ?? '')}${finePrint(lang, 'est-method', E.methodTitle, M.method, costs.sources, 'est__method')}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
@@ -1623,16 +1625,6 @@ ${rows}
       </div>
       <p class="note">${esc(E.tableNote)}</p>
     </section>
-    <section class="tw__sec grid" aria-labelledby="lt-method">
-      <h2 class="label tw__label" id="lt-method">${E.method}</h2>
-      <div class="tw__text guide__body">
-        <h3 class="guide__h2">${E.methodTitle}</h3>
-${LAND_METHOD[lang].map((x) => `        <p class="large">${cite(x)}</p>`).join('\n')}
-        <ol class="guide__sources guide__sources--inline">
-${LAND_SOURCES.map((x, k) => sourceItem(lang, x, k, '          ')).join('\n')}
-        </ol>
-      </div>
-    </section>
     <nav class="tw__sec grid" aria-labelledby="lt-more">
       <h2 class="label tw__label" id="lt-more">${E.more}</h2>
       <ul class="tw__aside guide__links">
@@ -1641,7 +1633,7 @@ ${costs ? `        <li><a class="ulink" href="${up}${estimatorPath(lang)}">${esc
       </ul>
     </nav>
   </article>
-${contact(lang, UI[lang].wa.general, up)}</main>
+${contact(lang, UI[lang].wa.general, up)}${finePrint(lang, 'lt-method', E.methodTitle, LAND_METHOD[lang], LAND_SOURCES)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 

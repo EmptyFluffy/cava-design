@@ -35,7 +35,7 @@
       coastal: 'Cerca de la playa: a menos de 200 m de la pleamar rige la Ley de la Zona Marítimo Terrestre.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, que aquí producen unos ${kwh} kWh al año.`,
-    perArea: (m2, ft2) => `<span>${m2} por m² construido · ${ft2} por pie²</span><small>Lo probable, con todo incluido</small>`,
+    perArea: (m2, ft2) => `<span>${m2} <i>por m² construido</i> <i>·</i> ${ft2} <i>por pie²</i></span><small>Lo probable, con todo incluido</small>`,
     rate: (b, ft) => `Solo la construcción: ${b} por m² (${ft} por pie²).`,
     landNote: (t, L) => L.src === 'market' ? `Terreno a lo que piden los lotes en ${t}: US$${L.r[0]} a ${L.r[2]} el m², la mitad central de ${L.n} lotes en venta (octubre de 2026).` : `En ${t} hay pocos lotes anunciados: el terreno va a los valores residenciales de Hacienda, US$${L.r[0]} a ${L.r[2]} el m² (edición ${L.y}).`,
     landPapagayo: 'En la Península Papagayo el terreno es una concesión del ICT, no se compra: queda fuera.',
@@ -64,7 +64,7 @@
       coastal: 'Near the beach: within 200 m of the high-tide line the maritime zone law applies.',
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, which make about ${kwh} kWh a year here.`,
-    perArea: (m2, ft2) => `<span>${m2} a m² built · ${ft2} a ft²</span><small>Likely, with everything in</small>`,
+    perArea: (m2, ft2) => `<span>${m2} <i>a m² built</i> <i>·</i> ${ft2} <i>a ft²</i></span><small>Likely, with everything in</small>`,
     rate: (b, ft) => `Construction alone: ${b} a m² (${ft} a ft²).`,
     landNote: (t, L) => L.src === 'market' ? `Land at what lots ask in ${t}: US$${L.r[0]} to ${L.r[2]} a m², the middle half of ${L.n} lots for sale (October 2026).` : `Few lots are listed in ${t}: the land goes at Hacienda's residential values, US$${L.r[0]} to ${L.r[2]} a m² (${L.y} edition).`,
     landPapagayo: 'In Península Papagayo the land is an ICT concession and is not sold: it is left out.',
@@ -212,19 +212,31 @@
   }
   if (window.ResizeObserver) new ResizeObserver(() => { if (D) fitTotal(); }).observe($('[data-est-total]').parentElement);
 
+  // a figure for reading: the number in black, the currency and the words around it smaller, in grey
+  const unit = (x) => `<span class="u">${x}</span>`;
+  const word = (x) => `<span class="w">${x}</span>`;
+  const millions = ES ? 'millones' : 'million';
+  const fig = (n) => {
+    if (state.cur === 'crc') return `${unit('₡')}${(Math.round(((n * D.fx.crcPerUsd) / 1e6) * 10) / 10).toLocaleString('en-US')}`;
+    return `${unit('US$')}${(Math.round(n / 1000) >= 1 ? Math.round(n / 1000) * 1000 : Math.round(n)).toLocaleString('en-US')}`;
+  };
+  const exactFig = (n) => (state.cur === 'crc' ? `${unit('₡')}${num(n * D.fx.crcPerUsd)}` : `${unit('US$')}${num(n)}`);
+  const big = (n) => `${fig(n)}${state.cur === 'crc' ? ` ${word(millions)}` : ''}`;
+
   function renderTotals(e) {
-    // in colones the word "millions" is said once: ₡315.6 to ₡486.9 million
+    // in colones "millions" is said once: ₡315.6 to ₡486.9 million
     const range = state.cur === 'crc' ? `${fmtCrc(e.total[0]).split(' ')[0]} ${ES ? 'a' : 'to'} ${fmtCrc(e.total[2])}` : `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
     const tot = $('[data-est-total]');
-    tot.textContent = range;
-    tot.style.setProperty('--len', range.length);
+    tot.innerHTML = `${fig(e.total[0])} ${word(ES ? 'a' : 'to')} ${big(e.total[2])}`;
+    tot.setAttribute('aria-label', range);
+    tot.style.setProperty('--len', range.length * 0.82);
     fitTotal();
-    $('[data-est-likely]').textContent = `${T.likely} ${money(e.total[1])}`;
+    $('[data-est-likely]').innerHTML = `<span class="est__likely-l">${T.likely}</span> <span class="est__likely-v">${big(e.total[1])}</span>`;
     const exact = (n) => (state.cur === 'crc' ? `₡${num(n * D.fx.crcPerUsd)}` : `US$${num(n)}`);
-    $('[data-est-perarea]').innerHTML = T.perArea(`<b>${exact(e.total[1] / e.area)}</b>`, `<b>${exact(e.total[1] / e.area / 10.7639)}</b>`);
+    $('[data-est-perarea]').innerHTML = T.perArea(`<b>${exactFig(e.total[1] / e.area)}</b>`, `<b>${exactFig(e.total[1] / e.area / 10.7639)}</b>`);
     $('[data-est-rate]').textContent = T.rate(exact(e.rate[1]), exact(e.rate[1] / 10.7639));
-    $('[data-est-hard]').textContent = money(e.hard[1]);
-    $('[data-est-soft]').textContent = money(e.soft[1]);
+    $('[data-est-hard]').innerHTML = big(e.hard[1]);
+    $('[data-est-soft]').innerHTML = big(e.soft[1]);
     const sticky = $('[data-est-sticky]');
     if (sticky) sticky.textContent = range;
   }

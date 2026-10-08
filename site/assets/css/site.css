@@ -677,6 +677,16 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .guide__sources { grid-column: 5 / -1; margin: 0; padding-left: 1.6rem; display: grid; gap: 0.45rem; font-size: var(--f-small); color: var(--dark-grey); max-width: 50rem; }
 .guide__sources li:target { color: var(--black); background: var(--light-grey); }
 .guide__sources--inline { padding-top: 1rem; margin-top: 0.6rem; border-top: 1px solid var(--grey); }
+/* fine print: the method and its sources at the foot of a tool page, small and light in a centred column */
+.fine { padding: var(--s-3) var(--margin) var(--s-4); border-top: 1px solid var(--grey); }
+.fine__in { max-width: 58rem; margin: 0 auto; display: grid; gap: 0.75rem; font-size: 0.78rem; line-height: 1.6; font-weight: 360; color: var(--dark-grey); }
+.fine__title { margin: 0; font-size: 0.78rem; font-weight: var(--w-strong); line-height: 1.4; color: var(--black); }
+.fine p { margin: 0; }
+.fine .cite { font-size: 0.85em; }
+.fine .cite a { color: inherit; }
+.fine__sources { margin: 0.35rem 0 0; padding: 0.9rem 0 0 1.15rem; border-top: 1px solid var(--grey); display: grid; gap: 0.3rem; font-size: 0.72rem; line-height: 1.5; }
+.fine__sources a { color: inherit; }
+.fine__sources li:target { color: var(--black); background: var(--light-grey); }
 .guide__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
 .guide__links a { font-size: var(--f-large); font-weight: var(--w-strong); }
 
@@ -715,6 +725,17 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__total { margin: 0; font-size: min(calc(var(--f-h3) * 0.86), calc(100cqi / (var(--len, 26) * 0.6))); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.02; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .est__perarea { margin: 0.2rem 0 0; display: grid; gap: 0.3rem; font-size: var(--f-h4); font-weight: var(--w-text); letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
 .est__perarea b { font-weight: var(--w-strong); }
+.est__perarea i { font-style: normal; color: var(--mid-grey); font-size: 0.72em; letter-spacing: 0; }
+/* figures: the number in black, the currency and the words in grey, smaller and lighter */
+.est__totals .u { color: var(--mid-grey); font-weight: var(--w-text); letter-spacing: 0; }
+.est__totals .w { color: var(--mid-grey); font-weight: var(--w-text); letter-spacing: 0; font-size: 0.5em; }
+.est__total .u { font-size: 0.44em; vertical-align: 0.9em; margin-right: 0.06em; }
+.est__total .w { margin: 0 0.1em; }
+.est__perarea .u, .est__split .u { font-size: 0.62em; margin-right: 0.1em; }
+.est__likely { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.est__likely-v { font-size: 1.45rem; color: var(--black); font-weight: var(--w-strong); letter-spacing: -0.02em; text-transform: none; font-variant-numeric: tabular-nums; }
+.est__likely-v .u { font-size: 0.62em; margin-right: 0.08em; }
+.est__likely-v .w { font-size: 0.62em; }
 .est__perarea small { font-size: var(--f-small); letter-spacing: 0; color: var(--dark-grey); }
 .est__likely { color: var(--dark-grey); }
 .est__split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin: 0.4rem 0 0; }
