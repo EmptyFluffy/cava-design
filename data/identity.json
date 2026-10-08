@@ -1,48 +1,356 @@
 {
   "_note": "The page /studio/identity/ (/es/estudio/identidad/): how the mark was drawn, and the rules for using it. The explorations are the artboards of ~/Desktop/CAVA/studiocava.ai, exported as SVG to site/assets/img/identity/e01-e20.svg (the generator is in ~/cava-strategy/herramientas). The diagrams are drawn by scripts/build.mjs from the mark's geometry.",
   "explorations": [
-    { "group": "pinwheel", "ids": ["e01", "e02", "e03", "e04", "e05", "e06", "e07", "e08"] },
-    { "group": "cuts", "ids": ["e09", "e10", "e11", "e12", "e13", "e14", "e15", "e16", "e17"] },
-    { "group": "curves", "ids": ["e18", "e19", "e20"] }
+    {
+      "group": "pinwheel",
+      "ids": [
+        "e01",
+        "e02",
+        "e03",
+        "e04",
+        "e05",
+        "e06",
+        "e07",
+        "e08"
+      ]
+    },
+    {
+      "group": "cuts",
+      "ids": [
+        "e09",
+        "e10",
+        "e11",
+        "e12",
+        "e13",
+        "e14",
+        "e15",
+        "e16",
+        "e17"
+      ]
+    },
+    {
+      "group": "curves",
+      "ids": [
+        "e18",
+        "e19",
+        "e20"
+      ]
+    }
   ],
   "en": {
     "title": "Our mark, and how we drew it | Studio CAVA",
     "description": "How Studio CAVA's mark came to be: twenty sketches, a half circle and a triangle, and the empty spaces between them that read as the A's. With the grid, the type and the colours we use.",
     "label": "(Identity)",
-    "h1": ["A mark", "made of voids"],
+    "h1": [
+      "A mark",
+      "made of voids"
+    ],
     "intro": "Our mark is two shapes and the space between them. This is how we got there, and the few rules we keep when we use it.",
     "link": "How we drew our mark",
     "footer": "Identity",
     "sections": {
-      "brief": { "label": "(The brief)", "title": "Pure shapes, inside a square", "text": ["We wanted a mark built from pure geometric figures, with nothing drawn by hand, that would sit inside a square at any size, from a sign at the gate of a site to the corner of a browser tab.", "And we wanted it to say what we do. An architect works as much with the spaces left between things as with the things themselves."] },
-      "tries": { "label": "(Twenty tries)", "title": "From houses to a half circle", "text": ["The first ideas were houses: four gables turning in a pinwheel, then a roof and a wall folded into letters. They said architecture too literally, and they lost their shape when small.", "Cutting the forms into triangles brought us closer. The curve, at the end, settled it."], "groups": { "pinwheel": "Houses in a pinwheel", "cuts": "Cut and folded", "curves": "The curve, and the mark" } },
-      "voids": { "label": "(C, V and two A's)", "title": "Read the voids", "text": ["The mark is a half circle and a triangle. The half circle is the C. The triangle leans away from it, and the white wedge that opens between them is the A: nobody drew it, it is the space the two shapes leave.", "Written out in full, the word works the same way: the C, a void that reads as A, the V, and a last void, the final A."], "key": "Black: what we drew. Colour: what you read." },
-      "gestalt": { "label": "(Figure and ground)", "title": "Why the eye fills in the A", "text": ["Gestalt psychology, the Berlin school of the 1910s and 1920s, studied how we see wholes before parts. One of its findings is figure and ground: the eye decides what is a shape and what is the space behind it, and can switch between the two, as in the vase Edgar Rubin drew in 1915, which is also two faces. Another is closure: we complete a shape that is only suggested. That is why a wedge of white between two black forms becomes a letter.", "Architecture works on the same switch. In 1748 Giambattista Nolli drew Rome with every building in black and every street, square and church interior in white, and the city's public space became the figure. A plan is read the same way: the walls are the solid, the rooms are the void, and the rooms are what people live in."], "pos": "The mark", "neg": "Inverted, the A becomes the figure" },
-      "grid": { "label": "(The grid)", "title": "A circle and half a rectangle", "text": ["The half circle has a radius r. The triangle is half of a rectangle r wide and 2r tall, so it has the same height as the circle. Side by side, the two fill a square of 2r.", "The diagonal runs at two to one, and the two shapes meet at a single point, at the top."] },
-      "mark": { "label": "(The mark on its own)", "title": "Black or white, nothing else", "text": ["Black on white, or white on black. Never in colour, never outlined, never stretched.", "Leave a clear space of half the radius on every side, and do not set it smaller than 16 pixels, the size of a browser tab."], "clear": "Clear space: r/2", "sizes": "64, 32 and 16 px" },
-      "type": { "label": "(Type)", "title": "Inter Tight", "text": ["Words are set in Inter Tight, an open-source sans serif with short, close-set letters that hold up from a note on a drawing to a headline across a screen.", "Labels go in capitals, in brackets, the way a drawing names its parts."], "weights": [["300", "Light", "Large numbers"], ["440", "Regular", "Reading"], ["480", "Display", "Headlines, in capitals"], ["600", "Semibold", "Labels and figures"]], "scale": [["Display", "CAVA"], ["Heading", "Building in Costa Rica has its own order."], ["Large", "Land use first, then design, then permits."], ["Text", "Each stage ends with drawings you approve before the next begins."], ["Label", "(Our process)"]] },
-      "colour": { "label": "(Colour)", "title": "Black and white, colour for data", "text": ["Black and white carry the studio. Greys do the quiet work: rules, notes, the inside of a table.", "Colour is kept for data, where it has to tell things apart: the parts of a cost breakdown, the price of land, the rain."], "core": "The studio", "data": "Data" },
-      "use": { "label": "(In use)", "title": "On a sheet, on a site, in a tab", "text": ["In the title block of every drawing sheet, on the sign that stands at every site, and at the corner of a browser tab."], "captions": ["Title block of a drawing sheet", "Site sign", "Browser tab"] }
+      "brief": {
+        "label": "(The brief)",
+        "title": "Pure shapes, inside a square",
+        "text": [
+          "We wanted a mark built from pure geometric figures, with nothing drawn by hand, that would sit inside a square at any size, from a sign at the gate of a site to the corner of a browser tab.",
+          "And we wanted it to say what we do. An architect works as much with the spaces left between things as with the things themselves."
+        ]
+      },
+      "tries": {
+        "label": "(Twenty tries)",
+        "title": "From houses to a half circle",
+        "text": [
+          "The first ideas were houses: four gables turning in a pinwheel, then a roof and a wall folded into letters. They said architecture too literally, and they lost their shape when small.",
+          "Cutting the forms into triangles brought us closer. The curve, at the end, settled it."
+        ],
+        "groups": {
+          "pinwheel": "Houses in a pinwheel",
+          "cuts": "Cut and folded",
+          "curves": "The curve, and the mark"
+        }
+      },
+      "voids": {
+        "label": "(C, V and two A's)",
+        "title": "Read the voids",
+        "text": [
+          "The mark is a half circle and a triangle. The half circle is the C. The triangle leans away from it, and the white wedge that opens between them is the A: nobody drew it, it is the space the two shapes leave.",
+          "Written out in full, the word works the same way: the C, a void that reads as A, the V, and a last void, the final A."
+        ],
+        "key": "Black: what we drew. Colour: what you read."
+      },
+      "gestalt": {
+        "label": "(Figure and ground)",
+        "title": "Why the eye fills in the A",
+        "text": [
+          "Gestalt psychology, the Berlin school of the 1910s and 1920s, studied how we see wholes before parts. Two of its findings explain our mark. Figure and ground: the eye decides what is a shape and what is the space behind it, and can switch between the two, as in the vase Edgar Rubin drew in 1915, which is also two faces. And closure: we complete a shape that is only suggested, as in the triangle Gaetano Kanizsa drew in 1955, which nobody drew at all.",
+          "Graphic design has worked with both for a century. A mark built this way gives the reader something to find; the best known is the arrow hidden between the E and the x of FedEx, drawn by Lindon Leader in 1994. The pleasure is in the moment it appears, and once seen it cannot be unseen."
+        ],
+        "rubin": "Rubin's vase, 1915, redrawn: a vase, or two faces",
+        "kanizsa": "Kanizsa's triangle, 1955, redrawn: the white triangle is not drawn",
+        "neg": "Our mark inverted: the A becomes the figure"
+      },
+      "nolli": {
+        "label": "(Nolli's Rome)",
+        "title": "A city drawn in black and white",
+        "text": [
+          "In 1748 Giambattista Nolli published a plan of Rome engraved on twelve copper plates, after twelve years of surveying. He drew every building in black and left in white everything a citizen could walk into: streets and squares, but also courtyards, porticoes and the interiors of churches. Public space became the figure, and the city could be read as one continuous room.",
+          "Architects have gone back to it ever since. In 1978 twelve of them, Aldo Rossi, James Stirling and Michael Graves among them, were each given one of Nolli's plates to redraw for the exhibition Roma Interrotta. The same year, Colin Rowe and Fred Koetter's book Collage City used figure-ground plans to argue that a city is made as much of its spaces as of its buildings.",
+          "We draw every lot this way before we design: the house in black, and in white the terraces, courtyards, deep eaves and breezeways where life in the tropics happens. In this climate the void is not what is left over. It is most of the house."
+        ],
+        "caption": "Giambattista Nolli, Nuova pianta di Roma, 1748, plate 5, detail: Piazza Navona on the left, the Pantheon at the centre with its interior in white. Public domain.",
+        "alt": "Detail of Nolli's 1748 plan of Rome: buildings hatched dark, streets, squares and church interiors left white, with Piazza Navona and the Pantheon"
+      },
+      "grid": {
+        "label": "(The grid)",
+        "title": "A circle and half a rectangle",
+        "text": [
+          "The half circle has a radius r. The triangle is half of a rectangle r wide and 2r tall, so it has the same height as the circle. Side by side, the two fill a square of 2r.",
+          "The diagonal runs at two to one, and the two shapes meet at a single point, at the top."
+        ]
+      },
+      "mark": {
+        "label": "(The mark on its own)",
+        "title": "Black or white, nothing else",
+        "text": [
+          "Black on white, or white on black. Never in colour, never outlined, never stretched.",
+          "Leave a clear space of half the radius on every side, and do not set it smaller than 16 pixels, the size of a browser tab."
+        ],
+        "clear": "Clear space: r/2",
+        "sizes": "64, 32 and 16 px"
+      },
+      "type": {
+        "label": "(Type)",
+        "title": "Inter Tight",
+        "text": [
+          "Words are set in Inter Tight, an open-source sans serif with short, close-set letters that hold up from a note on a drawing to a headline across a screen.",
+          "Labels go in capitals, in brackets, the way a drawing names its parts."
+        ],
+        "weights": [
+          [
+            "300",
+            "Light",
+            "Large numbers"
+          ],
+          [
+            "440",
+            "Regular",
+            "Reading"
+          ],
+          [
+            "480",
+            "Display",
+            "Headlines, in capitals"
+          ],
+          [
+            "600",
+            "Semibold",
+            "Labels and figures"
+          ]
+        ],
+        "scale": [
+          [
+            "Display",
+            "CAVA"
+          ],
+          [
+            "Heading",
+            "Building in Costa Rica has its own order."
+          ],
+          [
+            "Large",
+            "Land use first, then design, then permits."
+          ],
+          [
+            "Text",
+            "Each stage ends with drawings you approve before the next begins."
+          ],
+          [
+            "Label",
+            "(Our process)"
+          ]
+        ]
+      },
+      "colour": {
+        "label": "(Colour)",
+        "title": "Black and white, colour for data",
+        "text": [
+          "Black and white carry the studio. Greys do the quiet work: rules, notes, the inside of a table.",
+          "Colour is kept for data, where it has to tell things apart: the parts of a cost breakdown, the price of land, the rain."
+        ],
+        "core": "The studio",
+        "data": "Data"
+      },
+      "use": {
+        "label": "(In use)",
+        "title": "On a sheet, on a site, in a tab",
+        "text": [
+          "In the title block of every drawing sheet, on the sign that stands at every site, and at the corner of a browser tab."
+        ],
+        "captions": [
+          "Title block of a drawing sheet",
+          "Site sign",
+          "Browser tab"
+        ]
+      }
     }
   },
   "es": {
     "title": "Nuestra marca y cómo la dibujamos | Studio CAVA",
     "description": "Cómo nació la marca de Studio CAVA: veinte bocetos, un semicírculo y un triángulo, y los espacios vacíos entre ellos que se leen como las A. Con la retícula, la tipografía y los colores que usamos.",
     "label": "(Identidad)",
-    "h1": ["Una marca", "hecha de vacíos"],
+    "h1": [
+      "Una marca",
+      "hecha de vacíos"
+    ],
     "intro": "Nuestra marca son dos formas y el espacio entre ellas. Así llegamos a ella, y estas son las pocas reglas que seguimos al usarla.",
     "link": "Cómo dibujamos nuestra marca",
     "footer": "Identidad",
     "sections": {
-      "brief": { "label": "(El encargo)", "title": "Formas puras, dentro de un cuadrado", "text": ["Queríamos una marca hecha de figuras geométricas puras, sin nada dibujado a mano, que cupiera en un cuadrado a cualquier tamaño, desde el rótulo en la entrada de una obra hasta la esquina de una pestaña del navegador.", "Y queríamos que dijera lo que hacemos. Un arquitecto trabaja tanto con los espacios que quedan entre las cosas como con las cosas mismas."] },
-      "tries": { "label": "(Veinte intentos)", "title": "De casas a un semicírculo", "text": ["Las primeras ideas fueron casas: cuatro techos a dos aguas girando como un molinete, luego un techo y una pared doblados en letras. Decían arquitectura de forma demasiado literal, y perdían la forma en tamaño pequeño.", "Cortar las formas en triángulos nos acercó. La curva, al final, lo resolvió."], "groups": { "pinwheel": "Casas en molinete", "cuts": "Cortes y pliegues", "curves": "La curva, y la marca" } },
-      "voids": { "label": "(C, V y dos A)", "title": "Leer los vacíos", "text": ["La marca es un semicírculo y un triángulo. El semicírculo es la C. El triángulo se inclina alejándose, y la cuña blanca que se abre entre los dos es la A: nadie la dibujó, es el espacio que dejan las dos formas.", "Escrita completa, la palabra funciona igual: la C, un vacío que se lee como A, la V, y un último vacío, la A final."], "key": "En negro, lo que dibujamos. En color, lo que se lee." },
-      "gestalt": { "label": "(Figura y fondo)", "title": "Por qué el ojo completa la A", "text": ["La psicología de la Gestalt, la escuela de Berlín de las décadas de 1910 y 1920, estudió cómo vemos el todo antes que las partes. Uno de sus hallazgos es la figura y el fondo: el ojo decide qué es una forma y qué es el espacio detrás, y puede alternar entre los dos, como en el jarrón que Edgar Rubin dibujó en 1915, que también son dos caras. Otro es el cierre: completamos una forma que apenas se sugiere. Por eso una cuña blanca entre dos formas negras se vuelve una letra.", "La arquitectura trabaja con el mismo cambio. En 1748 Giambattista Nolli dibujó Roma con cada edificio en negro y cada calle, plaza e interior de iglesia en blanco, y el espacio público de la ciudad se volvió la figura. Una planta se lee igual: los muros son lo lleno, los espacios son el vacío, y los espacios son lo que se habita."], "pos": "La marca", "neg": "Invertida, la A se vuelve la figura" },
-      "grid": { "label": "(La retícula)", "title": "Un círculo y medio rectángulo", "text": ["El semicírculo tiene un radio r. El triángulo es la mitad de un rectángulo de r de ancho y 2r de alto, así que tiene la misma altura que el círculo. Lado a lado, los dos llenan un cuadrado de 2r.", "La diagonal va de dos a uno, y las dos formas se tocan en un solo punto, arriba."] },
-      "mark": { "label": "(La marca sola)", "title": "Negro o blanco, nada más", "text": ["Negro sobre blanco, o blanco sobre negro. Nunca en color, nunca en contorno, nunca deformada.", "Deje un espacio libre de medio radio a cada lado, y no la use más pequeña que 16 píxeles, el tamaño de una pestaña del navegador."], "clear": "Espacio libre: r/2", "sizes": "64, 32 y 16 px" },
-      "type": { "label": "(Tipografía)", "title": "Inter Tight", "text": ["Las palabras van en Inter Tight, una sans serif de código abierto con letras cortas y apretadas que se sostienen desde una nota en un plano hasta un titular a lo ancho de una pantalla.", "Las etiquetas van en mayúsculas, entre paréntesis, como un plano nombra sus partes."], "weights": [["300", "Light", "Cifras grandes"], ["440", "Regular", "Lectura"], ["480", "Display", "Titulares, en mayúsculas"], ["600", "Semibold", "Etiquetas y cifras"]], "scale": [["Display", "CAVA"], ["Título", "Construir en Costa Rica tiene su propio orden."], ["Grande", "Primero el uso de suelo, luego el diseño, luego los permisos."], ["Texto", "Cada etapa termina con planos que usted aprueba antes de empezar la siguiente."], ["Etiqueta", "(El proceso)"]] },
-      "colour": { "label": "(Color)", "title": "Blanco y negro, color para los datos", "text": ["El blanco y el negro sostienen el estudio. Los grises hacen el trabajo callado: líneas, notas, el interior de una tabla.", "El color se guarda para los datos, donde tiene que distinguir cosas: las partidas de un presupuesto, el precio del terreno, la lluvia."], "core": "El estudio", "data": "Datos" },
-      "use": { "label": "(En uso)", "title": "En una lámina, en la obra, en una pestaña", "text": ["En el membrete de cada lámina de planos, en el rótulo que está en cada obra, y en la esquina de una pestaña del navegador."], "captions": ["Membrete de una lámina", "Rótulo de obra", "Pestaña del navegador"] }
+      "brief": {
+        "label": "(El encargo)",
+        "title": "Formas puras, dentro de un cuadrado",
+        "text": [
+          "Queríamos una marca hecha de figuras geométricas puras, sin nada dibujado a mano, que cupiera en un cuadrado a cualquier tamaño, desde el rótulo en la entrada de una obra hasta la esquina de una pestaña del navegador.",
+          "Y queríamos que dijera lo que hacemos. Un arquitecto trabaja tanto con los espacios que quedan entre las cosas como con las cosas mismas."
+        ]
+      },
+      "tries": {
+        "label": "(Veinte intentos)",
+        "title": "De casas a un semicírculo",
+        "text": [
+          "Las primeras ideas fueron casas: cuatro techos a dos aguas girando como un molinete, luego un techo y una pared doblados en letras. Decían arquitectura de forma demasiado literal, y perdían la forma en tamaño pequeño.",
+          "Cortar las formas en triángulos nos acercó. La curva, al final, lo resolvió."
+        ],
+        "groups": {
+          "pinwheel": "Casas en molinete",
+          "cuts": "Cortes y pliegues",
+          "curves": "La curva, y la marca"
+        }
+      },
+      "voids": {
+        "label": "(C, V y dos A)",
+        "title": "Leer los vacíos",
+        "text": [
+          "La marca es un semicírculo y un triángulo. El semicírculo es la C. El triángulo se inclina alejándose, y la cuña blanca que se abre entre los dos es la A: nadie la dibujó, es el espacio que dejan las dos formas.",
+          "Escrita completa, la palabra funciona igual: la C, un vacío que se lee como A, la V, y un último vacío, la A final."
+        ],
+        "key": "En negro, lo que dibujamos. En color, lo que se lee."
+      },
+      "gestalt": {
+        "label": "(Figura y fondo)",
+        "title": "Por qué el ojo completa la A",
+        "text": [
+          "La psicología de la Gestalt, la escuela de Berlín de las décadas de 1910 y 1920, estudió cómo vemos el todo antes que las partes. Dos de sus hallazgos explican nuestra marca. La figura y el fondo: el ojo decide qué es una forma y qué es el espacio detrás, y puede alternar entre los dos, como en el jarrón que Edgar Rubin dibujó en 1915, que también son dos caras. Y el cierre: completamos una forma que apenas se sugiere, como en el triángulo que Gaetano Kanizsa dibujó en 1955, que nadie dibujó.",
+          "El diseño gráfico trabaja con los dos desde hace un siglo. Una marca hecha así le da al lector algo que encontrar; la más conocida es la flecha escondida entre la E y la x de FedEx, dibujada por Lindon Leader en 1994. El gusto está en el momento en que aparece, y una vez vista ya no se deja de ver."
+        ],
+        "rubin": "El jarrón de Rubin, 1915, redibujado: un jarrón, o dos caras",
+        "kanizsa": "El triángulo de Kanizsa, 1955, redibujado: el triángulo blanco no está dibujado",
+        "neg": "Nuestra marca invertida: la A se vuelve la figura"
+      },
+      "nolli": {
+        "label": "(La Roma de Nolli)",
+        "title": "Una ciudad dibujada en blanco y negro",
+        "text": [
+          "En 1748 Giambattista Nolli publicó un plano de Roma grabado en doce planchas de cobre, después de doce años de levantamiento. Dibujó cada edificio en negro y dejó en blanco todo lo que un ciudadano podía recorrer: calles y plazas, pero también patios, pórticos y el interior de las iglesias. El espacio público se volvió la figura, y la ciudad se podía leer como una sola sala continua.",
+          "Los arquitectos han vuelto a él desde entonces. En 1978, doce de ellos, entre ellos Aldo Rossi, James Stirling y Michael Graves, recibieron cada uno una de las planchas de Nolli para redibujarla en la exposición Roma Interrotta. Ese mismo año, el libro Collage City de Colin Rowe y Fred Koetter usó plantas de figura y fondo para defender que una ciudad está hecha tanto de sus espacios como de sus edificios.",
+          "Así dibujamos cada lote antes de diseñar: la casa en negro, y en blanco las terrazas, los patios, los aleros profundos y los pasillos de brisa donde sucede la vida en el trópico. En este clima el vacío no es lo que sobra. Es la mayor parte de la casa."
+        ],
+        "caption": "Giambattista Nolli, Nuova pianta di Roma, 1748, plancha 5, detalle: la Piazza Navona a la izquierda, el Panteón al centro con su interior en blanco. Dominio público.",
+        "alt": "Detalle del plano de Roma de Nolli de 1748: edificios en oscuro, y calles, plazas e interiores de iglesias en blanco, con la Piazza Navona y el Panteón"
+      },
+      "grid": {
+        "label": "(La retícula)",
+        "title": "Un círculo y medio rectángulo",
+        "text": [
+          "El semicírculo tiene un radio r. El triángulo es la mitad de un rectángulo de r de ancho y 2r de alto, así que tiene la misma altura que el círculo. Lado a lado, los dos llenan un cuadrado de 2r.",
+          "La diagonal va de dos a uno, y las dos formas se tocan en un solo punto, arriba."
+        ]
+      },
+      "mark": {
+        "label": "(La marca sola)",
+        "title": "Negro o blanco, nada más",
+        "text": [
+          "Negro sobre blanco, o blanco sobre negro. Nunca en color, nunca en contorno, nunca deformada.",
+          "Deje un espacio libre de medio radio a cada lado, y no la use más pequeña que 16 píxeles, el tamaño de una pestaña del navegador."
+        ],
+        "clear": "Espacio libre: r/2",
+        "sizes": "64, 32 y 16 px"
+      },
+      "type": {
+        "label": "(Tipografía)",
+        "title": "Inter Tight",
+        "text": [
+          "Las palabras van en Inter Tight, una sans serif de código abierto con letras cortas y apretadas que se sostienen desde una nota en un plano hasta un titular a lo ancho de una pantalla.",
+          "Las etiquetas van en mayúsculas, entre paréntesis, como un plano nombra sus partes."
+        ],
+        "weights": [
+          [
+            "300",
+            "Light",
+            "Cifras grandes"
+          ],
+          [
+            "440",
+            "Regular",
+            "Lectura"
+          ],
+          [
+            "480",
+            "Display",
+            "Titulares, en mayúsculas"
+          ],
+          [
+            "600",
+            "Semibold",
+            "Etiquetas y cifras"
+          ]
+        ],
+        "scale": [
+          [
+            "Display",
+            "CAVA"
+          ],
+          [
+            "Título",
+            "Construir en Costa Rica tiene su propio orden."
+          ],
+          [
+            "Grande",
+            "Primero el uso de suelo, luego el diseño, luego los permisos."
+          ],
+          [
+            "Texto",
+            "Cada etapa termina con planos que usted aprueba antes de empezar la siguiente."
+          ],
+          [
+            "Etiqueta",
+            "(El proceso)"
+          ]
+        ]
+      },
+      "colour": {
+        "label": "(Color)",
+        "title": "Blanco y negro, color para los datos",
+        "text": [
+          "El blanco y el negro sostienen el estudio. Los grises hacen el trabajo callado: líneas, notas, el interior de una tabla.",
+          "El color se guarda para los datos, donde tiene que distinguir cosas: las partidas de un presupuesto, el precio del terreno, la lluvia."
+        ],
+        "core": "El estudio",
+        "data": "Datos"
+      },
+      "use": {
+        "label": "(En uso)",
+        "title": "En una lámina, en la obra, en una pestaña",
+        "text": [
+          "En el membrete de cada lámina de planos, en el rótulo que está en cada obra, y en la esquina de una pestaña del navegador."
+        ],
+        "captions": [
+          "Membrete de una lámina",
+          "Rótulo de obra",
+          "Pestaña del navegador"
+        ]
+      }
     }
   }
 }

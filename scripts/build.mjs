@@ -398,7 +398,7 @@ const IDM = { disc: 'M100 0A100 100 0 0 0 100 200Z', tri: 'M100 0H200V200Z', voi
 const VOID = '#e07b52';
 // the word in full, from the Illustrator file (height 176): C, a void (A), V, a void (A), and the closing form
 const IDW = { c: 'M88 0A88 88 0 0 0 88 176Z', v: 'M88 0H257.6L175 176Z', end: 'M220.3 0H254.4A88 88 0 0 1 254.4 176H220.3Z', a1: 'M88 0V176H175Z', a2: 'M220.3 79.5L175 176H220.3Z' };
-function identityFigures(lang, S) {
+function identityFigures(lang, S, up) {
   const t = (x, y, s, o = '') => `<text x="${x}" y="${y}" class="idn-t"${o}>${s}</text>`;
   const voids = `<div class="idn-pair">
         <svg viewBox="-20 -10 240 270" role="img" aria-label="${esc(S.voids.key)}"><path d="${IDM.void}" fill="${VOID}"/><path d="${IDM.disc}"/><path d="${IDM.tri}"/>
@@ -407,10 +407,19 @@ function identityFigures(lang, S) {
           <path class="idn-tick" d="M44 190v12M117 190v12M172 190v12M205 190v12"/>${t(44, 228, 'C', ' text-anchor="middle"')}${t(117, 228, 'A', ' text-anchor="middle" fill="' + VOID + '"')}${t(172, 228, 'V', ' text-anchor="middle"')}${t(205, 228, 'A', ' text-anchor="middle" fill="' + VOID + '"')}</svg>
       </div>
       <p class="note idn-key"><i style="background:#080807"></i><i style="background:${VOID}"></i>${esc(S.voids.key)}</p>`;
-  const gestalt = `<div class="idn-pair idn-pair--sq">
-        <figure><svg viewBox="-60 -60 320 320" role="img" aria-label="${esc(S.gestalt.pos)}"><rect x="-60" y="-60" width="320" height="320" fill="#fcfcfc"/><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><figcaption class="label">${esc(S.gestalt.pos)}</figcaption></figure>
-        <figure><svg viewBox="-60 -60 320 320" role="img" aria-label="${esc(S.gestalt.neg)}"><rect x="-60" y="-60" width="320" height="320" fill="#080807"/><path d="${IDM.void}" fill="#fcfcfc"/><path d="M100 0A100 100 0 0 1 100 200Z" fill="#fcfcfc" opacity="0"/></svg><figcaption class="label">${esc(S.gestalt.neg)}</figcaption></figure>
+  // Rubin's vase, redrawn: two profiles; the space between them is the vase
+  const P = [[84, 0], [86, 34], [93, 64], [86, 80], [106, 102], [93, 115], [98, 127], [92, 136], [97, 147], [87, 163], [93, 180], [77, 202], [79, 260]];
+  const smooth = (pts) => pts.slice(1).map((p, i) => { const a = pts[i - 1] ?? pts[i], b = pts[i], c = p, d = pts[i + 2] ?? p; return `C${(b[0] + (c[0] - a[0]) / 6).toFixed(1)} ${(b[1] + (c[1] - a[1]) / 6).toFixed(1)} ${(c[0] - (d[0] - b[0]) / 6).toFixed(1)} ${(c[1] - (d[1] - b[1]) / 6).toFixed(1)} ${c[0]} ${c[1]}`; }).join('');
+  const face = `M0 0H${P[0][0]}${smooth(P)}H0Z`;
+  const rubin = `<svg viewBox="-20 -20 280 300" role="img" aria-label="${esc(S.gestalt.rubin)}"><rect x="-20" y="-20" width="280" height="300" fill="#fcfcfc"/><path d="${face}"/><path d="${face}" transform="matrix(-1 0 0 1 240 0)"/></svg>`;
+  // Kanizsa's triangle: three discs and an outlined triangle, with a white triangle that is never drawn
+  const kanizsa = `<svg viewBox="-10 -10 260 280" role="img" aria-label="${esc(S.gestalt.kanizsa)}"><rect x="-10" y="-10" width="260" height="280" fill="#fcfcfc"/><path d="M120 242L212 82H28Z" fill="none" stroke="#080807" stroke-width="3"/>${[[120, 34], [28, 194], [212, 194]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="30"/>`).join('')}<path d="M120 34L28 194H212Z" fill="#fcfcfc"/></svg>`;
+  const gestalt = `<div class="idn-trio">
+        <figure>${rubin}<figcaption class="note">${esc(S.gestalt.rubin)}</figcaption></figure>
+        <figure>${kanizsa}<figcaption class="note">${esc(S.gestalt.kanizsa)}</figcaption></figure>
+        <figure><svg viewBox="-50 -61 300 322" role="img" aria-label="${esc(S.gestalt.neg)}"><rect x="-50" y="-61" width="300" height="322" fill="#080807"/><path d="${IDM.void}" fill="#fcfcfc"/></svg><figcaption class="note">${esc(S.gestalt.neg)}</figcaption></figure>
       </div>`;
+  const nolli = `<figure class="idn-nolli"><img src="${up}assets/img/identity/nolli-1600.webp" srcset="${up}assets/img/identity/nolli-800.webp 800w, ${up}assets/img/identity/nolli-1600.webp 1600w" sizes="(min-width: 768px) 60vw, 92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="${esc(S.nolli.alt)}"><figcaption class="note"><a class="ulink" href="https://commons.wikimedia.org/wiki/File:Giovanni_Battista_Nolli-Nuova_Pianta_di_Roma_(1748)_05-12.JPG" target="_blank" rel="noopener">${esc(S.nolli.caption)}</a></figcaption></figure>`;
   const g = (d, cls = 'idn-g') => `<path class="${cls}" d="${d}"/>`;
   const grid = `<svg class="idn-grid" viewBox="-70 -70 340 340" role="img" aria-label="${esc(S.grid.text[0])}">
         <path d="${IDM.disc}"/><path d="${IDM.tri}"/>
@@ -441,14 +450,14 @@ function identityFigures(lang, S) {
         <ul class="idn-sw idn-sw--data">${data.map((hex) => `<li><i style="background:${hex}"></i><span>${hex}</span></li>`).join('')}</ul>
         <ul class="idn-ramp">${land.map((hex) => `<li style="background:${hex}"></li>`).join('')}</ul>
       </div>`;
-  return { voids, gestalt, grid, mark, type, colour };
+  return { voids, gestalt, nolli, grid, mark, type, colour };
 }
 function identityPage(lang) {
   const D = identity[lang];
   const S = D.sections;
   const paths = { en: identityPath('en'), es: identityPath('es') };
   const up = upFrom(paths[lang]);
-  const F = identityFigures(lang, S);
+  const F = identityFigures(lang, S, up);
   const sec = (key, n, body) => `    <section class="tw__sec grid idn-sec" aria-labelledby="idn-${key}">
       <h2 class="label tw__label" id="idn-${key}">(${pad(n)}) ${esc(S[key].label.replace(/[()]/g, ''))}</h2>
       <div class="tw__text idn-text">
@@ -481,7 +490,7 @@ ${bar(lang, up, paths, 'studio')}
       <p class="h3 mf__intro">${esc(D.intro)}</p>
     </header>
     <figure class="idn-hero" aria-hidden="true"><svg viewBox="-110 -60 420 320"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg></figure>
-${sec('brief', 1, '')}${sec('tries', 2, tries)}${sec('voids', 3, F.voids)}${sec('gestalt', 4, F.gestalt)}${sec('grid', 5, F.grid)}${sec('mark', 6, F.mark)}${sec('type', 7, F.type)}${sec('colour', 8, F.colour)}${sec('use', 9, use)}  </article>
+${sec('brief', 1, '')}${sec('tries', 2, tries)}${sec('voids', 3, F.voids)}${sec('gestalt', 4, F.gestalt)}${sec('nolli', 5, F.nolli)}${sec('grid', 6, F.grid)}${sec('mark', 7, F.mark)}${sec('type', 8, F.type)}${sec('colour', 9, F.colour)}${sec('use', 10, use)}  </article>
 ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${end}`;
 }

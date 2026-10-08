@@ -1411,6 +1411,12 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .idn-pair { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: var(--s-2); align-items: end; }
 .idn-pair svg { width: 100%; height: auto; display: block; overflow: visible; }
 .idn-pair--sq { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.idn-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+.idn-trio figure { margin: 0; display: grid; gap: 0.6rem; align-content: start; }
+.idn-trio svg { width: 100%; height: auto; display: block; border: 1px solid var(--grey); }
+.idn-nolli { margin: 0; display: grid; gap: 0.6rem; }
+.idn-nolli img { width: 100%; height: auto; display: block; }
+.idn-nolli a { color: inherit; }
 .idn-pair figure { margin: 0; display: grid; gap: 0.6rem; }
 .idn-key { display: flex; align-items: center; gap: 0.4rem; margin-top: 1rem; }
 .idn-key i { width: 0.8rem; height: 0.8rem; display: inline-block; }
@@ -1469,6 +1475,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .idn-fig { grid-column: 1 / -1; }
   .idn-pair, .idn-marks, .idn-use { grid-template-columns: minmax(0, 1fr); }
   .idn-pair--sq, .idn-marks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .idn-trio { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .idn-weights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .idn-scale li { grid-template-columns: minmax(0, 1fr); gap: 0.3rem; }
   .idn-teaser__link { grid-template-columns: auto minmax(0, 1fr); }
