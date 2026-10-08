@@ -110,8 +110,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .btn--dark { background: var(--black); color: var(--white); }
 .btn--dark:hover { background: #262624; }
-.btn--light { background: var(--white); color: var(--black); }
+.btn--light { background: var(--light-grey); color: var(--black); }
 .btn--light:hover { background: var(--grey); }
+/* on the dark enquiry sheet the light buttons stay white */
+.modal .btn--light { background: var(--white); }
+.modal .btn--light:hover { background: var(--grey); }
 .btn__dot {
   display: inline-block; width: 0.45rem; height: 0.45rem; flex: none;
   border: 1px solid currentColor; border-radius: 50%;
