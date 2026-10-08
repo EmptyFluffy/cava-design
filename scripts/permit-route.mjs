@@ -2,6 +2,8 @@
 // One module for the build (each town page gets its route drawn in) and for the browser
 // (site/assets/js/permit-route.mjs, copied by the build), so the drawn and the interactive routes agree.
 // Numbers in `cite` are the sources of the permits guide (data/guides/building-permits.json).
+// Every step, institution and a few terms open an explanation (glossary.mjs, info-sheet.js).
+import { G, TERMS, WHO, UI as GUI } from './glossary.mjs';
 
 // Each municipality: its regulating plan (INVU's layer of plans, edited 2026) and how its review went in
 // the CFIA's APC in 2024-25 (CFIA, Ranking municipal 2024-2025): average days to approve, share approved
@@ -109,7 +111,7 @@ export function route(input, lang = 'en') {
   const fragile = q.zmt || q.river || q.forest;
   const house = q.type === 'house';
   const residential = ['house', 'units', 'apartments'].includes(q.type);
-  const node = (key, [title, note], who, cite, on = true, extra = {}) => ({ key, title, note, who: L.who[who], cite, on, ...extra });
+  const node = (key, [title, note], who, cite, on = true, extra = {}) => ({ key, title, note, who: L.who[who], whoKey: who, cite, on, ...extra });
   const stages = [];
 
   // 1. the lot and its rules: asked for together
@@ -159,6 +161,13 @@ export function render(r, lang = 'en', cite = (n) => `#source-${n}`) {
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const sup = (ns) => (ns.length ? `<sup class="cite">${ns.map((n) => `<a href="${cite(n)}">${n}</a>`).join(',')}</sup>` : '');
   let k = 0;
+  // a step, an institution or a term that opens its explanation
+  const btn = (key, text, cls) => (G[key] ? `<button class="${cls} pf__term" type="button" data-term="${key}" aria-haspopup="dialog">${text}</button>` : text);
+  const terms = (text) => {
+    let out = esc(text);
+    for (const [re, key] of TERMS[lang]) out = out.replace(re, (m) => btn(key, m, 'pf__inline'));
+    return out;
+  };
   const stage = (s) => {
     if (!s.sub) k += 1;
     const many = s.nodes.length > 1;
@@ -166,14 +175,14 @@ export function render(r, lang = 'en', cite = (n) => `#source-${n}`) {
   ${s.name ? `<p class="pf__name label">(${String(k).padStart(2, '0')}) ${esc(s.name)}</p>` : ''}
   <ul class="pf__row">${s.nodes.map((n) => `
     <li class="pf__node${n.on ? '' : ' is-off'}" data-key="${n.key}">
-      <span class="pf__who label">${esc(n.who)}</span>
-      <h4 class="pf__title">${esc(n.title)}</h4>
-      <p class="pf__note">${esc(n.note)}${sup(n.cite)}</p>
+      <span class="pf__who label">${btn(WHO[n.whoKey], esc(n.who), 'pf__who-b')}</span>
+      <h4 class="pf__title">${btn(n.key, esc(n.title), 'pf__title-b')}</h4>
+      <p class="pf__note">${terms(n.note)}${sup(n.cite)}</p>
       ${n.on ? '' : `<span class="pf__skip label">${L.skip}</span>`}
     </li>`).join('')}
   </ul>
 </li>`;
   };
-  return `<p class="pf__card">${esc(r.card)}${r.muni ? sup([21, 29]) : ''}</p>
+  return `<p class="pf__card">${terms(r.card)}${r.muni ? sup([21, 29]) : ''}</p>
 <ol class="pf">${r.stages.map(stage).join('')}</ol>`;
 }

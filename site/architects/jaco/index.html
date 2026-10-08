@@ -22,13 +22,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../assets/css/site.css?v=84cf542f">
+<link rel="stylesheet" href="../../assets/css/site.css?v=bb822c3c">
 <script defer src="../../assets/js/project.js?v=a6c70a27"></script>
 <script defer src="../../assets/js/climate-map.js?v=df642af8"></script>
 <script defer src="../../assets/js/permit-flow.js?v=e7d5373e"></script>
 <script defer src="../../assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../assets/js/titles.js?v=fa76a511"></script>
+<script defer src="../../assets/js/info-sheet.js?v=94882321"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Jacó, Garabito, Puntarenas, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":9.61564,"longitude":-84.62813}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/"},{"@type":"ListItem","position":2,"name":"Where we work","item":"https://cava.design/architects/"},{"@type":"ListItem","position":3,"name":"Jacó","item":"https://cava.design/architects/jaco/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"When is the best time to start building in Jacó?","acceptedAnswer":{"@type":"Answer","text":"Ideally from November to March, so that the earthworks, foundations and structure fall in the dry season. A 4-month phase of that work started in November loses about 10 days to heavy rain, against about 29 if it starts in April, about 19 days of crew and machinery. It is a recommendation, not a rule: building goes on through the rains, more slowly, and no project should sit for months waiting for the dry season. To start then, have the permit ready by October."}},{"@type":"Question","name":"Who issues building permits in Jacó?","acceptedAnswer":{"@type":"Answer","text":"The Municipalidad de Garabito. The drawings are filed first with the CFIA, through its APC platform, and the permit comes after the land use certificate and the water availability letter."}},{"@type":"Question","name":"Can I build near the beach in Jacó?","acceptedAnswer":{"@type":"Answer","text":"Not in the first 50 m from the ordinary high-tide line, which are public. The next 150 m are held under a concession from the municipality rather than owned, with their own rules. Beyond 200 m, a titled lot follows the normal permit process."}},{"@type":"Question","name":"How hot does it get in Jacó?","acceptedAnswer":{"@type":"Answer","text":"Afternoons average 28 °C in March, the hottest month, and 26 °C in December. Nights stay between 23 and 24 °C. Shade on the west side and air moving through the rooms do more for comfort than anything else."}},{"@type":"Question","name":"How far is Jacó from the airports?","acceptedAnswer":{"@type":"Answer","text":"By road, without traffic, 3 h 30 min from Daniel Oduber airport in Liberia (197 km) and 1 h 40 min from Juan Santamaría airport in San José (85 km)."}}]}]}</script>
 </head>
 <body class="sub">
@@ -183,20 +184,20 @@
           <fieldset class="est__field"><legend class="label">Where</legend><select class="input est__select" name="town"><option value="">Elsewhere in Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco" selected>Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
         </form>
         <div class="pr__out" data-pr-out aria-live="polite">
-<p class="pf__card">The Municipalidad de Garabito issues the permit. It has no regulating plan: the national construction rules apply.<sup class="cite"><a href="../../guides/building-permits/#source-21">21</a>,<a href="../../guides/building-permits/#source-29">29</a></sup></p>
+<p class="pf__card">The Municipalidad de Garabito issues the permit. It has no <button class="pf__inline pf__term" type="button" data-term="plan" aria-haspopup="dialog">regulating plan</button>: the national construction rules apply.<sup class="cite"><a href="../../guides/building-permits/#source-21">21</a>,<a href="../../guides/building-permits/#source-29">29</a></sup></p>
 <ol class="pf"><li class="pf__stage is-parallel">
   <p class="pf__name label">(01) The lot and its rules</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="use">
-      <span class="pf__who label">Municipality</span>
-      <h4 class="pf__title">Land use certificate</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipality</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="use" aria-haspopup="dialog">Land use certificate</button></h4>
       <p class="pf__note">What the zoning allows on the lot: use, setbacks, coverage, density and height.<sup class="cite"><a href="../../guides/building-permits/#source-1">1</a>,<a href="../../guides/building-permits/#source-2">2</a></sup></p>
       
     </li>
     <li class="pf__node" data-key="water">
-      <span class="pf__who label">AyA or ASADA</span>
-      <h4 class="pf__title">Water availability</h4>
-      <p class="pf__note">Every building needs it. AyA answers within 15 working days, free, valid 12 months; where an ASADA supplies the water, it gives its own letter.<sup class="cite"><a href="../../guides/building-permits/#source-2">2</a>,<a href="../../guides/building-permits/#source-6">6</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="aya" aria-haspopup="dialog">AyA or ASADA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="water" aria-haspopup="dialog">Water availability</button></h4>
+      <p class="pf__note">Every building needs it. AyA answers within 15 working days, free, valid 12 months; where an <button class="pf__inline pf__term" type="button" data-term="aya" aria-haspopup="dialog">ASADA</button> supplies the water, it gives its own letter.<sup class="cite"><a href="../../guides/building-permits/#source-2">2</a>,<a href="../../guides/building-permits/#source-6">6</a></sup></p>
       
     </li>
   </ul>
@@ -204,8 +205,8 @@
   <p class="pf__name label">(02) The environment</p>
   <ul class="pf__row">
     <li class="pf__node is-off" data-key="setena">
-      <span class="pf__who label">SETENA</span>
-      <h4 class="pf__title">SETENA</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></h4>
       <p class="pf__note">Not needed: under 500 m².<sup class="cite"><a href="../../guides/building-permits/#source-8">8</a></sup></p>
       <span class="pf__skip label">Not needed</span>
     </li>
@@ -214,9 +215,9 @@
   <p class="pf__name label">(03) Drawings and the CFIA</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="drawings">
-      <span class="pf__who label">CFIA</span>
-      <h4 class="pf__title">Drawings and contract</h4>
-      <p class="pf__note">Registered in the CFIA's APC with the architect and engineers responsible; the CFIA charges about 0.27% of its valuation, and its stamp lasts a year.<sup class="cite"><a href="../../guides/building-permits/#source-10">10</a>,<a href="../../guides/building-permits/#source-11">11</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="drawings" aria-haspopup="dialog">Drawings and contract</button></h4>
+      <p class="pf__note">Registered in the CFIA's <button class="pf__inline pf__term" type="button" data-term="apc" aria-haspopup="dialog">APC</button> with the architect and engineers responsible; the CFIA charges about 0.27% of its valuation, and its stamp lasts a year.<sup class="cite"><a href="../../guides/building-permits/#source-10">10</a>,<a href="../../guides/building-permits/#source-11">11</a></sup></p>
       
     </li>
   </ul>
@@ -224,20 +225,20 @@
   
   <ul class="pf__row">
     <li class="pf__node" data-key="health">
-      <span class="pf__who label">Ministry of Health</span>
-      <h4 class="pf__title">Health: sworn declaration</h4>
-      <p class="pf__note">For a house, or a building of 300 m² or less, Health approves on the professional's sworn declaration.<sup class="cite"><a href="../../guides/building-permits/#source-12">12</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="salud" aria-haspopup="dialog">Ministry of Health</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="health" aria-haspopup="dialog">Health: sworn declaration</button></h4>
+      <p class="pf__note">For a house, or a building of 300 m² or less, Health approves on the professional's <button class="pf__inline pf__term" type="button" data-term="health" aria-haspopup="dialog">sworn declaration</button>.<sup class="cite"><a href="../../guides/building-permits/#source-12">12</a></sup></p>
       
     </li>
     <li class="pf__node is-off" data-key="fire">
-      <span class="pf__who label">Fire Department</span>
-      <h4 class="pf__title">Fire Department</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="bomberos" aria-haspopup="dialog">Fire Department</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="fire" aria-haspopup="dialog">Fire Department</button></h4>
       <p class="pf__note">No review for a house or fewer than 4 apartments, though the fire rules still apply.<sup class="cite"><a href="../../guides/building-permits/#source-12">12</a></sup></p>
       <span class="pf__skip label">Not needed</span>
     </li>
     <li class="pf__node" data-key="muni-review">
-      <span class="pf__who label">Municipality</span>
-      <h4 class="pf__title">Municipal review in the APC</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipality</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="muni-review" aria-haspopup="dialog">Municipal review in the APC</button></h4>
       <p class="pf__note">The Municipalidad de Garabito approved projects in 18.6 days on average in 2024-25, 12% at the first submission.<sup class="cite"><a href="../../guides/building-permits/#source-29">29</a></sup></p>
       
     </li>
@@ -246,14 +247,14 @@
   <p class="pf__name label">(04) Licence and works</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="licence">
-      <span class="pf__who label">Municipality</span>
-      <h4 class="pf__title">Municipal licence</h4>
-      <p class="pf__note">A construction tax of up to 1% of the value of the works, after the INS work-risk policy.<sup class="cite"><a href="../../guides/building-permits/#source-1">1</a>,<a href="../../guides/building-permits/#source-13">13</a>,<a href="../../guides/building-permits/#source-14">14</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipality</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="licence" aria-haspopup="dialog">Municipal licence</button></h4>
+      <p class="pf__note">A construction tax of up to 1% of the value of the works, after the <button class="pf__inline pf__term" type="button" data-term="ins" aria-haspopup="dialog">INS</button> work-risk policy.<sup class="cite"><a href="../../guides/building-permits/#source-1">1</a>,<a href="../../guides/building-permits/#source-13">13</a>,<a href="../../guides/building-permits/#source-14">14</a></sup></p>
       
     </li>
     <li class="pf__node" data-key="logbook">
-      <span class="pf__who label">CFIA</span>
-      <h4 class="pf__title">Digital site logbook</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="logbook" aria-haspopup="dialog">Digital site logbook</button></h4>
       <p class="pf__note">Opened by the director of works, with its QR code on site.<sup class="cite"><a href="../../guides/building-permits/#source-15">15</a></sup></p>
       
     </li>

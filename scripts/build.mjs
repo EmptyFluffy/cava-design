@@ -140,7 +140,7 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="${up}assets/css/site.css?v=${assetVer('assets/css/site.css')}">
-${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js', 'titles.js').map((s) => `<script defer src="${up}assets/js/${s}?v=${assetVer(`assets/js/${s}`)}"></script>
+${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js', 'titles.js', 'info-sheet.js').map((s) => `<script defer src="${up}assets/js/${s}?v=${assetVer(`assets/js/${s}`)}"></script>
 `).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 ` : ''}</head>
 <body class="sub">
@@ -1108,6 +1108,13 @@ function costsData() {
     updated: costs.updated,
     fx: costs.fx,
     perM2: Object.fromEntries(PL.map((p) => [p.key, costs.tiers[p.key] ? tiers(costs.tiers[p.key], p.kind) : spread(p.codes, p.kind)])),
+    // the levels sheet: every type's value in US$ (before the town factor), Hacienda's words, the house table
+    codes: Object.fromEntries(PL.flatMap((p) => p.codes.map((c) => [c, Math.round(usd(c, p.kind))]))),
+    codesCrc: Object.fromEntries(PL.flatMap((p) => p.codes.map((c) => [c, [H.values[c], p.kind]]))),
+    notes: JSON.parse(readFileSync(join(ROOT, 'data', 'typology-notes.json'), 'utf8')).types,
+    tierCodes: { house: costs.tiers.house, hotel: costs.tiers.hotel },
+    levels: JSON.parse(readFileSync(join(ROOT, 'data', 'finish-levels.json'), 'utf8')),
+    method: { index: H.index, margin: H.margin, fx },
     programs: { groups: costs.programs.groups, list: PL.map(({ key, group, codes, en, es, aliases, permit, works, roof, multi }) => ({ key, group, codes, en, es, aliases, permit, works, roof, multi: !!multi, single: codes.length === 1 && !costs.tiers[key] })) },
     place: clean(costs.place),
     slope: clean(costs.slope),
@@ -1181,11 +1188,12 @@ ${pg?.photo ? placePhoto(lang, up, pg.photo, { eager: true }) : ''}
           <p class="note" data-est-area-out></p>
         </fieldset>
         <fieldset class="est__field"><legend class="label">${E.storeys}</legend>${seg('storeys', [1, 2, 3], P.storeys, { 1: '1', 2: '2', 3: '3' })}</fieldset>
-        <fieldset class="est__field"><legend class="label">${E.quality}</legend>${seg('quality', ['standard', 'high', 'luxury'], P.quality, E.qualities, E.qualityNotes)}</fieldset>
+        <fieldset class="est__field"><legend class="label est__legend-row"><span>${E.quality}</span><button class="est__help" type="button" data-est-levels aria-haspopup="dialog"><span aria-hidden="true">?</span>${esc(JSON.parse(readFileSync(join(ROOT, 'data', 'finish-levels.json'), 'utf8'))[lang].button)}</button></legend>${seg('quality', ['standard', 'high', 'luxury'], P.quality, E.qualities, E.qualityNotes)}</fieldset>
         <fieldset class="est__field"><legend class="label">${E.site}</legend>${seg('slope', ['flat', 'gentle', 'steep'], P.slope, E.slopes)}</fieldset>
         <fieldset class="est__field"><legend class="label">${E.pool}</legend>${seg('pool', [0, 15, 32, 50], P.pool, E.pools)}</fieldset>
         <fieldset class="est__field"><legend class="label">${E.deck}</legend>
           <div class="est__area"><input type="range" name="deck" min="0" max="300" step="10" value="${P.deck}" aria-label="${E.deck}"></div>
+          <p class="note" data-est-deck-out></p>
         </fieldset>
         <fieldset class="est__field est__checks"><legend class="label">${E.extras}</legend>
           <label><input type="checkbox" name="solar"${on('solar')}> ${E.solar}<em class="est__delta" data-delta></em></label>
@@ -2513,5 +2521,6 @@ write('assets/js/renders.js', rendersJs('en', ''));
 // the 3D sun path (site/assets/js/sun3d.js) runs the same solar maths as the build
 write('assets/js/sun.mjs', readFileSync(join(ROOT, 'scripts', 'sun.mjs'), 'utf8'));
 write('assets/js/permit-route.mjs', readFileSync(join(ROOT, 'scripts', 'permit-route.mjs'), 'utf8'));
+write('assets/js/glossary.mjs', readFileSync(join(ROOT, 'scripts', 'glossary.mjs'), 'utf8'));
 write('assets/js/renders.es.js', rendersJs('es', '../'));
 console.log(`built ${towns.length} town pages and /architects/, /studio/, /projects/ and ${projects.length} project pages in each language, ${projects.reduce((n, p) => n + p.images.length, 0)} images; /es/ home`);

@@ -22,13 +22,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../../assets/css/site.css?v=84cf542f">
+<link rel="stylesheet" href="../../../assets/css/site.css?v=bb822c3c">
 <script defer src="../../../assets/js/project.js?v=a6c70a27"></script>
 <script defer src="../../../assets/js/climate-map.js?v=df642af8"></script>
 <script defer src="../../../assets/js/permit-flow.js?v=e7d5373e"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
+<script defer src="../../../assets/js/info-sheet.js?v=94882321"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","url":"https://cava.design/","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":{"@type":"Place","name":"Liberia, Liberia, Guanacaste, Costa Rica","geo":{"@type":"GeoCoordinates","latitude":10.63198,"longitude":-85.43932}}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Studio CAVA","item":"https://cava.design/es/"},{"@type":"ListItem","position":2,"name":"Dónde trabajamos","item":"https://cava.design/es/arquitectos/"},{"@type":"ListItem","position":3,"name":"Liberia","item":"https://cava.design/es/arquitectos/liberia/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es el mejor momento para empezar a construir en Liberia?","acceptedAnswer":{"@type":"Answer","text":"Idealmente de noviembre a marzo, para que el movimiento de tierra, las fundaciones y la estructura caigan en la época seca. Una etapa de 4 meses de ese trabajo que empieza en noviembre pierde unos 3 días por lluvia fuerte, contra unos 20 si empieza en abril, unos 17 días de cuadrilla y maquinaria. Es una recomendación, no una regla: en lluvias se sigue construyendo, más despacio, y ninguna obra debería quedar parada meses esperando la época seca. Para empezar entonces, conviene tener el permiso listo en octubre."}},{"@type":"Question","name":"¿Quién da los permisos de construcción en Liberia?","acceptedAnswer":{"@type":"Answer","text":"La Municipalidad de Liberia. Los planos se tramitan primero en el CFIA, por su plataforma APC, y el permiso llega después del certificado de uso de suelo y de la carta de disponibilidad de agua."}},{"@type":"Question","name":"¿Qué tanto calor hace en Liberia?","acceptedAnswer":{"@type":"Answer","text":"Las tardes promedian 33 °C en abril, el mes más caliente, y 29 °C en noviembre. Las noches se mantienen entre 22 y 25 °C. La sombra del lado oeste y el aire que cruza los espacios hacen más por el confort que cualquier otra cosa."}},{"@type":"Question","name":"¿Qué tan lejos queda Liberia de los aeropuertos?","acceptedAnswer":{"@type":"Answer","text":"Por carretera y sin presas, a 15 min del aeropuerto Daniel Oduber en Liberia (13 km) y a 3 h 35 min del aeropuerto Juan Santamaría en San José (196 km)."}}]}]}</script>
 </head>
 <body class="sub">
@@ -184,20 +185,20 @@
           <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia" selected>Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
         </form>
         <div class="pr__out" data-pr-out aria-live="polite">
-<p class="pf__card">La Municipalidad de Liberia da el permiso. Tiene un plan regulador parcial (1983, 2002, 2008); fuera de él rigen las reglas nacionales de construcción.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+<p class="pf__card">La Municipalidad de Liberia da el permiso. Tiene un <button class="pf__inline pf__term" type="button" data-term="plan" aria-haspopup="dialog">plan regulador</button> parcial (1983, 2002, 2008); fuera de él rigen las reglas nacionales de construcción.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
 <ol class="pf"><li class="pf__stage is-parallel">
   <p class="pf__name label">(01) El lote y sus reglas</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="use">
-      <span class="pf__who label">Municipalidad</span>
-      <h4 class="pf__title">Certificado de uso de suelo</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="use" aria-haspopup="dialog">Certificado de uso de suelo</button></h4>
       <p class="pf__note">Lo que la zonificación permite en el lote: uso, retiros, cobertura, densidad y altura.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-2">2</a></sup></p>
       
     </li>
     <li class="pf__node" data-key="water">
-      <span class="pf__who label">AyA o ASADA</span>
-      <h4 class="pf__title">Disponibilidad de agua</h4>
-      <p class="pf__note">Toda edificación la necesita. AyA responde en 15 días hábiles, gratis, con validez de 12 meses; donde el agua la da una ASADA, ella emite su propia carta.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-2">2</a>,<a href="../../../es/guias/permisos-de-construccion/#source-6">6</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="aya" aria-haspopup="dialog">AyA o ASADA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="water" aria-haspopup="dialog">Disponibilidad de agua</button></h4>
+      <p class="pf__note">Toda edificación la necesita. AyA responde en 15 días hábiles, gratis, con validez de 12 meses; donde el agua la da una <button class="pf__inline pf__term" type="button" data-term="aya" aria-haspopup="dialog">ASADA</button>, ella emite su propia carta.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-2">2</a>,<a href="../../../es/guias/permisos-de-construccion/#source-6">6</a></sup></p>
       
     </li>
   </ul>
@@ -205,8 +206,8 @@
   <p class="pf__name label">(02) El ambiente</p>
   <ul class="pf__row">
     <li class="pf__node is-off" data-key="setena">
-      <span class="pf__who label">SETENA</span>
-      <h4 class="pf__title">SETENA</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></h4>
       <p class="pf__note">No se necesita: menos de 500 m².<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-8">8</a></sup></p>
       <span class="pf__skip label">No se necesita</span>
     </li>
@@ -215,9 +216,9 @@
   <p class="pf__name label">(03) Los planos y el CFIA</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="drawings">
-      <span class="pf__who label">CFIA</span>
-      <h4 class="pf__title">Planos y contrato</h4>
-      <p class="pf__note">Se registran en el APC del CFIA con el arquitecto y los ingenieros responsables; el CFIA cobra cerca del 0.27% de su valoración, y su sello dura un año.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-10">10</a>,<a href="../../../es/guias/permisos-de-construccion/#source-11">11</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="drawings" aria-haspopup="dialog">Planos y contrato</button></h4>
+      <p class="pf__note">Se registran en el <button class="pf__inline pf__term" type="button" data-term="apc" aria-haspopup="dialog">APC</button> del CFIA con el arquitecto y los ingenieros responsables; el CFIA cobra cerca del 0.27% de su valoración, y su sello dura un año.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-10">10</a>,<a href="../../../es/guias/permisos-de-construccion/#source-11">11</a></sup></p>
       
     </li>
   </ul>
@@ -225,20 +226,20 @@
   
   <ul class="pf__row">
     <li class="pf__node" data-key="health">
-      <span class="pf__who label">Ministerio de Salud</span>
-      <h4 class="pf__title">Salud: declaración jurada</h4>
-      <p class="pf__note">En una casa, o en un edificio de 300 m² o menos, Salud aprueba con la declaración jurada del profesional.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="salud" aria-haspopup="dialog">Ministerio de Salud</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="health" aria-haspopup="dialog">Salud: declaración jurada</button></h4>
+      <p class="pf__note">En una casa, o en un edificio de 300 m² o menos, Salud aprueba con la <button class="pf__inline pf__term" type="button" data-term="health" aria-haspopup="dialog">declaración jurada</button> del profesional.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
       
     </li>
     <li class="pf__node is-off" data-key="fire">
-      <span class="pf__who label">Bomberos</span>
-      <h4 class="pf__title">Bomberos</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="bomberos" aria-haspopup="dialog">Bomberos</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="fire" aria-haspopup="dialog">Bomberos</button></h4>
       <p class="pf__note">No revisan una casa ni menos de 4 apartamentos, aunque las reglas contra incendios igual aplican.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
       <span class="pf__skip label">No se necesita</span>
     </li>
     <li class="pf__node" data-key="muni-review">
-      <span class="pf__who label">Municipalidad</span>
-      <h4 class="pf__title">Revisión municipal en el APC</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="muni-review" aria-haspopup="dialog">Revisión municipal en el APC</button></h4>
       <p class="pf__note">La Municipalidad de Liberia aprobó proyectos en 10.1 días en promedio en 2024-25, el 61% al primer ingreso.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
       
     </li>
@@ -247,14 +248,14 @@
   <p class="pf__name label">(04) Licencia y obra</p>
   <ul class="pf__row">
     <li class="pf__node" data-key="licence">
-      <span class="pf__who label">Municipalidad</span>
-      <h4 class="pf__title">Licencia municipal</h4>
-      <p class="pf__note">Un impuesto de construcción de hasta el 1% del valor de la obra, después de la póliza de riesgos del trabajo del INS.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-13">13</a>,<a href="../../../es/guias/permisos-de-construccion/#source-14">14</a></sup></p>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="licence" aria-haspopup="dialog">Licencia municipal</button></h4>
+      <p class="pf__note">Un impuesto de construcción de hasta el 1% del valor de la obra, después de la póliza de riesgos del trabajo del <button class="pf__inline pf__term" type="button" data-term="ins" aria-haspopup="dialog">INS</button>.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-13">13</a>,<a href="../../../es/guias/permisos-de-construccion/#source-14">14</a></sup></p>
       
     </li>
     <li class="pf__node" data-key="logbook">
-      <span class="pf__who label">CFIA</span>
-      <h4 class="pf__title">Bitácora digital</h4>
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="logbook" aria-haspopup="dialog">Bitácora digital</button></h4>
       <p class="pf__note">La abre el director de la obra, con su código QR en el sitio.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-15">15</a></sup></p>
       
     </li>

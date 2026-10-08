@@ -1,0 +1,211 @@
+{
+  "_note": "The estimator's finish-level sheet for a house. 'hacienda' rows summarise the Ministry of Finance's descriptions of the house types each level spans (Manual de Valores Base Unitarios por Tipología Constructiva 2023: standard VC05 to VC07, high VC07 to VC08, luxury VC08 to VC09). 'coast' is our own reading of what each level buys in a contemporary house on the coast, and is labelled as such.",
+  "en": {
+    "button": "What each level means",
+    "kicker": "(Finish level)",
+    "title": "Standard, high and luxury",
+    "intro": "Each level is a span of the Ministry of Finance's house types, the table every municipality uses to value buildings. Here is what the table says each one includes, what it costs a m² where you are building, and how we get from the table to the number.",
+    "bars": "Construction, US$ a m², here",
+    "barsNote": "Each dot is one of Hacienda's types for this kind of building. A level reads three points of its span: low, likely and high.",
+    "tableTitle": "What Hacienda's table describes",
+    "coastTitle": "On the coast today, our reading",
+    "codesTitle": "The types in Hacienda's table",
+    "how": "How we get the number",
+    "howSteps": [
+      "Hacienda's value for the type, in colones a m² at March 2023: labour, materials and indirect costs",
+      "Brought to today with the construction price index and the minimum wage",
+      "Plus the builder's profit and administration, 12%",
+      "In dollars, at the Central Bank's selling rate",
+      "Times the town's price factor"
+    ],
+    "levels": {
+      "standard": "Standard",
+      "high": "High",
+      "luxury": "Luxury"
+    },
+    "rows": [
+      [
+        "Hacienda types",
+        "VC05 to VC07",
+        "VC07 to VC08",
+        "VC08 to VC09"
+      ],
+      [
+        "Size in the table",
+        "210 to 350 m²",
+        "290 to 400 m²",
+        "340 m² and more"
+      ],
+      [
+        "Bathrooms",
+        "Three good to three and a half very good, plus a service bathroom",
+        "Three and a half very good to three and a half luxury, plus a service bathroom",
+        "Three and a half luxury or more, plus one or two service bathrooms"
+      ],
+      [
+        "Ceiling heights",
+        "2.40 to 5.00 m, some double",
+        "3.00 to 5.00 m, or double",
+        "Double or triple spaces"
+      ],
+      [
+        "Walls",
+        "Concrete block, fine plaster, good paint, cladding in places",
+        "Block or brick with wide glazed sections, mineral finish, high-quality paint",
+        "Block or brick, feature walls cast on site, fine wood, marble and stucco cladding"
+      ],
+      [
+        "Roof",
+        "Steel trusses, structural sheet, clay or asphalt tile",
+        "Trusses for changing heights, steep pitches, vaults or butterfly roofs, insulated, stainless steel gutters",
+        "Trusses with vaults and domes, insulated, stainless steel gutters and flashing"
+      ],
+      [
+        "Ceilings",
+        "PVC, gypsum or fibre cement, coffered timber in places",
+        "Special designs, fine lacquered woods, brick or concrete in places",
+        "Fine lacquered woods, coffers, domes and ribbed vaults"
+      ],
+      [
+        "Floors",
+        "Good porcelain and ceramic, laminate",
+        "Very good porcelain and ceramic, laminate",
+        "Marble, rectified porcelain, fine hardwood and parquet"
+      ],
+      [
+        "Windows and doors",
+        "Aluminium windows, cedar or laurel panel doors",
+        "Wide windows in anodized aluminium, PVC or fine timber, cedar doors, excellent hardware",
+        "Floor-to-ceiling glass in imported anodized aluminium or fine timber, solid kiln-dried cedar doors over 5 cm"
+      ],
+      [
+        "Kitchen",
+        "Good to very good",
+        "Very good",
+        "Large and luxurious"
+      ],
+      [
+        "Systems",
+        "Basic, then more invested",
+        "More invested",
+        "The latest: security, sound, air conditioning, fire protection"
+      ],
+      [
+        "Character",
+        "A designed facade, some double heights",
+        "Specially designed facades, wide glazing",
+        "A residence with a high share of imported materials"
+      ]
+    ],
+    "coast": [
+      "Polished concrete or porcelain floors, aluminium sliding windows, a quartz or granite kitchen top, local timber in doors and ceilings, split air conditioning in the bedrooms.",
+      "Large-format porcelain or polished concrete, slim-frame sliding glass walls, custom joinery in local hardwoods, deep insulated roofs, systems ready for solar.",
+      "Natural stone and hardwood, frameless glass and pocket sliders, imported fittings and appliances, home automation, and a pool and garden built to the same standard."
+    ],
+    "introAny": "Each level is a span of the Ministry of Finance's types for this kind of building, the table every municipality uses to value buildings. Here are the types, what each costs a m² where you are building, and how we get from the table to the number."
+  },
+  "es": {
+    "button": "Qué significa cada nivel",
+    "kicker": "(Nivel de acabados)",
+    "title": "Estándar, alto y lujo",
+    "intro": "Cada nivel es un tramo de las tipologías de vivienda del Ministerio de Hacienda, la tabla con la que todas las municipalidades valoran las edificaciones. Aquí está lo que la tabla dice que incluye cada uno, lo que cuesta el m² donde usted construye, y cómo pasamos de la tabla al número.",
+    "bars": "Construcción, US$ por m², aquí",
+    "barsNote": "Cada punto es una tipología de Hacienda para este tipo de edificación. Un nivel lee tres puntos de su tramo: bajo, probable y alto.",
+    "tableTitle": "Lo que describe la tabla de Hacienda",
+    "coastTitle": "En la costa hoy, nuestra lectura",
+    "codesTitle": "Las tipologías de la tabla de Hacienda",
+    "how": "Cómo llegamos al número",
+    "howSteps": [
+      "El valor de Hacienda para la tipología, en colones por m² a marzo de 2023: mano de obra, materiales y costos indirectos",
+      "Traído a hoy con el índice de precios de la construcción y el salario mínimo",
+      "Más la utilidad y la administración del constructor, 12%",
+      "En dólares, al tipo de cambio de venta del Banco Central",
+      "Por el factor de precios del pueblo"
+    ],
+    "levels": {
+      "standard": "Estándar",
+      "high": "Alto",
+      "luxury": "Lujo"
+    },
+    "rows": [
+      [
+        "Tipologías de Hacienda",
+        "VC05 a VC07",
+        "VC07 a VC08",
+        "VC08 a VC09"
+      ],
+      [
+        "Tamaño en la tabla",
+        "210 a 350 m²",
+        "290 a 400 m²",
+        "340 m² o más"
+      ],
+      [
+        "Baños",
+        "Tres buenos a tres y medio muy buenos, más uno de servicio",
+        "Tres y medio muy buenos a tres y medio de lujo, más uno de servicio",
+        "Tres y medio de lujo o más, más uno o dos de servicio"
+      ],
+      [
+        "Alturas",
+        "2.40 a 5.00 m, algunas dobles",
+        "3.00 a 5.00 m, o dobles",
+        "Espacios de doble o triple altura"
+      ],
+      [
+        "Paredes",
+        "Bloque de concreto, repello fino, buena pintura, enchapes en algunas áreas",
+        "Bloque o ladrillo con amplios sectores de vidrio, acabado con fibra mineral, pintura de alta calidad",
+        "Bloque o ladrillo, paredes de diseño coladas en sitio, enchapes de maderas finas, mármol y estuco"
+      ],
+      [
+        "Techo",
+        "Cerchas metálicas, lámina estructural, teja de barro o asfáltica",
+        "Cerchas para distintas alturas, pendientes fuertes, bóvedas o techos mariposa, aislados, canoas de acero inoxidable",
+        "Cerchas con bóvedas y domos, aislados, canoas y botaguas de acero inoxidable"
+      ],
+      [
+        "Cielos",
+        "PVC, yeso o fibrocemento, artesonado de madera en algunas áreas",
+        "Diseños especiales, maderas finas laqueadas, ladrillo o concreto en algunas áreas",
+        "Maderas finas laqueadas, artesonados, cúpulas y bóvedas con nervaduras"
+      ],
+      [
+        "Pisos",
+        "Porcelanato y cerámica buenos, madera laminada",
+        "Porcelanato y cerámica muy buenos, madera laminada",
+        "Mármol, porcelanato rectificado, maderas finas y parquet"
+      ],
+      [
+        "Ventanas y puertas",
+        "Ventanas de aluminio, puertas de tablero de cedro o laurel",
+        "Ventanales de aluminio anodizado, PVC o madera fina, puertas de cedro, cerrajería excelente",
+        "Vidrio de piso a cielo en aluminio anodizado importado o madera fina, puertas de cedro sólido secado al horno de más de 5 cm"
+      ],
+      [
+        "Cocina",
+        "Buena a muy buena",
+        "Muy buena",
+        "Amplia y de lujo"
+      ],
+      [
+        "Sistemas",
+        "Básicos, luego con más inversión",
+        "Con más inversión",
+        "Lo más reciente: seguridad, sonido, aire acondicionado, protección contra incendios"
+      ],
+      [
+        "Carácter",
+        "Fachada diseñada, algunas dobles alturas",
+        "Fachadas especialmente diseñadas, grandes ventanales",
+        "Una residencia con alto porcentaje de materiales importados"
+      ]
+    ],
+    "coast": [
+      "Pisos de concreto pulido o porcelanato, ventanas corredizas de aluminio, sobre de cocina de cuarzo o granito, madera local en puertas y cielos, aire acondicionado tipo split en los dormitorios.",
+      "Porcelanato de gran formato o concreto pulido, ventanales corredizos de perfil delgado, muebles a la medida en maderas locales, techos profundos y aislados, sistemas listos para paneles solares.",
+      "Piedra natural y maderas duras, vidrio sin marco y puertas que se esconden en la pared, grifería y electrodomésticos importados, domótica, y piscina y jardín al mismo nivel."
+    ],
+    "introAny": "Cada nivel es un tramo de las tipologías del Ministerio de Hacienda para este tipo de edificación, la tabla con la que todas las municipalidades valoran las edificaciones. Aquí están las tipologías, lo que cuesta el m² de cada una donde usted construye, y cómo pasamos de la tabla al número."
+  }
+}

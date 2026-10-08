@@ -1,0 +1,521 @@
+{
+ "_note": "Hacienda's description of each building type in use (Manual de Valores Base Unitarios por Tipología Constructiva 2023, section 6.1), summarised in Spanish and translated to English. Shown in the estimator's finish-level sheet.",
+ "types": {
+  "AP01": {
+   "es": "1 a 5 plantas, acabados económicos, un baño por apartamento",
+   "en": "1 to 5 storeys, economy finishes, one bathroom per apartment"
+  },
+  "AP02": {
+   "es": "1 a 10 plantas, dos dormitorios, acabados de mediana calidad, puede tener ascensor",
+   "en": "1 to 10 storeys, two bedrooms, medium finishes, may have a lift"
+  },
+  "AP03": {
+   "es": "1 a 15 plantas, acabados de buena calidad, dos baños y medio",
+   "en": "1 to 15 storeys, good finishes, two and a half bathrooms"
+  },
+  "AP04": {
+   "es": "1 a 15 plantas, acabados muy buenos, parqueo para dos vehículos por apartamento",
+   "en": "1 to 15 storeys, very good finishes, parking for two cars per apartment"
+  },
+  "AP05": {
+   "es": "1 a más de 15 plantas, acabados de excelente calidad, sistema contra incendios",
+   "en": "1 to more than 15 storeys, excellent finishes, fire protection system"
+  },
+  "AP06": {
+   "es": "1 a más de 15 plantas, lujo: mármol, muros cortina, aire acondicionado, elevadores",
+   "en": "1 to more than 15 storeys, luxury: marble, curtain walls, air conditioning, lifts"
+  },
+  "BO01": {
+   "es": "uno o varios contenedores reciclados",
+   "en": "one or more recycled containers"
+  },
+  "BO02": {
+   "es": "bloques y láminas, 100 a 300 m², alturas de 6 a 10 m",
+   "en": "blocks and sheet, 100 to 300 m², heights of 6 to 10 m"
+  },
+  "BO03": {
+   "es": "estructura metálica, unos 300 m², altura de 13,5 m, losa para cargas pesadas",
+   "en": "metal structure, about 300 m², 13.5 m high, slab for heavy loads"
+  },
+  "CB01": {
+   "es": "bambú y caña brava con mezzanine, baño externo, cocina compartida",
+   "en": "bamboo and cane with a mezzanine, outside bathroom, shared kitchen"
+  },
+  "CB02": {
+   "es": "contenedor sin ventanas usado como oficina de obra o de proyecto",
+   "en": "a windowless container used as a site or project office"
+  },
+  "CB03": {
+   "es": "contenedores reciclados de diseño variado, baño por dormitorio, aire acondicionado",
+   "en": "recycled containers of varied design, a bathroom per bedroom, air conditioning"
+  },
+  "CB04": {
+   "es": "formas orgánicas de mortero lanzado sobre armadura de acero, 1 planta",
+   "en": "organic shapes of sprayed mortar over steel mesh, 1 storey"
+  },
+  "CB05": {
+   "es": "tubo de concreto de 2,44 m de diámetro, baño y cocina compartidos",
+   "en": "a concrete pipe 2.44 m across, shared bathroom and kitchen"
+  },
+  "CB06": {
+   "es": "bloques de concreto, 1 o 2 plantas, fachada sencilla, un baño por cabina",
+   "en": "concrete blocks, 1 or 2 storeys, simple facade, one bathroom per cabin"
+  },
+  "CB07": {
+   "es": "bloques de concreto, 1 o 2 plantas, sala, cocina y dos dormitorios",
+   "en": "concrete blocks, 1 or 2 storeys, living room, kitchen and two bedrooms"
+  },
+  "CB08": {
+   "es": "bloques de concreto, 1 o 2 plantas, dos dormitorios, buenos acabados y terraza",
+   "en": "concrete blocks, 1 or 2 storeys, two bedrooms, good finishes and a terrace"
+  },
+  "CB09": {
+   "es": "mampostería con tapichel de madera fina, alturas dobles, 1 o 2 plantas",
+   "en": "masonry with a fine-timber gable, double heights, 1 or 2 storeys"
+  },
+  "CB10": {
+   "es": "bloques de concreto con ventanales corredizos, porcelanato, baño muy bueno",
+   "en": "concrete blocks with sliding glass walls, porcelain tile, very good bathroom"
+  },
+  "CB11": {
+   "es": "concreto expuesto aprovechando desniveles del terreno, maderas finas, baño muy bueno",
+   "en": "exposed concrete following the slope of the land, fine woods, very good bathroom"
+  },
+  "CB12": {
+   "es": "casa en árbol de madera hasta 25 m de altura, unidades unidas por puentes",
+   "en": "timber tree house up to 25 m high, units joined by bridges"
+  },
+  "CB13": {
+   "es": "estructura suspendida de madera o metal con paredes de lona, 1 o 2 plantas",
+   "en": "suspended timber or metal structure with canvas walls, 1 or 2 storeys"
+  },
+  "CB14": {
+   "es": "domo geodésico de tubo galvanizado y tela PVC, 1 planta",
+   "en": "geodesic dome of galvanized tube and PVC fabric, 1 storey"
+  },
+  "CB15": {
+   "es": "carpa de lona sobre estructura metálica elevada unos 7 m, baño de lujo con tina",
+   "en": "canvas tent on a metal structure raised about 7 m, luxury bathroom with a tub"
+  },
+  "CB16": {
+   "es": "estructura de metal y madera elevada unos 7 m, maderas finas, tres baños",
+   "en": "metal and timber structure raised about 7 m, fine woods, three bathrooms"
+  },
+  "CC01": {
+   "es": "plaza de 1 a 3 plantas, 15 a más de 50 locales con parqueo directo, diseño sencillo",
+   "en": "strip mall of 1 to 3 storeys, 15 to more than 50 shops with direct parking, simple design"
+  },
+  "CC02": {
+   "es": "plaza de 1 a 3 plantas, ascensor y en algunos casos escaleras eléctricas",
+   "en": "strip mall of 1 to 3 storeys, lift and in some cases escalators"
+  },
+  "CC03": {
+   "es": "mall de 1 a 3 plantas, 30 a más de 200 locales, parqueo bajo cubierta",
+   "en": "mall of 1 to 3 storeys, 30 to more than 200 shops, covered parking"
+  },
+  "CC04": {
+   "es": "mall de 1 a 3 plantas, área de comidas y cines, escaleras eléctricas",
+   "en": "mall of 1 to 3 storeys, food court and cinemas, escalators"
+  },
+  "CC05": {
+   "es": "mall de 2 a 4 plantas, más de 200 locales, bandas transportadoras",
+   "en": "mall of 2 to 4 storeys, more than 200 shops, travelators"
+  },
+  "CC06": {
+   "es": "mall de 4 a 5 plantas, más de 200 locales, acabados de excelente calidad",
+   "en": "mall of 4 to 5 storeys, more than 200 shops, excellent finishes"
+  },
+  "CH01": {
+   "es": "unos 42 m², madera de ciprés, dormitorios en mezzanine, diseño sencillo",
+   "en": "about 42 m², cypress timber, bedrooms in a mezzanine, simple design"
+  },
+  "CH02": {
+   "es": "1 o 2 plantas, 64 a 100 m², concreto o prefabricado, techo a dos aguas, acabado normal",
+   "en": "1 or 2 storeys, 64 to 100 m², concrete or prefabricated, gable roof, normal finish"
+  },
+  "CI01": {
+   "es": "edificio de cine independiente, alturas de 6 m o más, acústica especial, graderías incluidas",
+   "en": "freestanding cinema, heights of 6 m or more, special acoustics, seating tiers included"
+  },
+  "CL01": {
+   "es": "1 planta, salón comunal sencillo, sin cielos",
+   "en": "1 storey, simple community hall, no ceilings"
+  },
+  "CL02": {
+   "es": "1 o 2 plantas, bar, restaurante y salas de conferencia, ascensor, aire acondicionado",
+   "en": "1 or 2 storeys, bar, restaurant and meeting rooms, lift, air conditioning"
+  },
+  "CL03": {
+   "es": "1 a varias plantas, diseño elaborado, puede tener piscina interna",
+   "en": "1 to several storeys, elaborate design, may have an indoor pool"
+  },
+  "CP01": {
+   "es": "capilla con vitrales y artesonado, acabados excelentes",
+   "en": "chapel with stained glass and a coffered ceiling, excellent finishes"
+  },
+  "CÑ01": {
+   "es": "1 planta, 30 a 79 m², troncos o tablas de madera tratada, acabados sencillos",
+   "en": "1 storey, 30 to 79 m², treated logs or boards, simple finishes"
+  },
+  "CÑ02": {
+   "es": "1 o 2 plantas, 80 a 149 m², madera con enchapes de piedra, chimenea, acabados buenos",
+   "en": "1 or 2 storeys, 80 to 149 m², timber with stone cladding, fireplace, good finishes"
+  },
+  "CÑ03": {
+   "es": "1 o 2 plantas, 150 a 300 m², madera con mezzanine, deck de teca, acabados buenos",
+   "en": "1 or 2 storeys, 150 to 300 m², timber with mezzanine, teak deck, good finishes"
+  },
+  "EA01": {
+   "es": "aula aislada de 72 m², prefabricada, sin baños",
+   "en": "a freestanding 72 m² classroom, prefabricated, no toilets"
+  },
+  "EA02": {
+   "es": "aulas adosadas en pabellón, 72 m² por módulo (2 a 5 módulos), prefabricadas",
+   "en": "classrooms joined in a pavilion, 72 m² per module (2 to 5 modules), prefabricated"
+  },
+  "EA03": {
+   "es": "aula de 54 m² (módulo doble de 108 m²) con paredes de PVC rellenas de concreto",
+   "en": "54 m² classroom (a 108 m² double module) with PVC walls filled with concrete"
+  },
+  "EA04": {
+   "es": "módulos de aulas de una o más plantas, mampostería o prefabricado, dos baterías de baño",
+   "en": "classroom modules over one or more storeys, masonry or prefabricated, two toilet blocks"
+  },
+  "EA05": {
+   "es": "soda o comedor de 1 planta, prefabricado, un baño",
+   "en": "single-storey canteen, prefabricated, one toilet"
+  },
+  "EA06": {
+   "es": "soda o comedor de 1 planta, mampostería o concreto, dos baterías de baño",
+   "en": "single-storey canteen, masonry or concrete, two toilet blocks"
+  },
+  "EA07": {
+   "es": "edificio administrativo de 1 planta, prefabricado",
+   "en": "single-storey administration building, prefabricated"
+  },
+  "EA08": {
+   "es": "edificio administrativo de hasta 4 plantas, concreto armado",
+   "en": "administration building of up to 4 storeys, reinforced concrete"
+  },
+  "EA09": {
+   "es": "auditorio independiente para 250 personas o más, diseño acústico",
+   "en": "freestanding auditorium for 250 people or more, acoustic design"
+  },
+  "EB01": {
+   "es": "biblioteca de 1 planta, prefabricada",
+   "en": "single-storey library, prefabricated"
+  },
+  "EB02": {
+   "es": "biblioteca de varias plantas, mampostería o prefabricado",
+   "en": "library over several storeys, masonry or prefabricated"
+  },
+  "EC01": {
+   "es": "1 a 5 plantas, fachada sencilla, vitrinas en la primera planta, ascensor",
+   "en": "1 to 5 storeys, simple facade, shopfronts on the ground floor, lift"
+  },
+  "EC02": {
+   "es": "1 a 10 plantas, diseño en fachada, vitrinas amplias, acabados buenos",
+   "en": "1 to 10 storeys, designed facade, large shopfronts, good finishes"
+  },
+  "EC03": {
+   "es": "1 a más de 10 plantas, ventanas de piso a cielo, acabados de excelente calidad, ascensor",
+   "en": "1 to more than 10 storeys, floor-to-ceiling windows, excellent finishes, lift"
+  },
+  "EL01": {
+   "es": "laboratorio de química, física o similar, instalaciones especiales",
+   "en": "chemistry, physics or similar laboratory, special installations"
+  },
+  "EO01": {
+   "es": "1 a 5 plantas, mampostería, acabados sencillos, baños económicos",
+   "en": "1 to 5 storeys, masonry, simple finishes, economy bathrooms"
+  },
+  "EO02": {
+   "es": "1 a 5 plantas, concreto armado, acabados sencillos, sin ascensor",
+   "en": "1 to 5 storeys, reinforced concrete, simple finishes, no lift"
+  },
+  "EO03": {
+   "es": "1 a más de 5 plantas, primera planta de mayor altura, con ascensor, acabados sencillos",
+   "en": "1 to more than 5 storeys, a taller ground floor, lift, simple finishes"
+  },
+  "EO04": {
+   "es": "1 a más de 10 plantas, muro cortina de vidrio insulado, ascensor, buen acabado",
+   "en": "1 to more than 10 storeys, insulated glass curtain wall, lift, good finish"
+  },
+  "EO05": {
+   "es": "1 a más de 15 plantas, buenos acabados, planta eléctrica de emergencia, parqueo bajo techo",
+   "en": "1 to more than 15 storeys, good finishes, emergency generator, covered parking"
+  },
+  "EO06": {
+   "es": "1 a más de 15 plantas, muy buenos acabados, dos ascensores, muro cortina anodizado",
+   "en": "1 to more than 15 storeys, very good finishes, two lifts, anodized curtain wall"
+  },
+  "EO07": {
+   "es": "1 a más de 15 plantas, fachada de diseño especial, mármol en áreas comunes, sótanos de parqueo",
+   "en": "1 to more than 15 storeys, specially designed facade, marble in common areas, parking basements"
+  },
+  "EP01": {
+   "es": "parqueo abierto de una a varias plantas, losas de 26 cm",
+   "en": "open parking of one to several storeys, 26 cm slabs"
+  },
+  "EP02": {
+   "es": "parqueo de una a varias plantas, losas de 30 cm, cubierta usable como helipuerto",
+   "en": "parking of one to several storeys, 30 cm slabs, roof usable as a helipad"
+  },
+  "ER01": {
+   "es": "culto más salas, aulas y oficinas, mampostería, acabados de buena calidad",
+   "en": "worship hall plus rooms, classrooms and offices, masonry, good finishes"
+  },
+  "ER02": {
+   "es": "culto más salas, aulas y oficinas, concreto armado, acabados de muy buena calidad",
+   "en": "worship hall plus rooms, classrooms and offices, reinforced concrete, very good finishes"
+  },
+  "ER03": {
+   "es": "edificio principalmente de culto, acabados de muy buena calidad",
+   "en": "a building mainly for worship, very good finishes"
+  },
+  "EU01": {
+   "es": "edificio universitario de varias plantas con aulas, laboratorios, oficinas y biblioteca",
+   "en": "university building over several storeys with classrooms, labs, offices and a library"
+  },
+  "GA01": {
+   "es": "madera rolliza y láminas de hierro, sin piso ni baño",
+   "en": "round timber and iron sheet, no floor or toilet"
+  },
+  "GA02": {
+   "es": "estructura metálica y láminas, piso de concreto",
+   "en": "metal structure and sheet, concrete floor"
+  },
+  "GA03": {
+   "es": "bloques de concreto o prefabricado, piso de concreto, portones corredizos",
+   "en": "concrete blocks or prefabricated, concrete floor, sliding gates"
+  },
+  "GM01": {
+   "es": "gimnasio deportivo con cancha y graderías de concreto, sin cielos",
+   "en": "sports hall with a court and concrete stands, no ceilings"
+  },
+  "GM02": {
+   "es": "gimnasio de máquinas y aeróbicos, baños con duchas",
+   "en": "gym with machines and aerobics rooms, toilets with showers"
+  },
+  "GM03": {
+   "es": "muro cortina y ventanas de piso a cielo, acabados de muy buena calidad",
+   "en": "curtain wall and floor-to-ceiling windows, very good finishes"
+  },
+  "HP01": {
+   "es": "atención primaria (EBAIS), 1 o 2 plantas, consultorios y entrega de medicamentos",
+   "en": "primary care (EBAIS), 1 or 2 storeys, consulting rooms and a pharmacy counter"
+  },
+  "HP02": {
+   "es": "sede de área de salud: laboratorio, imágenes, emergencias, 1 a varias plantas",
+   "en": "health area centre: laboratory, imaging, emergencies, 1 to several storeys"
+  },
+  "HP03": {
+   "es": "hospital con encamados, quirófanos y casa de máquinas, 1 a varias plantas",
+   "en": "hospital with wards, operating theatres and a plant room, 1 to several storeys"
+  },
+  "HR01": {
+   "es": "1 planta, áreas de convivencia y dormitorios accesibles (Ley 7600), acabados normales",
+   "en": "1 storey, shared areas and accessible bedrooms (Law 7600), normal finishes"
+  },
+  "HR02": {
+   "es": "1 o 2 plantas, consultorio y enfermería, ascensor, acabados buenos",
+   "en": "1 or 2 storeys, consulting room and nursing station, lift, good finishes"
+  },
+  "HR03": {
+   "es": "1 o 2 plantas, consultorios de especialidades y enfermería por planta, acabados de buena calidad",
+   "en": "1 or 2 storeys, specialist rooms and a nursing station per floor, good finishes"
+  },
+  "HT01": {
+   "es": "1 a 3 plantas, diseño sencillo, baños compartidos por planta, sin ascensor",
+   "en": "1 to 3 storeys, simple design, shared bathrooms on each floor, no lift"
+  },
+  "HT02": {
+   "es": "1 a 3 plantas, baño en cada habitación, restaurante sencillo, sin ascensor",
+   "en": "1 to 3 storeys, a bathroom in each room, a simple restaurant, no lift"
+  },
+  "HT03": {
+   "es": "1 a 3 plantas, restaurante y salas de conferencia, ascensor",
+   "en": "1 to 3 storeys, restaurant and meeting rooms, lift"
+  },
+  "HT04": {
+   "es": "varias plantas, bar y uno o dos restaurantes, aire acondicionado, ascensores",
+   "en": "several storeys, a bar and one or two restaurants, air conditioning, lifts"
+  },
+  "HT05": {
+   "es": "varias plantas, diseño de lujo, mármol, gimnasio o casino, varios ascensores",
+   "en": "several storeys, luxury design, marble, gym or casino, several lifts"
+  },
+  "LC01": {
+   "es": "contenedor adaptado de uso temporal, 1 o 2 plantas",
+   "en": "an adapted container for temporary use, 1 or 2 storeys"
+  },
+  "LC02": {
+   "es": "1 o 2 plantas, bloques y madera, áreas pequeñas, acabados económicos",
+   "en": "1 or 2 storeys, blocks and timber, small areas, economy finishes"
+  },
+  "LC03": {
+   "es": "1 o 2 plantas, vitrinas de aluminio sencillas, acabados de mediana calidad",
+   "en": "1 or 2 storeys, simple aluminium shopfronts, medium finishes"
+  },
+  "LC04": {
+   "es": "1 o 2 plantas, amplias vitrinas, cortina metálica, bodega posterior",
+   "en": "1 or 2 storeys, large shopfronts, metal shutter, back storeroom"
+  },
+  "LC05": {
+   "es": "1 o 2 plantas, concreto armado, vitrinas anodizadas, rótulos luminosos",
+   "en": "1 or 2 storeys, reinforced concrete, anodized shopfronts, illuminated signs"
+  },
+  "LC06": {
+   "es": "1 o 2 plantas, alturas dobles, fachadas de mármol o granito, acabados muy buenos",
+   "en": "1 or 2 storeys, double heights, marble or granite facades, very good finishes"
+  },
+  "MO01": {
+   "es": "1 planta, prefabricado, baño económico, cochera de lastre",
+   "en": "1 storey, prefabricated, economy bathroom, gravel carport"
+  },
+  "MO02": {
+   "es": "1 planta, bloques o prefabricado, baño normal",
+   "en": "1 storey, blocks or prefabricated, normal bathroom"
+  },
+  "MO03": {
+   "es": "1 o 2 plantas, cortina metálica, aire acondicionado, baño bueno",
+   "en": "1 or 2 storeys, metal shutter, air conditioning, good bathroom"
+  },
+  "MO04": {
+   "es": "1 o 2 plantas, buen diseño arquitectónico, aire acondicionado, baño muy bueno",
+   "en": "1 or 2 storeys, good architectural design, air conditioning, very good bathroom"
+  },
+  "NA01": {
+   "es": "láminas de hierro galvanizado, alturas de 3 m o más, construcción sencilla",
+   "en": "galvanized iron sheet, heights of 3 m or more, simple construction"
+  },
+  "NA02": {
+   "es": "zócalo de bloques y láminas, alturas de 6 m o más, oficina",
+   "en": "block plinth and sheet, heights of 6 m or more, an office"
+  },
+  "NA03": {
+   "es": "alturas de 8 m o más, piso de concreto de 30 cm",
+   "en": "heights of 8 m or more, 30 cm concrete floor"
+  },
+  "NA04": {
+   "es": "paredes de bloques, alturas de 12 m o más, planta eléctrica y líneas de frío",
+   "en": "block walls, heights of 12 m or more, generator and cold lines"
+  },
+  "NA05": {
+   "es": "concreto prefabricado, alturas de 16 m o más, posible sótano y ascensor",
+   "en": "precast concrete, heights of 16 m or more, possible basement and lift"
+  },
+  "RE01": {
+   "es": "1 o 2 plantas, cocina enchapada, acabados de mediana calidad",
+   "en": "1 or 2 storeys, tiled kitchen, medium finishes"
+  },
+  "RE02": {
+   "es": "1 o 2 plantas, cocina industrial con cuartos fríos, área de juegos de doble altura",
+   "en": "1 or 2 storeys, industrial kitchen with cold rooms, double-height play area"
+  },
+  "RE03": {
+   "es": "1 o 2 plantas, acabados de muy buena calidad, transformador propio, área de juegos infantiles",
+   "en": "1 or 2 storeys, very good finishes, own transformer, children's play area"
+  },
+  "RE04": {
+   "es": "hasta 3 plantas, diseño elegante, maderas finas, hornos de ladrillo refractario",
+   "en": "up to 3 storeys, elegant design, fine woods, firebrick ovens"
+  },
+  "TE01": {
+   "es": "escenario y gradería de madera o butacas, acabados de regular calidad",
+   "en": "stage and timber tiers or seats, fair finishes"
+  },
+  "TE02": {
+   "es": "concreto armado, gradería de concreto con butacas, cafetería, materiales acústicos",
+   "en": "reinforced concrete, concrete tiers with seats, café, acoustic materials"
+  },
+  "VA01": {
+   "es": "1 planta, paredes de adobe y teja de barro, acabados muy sencillos (construcción histórica)",
+   "en": "1 storey, adobe walls and clay tile, very simple finishes (historic construction)"
+  },
+  "VB01": {
+   "es": "1 planta, bambú recubierto con mortero, acabados muy sencillos",
+   "en": "1 storey, bamboo rendered with mortar, very simple finishes"
+  },
+  "VC05": {
+   "es": "1 o 2 plantas, 210 a 250 m², acabados de buena calidad, diseño especial de fachada, tres baños más uno de servicio",
+   "en": "1 or 2 storeys, 210 to 250 m², good-quality finishes, a specially designed facade, three bathrooms plus a service one"
+  },
+  "VC06": {
+   "es": "1 o 2 plantas, 240 a 300 m², concreto colado en sitio, acabados muy buenos, cuatro baños",
+   "en": "1 or 2 storeys, 240 to 300 m², concrete cast on site, very good finishes, four bathrooms"
+  },
+  "VC07": {
+   "es": "1 o 2 plantas, 290 a 350 m², acabados de muy buena calidad, fachadas especialmente diseñadas",
+   "en": "1 or 2 storeys, 290 to 350 m², very good finishes, specially designed facades"
+  },
+  "VC08": {
+   "es": "1 o más plantas, 340 a 400 m², acabados de excelente calidad, baños de lujo",
+   "en": "1 or more storeys, 340 to 400 m², excellent finishes, luxury bathrooms"
+  },
+  "VC09": {
+   "es": "1 o más plantas, 390 m² o más, residencia de lujo con alto porcentaje de materiales importados",
+   "en": "1 or more storeys, 390 m² or more, a luxury residence with a high share of imported materials"
+  },
+  "VE01": {
+   "es": "1 planta, 24 a 90 m², módulos de acero ensamblados, sistema de control inteligente",
+   "en": "1 storey, 24 to 90 m², assembled steel modules, smart control system"
+  },
+  "VH01": {
+   "es": "1 planta, paredes de caña brava rellena de barro, teja de barro, acabados muy sencillos",
+   "en": "1 storey, cane walls filled with mud, clay tile, very simple finishes"
+  },
+  "VI01": {
+   "es": "1 planta, 36 a 42 m² de base, forma piramidal con marcos de metal",
+   "en": "1 storey, 36 to 42 m² at the base, pyramid shape on metal frames"
+  },
+  "VL01": {
+   "es": "1 o 2 plantas con posible mezzanine, 200 a 250 m², espacios abiertos de estilo industrial",
+   "en": "1 or 2 storeys with a possible mezzanine, 200 to 250 m², open industrial-style spaces"
+  },
+  "VM01": {
+   "es": "1 planta, 36 a 90 m², forro sencillo de madera, acabados económicos",
+   "en": "1 storey, 36 to 90 m², single timber cladding, economy finishes"
+  },
+  "VM02": {
+   "es": "1 o 2 plantas, 80 a 150 m², doble forro de tablilla, acabados de mediana calidad",
+   "en": "1 or 2 storeys, 80 to 150 m², double board cladding, medium finishes"
+  },
+  "VM03": {
+   "es": "1 o 2 plantas, 140 a 200 m², maderas de buena calidad, estilo victoriano, acabados buenos",
+   "en": "1 or 2 storeys, 140 to 200 m², good timbers, Victorian style, good finishes"
+  },
+  "VM04": {
+   "es": "1 o 2 plantas, 190 a 400 m², maderas de muy buena calidad, diseño victoriano elaborado, baños de lujo",
+   "en": "1 or 2 storeys, 190 to 400 m², very good timbers, elaborate Victorian design, luxury bathrooms"
+  },
+  "VP01": {
+   "es": "1 planta, 45 m² o más, paneles de PVC espumado rellenos de concreto",
+   "en": "1 storey, 45 m² or more, foamed PVC panels filled with concrete"
+  },
+  "VP02": {
+   "es": "1 planta, 40 a 100 m², bloques de plástico reciclado, cochera para un vehículo",
+   "en": "1 storey, 40 to 100 m², recycled plastic blocks, a carport for one car"
+  },
+  "VR01": {
+   "es": "un solo contenedor (13,84 o 28,64 m²), acabados económicos, un baño",
+   "en": "a single container (13.84 or 28.64 m²), economy finishes, one bathroom"
+  },
+  "VR02": {
+   "es": "varios contenedores unidos o superpuestos en una o más plantas, acabados de buena calidad",
+   "en": "several containers joined or stacked over one or more storeys, good finishes"
+  },
+  "VS01": {
+   "es": "1 planta, 100 a 150 m², perfiles de acero galvanizado y láminas, acabados de regular calidad",
+   "en": "1 storey, 100 to 150 m², galvanized steel studs and boards, fair finishes"
+  },
+  "VS02": {
+   "es": "1 o 2 plantas, 140 a 350 m², acabados de buena calidad, fachadas especialmente diseñadas",
+   "en": "1 or 2 storeys, 140 to 350 m², good finishes, specially designed facades"
+  },
+  "VV01": {
+   "es": "1 o más plantas, 390 m² o más, muros cortina de vidrio, diseño minimalista de lujo",
+   "en": "1 or more storeys, 390 m² or more, glass curtain walls, minimalist luxury design"
+  }
+ }
+}

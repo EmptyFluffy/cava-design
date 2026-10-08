@@ -36,6 +36,8 @@
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, que aquí producen unos ${kwh} kWh al año.`,
     am2: 'por m²', aft2: 'por pie²',
+    deckOut: (m2, ft2, cost) => `${m2} m² (${ft2} pie²) · cerca de ${cost}, entre un deck de PVC sobre pilotes y una pérgola de madera`, deckNone: 'Sin terrazas ni decks',
+    low: 'bajo', likely2: 'probable', high2: 'alto', inLevel: 'En el nivel', here: (t) => `En ${t}`, nowhere: 'Cifras nacionales',
     landNote: (t, L) => L.src === 'market' ? `Terreno a lo que piden los lotes en ${t}: US$${L.r[0]} a ${L.r[2]} el m², la mitad central de ${L.n} lotes en venta (octubre de 2026).` : `En ${t} hay pocos lotes anunciados: el terreno va a los valores residenciales de Hacienda, US$${L.r[0]} a ${L.r[2]} el m² (edición ${L.y}).`,
     landPapagayo: 'En la Península Papagayo el terreno es una concesión del ICT, no se compra: queda fuera.',
     landNone: 'Aquí no tenemos un precio del terreno con fuente: queda fuera.',
@@ -64,6 +66,8 @@
     },
     solarNote: (kwp, kwh) => `${kwp} kWp, which make about ${kwh} kWh a year here.`,
     am2: 'a m²', aft2: 'a ft²',
+    deckOut: (m2, ft2, cost) => `${m2} m² (${ft2} ft²) · about ${cost}, between PVC decking on piers and a timber pergola`, deckNone: 'No terraces or decks',
+    low: 'low', likely2: 'likely', high2: 'high', inLevel: 'In level', here: (t) => `In ${t}`, nowhere: 'National figures',
     landNote: (t, L) => L.src === 'market' ? `Land at what lots ask in ${t}: US$${L.r[0]} to ${L.r[2]} a m², the middle half of ${L.n} lots for sale (October 2026).` : `Few lots are listed in ${t}: the land goes at Hacienda's residential values, US$${L.r[0]} to ${L.r[2]} a m² (${L.y} edition).`,
     landPapagayo: 'In Península Papagayo the land is an ICT concession and is not sold: it is left out.',
     landNone: 'We have no sourced land price here: it is left out.',
@@ -72,6 +76,7 @@
   };
 
   let D = null; // costs.json
+  const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const fmtUsd = (n) => `US$${Math.round(n / 1000) >= 1 ? (Math.round(n / 1000) * 1000).toLocaleString('en-US') : Math.round(n).toLocaleString('en-US')}`;
   const fmtCrc = (n) => `₡${(Math.round((n * D.fx.crcPerUsd) / 1e6 * 10) / 10).toLocaleString('en-US')} ${ES ? 'millones' : 'million'}`;
   const money = (n) => (state.cur === 'crc' ? fmtCrc(n) : fmtUsd(n));
@@ -519,6 +524,8 @@
     renderBudget();
     renderWork(e);
     $('[data-est-area-out]').textContent = `${num(state.area)} m² · ${num(state.area * 10.7639)} ${T.ft2}`;
+    const dk = +state.deck;
+    $('[data-est-deck-out]').textContent = dk ? T.deckOut(num(dk), num(dk * 10.7639), money(D.deck.perM2[1] * dk * placeOf(townOf()))) : T.deckNone;
     toUrl();
     // the printed copy carries the date and the link that reopens this estimate
     const pd = $('[data-est-print-date]');
@@ -616,6 +623,48 @@
   clist.addEventListener('mousemove', (e) => { const li = e.target.closest('.est__combo-opt'); if (li && +li.dataset.i !== active) setActive(+li.dataset.i); });
   caret.addEventListener('mousedown', (e) => e.preventDefault());
   caret.addEventListener('click', () => { if (clist.hidden) cq.focus(); else closeList(); });
+
+  // ---------- what each finish level means: a sheet with the ranges, Hacienda's words and the arithmetic ----------
+  function levelsSheet() {
+    const L = D.levels[ES ? 'es' : 'en'];
+    const pr = prog();
+    const town = townOf(), place = placeOf(town);
+    const QS = ['standard', 'high', 'luxury'];
+    const bands = QS.map((q) => [q, D.perM2[pr.key][q].map((v) => v * place)]);
+    const tier = D.tierCodes[pr.key];
+    const codes = [...new Set(tier ? tier.standard.concat(tier.high, tier.luxury).flat(2) : pr.codes)].filter((c) => D.codes[c]).sort((a, b) => D.codes[a] - D.codes[b]);
+    const cv = (c) => D.codes[c] * place;
+    const all = [...codes.map(cv), ...bands.flatMap(([, b]) => b)];
+    const lo = Math.min(...all) * 0.92, hi = Math.max(...all) * 1.04;
+    const x = (v) => `${(((v - lo) / (hi - lo)) * 100).toFixed(2)}%`;
+    const usd = (v) => (state.cur === 'crc' ? `₡${num((v * D.fx.crcPerUsd) / 1000)}k` : `US$${num(v)}`);
+    const inBand = (v, b) => v >= b[0] - 1 && v <= b[2] + 1;
+    // the ranges, on one scale, with Hacienda's types as dots above
+    const bars = `<figure class="lv-bars">
+      <figcaption class="label">${esc(L.bars)} · ${town ? esc(T.here(town.name)) : T.nowhere}</figcaption>
+      <div class="lv-dots">${codes.map((c) => `<span class="lv-dot" style="left:${x(cv(c))}" title="${c}: ${usd(cv(c))}"><i></i><b>${c}</b></span>`).join('')}</div>
+      ${bands.map(([q, b]) => `<div class="lv-row${q === state.quality ? ' is-on' : ''}"><span class="lv-name">${esc(L.levels[q])}</span><span class="lv-track"><span class="lv-band" style="left:${x(b[0])};width:calc(${x(b[2])} - ${x(b[0])})"></span><span class="lv-likely" style="left:${x(b[1])}"></span></span><span class="lv-fig">${usd(b[0])} ${ES ? 'a' : 'to'} ${usd(b[2])}<em>${T.likely2} ${usd(b[1])}</em></span></div>`).join('')}
+      <p class="note">${esc(L.barsNote)}</p>
+    </figure>`;
+    // houses: the comparison table and our reading; any other type: Hacienda's types and words
+    let detail;
+    if (pr.key === 'house') {
+      detail = `<section class="lv-sec"><h3 class="label">${esc(L.tableTitle)}</h3>
+        <div class="lv-table" role="table">${[['', ...QS.map((q) => L.levels[q])], ...L.rows].map((r, i) => `<div class="lv-tr${i === 0 ? ' lv-th' : ''}" role="row">${r.map((c, j) => `<span role="${i === 0 || j === 0 ? 'rowheader' : 'cell'}" class="${j > 0 && QS[j - 1] === state.quality ? 'is-on' : ''}">${esc(c)}</span>`).join('')}</div>`).join('')}</div></section>
+        <section class="lv-sec"><h3 class="label">${esc(L.coastTitle)}</h3><ol class="lv-coast">${QS.map((q, i) => `<li class="${q === state.quality ? 'is-on' : ''}"><b>${esc(L.levels[q])}</b><p>${esc(L.coast[i])}</p></li>`).join('')}</ol></section>`;
+    } else {
+      detail = `<section class="lv-sec"><h3 class="label">${esc(L.codesTitle)}</h3><ol class="lv-codes">${codes.map((c) => `<li><span class="lv-code">${c}</span><span class="lv-v">${usd(cv(c))}</span><span class="lv-note">${esc(D.notes[c]?.[ES ? 'es' : 'en'] ?? '')}</span><span class="lv-in">${bands.filter(([, b]) => inBand(cv(c), b)).map(([q]) => `<i class="${q === state.quality ? 'is-on' : ''}">${esc(L.levels[q])}</i>`).join('')}</span></li>`).join('')}</ol></section>`;
+    }
+    // the arithmetic, for one of the types of the chosen level
+    const ex = codes.find((c) => inBand(cv(c), bands.find(([q]) => q === state.quality)[1])) ?? codes[0];
+    const [crc, kind] = D.codesCrc[ex];
+    const idx = D.method.index[kind], m = D.method.margin, fx = D.method.fx;
+    const steps = [`₡${num(crc)} (${ex})`, `× ${idx.toFixed(4)} = ₡${num(crc * idx)}`, `× ${(1 + m).toFixed(2)} = ₡${num(crc * idx * (1 + m))}`, `÷ ${fx.toFixed(2)} = US$${num((crc * idx * (1 + m)) / fx)}`, `× ${place.toFixed(2)} = US$${num(((crc * idx * (1 + m)) / fx) * place)}`];
+    const how = `<section class="lv-sec"><h3 class="label">${esc(L.how)}</h3><ol class="lv-how">${L.howSteps.map((t, i) => `<li><span>${esc(t)}</span><b>${steps[i]}</b></li>`).join('')}</ol></section>`;
+    window.CAVA_SHEET?.open({ kicker: L.kicker, title: L.title, html: `<p class="isheet__lead">${esc(pr.key === 'house' ? L.intro : L.introAny)}</p>${bars}${detail}${how}` });
+    document.querySelector('.isheet')?.classList.add('isheet--wide');
+  }
+  $('[data-est-levels]')?.addEventListener('click', (e) => { e.preventDefault(); if (D) levelsSheet(); });
 
   // ---------- wiring ----------
   form.addEventListener('input', update);
