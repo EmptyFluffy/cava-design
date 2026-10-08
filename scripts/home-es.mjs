@@ -36,6 +36,7 @@ export const PAIRS = [
   ['>Projects</a>', '>Proyectos</a>'],
   ['>Studio</a>', '>Estudio</a>'],
   ['>Process</a>', '>Proceso</a>'],
+  ['>Identity</a>', '>Identidad</a>'],
   ['>Contact</a>', '>Contacto</a>'],
   ['>Home</a>', '>Inicio</a>'],
   ['Get in touch <span', 'Escríbanos <span'],

@@ -181,6 +181,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/studio/"/>
   </url>
   <url>
+    <loc>https://cava.design/studio/identity/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/identity/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/identidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/studio/identity/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/estudio/identidad/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/identity/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/identidad/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/studio/identity/"/>
+  </url>
+  <url>
     <loc>https://cava.design/architects/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/architects/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/arquitectos/"/>

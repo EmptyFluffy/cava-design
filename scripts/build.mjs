@@ -201,7 +201,8 @@ function footer(lang, up, paths) {
 ${services.length ? `      <a class="footer__link" href="${up}${servicesPath(lang)}">${SVT[lang].link}</a>
 ` : ''}      <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
       <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
-      <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
+${identity ? `      <a class="footer__link" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
+` : ''}      <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
 ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
 ` : ''}${costs ? `      <a class="footer__link" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
 ` : ''}${land ? `      <a class="footer__link" href="${up}${landPath(lang)}">${LT[lang].link}</a>
@@ -386,6 +387,105 @@ ${footer(lang, up, paths)}${waButton(lang, waText)}${end}`;
 // A question that opens: the answer slides open and shut (site/assets/js/accordion.js).
 const faqItem = (q, a) => `        <details class="faq__item"><summary class="faq__q"><h3>${esc(q)}</h3><span class="faq__sign" aria-hidden="true"></span></summary><div class="faq__a"><p class="large">${a}</p></div></details>`;
 
+// ---------- /studio/identity/ and /es/estudio/identidad/: how the mark was drawn ----------
+// Text in data/identity.json; the explorations are SVGs exported from the studio's Illustrator file;
+// the diagrams below are drawn here from the mark's geometry: a half circle of radius 100 and the
+// triangle (100,0) (200,0) (200,200), which meet at a point at the top.
+const IDENTITY_PATH = join(ROOT, 'data', 'identity.json');
+const identity = existsSync(IDENTITY_PATH) ? JSON.parse(readFileSync(IDENTITY_PATH, 'utf8')) : null;
+const identityPath = (lang) => `${studioPath(lang)}${lang === 'en' ? 'identity' : 'identidad'}/`;
+const IDM = { disc: 'M100 0A100 100 0 0 0 100 200Z', tri: 'M100 0H200V200Z', void: 'M100 0V200H200Z' };
+const VOID = '#e07b52';
+// the word in full, from the Illustrator file (height 176): C, a void (A), V, a void (A), and the closing form
+const IDW = { c: 'M88 0A88 88 0 0 0 88 176Z', v: 'M88 0H257.6L175 176Z', end: 'M220.3 0H254.4A88 88 0 0 1 254.4 176H220.3Z', a1: 'M88 0V176H175Z', a2: 'M220.3 79.5L175 176H220.3Z' };
+function identityFigures(lang, S) {
+  const t = (x, y, s, o = '') => `<text x="${x}" y="${y}" class="idn-t"${o}>${s}</text>`;
+  const voids = `<div class="idn-pair">
+        <svg viewBox="-20 -10 240 270" role="img" aria-label="${esc(S.voids.key)}"><path d="${IDM.void}" fill="${VOID}"/><path d="${IDM.disc}"/><path d="${IDM.tri}"/>
+          <path class="idn-tick" d="M50 215v12M133 215v12"/>${t(50, 252, 'C', ' text-anchor="middle"')}${t(133, 252, 'A', ' text-anchor="middle" fill="' + VOID + '"')}</svg>
+        <svg viewBox="-12 -10 366 246" role="img" aria-label="${esc(S.voids.text[1])}"><path d="${IDW.a1}" fill="${VOID}"/><path d="${IDW.a2}" fill="${VOID}"/><path d="${IDW.c}"/><path d="${IDW.v}"/><path d="${IDW.end}"/>
+          <path class="idn-tick" d="M44 190v12M117 190v12M172 190v12M205 190v12"/>${t(44, 228, 'C', ' text-anchor="middle"')}${t(117, 228, 'A', ' text-anchor="middle" fill="' + VOID + '"')}${t(172, 228, 'V', ' text-anchor="middle"')}${t(205, 228, 'A', ' text-anchor="middle" fill="' + VOID + '"')}</svg>
+      </div>
+      <p class="note idn-key"><i style="background:#080807"></i><i style="background:${VOID}"></i>${esc(S.voids.key)}</p>`;
+  const gestalt = `<div class="idn-pair idn-pair--sq">
+        <figure><svg viewBox="-60 -60 320 320" role="img" aria-label="${esc(S.gestalt.pos)}"><rect x="-60" y="-60" width="320" height="320" fill="#fcfcfc"/><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><figcaption class="label">${esc(S.gestalt.pos)}</figcaption></figure>
+        <figure><svg viewBox="-60 -60 320 320" role="img" aria-label="${esc(S.gestalt.neg)}"><rect x="-60" y="-60" width="320" height="320" fill="#080807"/><path d="${IDM.void}" fill="#fcfcfc"/><path d="M100 0A100 100 0 0 1 100 200Z" fill="#fcfcfc" opacity="0"/></svg><figcaption class="label">${esc(S.gestalt.neg)}</figcaption></figure>
+      </div>`;
+  const g = (d, cls = 'idn-g') => `<path class="${cls}" d="${d}"/>`;
+  const grid = `<svg class="idn-grid" viewBox="-70 -70 340 340" role="img" aria-label="${esc(S.grid.text[0])}">
+        <path d="${IDM.disc}"/><path d="${IDM.tri}"/>
+        ${g('M0 0H200V200H0Z')}${g('M100 -40V240M-40 100H240', 'idn-g idn-g--axis')}
+        <circle class="idn-g idn-g--dash" cx="100" cy="100" r="100"/><circle class="idn-g idn-g--dash" cx="200" cy="100" r="100" opacity=".45"/>
+        ${g('M90 -20L210 220', 'idn-g idn-g--diag')}${g('M100 100H0', 'idn-g idn-g--dim')}
+        <circle cx="100" cy="0" r="4" class="idn-dot"/>
+        ${g('M0 -38H200M0 -44V-32M200 -44V-32', 'idn-g idn-g--dim')}${g('M238 0V200M232 0H244M232 200H244', 'idn-g idn-g--dim')}
+        ${t(100, -48, '2r', ' text-anchor="middle" class="idn-t idn-t--g"')}${t(252, 105, '2r', ' class="idn-t idn-t--g"')}${t(50, 92, 'r', ' text-anchor="middle" class="idn-t idn-t--g"')}${t(214, 232, '2 : 1', ' class="idn-t idn-t--g"')}
+      </svg>`;
+  const mark = `<div class="idn-marks">
+        <figure class="idn-tile"><svg viewBox="-70 -70 340 340" role="img" aria-label="${esc(S.mark.clear)}"><rect class="idn-g idn-g--dash" x="-50" y="-50" width="300" height="300"/><path d="${IDM.disc}"/><path d="${IDM.tri}"/>${t(-46, -56, 'r/2', ' class="idn-t idn-t--g idn-t--s"')}</svg><figcaption class="label">${esc(S.mark.clear)}</figcaption></figure>
+        <figure class="idn-tile idn-tile--dark"><svg viewBox="-70 -70 340 340" aria-hidden="true"><path d="${IDM.disc}" fill="#fcfcfc"/><path d="${IDM.tri}" fill="#fcfcfc"/></svg><figcaption class="label">${lang === 'en' ? 'White on black' : 'Blanco sobre negro'}</figcaption></figure>
+        <figure class="idn-tile idn-tile--sizes"><div>${[64, 32, 16].map((n) => `<svg width="${n}" height="${n}" viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg>`).join('')}</div><figcaption class="label">${esc(S.mark.sizes)}</figcaption></figure>
+      </div>`;
+  const T = S.type;
+  const type = `<div class="idn-type">
+        <ul class="idn-weights">${T.weights.map(([w, n, use]) => `<li><span class="idn-aa" style="font-weight:${w}">Aa</span><span class="label">${w} · ${esc(n)}</span><span class="note">${esc(use)}</span></li>`).join('')}</ul>
+        <ol class="idn-scale">${T.scale.map(([n, x], i) => `<li><span class="label idn-scale__n">${esc(n)}</span><span class="idn-scale__x idn-scale__x--${i}">${esc(x)}</span></li>`).join('')}</ol>
+      </div>`;
+  const core = [['Black', 'Negro', '#080807'], ['White', 'Blanco', '#fcfcfc'], ['Light grey', 'Gris claro', '#f1f0ee'], ['Grey', 'Gris', '#dcddde'], ['Mid grey', 'Gris medio', '#8b8b88'], ['Dark grey', 'Gris oscuro', '#545454']];
+  const data = ['#5e4b35', '#3a3d40', '#b4502e', '#4f7fa8', '#dcc7a1', '#2c7a73', '#8fc6db', '#b47b45', '#e6b53f', '#6c9a52'];
+  const land = ['#f1ebdf', '#e0cfae', '#c9aa76', '#a9824b', '#82592b', '#55381a', '#24170a'];
+  const colour = `<div class="idn-colour">
+        <p class="label">${esc(S.colour.core)}</p>
+        <ul class="idn-sw idn-sw--core">${core.map(([en, es, hex]) => `<li><i style="background:${hex}"></i><b>${lang === 'en' ? en : es}</b><span>${hex}</span></li>`).join('')}</ul>
+        <p class="label">${esc(S.colour.data)}</p>
+        <ul class="idn-sw idn-sw--data">${data.map((hex) => `<li><i style="background:${hex}"></i><span>${hex}</span></li>`).join('')}</ul>
+        <ul class="idn-ramp">${land.map((hex) => `<li style="background:${hex}"></li>`).join('')}</ul>
+      </div>`;
+  return { voids, gestalt, grid, mark, type, colour };
+}
+function identityPage(lang) {
+  const D = identity[lang];
+  const S = D.sections;
+  const paths = { en: identityPath('en'), es: identityPath('es') };
+  const up = upFrom(paths[lang]);
+  const F = identityFigures(lang, S);
+  const sec = (key, n, body) => `    <section class="tw__sec grid idn-sec" aria-labelledby="idn-${key}">
+      <h2 class="label tw__label" id="idn-${key}">(${pad(n)}) ${esc(S[key].label.replace(/[()]/g, ''))}</h2>
+      <div class="tw__text idn-text">
+        <h3 class="idn-h">${esc(S[key].title)}</h3>
+${S[key].text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+      <div class="idn-fig">
+      ${body}
+      </div>
+    </section>
+`;
+  const tries = identity.explorations.map((g) => `<div class="idn-tries__group">
+        <p class="label">${esc(S.tries.groups[g.group])}</p>
+        <ol class="idn-tries">${g.ids.map((id) => `<li${id === 'e20' ? ' class="is-final"' : ''}><img src="${up}assets/img/identity/${id}.svg?v=${assetVer(`assets/img/identity/${id}.svg`)}" alt="" loading="lazy" decoding="async"></li>`).join('')}</ol>
+      </div>`).join('\n      ');
+  const g10 = `${up}assets/img/process/G10`;
+  const use = `<div class="idn-use">
+        <figure><img src="${g10}-1600.webp" srcset="${g10}-800.webp 800w, ${g10}-1600.webp 1600w" sizes="(min-width: 768px) 30vw, 92vw" width="1600" height="1066" loading="lazy" decoding="async" alt="${esc(S.use.captions[0])}"><figcaption class="label">${esc(S.use.captions[0])}</figcaption></figure>
+        <figure><img src="${up}assets/img/identity/sign-1600.webp" srcset="${up}assets/img/identity/sign-800.webp 800w, ${up}assets/img/identity/sign-1600.webp 1600w" sizes="(min-width: 768px) 30vw, 92vw" width="1600" height="1066" loading="lazy" decoding="async" alt="${esc(S.use.captions[1])}"><figcaption class="label">${esc(S.use.captions[1])}</figcaption></figure>
+        <figure><div class="idn-tab"><span class="idn-tab__bar"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><b>Studio CAVA</b><i>×</i></span><span class="idn-tab__url">cava.design</span></div><figcaption class="label">${esc(S.use.captions[2])}</figcaption></figure>
+      </div>`;
+  const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: D.h1.join(' '), description: D.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, publisher: { '@type': 'Organization', name: 'Studio CAVA', url: ORIGIN } };
+  return head(lang, { title: D.title, description: D.description, paths, image: `${imgBase('portland-house', 3)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'studio')}
+<main class="page">
+  <article class="mf idn" aria-labelledby="idn-title">
+    <header class="mf__head grid">
+      <p class="label mf__label"><a class="ulink" href="${up}${studioPath(lang)}">${UI[lang].nav.studio}</a> ${esc(D.label)}</p>
+      <h1 class="display mf__title" id="idn-title"><span>${esc(D.h1[0])}</span><span class="right">${esc(D.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(D.intro)}</p>
+    </header>
+    <figure class="idn-hero" aria-hidden="true"><svg viewBox="-110 -60 420 320"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg></figure>
+${sec('brief', 1, '')}${sec('tries', 2, tries)}${sec('voids', 3, F.voids)}${sec('gestalt', 4, F.gestalt)}${sec('grid', 5, F.grid)}${sec('mark', 6, F.mark)}${sec('type', 7, F.type)}${sec('colour', 8, F.colour)}${sec('use', 9, use)}  </article>
+${contact(lang, UI[lang].wa.general, up)}</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- /studio/ and /es/estudio/: what we believe, and the process ----------
 function studioPage(lang) {
   const t = UI[lang];
@@ -441,6 +541,9 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
+${identity ? `  <section class="idn-teaser grid">
+    <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
+  </section>` : ''}
 ${contact(lang, t.wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.general)}${end}`;
 }
@@ -2180,6 +2283,7 @@ function sitemap() {
     { en: projectsPath('en'), es: projectsPath('es') },
     ...projects.map((p) => ({ en: projectPath('en', p.slug), es: projectPath('es', p.slug) })),
     { en: studioPath('en'), es: studioPath('es') },
+    ...(identity ? [{ en: identityPath('en'), es: identityPath('es') }] : []),
     { en: townsPath('en'), es: townsPath('es') },
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
@@ -2284,6 +2388,7 @@ function homeEs() {
   const fix = (u) => {
     if (!u || /^(https?:|mailto:|tel:|data:|#|\/|\.\.\/)/.test(u)) return u;
     if (u.startsWith('projects/')) return `${UI.es.projectsDir}/${u.slice('projects/'.length)}`;
+    if (u.startsWith('studio/identity/')) return identityPath('es').slice(3) + u.slice('studio/identity/'.length);
     if (u.startsWith('studio/')) return `${UI.es.studioDir}/${u.slice('studio/'.length)}`;
     if (u.startsWith('architects/')) return `${UI.es.townsDir}/${u.slice('architects/'.length)}`;
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
@@ -2326,6 +2431,7 @@ for (const lang of ['en', 'es']) {
   write(`${projectsPath(lang)}index.html`, indexPage(lang));
   projects.forEach((p, i) => write(`${projectPath(lang, p.slug)}index.html`, projectPage(lang, p, i)));
   write(`${studioPath(lang)}index.html`, studioPage(lang));
+  if (identity) write(`${identityPath(lang)}index.html`, identityPage(lang));
   write(`${townsPath(lang)}index.html`, hubPage(lang));
   towns.forEach((t) => write(`${townPath(lang, t.slug)}index.html`, townPage(lang, t)));
   guides.forEach((g) => write(`${guidePath(lang, g)}index.html`, guidePage(lang, g)));
