@@ -937,7 +937,7 @@ const ET = {
     extras: 'Extras', pool: 'Pool', pools: { 0: 'None', 15: 'Plunge, 15 m²', 32: 'Pool, 32 m²', 50: 'Large, 50 m²' }, deck: 'Terraces and decks',
     solar: 'Solar panels', landscape: 'Landscaping', furniture: 'Furniture, ready to rent', land: 'The land', lot: 'Lot, m²', condo: 'In a condominium or gated community', currency: 'Show in',
     resultLabel: '(Estimate)', hard: 'Construction', soft: 'Design, permits and taxes', parts: '(Construction, by part)', softs: '(Design, permits and taxes)',
-    massing: '(The volume)', schedule: '(Schedule)', dry: 'Dry season', flags: '(To keep in mind)',
+    massing: '(The volume)', likelyL: 'Likely', allIn: 'All in, a m² built', softShort: 'Fees, permits, VAT', schedule: '(Schedule)', dry: 'Dry season', flags: '(To keep in mind)',
     copy: 'Copy the link', print: 'Print or save as PDF', whatsapp: 'Send it to the studio on WhatsApp',
     noscript: 'The estimator needs JavaScript.', failed: 'The estimator did not load. Try again in a moment.',
     method: '(How we estimate)', methodTitle: 'Where the numbers come from',
@@ -962,7 +962,7 @@ const ET = {
     extras: 'Extras', pool: 'Piscina', pools: { 0: 'Ninguna', 15: 'Pequeña, 15 m²', 32: 'Piscina, 32 m²', 50: 'Grande, 50 m²' }, deck: 'Terrazas y decks',
     solar: 'Paneles solares', landscape: 'Paisajismo', furniture: 'Mobiliario, listo para alquilar', land: 'El terreno', lot: 'Lote, m²', condo: 'En un condominio o residencial cerrado', currency: 'Mostrar en',
     resultLabel: '(Estimación)', hard: 'Construcción', soft: 'Diseño, permisos e impuestos', parts: '(Construcción, por partida)', softs: '(Diseño, permisos e impuestos)',
-    massing: '(El volumen)', schedule: '(Cronograma)', dry: 'Época seca', flags: '(A tomar en cuenta)',
+    massing: '(El volumen)', likelyL: 'Probable', allIn: 'Todo incluido, por m²', softShort: 'Honorarios e IVA', schedule: '(Cronograma)', dry: 'Época seca', flags: '(A tomar en cuenta)',
     copy: 'Copiar el enlace', print: 'Imprimir o guardar en PDF', whatsapp: 'Enviarla al estudio por WhatsApp',
     noscript: 'El estimador necesita JavaScript.', failed: 'El estimador no cargó. Intente de nuevo en un momento.',
     method: '(Cómo estimamos)', methodTitle: 'De dónde salen los números',
@@ -1088,26 +1088,29 @@ ${land ? `          <label><input type="checkbox" name="land"${on('land')}> ${E.
         </fieldset>
         <fieldset class="est__field"><legend class="label">${E.currency}</legend>${seg('cur', ['usd', 'crc'], 'usd', { usd: 'US$', crc: '₡' })}</fieldset>
       </form>
-      <div class="est__out" aria-live="polite">
-        <section class="est__block est__totals" aria-labelledby="est-result">
+      <div class="est__panel"><div class="est__panel-in">
+        <section class="est__totals" aria-labelledby="est-result" aria-live="polite">
           <h2 class="label" id="est-result">${E.resultLabel}</h2>
           <p class="note est__choices" data-est-choices></p>
           <p class="est__total" data-est-total></p>
-          <p class="est__likely label" data-est-likely></p>
-          <p class="est__perarea" data-est-perarea></p>
-          <p class="note" data-est-rate></p>
-          <dl class="est__split"><div><dt class="label">${E.hard}</dt><dd data-est-hard></dd></div><div><dt class="label">${E.soft}</dt><dd data-est-soft></dd></div></dl>
+          <dl class="est__stats">
+            <div class="est__stat est__stat--likely"><dt class="label">${E.likelyL}</dt><dd data-est-likely></dd></div>
+            <div class="est__stat"><dt class="label">${E.hard}</dt><dd data-est-hard></dd><dd class="est__stat-sub" data-est-rate></dd></div>
+            <div class="est__stat"><dt class="label">${E.softShort}</dt><dd data-est-soft></dd></div>
+            <div class="est__stat"><dt class="label">${E.allIn}</dt><dd data-est-perm2></dd><dd class="est__stat-sub" data-est-perft2></dd></div>
+          </dl>
         </section>
+        <figure class="est__vol" aria-labelledby="est-massing-t">
+          <svg class="est__massing" data-est-massing role="img" aria-label="${E.massing}"></svg>
+          <figcaption class="est__vol-cap"><span class="label" id="est-massing-t">${E.massing}</span><span class="note" data-est-massing-cap></span></figcaption>
+        </figure>
+      </div></div>
+      <div class="est__out">
         <section class="est__block est__budget" aria-labelledby="est-budget-t">
           <h2 class="label" id="est-budget-t">${E.budget}</h2>
           <p class="note">${E.budgetNote}</p>
           <label class="est__budget-in"><span class="label" data-est-budget-cur data-usd="${E.budgetCur.usd}" data-crc="${E.budgetCur.crc}">${E.budgetCur.usd}</span><input class="input est__num" type="text" inputmode="decimal" autocomplete="off" value="600,000" data-est-budget aria-label="${E.budget.replace(/[()]/g, '')}"></label>
           <ul class="est__fits" data-est-fits></ul>
-        </section>
-        <section class="est__block" aria-labelledby="est-massing-t">
-          <h2 class="label" id="est-massing-t">${E.massing}</h2>
-          <svg class="est__massing" data-est-massing role="img" aria-label="${E.massing}"></svg>
-          <p class="note" data-est-massing-cap></p>
         </section>
         <section class="est__block" aria-labelledby="est-parts-t">
           <h2 class="label" id="est-parts-t">${E.parts}</h2>

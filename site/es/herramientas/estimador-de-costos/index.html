@@ -22,8 +22,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../../assets/css/site.css?v=ee4acb61">
-<script defer src="../../../assets/js/estimator.js?v=be387a18"></script>
+<link rel="stylesheet" href="../../../assets/css/site.css?v=42b1d13c">
+<script defer src="../../../assets/js/estimator.js?v=fb5fd33c"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=119c02d0"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -87,26 +87,29 @@
         </fieldset>
         <fieldset class="est__field"><legend class="label">Mostrar en</legend><div class="est__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="cur" value="usd" checked><span>US$</span></label><label class="est__opt"><input type="radio" name="cur" value="crc"><span>₡</span></label></div></fieldset>
       </form>
-      <div class="est__out" aria-live="polite">
-        <section class="est__block est__totals" aria-labelledby="est-result">
+      <div class="est__panel"><div class="est__panel-in">
+        <section class="est__totals" aria-labelledby="est-result" aria-live="polite">
           <h2 class="label" id="est-result">(Estimación)</h2>
           <p class="note est__choices" data-est-choices></p>
           <p class="est__total" data-est-total></p>
-          <p class="est__likely label" data-est-likely></p>
-          <p class="est__perarea" data-est-perarea></p>
-          <p class="note" data-est-rate></p>
-          <dl class="est__split"><div><dt class="label">Construcción</dt><dd data-est-hard></dd></div><div><dt class="label">Diseño, permisos e impuestos</dt><dd data-est-soft></dd></div></dl>
+          <dl class="est__stats">
+            <div class="est__stat est__stat--likely"><dt class="label">Probable</dt><dd data-est-likely></dd></div>
+            <div class="est__stat"><dt class="label">Construcción</dt><dd data-est-hard></dd><dd class="est__stat-sub" data-est-rate></dd></div>
+            <div class="est__stat"><dt class="label">Honorarios e IVA</dt><dd data-est-soft></dd></div>
+            <div class="est__stat"><dt class="label">Todo incluido, por m²</dt><dd data-est-perm2></dd><dd class="est__stat-sub" data-est-perft2></dd></div>
+          </dl>
         </section>
+        <figure class="est__vol" aria-labelledby="est-massing-t">
+          <svg class="est__massing" data-est-massing role="img" aria-label="(El volumen)"></svg>
+          <figcaption class="est__vol-cap"><span class="label" id="est-massing-t">(El volumen)</span><span class="note" data-est-massing-cap></span></figcaption>
+        </figure>
+      </div></div>
+      <div class="est__out">
         <section class="est__block est__budget" aria-labelledby="est-budget-t">
           <h2 class="label" id="est-budget-t">(Desde un presupuesto)</h2>
           <p class="note">Lo que construye un presupuesto aquí, con las decisiones de arriba. Elija una opción para usarla.</p>
           <label class="est__budget-in"><span class="label" data-est-budget-cur data-usd="US$" data-crc="millones de ₡">US$</span><input class="input est__num" type="text" inputmode="decimal" autocomplete="off" value="600,000" data-est-budget aria-label="Desde un presupuesto"></label>
           <ul class="est__fits" data-est-fits></ul>
-        </section>
-        <section class="est__block" aria-labelledby="est-massing-t">
-          <h2 class="label" id="est-massing-t">(El volumen)</h2>
-          <svg class="est__massing" data-est-massing role="img" aria-label="(El volumen)"></svg>
-          <p class="note" data-est-massing-cap></p>
         </section>
         <section class="est__block" aria-labelledby="est-parts-t">
           <h2 class="label" id="est-parts-t">(Construcción, por partida)</h2>

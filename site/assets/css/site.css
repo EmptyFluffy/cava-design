@@ -700,13 +700,28 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est > .mf__head { padding: var(--s-3) var(--margin) var(--s-3); }
 .est .input, .pr .input { background: var(--white); color: var(--black); border: 1px solid var(--black); border-radius: 0.9rem; padding: 0.75rem 0.9rem; font-size: var(--f-large); }
 .est__app { padding: 0 var(--margin) var(--s-4); column-gap: var(--gap); row-gap: var(--s-3); align-items: start; }
-.est__form { grid-column: 1 / span 5; display: grid; gap: 1.4rem; }
-.est__out { grid-column: 7 / -1; display: grid; gap: var(--s-2); position: sticky; top: 5rem; }
-.est__form, .est__out { min-width: 0; }
+.est__form { grid-column: 1 / span 5; grid-row: 1; display: grid; gap: 1.4rem; }
+/* the instrument: the estimate and the volume, held in view while the choices scroll past */
+.est__panel { grid-column: 7 / -1; grid-row: 1 / span 2; align-self: stretch; }
+.est__panel-in { position: sticky; top: 5.25rem; display: flex; flex-direction: column; gap: 1rem; }
+.est__form, .est__panel, .est__out { min-width: 0; }
+/* the rest of the estimate, under the choices, while the panel stays in view */
+.est__out { grid-column: 1 / span 5; grid-row: 2; display: grid; gap: var(--s-3); margin-top: var(--s-2); }
+.est__out > [aria-labelledby="est-parts-t"] { order: 1; }
+.est__out > [aria-labelledby="est-sched-t"] { order: 2; }
+.est__out > .est__budget { order: 3; }
+.est__out > [aria-labelledby="est-flags-t"] { order: 4; }
+.est__out > [aria-labelledby="est-scope-t"] { order: 5; }
+.est__out > .est__actions { order: 6; }
+/* a compact head, so the tool and its drawing show on arrival */
+.est > .mf__head { row-gap: 1rem; padding-top: var(--s-2); padding-bottom: 1.25rem; align-items: end; }
+.est > .mf__head .mf__title { grid-column: 1 / span 6; padding-right: 2rem; font-size: clamp(2.4rem, 1.2rem + 3.6vw, 4.8rem); }
+.est > .mf__head .mf__intro { grid-column: 7 / -1; }
+.est > .mf__head .mf__intro.h3 { font-size: var(--f-large); line-height: 1.35; letter-spacing: -0.01em; max-width: 40rem; }
 .est__actions .btn { white-space: normal; }
 .est__failed, .est__noscript { display: none; padding: 0 var(--margin); }
 .est.is-failed .est__failed { display: block; }
-.est:not(.is-ready) .est__out { opacity: 0.35; }
+.est:not(.is-ready) :is(.est__panel, .est__out) { opacity: 0.35; }
 .est__field { border: 0; margin: 0; padding: 0; display: grid; gap: 0.6rem; min-width: 0; }
 .est__field legend { padding: 0; margin-bottom: 0.6rem; }
 .est__select { width: 100%; }
@@ -726,27 +741,32 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .est__checks label { display: flex; align-items: center; gap: 0.6rem; font-size: var(--f-large); }
 .est__checks input { width: 1.1rem; height: 1.1rem; accent-color: var(--black); }
 .est__block { display: grid; gap: 0.8rem; padding-top: 1rem; border-top: 1px solid var(--grey); }
-.est__totals { border-top: 1px solid var(--black); container-type: inline-size; }
+.est__totals { display: grid; gap: 0.55rem; padding-top: 0.9rem; border-top: 1px solid var(--black); container-type: inline-size; }
+.est__totals > * { margin: 0; }
+.est__choices { display: none; }
+/* four figures in a row: what moves when a choice moves */
+.est__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 0.3rem; padding-top: 0.8rem; border-top: 1px solid var(--grey); }
+@container (max-width: 36rem) { .est__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 0.3rem; } .est__stat:nth-child(n+3) { margin-top: 0.8rem; } }
+/* label, figure and note line up across the four, whatever the labels' length */
+.est__stat { display: grid; grid-row: span 3; grid-template-rows: subgrid; align-content: start; min-width: 0; }
+.est__stat dt { align-self: end; color: var(--dark-grey); line-height: 1.2; }
+.est__stat dd { margin: 0; font-size: 1.3rem; font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.est__stat dd .u { font-size: 0.62em; margin-right: 0.08em; }
+.est__stat dd .w { font-size: 0.62em; }
+.est__stat .est__stat-sub { font-size: var(--f-small); font-weight: var(--w-text); letter-spacing: 0; color: var(--dark-grey); }
+.est__stat .est__stat-sub :is(.u, .w) { font-size: 1em; }
+/* the volume fills what the panel has left */
+.est__vol { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 0.5rem; margin: 0; padding-top: 0.8rem; border-top: 1px solid var(--grey); }
+.est__vol-cap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.3rem 1rem; }
 /* the range on one line: as large as the column allows for its length */
 .est__total { margin: 0; font-size: min(calc(var(--f-h3) * 0.86), calc(100cqi / (var(--len, 26) * 0.6))); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.02; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.est__perarea { margin: 0.2rem 0 0; display: grid; gap: 0.3rem; font-size: var(--f-h4); font-weight: var(--w-text); letter-spacing: -0.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
-.est__perarea b { font-weight: var(--w-strong); }
-.est__perarea i { font-style: normal; color: var(--mid-grey); font-size: 0.72em; letter-spacing: 0; }
 /* figures: the number in black, the currency and the words in grey, smaller and lighter */
 .est__totals .u { color: var(--mid-grey); font-weight: var(--w-text); letter-spacing: 0; }
 .est__totals .w { color: var(--mid-grey); font-weight: var(--w-text); letter-spacing: 0; font-size: 0.5em; }
 .est__total .u { font-size: 0.44em; vertical-align: 0.9em; margin-right: 0.06em; }
 .est__total .w { margin: 0 0.1em; }
-.est__perarea .u, .est__split .u { font-size: 0.62em; margin-right: 0.1em; }
-.est__likely { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
-.est__likely-v { font-size: 1.45rem; color: var(--black); font-weight: var(--w-strong); letter-spacing: -0.02em; text-transform: none; font-variant-numeric: tabular-nums; }
-.est__likely-v .u { font-size: 0.62em; margin-right: 0.08em; }
-.est__likely-v .w { font-size: 0.62em; }
-.est__perarea small { font-size: var(--f-small); letter-spacing: 0; color: var(--dark-grey); }
-.est__likely { color: var(--dark-grey); }
-.est__split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); margin: 0.4rem 0 0; }
-.est__split dd { margin: 0.3rem 0 0; font-size: var(--f-large); font-variant-numeric: tabular-nums; }
-.est__massing { width: 100%; max-height: 18rem; }
+/* tall enough to read, short enough that the whole house shows on arrival */
+.est__massing { display: block; width: 100%; height: clamp(14rem, calc(100svh - 35rem), 28rem); }
 /* the volume: white faces, a heavy outline drawn underneath them, thin seams on top */
 .est__massing polygon, .est__massing polyline, .est__massing line { vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .m-sil { fill: var(--black); stroke: var(--black); stroke-width: 4px; }
@@ -1153,8 +1173,10 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .sunpath { grid-column: 4 / span 6; }
   .tw__text--side { grid-column: 4 / -1; }
   .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side, .tw__sec > .cmap { grid-column: 4 / -1; }
-  .est__form { grid-column: 1 / span 6; }
-  .est__out { grid-column: 7 / -1; }
+  .est__form, .est__out { grid-column: 1 / span 6; }
+  .est__panel { grid-column: 7 / -1; }
+  .est > .mf__head .mf__title { grid-column: 1 / -1; }
+  .est > .mf__head .mf__intro { grid-column: 1 / -1; }
 }
 
 /* Phone */
@@ -1231,7 +1253,12 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .roses__row { grid-template-columns: minmax(0, 1fr); max-width: 22rem; }
   .sunpath.is-3d, .tw__sec:has(.sunpath.is-3d) .tw__text--side, .tw__sec > .cmap { grid-column: 1 / -1; }
   .sun3d { aspect-ratio: 1; }
-  .est__form, .est__out { grid-column: 1 / -1; }
+  .est__form, .est__panel, .est__out { grid-column: 1 / -1; grid-row: auto; }
+  /* on a phone the instrument comes first, the choices under it */
+  .est__panel { order: -1; }
+  .est__out { order: 2; }
+  .est__panel-in { position: static; height: auto; min-height: 0; max-height: none; }
+  .est__massing { height: clamp(12rem, 52vw, 17rem); }
   .est__scope { grid-template-columns: 1fr; }
   .lmap__canvas { aspect-ratio: 4 / 5; }
   .place img { aspect-ratio: 16 / 9; }
@@ -1272,7 +1299,6 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .svc__time { grid-column: 2; text-align: left; margin-top: 0.3rem; }
   .svc__cfia, .svc__phase > .large, .svc__get-label, .svc__get { margin-left: 3.4rem; }
   .svc__get { grid-template-columns: 1fr; }
-  .est__out { position: static; }
   .est__sticky { display: flex; justify-content: space-between; gap: 1rem; position: sticky; bottom: 0; z-index: 30; margin: 0; padding: 0.85rem var(--margin); background: var(--black); color: var(--white); }
   .g-head, .g-row, .g-bands { grid-template-columns: 6.5rem minmax(0, 1fr); }
   .cmap__canvas { aspect-ratio: 4 / 5; }
@@ -1313,10 +1339,10 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 @page { size: A4; margin: 14mm 14mm 18mm; @bottom-right { content: counter(page) " / " counter(pages); font: 8pt sans-serif; color: #8b8b88; } }
 @media print {
   html { font-size: 10px; }
-  html, body, .page, main, .est, .est__app, .est__out { background: #fff !important; }
+  html, body, .page, main, .est, .est__app, .est__panel, .est__out { background: #fff !important; }
   .bar, .wa, .footer, .reach, .cmap, .float, #top { display: none !important; }
   /* everything but the estimate itself */
-  .est > :not(.est__print-head):not(.est__app):not(.est__print-foot) { display: none !important; }
+  .est > :not(.est__print-head):not(.est__app):not(.est__out):not(.est__print-foot) { display: none !important; }
   .est__form, .est__actions, .est__budget, .est__guides, .est__work, .est__sticky, .est__method, .est__scope + .note { display: none !important; }
   .est__print-head { display: grid; grid-template-columns: auto 1fr auto; gap: 4mm; align-items: center; padding-bottom: 4mm; margin-bottom: 5mm; border-bottom: 1px solid #080807; }
   .est__print-head img { width: 11mm; height: 11mm; }
@@ -1325,11 +1351,14 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .est__print-kind { font-size: 9pt; color: #545454; }
   .est__print-meta { text-align: right; font-size: 8.5pt; color: #545454; }
   .est__app { display: block; padding: 0; }
-  .est__out { display: block; position: static; }
+  .est__panel, .est__panel-in { display: block; position: static; height: auto; min-height: 0; max-height: none; }
+  .est__out { display: block; padding: 0; }
+  .est__choices { display: block; }
+  .est__vol { display: block; margin: 4mm 0; }
   .est__block { break-inside: avoid; page-break-inside: avoid; padding-top: 3.5mm; margin-bottom: 4mm; }
   .est__totals { border-top: 0; padding-top: 0; }
   .est__total { font-size: 24pt; }
-  .est__massing { max-height: 52mm; }
+  .est__massing { height: 52mm; }
   .est__list li { break-inside: avoid; }
   /* the second page starts with what the estimate covers */
   .est__block:has(.est__scope) { break-before: page; page-break-before: always; }
