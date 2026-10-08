@@ -27,7 +27,7 @@
     sheet.className = 'bks';
     sheet.innerHTML = `<div class="bks__scrim" data-bks-close></div>
       <div class="bks__panel" role="dialog" aria-modal="true" aria-label="${ES ? 'Agendar una llamada gratis' : 'Book a free call'}">
-        <button class="bks__close label" type="button" data-bks-close>${ES ? 'Cerrar' : 'Close'} <span aria-hidden="true">✕</span></button>
+        <button class="bks__close" type="button" data-bks-close aria-label="${ES ? 'Cerrar' : 'Close'}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9-9 9"/></svg></button>
         <div class="bks__body"><p class="bks__loading note">${ES ? 'Abriendo la agenda…' : 'Opening the calendar…'}</p></div>
       </div>`;
     document.body.appendChild(sheet);

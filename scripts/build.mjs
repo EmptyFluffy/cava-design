@@ -1280,7 +1280,7 @@ ${bar(lang, up, paths, 'book')}
         </ul>
       </aside>
       <section class="bk__cal" aria-label="${lang === 'en' ? 'Days' : 'Días'}">
-        <div class="bk__cal-head"><p class="bk__month" data-bk-month></p><div class="bk__nav"><button type="button" data-bk-prev aria-label="${B.prev}">‹</button><button type="button" data-bk-next aria-label="${B.next}">›</button></div></div>
+        <div class="bk__cal-head"><p class="bk__month" data-bk-month></p><div class="bk__nav"><button type="button" data-bk-prev aria-label="${B.prev}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg></button><button type="button" data-bk-next aria-label="${B.next}"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5"/></svg></button></div></div>
         <div class="bk__grid" data-bk-days></div>
         <p class="note bk__status" data-bk-status aria-live="polite"></p>
       </section>
@@ -1289,14 +1289,15 @@ ${bar(lang, up, paths, 'book')}
         <ul class="bk__list" data-bk-times></ul>
       </section>
       <form class="bk__form" data-bk-form novalidate>
+        <p class="bk__form-title label bk__wide">${lang === 'en' ? '(Your details)' : '(Sus datos)'}</p>
         <label class="bk__field"><span class="label">${B.name} *</span><input class="input" name="name" autocomplete="name" required></label>
         <label class="bk__field"><span class="label">${B.email} *</span><input class="input" type="email" name="email" autocomplete="email" required></label>
         <label class="bk__field"><span class="label">${B.phone} <i>(${B.optional})</i></span><input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+1 555 123 4567"></label>
         <label class="bk__field"><span class="label">${B.where}</span><select class="input" name="where"><option value="unsure">${B.unsure}</option>${towns.map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}<option value="other">${B.other}</option></select></label>
         <fieldset class="bk__field bk__wide"><legend class="label">${B.what}</legend>${seg('what', B.whats)}</fieldset>
-        <fieldset class="bk__field bk__wide"><legend class="label">${B.lot}</legend>${seg('lot', B.lots)}</fieldset>
+        <fieldset class="bk__field"><legend class="label">${B.lot}</legend>${seg('lot', B.lots)}</fieldset>
         <label class="bk__field"><span class="label">${B.budget} <i>(${B.optional})</i></span><select class="input" name="budget">${B.budgets.map((x, i) => `<option value="${i}">${esc(x)}</option>`).join('')}</select></label>
-        <label class="bk__field bk__wide"><span class="label">${B.notes} <i>(${B.optional})</i></span><textarea class="input" name="notes" rows="3" placeholder="${esc(B.notesHint)}"></textarea></label>
+        <label class="bk__field bk__wide"><span class="label">${B.notes} <i>(${B.optional})</i></span><textarea class="input" name="notes" rows="2" placeholder="${esc(B.notesHint)}"></textarea></label>
         <input type="hidden" name="est">
         <p class="note bk__legal bk__wide">${live ? B.legalLive : B.legalReq}</p>
         <p class="bk__error bk__wide" data-bk-error role="alert"></p>
