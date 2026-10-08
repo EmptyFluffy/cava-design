@@ -203,12 +203,22 @@
   const COLORS = { foundations: '#5e4b35', structure: '#3a3d40', roof: '#b4502e', openings: '#4f7fa8', finishes: '#dcc7a1', mep: '#2c7a73', slope: '#8d8a3f', pool: '#8fc6db', deck: '#b47b45', solar: '#e6b53f', landscape: '#6c9a52', furniture: '#c99599', land: '#9e8f72' };
   const inkOn = (hex) => { const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255); return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.5 ? '#080807' : '#fcfcfc'; };
 
+  // the range keeps to one line: if it is wider than its column, the type comes down to fit
+  function fitTotal() {
+    const tot = $('[data-est-total]');
+    tot.style.fontSize = '';
+    const room = tot.clientWidth, need = tot.scrollWidth;
+    if (room && need > room) tot.style.fontSize = `${Math.floor((parseFloat(getComputedStyle(tot).fontSize) * room * 0.98) / need)}px`;
+  }
+  if (window.ResizeObserver) new ResizeObserver(() => { if (D) fitTotal(); }).observe($('[data-est-total]').parentElement);
+
   function renderTotals(e) {
     // in colones the word "millions" is said once: ₡315.6 to ₡486.9 million
     const range = state.cur === 'crc' ? `${fmtCrc(e.total[0]).split(' ')[0]} ${ES ? 'a' : 'to'} ${fmtCrc(e.total[2])}` : `${money(e.total[0])} ${ES ? 'a' : 'to'} ${money(e.total[2])}`;
     const tot = $('[data-est-total]');
     tot.textContent = range;
-    tot.style.setProperty('--len', range.length); // the range keeps to one line: its size follows its length
+    tot.style.setProperty('--len', range.length);
+    fitTotal();
     $('[data-est-likely]').textContent = `${T.likely} ${money(e.total[1])}`;
     const exact = (n) => (state.cur === 'crc' ? `₡${num(n * D.fx.crcPerUsd)}` : `US$${num(n)}`);
     $('[data-est-perarea]').innerHTML = T.perArea(`<b>${exact(e.total[1] / e.area)}</b>`, `<b>${exact(e.total[1] / e.area / 10.7639)}</b>`);
@@ -604,7 +614,7 @@
   });
   $('[data-est-print]')?.addEventListener('click', () => window.print());
 
-  fetch(new URL('../data/costs.json', SCRIPT)).then((r) => r.json()).then((d) => {
+  fetch(new URL(`../data/costs.json?v=${form.dataset.v ?? ''}`, SCRIPT)).then((r) => r.json()).then((d) => {
     D = d;
     fromUrl();
     range.value = box.value;

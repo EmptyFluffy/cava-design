@@ -73,6 +73,18 @@ const imgVer = (key) => {
   }
   return versions.get(key);
 };
+// The same for stylesheets, scripts and data: a fingerprint of the file the page asks for, so a deploy
+// never pairs new markup with an old stylesheet or script held in a browser's cache.
+const assetVers = new Map();
+const md5 = (x) => createHash('md5').update(x).digest('hex').slice(0, 8);
+const assetVer = (rel) => {
+  if (!assetVers.has(rel)) {
+    // files the build writes itself are hashed from what it will write
+    const made = { 'assets/js/renders.js': () => rendersJs('en', ''), 'assets/js/renders.es.js': () => rendersJs('es', '../'), 'assets/data/costs.json': () => JSON.stringify(costsData()) }[rel];
+    assetVers.set(rel, md5(made ? made() : readFileSync(join(SITE, rel))));
+  }
+  return assetVers.get(rel);
+};
 function picture(up, slug, n, alt, sizesAttr, { eager = false, cls = '' } = {}) {
   const [w, h] = sizes[`${slug}/${n}`];
   const b = up + imgBase(slug, n);
@@ -127,8 +139,8 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="${up}assets/css/site.css">
-${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js').map((s) => `<script defer src="${up}assets/js/${s}"></script>
+<link rel="stylesheet" href="${up}assets/css/site.css?v=${assetVer('assets/css/site.css')}">
+${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js').map((s) => `<script defer src="${up}assets/js/${s}?v=${assetVer(`assets/js/${s}`)}"></script>
 `).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
 ` : ''}</head>
 <body class="sub">
@@ -1032,7 +1044,7 @@ ${pg?.photo ? placePhoto(lang, up, pg.photo, { eager: true }) : ''}
     <noscript><p class="large est__noscript">${E.noscript}</p></noscript>
     <p class="large est__failed">${E.failed}</p>
     <div class="est__app grid">
-      <form class="est__form" data-est-form onsubmit="return false">
+      <form class="est__form" data-est-form data-v="${assetVer('assets/data/costs.json')}" onsubmit="return false">
         <fieldset class="est__field"><legend class="label">${E.where}</legend>
           <select class="input est__select" name="town">${towns.map((t) => `<option value="${t.slug}"${t.slug === P.town ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}<option value="other">${E.other}</option></select>
         </fieldset>
@@ -2250,6 +2262,7 @@ function homeCounts() {
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
     .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.length, 0)})`)
     .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)
+    .replace(/(assets\/(?:css\/[a-z-]+\.css|js\/[a-z0-9.-]+\.js))(?:\?v=[0-9a-f]+)?"/g, (m, url) => `${url}?v=${assetVer(url)}"`)
     // the services list, from data/services.json: between its markers, or first put before the process
     .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m))
     .replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => (proc ? processSteps('en', 'studio/') : ''))
@@ -2288,6 +2301,7 @@ function homeEs() {
     return ` ${attr}="${v}"`;
   });
   // the services list is written from data in each language, not translated pair by pair
+  html = html.replace(/(assets\/js\/renders\.es\.js)\?v=[0-9a-f]+/, (m, url) => `${url}?v=${assetVer(url)}`);
   if (services.length) html = html.replace(/<!-- services -->[\s\S]*?<!-- \/services -->/, servicesHome('es', '../', 'servicios/'));
   if (proc) html = html.replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => processSteps('es', `${UI.es.studioDir}/`)).replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => processFigure('es', '../'));
   // project names and photo credits read the same in both languages
