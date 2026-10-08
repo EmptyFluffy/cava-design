@@ -96,10 +96,9 @@ function procImg(lang, up, id, sizesAttr, { eager = false, cls = '' } = {}) {
   const b = `${up}assets/img/process/${name}`, v = `?v=${procVer.get(name)}`;
   return `<img${cls ? ` class="${cls}"` : ''} src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1600.webp${v} 1600w" sizes="${sizesAttr}" width="1600" height="1066" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(proc.images[id][`alt_${lang}`])}">`;
 }
-const procCredit = (lang, id) => { const im = proc.images[id]; return im.ours ? (lang === 'en' ? 'Drawing: Studio CAVA' : 'Dibujo: Studio CAVA') : `${lang === 'en' ? 'Photo' : 'Foto'}: <a href="${esc(im.url)}" target="_blank" rel="noopener">${esc(im.by)}, ${im.site}</a>`; };
-// a row of images that scrolls sideways, each with its credit
-const procStrip = (lang, up, ids, cls = '') => `<ul class="pstrip${cls ? ` ${cls}` : ''}">${ids.map((id) => `<li><figure>${procImg(lang, up, id, '(min-width: 768px) 26vw, 78vw')}<figcaption class="pstrip__credit">${procCredit(lang, id)}</figcaption></figure></li>`).join('')}</ul>`;
-const serviceImages = (slug) => (proc?.services[slug] ?? []).flatMap((k) => (k === 'interiors' ? proc.interiors : proc.stages[k]));
+// a row of images that scrolls sideways (credits stay in data/process.json: the licences ask for none)
+const procStrip = (lang, up, ids, cls = '') => `<ul class="pstrip${cls ? ` ${cls}` : ''}">${ids.map((id) => `<li>${procImg(lang, up, id, '(min-width: 768px) 26vw, 78vw')}</li>`).join('')}</ul>`;
+const serviceImages = (slug) => proc?.services[slug] ?? [];
 
 // `paths` = { en, es }: this page in each language, from the site root.
 function head(lang, { title, description, paths, image, up, script, jsonld }) {
@@ -1177,7 +1176,6 @@ function placePhoto(lang, up, id, { eager = false } = {}) {
   const base = `${up}assets/img/places/${id}`;
   return `    <figure class="place">
       <img src="${base}-1600.webp" srcset="${base}-800.webp 800w, ${base}-1600.webp 1600w" sizes="(min-width: 768px) 96vw, 100vw" width="1600" height="800" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(ph[`alt_${lang}`])}">
-      <figcaption class="place__credit">${lang === 'en' ? 'Photo' : 'Foto'}: <a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.by)}, ${ph.site}</a></figcaption>
     </figure>
 `;
 }
@@ -2238,7 +2236,7 @@ function processFigure(lang, up) {
 ${proc.stages.map((ids, i) => `          <div class="process__pic${i === 0 ? ' is-on' : ''}" data-pic="${i}">${procImg(lang, up, ids[0], '(min-width: 768px) 60vw, 92vw')}</div>`).join('\n')}
         </div>
         <figcaption class="process__cap">
-${proc.stages.map((ids, i) => `          <span class="process__capline label${i === 0 ? ' is-on' : ''}" data-cap="${i}"><span>(${pad(i + 1)}) ${esc(st[i][0])}</span><span class="process__credit">${procCredit(lang, ids[0])}</span></span>`).join('\n')}
+${proc.stages.map((ids, i) => `          <span class="process__capline label${i === 0 ? ' is-on' : ''}" data-cap="${i}"><span>(${pad(i + 1)}) ${esc(st[i][0])}</span></span>`).join('\n')}
         </figcaption>
       </figure>
       <!-- /process-fig -->`;
