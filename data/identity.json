@@ -183,15 +183,25 @@
       },
       "use": {
         "label": "(In use)",
-        "title": "On a sheet, on a site, in a tab",
+        "title": "On paper, on cloth, on a screen",
         "text": [
-          "In the title block of every drawing sheet, on the sign that stands at every site, and at the corner of a browser tab."
+          "Where the mark meets people: the letter that goes with a proposal, the card left after a site visit, the book of projects, the first slide a client sees, and the things a team carries to site.",
+          "These are mock-ups, made on photographs of blank objects, to test the mark at every size before anything is printed."
         ],
-        "captions": [
-          "Title block of a drawing sheet",
-          "Site sign",
-          "Browser tab"
-        ]
+        "items": {
+          "stationery": "Letter and cards",
+          "tote": "Tote bag",
+          "cap": "Cap, embroidered",
+          "brochure": "Project book, Papagayo 404",
+          "cards": "Business cards, front and back",
+          "booklet": "Selected projects",
+          "poster": "Poster",
+          "laptop": "Client presentation",
+          "mugs": "Mugs",
+          "tshirt": "T-shirt",
+          "notebook": "Notebook, debossed",
+          "tab": "Browser tab"
+        }
       }
     }
   },
@@ -341,15 +351,25 @@
       },
       "use": {
         "label": "(En uso)",
-        "title": "En una lámina, en la obra, en una pestaña",
+        "title": "En papel, en tela, en pantalla",
         "text": [
-          "En el membrete de cada lámina de planos, en el rótulo que está en cada obra, y en la esquina de una pestaña del navegador."
+          "Donde la marca se encuentra con la gente: la carta que acompaña una propuesta, la tarjeta que queda después de una visita al lote, el libro de proyectos, la primera lámina que ve un cliente y las cosas que un equipo lleva a la obra.",
+          "Son maquetas, hechas sobre fotografías de objetos en blanco, para probar la marca a cada tamaño antes de imprimir nada."
         ],
-        "captions": [
-          "Membrete de una lámina",
-          "Rótulo de obra",
-          "Pestaña del navegador"
-        ]
+        "items": {
+          "stationery": "Carta y tarjetas",
+          "tote": "Bolsa de tela",
+          "cap": "Gorra, bordada",
+          "brochure": "Libro de proyectos, Papagayo 404",
+          "cards": "Tarjetas, frente y dorso",
+          "booklet": "Proyectos selectos",
+          "poster": "Afiche",
+          "laptop": "Presentación para un cliente",
+          "mugs": "Tazas",
+          "tshirt": "Camiseta",
+          "notebook": "Libreta, en bajorrelieve",
+          "tab": "Pestaña del navegador"
+        }
       }
     }
   }

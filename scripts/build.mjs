@@ -473,12 +473,11 @@ ${S[key].text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
         <p class="label">${esc(S.tries.groups[g.group])}</p>
         <ol class="idn-tries">${g.ids.map((id) => `<li${id === 'e20' ? ' class="is-final"' : ''}><img src="${up}assets/img/identity/${id}.svg?v=${assetVer(`assets/img/identity/${id}.svg`)}" alt="" loading="lazy" decoding="async"></li>`).join('')}</ol>
       </div>`).join('\n      ');
-  const g10 = `${up}assets/img/process/G10`;
-  const use = `<div class="idn-use">
-        <figure><img src="${g10}-1600.webp" srcset="${g10}-800.webp 800w, ${g10}-1600.webp 1600w" sizes="(min-width: 768px) 30vw, 92vw" width="1600" height="1066" loading="lazy" decoding="async" alt="${esc(S.use.captions[0])}"><figcaption class="label">${esc(S.use.captions[0])}</figcaption></figure>
-        <figure><img src="${up}assets/img/identity/sign-1600.webp" srcset="${up}assets/img/identity/sign-800.webp 800w, ${up}assets/img/identity/sign-1600.webp 1600w" sizes="(min-width: 768px) 30vw, 92vw" width="1600" height="1066" loading="lazy" decoding="async" alt="${esc(S.use.captions[1])}"><figcaption class="label">${esc(S.use.captions[1])}</figcaption></figure>
-        <figure><div class="idn-tab"><span class="idn-tab__bar"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><b>Studio CAVA</b><i>×</i></span><span class="idn-tab__url">cava.design</span></div><figcaption class="label">${esc(S.use.captions[2])}</figcaption></figure>
-      </div>`;
+  // the mark in use: mock-ups on photographs of blank objects, three to a row, the wide ones over two
+  const U = S.use.items;
+  const tile = (n, wide) => { const b = `${up}assets/img/identity/use-${n}`, [w1, w2] = wide ? [1600, 800] : [1200, 600]; return `<figure class="idn-u${wide ? ' idn-u--wide' : ''}"><img src="${b}-${w1}.webp?v=${assetVer(`assets/img/identity/use-${n}-${w1}.webp`)}" srcset="${b}-${w2}.webp ${w2}w, ${b}-${w1}.webp ${w1}w" sizes="(min-width: 768px) ${wide ? 62 : 31}vw, 92vw" width="${w1}" height="${wide ? w1 * 2 / 3 : w1 * 5 / 4}" loading="lazy" decoding="async" alt="${esc(U[n])}"><figcaption class="label">${esc(U[n])}</figcaption></figure>`; };
+  const tab = `<figure class="idn-u"><div class="idn-tab"><span class="idn-tab__bar"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><b>Studio CAVA</b><i>×</i></span><span class="idn-tab__url">cava.design</span></div><figcaption class="label">${esc(U.tab)}</figcaption></figure>`;
+  const use = `<div class="idn-uses">${tile('stationery', true)}${tile('tote')}${tile('cap')}${tile('brochure', true)}${tile('cards')}${tile('booklet')}${tile('poster')}${tile('laptop', true)}${tile('mugs')}${tile('tshirt')}${tile('notebook')}${tab}</div>`;
   const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: D.h1.join(' '), description: D.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, publisher: { '@type': 'Organization', name: 'Studio CAVA', url: ORIGIN } };
   return head(lang, { title: D.title, description: D.description, paths, image: `${imgBase('portland-house', 3)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'studio')}
