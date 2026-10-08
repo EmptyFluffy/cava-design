@@ -161,7 +161,7 @@ function bar(lang, up, paths, current) {
   return `<header class="bar">
   <a class="bar__brand" href="${home}" aria-label="${t.home}">${MARK}<span>Studio CAVA</span></a>
   <nav class="bar__links label" aria-label="${t.aria}">
-    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, <span class="nav__process">${link(`${studioHref}#process`, t.process)}, </span>${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
+    ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
   <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
 </header>
@@ -339,14 +339,32 @@ function projectPage(lang, p, i) {
     ...FACTS.map((k) => [s.rows[k], AREAS.has(k) && p[k] != null ? area(lang, p[k]) : tr(lang, p, k)]),
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? s.tbc)}</dd></div>`).join('\n');
   const placeholders = FACTS.some((k) => p[k] == null);
-  const rest = p.images.slice(1);
+  // the gallery: every image after the cover, except those shown in the day/night comparison
+  const cmp = p.compare ?? null;
+  const rest = p.images.map((_, j) => j + 1).filter((n) => n > 1 && !cmp?.images.includes(n));
   // Every image in the gallery shares the narrowest image's proportion, so rows line up
   // and wider images are cropped at the sides, never at the top or bottom.
-  const ratio = Math.min(...rest.map((_, j) => { const [w, h] = sizes[`${p.slug}/${j + 2}`]; return w / h; }));
+  const ratio = Math.min(...rest.map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
   const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : rest.length === 3 ? ' gallery--three' : ''}" style="--ratio: ${ratio.toFixed(3)}" aria-label="${esc(s.more(p.name))}">
-${rest.map((_, j) => `      <figure class="gallery__item">${picture(up, p.slug, j + 2, altOf(lang, p, j + 2), rest.length === 1 ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
+${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, altOf(lang, p, n), rest.length === 1 ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
     </section>
 ` : '';
+  // two views of the same place, one over the other, with a divider to drag (compare.js)
+  const compare = cmp ? (() => {
+    const [a, b] = cmp.images, [la, lb] = cmp[lang];
+    const [w, h] = sizes[`${p.slug}/${a}`];
+    return `    <figure class="compare" style="--ratio: ${(w / h).toFixed(3)}">
+      <div class="compare__frame" data-compare style="--pos: 50%">
+        ${picture(up, p.slug, b, altOf(lang, p, b), '(min-width: 768px) 96vw, 100vw', { cls: 'compare__img' })}
+        <div class="compare__top">${picture(up, p.slug, a, altOf(lang, p, a), '(min-width: 768px) 96vw, 100vw', { cls: 'compare__img' })}</div>
+        <span class="compare__tag compare__tag--a label" aria-hidden="true">${esc(la)}</span><span class="compare__tag compare__tag--b label" aria-hidden="true">${esc(lb)}</span>
+        <span class="compare__line" aria-hidden="true"><span class="compare__knob"><svg viewBox="0 0 24 12"><path d="M7 1 2 6l5 5M17 1l5 5-5 5"/></svg></span></span>
+        <input class="compare__range" type="range" min="0" max="100" value="50" step="0.5" aria-label="${lang === 'en' ? `Drag to compare ${la.toLowerCase()} and ${lb.toLowerCase()}` : `Arrastre para comparar ${la.toLowerCase()} y ${lb.toLowerCase()}`}">
+      </div>
+      <figcaption class="label compare__cap"><span>${esc(la)} / ${esc(lb)}</span><span class="compare__hint">${lang === 'en' ? 'Drag the line' : 'Arrastre la línea'}</span></figcaption>
+    </figure>
+`;
+  })() : '';
   const waText = t.wa.project(p.name);
   return head(lang, {
     title: `${p.name} | Studio CAVA`,
@@ -354,7 +372,7 @@ ${rest.map((_, j) => `      <figure class="gallery__item">${picture(up, p.slug, 
     paths,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
-    script: 'project.js',
+    script: p.compare ? ['project.js', 'compare.js'] : 'project.js',
   }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'projects')}
 <main class="page">
@@ -370,7 +388,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}    <section class="related" aria-labelledby="related-title">
+${gallery}${compare}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

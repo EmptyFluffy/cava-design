@@ -140,6 +140,7 @@
       "year": 2015,
       "siteArea": 520,
       "builtArea": 200,
+      "compare": { "images": [1, 2], "en": ["Day", "Night"], "es": ["Día", "Noche"] },
       "images": [
         {
           "file": "nuevos/Casa tropical entre verdes naturales-1.png",
