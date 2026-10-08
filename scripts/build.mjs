@@ -2421,7 +2421,7 @@ function homeCounts() {
   const before = readFileSync(path, 'utf8');
   const after = before
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
-    .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.length, 0)})`)
+    .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.filter((im) => !im.plan).length, 0)})`)
     .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)
     .replace(/(assets\/(?:css\/[a-z-]+\.css|js\/[a-z0-9.-]+\.js))(?:\?v=[0-9a-f]+)?"/g, (m, url) => `${url}?v=${assetVer(url)}"`)
     // the services list, from data/services.json: between its markers, or first put before the process
