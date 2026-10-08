@@ -46,6 +46,16 @@
           "file": "Portland House.png",
           "alt": "Open kitchen and living room facing a green valley through full-height glass",
           "alt_es": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo"
+        },
+        {
+          "file": "Planta/web/floor-plan.png",
+          "alt": "Floor plan of the house, numbered: living, dining and kitchen in the middle, the main bedroom and garage on one side, two bedrooms on the other, and decks and catwalks out to an infinity pool and a gazebo, over the contour lines of the site",
+          "alt_es": "Planta arquitectónica de la casa, numerada: sala, comedor y cocina al centro, el dormitorio principal y el garaje a un lado, dos dormitorios al otro, y decks y pasarelas hacia una piscina infinita y un gazebo, sobre las curvas de nivel del terreno",
+          "plan": true,
+          "label": "(Floor plan)", "label_es": "(Planta arquitectónica)",
+          "key": ["Entry", "Living", "Dining", "Kitchen", "Pantry", "Guest bathroom", "Laundry and storage", "Main bedroom", "Walk-in closet", "Main bathroom", "Bedroom", "Bathroom", "Garage", "Carport", "Deck", "Outdoor shower", "Catwalk", "Infinity pool", "Sun deck", "Gazebo and barbecue", "Dry garden"],
+          "key_es": ["Acceso", "Sala", "Comedor", "Cocina", "Despensa", "Baño de visitas", "Lavandería y bodega", "Dormitorio principal", "Vestidor", "Baño principal", "Dormitorio", "Baño", "Garaje", "Cochera", "Deck", "Ducha exterior", "Pasarela", "Piscina infinita", "Deck de sol", "Gazebo y parrilla", "Jardín seco"],
+          "plate": { "en": "Planta/web/floor-plan-en.png", "es": "Planta/web/floor-plan-es.png" }
         }
       ]
     },

@@ -350,7 +350,7 @@ function projectPage(lang, p, i) {
     const plate = im.plate ? `<source media="(min-width: 768px)" srcset="${pb}-800.webp${pv} 800w, ${pb}-1600.webp${pv} 1600w, ${pb}-2400.webp${pv} 2400w" sizes="96vw" width="${sizes[pk][0]}" height="${sizes[pk][1]}">` : '';
     return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}">
       <div class="pplan__img">${im.plate ? `<picture>${plate}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture>` : picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
-      <figcaption class="pplan__key"><p class="label">${lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
+      <figcaption class="pplan__key"><p class="label">${esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'))}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
     </figure>
 `;
   }).join('');
@@ -2362,7 +2362,8 @@ function sitemap() {
 // ---------- Viewer list and hero slides for each home page ----------
 // `up` is the path from that home page back to site/.
 function rendersJs(lang, up) {
-  const list = projects.flatMap((p) => p.images.map((_, j) => ({ id: `${p.slug}-${j + 1}`, src: up + imgBase(p.slug, j + 1), v: imgVer(`${p.slug}/${j + 1}`), title: p.name, alt: altOf(lang, p, j + 1) })));
+  // the home lightbox walks the photographs; plans stay on their project pages
+  const list = projects.flatMap((p) => p.images.map((im, j) => [im, j]).filter(([im]) => !im.plan).map(([, j]) => ({ id: `${p.slug}-${j + 1}`, src: up + imgBase(p.slug, j + 1), v: imgVer(`${p.slug}/${j + 1}`), title: p.name, alt: altOf(lang, p, j + 1) })));
   const slides = hero.map((key) => {
     const [slug, n] = key.split('/');
     const p = bySlug.get(slug);

@@ -85,13 +85,6 @@ window.CAVA_RENDERS = [
   "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
  },
  {
-  "id": "papagayo-404-10",
-  "src": "assets/img/projects/papagayo-404/10",
-  "v": "70156e5e",
-  "title": "Papagayo 404",
-  "alt": "Site plan of the house, numbered: the long pool with the jacuzzi and cryotherapy at its head, the decks, the terrace, kitchen and living room, and the sunken terrace, with the trees around the lot"
- },
- {
   "id": "casa-alcaravan-1",
   "src": "assets/img/projects/casa-alcaravan/1",
   "v": "4422641d",

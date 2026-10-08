@@ -85,13 +85,6 @@ window.CAVA_RENDERS = [
   "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
  },
  {
-  "id": "papagayo-404-10",
-  "src": "../assets/img/projects/papagayo-404/10",
-  "v": "70156e5e",
-  "title": "Papagayo 404",
-  "alt": "Planta de conjunto de la casa, numerada: la piscina larga con el jacuzzi y la crioterapia en su cabecera, los decks, la terraza, la cocina y la sala, y la terraza baja, con los árboles alrededor del lote"
- },
- {
   "id": "casa-alcaravan-1",
   "src": "../assets/img/projects/casa-alcaravan/1",
   "v": "4422641d",
