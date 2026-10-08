@@ -341,7 +341,13 @@ function projectPage(lang, p, i) {
   const placeholders = FACTS.some((k) => p[k] == null);
   // the gallery: every image after the cover, except those shown in the day/night comparison
   const cmp = p.compare ?? null;
-  const rest = p.images.map((_, j) => j + 1).filter((n) => n > 1 && !cmp?.images.includes(n));
+  const rest = p.images.map((_, j) => j + 1).filter((n) => n > 1 && !cmp?.images.includes(n) && !p.images[n - 1].plan);
+  // a numbered plan, with its key beside it in the page's language
+  const plans = p.images.map((im, j) => [im, j + 1]).filter(([im]) => im.plan).map(([im, n]) => `    <figure class="pplan grid">
+      <div class="pplan__img">${picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
+      <figcaption class="pplan__key"><p class="label">${lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
+    </figure>
+`).join('');
   // Every image in the gallery shares the narrowest image's proportion, so rows line up
   // and wider images are cropped at the sides, never at the top or bottom.
   const ratio = Math.min(...rest.map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
@@ -388,7 +394,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}${compare}    <section class="related" aria-labelledby="related-title">
+${gallery}${compare}${plans}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

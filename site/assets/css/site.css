@@ -1605,3 +1605,16 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .compare__cap { display: flex; justify-content: space-between; gap: 1rem; }
 .compare__hint { color: var(--mid-grey); font-weight: var(--w-text); }
 .gallery + .compare { margin-top: calc(var(--gap) - var(--pad-v)); }
+
+/* ---------- a project's numbered plan, with its key ---------- */
+.pplan { margin: 0; padding: 0 var(--margin) var(--pad-v); align-items: end; row-gap: var(--s-2); }
+.pplan__img { grid-column: 1 / span 8; background: #fcfcfc; }
+.pplan__img img { width: 100%; height: auto; display: block; }
+.pplan__key { grid-column: 9 / -1; display: grid; gap: 0.9rem; padding-bottom: 0.5rem; }
+.pplan__key ol { list-style: none; margin: 0; padding: 0.9rem 0 0; border-top: 1px solid var(--black); display: grid; gap: 0.35rem; font-size: var(--f-main); }
+.pplan__key li { display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); }
+.pplan__key b { font-weight: var(--w-strong); font-variant-numeric: tabular-nums; }
+@media (max-width: 767px) {
+  .pplan__img, .pplan__key { grid-column: 1 / -1; }
+  .pplan__key ol { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); font-size: var(--f-small); }
+}

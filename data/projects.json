@@ -115,9 +115,12 @@
           "alt_es": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
         },
         {
-          "file": "G.webp",
-          "alt": "Site plan of the house, with the long pool, the terraces and the trees around them",
-          "alt_es": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
+          "file": "Planta de conjunto.png",
+          "alt": "Site plan of the house, numbered: the long pool with the jacuzzi and cryotherapy at its head, the decks, the terrace, kitchen and living room, and the sunken terrace, with the trees around the lot",
+          "alt_es": "Planta de conjunto de la casa, numerada: la piscina larga con el jacuzzi y la crioterapia en su cabecera, los decks, la terraza, la cocina y la sala, y la terraza baja, con los árboles alrededor del lote",
+          "plan": true,
+          "key": ["Outdoor shower", "Jacuzzi", "Cryotherapy", "Pool", "Reflecting pool", "Main deck", "Deck", "Deck walk", "Terrace", "Kitchen and dining", "Living room", "Sunken terrace and fire pit", "Sun deck"],
+          "key_es": ["Ducha exterior", "Jacuzzi", "Crioterapia", "Piscina", "Espejo de agua", "Deck principal", "Deck", "Pasarela de deck", "Terraza", "Cocina y comedor", "Sala", "Terraza baja y fogata", "Deck de sol"]
         }
       ]
     },

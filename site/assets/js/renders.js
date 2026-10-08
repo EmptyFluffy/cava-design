@@ -87,9 +87,9 @@ window.CAVA_RENDERS = [
  {
   "id": "papagayo-404-10",
   "src": "assets/img/projects/papagayo-404/10",
-  "v": "a4122b91",
+  "v": "7d9bd435",
   "title": "Papagayo 404",
-  "alt": "Site plan of the house, with the long pool, the terraces and the trees around them"
+  "alt": "Site plan of the house, numbered: the long pool with the jacuzzi and cryotherapy at its head, the decks, the terrace, kitchen and living room, and the sunken terrace, with the trees around the lot"
  },
  {
   "id": "casa-alcaravan-1",

@@ -87,9 +87,9 @@ window.CAVA_RENDERS = [
  {
   "id": "papagayo-404-10",
   "src": "../assets/img/projects/papagayo-404/10",
-  "v": "a4122b91",
+  "v": "7d9bd435",
   "title": "Papagayo 404",
-  "alt": "Planta de conjunto de la casa, con la piscina larga, las terrazas y los árboles alrededor"
+  "alt": "Planta de conjunto de la casa, numerada: la piscina larga con el jacuzzi y la crioterapia en su cabecera, los decks, la terraza, la cocina y la sala, y la terraza baja, con los árboles alrededor del lote"
  },
  {
   "id": "casa-alcaravan-1",
