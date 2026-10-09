@@ -2038,7 +2038,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .gc { padding-bottom: var(--pad-v); }
 .gcards { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .gcard { min-width: 0; }
-.gcard__link { height: 100%; aspect-ratio: 4 / 5; display: flex; flex-direction: column; gap: 0.8rem; padding: 1.1rem 1.2rem 1.2rem; background: var(--light-grey); border-radius: 0.9rem; box-shadow: 0 1px 2px rgba(8, 8, 7, 0.04), 0 6px 18px rgba(8, 8, 7, 0.05); transition: background-color 0.3s, box-shadow 0.3s; }
+.gcard__link { height: 100%; min-height: 21rem; display: flex; flex-direction: column; gap: 0.8rem; padding: 1.1rem 1.2rem 1.2rem; background: var(--light-grey); border-radius: 0.9rem; box-shadow: 0 1px 2px rgba(8, 8, 7, 0.04), 0 6px 18px rgba(8, 8, 7, 0.05); transition: background-color 0.3s, box-shadow 0.3s; }
 .gcard__link:hover .gcard__foot { border-color: #c9cacb; }
 .gcard__link:hover { background: var(--grey); box-shadow: 0 1px 2px rgba(8, 8, 7, 0.05), 0 10px 24px rgba(8, 8, 7, 0.07); }
 .gcard__link:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
@@ -2050,10 +2050,11 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .gcard__title { font-size: clamp(1.25rem, 0.95rem + 0.6vw, 1.6rem); font-weight: var(--w-strong); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
 .gcard__text { font-size: var(--f-small); line-height: 1.45; color: var(--dark-grey); }
 .gcard__foot { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--grey); display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; color: var(--dark-grey); }
-.gcard__foot > span:first-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gcard__foot { flex-wrap: wrap; row-gap: 0.3rem; }
+.gcard__go { margin-left: auto; }
 .gcard__go { color: var(--black); white-space: nowrap; }
-@media (max-width: 1199px) { .gcards { grid-column: 1 / -1; } }
+@media (max-width: 991px) { .gcards { grid-column: 1 / -1; } }
 @media (max-width: 767px) {
   .gcards { grid-template-columns: minmax(0, 1fr); }
-  .gcard__link { aspect-ratio: auto; min-height: 15rem; }
+  .gcard__link { min-height: 0; }
 }
