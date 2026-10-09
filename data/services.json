@@ -80,7 +80,7 @@
     {
       "slug": { "en": "architecture", "es": "arquitectura" },
       "image": "casa-alcaravan/1",
-      "projects": ["casa-alcaravan", "papagayo-404", "portland-house"],
+      "projects": ["casa-alcaravan", "papagayo-404", "rancho-cartagena"],
       "en": {
         "name": "Architecture",
         "h1": ["Architectural", "design"],

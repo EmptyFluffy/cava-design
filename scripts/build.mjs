@@ -601,7 +601,7 @@ ${S[key].text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
   const tile = (n, wide) => { const b = `${up}assets/img/identity/use-${n}`, [w1, w2] = wide ? [1600, 800] : [1200, 600]; return `<figure class="idn-u${wide ? ' idn-u--wide' : ''}"><img src="${b}-${w1}.webp?v=${assetVer(`assets/img/identity/use-${n}-${w1}.webp`)}" srcset="${b}-${w2}.webp ${w2}w, ${b}-${w1}.webp ${w1}w" sizes="(min-width: 768px) ${wide ? 62 : 31}vw, 92vw" width="${w1}" height="${wide ? w1 * 2 / 3 : w1 * 5 / 4}" loading="lazy" decoding="async" alt="${esc(U[n])}"><figcaption class="label">${esc(U[n])}</figcaption></figure>`; };
   const use = `<div class="idn-uses">${tile('stationery', true)}${tile('tote')}${tile('cards')}${tile('brochure', true)}${tile('booklet')}${tile('poster')}${tile('mugs')}${tile('laptop', true)}${tile('notebook')}</div>`;
   const ld = { '@context': 'https://schema.org', '@type': 'Article', headline: D.h1.join(' '), description: D.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, publisher: { '@type': 'Organization', name: 'Studio CAVA', url: ORIGIN } };
-  return head(lang, { title: D.title, description: D.description, paths, image: `${imgBase('portland-house', 3)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+  return head(lang, { title: D.title, description: D.description, paths, image: `${imgBase('rancho-cartagena', 3)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'studio')}
 <main class="page">
   <article class="mf idn" aria-labelledby="idn-title">
@@ -2702,9 +2702,13 @@ ${bar(lang, up, paths, 'portal')}
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
+// Projects that changed name: the old address forwards to the new page (GitHub Pages has no redirects).
+const RENAMED = { 'portland-house': 'rancho-cartagena' };
+const forward = (to, rel) => `<!doctype html>\n<html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="${ORIGIN}/${to}"><meta http-equiv="refresh" content="0; url=${rel}"><title>Moved</title></head><body><a href="${rel}">${to}</a></body></html>\n`;
+
 const write = (path, html) => {
   // every page carries the floating WhatsApp button
-  if (path.endsWith('.html') && !/class="wa["\s]/.test(html)) {
+  if (path.endsWith('.html') && !/class="wa["\s]/.test(html) && !html.includes('http-equiv="refresh"')) {
     const lang = /<html lang="es"/.test(html) ? 'es' : 'en';
     html = html.replace('</body>', `${waButton(lang, UI[lang].wa.general)}</body>`);
   }
@@ -2733,6 +2737,7 @@ for (const lang of ['en', 'es']) {
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
   write(`${portalPath(lang)}index.html`, portalPage(lang));
   if (books) write(`${libraryPath(lang)}index.html`, libraryPage(lang));
+  for (const [from, to] of Object.entries(RENAMED)) write(`${projectPath(lang, from)}index.html`, forward(projectPath(lang, to), `../${to}/`));
   if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));

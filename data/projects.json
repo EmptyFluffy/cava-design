@@ -1,10 +1,10 @@
 {
   "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Areas (siteArea, builtArea) are numbers in m²; the pages add square feet. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
   "hero": [
-    "portland-house/1",
+    "rancho-cartagena/1",
     "papagayo-404/1",
     "casa-alcaravan/2",
-    "portland-house/3",
+    "rancho-cartagena/3",
     "papagayo-404/6",
     "military-museum/1",
     "papagayo-404/2",
@@ -13,14 +13,14 @@
   ],
   "projects": [
     {
-      "slug": "portland-house",
-      "name": "Portland House",
+      "slug": "rancho-cartagena",
+      "name": "Rancho Cartagena",
       "folder": "Portland House",
       "type": "House",
       "type_es": "Casa",
       "typology": "Residential",
       "typology_es": "Habitacional",
-      "location": "Huacas, Guanacaste",
+      "location": "Rancho Cartagena, Guanacaste",
       "coords": [
         -85.765,
         10.372
