@@ -297,7 +297,7 @@ window.CAVA_RENDERS = [
  {
   "id": "lean-and-green-1",
   "src": "assets/img/projects/lean-and-green/1",
-  "v": "b6961353",
+  "v": "5e1f0f8f",
   "title": "Lean & Green",
   "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store"
  },

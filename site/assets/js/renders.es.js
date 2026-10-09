@@ -297,7 +297,7 @@ window.CAVA_RENDERS = [
  {
   "id": "lean-and-green-1",
   "src": "../assets/img/projects/lean-and-green/1",
-  "v": "b6961353",
+  "v": "5e1f0f8f",
   "title": "Lean & Green",
   "alt": "Un bar saludable al aire libre bajo una vela de sombra: mesas de madera y sillas en tonos pastel, un techo de plantas colgantes y luces, y estantes de madera con productos bajo el rótulo Grocery Store"
  },
