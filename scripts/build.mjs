@@ -153,6 +153,10 @@ function langLink(lang, up, paths, cls) {
   return `<a class="${cls}" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}" aria-label="${o.name}">(${o.code})</a>`;
 }
 
+// The client portal: a lock, drawn to sit with the uppercase labels.
+const LOCK = '<svg class="lock" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="3" y="7.2" width="10" height="7.3" rx="1.7"/><path d="M5.3 7.2V5.1a2.7 2.7 0 0 1 5.4 0v2.1"/></svg>';
+const portalPath = (lang) => (lang === 'en' ? 'portal/' : 'es/portal/');
+
 function bar(lang, up, paths, current) {
   const t = UI[lang].nav;
   const home = up + UI[lang].dir;
@@ -163,7 +167,10 @@ function bar(lang, up, paths, current) {
   <nav class="bar__links label" aria-label="${t.aria}">
     ${link(up + projectsPath(lang), t.projects, 'projects')}, ${services.length ? `${link(up + servicesPath(lang), SVT[lang].link, 'services')}, ` : ''}${link(studioHref, t.studio, 'studio')}, ${link(`${home}#contact`, t.contact)}, ${langLink(lang, up, paths, 'ulink lang')}
   </nav>
-  <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
+  <div class="bar__acts">
+    <a class="pill portal-btn" href="${up}${portalPath(lang)}" aria-label="${t.portal}"${current === 'portal' ? ' aria-current="page"' : ''}>${LOCK}<span class="portal-btn__t">${t.portalShort}</span></a>
+    <a class="btn btn--dark bar__cta" href="${home}#enquiry">${t.cta} <span class="btn__dot" aria-hidden="true"></span></a>
+  </div>
 </header>
 `;
 }
@@ -207,6 +214,7 @@ ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(la
 ` : ''}${costs ? `      <a class="footer__link" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
 ` : ''}${land ? `      <a class="footer__link" href="${up}${landPath(lang)}">${LT[lang].link}</a>
 ` : ''}      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
+      <a class="footer__link" href="${up}${portalPath(lang)}">${n.portal}</a>
       <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     </nav>
     <div class="footer__info">
@@ -2519,6 +2527,7 @@ function homeEs() {
     if (u.startsWith('tools/cost-estimator/')) return `herramientas/estimador-de-costos/${u.slice('tools/cost-estimator/'.length)}`;
     if (u.startsWith('tools/land-prices/')) return `herramientas/precios-de-terrenos/${u.slice('tools/land-prices/'.length)}`;
     if (u.startsWith('services/')) return `servicios/${u.slice('services/'.length)}`;
+    if (u.startsWith('portal/')) return u;
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -2539,6 +2548,83 @@ function homeEs() {
     process.exit(1);
   }
   return html;
+}
+
+// ---------- /portal/ and /es/portal/: the client sign-in (not connected yet) ----------
+// The form sends nothing: its fields have no names and portal.js stops the submit and says so.
+// The page is kept out of search (noindex, not in the sitemap).
+const PT = {
+  en: {
+    title: 'Client portal | Studio CAVA', description: 'Sign in to the Studio CAVA client portal.',
+    kicker: '(Sign in)', h1: 'Client portal',
+    intro: 'Drawings, permits, the schedule, site visit reports and invoices for your project, in one place. Sign in with the email address we have on file.',
+    email: 'Email', pw: 'Password', show: 'Show', hide: 'Hide', go: 'Sign in',
+    forgot: 'Forgot your password?', link: 'Email me a sign-in link',
+    inside: '(Inside)', items: ['Drawings', 'Permits', 'Schedule', 'Site visits', 'Invoices'],
+    note: 'The portal is being set up. Until it opens, everything still reaches you by email and WhatsApp.',
+    notYet: '(Not a client yet)', notYetText: 'The portal is for projects in progress with the studio. To start one, talk to us.',
+    closed: (mail, waLink) => `The portal is not open yet, so nothing was sent and nothing was stored. For your files, write to ${mail} or ${waLink}.`,
+    badEmail: 'Enter the email address we have on file, for example name@domain.com.',
+    photo: '(Papagayo 404)',
+  },
+  es: {
+    title: 'Portal de clientes | Studio CAVA', description: 'Ingreso al portal de clientes de Studio CAVA.',
+    kicker: '(Ingreso)', h1: 'Portal de clientes',
+    intro: 'Planos, permisos, cronograma, reportes de visita y facturas de su proyecto, en un solo lugar. Ingrese con el correo que tenemos registrado.',
+    email: 'Correo', pw: 'Contraseña', show: 'Ver', hide: 'Ocultar', go: 'Ingresar',
+    forgot: '¿Olvidó su contraseña?', link: 'Enviarme un enlace de acceso',
+    inside: '(Adentro)', items: ['Planos', 'Permisos', 'Cronograma', 'Visitas de obra', 'Facturas'],
+    note: 'El portal se está preparando. Mientras abre, todo le sigue llegando por correo y WhatsApp.',
+    notYet: '(Aún no es cliente)', notYetText: 'El portal es para proyectos en curso con el estudio. Para empezar uno, hablemos.',
+    closed: (mail, waLink) => `El portal todavía no está abierto, así que no se envió ni se guardó nada. Para sus archivos, escriba a ${mail} o por ${waLink}.`,
+    badEmail: 'Escriba el correo que tenemos registrado, por ejemplo nombre@dominio.com.',
+    photo: '(Papagayo 404)',
+  },
+};
+function portalPage(lang) {
+  const P = PT[lang];
+  const paths = { en: portalPath('en'), es: portalPath('es') };
+  const up = upFrom(paths[lang]);
+  const home = up + UI[lang].dir;
+  const mail = `<a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a>`;
+  const waLink = `<a class="ulink" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN}</a>`;
+  const page = head(lang, { title: P.title, description: P.description, paths, image: `${imgBase('papagayo-404', 2)}-1600.webp`, up, script: 'portal.js' })
+    .replace('<head>', '<head>\n<meta name="robots" content="noindex">');
+  return page + `<div id="top"></div>
+${bar(lang, up, paths, 'portal')}
+<main class="page">
+  <section class="portal" aria-labelledby="portal-title">
+    <figure class="portal__media">
+      ${picture(up, 'papagayo-404', 2, altOf(lang, projects.find((x) => x.slug === 'papagayo-404'), 2), '(min-width: 768px) 50vw, 100vw', { eager: true })}
+      <figcaption class="label portal__cap">${esc(P.photo)}</figcaption>
+    </figure>
+    <div class="portal__panel">
+      <p class="label">${esc(P.kicker)}</p>
+      <h1 class="h3 portal__title" id="portal-title">${esc(P.h1)}</h1>
+      <p class="portal__intro">${esc(P.intro)}</p>
+      <form class="portal__form" data-portal novalidate onsubmit="return false">
+        <label class="portal__field"><span class="label">${esc(P.email)}</span><input class="input" id="portal-email" type="email" autocomplete="username" inputmode="email" spellcheck="false" required></label>
+        <label class="portal__field"><span class="label">${esc(P.pw)}</span><span class="portal__pw"><input class="input" id="portal-pw" type="password" autocomplete="current-password" required><button class="label portal__show" type="button" data-portal-show data-show="${esc(P.show)}" data-hide="${esc(P.hide)}" aria-pressed="false" aria-controls="portal-pw">${esc(P.show)}</button></span></label>
+        <button class="btn btn--dark portal__go" type="submit">${esc(P.go)} <span class="btn__dot" aria-hidden="true"></span></button>
+        <p class="portal__alt"><button class="ulink" type="button" data-portal-link>${esc(P.forgot)}</button><button class="ulink" type="button" data-portal-link>${esc(P.link)}</button></p>
+        <p class="portal__status" data-portal-status role="status" aria-live="polite" hidden></p>
+        <template data-msg="closed">${P.closed(mail, waLink)}</template>
+        <template data-msg="email">${esc(P.badEmail)}</template>
+      </form>
+      <div class="portal__inside">
+        <p class="label">${esc(P.inside)}</p>
+        <ul>${P.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+      </div>
+      <p class="note portal__note">${esc(P.note)}</p>
+      <div class="portal__new">
+        <p class="label">${esc(P.notYet)}</p>
+        <p>${esc(P.notYetText)}</p>
+        <p class="portal__new-acts">${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a> ` : ''}<a class="btn btn--light" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a></p>
+      </div>
+    </div>
+  </section>
+</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
 const write = (path, html) => {
@@ -2570,6 +2656,7 @@ for (const lang of ['en', 'es']) {
     towns.filter((t) => land.towns[t.slug]).forEach((t) => write(`${landTownPath(lang, t.slug)}index.html`, landTownPage(lang, t)));
   }
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
+  write(`${portalPath(lang)}index.html`, portalPage(lang));
   if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));

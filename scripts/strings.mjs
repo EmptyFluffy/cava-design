@@ -5,7 +5,7 @@ export const UI = {
   en: {
     lang: 'en', locale: 'en_US', dir: '', projectsDir: 'projects', studioDir: 'studio', townsDir: 'architects',
     other: { code: 'ES', name: 'Español', lang: 'es' },
-    nav: { aria: 'Main', home: 'Studio CAVA, home', projects: 'Projects', studio: 'Studio', process: 'Process', contact: 'Contact', cta: 'Get in touch' },
+    nav: { aria: 'Main', home: 'Studio CAVA, home', projects: 'Projects', studio: 'Studio', process: 'Process', contact: 'Contact', cta: 'Get in touch', portal: 'Client portal', portalShort: 'Clients' },
     reach: { label: '(Start a project)', text: 'Tell us about your property and what you want to build. We answer within a working day.' },
     footer: {
       aria: 'Footer', nav: '(Navigation)', home: 'Home', where: 'Where we work', contactUs: 'Contact us', studio: '(Studio)',
@@ -46,7 +46,7 @@ export const UI = {
   es: {
     lang: 'es', locale: 'es_CR', dir: 'es/', projectsDir: 'proyectos', studioDir: 'estudio', townsDir: 'arquitectos',
     other: { code: 'EN', name: 'English', lang: 'en' },
-    nav: { aria: 'Principal', home: 'Studio CAVA, inicio', projects: 'Proyectos', studio: 'Estudio', process: 'Proceso', contact: 'Contacto', cta: 'Escríbanos' },
+    nav: { aria: 'Principal', home: 'Studio CAVA, inicio', projects: 'Proyectos', studio: 'Estudio', process: 'Proceso', contact: 'Contacto', cta: 'Escríbanos', portal: 'Portal de clientes', portalShort: 'Clientes' },
     reach: { label: '(Empezar un proyecto)', text: 'Cuéntenos sobre su propiedad y lo que quiere construir. Respondemos en un día hábil.' },
     footer: {
       aria: 'Pie de página', nav: '(Navegación)', home: 'Inicio', where: 'Dónde trabajamos', contactUs: 'Contáctenos', studio: '(Estudio)',
