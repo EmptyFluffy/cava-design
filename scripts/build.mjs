@@ -1675,7 +1675,37 @@ ${T.glance.map(([k, v]) => `        <div><dt class="label">${esc(k)}</dt><dd>${c
 ${T.for.map((x) => `        <li>${esc(x)}</li>`).join('\n')}
       </ul>
     </section>
-    <section class="tw__sec grid" aria-labelledby="svc-how">
+${s.strategies?.length ? `    <section class="tw__sec grid" aria-labelledby="svc-strat">
+      <h2 class="label tw__label" id="svc-strat">${lang === 'en' ? '(Strategies)' : '(Estrategias)'}</h2>
+      <ol class="strats">
+${s.strategies.map((st, k) => {
+    const X = st[lang];
+    const img = st.image.startsWith('proc:') ? procImg(lang, up, st.image.slice(5), '(min-width: 768px) 32vw, 92vw') : (() => { const [sl, n] = st.image.split('/'); const pr = projects.find((o) => o.slug === sl); return picture(up, sl, +n, altOf(lang, pr, +n), '(min-width: 768px) 32vw, 92vw'); })();
+    const cap = X.cap ?? projects.find((o) => o.slug === st.image.split('/')[0])?.name ?? '';
+    const link = st.link === 'towns' ? `<a class="ulink strat__link" href="${up}${townsPath(lang)}">${lang === 'en' ? 'The climate of each town we work in' : 'El clima de cada pueblo donde trabajamos'} →</a>` : '';
+    return `        <li class="strat">
+          <figure class="strat__fig">${img}<figcaption class="label strat__cap">${esc(cap)}</figcaption></figure>
+          <p class="label strat__n">(${pad(k + 1)}) ${esc(X.kicker)}</p>
+          <h3 class="strat__name">${esc(X.name)}</h3>
+          <p class="strat__text">${c(X.text)}</p>
+          <ul class="strat__items">${X.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+          ${link}
+        </li>`;
+  }).join('\n')}
+      </ol>
+    </section>
+` : ''}${s.certs?.length ? `    <section class="tw__sec grid" aria-labelledby="svc-certs">
+      <h2 class="label tw__label" id="svc-certs">${lang === 'en' ? '(Certification)' : '(Certificación)'}</h2>
+      <ul class="certs">
+${s.certs.map((ce) => { const X = ce[lang]; return `        <li class="cert">
+          <p class="label cert__kicker">${esc(X.kicker)}</p>
+          <h3 class="cert__name">${esc(X.name)}</h3>
+          <p class="cert__text">${c(X.text)}</p>
+          <dl class="cert__facts">${X.facts.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+        </li>`; }).join('\n')}
+      </ul>
+    </section>
+` : ''}    <section class="tw__sec grid" aria-labelledby="svc-how">
       <h2 class="label tw__label" id="svc-how">${S.how}</h2>
       <ol class="svc__phases">
 ${T.phases.map((ph, k) => `        <li class="svc__phase">
