@@ -445,8 +445,36 @@
           "file": "S3 Houses.png",
           "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck",
           "alt_es": "Casa de dos niveles escalonada en una ladera seca, con una piscina pequeña y un deck"
+        },
+        {
+          "file": "Planos/web/site-mob.png", "desk": "Planos/web/site-desk.png",
+          "alt": "Site plan, numbered: four houses in a row down a narrow sloping lot, each with its own pool, reached from a shared entrance at the top",
+          "alt_es": "Planta de conjunto, numerada: cuatro casas en fila a lo largo de un lote angosto en pendiente, cada una con su piscina, desde una entrada común arriba",
+          "plan": true, "label": "(Site plan)", "label_es": "(Planta de conjunto)",
+          "key": ["Main entrance", "House A", "House B", "House C", "House D"],
+          "key_es": ["Entrada principal", "Casa A", "Casa B", "Casa C", "Casa D"]
+        },
+        {
+          "file": "Planos/web/a-mob.png", "desk": "Planos/web/a-desk.png",
+          "alt": "Plans of house A on two levels: the living area, bathroom and bedroom on the upper level with the pool and terrace beside them, and a bedroom, bathroom and machine room below",
+          "alt_es": "Plantas de la casa A en dos niveles: el área social, el baño y el dormitorio arriba con la piscina y la terraza al lado, y un dormitorio, un baño y el cuarto de máquinas abajo",
+          "plan": true, "label": "(Houses)", "label_es": "(Casas)", "caption": "House A", "caption_es": "Casa A",
+          "key": ["Living, kitchen and dining", "Bedroom", "Bathroom", "Terrace", "Pool", "Laundry", "Machine room"], "key_es": ["Área social", "Dormitorio", "Baño", "Terraza", "Piscina", "Pilas", "Cuarto de máquinas"]
+        },
+        {
+          "file": "Planos/web/b-mob.png", "desk": "Planos/web/b-desk.png",
+          "alt": "Plans of house B on two levels: the open living area with the pool and terrace below, three bedrooms and two bathrooms above",
+          "alt_es": "Plantas de la casa B en dos niveles: el área social abierta con la piscina y la terraza abajo, tres dormitorios y dos baños arriba",
+          "plan": true, "caption": "House B", "caption_es": "Casa B"
+        },
+        {
+          "file": "Planos/web/cd-mob.png", "desk": "Planos/web/cd-desk.png",
+          "alt": "Plans of houses C and D on two levels: the living area with the pool and terrace below, three bedrooms and three bathrooms above",
+          "alt_es": "Plantas de las casas C y D en dos niveles: el área social con la piscina y la terraza abajo, tres dormitorios y tres baños arriba",
+          "plan": true, "caption": "Houses C and D", "caption_es": "Casas C y D"
         }
-      ]
+      ],
+      "planRows": [{ "images": [2], "spans": [4] }, { "images": [3, 4, 5], "span": 8, "widths": [488, 722, 807] }]
     },
     {
       "slug": "tree-house",

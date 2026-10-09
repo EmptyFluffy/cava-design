@@ -351,7 +351,24 @@ function projectPage(lang, p, i) {
   // text stacked in the columns left over; a plan drawn for that width (desk) on a wide screen, the
   // phone version (file) below 768 px. On a phone each plan is followed by its key.
   const inRows = new Set((p.planRows ?? []).flatMap((r) => r.images));
+  const deskSource = (n, vw) => {
+    const im = p.images[n - 1], dk = `${p.slug}/${n}-d`, db = up + imgBase(p.slug, `${n}-d`), dv = `?v=${imgVer(dk)}`;
+    return im.desk ? `<source media="(min-width: 768px)" srcset="${db}-800.webp${dv} 800w, ${db}-1600.webp${dv} 1600w, ${db}-2400.webp${dv} 2400w, ${db}-3600.webp${dv} 3600w" sizes="${vw}vw" width="${sizes[dk][0]}" height="${sizes[dk][1]}">` : '';
+  };
   const planRows = (p.planRows ?? []).map((row) => {
+    // a row of plans at one scale (widths = what each covers): they share `span` columns in proportion,
+    // each captioned, and the keys that exist stack beside them
+    if (row.widths) {
+      const total = row.widths.reduce((a, b) => a + b, 0);
+      const keyed = row.images.filter((n) => p.images[n - 1].key);
+      return `    <section class="prow grid" aria-label="${lang === 'en' ? 'Plans' : 'Planos'}">
+      <div class="prow__img prow__set" style="--c: 1 / span ${row.span}; --r: 1 / span ${Math.max(1, keyed.length)}">
+${row.images.map((n, i) => { const im = p.images[n - 1]; return `        <figure class="prow__fig" style="--w: ${row.widths[i]}"><picture>${deskSource(n, Math.round((row.span / 12) * 96 * row.widths[i] / total))}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture>${im.caption ? `<figcaption class="label prow__cap">${esc(im[lang === 'en' ? 'caption' : 'caption_es'])}</figcaption>` : ''}</figure>`; }).join('\n')}
+      </div>
+${keyed.map((n, i) => `      <div class="pplan__key prow__key" style="--c: ${Math.min(row.span + 2, 10)} / -1; --r: ${i + 1}"><p class="label">${planLabel(p.images[n - 1])}</p>${planKey(p.images[n - 1])}</div>`).join('\n')}
+    </section>
+`;
+    }
     const keyStart = Math.min(row.spans.reduce((a, b) => a + b, 0) + 2, 10);   // keys get at least three columns
     let col = 1;
     return `    <section class="prow grid" aria-label="${lang === 'en' ? 'Plans' : 'Planos'}">

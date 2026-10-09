@@ -197,7 +197,7 @@
  ],
  "kauhane-house/d-k-section": [
   1600,
-  725
+  661
  ],
  "kauhane-house/d-k-elevation": [
   1600,
@@ -205,11 +205,11 @@
  ],
  "kauhane-house/d-k-axo-1": [
   1600,
-  695
+  683
  ],
  "kauhane-house/d-k-axo-2": [
   1600,
-  674
+  719
  ],
  "negra-mixed-use/1": [
   1600,
@@ -218,6 +218,38 @@
  "s3-houses/1": [
   1536,
   1024
+ ],
+ "s3-houses/2": [
+  1600,
+  2078
+ ],
+ "s3-houses/2-d": [
+  1600,
+  2078
+ ],
+ "s3-houses/3": [
+  1490,
+  3200
+ ],
+ "s3-houses/3-d": [
+  1600,
+  3436
+ ],
+ "s3-houses/4": [
+  1600,
+  1809
+ ],
+ "s3-houses/4-d": [
+  1600,
+  1809
+ ],
+ "s3-houses/5": [
+  1600,
+  1561
+ ],
+ "s3-houses/5-d": [
+  1600,
+  1561
  ],
  "tree-house/1": [
   1600,
