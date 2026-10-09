@@ -16,7 +16,8 @@
   const total = String(tabs.length).padStart(2, '0');
   const STEP = 3600;
   const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let layer = tabs[0].dataset.anlLayer;
+  let layer = (tabs.find((t) => t.getAttribute('aria-selected') === 'true') ?? tabs[0]).dataset.anlLayer;
+  let then = root.dataset.anlThen ?? null;   // where the story goes after the opening layer
   let view = frames[0].dataset.anlFrame;
   let stopped = still, hover = false, visible = false, timer = 0;
 
@@ -51,6 +52,7 @@
   // autoplay: the progress bar on the active tab restarts with every step
   const running = () => !stopped && !hover && visible;
   const tick = () => {
+    if (then) { layer = then; then = null; show(); schedule(); return; }
     const i = tabs.findIndex((t) => t.dataset.anlLayer === layer);
     if (i === tabs.length - 1) {
       const v = views.findIndex((b) => b.dataset.anlView === view);
@@ -68,7 +70,7 @@
     timer = setTimeout(tick, STEP);
   };
   const stop = () => {
-    stopped = true;
+    stopped = true; then = null;
     if (play) { play.textContent = play.dataset.resume; play.setAttribute('aria-pressed', 'true'); }
     schedule();
   };

@@ -466,11 +466,12 @@ ${row.images.map((n, i) => {
   const an = p.analysis;
   const analysis = an ? (() => {
     const n = an.layers.length;
+    const first = Math.max(0, an.layers.findIndex((l) => l.key === an.start));   // the layer the section opens on
     const frame = (v) => { const [w, h] = sizes[`${p.slug}/a-${v.key}-${an.layers[0].key}`]; return `        <div class="anl__frame${v === an.views[0] ? ' is-on' : ''}" data-anl-frame="${v.key}" style="--ratio: ${(w / h).toFixed(3)}">
 ${v.key === 'plan' && an.amenities ? `          <div class="anl__notes" data-anl-notes="modules modules-runoff" style="--ar: ${(w / h).toFixed(4)}"><div class="anl__notebox">${an.amenities.map((m) => `<span class="anl__pin${m.side === 'left' ? ' is-left' : ''}" style="left: ${(m.x * 100).toFixed(1)}%; top: ${(m.y * 100).toFixed(1)}%"><i></i><span class="label">${esc(m[lang].name)}</span></span>`).join('')}</div></div>\n` : ''}
-${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === 0 ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === 0 && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
+${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === first ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === first && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
         </div>`; };
-    return `    <section class="anl" aria-labelledby="anl-title" data-anl>
+    return `    <section class="anl" aria-labelledby="anl-title" data-anl${an.then ? ` data-anl-then="${an.then}"` : ''}>
       <div class="anl__head grid">
         <h2 class="label anl__label" id="anl-title">${lang === 'en' ? '(Site analysis)' : '(Análisis del terreno)'}</h2>
         <p class="h3 anl__lead">${esc(an.lead[lang])}</p>
@@ -478,15 +479,15 @@ ${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw
       </div>
       <div class="anl__body grid">
         <ol class="anl__list" role="tablist" aria-label="${lang === 'en' ? 'Layers' : 'Capas'}">
-${an.layers.map((l, i) => `          <li><button class="anl__tab" type="button" role="tab" aria-selected="${i === 0}" data-anl-layer="${l.key}" data-text="${esc(l[lang].text)}"><span class="anl__n">${pad(i + 1)}</span><span>${esc(l[lang].name)}</span></button></li>`).join('\n')}
+${an.layers.map((l, i) => `          <li><button class="anl__tab" type="button" role="tab" aria-selected="${i === first}" data-anl-layer="${l.key}" data-text="${esc(l[lang].text)}"><span class="anl__n">${pad(i + 1)}</span><span>${esc(l[lang].name)}</span></button></li>`).join('\n')}
         </ol>
         <div class="anl__main">
           <div class="anl__stage">
 ${an.views.map(frame).join('\n')}
-${an.layers.map((l, i) => { const L = l.legend; if (!L) return `            <p class="label anl__legend${i === 0 ? ' is-on' : ''}" data-anl-legend="${l.key}" aria-hidden="true"></p>\n`; const inner = L.ramp ? `<span class="anl__lo">${esc(L[lang][0])}</span><span class="anl__ramp"></span><span class="anl__hi">${esc(L[lang][1])}</span>` : L.keys.map((k) => `<span class="anl__key"><i style="${k.line ? `--c: ${k.line}` : `--c: ${k.box}`}" class="${k.line ? 'is-line' : 'is-box'}"></i>${esc(k[lang])}${k.sub ? `<b class="anl__sub">${esc(k.sub)}</b>` : ''}</span>`).join(''); return `            <p class="label anl__legend${i === 0 ? ' is-on' : ''}" data-anl-legend="${l.key}" aria-hidden="true">${inner}</p>\n`; }).join('')}            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>01/${pad(n)}</span><span data-anl-name>${esc(an.layers[0][lang].name)}</span></p>
+${an.layers.map((l, i) => { const L = l.legend; if (!L) return `            <p class="label anl__legend${i === first ? ' is-on' : ''}" data-anl-legend="${l.key}" aria-hidden="true"></p>\n`; const inner = L.ramp ? `<span class="anl__lo">${esc(L[lang][0])}</span><span class="anl__ramp"></span><span class="anl__hi">${esc(L[lang][1])}</span>` : L.keys.map((k) => `<span class="anl__key"><i style="${k.line ? `--c: ${k.line}` : `--c: ${k.box}`}" class="${k.line ? 'is-line' : 'is-box'}"></i>${esc(k[lang])}${k.sub ? `<b class="anl__sub">${esc(k.sub)}</b>` : ''}</span>`).join(''); return `            <p class="label anl__legend${i === first ? ' is-on' : ''}" data-anl-legend="${l.key}" aria-hidden="true">${inner}</p>\n`; }).join('')}            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>${pad(first + 1)}/${pad(n)}</span><span data-anl-name>${esc(an.layers[first][lang].name)}</span></p>
           </div>
           <div class="anl__foot">
-            <p class="anl__text" data-anl-text aria-live="polite">${esc(an.layers[0][lang].text)}</p>
+            <p class="anl__text" data-anl-text aria-live="polite">${esc(an.layers[first][lang].text)}</p>
             <div class="anl__views" role="group" aria-label="${lang === 'en' ? 'View' : 'Vista'}"><button class="anl__play label" type="button" data-anl-play data-pause="${lang === 'en' ? 'Pause' : 'Pausa'}" data-resume="${lang === 'en' ? 'Play' : 'Reproducir'}" aria-pressed="false">${lang === 'en' ? 'Pause' : 'Pausa'}</button>${an.views.map((v, i) => `<button class="anl__view label" type="button" aria-pressed="${i === 0}" data-anl-view="${v.key}">${esc(v[lang])}</button>`).join('')}</div>
           </div>
         </div>

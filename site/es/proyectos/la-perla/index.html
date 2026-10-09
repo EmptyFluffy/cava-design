@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
 <link rel="stylesheet" href="../../../assets/css/site.css?v=acf19a00">
 <script defer src="../../../assets/js/project.js?v=a6c70a27"></script>
-<script defer src="../../../assets/js/analysis.js?v=bf54049e"></script>
+<script defer src="../../../assets/js/analysis.js?v=9170460f"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -99,7 +99,7 @@
         <p class="label pmap__town"><a class="ulink" href="../../../es/arquitectos/flamingo/">Arquitectos en Flamingo →</a></p>
       </figure>
     </section>
-    <section class="anl" aria-labelledby="anl-title" data-anl>
+    <section class="anl" aria-labelledby="anl-title" data-anl data-anl-then="contours">
       <div class="anl__head grid">
         <h2 class="label anl__label" id="anl-title">(Análisis del terreno)</h2>
         <p class="h3 anl__lead">Antes de dibujar un solo lote leímos el terreno: su altura, su pendiente y por dónde corre la lluvia.</p>
@@ -107,13 +107,13 @@
       </div>
       <div class="anl__body grid">
         <ol class="anl__list" role="tablist" aria-label="Capas">
-          <li><button class="anl__tab" type="button" role="tab" aria-selected="true" data-anl-layer="terrain" data-text="El terreno modelado a partir del levantamiento topográfico. Todos los estudios que siguen parten de él."><span class="anl__n">01</span><span>Terreno</span></button></li>
+          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="terrain" data-text="El terreno modelado a partir del levantamiento topográfico. Todos los estudios que siguen parten de él."><span class="anl__n">01</span><span>Terreno</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="contours" data-text="Las curvas de nivel levantadas en tres dimensiones, para leer de una vez las crestas, los valles y el terreno más plano."><span class="anl__n">02</span><span>Curvas de nivel</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="elevation" data-text="Cada punto coloreado según su altura, del terreno más bajo al más alto."><span class="anl__n">03</span><span>Elevación</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="slope" data-text="Qué tan inclinado es el terreno en cada punto. Donde es más suave, una calle o una casa cuesta menos; lo más empinado se deja como está."><span class="anl__n">04</span><span>Pendiente</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="runoff" data-text="Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones."><span class="anl__n">05</span><span>Escorrentía</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="streets" data-text="Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno."><span class="anl__n">06</span><span>Calles</span></button></li>
-          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules" data-text="33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito."><span class="anl__n">07</span><span>Lotes y casas</span></button></li>
+          <li><button class="anl__tab" type="button" role="tab" aria-selected="true" data-anl-layer="modules" data-text="33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito."><span class="anl__n">07</span><span>Lotes y casas</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules-runoff" data-text="Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua."><span class="anl__n">08</span><span>Casas sobre la escorrentía</span></button></li>
         </ol>
         <div class="anl__main">
@@ -121,38 +121,38 @@
         <div class="anl__frame is-on" data-anl-frame="plan" style="--ratio: 1.596">
           <div class="anl__notes" data-anl-notes="modules modules-runoff" style="--ar: 1.5956"><div class="anl__notebox"><span class="anl__pin" style="left: 37.4%; top: 40.3%"><i></i><span class="label">Casa Club</span></span><span class="anl__pin" style="left: 50.2%; top: 20.8%"><i></i><span class="label">El Mirador</span></span><span class="anl__pin is-left" style="left: 34.2%; top: 58.7%"><i></i><span class="label">Casa de Baños</span></span><span class="anl__pin" style="left: 47.2%; top: 60.2%"><i></i><span class="label">Cocina de la Huerta</span></span></div></div>
 
-          <img class="anl__img is-on" data-anl-img="terrain" src="../../../assets/img/projects/la-perla/a-plan-terrain.webp?v=434463a9" width="951" height="596" decoding="async" alt="Terreno, planta">
+          <img class="anl__img" data-anl-img="terrain" src="../../../assets/img/projects/la-perla/a-plan-terrain.webp?v=434463a9" width="951" height="596" loading="lazy" decoding="async" alt="Terreno, planta">
           <img class="anl__img" data-anl-img="contours" src="../../../assets/img/projects/la-perla/a-plan-contours.webp?v=d43cfeea" width="951" height="596" loading="lazy" decoding="async" alt="Curvas de nivel, planta">
           <img class="anl__img" data-anl-img="elevation" src="../../../assets/img/projects/la-perla/a-plan-elevation.webp?v=b1c13b92" width="951" height="596" loading="lazy" decoding="async" alt="Elevación, planta">
           <img class="anl__img" data-anl-img="slope" src="../../../assets/img/projects/la-perla/a-plan-slope.webp?v=eaac0a08" width="951" height="596" loading="lazy" decoding="async" alt="Pendiente, planta">
           <img class="anl__img" data-anl-img="runoff" src="../../../assets/img/projects/la-perla/a-plan-runoff.webp?v=6dff0645" width="951" height="596" loading="lazy" decoding="async" alt="Escorrentía, planta">
           <img class="anl__img" data-anl-img="streets" src="../../../assets/img/projects/la-perla/a-plan-streets.webp?v=4a960eab" width="951" height="596" loading="lazy" decoding="async" alt="Calles, planta">
-          <img class="anl__img" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-plan-modules.webp?v=0cfbb905" width="951" height="596" loading="lazy" decoding="async" alt="Lotes y casas, planta">
+          <img class="anl__img is-on" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-plan-modules.webp?v=0cfbb905" width="951" height="596" decoding="async" alt="Lotes y casas, planta">
           <img class="anl__img" data-anl-img="modules-runoff" src="../../../assets/img/projects/la-perla/a-plan-modules-runoff.webp?v=f142a486" width="951" height="596" loading="lazy" decoding="async" alt="Casas sobre la escorrentía, planta">
         </div>
         <div class="anl__frame" data-anl-frame="axo" style="--ratio: 1.673">
 
-          <img class="anl__img is-on" data-anl-img="terrain" src="../../../assets/img/projects/la-perla/a-axo-terrain.webp?v=f675c069" width="989" height="591" loading="lazy" decoding="async" alt="Terreno, axonometría">
+          <img class="anl__img" data-anl-img="terrain" src="../../../assets/img/projects/la-perla/a-axo-terrain.webp?v=f675c069" width="989" height="591" loading="lazy" decoding="async" alt="Terreno, axonometría">
           <img class="anl__img" data-anl-img="contours" src="../../../assets/img/projects/la-perla/a-axo-contours.webp?v=0ef8cd81" width="989" height="591" loading="lazy" decoding="async" alt="Curvas de nivel, axonometría">
           <img class="anl__img" data-anl-img="elevation" src="../../../assets/img/projects/la-perla/a-axo-elevation.webp?v=fca80efb" width="989" height="591" loading="lazy" decoding="async" alt="Elevación, axonometría">
           <img class="anl__img" data-anl-img="slope" src="../../../assets/img/projects/la-perla/a-axo-slope.webp?v=56af0bd6" width="989" height="591" loading="lazy" decoding="async" alt="Pendiente, axonometría">
           <img class="anl__img" data-anl-img="runoff" src="../../../assets/img/projects/la-perla/a-axo-runoff.webp?v=c9afae79" width="989" height="591" loading="lazy" decoding="async" alt="Escorrentía, axonometría">
           <img class="anl__img" data-anl-img="streets" src="../../../assets/img/projects/la-perla/a-axo-streets.webp?v=982e0ea5" width="989" height="591" loading="lazy" decoding="async" alt="Calles, axonometría">
-          <img class="anl__img" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-axo-modules.webp?v=fc83264c" width="989" height="591" loading="lazy" decoding="async" alt="Lotes y casas, axonometría">
+          <img class="anl__img is-on" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-axo-modules.webp?v=fc83264c" width="989" height="591" loading="lazy" decoding="async" alt="Lotes y casas, axonometría">
           <img class="anl__img" data-anl-img="modules-runoff" src="../../../assets/img/projects/la-perla/a-axo-modules-runoff.webp?v=9230d3a9" width="989" height="591" loading="lazy" decoding="async" alt="Casas sobre la escorrentía, axonometría">
         </div>
-            <p class="label anl__legend is-on" data-anl-legend="terrain" aria-hidden="true"></p>
+            <p class="label anl__legend" data-anl-legend="terrain" aria-hidden="true"></p>
             <p class="label anl__legend" data-anl-legend="contours" aria-hidden="true"></p>
             <p class="label anl__legend" data-anl-legend="elevation" aria-hidden="true"><span class="anl__lo">Bajo</span><span class="anl__ramp"></span><span class="anl__hi">Alto</span></p>
             <p class="label anl__legend" data-anl-legend="slope" aria-hidden="true"><span class="anl__lo">Plano</span><span class="anl__ramp"></span><span class="anl__hi">Empinado</span></p>
             <p class="label anl__legend" data-anl-legend="runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
             <p class="label anl__legend" data-anl-legend="streets" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Calle</span></p>
-            <p class="label anl__legend" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>Tipología A<b class="anl__sub">400 m² × 3</b></span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>Tipología B<b class="anl__sub">250 m² × 11</b></span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>Tipología C<b class="anl__sub">160 m² × 11</b></span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>Tipología D<b class="anl__sub">100 m² × 8</b></span></p>
+            <p class="label anl__legend is-on" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>Tipología A<b class="anl__sub">400 m² × 3</b></span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>Tipología B<b class="anl__sub">250 m² × 11</b></span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>Tipología C<b class="anl__sub">160 m² × 11</b></span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>Tipología D<b class="anl__sub">100 m² × 8</b></span></p>
             <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>A</span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>B</span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>C</span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>D</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
-            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>01/08</span><span data-anl-name>Terreno</span></p>
+            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>07/08</span><span data-anl-name>Lotes y casas</span></p>
           </div>
           <div class="anl__foot">
-            <p class="anl__text" data-anl-text aria-live="polite">El terreno modelado a partir del levantamiento topográfico. Todos los estudios que siguen parten de él.</p>
+            <p class="anl__text" data-anl-text aria-live="polite">33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito.</p>
             <div class="anl__views" role="group" aria-label="Vista"><button class="anl__play label" type="button" data-anl-play data-pause="Pausa" data-resume="Reproducir" aria-pressed="false">Pausa</button><button class="anl__view label" type="button" aria-pressed="true" data-anl-view="plan">Planta</button><button class="anl__view label" type="button" aria-pressed="false" data-anl-view="axo">Axonometría</button></div>
           </div>
         </div>

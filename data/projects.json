@@ -632,6 +632,7 @@
       ],
       "analysis": {
         "dir": "web/analysis",
+        "start": "modules", "then": "contours",
         "lead": {
           "en": "Before drawing a single lot we read the land: its height, its slope and where the rain runs.", "note_en": "A condominium on 5.7 hectares at Matapalo, on the road to Bahía Pirata, planned in 2021 and not built.",
           "es": "Antes de dibujar un solo lote leímos el terreno: su altura, su pendiente y por dónde corre la lluvia.", "note_es": "Un condominio en 5.7 hectáreas en Matapalo, camino a Bahía Pirata, planificado en 2021 y no construido."
