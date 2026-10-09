@@ -679,6 +679,88 @@ function identityFigures(lang, S, up) {
       </div>`;
   return { voids, gestalt, nolli, grid, mark, type, colour };
 }
+// The twenty tries as they sat in the working file: a design tool's canvas (toolbar, layers, frames with
+// column grids), every exploration loose in its frame, and the mark pulled out on its own, selected.
+// One SVG in a 1600 x 1000 box; on a phone it keeps its width and scrolls sideways, like a screenshot.
+function triesCanvas(lang, up, S) {
+  const en = lang === 'en';
+  const ratio = {};
+  for (const g of identity.explorations) for (const id of g.ids) {
+    const [, , w, h] = readFileSync(join(SITE, `assets/img/identity/${id}.svg`), 'utf8').match(/viewBox="([^"]+)"/)[1].split(/\s+/).map(Number);
+    ratio[id] = w / h;
+  }
+  const href = (id) => `${up}assets/img/identity/${id}.svg?v=${assetVer(`assets/img/identity/${id}.svg`)}`;
+  let seed = 7;
+  const jit = (a) => { seed = (seed * 16807) % 2147483647; return ((seed / 2147483647) * 2 - 1) * a; };
+  // the frames, in canvas units; items flow in rows at one height, a little off the line, as dropped there
+  const FR = [
+    { key: 'pinwheel', x: 290, y: 120, w: 650, h: 390, per: 4, hh: 124 },
+    { key: 'cuts', x: 990, y: 120, w: 570, h: 470, per: 3, hh: 76 },
+    { key: 'curves', x: 290, y: 580, w: 560, h: 270, per: 3, hh: 132 },
+  ];
+  const items = [], grids = [];
+  const frames = FR.map((F) => {
+    const ids = identity.explorations.find((g) => g.group === F.key).ids;
+    const rows = Math.ceil(ids.length / F.per);
+    const gapY = (F.h - rows * F.hh) / (rows + 1);
+    for (let r = 0; r < rows; r++) {
+      // a row at one height, spread across the frame; a row too wide for it is set smaller
+      const row = ids.slice(r * F.per, (r + 1) * F.per).map((id) => ({ id, h: F.hh * (ratio[id] > 1.6 ? 0.9 : 1) }));
+      for (const t of row) t.w = t.h * ratio[t.id];
+      const total = row.reduce((a, t) => a + t.w, 0), min = 22 * (row.length + 1);
+      const k = total > F.w - min ? (F.w - min) / total : 1;
+      const gap = (F.w - total * k) / (row.length + 1);
+      let x = F.x + gap;
+      for (const t of row) {
+        const w = t.w * k, h = t.h * k;
+        items.push({ id: t.id, x: x + jit(Math.min(8, gap / 3)), y: F.y + gapY + r * (F.hh + gapY) + (F.hh - h) / 2 + jit(7), w, h });
+        x += w + gap;
+      }
+    }
+    const cols = 8, m = 18, gut = 14, cw = (F.w - 2 * m - (cols - 1) * gut) / cols;
+    const grid = Array.from({ length: cols }, (_, k) => `<rect x="${(F.x + m + k * (cw + gut)).toFixed(1)}" y="${F.y}" width="${cw.toFixed(1)}" height="${F.h}" class="fg-col"/>`).join('');
+    grids.push(grid);
+    return `<text x="${F.x}" y="${F.y - 9}" class="fg-fname">${esc(S.tries.groups[F.key])}</text><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" class="fg-frame"/>`;
+  }).join('');
+  const imgs = items.map((t) => `<image href="${href(t.id)}" x="${t.x.toFixed(1)}" y="${t.y.toFixed(1)}" width="${t.w.toFixed(1)}" height="${t.h.toFixed(1)}" preserveAspectRatio="xMidYMid meet"/>`).join('');
+  // a hover outline on one of the cut tries, as if the cursor had just passed over it
+  const hov = items.find((t) => t.id === 'e13');
+  // the mark, pulled out of its frame: selected, measured, commented
+  const M = { x: 1010, y: 650, s: 200 };
+  const fin = items.find((t) => t.id === 'e20');
+  const blue = '#0d99ff', red = '#f24822';
+  const handles = [[M.x, M.y], [M.x + M.s, M.y], [M.x, M.y + M.s], [M.x + M.s, M.y + M.s]].map(([x, y]) => `<rect x="${x - 4}" y="${y - 4}" width="8" height="8" fill="#fff" stroke="${blue}" stroke-width="1.5"/>`).join('');
+  const gy = M.y + M.s / 2, gx0 = 850, gx1 = M.x;
+  const layers = [[en ? 'Mark' : 'Marca', true], [S.tries.groups.curves], [S.tries.groups.cuts], [S.tries.groups.pinwheel]];
+  const tool = (x, d, on) => `${on ? `<rect x="${x - 14}" y="10" width="28" height="28" rx="5" fill="${blue}"/>` : ''}<path d="${d}" transform="translate(${x - 8} 16)" fill="none" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  return `<div class="fg" role="img" aria-label="${esc(en ? 'The twenty tries laid out in the working file: houses in a pinwheel, cut and folded forms, and the curve; the chosen mark pulled out on its own and selected' : 'Los veinte intentos en el archivo de trabajo: casas en molinete, formas cortadas y plegadas, y la curva; la marca elegida sacada aparte y seleccionada')}">
+        <svg class="fg__svg" viewBox="0 0 1600 1000" aria-hidden="true">
+          <rect width="1600" height="1000" fill="#e6e6e6"/>
+          <g class="fg-grid">${Array.from({ length: 33 }, (_, k) => `<path d="M${240 + k * 42} 48V1000"/>`).join('')}${Array.from({ length: 23 }, (_, k) => `<path d="M240 ${48 + k * 42}H1600"/>`).join('')}</g>
+          ${frames}
+          <rect x="${(hov.x - 3).toFixed(1)}" y="${(hov.y - 3).toFixed(1)}" width="${(hov.w + 6).toFixed(1)}" height="${(hov.h + 6).toFixed(1)}" fill="none" stroke="${blue}" stroke-width="1"/>
+          ${imgs}${grids.join('')}
+          <rect x="${(fin.x - 3).toFixed(1)}" y="${(fin.y - 3).toFixed(1)}" width="${(fin.w + 6).toFixed(1)}" height="${(fin.h + 6).toFixed(1)}" fill="none" stroke="${blue}" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="${M.x}" y="${M.y - 12}" class="fg-fname fg-fname--sel">${en ? 'Mark' : 'Marca'}</text>
+          <image href="${href('e20')}" x="${M.x}" y="${M.y}" width="${M.s}" height="${M.s}" preserveAspectRatio="xMidYMid meet"/>
+          <rect x="${M.x}" y="${M.y}" width="${M.s}" height="${M.s}" fill="none" stroke="${blue}" stroke-width="1.5"/>${handles}
+          <rect x="${M.x + M.s / 2 - 38}" y="${M.y + M.s + 10}" width="76" height="22" rx="4" fill="${blue}"/><text x="${M.x + M.s / 2}" y="${M.y + M.s + 25}" class="fg-pill">200 × 200</text>
+          <path d="M${gx0} ${gy}H${gx1}M${gx0} ${gy - 6}V${gy + 6}M${gx1} ${gy - 6}V${gy + 6}" stroke="${red}" stroke-width="1"/>
+          <rect x="${(gx0 + gx1) / 2 - 20}" y="${gy - 24}" width="40" height="20" rx="4" fill="${red}"/><text x="${(gx0 + gx1) / 2}" y="${gy - 10}" class="fg-pill">${gx1 - gx0}</text>
+          <path d="M1222 864l0 26 7-7 5 11 4-2-5-11h10z" fill="#080807" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          <g transform="translate(1248 612)"><path d="M0 16a16 16 0 1 1 16 16H0z" fill="#9747ff"/><text x="16" y="21" class="fg-av">CV</text>
+            <rect x="40" y="-6" width="${en ? 236 : 210}" height="46" rx="8" fill="#fff" stroke="#d9d9d9"/><text x="54" y="13" class="fg-cm"><tspan font-weight="600">Carlos</tspan><tspan dx="8" class="fg-cm--dim">${en ? '2h' : 'hace 2 h'}</tspan></text><text x="54" y="31" class="fg-cm">${en ? 'This one. The A is the gap.' : 'Esta. La A es el hueco.'}</text></g>
+          <rect width="1600" height="48" fill="#2c2c2c"/>
+          ${tool(30, 'M2 1l0 13 4-4 3 6 2-1-3-6h6z', true)}${tool(70, 'M4 0v16M12 0v16M0 4h16M0 12h16')}${tool(106, 'M1 2h14v12H1z')}${tool(142, 'M2 14C6 2 10 2 14 14')}${tool(178, 'M2 2h12M8 2v13')}${tool(214, 'M3 9V4a1 1 0 0 1 2 0v4V2a1 1 0 0 1 2 0v6V3a1 1 0 0 1 2 0v6V5a1 1 0 0 1 2 0v6c0 3-2 5-5 5s-4-2-5-4z')}
+          <text x="800" y="29" class="fg-file"><tspan class="fg-file--dim">Studio CAVA /</tspan> ${en ? 'Identity' : 'Identidad'}</text>
+          <path d="M1508 0v48" stroke="#444"/><text x="1554" y="29" class="fg-zoom">62%</text>
+          <circle cx="1470" cy="24" r="13" fill="#9747ff"/><text x="1470" y="28" class="fg-av fg-av--s">CV</text>
+          <rect y="48" width="240" height="952" fill="#fff"/><path d="M240 48v952" stroke="#e6e6e6"/>
+          <text x="16" y="76" class="fg-tab"><tspan font-weight="600">${en ? 'Layers' : 'Capas'}</tspan><tspan dx="16" class="fg-cm--dim">${en ? 'Assets' : 'Recursos'}</tspan></text><path d="M0 92h240" stroke="#e6e6e6"/>
+          ${layers.map(([n, on], k) => `${on ? `<rect x="0" y="${100 + k * 32}" width="240" height="30" fill="#e5f4ff"/>` : ''}<path d="M18 ${110 + k * 32}v10M22 ${110 + k * 32}v10M16 ${112 + k * 32}h10M16 ${118 + k * 32}h10" stroke="${on ? blue : '#8b8b88'}" stroke-width="1.1"/><text x="38" y="${120 + k * 32}" class="fg-layer${on ? ' fg-layer--sel' : ''}">${esc(n)}</text>`).join('')}
+        </svg>
+      </div>`;
+}
 function identityPage(lang) {
   const D = identity[lang];
   const S = D.sections;
@@ -696,10 +778,7 @@ ${S[key].text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
 `;
-  const tries = identity.explorations.map((g) => `<div class="idn-tries__group">
-        <p class="label">${esc(S.tries.groups[g.group])}</p>
-        <ol class="idn-tries">${g.ids.map((id) => `<li${id === 'e20' ? ' class="is-final"' : ''}><img src="${up}assets/img/identity/${id}.svg?v=${assetVer(`assets/img/identity/${id}.svg`)}" alt="" loading="lazy" decoding="async"></li>`).join('')}</ol>
-      </div>`).join('\n      ');
+  const tries = triesCanvas(lang, up, S);
   // the mark in use: mock-ups on photographs of blank objects, three to a row, the wide ones over two
   const U = S.use.items;
   const tile = (n, wide) => { const b = `${up}assets/img/identity/use-${n}`, [w1, w2] = wide ? [1600, 800] : [1200, 600]; return `<figure class="idn-u${wide ? ' idn-u--wide' : ''}"><img src="${b}-${w1}.webp?v=${assetVer(`assets/img/identity/use-${n}-${w1}.webp`)}" srcset="${b}-${w2}.webp ${w2}w, ${b}-${w1}.webp ${w1}w" sizes="(min-width: 768px) ${wide ? 62 : 31}vw, 92vw" width="${w1}" height="${wide ? w1 * 2 / 3 : w1 * 5 / 4}" loading="lazy" decoding="async" alt="${esc(U[n])}"><figcaption class="label">${esc(U[n])}</figcaption></figure>`; };
@@ -1722,7 +1801,8 @@ const SVT = {
     title: 'Architecture services in Costa Rica | Studio CAVA',
     description: 'What we do, from the study of a lot before you buy it to supervising the works: what each service includes, what you receive, how long it takes and how it is charged.',
     intro: 'From the study of a lot before you buy it to the last visit to the works: what each service includes, what you receive, how long it takes and how it is charged.',
-    order: '(In order)', orderText: 'A project usually takes them in this order: a study of the lot before buying, the design with its interiors, the permits, and supervision while it is built. Each one can also be hired on its own.',
+    order: '(In order)', orderText: 'A project usually takes them in this order: a study of the lot before buying, a master plan when the land will hold more than one house, the design with its interiors, the permits, and supervision while it is built. Each one can also be hired on its own.',
+    also: '(Also)', alsoText: 'Three smaller services, mostly for shops, restaurants and hotels. They can be added to one of our projects or hired on their own.', ask: 'Ask us about it',
     glance: '(At a glance)', for: '(Who it is for)', how: '(How it runs)', get: 'You receive', fees: '(Fees)', not: '(Not included)',
     work: '(Projects)', all: 'All projects', faq: '(Questions)', others: '(Other services)', sources: '(Sources)',
     estimator: 'What it comes to for your project, in our cost estimator', guide: 'Every step of the permit, with its rules, in our guide',
@@ -1733,7 +1813,8 @@ const SVT = {
     title: 'Servicios de arquitectura en Costa Rica | Studio CAVA',
     description: 'Lo que hacemos, del estudio de un lote antes de comprarlo a la dirección de la obra: qué incluye cada servicio, qué recibe, cuánto tarda y cómo se cobra.',
     intro: 'Del estudio de un lote antes de comprarlo a la última visita a la obra: qué incluye cada servicio, qué recibe, cuánto tarda y cómo se cobra.',
-    order: '(En orden)', orderText: 'Un proyecto suele pasar por ellos en este orden: el estudio del lote antes de comprar, el diseño con sus interiores, los permisos y la dirección mientras se construye. Cada uno también se puede contratar por separado.',
+    order: '(En orden)', orderText: 'Un proyecto suele pasar por ellos en este orden: el estudio del lote antes de comprar, un plan maestro cuando el terreno va a tener más de una casa, el diseño con sus interiores, los permisos y la dirección mientras se construye. Cada uno también se puede contratar por separado.',
+    also: '(También)', alsoText: 'Tres servicios más pequeños, sobre todo para tiendas, restaurantes y hoteles. Se pueden sumar a uno de nuestros proyectos o contratar por separado.', ask: 'Pregúntenos',
     glance: '(En resumen)', for: '(Para quién)', how: '(Cómo funciona)', get: 'Recibe', fees: '(Honorarios)', not: '(No incluye)',
     work: '(Proyectos)', all: 'Todos los proyectos', faq: '(Preguntas)', others: '(Otros servicios)', sources: '(Fuentes)',
     estimator: 'Cuánto da para su proyecto, en nuestro estimador de costos', guide: 'Cada paso del permiso, con sus reglas, en nuestra guía',
@@ -1788,7 +1869,21 @@ ${cards}
       <h2 class="label tw__label" id="svc-order">${S.order}</h2>
       <p class="h3 tw__text">${esc(S.orderText)}</p>
     </section>
-  </article>
+${svcData.extras?.length ? `    <section class="tw__sec grid svc-x" aria-labelledby="svc-also">
+      <h2 class="label tw__label" id="svc-also">${S.also}</h2>
+      <p class="h3 tw__text">${esc(S.alsoText)}</p>
+      <ol class="strats svc-x__list">
+${svcData.extras.map((x) => { const X = x[lang]; const [sl, n] = x.image.split('/'); const pr = projects.find((o) => o.slug === sl); return `        <li class="strat">
+          <figure class="strat__fig">${picture(up, sl, +n, altOf(lang, pr, +n), '(min-width: 992px) 31vw, 92vw')}<figcaption class="label strat__cap">${esc(pr.name)}</figcaption></figure>
+          <p class="label strat__n">${esc(X.kicker)}</p>
+          <h3 class="strat__name">${esc(X.name)}</h3>
+          <p class="strat__text">${esc(X.text)}</p>
+          <ul class="strat__items">${X.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
+          <a class="ulink strat__link" href="${wa(S.wa(X.name))}" target="_blank" rel="noopener">${S.ask} →</a>
+        </li>`; }).join('\n')}
+      </ol>
+    </section>
+` : ''}  </article>
 ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
@@ -1805,7 +1900,8 @@ function servicePage(lang, s, i) {
       <p class="h3 mf__intro">${esc(T.lead)}</p>
       <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${wa(S.wa(T.name))}" target="_blank" rel="noopener">${S.talk} <span class="btn__dot" aria-hidden="true"></span></a> ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light" href="${up}${UI[lang].dir}#enquiry">${S.start} <span class="btn__dot" aria-hidden="true"></span></a>`}</p>
     </header>
-${serviceImages(s.slug.en).length ? `    <section class="svc__pics" aria-label="${lang === 'en' ? 'Images' : 'Imágenes'}">
+${s.hero ? (() => { const [sl, n] = s.hero.split('/'); const pr = projects.find((o) => o.slug === sl); return `    <figure class="svc__hero">${picture(up, sl, +n, altOf(lang, pr, +n), '100vw')}<figcaption class="label svc__hero-cap"><a class="ulink" href="${up}${projectPath(lang, sl)}">${esc(pr.name)}</a><span>${esc(tr(lang, pr, 'type'))}</span></figcaption></figure>
+`; })() : ''}${serviceImages(s.slug.en).length ? `    <section class="svc__pics" aria-label="${lang === 'en' ? 'Images' : 'Imágenes'}">
       ${procStrip(lang, up, serviceImages(s.slug.en))}
     </section>
 ` : ''}    <section class="tw__sec grid" aria-labelledby="svc-glance">
@@ -1821,15 +1917,16 @@ ${T.for.map((x) => `        <li>${esc(x)}</li>`).join('\n')}
       </ul>
     </section>
 ${s.strategies?.length ? `    <section class="tw__sec grid" aria-labelledby="svc-strat">
-      <h2 class="label tw__label" id="svc-strat">${lang === 'en' ? '(Strategies)' : '(Estrategias)'}</h2>
+      <h2 class="label tw__label" id="svc-strat">${s.stratLabel?.[lang] ?? (lang === 'en' ? '(Strategies)' : '(Estrategias)')}</h2>
       <ol class="strats">
 ${s.strategies.map((st, k) => {
     const X = st[lang];
-    const img = st.image.startsWith('proc:') ? procImg(lang, up, st.image.slice(5), '(min-width: 768px) 32vw, 92vw') : (() => { const [sl, n] = st.image.split('/'); const pr = projects.find((o) => o.slug === sl); return picture(up, sl, +n, altOf(lang, pr, +n), '(min-width: 768px) 32vw, 92vw'); })();
+    const anl = st.image.startsWith('anl:') ? st.image.slice(4).split('/') : null;
+    const img = anl ? (() => { const [sl, key] = anl; const [w, h] = sizes[`${sl}/a-${key}`]; const r = `assets/img/projects/${sl}/a-${key}.webp`; return `<img src="${up}${r}?v=${assetVer(r)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(X.cap ?? X.name)}">`; })() : st.image.startsWith('proc:') ? procImg(lang, up, st.image.slice(5), '(min-width: 768px) 32vw, 92vw') : (() => { const [sl, n] = st.image.split('/'); const pr = projects.find((o) => o.slug === sl); return picture(up, sl, +n, altOf(lang, pr, +n), '(min-width: 768px) 32vw, 92vw'); })();
     const cap = X.cap ?? projects.find((o) => o.slug === st.image.split('/')[0])?.name ?? '';
     const link = st.link === 'towns' ? `<a class="ulink strat__link" href="${up}${townsPath(lang)}">${lang === 'en' ? 'The climate of each town we work in' : 'El clima de cada pueblo donde trabajamos'} →</a>` : '';
     return `        <li class="strat">
-          <figure class="strat__fig">${img}<figcaption class="label strat__cap">${esc(cap)}</figcaption></figure>
+          <figure class="strat__fig${anl ? ' strat__fig--dark' : ''}">${img}<figcaption class="label strat__cap">${esc(cap)}</figcaption></figure>
           <p class="label strat__n">(${pad(k + 1)}) ${esc(X.kicker)}</p>
           <h3 class="strat__name">${esc(X.name)}</h3>
           <p class="strat__text">${c(X.text)}</p>

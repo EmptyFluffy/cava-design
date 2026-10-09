@@ -1399,6 +1399,24 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .idn-fig { grid-column: 5 / -1; min-width: 0; }
 .idn-fig:empty { display: none; }
 .idn-sec:has(.idn-tries) .idn-fig { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-2); }
+/* the tries on a design tool's canvas (triesCanvas): one drawing; on a phone it scrolls sideways */
+.idn-sec:has(.fg) .idn-fig { grid-column: 1 / -1; }
+.fg { overflow-x: auto; border: 1px solid var(--grey); scrollbar-width: thin; }
+.fg__svg { display: block; width: 100%; min-width: 880px; height: auto; font-family: var(--font); }
+.fg-grid path { stroke: #dcdcdc; stroke-width: 1; }
+.fg-frame { fill: #fcfcfc; }
+.fg-col { fill: rgba(255, 72, 72, 0.06); }
+.fg-fname { font-size: 13px; fill: #6e6e6e; }
+.fg-fname--sel, .fg-layer--sel { fill: #0d99ff; }
+.fg-cm--dim { fill: #8b8b88; font-weight: 400; }
+.fg-file--dim { fill: #a6a6a6; }
+.fg-pill { font-size: 12px; font-weight: 600; fill: #fff; text-anchor: middle; }
+.fg-av { font-size: 11px; font-weight: 600; fill: #fff; text-anchor: middle; }
+.fg-av--s { font-size: 9px; }
+.fg-cm { font-size: 13px; fill: #080807; }
+.fg-file { font-size: 13px; fill: #fff; text-anchor: middle; }
+.fg-zoom { font-size: 12px; fill: #fff; text-anchor: middle; }
+.fg-tab, .fg-layer { font-size: 13px; fill: #080807; }
 .idn-tries__group, .idn-tries li { min-width: 0; }
 /* the explorations, in the order they were drawn */
 .idn-tries__group { display: grid; gap: 0.7rem; }
@@ -1771,6 +1789,18 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .strat__items { list-style: none; margin: 0.3rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); font-size: var(--f-small); line-height: 1.3; }
 .strat__items li { padding: 0.5rem 0; border-top: 1px solid var(--grey); }
 .strat__link { align-self: flex-start; margin-top: 0.2rem; font-size: var(--f-small); }
+/* a service opened by one project's image, full width (the master plan) */
+.svc__hero { margin: 0 0 var(--pad-v); padding: 0 var(--margin); display: grid; gap: 0.7rem; }
+.svc__hero img { display: block; width: 100%; height: auto; }
+@media (min-width: 768px) { .svc__hero img { aspect-ratio: 1.8; object-fit: cover; } }
+.svc__hero-cap { display: flex; justify-content: space-between; gap: var(--gap); color: var(--dark-grey); }
+/* a strategy drawn from a site analysis: the layer on black, whole */
+.strat__fig--dark img { background: #0b0b0a; object-fit: contain; padding: 7% 9%; box-sizing: border-box; }
+/* the smaller services on /services/: three cards across, after the order */
+.svc-x .svc-x__list { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s-2); }
+.svc-x .strat__items { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1280px) { .svc-x .strat__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .svc-x .svc-x__list { grid-template-columns: minmax(0, 1fr); } }
 .certs { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .cert { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.4rem 1.3rem 1.5rem; background: var(--light-grey); border-radius: 0.9rem; }
 .cert__kicker { margin: 0; color: var(--dark-grey); }

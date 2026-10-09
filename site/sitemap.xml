@@ -1045,6 +1045,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/lot-study/"/>
   </url>
   <url>
+    <loc>https://cava.design/services/master-planning/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/master-planning/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/plan-maestro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/master-planning/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/servicios/plan-maestro/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/master-planning/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/plan-maestro/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/services/master-planning/"/>
+  </url>
+  <url>
     <loc>https://cava.design/services/architecture/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/services/architecture/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/servicios/arquitectura/"/>
