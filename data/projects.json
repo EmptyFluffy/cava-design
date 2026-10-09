@@ -602,7 +602,7 @@
       "status_es": "Estudio de plan maestro",
       "year": 2021,
       "siteArea": 57075,
-      "builtArea": null,
+      "builtArea": 3905,
       "images": [
         {
           "file": "web/cover.png",
@@ -647,8 +647,8 @@
           { "key": "slope", "legend": { "ramp": true, "en": ["Flat", "Steep"], "es": ["Plano", "Empinado"] }, "en": { "name": "Slope", "text": "How steep the ground is at every point. Gentler ground is where a road or a house costs least to build; the steepest is left as it is." }, "es": { "name": "Pendiente", "text": "Qué tan inclinado es el terreno en cada punto. Donde es más suave, una calle o una casa cuesta menos; lo más empinado se deja como está." } },
           { "key": "runoff", "legend": { "keys": [{ "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Runoff", "text": "The paths rain takes across the land. Where they gather, the water has to be led away and kept clear of buildings." }, "es": { "name": "Escorrentía", "text": "Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones." } },
           { "key": "streets", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }] }, "en": { "name": "Streets", "text": "One road that follows the land to keep its grade gentle, ending in a turning circle." }, "es": { "name": "Calles", "text": "Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno." } },
-          { "key": "modules", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }, { "box": "#f0a35e", "en": "Houses", "es": "Casas" }] }, "en": { "name": "Lots and houses", "text": "The houses along the road: in rows on one side, in a fan around the turning circle." }, "es": { "name": "Lotes y casas", "text": "Las casas a lo largo de la calle: en hileras de un lado y en abanico alrededor del retorno." } },
-          { "key": "modules-runoff", "legend": { "keys": [{ "box": "#f0a35e", "en": "Houses", "es": "Casas" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } }
+          { "key": "modules", "legend": { "keys": [{ "box": "#ccc06c", "en": "Typology A", "es": "Tipología A", "sub": "220 m² × 3" }, { "box": "#f09c54", "en": "Typology B", "es": "Tipología B", "sub": "160 m² × 11" }, { "box": "#fad8a8", "en": "Typology C", "es": "Tipología C", "sub": "75 m² × 15" }, { "box": "#c4a884", "en": "Typology D", "es": "Tipología D", "sub": "45 m² × 8" }] }, "en": { "name": "Lots and houses", "text": "37 houses in four typologies, 3,905 m² in all: in rows on one side of the road, in a fan around the turning circle." }, "es": { "name": "Lotes y casas", "text": "37 casas en cuatro tipologías, 3905 m² en total: en hileras de un lado de la calle y en abanico alrededor del retorno." } },
+          { "key": "modules-runoff", "legend": { "keys": [{ "box": "#ccc06c", "en": "A", "es": "A" }, { "box": "#f09c54", "en": "B", "es": "B" }, { "box": "#fad8a8", "en": "C", "es": "C" }, { "box": "#c4a884", "en": "D", "es": "D" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } }
         ]
       }
     },

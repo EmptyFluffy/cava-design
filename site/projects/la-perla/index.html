@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../assets/css/site.css?v=07c228ff">
+<link rel="stylesheet" href="../../assets/css/site.css?v=6257596d">
 <script defer src="../../assets/js/project.js?v=a6c70a27"></script>
 <script defer src="../../assets/js/analysis.js?v=b0ab11bc"></script>
 <script defer src="../../assets/js/book-sheet.js?v=b68a0006"></script>
@@ -81,9 +81,8 @@
         <div><dt>Year</dt><dd>2021</dd></div>
         <div><dt>Status</dt><dd>Master plan study</dd></div>
         <div><dt>Site area</dt><dd>57,075 m² (614,350 ft²)</dd></div>
-        <div><dt>Built area</dt><dd class="tbc">To be confirmed</dd></div>
+        <div><dt>Built area</dt><dd>3,905 m² (42,030 ft²)</dd></div>
       </dl>
-      <p class="note sheet__note">Entries marked "To be confirmed" are placeholders until the studio confirms them.</p>
       <figure class="pmap" data-pmap data-lng="-85.822" data-lat="10.39" data-label="Matapalo, Santa Cruz" data-pin="approximate">
         <div class="pmap__canvas" role="img" aria-label="Map showing where La Perla is: Matapalo, Santa Cruz"></div>
         <figcaption class="pmap__cap label"><span>(Location)</span><span>Matapalo, Santa Cruz</span><span class="pmap__note">Approximate</span></figcaption>
@@ -104,7 +103,7 @@
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="slope" data-text="How steep the ground is at every point. Gentler ground is where a road or a house costs least to build; the steepest is left as it is."><span class="anl__n">04</span><span>Slope</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="runoff" data-text="The paths rain takes across the land. Where they gather, the water has to be led away and kept clear of buildings."><span class="anl__n">05</span><span>Runoff</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="streets" data-text="One road that follows the land to keep its grade gentle, ending in a turning circle."><span class="anl__n">06</span><span>Streets</span></button></li>
-          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules" data-text="The houses along the road: in rows on one side, in a fan around the turning circle."><span class="anl__n">07</span><span>Lots and houses</span></button></li>
+          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules" data-text="37 houses in four typologies, 3,905 m² in all: in rows on one side of the road, in a fan around the turning circle."><span class="anl__n">07</span><span>Lots and houses</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules-runoff" data-text="The houses laid over the runoff, to check each one against the paths the water takes."><span class="anl__n">08</span><span>Houses over runoff</span></button></li>
         </ol>
         <div class="anl__main">
@@ -129,12 +128,14 @@
           <img class="anl__img" data-anl-img="modules" src="../../assets/img/projects/la-perla/a-axo-modules.webp?v=fc83264c" width="989" height="591" loading="lazy" decoding="async" alt="Lots and houses, axonometric">
           <img class="anl__img" data-anl-img="modules-runoff" src="../../assets/img/projects/la-perla/a-axo-modules-runoff.webp?v=9230d3a9" width="989" height="591" loading="lazy" decoding="async" alt="Houses over runoff, axonometric">
         </div>
+            <p class="label anl__legend is-on" data-anl-legend="terrain" aria-hidden="true"></p>
+            <p class="label anl__legend" data-anl-legend="contours" aria-hidden="true"></p>
             <p class="label anl__legend" data-anl-legend="elevation" aria-hidden="true"><span class="anl__lo">Low</span><span class="anl__ramp"></span><span class="anl__hi">High</span></p>
             <p class="label anl__legend" data-anl-legend="slope" aria-hidden="true"><span class="anl__lo">Flat</span><span class="anl__ramp"></span><span class="anl__hi">Steep</span></p>
             <p class="label anl__legend" data-anl-legend="runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Path of the rain</span></p>
             <p class="label anl__legend" data-anl-legend="streets" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Road</span></p>
-            <p class="label anl__legend" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Road</span><span class="anl__key"><i style="--c: #f0a35e" class="is-box"></i>Houses</span></p>
-            <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #f0a35e" class="is-box"></i>Houses</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Path of the rain</span></p>
+            <p class="label anl__legend" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>Typology A<b class="anl__sub">220 m² × 3</b></span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>Typology B<b class="anl__sub">160 m² × 11</b></span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>Typology C<b class="anl__sub">75 m² × 15</b></span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>Typology D<b class="anl__sub">45 m² × 8</b></span></p>
+            <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>A</span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>B</span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>C</span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>D</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Path of the rain</span></p>
             <p class="label anl__tag" aria-hidden="true"><span data-anl-count>01/08</span><span data-anl-name>Terrain</span></p>
           </div>
           <div class="anl__foot">

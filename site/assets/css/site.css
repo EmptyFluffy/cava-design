@@ -1826,6 +1826,8 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .anl__ramp { width: 7rem; height: 0.4rem; border-radius: 100vw; background: linear-gradient(90deg, #f0261b, #f6d21d 33%, #2ee82e 66%, #2fe9f2); }
 .anl__lo, .anl__hi { color: #8b8b88; }
 .anl__key { display: inline-flex; align-items: center; gap: 0.45rem; }
+.anl__sub { font-weight: var(--w-text); color: #8b8b88; text-transform: none; }
+.anl__legend { flex-wrap: wrap; row-gap: 0.4rem; max-width: calc(100% - 3.2rem); }
 .anl__key i { display: inline-block; flex: none; }
 .anl__key i.is-line { width: 1.2rem; height: 2px; background: var(--c); }
 .anl__key i.is-box { width: 0.7rem; height: 0.7rem; background: var(--c); }
@@ -1860,14 +1862,17 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 }
 @media (max-width: 767px) {
   .anl__label, .anl__lead, .anl__note, .anl__list, .anl__main { grid-column: 1 / -1; }
-  .anl__legend { left: 0.9rem; bottom: 0.4rem; }
   .anl__ramp { width: 4.5rem; }
+  /* phones: the image keeps its own box and the legend of the layer on show sits under it, in the flow */
+  .anl__stage { aspect-ratio: auto; padding-top: calc(2.2rem + (100% - 0.8rem) / 1.45); padding-bottom: 0.9rem; }
+  .anl__frame { inset: 2.2rem 0.4rem auto; aspect-ratio: 1.45; }
+  .anl__legend { position: static; display: none; max-width: none; margin: 0.6rem 0.9rem 0; padding-right: 1rem; }
+  .anl__legend.is-on { display: flex; opacity: 1; min-height: 6.6rem; align-content: flex-start; }   /* the tallest legend, so the box does not jump between layers */
   .anl__list { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; border-top: 0; gap: 0.4rem; padding-bottom: 0.4rem; scrollbar-width: none; }
   .anl__list::-webkit-scrollbar { display: none; }
   .anl__tab { border: 1px solid #3a3a37; border-radius: 100vw; padding: 0.5rem 0.85rem; grid-template-columns: auto auto; column-gap: 0.45rem; font-size: var(--f-small); }
   .anl__tab[aria-selected="true"] { border-color: var(--white); }
-  .anl__stage { aspect-ratio: 1.3; }
-  .anl__frame { inset: 2.2rem 0.4rem 2.2rem; }
+
   .anl__tag { left: 0.9rem; }
   .anl__foot { flex-direction: column; }
 }

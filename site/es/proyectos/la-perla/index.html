@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../../assets/css/site.css?v=07c228ff">
+<link rel="stylesheet" href="../../../assets/css/site.css?v=6257596d">
 <script defer src="../../../assets/js/project.js?v=a6c70a27"></script>
 <script defer src="../../../assets/js/analysis.js?v=b0ab11bc"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=b68a0006"></script>
@@ -81,9 +81,8 @@
         <div><dt>Año</dt><dd>2021</dd></div>
         <div><dt>Estado</dt><dd>Estudio de plan maestro</dd></div>
         <div><dt>Área del lote</dt><dd>57 075 m² (614 350 ft²)</dd></div>
-        <div><dt>Área construida</dt><dd class="tbc">Por confirmar</dd></div>
+        <div><dt>Área construida</dt><dd>3905 m² (42 030 ft²)</dd></div>
       </dl>
-      <p class="note sheet__note">Los datos marcados "Por confirmar" son provisionales hasta que el estudio los confirme.</p>
       <figure class="pmap" data-pmap data-lng="-85.822" data-lat="10.39" data-label="Matapalo, Santa Cruz" data-pin="approximate">
         <div class="pmap__canvas" role="img" aria-label="Mapa con la ubicación de La Perla: Matapalo, Santa Cruz"></div>
         <figcaption class="pmap__cap label"><span>(Ubicación)</span><span>Matapalo, Santa Cruz</span><span class="pmap__note">Aproximada</span></figcaption>
@@ -104,7 +103,7 @@
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="slope" data-text="Qué tan inclinado es el terreno en cada punto. Donde es más suave, una calle o una casa cuesta menos; lo más empinado se deja como está."><span class="anl__n">04</span><span>Pendiente</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="runoff" data-text="Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones."><span class="anl__n">05</span><span>Escorrentía</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="streets" data-text="Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno."><span class="anl__n">06</span><span>Calles</span></button></li>
-          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules" data-text="Las casas a lo largo de la calle: en hileras de un lado y en abanico alrededor del retorno."><span class="anl__n">07</span><span>Lotes y casas</span></button></li>
+          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules" data-text="37 casas en cuatro tipologías, 3905 m² en total: en hileras de un lado de la calle y en abanico alrededor del retorno."><span class="anl__n">07</span><span>Lotes y casas</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules-runoff" data-text="Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua."><span class="anl__n">08</span><span>Casas sobre la escorrentía</span></button></li>
         </ol>
         <div class="anl__main">
@@ -129,12 +128,14 @@
           <img class="anl__img" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-axo-modules.webp?v=fc83264c" width="989" height="591" loading="lazy" decoding="async" alt="Lotes y casas, axonometría">
           <img class="anl__img" data-anl-img="modules-runoff" src="../../../assets/img/projects/la-perla/a-axo-modules-runoff.webp?v=9230d3a9" width="989" height="591" loading="lazy" decoding="async" alt="Casas sobre la escorrentía, axonometría">
         </div>
+            <p class="label anl__legend is-on" data-anl-legend="terrain" aria-hidden="true"></p>
+            <p class="label anl__legend" data-anl-legend="contours" aria-hidden="true"></p>
             <p class="label anl__legend" data-anl-legend="elevation" aria-hidden="true"><span class="anl__lo">Bajo</span><span class="anl__ramp"></span><span class="anl__hi">Alto</span></p>
             <p class="label anl__legend" data-anl-legend="slope" aria-hidden="true"><span class="anl__lo">Plano</span><span class="anl__ramp"></span><span class="anl__hi">Empinado</span></p>
             <p class="label anl__legend" data-anl-legend="runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
             <p class="label anl__legend" data-anl-legend="streets" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Calle</span></p>
-            <p class="label anl__legend" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Calle</span><span class="anl__key"><i style="--c: #f0a35e" class="is-box"></i>Casas</span></p>
-            <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #f0a35e" class="is-box"></i>Casas</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
+            <p class="label anl__legend" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>Tipología A<b class="anl__sub">220 m² × 3</b></span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>Tipología B<b class="anl__sub">160 m² × 11</b></span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>Tipología C<b class="anl__sub">75 m² × 15</b></span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>Tipología D<b class="anl__sub">45 m² × 8</b></span></p>
+            <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>A</span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>B</span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>C</span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>D</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
             <p class="label anl__tag" aria-hidden="true"><span data-anl-count>01/08</span><span data-anl-name>Terreno</span></p>
           </div>
           <div class="anl__foot">
