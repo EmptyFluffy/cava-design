@@ -181,6 +181,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/military-museum/"/>
   </url>
   <url>
+    <loc>https://cava.design/projects/lean-and-green/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/lean-and-green/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/lean-and-green/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/lean-and-green/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/lean-and-green/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/lean-and-green/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/lean-and-green/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/lean-and-green/"/>
+  </url>
+  <url>
     <loc>https://cava.design/studio/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/"/>

@@ -293,6 +293,48 @@ window.CAVA_RENDERS = [
   "v": "7326cdd7",
   "title": "Military Museum",
   "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas"
+ },
+ {
+  "id": "lean-and-green-1",
+  "src": "../assets/img/projects/lean-and-green/1",
+  "v": "b6961353",
+  "title": "Lean & Green",
+  "alt": "Un bar saludable al aire libre bajo una vela de sombra: mesas de madera y sillas en tonos pastel, un techo de plantas colgantes y luces, y estantes de madera con productos bajo el rótulo Grocery Store"
+ },
+ {
+  "id": "lean-and-green-2",
+  "src": "../assets/img/projects/lean-and-green/2",
+  "v": "e17caa99",
+  "title": "Lean & Green",
+  "alt": "La pared Grab & Go de bebidas y comidas frías en muebles de madera, con muretes de concreto bajos entre las mesas"
+ },
+ {
+  "id": "lean-and-green-3",
+  "src": "../assets/img/projects/lean-and-green/3",
+  "v": "b2eab5ed",
+  "title": "Lean & Green",
+  "alt": "El mostrador de pedidos tras una ventanería de acero negro, junto a estantes de madera con frutas, verduras y pan"
+ },
+ {
+  "id": "lean-and-green-4",
+  "src": "../assets/img/projects/lean-and-green/4",
+  "v": "825edf51",
+  "title": "Lean & Green",
+  "alt": "La pared de abarrotes con estantes de madera y canastas, mesas largas al frente y la terraza abierta hacia la calle"
+ },
+ {
+  "id": "lean-and-green-5",
+  "src": "../assets/img/projects/lean-and-green/5",
+  "v": "74275147",
+  "title": "Lean & Green",
+  "alt": "El mostrador de frente: pizarras de menú, una barra de azulejo verde y mesas de madera bajo las plantas colgantes"
+ },
+ {
+  "id": "lean-and-green-6",
+  "src": "../assets/img/projects/lean-and-green/6",
+  "v": "de91dede",
+  "title": "Lean & Green",
+  "alt": "Toda la terraza desde la calle: filas de mesas de madera bajo la vela de sombra, jardineras y el mostrador al fondo"
  }
 ];
 window.CAVA_HERO = [

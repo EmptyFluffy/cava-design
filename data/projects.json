@@ -701,6 +701,58 @@
           "alt_es": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas"
         }
       ]
+    },
+    {
+      "slug": "lean-and-green",
+      "name": "Lean & Green",
+      "folder": "Lean & Green Organic Health Bar",
+      "type": "Restaurant and grocery",
+      "type_es": "Restaurante y abarrotes",
+      "typology": "Retail",
+      "typology_es": "Comercio",
+      "location": "La Jolla, San Diego, California",
+      "coords": [
+        -117.2713,
+        32.8328
+      ],
+      "pin": "approximate",
+      "status": "Design development",
+      "status_es": "Desarrollo de diseño",
+      "year": null,
+      "siteArea": null,
+      "builtArea": null,
+      "images": [
+        {
+          "file": "Café tropical con teca y follaje-1.png",
+          "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store",
+          "alt_es": "Un bar saludable al aire libre bajo una vela de sombra: mesas de madera y sillas en tonos pastel, un techo de plantas colgantes y luces, y estantes de madera con productos bajo el rótulo Grocery Store"
+        },
+        {
+          "file": "Tienda moderna con pared verde-2.png",
+          "alt": "The Grab & Go wall of chilled drinks and meals in timber cases, with low concrete screens between the tables",
+          "alt_es": "La pared Grab & Go de bebidas y comidas frías en muebles de madera, con muretes de concreto bajos entre las mesas"
+        },
+        {
+          "file": "Tienda moderna con pared verde despejada-4.png",
+          "alt": "The order counter behind black steel glazing, beside timber shelves of fruit, vegetables and bread",
+          "alt_es": "El mostrador de pedidos tras una ventanería de acero negro, junto a estantes de madera con frutas, verduras y pan"
+        },
+        {
+          "file": "Cafetería moderna con teca y follaje tropical-8.png",
+          "alt": "The grocery wall of timber shelves and baskets, with long tables in front and the terrace opening to the street",
+          "alt_es": "La pared de abarrotes con estantes de madera y canastas, mesas largas al frente y la terraza abierta hacia la calle"
+        },
+        {
+          "file": "Café moderno con teca y follaje-7.png",
+          "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants",
+          "alt_es": "El mostrador de frente: pizarras de menú, una barra de azulejo verde y mesas de madera bajo las plantas colgantes"
+        },
+        {
+          "file": "Terraza de supermercado con pared verde limpia-6.png",
+          "alt": "The whole terrace from the street side: rows of timber tables under the sail shade, planters and the counter at the back",
+          "alt_es": "Toda la terraza desde la calle: filas de mesas de madera bajo la vela de sombra, jardineras y el mostrador al fondo"
+        }
+      ]
     }
   ]
 }

@@ -293,6 +293,48 @@ window.CAVA_RENDERS = [
   "v": "7326cdd7",
   "title": "Military Museum",
   "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
+ },
+ {
+  "id": "lean-and-green-1",
+  "src": "assets/img/projects/lean-and-green/1",
+  "v": "b6961353",
+  "title": "Lean & Green",
+  "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store"
+ },
+ {
+  "id": "lean-and-green-2",
+  "src": "assets/img/projects/lean-and-green/2",
+  "v": "e17caa99",
+  "title": "Lean & Green",
+  "alt": "The Grab & Go wall of chilled drinks and meals in timber cases, with low concrete screens between the tables"
+ },
+ {
+  "id": "lean-and-green-3",
+  "src": "assets/img/projects/lean-and-green/3",
+  "v": "b2eab5ed",
+  "title": "Lean & Green",
+  "alt": "The order counter behind black steel glazing, beside timber shelves of fruit, vegetables and bread"
+ },
+ {
+  "id": "lean-and-green-4",
+  "src": "assets/img/projects/lean-and-green/4",
+  "v": "825edf51",
+  "title": "Lean & Green",
+  "alt": "The grocery wall of timber shelves and baskets, with long tables in front and the terrace opening to the street"
+ },
+ {
+  "id": "lean-and-green-5",
+  "src": "assets/img/projects/lean-and-green/5",
+  "v": "74275147",
+  "title": "Lean & Green",
+  "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants"
+ },
+ {
+  "id": "lean-and-green-6",
+  "src": "assets/img/projects/lean-and-green/6",
+  "v": "de91dede",
+  "title": "Lean & Green",
+  "alt": "The whole terrace from the street side: rows of timber tables under the sail shade, planters and the counter at the back"
  }
 ];
 window.CAVA_HERO = [
