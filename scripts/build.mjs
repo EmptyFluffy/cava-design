@@ -1395,26 +1395,27 @@ ${bar(lang, up, paths, 'guides')}
       <h1 class="display mf__title" id="gi-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
     </header>
-    <div class="gc grid">
     <ol class="gcards">
 ${[...guides.map((g) => {
     const [sl, n] = g.image.split('/'); const pr = projects.find((o) => o.slug === sl);
     const srcs = (Array.isArray(g[lang].sources) ? g[lang].sources : g[g[lang].sources].sources).length;
     const date = new Date(`${g.reviewed}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace('.', '');
-    return { href: `${up}${guidePath(lang, g)}`, img: picture(up, sl, +n, altOf(lang, pr, +n), '4rem'), kind: lang === 'en' ? 'Guide' : 'Guía', count: lang === 'en' ? `${srcs} sources` : `${srcs} fuentes`, title: g[lang].link, text: g[lang].description, foot: lang === 'en' ? `${g[lang].sections.length} sections · ${date}` : `${g[lang].sections.length} secciones · ${date}`, go: lang === 'en' ? 'Read' : 'Leer' };
+    return { href: `${up}${guidePath(lang, g)}`, img: picture(up, sl, +n, altOf(lang, pr, +n), '4rem'), kind: lang === 'en' ? 'Guide' : 'Guía', count: lang === 'en' ? `${srcs} sources` : `${srcs} fuentes`, title: g[lang].link, text: g[lang].description,
+      listLabel: lang === 'en' ? 'Contents' : 'Contenido', list: g[lang].sections.map((x, k) => [pad(k + 1), x.title]), foot: lang === 'en' ? `Reviewed ${date}` : `Revisada el ${date}`, go: lang === 'en' ? 'Read' : 'Leer' };
   }), (() => {
     const ph = places?.photos?.langosta; const b = `${up}assets/img/places/langosta`;
-    return { href: `${up}${townsPath(lang)}`, img: ph ? `<img src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="4rem" width="1600" height="800" loading="lazy" decoding="async" alt="${esc(ph[`alt_${lang}`])}">` : '', kind: lang === 'en' ? 'Towns' : 'Pueblos', count: lang === 'en' ? `${towns.length} towns` : `${towns.length} pueblos`, title: lang === 'en' ? 'Where we work' : 'Dónde trabajamos', text: lang === 'en' ? 'Rain, sun, wind and permits for every town where we design: Guanacaste and the Nicoya coast, the Pacific down to Uvita, the Central Valley and the Caribbean.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos: Guanacaste y la costa de Nicoya, el Pacífico hasta Uvita, el Valle Central y el Caribe.', foot: lang === 'en' ? 'A page for each town' : 'Una página por pueblo', go: lang === 'en' ? 'Open' : 'Abrir' };
+    return { href: `${up}${townsPath(lang)}`, img: ph ? `<img src="${b}-800.webp" width="800" height="400" loading="lazy" decoding="async" alt="${esc(ph[`alt_${lang}`])}">` : '', kind: lang === 'en' ? 'Towns' : 'Pueblos', count: lang === 'en' ? `${towns.length} towns` : `${towns.length} pueblos`, title: lang === 'en' ? 'Where we work' : 'Dónde trabajamos', text: lang === 'en' ? 'Rain, sun, wind and permits for every town where we design, each on its own page.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos, cada uno en su página.',
+      listLabel: lang === 'en' ? 'Regions' : 'Regiones', list: Object.keys(regions).map((r) => { const ts = towns.filter((t) => t.region === r); return [String(ts.length), regions[r][lang], ts.map((t) => t.name).join(', ')]; }).sort((a, b) => b[0] - a[0]), foot: lang === 'en' ? 'Climate data by town' : 'Datos de clima por pueblo', go: lang === 'en' ? 'Open' : 'Abrir' };
   })()].map((c, i) => `      <li class="gcard">
         <a class="gcard__link" href="${c.href}">
           <span class="gcard__top"><span class="gcard__thumb">${c.img}</span><span class="label gcard__kind"><span>(${pad(i + 1)}) ${esc(c.kind)}</span><span class="gcard__count">${esc(c.count)}</span></span></span>
           <span class="gcard__title">${esc(c.title)}</span>
           <span class="gcard__text">${esc(c.text)}</span>
+          <span class="gcard__list"><span class="label gcard__listlabel">${esc(c.listLabel)}</span>${c.list.map(([k, v, sub]) => `<span class="gcard__row"><span class="gcard__k">${esc(k)}</span><span>${esc(v)}${sub && sub !== v ? `<span class="gcard__sub">${esc(sub)}</span>` : ''}</span></span>`).join('')}</span>
           <span class="label gcard__foot"><span>${esc(c.foot)}</span><span class="gcard__go">${esc(c.go)} →</span></span>
         </a>
       </li>`).join('\n')}
     </ol>
-    </div>
   </article>
 ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;

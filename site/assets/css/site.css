@@ -2034,27 +2034,26 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .pcard__pub b { font-size: 1.15rem; }
 }
 
-/* /guides/: the guides as three small cards standing side by side, like the press cards, upright */
-.gc { padding-bottom: var(--pad-v); }
-.gcards { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
+/* /guides/: the guides as three cards across the page, each with its own contents, like the press cards */
+.gcards { list-style: none; margin: 0; padding: 0 var(--margin) var(--s-4); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .gcard { min-width: 0; }
-.gcard__link { height: 100%; min-height: 21rem; display: flex; flex-direction: column; gap: 0.8rem; padding: 1.1rem 1.2rem 1.2rem; background: var(--light-grey); border-radius: 0.9rem; box-shadow: 0 1px 2px rgba(8, 8, 7, 0.04), 0 6px 18px rgba(8, 8, 7, 0.05); transition: background-color 0.3s, box-shadow 0.3s; }
-.gcard__link:hover .gcard__foot { border-color: #c9cacb; }
+.gcard__link { height: 100%; display: flex; flex-direction: column; gap: 0.75rem; padding: 1.2rem 1.3rem 1.1rem; background: var(--light-grey); border-radius: 0.9rem; box-shadow: 0 1px 2px rgba(8, 8, 7, 0.04), 0 6px 18px rgba(8, 8, 7, 0.05); transition: background-color 0.3s, box-shadow 0.3s; }
 .gcard__link:hover { background: var(--grey); box-shadow: 0 1px 2px rgba(8, 8, 7, 0.05), 0 10px 24px rgba(8, 8, 7, 0.07); }
 .gcard__link:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
-.gcard__top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+.gcard__top { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.3rem; }
 .gcard__thumb { flex: none; width: 3.25rem; height: 3.25rem; border-radius: 0.5rem; overflow: hidden; background: var(--grey); }
 .gcard__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .gcard__kind { display: flex; flex-direction: column; gap: 0.15rem; }
 .gcard__count { color: var(--dark-grey); font-variant-numeric: tabular-nums; }
 .gcard__title { font-size: clamp(1.25rem, 0.95rem + 0.6vw, 1.6rem); font-weight: var(--w-strong); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance; }
 .gcard__text { font-size: var(--f-small); line-height: 1.45; color: var(--dark-grey); }
-.gcard__foot { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--grey); display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; color: var(--dark-grey); }
-.gcard__foot { flex-wrap: wrap; row-gap: 0.3rem; }
-.gcard__go { margin-left: auto; }
-.gcard__go { color: var(--black); white-space: nowrap; }
-@media (max-width: 991px) { .gcards { grid-column: 1 / -1; } }
-@media (max-width: 767px) {
-  .gcards { grid-template-columns: minmax(0, 1fr); }
-  .gcard__link { min-height: 0; }
-}
+.gcard__list { display: grid; margin-top: 0.4rem; font-size: var(--f-small); line-height: 1.3; }
+.gcard__listlabel { padding-bottom: 0.45rem; color: var(--dark-grey); }
+.gcard__row { display: grid; grid-template-columns: 1.8rem minmax(0, 1fr); padding: 0.45rem 0; border-top: 1px solid var(--grey); }
+.gcard__link:hover .gcard__row { border-color: #c9cacb; }
+.gcard__k { color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.gcard__sub { display: block; margin-top: 0.15rem; color: var(--dark-grey); font-size: 0.8125rem; }
+@media (min-width: 1300px) { .gcard__sub { display: none; } }   /* wide cards: the regions alone keep the three cards even; the town names fill the narrower ones */
+.gcard__foot { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--black); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.6rem; color: var(--dark-grey); }
+.gcard__go { margin-left: auto; color: var(--black); white-space: nowrap; }
+@media (max-width: 899px) { .gcards { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-2); } }
