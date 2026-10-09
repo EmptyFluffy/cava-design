@@ -2,16 +2,16 @@
   "_note": "/studio/library/ and /es/estudio/biblioteca/. Covers from Open Library (covers.openlibrary.org), resized into site/assets/img/books/<id>.webp; ol = the Open Library work, linked from each title. The 'why' lines are the studio's draft; Carlos may rewrite them in his own words.",
   "en": {
     "title": "On the shelf: books on architecture and the rest of the work | Studio CAVA",
-    "description": "Twenty-three books we keep near the drawing table, from Tom Kundig, Geoffrey Bawa and Bruno Stagno to Bachelard, Grasshopper, Julius Shulman and Rick Rubin, with a line on why each one is there.",
+    "description": "Twenty-two books we keep near the drawing table, from Tom Kundig, Geoffrey Bawa and Bruno Stagno to Bachelard, Grasshopper, Julius Shulman and Rick Rubin, with a line on why each one is there.",
     "label": "(Library)", "h1": ["On the", "shelf"],
-    "intro": "Twenty-three books we keep near the drawing table: about architecture, and about the rest of the work. A line or two on why each one is here.",
+    "intro": "Twenty-two books we keep near the drawing table: about architecture, and about the rest of the work. A line or two on why each one is here.",
     "covers": "Covers from Open Library and booksellers' listings. The books belong to their authors and publishers; we have no arrangement with any of them."
   },
   "es": {
     "title": "En el estante: libros de arquitectura y del resto del oficio | Studio CAVA",
-    "description": "Veintitrés libros que tenemos cerca de la mesa de dibujo, de Tom Kundig, Geoffrey Bawa y Bruno Stagno a Bachelard, Grasshopper, Julius Shulman y Rick Rubin, con una línea sobre por qué está cada uno.",
+    "description": "Veintidós libros que tenemos cerca de la mesa de dibujo, de Tom Kundig, Geoffrey Bawa y Bruno Stagno a Bachelard, Grasshopper, Julius Shulman y Rick Rubin, con una línea sobre por qué está cada uno.",
     "label": "(Biblioteca)", "h1": ["En el", "estante"],
-    "intro": "Veintitrés libros que tenemos cerca de la mesa de dibujo: de arquitectura y del resto del oficio. Una o dos líneas sobre por qué está cada uno.",
+    "intro": "Veintidós libros que tenemos cerca de la mesa de dibujo: de arquitectura y del resto del oficio. Una o dos líneas sobre por qué está cada uno.",
     "covers": "Portadas de Open Library y de listados de librerías. Los libros son de sus autores y editoriales; no tenemos ningún acuerdo con ellos."
   },
   "shelves": [
@@ -87,9 +87,6 @@
         { "id": "tedeschi-aad", "title": "AAD Algorithms-Aided Design: Parametric Strategies Using Grasshopper", "by": "Arturo Tedeschi", "pub": "Le Penseur, 2014", "ol": "OL21847250W",
           "en": "A Grasshopper manual that teaches the thinking as well as the buttons: data structures, attractors, form-finding. We use parametric models for roofs, louvres and sun studies, and this one stays within reach.",
           "es": "Un manual de Grasshopper que enseña a pensar además de qué botón tocar: estructuras de datos, atractores, búsqueda de forma. Usamos modelos paramétricos para techos, celosías y estudios de sol, y este libro está siempre a mano." },
-        { "id": "algorithmic-architecture", "title": "Algorithmic Architecture", "by": "Kostas Terzidis", "pub": "Architectural Press, 2006", "ol": "OL6027548W",
-          "en": "The argument that code is not a faster pencil but a different way of designing. Tedeschi shows how; this one asks why, and we disagree with it in places.",
-          "es": "El argumento de que el código no es un lápiz más rápido sino otra forma de diseñar. Tedeschi muestra cómo; este pregunta por qué, y en algunas partes discrepamos." },
         { "id": "typography-for-screen", "title": "Typography for Screen: Type in Motion", "by": "Wang Shaoqiang (ed.)", "pub": "Flamant, 2020", "ol": "OL21338652W",
           "en": "Type made to move: motion graphics, websites and experiments, with interviews with the studios behind them and QR codes to the work in motion. The titles on this site step and slide across the page for reasons that start here.",
           "es": "Tipografía hecha para moverse: gráficos en movimiento, sitios web y experimentos, con entrevistas a los estudios que los hicieron y códigos QR al trabajo en movimiento. Los títulos de este sitio se escalonan y se deslizan por razones que empiezan aquí." },
