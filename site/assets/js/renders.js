@@ -255,7 +255,7 @@ window.CAVA_RENDERS = [
  {
   "id": "la-perla-1",
   "src": "assets/img/projects/la-perla/1",
-  "v": "e61c9323",
+  "v": "46296f8b",
   "title": "La Perla",
   "alt": "Collage of the master plan over an aerial of the land: houses with pools along a road that ends in a turning circle, the shared buildings among the trees and the boundary as a dashed line"
  },

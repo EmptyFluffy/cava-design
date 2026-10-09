@@ -708,7 +708,7 @@
       "builtArea": 7120,
       "images": [
         {
-          "file": "web/analysis/plan-collage.png",
+          "file": "web/card.png",
           "alt": "Collage of the master plan over an aerial of the land: houses with pools along a road that ends in a turning circle, the shared buildings among the trees and the boundary as a dashed line",
           "alt_es": "Collage del plan maestro sobre una aérea del terreno: casas con piscina a lo largo de una calle que termina en un retorno, los edificios comunes entre los árboles y el lindero en línea punteada"
         },
@@ -735,7 +735,7 @@
       ],
       "analysis": {
         "dir": "web/analysis",
-        "start": "modules", "then": "contours",
+        "start": "collage", "then": "contours",
         "lead": {
           "en": "Before drawing a single lot we read the land: its height, its slope and where the rain runs.", "note_en": "A condominium on 5.7 hectares at Matapalo, on the road to Bahía Pirata, planned in 2021 and not built.",
           "es": "Antes de dibujar un solo lote leímos el terreno: su altura, su pendiente y por dónde corre la lluvia.", "note_es": "Un condominio en 5.7 hectáreas en Matapalo, camino a Bahía Pirata, planificado en 2021 y no construido."
@@ -773,7 +773,7 @@
           { "key": "streets", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }] }, "en": { "name": "Streets", "text": "One road that follows the land to keep its grade gentle, ending in a turning circle." }, "es": { "name": "Calles", "text": "Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno." } },
           { "key": "modules", "legend": { "keys": [{ "box": "#ccc06c", "en": "Typology A", "es": "Tipología A", "sub": "400 m² × 3" }, { "box": "#f09c54", "en": "Typology B", "es": "Tipología B", "sub": "250 m² × 11" }, { "box": "#fad8a8", "en": "Typology C", "es": "Tipología C", "sub": "160 m² × 11" }, { "box": "#c4a884", "en": "Typology D", "es": "Tipología D", "sub": "100 m² × 8" }] }, "en": { "name": "Lots and houses", "text": "33 houses in four typologies, 6,510 m², and four shared buildings, 610 m²: houses in rows on one side of the road and in a fan around the turning circle, the shared buildings inside the loop." }, "es": { "name": "Lotes y casas", "text": "33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito." } },
           { "key": "modules-runoff", "legend": { "keys": [{ "box": "#ccc06c", "en": "A", "es": "A" }, { "box": "#f09c54", "en": "B", "es": "B" }, { "box": "#fad8a8", "en": "C", "es": "C" }, { "box": "#c4a884", "en": "D", "es": "D" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } },
-          { "key": "collage", "views": ["plan"], "en": { "name": "Collage", "text": "The master plan as an illustrative collage over an aerial of the land: the houses, the road and the shared buildings among the trees." }, "es": { "name": "Collage", "text": "El plan maestro como un collage ilustrativo sobre una aérea del terreno: las casas, la calle y los edificios comunes entre los árboles." } }
+          { "key": "collage", "views": ["plan"], "en": { "name": "Master plan", "text": "The master plan as an illustrative collage over an aerial of the land: the houses, the road and the shared buildings among the trees." }, "es": { "name": "Plan maestro", "text": "El plan maestro como un collage ilustrativo sobre una aérea del terreno: las casas, la calle y los edificios comunes entre los árboles." } }
         ]
       }
     },
