@@ -51,14 +51,21 @@
 
   // autoplay: the progress bar on the active tab restarts with every step
   const running = () => !stopped && !hover && visible;
+  // a layer drawn in some views only (the collage: plan) carries them; the story skips it in the others
+  const fits = (t, v) => !t.dataset.anlViews || t.dataset.anlViews.split(' ').includes(v);
+  const tabOf = (k) => tabs.find((t) => t.dataset.anlLayer === k);
   const tick = () => {
     if (then) { layer = then; then = null; show(); schedule(); return; }
-    const i = tabs.findIndex((t) => t.dataset.anlLayer === layer);
-    if (i === tabs.length - 1) {
-      const v = views.findIndex((b) => b.dataset.anlView === view);
-      view = views[(v + 1) % views.length].dataset.anlView;
+    let i = tabs.findIndex((t) => t.dataset.anlLayer === layer);
+    for (let n = 0; n < tabs.length * views.length; n++) {
+      if (i === tabs.length - 1) {
+        const v = views.findIndex((b) => b.dataset.anlView === view);
+        view = views[(v + 1) % views.length].dataset.anlView;
+      }
+      i = (i + 1) % tabs.length;
+      if (fits(tabs[i], view)) break;
     }
-    layer = tabs[(i + 1) % tabs.length].dataset.anlLayer;
+    layer = tabs[i].dataset.anlLayer;
     show(); schedule();
   };
   const schedule = () => {
@@ -77,16 +84,20 @@
   root.style.setProperty('--anl-step', `${STEP}ms`);
 
   tabs.forEach((t, i) => {
-    t.addEventListener('click', () => { layer = t.dataset.anlLayer; show(); stop(); });
+    t.addEventListener('click', () => { layer = t.dataset.anlLayer; if (!fits(t, view)) view = t.dataset.anlViews.split(' ')[0]; show(); stop(); });
     t.addEventListener('keydown', (e) => {
       const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
       if (!d) return;
       e.preventDefault();
       const n = tabs[(i + d + tabs.length) % tabs.length];
-      layer = n.dataset.anlLayer; show(); stop(); n.focus();
+      layer = n.dataset.anlLayer; if (!fits(n, view)) view = n.dataset.anlViews.split(' ')[0]; show(); stop(); n.focus();
     });
   });
-  for (const b of views) b.addEventListener('click', () => { view = b.dataset.anlView; show(); stop(); });
+  for (const b of views) b.addEventListener('click', () => {
+    view = b.dataset.anlView;
+    if (!fits(tabOf(layer), view)) layer = tabs.find((t) => fits(t, view)).dataset.anlLayer;
+    show(); stop();
+  });
   if (play) {
     if (still) { play.textContent = play.dataset.resume; play.setAttribute('aria-pressed', 'true'); }
     play.addEventListener('click', () => {

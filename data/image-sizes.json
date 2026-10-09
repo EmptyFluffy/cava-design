@@ -263,15 +263,7 @@
   1600,
   2166
  ],
- "amacor-house/2-d": [
-  1600,
-  2166
- ],
  "amacor-house/3": [
-  1600,
-  2166
- ],
- "amacor-house/3-d": [
   1600,
   2166
  ],
@@ -309,7 +301,7 @@
  ],
  "la-perla/1": [
   1600,
-  1094
+  887
  ],
  "la-perla/2": [
   1488,
@@ -358,6 +350,10 @@
  "la-perla/a-plan-modules-runoff": [
   951,
   596
+ ],
+ "la-perla/a-plan-collage": [
+  1684,
+  934
  ],
  "la-perla/a-axo-terrain": [
   989,

@@ -391,9 +391,9 @@ function typologyAxos(list) {
 // axonometric below; each view opens that layer in the analysis further down (analysis.js).
 function coverMatrix(lang, up, p) {
   const an = p.analysis;
-  return `<figure class="proj__cover pmx" aria-label="${esc(altOf(lang, p, 1))}">
+  return `<figure class="proj__cover pmx" aria-label="${esc(lang === 'en' ? `${p.name}: every view of the site analysis` : `${p.name}: todas las vistas del análisis del terreno`)}">
       <div class="pmx__grid" style="--n: ${an.layers.length}">
-${an.views.map((v) => `        <p class="label pmx__row">(${esc(v[lang])})</p>\n` + an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [w, h] = sizes[k]; return `        <button class="pmx__cell" type="button" data-anl-go="${v.key} ${l.key}"><img src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${w}" height="${h}" decoding="async" fetchpriority="${i < 4 ? 'high' : 'auto'}" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}"><span class="label pmx__cap"><span>${pad(i + 1)}</span>${esc(l[lang].name)}</span></button>`; }).join('\n')).join('\n')}
+${an.views.map((v) => `        <p class="label pmx__row">(${esc(v[lang])})</p>\n` + an.layers.filter((l) => !l.views || l.views.includes(v.key)).map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [w, h] = sizes[k]; return `        <button class="pmx__cell" type="button" data-anl-go="${v.key} ${l.key}"><img src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${w}" height="${h}" decoding="async" fetchpriority="${i < 4 ? 'high' : 'auto'}" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}"><span class="label pmx__cap"><span>${pad(i + 1)}</span>${esc(l[lang].name)}</span></button>`; }).join('\n')).join('\n')}
 ${an.typologies ? (() => { const svgs = typologyAxos(an.typologies); const tot = an.typologies.reduce((a, t) => a + t.area * t.units, 0); const units = an.typologies.reduce((a, t) => a + t.units, 0); const num = (n) => (lang === 'en' ? n.toLocaleString('en-US') : String(n)); return `        <p class="label pmx__row">(${lang === 'en' ? 'Typologies' : 'Tipologías'})<span class="pmx__tot">${units} ${lang === 'en' ? 'houses' : 'casas'}, ${num(tot)} m²</span></p>
 ${an.typologies.map((t, i) => `        <button class="pmx__ty" type="button" data-anl-go="plan modules"><span class="tyx">${svgs[i]}</span><span class="pmx__tyhead"><span class="pmx__tyname"><i style="--c: ${t.color}"></i>${lang === 'en' ? 'Typology' : 'Tipología'} ${t.key}</span><b>×${t.units}</b></span><span class="pmx__tyarea">${t.area} m²<span> · ${num(t.area * t.units)} m² ${lang === 'en' ? 'in all' : 'en total'}</span></span><span class="pmx__typrog">${esc(t[lang])}</span></button>`).join('\n')}
 ${an.amenities ? `        <p class="label pmx__row">(${lang === 'en' ? 'Amenities' : 'Amenidades'})<span class="pmx__tot">${an.amenities.length} ${lang === 'en' ? 'shared buildings' : 'edificios comunes'}, ${num(an.amenities.reduce((a, m) => a + m.area, 0))} m²</span></p>
@@ -423,7 +423,8 @@ function projectPage(lang, p, i) {
   // sheet, key included) a wide screen shows the plate in the page's language; a phone keeps the bare
   // plan, larger, with the key in text under it.
   const planLabel = (im) => esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'));
-  const planKey = (im) => `<ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol>`;
+  // numbered as on the drawing: a floor can carry on from the one below (keyFrom)
+  const planKey = (im) => `<ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${(im.keyFrom ?? 1) + i}</b><span>${esc(k)}</span></li>`).join('')}</ol>`;
   // plans laid out in rows (planRows): each plan at its own width (spans of the 12 columns), the keys in
   // text stacked in the columns left over; a plan drawn for that width (desk) on a wide screen, the
   // phone version (file) below 768 px. On a phone each plan is followed by its key.
@@ -451,7 +452,7 @@ ${keyed.map((n, i) => `      <div class="pplan__key prow__key" style="--c: ${Mat
     return `    <section class="prow grid" aria-label="${lang === 'en' ? 'Plans' : 'Planos'}">
 ${row.images.map((n, i) => {
       const im = p.images[n - 1], span = row.spans[i];
-      const dk = `${p.slug}/${n}-d`, db = up + imgBase(p.slug, `${n}-d`), dv = `?v=${imgVer(dk)}`;
+      const dk = `${p.slug}/${n}-d`, db = up + imgBase(p.slug, `${n}-d`), dv = im.desk ? `?v=${imgVer(dk)}` : '';
       const vw = Math.round((span / 12) * 96);
       const desk = im.desk ? `<source media="(min-width: 768px)" srcset="${db}-800.webp${dv} 800w, ${db}-1600.webp${dv} 1600w, ${db}-2400.webp${dv} 2400w, ${db}-3600.webp${dv} 3600w" sizes="${vw}vw" width="${sizes[dk][0]}" height="${sizes[dk][1]}">` : '';
       const out = `      <div class="prow__img" style="--c: ${col} / span ${span}; --r: 1 / span ${row.images.length}"><picture>${desk}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture></div>
@@ -467,9 +468,10 @@ ${row.images.map((n, i) => {
   const analysis = an ? (() => {
     const n = an.layers.length;
     const first = Math.max(0, an.layers.findIndex((l) => l.key === an.start));   // the layer the section opens on
+    const inView = (l, v) => !l.views || l.views.includes(v.key);                    // a layer drawn in some views only (the collage: plan)
     const frame = (v) => { const [w, h] = sizes[`${p.slug}/a-${v.key}-${an.layers[0].key}`]; return `        <div class="anl__frame${v === an.views[0] ? ' is-on' : ''}" data-anl-frame="${v.key}" style="--ratio: ${(w / h).toFixed(3)}">
 ${v.key === 'plan' && an.amenities ? `          <div class="anl__notes" data-anl-notes="modules modules-runoff" style="--ar: ${(w / h).toFixed(4)}"><div class="anl__notebox">${an.amenities.map((m) => `<span class="anl__pin${m.side === 'left' ? ' is-left' : ''}" style="left: ${(m.x * 100).toFixed(1)}%; top: ${(m.y * 100).toFixed(1)}%"><i></i><span class="label">${esc(m[lang].name)}</span></span>`).join('')}</div></div>\n` : ''}
-${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === first ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === first && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
+${an.layers.filter((l) => inView(l, v)).map((l) => { const i = an.layers.indexOf(l); const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === first ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === first && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
         </div>`; };
     return `    <section class="anl" aria-labelledby="anl-title" data-anl${an.then ? ` data-anl-then="${an.then}"` : ''}>
       <div class="anl__head grid">
@@ -479,7 +481,7 @@ ${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw
       </div>
       <div class="anl__body grid">
         <ol class="anl__list" role="tablist" aria-label="${lang === 'en' ? 'Layers' : 'Capas'}">
-${an.layers.map((l, i) => `          <li><button class="anl__tab" type="button" role="tab" aria-selected="${i === first}" data-anl-layer="${l.key}" data-text="${esc(l[lang].text)}"><span class="anl__n">${pad(i + 1)}</span><span>${esc(l[lang].name)}</span></button></li>`).join('\n')}
+${an.layers.map((l, i) => `          <li><button class="anl__tab" type="button" role="tab" aria-selected="${i === first}" data-anl-layer="${l.key}"${l.views ? ` data-anl-views="${l.views.join(' ')}"` : ''} data-text="${esc(l[lang].text)}"><span class="anl__n">${pad(i + 1)}</span><span>${esc(l[lang].name)}</span></button></li>`).join('\n')}
         </ol>
         <div class="anl__main">
           <div class="anl__stage">
@@ -492,27 +494,6 @@ ${an.layers.map((l, i) => { const L = l.legend; if (!L) return `            <p c
           </div>
         </div>
       </div>
-    </section>
-`;
-  })() : '';
-  // a collage of the plan over an illustrative aerial, after the analysis: the same frame as the plan
-  // layers, so the amenity pins and a letter on each roof (its typology) land where they do there
-  const cl = p.collage;
-  const collage = cl ? (() => {
-    const k = `${p.slug}/c`, [w, h] = sizes[k], base = up + imgBase(p.slug, 'c'), v = `?v=${imgVer(k)}`;
-    const key = an?.typologies ? [...an.typologies].reverse().map((t) => `${t.key} ${t.area} m²`).join(' · ') : '';
-    return `    <section class="clg" aria-labelledby="clg-title">
-      <h2 class="label clg__label" id="clg-title">(Collage)</h2>
-      <figure class="clg__fig">
-        <div class="clg__img" style="--ar: ${(w / h).toFixed(4)}">
-          <img src="${base}-1600.webp${v}" srcset="${base}-800.webp${v} 800w, ${base}-1600.webp${v} 1600w, ${base}-2400.webp${v} 2400w, ${base}-3600.webp${v} 3600w" sizes="100vw" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(lang === 'en' ? cl.alt : cl.alt_es)}">
-          <div class="clg__marks" aria-hidden="true">
-${cl.labels.map((l) => `            <span class="clg__ty" style="left: ${(l.x * 100).toFixed(2)}%; top: ${(l.y * 100).toFixed(2)}%">${l.ty}</span>`).join('\n')}
-${(an?.amenities ?? []).map((m) => `            <span class="anl__pin${m.side === 'left' ? ' is-left' : ''}" style="left: ${(m.x * 100).toFixed(1)}%; top: ${(m.y * 100).toFixed(1)}%"><i></i><span class="label">${esc(m[lang].name)}</span></span>`).join('\n')}
-          </div>
-        </div>
-        <figcaption class="label clg__cap"><span>${lang === 'en' ? 'The master plan over an illustrative aerial. Not built.' : 'El plan maestro sobre una aérea ilustrativa. No construido.'}</span>${key ? `<span class="clg__key">${esc(key)}</span>` : ''}</figcaption>
-      </figure>
     </section>
 `;
   })() : '';
@@ -544,7 +525,7 @@ ${it.files.map((f, i) => {
     const plate = im.plate ? `<source media="(min-width: 768px)" srcset="${pb}-800.webp${pv} 800w, ${pb}-1600.webp${pv} 1600w, ${pb}-2400.webp${pv} 2400w, ${pb}-3600.webp${pv} 3600w" sizes="86vw" width="${sizes[pk][0]}" height="${sizes[pk][1]}">` : '';
     return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}">
       <div class="pplan__img">${im.plate ? `<picture>${plate}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture>` : picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
-      <figcaption class="pplan__key"><p class="label">${esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'))}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
+      <figcaption class="pplan__key"><p class="label">${esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'))}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${(im.keyFrom ?? 1) + i}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
     </figure>
 `;
   }).join('');
@@ -609,7 +590,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${analysis}${collage}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
+${analysis}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

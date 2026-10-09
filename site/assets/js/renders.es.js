@@ -255,9 +255,9 @@ window.CAVA_RENDERS = [
  {
   "id": "la-perla-1",
   "src": "../assets/img/projects/la-perla/1",
-  "v": "b6d376fe",
+  "v": "e61c9323",
   "title": "La Perla",
-  "alt": "Modelo axonométrico del terreno sobre negro: las curvas, una sola calle que termina en un retorno, casas a lo largo y los caminos de la escorrentía en azul"
+  "alt": "Collage del plan maestro sobre una aérea del terreno: casas con piscina a lo largo de una calle que termina en un retorno, los edificios comunes entre los árboles y el lindero en línea punteada"
  },
  {
   "id": "la-perla-2",

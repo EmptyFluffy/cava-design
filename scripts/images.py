@@ -48,19 +48,11 @@ for p in data['projects']:
     if an:
         for v in an['views']:
             for l in an['layers']:
+                if v['key'] not in l.get('views', [v['key']]):      # a layer drawn in some views only
+                    continue
                 img = Image.open(os.path.join(src, p['folder'], an['dir'], f"{v['key']}-{l['key']}.png")).convert('RGBA')
                 img.save(os.path.join(out, f"a-{v['key']}-{l['key']}.webp"), 'WEBP', quality=90, method=6)
                 sizes[f"{p['slug']}/a-{v['key']}-{l['key']}"] = [img.width, img.height]
-    # a collage of the plan over an aerial, shown full width: up to 3600 px
-    cl = p.get('collage')
-    if cl:
-        img = Image.open(os.path.join(src, p['folder'], cl['file'])).convert('RGB')
-        for w in (3600, 2400, 1600, 800):
-            r = img.copy()
-            r.thumbnail((w, w * 2), Image.LANCZOS)
-            r.save(os.path.join(out, f'c-{w}.webp'), 'WEBP', quality=86, method=6)
-            if w == 1600:
-                sizes[f"{p['slug']}/c"] = [r.width, r.height]
     # construction drawings (line art: a higher quality, so the lines stay clean)
     for d in [x for s in p.get('drawings', []) for x in s['items']] + p.get('views', []):
         img = Image.open(os.path.join(src, p['folder'], d['file'])).convert('RGB')

@@ -22,9 +22,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
-<link rel="stylesheet" href="../../../assets/css/site.css?v=06dba705">
+<link rel="stylesheet" href="../../../assets/css/site.css?v=904af58e">
 <script defer src="../../../assets/js/project.js?v=a6c70a27"></script>
-<script defer src="../../../assets/js/analysis.js?v=9170460f"></script>
+<script defer src="../../../assets/js/analysis.js?v=029dd0e0"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -49,8 +49,8 @@
       <p class="label proj__crumb"><a class="ulink" href="../">Proyectos</a><span aria-hidden="true">(12/13)</span></p>
       <h1 class="display proj__title" id="proj-title">La Perla</h1>
     </header>
-    <figure class="proj__cover pmx" aria-label="Modelo axonométrico del terreno sobre negro: las curvas, una sola calle que termina en un retorno, casas a lo largo y los caminos de la escorrentía en azul">
-      <div class="pmx__grid" style="--n: 8">
+    <figure class="proj__cover pmx" aria-label="La Perla: todas las vistas del análisis del terreno">
+      <div class="pmx__grid" style="--n: 9">
         <p class="label pmx__row">(Planta)</p>
         <button class="pmx__cell" type="button" data-anl-go="plan terrain"><img src="../../../assets/img/projects/la-perla/a-plan-terrain.webp?v=434463a9" width="951" height="596" decoding="async" fetchpriority="high" alt="Terreno, planta"><span class="label pmx__cap"><span>01</span>Terreno</span></button>
         <button class="pmx__cell" type="button" data-anl-go="plan contours"><img src="../../../assets/img/projects/la-perla/a-plan-contours.webp?v=d43cfeea" width="951" height="596" decoding="async" fetchpriority="high" alt="Curvas de nivel, planta"><span class="label pmx__cap"><span>02</span>Curvas de nivel</span></button>
@@ -60,6 +60,7 @@
         <button class="pmx__cell" type="button" data-anl-go="plan streets"><img src="../../../assets/img/projects/la-perla/a-plan-streets.webp?v=4a960eab" width="951" height="596" decoding="async" fetchpriority="auto" alt="Calles, planta"><span class="label pmx__cap"><span>06</span>Calles</span></button>
         <button class="pmx__cell" type="button" data-anl-go="plan modules"><img src="../../../assets/img/projects/la-perla/a-plan-modules.webp?v=0cfbb905" width="951" height="596" decoding="async" fetchpriority="auto" alt="Lotes y casas, planta"><span class="label pmx__cap"><span>07</span>Lotes y casas</span></button>
         <button class="pmx__cell" type="button" data-anl-go="plan modules-runoff"><img src="../../../assets/img/projects/la-perla/a-plan-modules-runoff.webp?v=f142a486" width="951" height="596" decoding="async" fetchpriority="auto" alt="Casas sobre la escorrentía, planta"><span class="label pmx__cap"><span>08</span>Casas sobre la escorrentía</span></button>
+        <button class="pmx__cell" type="button" data-anl-go="plan collage"><img src="../../../assets/img/projects/la-perla/a-plan-collage.webp?v=1d713c8d" width="1684" height="934" decoding="async" fetchpriority="auto" alt="Collage, planta"><span class="label pmx__cap"><span>09</span>Collage</span></button>
         <p class="label pmx__row">(Axonometría)</p>
         <button class="pmx__cell" type="button" data-anl-go="axo terrain"><img src="../../../assets/img/projects/la-perla/a-axo-terrain.webp?v=f675c069" width="989" height="591" decoding="async" fetchpriority="high" alt="Terreno, axonometría"><span class="label pmx__cap"><span>01</span>Terreno</span></button>
         <button class="pmx__cell" type="button" data-anl-go="axo contours"><img src="../../../assets/img/projects/la-perla/a-axo-contours.webp?v=0ef8cd81" width="989" height="591" decoding="async" fetchpriority="high" alt="Curvas de nivel, axonometría"><span class="label pmx__cap"><span>02</span>Curvas de nivel</span></button>
@@ -115,6 +116,7 @@
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="streets" data-text="Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno."><span class="anl__n">06</span><span>Calles</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="true" data-anl-layer="modules" data-text="33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito."><span class="anl__n">07</span><span>Lotes y casas</span></button></li>
           <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="modules-runoff" data-text="Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua."><span class="anl__n">08</span><span>Casas sobre la escorrentía</span></button></li>
+          <li><button class="anl__tab" type="button" role="tab" aria-selected="false" data-anl-layer="collage" data-anl-views="plan" data-text="El plan maestro como un collage ilustrativo sobre una aérea del terreno: las casas, la calle y los edificios comunes entre los árboles."><span class="anl__n">09</span><span>Collage</span></button></li>
         </ol>
         <div class="anl__main">
           <div class="anl__stage">
@@ -129,6 +131,7 @@
           <img class="anl__img" data-anl-img="streets" src="../../../assets/img/projects/la-perla/a-plan-streets.webp?v=4a960eab" width="951" height="596" loading="lazy" decoding="async" alt="Calles, planta">
           <img class="anl__img is-on" data-anl-img="modules" src="../../../assets/img/projects/la-perla/a-plan-modules.webp?v=0cfbb905" width="951" height="596" decoding="async" alt="Lotes y casas, planta">
           <img class="anl__img" data-anl-img="modules-runoff" src="../../../assets/img/projects/la-perla/a-plan-modules-runoff.webp?v=f142a486" width="951" height="596" loading="lazy" decoding="async" alt="Casas sobre la escorrentía, planta">
+          <img class="anl__img" data-anl-img="collage" src="../../../assets/img/projects/la-perla/a-plan-collage.webp?v=1d713c8d" width="1684" height="934" loading="lazy" decoding="async" alt="Collage, planta">
         </div>
         <div class="anl__frame" data-anl-frame="axo" style="--ratio: 1.673">
 
@@ -149,7 +152,8 @@
             <p class="label anl__legend" data-anl-legend="streets" aria-hidden="true"><span class="anl__key"><i style="--c: #7b6553" class="is-line"></i>Calle</span></p>
             <p class="label anl__legend is-on" data-anl-legend="modules" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>Tipología A<b class="anl__sub">400 m² × 3</b></span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>Tipología B<b class="anl__sub">250 m² × 11</b></span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>Tipología C<b class="anl__sub">160 m² × 11</b></span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>Tipología D<b class="anl__sub">100 m² × 8</b></span></p>
             <p class="label anl__legend" data-anl-legend="modules-runoff" aria-hidden="true"><span class="anl__key"><i style="--c: #ccc06c" class="is-box"></i>A</span><span class="anl__key"><i style="--c: #f09c54" class="is-box"></i>B</span><span class="anl__key"><i style="--c: #fad8a8" class="is-box"></i>C</span><span class="anl__key"><i style="--c: #c4a884" class="is-box"></i>D</span><span class="anl__key"><i style="--c: #3ee8ef" class="is-line"></i>Camino de la lluvia</span></p>
-            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>07/08</span><span data-anl-name>Lotes y casas</span></p>
+            <p class="label anl__legend" data-anl-legend="collage" aria-hidden="true"></p>
+            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>07/09</span><span data-anl-name>Lotes y casas</span></p>
           </div>
           <div class="anl__foot">
             <p class="anl__text" data-anl-text aria-live="polite">33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito.</p>

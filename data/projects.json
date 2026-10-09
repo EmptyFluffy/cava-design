@@ -529,8 +529,7 @@
           "alt_es": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
         },
         {
-          "file": "Planos/web/ground-mob.png",
-          "desk": "Planos/web/ground-desk.png",
+          "file": "Planos/web/ground.png",
           "alt": "Ground floor plan, numbered: the hall and a planted courtyard at the centre, the kitchen, lounge and living and dining opening to the terrace and pool, a guest bedroom, a study, the service wing and a three-car garage",
           "alt_es": "Planta baja, numerada: el vestíbulo y un patio sembrado al centro, la cocina, el estar y la sala y comedor abiertos a la terraza y la piscina, un dormitorio de visitas, un estudio, el área de servicio y un garaje para tres carros",
           "plan": true,
@@ -576,13 +575,13 @@
           ]
         },
         {
-          "file": "Planos/web/upper-mob.png",
-          "desk": "Planos/web/upper-desk.png",
+          "file": "Planos/web/upper.png",
           "alt": "Upper floor plan, numbered: a family room over the entry, two bedrooms with a balcony, and the main bedroom with its walk-in closet and bathroom",
           "alt_es": "Planta alta, numerada: una sala familiar sobre el acceso, dos dormitorios con un balcón, y el dormitorio principal con su vestidor y baño",
           "plan": true,
           "label": "(Upper floor)",
           "label_es": "(Planta alta)",
+          "keyFrom": 18,
           "key": [
             "Hall",
             "Family room",
@@ -612,7 +611,7 @@
       "planRows": [
         {
           "images": [2, 3],
-          "spans": [4, 4]
+          "spans": [3, 3]
         }
       ],
       "views": [
@@ -709,9 +708,9 @@
       "builtArea": 7120,
       "images": [
         {
-          "file": "web/cover.png",
-          "alt": "Axonometric model of the land on black: the contours, a single road ending in a turning circle, houses along it and the paths of the runoff in blue",
-          "alt_es": "Modelo axonométrico del terreno sobre negro: las curvas, una sola calle que termina en un retorno, casas a lo largo y los caminos de la escorrentía en azul"
+          "file": "web/analysis/plan-collage.png",
+          "alt": "Collage of the master plan over an aerial of the land: houses with pools along a road that ends in a turning circle, the shared buildings among the trees and the boundary as a dashed line",
+          "alt_es": "Collage del plan maestro sobre una aérea del terreno: casas con piscina a lo largo de una calle que termina en un retorno, los edificios comunes entre los árboles y el lindero en línea punteada"
         },
         {
           "file": "PERSPECTIVE 03.PNG",
@@ -773,7 +772,8 @@
           { "key": "runoff", "legend": { "keys": [{ "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Runoff", "text": "The paths rain takes across the land. Where they gather, the water has to be led away and kept clear of buildings." }, "es": { "name": "Escorrentía", "text": "Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones." } },
           { "key": "streets", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }] }, "en": { "name": "Streets", "text": "One road that follows the land to keep its grade gentle, ending in a turning circle." }, "es": { "name": "Calles", "text": "Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno." } },
           { "key": "modules", "legend": { "keys": [{ "box": "#ccc06c", "en": "Typology A", "es": "Tipología A", "sub": "400 m² × 3" }, { "box": "#f09c54", "en": "Typology B", "es": "Tipología B", "sub": "250 m² × 11" }, { "box": "#fad8a8", "en": "Typology C", "es": "Tipología C", "sub": "160 m² × 11" }, { "box": "#c4a884", "en": "Typology D", "es": "Tipología D", "sub": "100 m² × 8" }] }, "en": { "name": "Lots and houses", "text": "33 houses in four typologies, 6,510 m², and four shared buildings, 610 m²: houses in rows on one side of the road and in a fan around the turning circle, the shared buildings inside the loop." }, "es": { "name": "Lotes y casas", "text": "33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito." } },
-          { "key": "modules-runoff", "legend": { "keys": [{ "box": "#ccc06c", "en": "A", "es": "A" }, { "box": "#f09c54", "en": "B", "es": "B" }, { "box": "#fad8a8", "en": "C", "es": "C" }, { "box": "#c4a884", "en": "D", "es": "D" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } }
+          { "key": "modules-runoff", "legend": { "keys": [{ "box": "#ccc06c", "en": "A", "es": "A" }, { "box": "#f09c54", "en": "B", "es": "B" }, { "box": "#fad8a8", "en": "C", "es": "C" }, { "box": "#c4a884", "en": "D", "es": "D" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } },
+          { "key": "collage", "views": ["plan"], "en": { "name": "Collage", "text": "The master plan as an illustrative collage over an aerial of the land: the houses, the road and the shared buildings among the trees." }, "es": { "name": "Collage", "text": "El plan maestro como un collage ilustrativo sobre una aérea del terreno: las casas, la calle y los edificios comunes entre los árboles." } }
         ]
       }
     },
