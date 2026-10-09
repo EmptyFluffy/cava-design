@@ -253,6 +253,41 @@ window.CAVA_RENDERS = [
   "alt": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos"
  },
  {
+  "id": "la-perla-1",
+  "src": "../assets/img/projects/la-perla/1",
+  "v": "fe10b12b",
+  "title": "La Perla",
+  "alt": "Modelo axonométrico del terreno sobre negro: las curvas, una sola calle que termina en un retorno, casas a lo largo y los caminos de la escorrentía en azul"
+ },
+ {
+  "id": "la-perla-2",
+  "src": "../assets/img/projects/la-perla/2",
+  "v": "46816b25",
+  "title": "La Perla",
+  "alt": "Maqueta de volúmenes a la altura del ojo: casas alrededor del retorno al final de la calle, sobre el terreno con curvas"
+ },
+ {
+  "id": "la-perla-3",
+  "src": "../assets/img/projects/la-perla/3",
+  "v": "8d1d0188",
+  "title": "La Perla",
+  "alt": "Maqueta de volúmenes a la altura del ojo: la calle curvándose entre hileras de casas pendiente abajo"
+ },
+ {
+  "id": "la-perla-4",
+  "src": "../assets/img/projects/la-perla/4",
+  "v": "91f18621",
+  "title": "La Perla",
+  "alt": "El terreno modelado en terrazas por curva de nivel, subiendo hasta una cresta"
+ },
+ {
+  "id": "la-perla-5",
+  "src": "../assets/img/projects/la-perla/5",
+  "v": "89e2363b",
+  "title": "La Perla",
+  "alt": "Maqueta de volúmenes a la altura del ojo: casas a ambos lados de la calle mientras sube por el terreno"
+ },
+ {
   "id": "military-museum-1",
   "src": "../assets/img/projects/military-museum/1",
   "v": "7326cdd7",

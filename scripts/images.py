@@ -43,6 +43,14 @@ for p in data['projects']:
                 r.save(os.path.join(out, f'{n}-d-{w}.webp'), 'WEBP', quality=92, method=6)
                 if w == 1600:
                     sizes[f"{p['slug']}/{n}-d"] = [r.width, r.height]
+    # site analysis layers (cut out on transparency, registered per view): one size, alpha kept
+    an = p.get('analysis')
+    if an:
+        for v in an['views']:
+            for l in an['layers']:
+                img = Image.open(os.path.join(src, p['folder'], an['dir'], f"{v['key']}-{l['key']}.png")).convert('RGBA')
+                img.save(os.path.join(out, f"a-{v['key']}-{l['key']}.webp"), 'WEBP', quality=90, method=6)
+                sizes[f"{p['slug']}/a-{v['key']}-{l['key']}"] = [img.width, img.height]
     # construction drawings (line art: a higher quality, so the lines stay clean)
     for d in [x for s in p.get('drawings', []) for x in s['items']] + p.get('views', []):
         img = Image.open(os.path.join(src, p['folder'], d['file'])).convert('RGB')

@@ -585,6 +585,74 @@
       "planRows": [{ "images": [5], "spans": [6] }]
     },
     {
+      "slug": "la-perla",
+      "name": "La Perla",
+      "folder": "La Perla Master Plan",
+      "type": "Condominium master plan",
+      "type_es": "Plan maestro de condominio",
+      "typology": "Residential",
+      "typology_es": "Habitacional",
+      "location": "Matapalo, Santa Cruz, Guanacaste",
+      "coords": [
+        -85.822,
+        10.39
+      ],
+      "pin": "approximate",
+      "status": "Master plan study",
+      "status_es": "Estudio de plan maestro",
+      "year": 2021,
+      "siteArea": 57075,
+      "builtArea": null,
+      "images": [
+        {
+          "file": "web/cover.png",
+          "alt": "Axonometric model of the land on black: the contours, a single road ending in a turning circle, houses along it and the paths of the runoff in blue",
+          "alt_es": "Modelo axonométrico del terreno sobre negro: las curvas, una sola calle que termina en un retorno, casas a lo largo y los caminos de la escorrentía en azul"
+        },
+        {
+          "file": "PERSPECTIVE 03.PNG",
+          "alt": "Massing model at eye level: houses around a turning circle at the end of the road, on contoured ground",
+          "alt_es": "Maqueta de volúmenes a la altura del ojo: casas alrededor del retorno al final de la calle, sobre el terreno con curvas"
+        },
+        {
+          "file": "PERSPECTIVE 02.PNG",
+          "alt": "Massing model at eye level: the road curving between rows of houses down the slope",
+          "alt_es": "Maqueta de volúmenes a la altura del ojo: la calle curvándose entre hileras de casas pendiente abajo"
+        },
+        {
+          "file": "PERSPECTIVA 03.PNG",
+          "alt": "The land modelled as stepped contour terraces, rising to a ridge",
+          "alt_es": "El terreno modelado en terrazas por curva de nivel, subiendo hasta una cresta"
+        },
+        {
+          "file": "PERSPECTIVE.PNG",
+          "alt": "Massing model at eye level: houses on both sides of the road as it climbs the land",
+          "alt_es": "Maqueta de volúmenes a la altura del ojo: casas a ambos lados de la calle mientras sube por el terreno"
+        }
+      ],
+      "analysis": {
+        "dir": "web/analysis",
+        "lead": {
+          "en": "Before drawing a single lot we read the land: its height, its slope and where the rain runs.", "note_en": "A condominium on 5.7 hectares at Matapalo, on the road to Bahía Pirata, planned in 2021 and not built.",
+          "es": "Antes de dibujar un solo lote leímos el terreno: su altura, su pendiente y por dónde corre la lluvia.", "note_es": "Un condominio en 5.7 hectáreas en Matapalo, camino a Bahía Pirata, planificado en 2021 y no construido."
+        },
+        "views": [
+          { "key": "plan", "en": "Plan", "es": "Planta" },
+          { "key": "axo", "en": "Axonometric", "es": "Axonometría" }
+        ],
+        "layers": [
+          { "key": "terrain", "en": { "name": "Terrain", "text": "The land modelled from the topographic survey. Every study that follows sits on it." }, "es": { "name": "Terreno", "text": "El terreno modelado a partir del levantamiento topográfico. Todos los estudios que siguen parten de él." } },
+          { "key": "contours", "en": { "name": "Contours", "text": "The contour lines lifted into three dimensions, so the ridges, the valleys and the flatter ground read at once." }, "es": { "name": "Curvas de nivel", "text": "Las curvas de nivel levantadas en tres dimensiones, para leer de una vez las crestas, los valles y el terreno más plano." } },
+          { "key": "elevation", "legend": { "ramp": true, "en": ["Low", "High"], "es": ["Bajo", "Alto"] }, "en": { "name": "Elevation", "text": "Every point coloured by its height, from the lowest ground to the highest." }, "es": { "name": "Elevación", "text": "Cada punto coloreado según su altura, del terreno más bajo al más alto." } },
+          { "key": "slope", "legend": { "ramp": true, "en": ["Flat", "Steep"], "es": ["Plano", "Empinado"] }, "en": { "name": "Slope", "text": "How steep the ground is at every point. Gentler ground is where a road or a house costs least to build; the steepest is left as it is." }, "es": { "name": "Pendiente", "text": "Qué tan inclinado es el terreno en cada punto. Donde es más suave, una calle o una casa cuesta menos; lo más empinado se deja como está." } },
+          { "key": "runoff", "legend": { "keys": [{ "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Runoff", "text": "The paths rain takes across the land. Where they gather, the water has to be led away and kept clear of buildings." }, "es": { "name": "Escorrentía", "text": "Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones." } },
+          { "key": "streets", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }] }, "en": { "name": "Streets", "text": "One road that follows the land to keep its grade gentle, ending in a turning circle." }, "es": { "name": "Calles", "text": "Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno." } },
+          { "key": "modules", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }, { "box": "#f0a35e", "en": "Houses", "es": "Casas" }] }, "en": { "name": "Lots and houses", "text": "The houses along the road: in rows on one side, in a fan around the turning circle." }, "es": { "name": "Lotes y casas", "text": "Las casas a lo largo de la calle: en hileras de un lado y en abanico alrededor del retorno." } },
+          { "key": "modules-runoff", "legend": { "keys": [{ "box": "#f0a35e", "en": "Houses", "es": "Casas" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } }
+        ]
+      }
+    },
+    {
       "slug": "military-museum",
       "name": "Military Museum",
       "folder": "Military Museum",

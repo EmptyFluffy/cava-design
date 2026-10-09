@@ -283,6 +283,90 @@
   1600,
   1845
  ],
+ "la-perla/1": [
+  1600,
+  900
+ ],
+ "la-perla/2": [
+  1488,
+  748
+ ],
+ "la-perla/3": [
+  1488,
+  748
+ ],
+ "la-perla/4": [
+  1487,
+  750
+ ],
+ "la-perla/5": [
+  1483,
+  750
+ ],
+ "la-perla/a-plan-terrain": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-contours": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-elevation": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-slope": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-runoff": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-streets": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-modules": [
+  951,
+  596
+ ],
+ "la-perla/a-plan-modules-runoff": [
+  951,
+  596
+ ],
+ "la-perla/a-axo-terrain": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-contours": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-elevation": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-slope": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-runoff": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-streets": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-modules": [
+  989,
+  591
+ ],
+ "la-perla/a-axo-modules-runoff": [
+  989,
+  591
+ ],
  "military-museum/1": [
   1600,
   900

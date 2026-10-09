@@ -253,6 +253,41 @@ window.CAVA_RENDERS = [
   "alt": "Café seating area with timber panelling, a low sofa and graphic prints"
  },
  {
+  "id": "la-perla-1",
+  "src": "assets/img/projects/la-perla/1",
+  "v": "fe10b12b",
+  "title": "La Perla",
+  "alt": "Axonometric model of the land on black: the contours, a single road ending in a turning circle, houses along it and the paths of the runoff in blue"
+ },
+ {
+  "id": "la-perla-2",
+  "src": "assets/img/projects/la-perla/2",
+  "v": "46816b25",
+  "title": "La Perla",
+  "alt": "Massing model at eye level: houses around a turning circle at the end of the road, on contoured ground"
+ },
+ {
+  "id": "la-perla-3",
+  "src": "assets/img/projects/la-perla/3",
+  "v": "8d1d0188",
+  "title": "La Perla",
+  "alt": "Massing model at eye level: the road curving between rows of houses down the slope"
+ },
+ {
+  "id": "la-perla-4",
+  "src": "assets/img/projects/la-perla/4",
+  "v": "91f18621",
+  "title": "La Perla",
+  "alt": "The land modelled as stepped contour terraces, rising to a ridge"
+ },
+ {
+  "id": "la-perla-5",
+  "src": "assets/img/projects/la-perla/5",
+  "v": "89e2363b",
+  "title": "La Perla",
+  "alt": "Massing model at eye level: houses on both sides of the road as it climbs the land"
+ },
+ {
   "id": "military-museum-1",
   "src": "assets/img/projects/military-museum/1",
   "v": "7326cdd7",

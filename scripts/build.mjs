@@ -400,6 +400,37 @@ ${row.images.map((n, i) => {
     </section>
 `;
   }).join('');
+  // site analysis: the layers of each view stacked in one frame on black, switched in place (analysis.js)
+  const an = p.analysis;
+  const analysis = an ? (() => {
+    const n = an.layers.length;
+    const frame = (v) => { const [w, h] = sizes[`${p.slug}/a-${v.key}-${an.layers[0].key}`]; return `        <div class="anl__frame${v === an.views[0] ? ' is-on' : ''}" data-anl-frame="${v.key}" style="--ratio: ${(w / h).toFixed(3)}">
+${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === 0 ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === 0 && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
+        </div>`; };
+    return `    <section class="anl" aria-labelledby="anl-title" data-anl>
+      <div class="anl__head grid">
+        <h2 class="label anl__label" id="anl-title">${lang === 'en' ? '(Site analysis)' : '(Análisis del terreno)'}</h2>
+        <p class="h3 anl__lead">${esc(an.lead[lang])}</p>
+        <p class="anl__note">${esc(an.lead[`note_${lang}`])}</p>
+      </div>
+      <div class="anl__body grid">
+        <ol class="anl__list" role="tablist" aria-label="${lang === 'en' ? 'Layers' : 'Capas'}">
+${an.layers.map((l, i) => `          <li><button class="anl__tab" type="button" role="tab" aria-selected="${i === 0}" data-anl-layer="${l.key}" data-text="${esc(l[lang].text)}"><span class="anl__n">${pad(i + 1)}</span><span>${esc(l[lang].name)}</span></button></li>`).join('\n')}
+        </ol>
+        <div class="anl__main">
+          <div class="anl__stage">
+${an.views.map(frame).join('\n')}
+${an.layers.map((l, i) => { const L = l.legend; if (!L) return ''; const inner = L.ramp ? `<span class="anl__lo">${esc(L[lang][0])}</span><span class="anl__ramp"></span><span class="anl__hi">${esc(L[lang][1])}</span>` : L.keys.map((k) => `<span class="anl__key"><i style="${k.line ? `--c: ${k.line}` : `--c: ${k.box}`}" class="${k.line ? 'is-line' : 'is-box'}"></i>${esc(k[lang])}</span>`).join(''); return `            <p class="label anl__legend${i === 0 ? ' is-on' : ''}" data-anl-legend="${l.key}" aria-hidden="true">${inner}</p>\n`; }).join('')}            <p class="label anl__tag" aria-hidden="true"><span data-anl-count>01/${pad(n)}</span><span data-anl-name>${esc(an.layers[0][lang].name)}</span></p>
+          </div>
+          <div class="anl__foot">
+            <p class="anl__text" data-anl-text aria-live="polite">${esc(an.layers[0][lang].text)}</p>
+            <div class="anl__views" role="group" aria-label="${lang === 'en' ? 'View' : 'Vista'}">${an.views.map((v, i) => `<button class="anl__view label" type="button" aria-pressed="${i === 0}" data-anl-view="${v.key}">${esc(v[lang])}</button>`).join('')}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+`;
+  })() : '';
   // drawings and views (elevation, axonometrics): small, two to a row, captioned
   const views = p.views?.length ? `    <section class="pview" aria-labelledby="pview-title">
       <h2 class="label" id="pview-title">${lang === 'en' ? '(Drawings)' : '(Dibujos)'}</h2>
@@ -477,7 +508,7 @@ ${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, 
     paths,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
-    script: p.compare ? ['project.js', 'compare.js'] : 'project.js',
+    script: ['project.js', ...(p.compare ? ['compare.js'] : []), ...(p.analysis ? ['analysis.js'] : [])],
   }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'projects')}
 <main class="page">
@@ -493,7 +524,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
+${analysis}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">
