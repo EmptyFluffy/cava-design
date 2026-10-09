@@ -303,19 +303,15 @@
           "key": ["Drop-off", "Entrance passage", "Living", "Home office", "Bathroom", "Kitchen", "Dining", "Dry storage", "Laundry and mechanical", "Porous wall", "Outdoor cinema"],
           "key_es": ["Zona de descenso", "Pasaje de entrada", "Sala", "Oficina", "Baño", "Cocina", "Comedor", "Bodega seca", "Lavandería y cuarto mecánico", "Muro poroso", "Cine exterior"],
           "desk": "Plantas/web/welcome-desk.png"
-        },
-        {
-          "file": "Plantas/web/cabin-mob.png",
-          "alt": "Floor plan of a cabin, numbered: the bedroom with a built-in desk, the bathroom, shower and closet, an outdoor shower and the deck",
-          "alt_es": "Planta de una cabina, numerada: el dormitorio con un escritorio empotrado, el baño, la ducha y el clóset, una ducha exterior y el deck",
-          "plan": true,
-          "label": "(Cabin)", "label_es": "(Cabina)",
-          "key": ["Bedroom", "Desk", "Closet", "Bathroom", "Shower", "Outdoor shower", "Deck"],
-          "key_es": ["Dormitorio", "Escritorio", "Clóset", "Baño", "Ducha", "Ducha exterior", "Deck"],
-          "desk": "Plantas/web/cabin-desk.png"
+
         }
       ],
-      "planRows": [{ "images": [4], "spans": [6] }, { "images": [5, 6], "spans": [6, 3] }]
+      "iterations": {
+        "files": ["iteration-a.svg", "iteration-b.svg", "iteration-c.svg", "iteration-d.svg", "iteration-e.svg"],
+        "dates": ["2022-05-13", "2022-05-13", "2022-05-20", "2022-05-20", "2022-05-27"],
+        "selected": 5
+      },
+      "planRows": [{ "images": [4], "spans": [6] }, { "images": [5], "spans": [6] }]
     },
     {
       "slug": "kauhane-house",
