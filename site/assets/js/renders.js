@@ -255,7 +255,7 @@ window.CAVA_RENDERS = [
  {
   "id": "la-perla-1",
   "src": "assets/img/projects/la-perla/1",
-  "v": "fe10b12b",
+  "v": "b6d376fe",
   "title": "La Perla",
   "alt": "Axonometric model of the land on black: the contours, a single road ending in a turning circle, houses along it and the paths of the runoff in blue"
  },

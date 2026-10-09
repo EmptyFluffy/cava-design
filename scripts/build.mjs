@@ -340,6 +340,17 @@ function townLink(lang, p) {
   return `        <p class="label pmap__town"><a class="ulink" href="../../${lang === 'es' ? '../' : ''}${townPath(lang, best.t.slug)}">${TT[lang].kicker} ${esc(best.t.name)} →</a></p>\n`;
 }
 
+// A project with a site analysis opens on every view of it at once: a matrix on black, plan above and
+// axonometric below; each view opens that layer in the analysis further down (analysis.js).
+function coverMatrix(lang, up, p) {
+  const an = p.analysis;
+  return `<figure class="proj__cover pmx" aria-label="${esc(altOf(lang, p, 1))}">
+      <div class="pmx__grid" style="--n: ${an.layers.length}">
+${an.views.map((v) => `        <p class="label pmx__row">(${esc(v[lang])})</p>\n` + an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [w, h] = sizes[k]; return `        <button class="pmx__cell" type="button" data-anl-go="${v.key} ${l.key}"><img src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${w}" height="${h}" decoding="async" fetchpriority="${i < 4 ? 'high' : 'auto'}" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}"><span class="label pmx__cap"><span>${pad(i + 1)}</span>${esc(l[lang].name)}</span></button>`; }).join('\n')).join('\n')}
+      </div>
+    </figure>`;
+}
+
 function projectPage(lang, p, i) {
   const t = UI[lang];
   const s = t.project;
@@ -424,7 +435,7 @@ ${an.layers.map((l, i) => { const L = l.legend; if (!L) return ''; const inner =
           </div>
           <div class="anl__foot">
             <p class="anl__text" data-anl-text aria-live="polite">${esc(an.layers[0][lang].text)}</p>
-            <div class="anl__views" role="group" aria-label="${lang === 'en' ? 'View' : 'Vista'}">${an.views.map((v, i) => `<button class="anl__view label" type="button" aria-pressed="${i === 0}" data-anl-view="${v.key}">${esc(v[lang])}</button>`).join('')}</div>
+            <div class="anl__views" role="group" aria-label="${lang === 'en' ? 'View' : 'Vista'}"><button class="anl__play label" type="button" data-anl-play data-pause="${lang === 'en' ? 'Pause' : 'Pausa'}" data-resume="${lang === 'en' ? 'Play' : 'Reproducir'}" aria-pressed="false">${lang === 'en' ? 'Pause' : 'Pausa'}</button>${an.views.map((v, i) => `<button class="anl__view label" type="button" aria-pressed="${i === 0}" data-anl-view="${v.key}">${esc(v[lang])}</button>`).join('')}</div>
           </div>
         </div>
       </div>
@@ -517,7 +528,7 @@ ${bar(lang, up, paths, 'projects')}
       <p class="label proj__crumb"><a class="ulink" href="../">${s.crumb}</a><span aria-hidden="true">(${pad(i + 1)}/${pad(projects.length)})</span></p>
       <h1 class="display proj__title" id="proj-title">${esc(p.name)}</h1>
     </header>
-    <figure class="proj__cover">${picture(up, p.slug, 1, altOf(lang, p, 1), '100vw', { eager: true })}</figure>
+    ${p.analysis ? coverMatrix(lang, up, p) : `<figure class="proj__cover">${picture(up, p.slug, 1, altOf(lang, p, 1), '100vw', { eager: true })}</figure>`}
     <section class="proj__body grid" aria-labelledby="sheet-title">
       <h2 class="label sheet__label" id="sheet-title">${s.sheet}</h2>
       <dl class="sheet">

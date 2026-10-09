@@ -1872,3 +1872,32 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .anl__foot { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) { .anl__frame, .anl__img { transition: none; } }
+/* autoplay: a line fills under the active layer for the length of each step */
+.anl__tab { position: relative; }
+.anl__tab::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 0; background: var(--white); }
+.anl.is-playing .anl__tab[aria-selected="true"]::after { animation: anl-fill var(--anl-step, 3600ms) linear forwards; }
+@keyframes anl-fill { to { width: 100%; } }
+.anl__play { padding: 0.55rem 0.85rem; border: 1px solid #3a3a37; border-radius: 100vw; background: none; color: #dcddde; cursor: pointer; margin-right: 0.35rem; }
+.anl__play:hover { border-color: #8b8b88; }
+.anl__play:focus-visible { outline: 1px solid var(--white); outline-offset: 2px; }
+@media (max-width: 767px) {
+  .anl__tab::after { left: 0.85rem; right: auto; bottom: 0.25rem; max-width: calc(100% - 1.7rem); }
+  .anl.is-playing .anl__tab[aria-selected="true"]::after { animation-name: anl-fill-pill; }
+}
+@keyframes anl-fill-pill { to { width: calc(100% - 1.7rem); } }
+
+/* the cover of a project with a site analysis: all its views at once, small, on black */
+.pmx { background: var(--black); padding: var(--s-4) var(--margin); }
+.pmx__grid { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2); }
+.pmx__row { grid-column: 1 / -1; margin: 0; color: #dcddde; }
+.pmx__row:not(:first-child) { margin-top: var(--s-2); }
+.pmx__cell { display: grid; gap: 0.7rem; padding: 0; border: 0; background: none; color: #8b8b88; cursor: pointer; text-align: left; }
+.pmx__cell img { width: 100%; height: auto; aspect-ratio: 1.62; object-fit: contain; display: block; transition: transform 0.45s var(--ease); }
+.pmx__cell:hover img { transform: translateY(-0.3rem); }
+.pmx__cell:hover, .pmx__cell:focus-visible { color: var(--white); }
+.pmx__cell:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
+.pmx__cap { display: flex; gap: 0.45rem; font-size: 0.6875rem; line-height: 1.2; }
+.pmx__cap span { color: #5c5c59; font-variant-numeric: tabular-nums; }
+@media (max-width: 991px) { .pmx__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 479px) { .pmx { padding: var(--s-3) var(--margin); } .pmx__grid { row-gap: 1.1rem; } .pmx__cap { font-size: 0.625rem; } .pmx__cap { visibility: hidden; height: 0; margin-top: -0.7rem; } }   /* phones: the names are in the analysis below */
+@media (prefers-reduced-motion: reduce) { .pmx__cell img { transition: none; } .anl.is-playing .anl__tab[aria-selected="true"]::after { animation: none; } }
