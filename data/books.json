@@ -1,0 +1,116 @@
+{
+  "_note": "/studio/library/ and /es/estudio/biblioteca/. Covers from Open Library (covers.openlibrary.org), resized into site/assets/img/books/<id>.webp; ol = the Open Library work, linked from each title. The 'why' lines are the studio's draft; Carlos may rewrite them in his own words.",
+  "en": {
+    "title": "On the shelf: books on architecture and the rest of the work | Studio CAVA",
+    "description": "Twenty-four books we keep near the drawing table, from Tom Kundig, Geoffrey Bawa and Bruno Stagno to Bachelard, Neufert, parametric design and Rick Rubin, with a line on why each one is there.",
+    "label": "(Library)", "h1": ["On the", "shelf"],
+    "intro": "Twenty-four books we keep near the drawing table: about architecture, and about the rest of the work. A line or two on why each one is here.",
+    "covers": "Covers from Open Library. The books belong to their authors and publishers; we have no arrangement with any of them."
+  },
+  "es": {
+    "title": "En el estante: libros de arquitectura y del resto del oficio | Studio CAVA",
+    "description": "Veinticuatro libros que tenemos cerca de la mesa de dibujo, de Tom Kundig, Geoffrey Bawa y Bruno Stagno a Bachelard, Neufert, diseño paramétrico y Rick Rubin, con una línea sobre por qué está cada uno.",
+    "label": "(Biblioteca)", "h1": ["En el", "estante"],
+    "intro": "Veinticuatro libros que tenemos cerca de la mesa de dibujo: de arquitectura y del resto del oficio. Una o dos líneas sobre por qué está cada uno.",
+    "covers": "Portadas de Open Library. Los libros son de sus autores y editoriales; no tenemos ningún acuerdo con ellos."
+  },
+  "shelves": [
+    {
+      "en": "Architects we go back to", "es": "Arquitectos a los que volvemos",
+      "books": [
+        { "id": "kundig-houses", "title": "Tom Kundig: Houses", "by": "Dung Ngo (ed.)", "pub": "Princeton Architectural Press, 2006", "ol": "OL18400334W",
+          "en": "Raw steel, timber and concrete, and the hand-cranked mechanisms that open a whole wall to the landscape. Delta Shelter and Chicken Point Cabin are in it, and both shaped how we think about a house that closes up when no one is there.",
+          "es": "Acero, madera y concreto a la vista, y los mecanismos de manivela que abren una pared entera al paisaje. Ahí están Delta Shelter y Chicken Point Cabin, y las dos cambiaron cómo pensamos una casa que se cierra cuando no hay nadie." },
+        { "id": "bawa", "title": "Geoffrey Bawa: The Complete Works", "by": "David Robson", "pub": "Thames & Hudson, 2002", "ol": "OL18479233W",
+          "en": "Tropical modernism from Sri Lanka: deep verandas, courtyards open to the rain, buildings that step down a slope instead of flattening it. Of everyone on this shelf, his climate is the closest to ours.",
+          "es": "Modernismo tropical de Sri Lanka: corredores profundos, patios abiertos a la lluvia, edificios que bajan con la pendiente en vez de aplanarla. De todos en este estante, su clima es el más parecido al nuestro." },
+        { "id": "murcutt", "title": "Touch This Earth Lightly: Glenn Murcutt in His Own Words", "by": "Philip Drew", "pub": "Duffy & Snellgrove, 1999", "ol": "OL2478168W",
+          "en": "Murcutt's houses follow the sun and the breeze with louvres, overhangs and long thin plans, and here he explains each move in plain words. The title is also a fair brief for building near a beach.",
+          "es": "Las casas de Murcutt siguen el sol y la brisa con celosías, aleros y plantas largas y angostas, y aquí él explica cada decisión con palabras simples. El título también es un buen encargo para construir cerca de una playa." },
+        { "id": "lina", "title": "Lina Bo Bardi", "by": "Zeuler R. M. de A. Lima", "pub": "Yale University Press, 2013", "ol": "OL20378253W",
+          "en": "An Italian who became a Brazilian architect and built the Casa de Vidro and the SESC Pompéia in São Paulo. The biography follows how she worked with local craft and materials, which is what we try to do with Costa Rican ones.",
+          "es": "Una italiana que se hizo arquitecta brasileña y construyó la Casa de Vidro y el SESC Pompéia en São Paulo. La biografía sigue cómo trabajó con oficios y materiales locales, que es lo que intentamos hacer con los de Costa Rica." },
+        { "id": "zumthor-atmospheres", "title": "Atmospheres", "by": "Peter Zumthor", "pub": "Birkhäuser, 2006", "ol": "OL586800W",
+          "en": "Short notes on why a room feels the way it does: the body of the building, the sound of a space, its temperature, the light on things. It reads in an hour, and we come back to it often.",
+          "es": "Notas cortas sobre por qué un espacio se siente como se siente: el cuerpo del edificio, el sonido de un espacio, su temperatura, la luz sobre las cosas. Se lee en una hora y volvemos a él seguido." },
+        { "id": "roto", "title": "RoTo Architecture", "by": "Michael Rotondi, Clark Stevens", "pub": "Rizzoli, 2006", "ol": "OL8630413W",
+          "en": "Michael Rotondi was a partner at Morphosis and directed SCI-Arc before founding RoTo with Clark Stevens. Their buildings are worked out drawing after drawing until site, structure and use become one move, a good reminder when a plan settles too early.",
+          "es": "Michael Rotondi fue socio de Morphosis y dirigió SCI-Arc antes de fundar RoTo con Clark Stevens. Sus edificios se resuelven dibujo tras dibujo hasta que sitio, estructura y uso son un solo gesto, un buen recordatorio cuando una planta se cierra demasiado pronto." },
+        { "id": "stagno-tropical", "title": "Tropical Architecture: Critical Regionalism in the Age of Globalization", "by": "Alexander Tzonis, Liane Lefaivre, Bruno Stagno (eds.)", "pub": "Wiley-Academy, 2001", "ol": "OL18952111W",
+          "en": "Co-edited by Bruno Stagno, who has built in Costa Rica for decades and founded the Instituto de Arquitectura Tropical, where RESET was written. Essays and buildings on designing for the tropics without imported formulas.",
+          "es": "Coeditado por Bruno Stagno, que construye en Costa Rica desde hace décadas y fundó el Instituto de Arquitectura Tropical, donde se escribió RESET. Ensayos y edificios sobre diseñar para el trópico sin fórmulas importadas." }
+      ]
+    },
+    {
+      "en": "Ideas", "es": "Ideas",
+      "books": [
+        { "id": "poetics-of-space", "title": "The Poetics of Space", "by": "Gaston Bachelard", "pub": "1958; Penguin Classics, 2014", "ol": "OL1304839W",
+          "en": "A philosopher reads the house from cellar to attic, through drawers, nests and corners, as the places where we daydream. There is not a single floor plan in it, and it still changes how you draw one.",
+          "es": "Un filósofo lee la casa del sótano al ático, por gavetas, nidos y rincones, como los lugares donde soñamos despiertos. No tiene ni una planta y aun así cambia cómo se dibuja una." },
+        { "id": "in-praise-of-shadows", "title": "In Praise of Shadows", "by": "Jun'ichirō Tanizaki", "pub": "1933; Leete's Island Books, 1977", "ol": "OL24231448W",
+          "en": "An essay on dimness: lacquer in candlelight, paper screens, the dark under a deep roof. Written about Japanese houses, and true of any house in the tropics, where shade is the luxury.",
+          "es": "Un ensayo sobre la penumbra: la laca a la luz de una vela, los biombos de papel, la oscuridad bajo un techo profundo. Escrito sobre casas japonesas, y cierto para cualquier casa en el trópico, donde la sombra es el lujo." },
+        { "id": "eyes-of-the-skin", "title": "The Eyes of the Skin: Architecture and the Senses", "by": "Juhani Pallasmaa", "pub": "Wiley, 1996", "ol": "OL2552544W",
+          "en": "Architecture is felt with the whole body, not only seen. A short book against designing for the photograph, which we try to keep in mind while making the images on this site.",
+          "es": "La arquitectura se siente con todo el cuerpo, no solo con la vista. Un libro corto contra diseñar para la foto, que intentamos tener presente mientras hacemos las imágenes de este sitio." },
+        { "id": "entropy-and-art", "title": "Entropy and Art: An Essay on Disorder and Order", "by": "Rudolf Arnheim", "pub": "University of California Press, 1971", "ol": "OL980205W",
+          "en": "A psychologist of art takes the second law of thermodynamics into the studio: is order something we impose, or something things settle into? Short, odd, and useful for thinking about why a plan feels resolved.",
+          "es": "Un psicólogo del arte lleva la segunda ley de la termodinámica al taller: ¿el orden es algo que imponemos o algo en lo que las cosas se acomodan? Corto, raro y útil para pensar por qué una planta se siente resuelta." },
+        { "id": "thinking-in-systems", "title": "Thinking in Systems: A Primer", "by": "Donella H. Meadows", "pub": "Chelsea Green, 2008", "ol": "OL3737036W",
+          "en": "Stocks, flows and feedback loops, explained with bathtubs. A water tank, the heat in a room and a construction schedule all behave this way, and seeing it saves a lot of guessing.",
+          "es": "Reservas, flujos y ciclos de retroalimentación, explicados con bañeras. Un tanque de agua, el calor en un cuarto y un cronograma de obra se comportan así, y verlo ahorra muchas suposiciones." }
+      ]
+    },
+    {
+      "en": "School and reference", "es": "Escuela y consulta",
+      "books": [
+        { "id": "101-things", "title": "101 Things I Learned in Architecture School", "by": "Matthew Frederick", "pub": "MIT Press, 2007", "ol": "OL17810345W",
+          "en": "One idea per spread, a sentence and a drawing: how to draw a line, what a parti is, why the corner matters. The book we would hand a client who wants to know how we think.",
+          "es": "Una idea por página doble, una frase y un dibujo: cómo trazar una línea, qué es un partido, por qué importa la esquina. El libro que le daríamos a un cliente que quiere saber cómo pensamos." },
+        { "id": "form-space-order", "title": "Architecture: Form, Space, and Order", "by": "Francis D. K. Ching", "pub": "1979; Wiley, fifth edition 2023", "ol": "OL30636W",
+          "en": "Ching's drawings sort two thousand years of buildings by geometry, axis, symmetry, rhythm and threshold. The compendium many architects learned to see with, us included.",
+          "es": "Los dibujos de Ching ordenan dos mil años de edificios por geometría, eje, simetría, ritmo y umbral. El compendio con el que muchos arquitectos aprendimos a ver." },
+        { "id": "neufert", "title": "Architects' Data", "by": "Ernst Neufert", "pub": "1936; Wiley-Blackwell, fifth edition 2019", "ol": "OL20709896W",
+          "en": "How wide a corridor, how deep a stair, how much room a bed needs around it. The reference that sits open on the desk more than any other.",
+          "es": "Qué tan ancho un pasillo, qué tan profunda una grada, cuánto espacio necesita una cama alrededor. El libro de consulta que más tiempo pasa abierto en la mesa." },
+        { "id": "pattern-language", "title": "A Pattern Language", "by": "Christopher Alexander and others", "pub": "Oxford University Press, 1977", "ol": "OL3923600W",
+          "en": "253 patterns, from regions down to window seats, each a problem and a way to solve it. Light on two sides of every room is one of them, and it is in most of our plans.",
+          "es": "253 patrones, de regiones a bancas junto a la ventana, cada uno un problema y una forma de resolverlo. Luz por dos lados en cada espacio es uno de ellos, y está en la mayoría de nuestras plantas." },
+        { "id": "phaidon-atlas", "title": "The Phaidon Atlas of 21st Century World Architecture", "by": "Phaidon editors", "pub": "Phaidon, 2008; travel edition 2011", "ol": "OL20441646W",
+          "en": "1,037 buildings in 89 countries, all finished this century, mapped region by region. We open it at Central America and the Caribbean to see what our neighbours are building.",
+          "es": "1,037 edificios en 89 países, todos terminados en este siglo, ordenados por región. Lo abrimos en Centroamérica y el Caribe para ver qué construyen nuestros vecinos." },
+        { "id": "1000-chairs", "title": "1000 Chairs", "by": "Charlotte and Peter Fiell", "pub": "Taschen, 1997; revised since", "ol": "OL4615674W",
+          "en": "A thousand chairs in order, from Thonet to now. A chair is where ideas about structure and the body fit in one object, and many of the best were drawn by architects.",
+          "es": "Mil sillas en orden, de Thonet a hoy. Una silla es donde las ideas sobre estructura y cuerpo caben en un objeto, y muchas de las mejores las dibujaron arquitectos." }
+      ]
+    },
+    {
+      "en": "Computation and type", "es": "Cómputo y tipografía",
+      "books": [
+        { "id": "parametric-design", "title": "Elements of Parametric Design", "by": "Robert Woodbury", "pub": "Routledge, 2010", "ol": "OL15535730W",
+          "en": "What changes when a design is a set of relations instead of a set of lines. We use parametric models for roofs, louvres and sun studies, and this is the clearest account of how to think in them.",
+          "es": "Qué cambia cuando un diseño es un conjunto de relaciones y no de líneas. Usamos modelos paramétricos para techos, celosías y estudios de sol, y esta es la explicación más clara de cómo pensar con ellos." },
+        { "id": "algorithmic-architecture", "title": "Algorithmic Architecture", "by": "Kostas Terzidis", "pub": "Architectural Press, 2006", "ol": "OL6027548W",
+          "en": "The argument that code is not a faster pencil but a different way of designing. Good to read next to Woodbury, and to disagree with in places.",
+          "es": "El argumento de que el código no es un lápiz más rápido sino otra forma de diseñar. Bueno para leer junto a Woodbury, y para discrepar en algunas partes." },
+        { "id": "type-in-motion", "title": "Type in Motion: Innovations in Digital Graphics", "by": "Jeff Bellantoni, Matt Woolman", "pub": "Thames & Hudson, 1999", "ol": "OL31773693W",
+          "en": "Letters that move, from film titles to early screen work. The titles on this site step and slide across the page for reasons that start here.",
+          "es": "Letras que se mueven, de los títulos de cine a los primeros trabajos en pantalla. Los títulos de este sitio se escalonan y se deslizan por razones que empiezan aquí." }
+      ]
+    },
+    {
+      "en": "How we work", "es": "Cómo trabajamos",
+      "books": [
+        { "id": "creative-act", "title": "The Creative Act: A Way of Being", "by": "Rick Rubin", "pub": "Penguin Press, 2023", "ol": "OL27955361W",
+          "en": "A music producer on paying attention, starting before you feel ready and finishing what you start. None of it is about architecture, and all of it applies.",
+          "es": "Un productor musical sobre poner atención, empezar antes de sentirse listo y terminar lo que se empieza. Nada es sobre arquitectura y todo aplica." },
+        { "id": "deep-work", "title": "Deep Work: Rules for Focused Success in a Distracted World", "by": "Cal Newport", "pub": "Grand Central, 2016", "ol": "OL17713267W",
+          "en": "Design needs long stretches without messages. This is the case for protecting them, with a method for doing it.",
+          "es": "Diseñar necesita ratos largos sin mensajes. Este es el argumento para protegerlos, con un método para hacerlo." },
+        { "id": "4dx", "title": "The 4 Disciplines of Execution", "by": "Chris McChesney, Sean Covey, Jim Huling", "pub": "Free Press, 2012", "ol": "OL16465202W",
+          "en": "Few goals, measures you can act on, a scoreboard everyone sees and a short weekly check. How a small studio keeps a construction schedule from slipping one week at a time.",
+          "es": "Pocas metas, medidas sobre las que se puede actuar, un marcador que todos ven y una revisión semanal corta. Cómo un estudio pequeño evita que un cronograma de obra se atrase semana a semana." }
+      ]
+    }
+  ]
+}

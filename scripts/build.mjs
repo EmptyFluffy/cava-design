@@ -237,6 +237,7 @@ ${guides.length ? `        <a class="ulink" href="${up}${guidesIndexPath(lang)}"
 ` : ''}      </div>
       <div class="footer__group"><span class="label">${t.more}</span>
 ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
+` : ''}${books ? `        <a class="ulink" href="${up}${libraryPath(lang)}">${lang === 'en' ? 'Library' : 'Biblioteca'}</a>
 ` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
         <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
       </div>
@@ -2452,6 +2453,7 @@ function sitemap() {
     ...projects.map((p) => ({ en: projectPath('en', p.slug), es: projectPath('es', p.slug) })),
     { en: studioPath('en'), es: studioPath('es') },
     ...(identity ? [{ en: identityPath('en'), es: identityPath('es') }] : []),
+    ...(books ? [{ en: libraryPath('en'), es: libraryPath('es') }] : []),
     { en: townsPath('en'), es: townsPath('es') },
     ...towns.map((t) => ({ en: townPath('en', t.slug), es: townPath('es', t.slug) })),
     ...guides.map((g) => ({ en: guidePath('en', g), es: guidePath('es', g) })),
@@ -2558,6 +2560,7 @@ function homeEs() {
     if (!u || /^(https?:|mailto:|tel:|data:|#|\/|\.\.\/)/.test(u)) return u;
     if (u.startsWith('projects/')) return `${UI.es.projectsDir}/${u.slice('projects/'.length)}`;
     if (u.startsWith('studio/identity/')) return identityPath('es').slice(3) + u.slice('studio/identity/'.length);
+    if (u.startsWith('studio/library/')) return libraryPath('es').slice(3) + u.slice('studio/library/'.length);
     if (u.startsWith('studio/')) return `${UI.es.studioDir}/${u.slice('studio/'.length)}`;
     if (u.startsWith('architects/')) return `${UI.es.townsDir}/${u.slice('architects/'.length)}`;
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
@@ -2586,6 +2589,44 @@ function homeEs() {
     process.exit(1);
   }
   return html;
+}
+
+// ---------- /studio/library/ and /es/estudio/biblioteca/: the books on the studio's shelf ----------
+// Text in data/books.json; covers (Open Library) in site/assets/img/books, sizes in data/book-covers.json.
+const BOOKS_PATH = join(ROOT, 'data', 'books.json');
+const books = existsSync(BOOKS_PATH) ? JSON.parse(readFileSync(BOOKS_PATH, 'utf8')) : null;
+const bookCovers = books ? JSON.parse(readFileSync(join(ROOT, 'data', 'book-covers.json'), 'utf8')) : {};
+const libraryPath = (lang) => (lang === 'en' ? 'studio/library/' : 'es/estudio/biblioteca/');
+function libraryPage(lang) {
+  const L = books[lang];
+  const paths = { en: libraryPath('en'), es: libraryPath('es') };
+  const up = upFrom(paths[lang]);
+  const all = books.shelves.flatMap((sh) => sh.books);
+  const ld = { '@context': 'https://schema.org', '@type': 'ItemList', name: L.h1.join(' '), itemListElement: all.map((b, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'Book', name: b.title, author: b.by, url: `https://openlibrary.org/works/${b.ol}` } })) };
+  return head(lang, { title: L.title, description: L.description, paths, image: `${imgBase('papagayo-404', 7)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'studio')}
+<main class="page">
+  <article class="mf lib" aria-labelledby="lib-title">
+    <header class="mf__head grid">
+      <p class="label mf__label"><a class="ulink" href="${up}${studioPath(lang)}">${UI[lang].nav.studio}</a> ${esc(L.label)}</p>
+      <h1 class="display mf__title" id="lib-title"><span>${esc(L.h1[0])}</span><span class="right">${esc(L.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(L.intro)}</p>
+    </header>
+${books.shelves.map((sh, k) => `    <section class="tw__sec grid lib__shelf" aria-labelledby="lib-s${k}">
+      <h2 class="label tw__label" id="lib-s${k}">(${pad(k + 1)}) ${esc(sh[lang])}</h2>
+      <ol class="lib__books">
+${sh.books.map((b) => { const [w, h] = bookCovers[b.id]; const src = `${up}assets/img/books/${b.id}.webp?v=${assetVer(`assets/img/books/${b.id}.webp`)}`; return `        <li class="book">
+          <a class="book__cover" href="https://openlibrary.org/works/${b.ol}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="${src}" width="${w}" height="${h}" loading="lazy" decoding="async" alt=""></a>
+          <h3 class="book__title"><a class="ulink" href="https://openlibrary.org/works/${b.ol}" target="_blank" rel="noopener">${esc(b.title)}</a></h3>
+          <p class="label book__by">${esc(b.by)}<span>${esc(b.pub)}</span></p>
+          <p class="book__why">${esc(b[lang])}</p>
+        </li>`; }).join('\n')}
+      </ol>
+    </section>
+`).join('')}    <p class="note lib__note">${esc(L.covers)}</p>
+  </article>
+${contact(lang, UI[lang].wa.general, up)}</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
 // ---------- /portal/ and /es/portal/: the client sign-in (not connected yet) ----------
@@ -2692,6 +2733,7 @@ for (const lang of ['en', 'es']) {
   }
   if (booking) write(`${bookPath(lang)}index.html`, bookPage(lang));
   write(`${portalPath(lang)}index.html`, portalPage(lang));
+  if (books) write(`${libraryPath(lang)}index.html`, libraryPage(lang));
   if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
