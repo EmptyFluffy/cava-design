@@ -1942,6 +1942,21 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pmx__am:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
 @media (max-width: 767px) { .anl__pin .label { font-size: 0.5625rem; padding: 0.18rem 0.4rem; } .anl__pin i { width: 0.4rem; height: 0.4rem; } }
 @media (max-width: 767px) { .tyx__svg { width: 84%; } }
+/* the collage after the analysis: the plan over an aerial, on the same black band */
+.clg { background: var(--black); color: var(--white); padding: var(--s-3) var(--margin) var(--pad-v); margin: 0 0 var(--pad-v); }
+.anl:has(+ .clg) { padding-bottom: var(--s-4); }
+.anl + .clg { margin-top: calc(-1 * var(--pad-v)); padding-top: 0; }
+.anl + .clg::before { content: ""; display: block; height: 1px; background: #2a2a28; margin-bottom: var(--s-3); }
+.clg__label { margin: 0 0 var(--s-2); }
+.clg__fig { margin: 0; display: grid; gap: 1rem; }
+.clg__img { position: relative; }
+.clg__img img { display: block; width: 100%; height: auto; aspect-ratio: var(--ar); }
+.clg__marks { position: absolute; inset: 0; pointer-events: none; }
+.clg__ty { position: absolute; transform: translate(-50%, -50%); width: 1.15rem; height: 1.15rem; display: grid; place-items: center; border-radius: 50%; background: rgba(11, 11, 10, 0.78); color: var(--white); font-size: 0.625rem; font-weight: var(--w-strong); line-height: 1; }
+.clg__cap { display: flex; justify-content: space-between; gap: var(--gap); flex-wrap: wrap; color: #8b8b88; }
+.clg__key { color: #dcddde; font-variant-numeric: tabular-nums; text-transform: none; }
+@media (max-width: 767px) { .clg__ty { width: 0.8rem; height: 0.8rem; font-size: 0.4375rem; } }
+@media (max-width: 479px) { .clg__ty { display: none; } }
 
 /* ---------- recognition before the studio, on the Studio page ---------- */
 .rec { padding: var(--s-4) var(--margin) var(--pad-v); border-top: 1px solid var(--grey); scroll-margin-top: 4.5rem; }

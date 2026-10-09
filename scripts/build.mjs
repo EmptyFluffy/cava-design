@@ -495,6 +495,27 @@ ${an.layers.map((l, i) => { const L = l.legend; if (!L) return `            <p c
     </section>
 `;
   })() : '';
+  // a collage of the plan over an illustrative aerial, after the analysis: the same frame as the plan
+  // layers, so the amenity pins and a letter on each roof (its typology) land where they do there
+  const cl = p.collage;
+  const collage = cl ? (() => {
+    const k = `${p.slug}/c`, [w, h] = sizes[k], base = up + imgBase(p.slug, 'c'), v = `?v=${imgVer(k)}`;
+    const key = an?.typologies ? [...an.typologies].reverse().map((t) => `${t.key} ${t.area} m²`).join(' · ') : '';
+    return `    <section class="clg" aria-labelledby="clg-title">
+      <h2 class="label clg__label" id="clg-title">(Collage)</h2>
+      <figure class="clg__fig">
+        <div class="clg__img" style="--ar: ${(w / h).toFixed(4)}">
+          <img src="${base}-1600.webp${v}" srcset="${base}-800.webp${v} 800w, ${base}-1600.webp${v} 1600w, ${base}-2400.webp${v} 2400w, ${base}-3600.webp${v} 3600w" sizes="100vw" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(lang === 'en' ? cl.alt : cl.alt_es)}">
+          <div class="clg__marks" aria-hidden="true">
+${cl.labels.map((l) => `            <span class="clg__ty" style="left: ${(l.x * 100).toFixed(2)}%; top: ${(l.y * 100).toFixed(2)}%">${l.ty}</span>`).join('\n')}
+${(an?.amenities ?? []).map((m) => `            <span class="anl__pin${m.side === 'left' ? ' is-left' : ''}" style="left: ${(m.x * 100).toFixed(1)}%; top: ${(m.y * 100).toFixed(1)}%"><i></i><span class="label">${esc(m[lang].name)}</span></span>`).join('\n')}
+          </div>
+        </div>
+        <figcaption class="label clg__cap"><span>${lang === 'en' ? 'The master plan over an illustrative aerial. Not built.' : 'El plan maestro sobre una aérea ilustrativa. No construido.'}</span>${key ? `<span class="clg__key">${esc(key)}</span>` : ''}</figcaption>
+      </figure>
+    </section>
+`;
+  })() : '';
   // drawings and views (elevation, axonometrics): small, two to a row, captioned
   const views = p.views?.length ? `    <section class="pview" aria-labelledby="pview-title">
       <h2 class="label" id="pview-title">${lang === 'en' ? '(Drawings)' : '(Dibujos)'}</h2>
@@ -588,7 +609,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${analysis}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
+${analysis}${collage}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">
