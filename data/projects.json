@@ -495,12 +495,12 @@
       "type_es": "Casa del árbol",
       "typology": "Residential",
       "typology_es": "Habitacional",
-      "location": null,
+      "location": "Las Ventanas, Playa Grande, Guanacaste",
       "coords": [
-        -85.6279,
-        9.97837
+        -85.845,
+        10.345
       ],
-      "pin": "placeholder",
+      "pin": "approximate",
       "status": "In progress",
       "status_es": "En proceso",
       "year": 2024,
