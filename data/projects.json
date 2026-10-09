@@ -231,8 +231,8 @@
         10.36717
       ],
       "pin": "exact",
-      "status": "In progress",
-      "status_es": "En proceso",
+      "status": "Built",
+      "status_es": "Construidos",
       "year": 2024,
       "siteArea": 4000,
       "builtArea": 1600,
@@ -326,8 +326,8 @@
         10.33463
       ],
       "pin": "exact",
-      "status": "In progress",
-      "status_es": "En proceso",
+      "status": "Built",
+      "status_es": "Construida",
       "year": 2021,
       "siteArea": 1050,
       "builtArea": 380,
