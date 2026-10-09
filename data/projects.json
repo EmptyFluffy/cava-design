@@ -308,8 +308,7 @@
       ],
       "iterations": {
         "files": ["iteration-a.svg", "iteration-b.svg", "iteration-c.svg", "iteration-d.svg", "iteration-e.svg"],
-        "dates": ["2022-05-13", "2022-05-13", "2022-05-20", "2022-05-20", "2022-05-27"],
-        "selected": 5
+        "dates": ["2022-05-13", "2022-05-13", "2022-05-20", "2022-05-20", "2022-05-27"]
       },
       "planRows": [{ "images": [4], "spans": [6] }, { "images": [5], "spans": [6] }]
     },
@@ -508,8 +507,19 @@
           "file": "T.png",
           "alt": "Café seating area with timber panelling, a low sofa and graphic prints",
           "alt_es": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos"
+        },
+        {
+          "file": "Planta/web/plan-mob.png",
+          "desk": "Planta/web/plan-desk.png",
+          "alt": "Floor plan of the bakery, numbered: the entrance and terrace with its tables, the lounge along a long diagonal wall, the counter, the kitchen, the office and the cold room",
+          "alt_es": "Planta de la panadería, numerada: la entrada y la terraza con sus mesas, el salón a lo largo de un muro diagonal largo, el mostrador, la cocina, la oficina y el cuarto frío",
+          "plan": true,
+          "label": "(Floor plan)", "label_es": "(Planta arquitectónica)",
+          "key": ["Entrance", "Terrace", "Lounge", "Counter", "Kitchen", "Office", "Cold room", "Ramp"],
+          "key_es": ["Entrada", "Terraza", "Salón", "Mostrador", "Cocina", "Oficina", "Cuarto frío", "Rampa"]
         }
-      ]
+      ],
+      "planRows": [{ "images": [5], "spans": [6] }]
     },
     {
       "slug": "military-museum",

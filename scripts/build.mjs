@@ -368,17 +368,17 @@ ${row.images.map((n, i) => {
     </section>
 `;
   }).join('');
-  // design iterations (vector SVGs): the schemes tried, small and in a row, the one developed marked
+  // design iterations (vector SVGs): the schemes tried, small and in a row, all alike
   const it = p.iterations;
   const iterations = it ? `    <section class="iter" aria-labelledby="iter-title">
       <h2 class="label" id="iter-title">${lang === 'en' ? '(Iteration process and selection)' : '(Proceso de iteración y selección)'}</h2>
       <ol class="iter__list">
 ${it.files.map((f, i) => {
-    const L = String.fromCharCode(65 + i), sel = i + 1 === it.selected;
+    const L = String.fromCharCode(65 + i);
     const date = new Date(`${it.dates[i]}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { day: 'numeric', month: 'short', timeZone: 'UTC' }).replace('.', '');
     const rel = `assets/img/projects/${p.slug}/${f}`;
     const [, w, h] = readFileSync(join(SITE, rel), 'utf8').match(/width="(\d+)" height="(\d+)"/);
-    return `        <li class="iter__item${sel ? ' is-selected' : ''}"><img src="${up}${rel}?v=${assetVer(rel)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(lang === 'en' ? `Site plan, iteration ${L}` : `Planta de conjunto, iteración ${L}`)}"><p class="label iter__cap"><span>${L}</span><span class="iter__date">${date}</span>${sel ? `<span class="iter__sel">${lang === 'en' ? 'Selected' : 'Seleccionada'}</span>` : ''}</p></li>`;
+    return `        <li class="iter__item"><img src="${up}${rel}?v=${assetVer(rel)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(lang === 'en' ? `Site plan, iteration ${L}` : `Planta de conjunto, iteración ${L}`)}"><p class="label iter__cap"><span>${L}</span><span class="iter__date">${date}</span></p></li>`;
   }).join('\n')}
       </ol>
     </section>

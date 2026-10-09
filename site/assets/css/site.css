@@ -1623,16 +1623,13 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .pplan--plate .pplan__img { grid-column: 1 / -1; width: 90%; justify-self: center; }
   .pplan--plate .pplan__key { display: none; }
 }
-/* design iterations: small diagrams in a row; the one developed in full, the others faded */
+/* design iterations: small diagrams in a row, all in the same light grey */
 .iter { padding: 0 var(--margin) var(--pad-v); display: grid; row-gap: var(--s-2); }
 .iter + .prow { margin-top: calc(var(--s-3) - var(--pad-v)); }
 .iter__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-2); max-width: 44rem; }
 .iter__item img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; opacity: 0.55; }
-.iter__item.is-selected img { opacity: 1; }
 .iter__cap { display: flex; flex-wrap: wrap; column-gap: 0.5rem; margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--grey); }
-.is-selected .iter__cap { border-top-color: var(--black); }
 .iter__date { color: var(--mid-grey); }
-.iter__sel { flex-basis: 100%; }
 @media (max-width: 767px) {
   .iter__list { grid-template-columns: repeat(5, 5.5rem); overflow-x: auto; max-width: none; padding-bottom: 0.5rem; }
 }
