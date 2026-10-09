@@ -474,7 +474,7 @@
           "plan": true, "caption": "Houses C and D", "caption_es": "Casas C y D"
         }
       ],
-      "planRows": [{ "images": [2], "spans": [4] }, { "images": [3, 4, 5], "span": 8, "widths": [488, 722, 807] }]
+      "planRows": [{ "images": [2], "spans": [4] }, { "images": [3, 4, 5], "span": 7, "widths": [488, 722, 807] }]
     },
     {
       "slug": "tree-house",

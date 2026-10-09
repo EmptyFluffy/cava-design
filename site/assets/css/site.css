@@ -1624,13 +1624,13 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .pplan--plate .pplan__key { display: none; }
 }
 /* a row of plans at one scale: widths in proportion to what each drawing covers */
-.prow__set { display: flex; align-items: flex-start; gap: var(--gap); }
+.prow__set { display: flex; align-items: flex-start; gap: 4rem; }
 .prow__fig { margin: 0; flex: var(--w) 1 0; min-width: 0; display: grid; gap: 0.6rem; }
 .prow__fig img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
 .prow__cap { margin: 0; }
 @media (max-width: 767px) {
-  .prow__set { flex-direction: column; gap: var(--s-2); }
-  .prow__fig { flex: none; }
+  .prow__set { flex-direction: column; gap: var(--s-3); }
+  .prow__fig { flex: none; width: 82%; }
 }
 /* drawings and views: small, two to a row in the left two thirds, captioned */
 .pview { padding: 0 var(--margin) var(--pad-v); display: grid; row-gap: var(--s-2); }
