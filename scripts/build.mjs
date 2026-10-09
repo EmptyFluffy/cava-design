@@ -712,6 +712,35 @@ ${footer(lang, up, paths)}${end}`;
 }
 
 // ---------- /studio/ and /es/estudio/: what we believe, and the process ----------
+// ---------- recognition before the studio (data/recognition.json), on the Studio page ----------
+const RECOG_PATH = join(ROOT, 'data', 'recognition.json');
+const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH, 'utf8')) : null;
+function recognitionSection(lang, up) {
+  if (!recognition) return '';
+  const R = recognition[lang];
+  return `  <section class="rec" id="recognition" aria-labelledby="rec-title">
+    <h2 class="label rec__label" id="rec-title">${esc(R.label)}</h2>
+${recognition.items.map((it) => { const T = it[lang]; return `    <article class="rec__item">
+      <div class="rec__head grid">
+        <p class="label rec__award">${esc(T.award)}</p>
+        <h3 class="display rec__title"><span>${esc(it.name)}</span><span class="right rec__sub">${esc(T.sub)}</span></h3>
+      </div>
+      <div class="rec__pics">
+${it.images.map((im) => { const b = `${up}assets/img/recognition/${it.id}-${im.key}`, v = `?v=${assetVer(`assets/img/recognition/${it.id}-${im.key}-1600.webp`)}`; return `        <figure class="rec__fig"><img src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1600.webp${v} 1600w, ${b}-2400.webp${v} 2400w" sizes="(min-width: 768px) 48vw, 92vw" width="${im.w}" height="${im.h}" loading="lazy" decoding="async" alt="${esc(im[lang])}"></figure>`; }).join('\n')}
+      </div>
+      <div class="rec__body grid">
+        <div class="rec__text">${T.text.map((x) => `<p class="large">${esc(x)}</p>`).join('')}</div>
+        <dl class="rec__facts">
+          <div><dt class="label">${lang === 'en' ? 'Credits' : 'Créditos'}</dt><dd>${esc(T.credits)}</dd></div>
+          <div><dt class="label">${lang === 'en' ? 'Press' : 'Prensa'}</dt><dd>${it.press.map((pr) => `<a class="ulink" href="${pr.url}" target="_blank" rel="noopener">${esc(pr.name)}, ${esc(pr.date[lang])} ↗</a>`).join('<br>')}</dd></div>
+          <div><dt class="label">${lang === 'en' ? 'Images' : 'Imágenes'}</dt><dd class="rec__credit">${esc(T.images.replace(/^(Images|Imágenes): /, ''))}</dd></div>
+        </dl>
+      </div>
+    </article>`; }).join('\n')}
+  </section>
+`;
+}
+
 function studioPage(lang) {
   const t = UI[lang];
   const d = studio[lang];
@@ -766,7 +795,7 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
-${identity ? `  <section class="idn-teaser grid">
+${recognitionSection(lang, up)}${identity ? `  <section class="idn-teaser grid">
     <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
   </section>` : ''}
 ${contact(lang, t.wa.general, up)}</main>
