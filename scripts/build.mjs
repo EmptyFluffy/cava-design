@@ -239,14 +239,13 @@ ${guides.length ? `        <a class="ulink" href="${up}${guidesIndexPath(lang)}"
 ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
 ` : ''}${books ? `        <a class="ulink" href="${up}${libraryPath(lang)}">${lang === 'en' ? 'Library' : 'Biblioteca'}</a>
 ` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
-        <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
       </div>
     </div>
   </div>
   <div class="grid footer__bottom label">
     <p>© 2026 Studio CAVA<br>San José, Costa Rica</p>
     <p>cava.design</p>
-    <p>Arquitectura</p>
+    <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     <a class="ulink" href="#top">${t.top}</a>
   </div>
 </footer>
