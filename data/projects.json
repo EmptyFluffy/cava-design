@@ -644,16 +644,16 @@
         ],
         "typologies": [
           { "key": "D", "color": "#c4a884", "area": 100, "units": 8,
-            "boxes": [[0, 0, 0, 12.5, 8, 3.2]], "pools": [],
+            "plan": [[0, 0], [12.5, 0], [12.5, 8], [0, 8]], "h": 3.2, "pools": [],
             "en": "Studio: bed, bathroom, kitchenette and a deck", "es": "Estudio: cama, baño, cocineta y un deck" },
           { "key": "C", "color": "#fad8a8", "area": 160, "units": 11,
-            "boxes": [[0, 0, 0, 12, 8, 3.2], [4, 8, 0, 8, 8, 3.2]], "pools": [],
+            "plan": [[0, 0], [12, 0], [12, 16], [4, 16], [4, 8], [0, 8]], "h": 3.2, "pools": [],
             "en": "1 bedroom, 1 bathroom, kitchen and living, terrace", "es": "1 dormitorio, 1 baño, cocina y sala, terraza" },
           { "key": "B", "color": "#f09c54", "area": 250, "units": 11,
-            "boxes": [[0, 0, 0, 14, 10, 3.4], [0, 10, 0, 8, 7, 3.4], [14, 0, 0, 6, 9, 3.4]], "pools": [[8.8, 10.8, 4, 5]],
+            "plan": [[0, 0], [20, 0], [20, 8], [9, 8], [9, 18], [0, 18]], "h": 3.4, "pools": [[11, 10.5, 7, 3.5]],
             "en": "3 bedrooms, 2.5 bathrooms, kitchen, living and dining around a courtyard with a plunge pool", "es": "3 dormitorios, 2.5 baños, cocina, sala y comedor alrededor de un patio con piscina" },
           { "key": "A", "color": "#ccc06c", "area": 400, "units": 3,
-            "boxes": [[0, 0, 0, 18, 14, 3.4], [1, 0, 3.4, 16, 9.25, 3.2]], "pools": [[1, 15.5, 14, 4]],
+            "plan": [[0, 0], [20, 0], [20, 10], [0, 10]], "h": 6.6, "floors": [3.4], "pools": [[2, 12, 14, 3.5]],
             "en": "4 bedrooms on two floors, 3.5 bathrooms, kitchen, living and dining, family room, terrace and pool", "es": "4 dormitorios en dos pisos, 3.5 baños, cocina, sala y comedor, sala familiar, terraza y piscina" }
         ],
         "views": [

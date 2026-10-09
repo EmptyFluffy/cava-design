@@ -1910,7 +1910,8 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pmx__tot { margin-left: 0.9rem; color: #8b8b88; text-transform: none; }
 .pmx__ty { grid-column: span 2; display: grid; gap: 0.5rem; align-content: start; padding: 0; border: 0; background: none; color: #dcddde; text-align: left; cursor: pointer; font: inherit; }
 .tyx { display: block; border-bottom: 1px solid #2a2a28; padding-bottom: 0.4rem; }
-.tyx__svg { display: block; width: 100%; height: auto; overflow: visible; transition: transform 0.45s var(--ease); }
+.tyx__svg { display: block; width: 58%; margin: 0 auto; height: auto; overflow: visible; transition: transform 0.45s var(--ease); }
+.tyx__fl { fill: none; stroke: #0b0b0a; stroke-width: 0.05; }
 .pmx__ty:hover .tyx__svg { transform: translateY(-0.3rem); }
 .pmx__ty:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
 .tyx__f { stroke: #0b0b0a; stroke-width: 0.05; stroke-linejoin: round; }
@@ -1940,3 +1941,4 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pmx__am:hover .pmx__amname { text-decoration: underline; text-underline-offset: 0.2em; }
 .pmx__am:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
 @media (max-width: 767px) { .anl__pin .label { font-size: 0.5625rem; padding: 0.18rem 0.4rem; } .anl__pin i { width: 0.4rem; height: 0.4rem; } }
+@media (max-width: 767px) { .tyx__svg { width: 84%; } }

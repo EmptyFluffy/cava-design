@@ -344,33 +344,45 @@ function townLink(lang, p) {
 // baseline, so they read from the smallest to the largest. boxes: [x, y, z, length, width, height] in
 // metres; pools: [x, y, length, width] at ground level.
 function typologyAxos(list) {
+  // Each typology is one prism: an orthogonal footprint (plan, metres) extruded to h, with a line at each
+  // floor; pools are flat at ground level. One scale and one baseline for all, so they read in order.
   const C = Math.cos(Math.PI / 6), S = Math.sin(Math.PI / 6);
   const P = (x, y, z) => [(x - y) * C, (x + y) * S - z];
   const PLATE = 1.5;
   const extent = (t) => {
     const xs = [], ys = [];
-    const xmax = Math.max(...t.boxes.map((b) => b[0] + b[3]), ...t.pools.map((q) => q[0] + q[2])) + PLATE;
-    const ymax = Math.max(...t.boxes.map((b) => b[1] + b[4]), ...t.pools.map((q) => q[1] + q[3])) + PLATE;
+    const xmax = Math.max(...t.plan.map((q) => q[0]), ...t.pools.map((q) => q[0] + q[2])) + PLATE;
+    const ymax = Math.max(...t.plan.map((q) => q[1]), ...t.pools.map((q) => q[1] + q[3])) + PLATE;
     for (const [x, y] of [[-PLATE, -PLATE], [xmax, -PLATE], [xmax, ymax], [-PLATE, ymax]]) { const [u, v] = P(x, y, 0); xs.push(u); ys.push(v); }
-    for (const b of t.boxes) for (const [x, y] of [[b[0], b[1]], [b[0] + b[3], b[1]], [b[0], b[1] + b[4]]]) { const [u, v] = P(x, y, b[2] + b[5]); xs.push(u); ys.push(v); }
+    for (const [x, y] of t.plan) { const [u, v] = P(x, y, t.h); xs.push(u); ys.push(v); }
     return { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys), xmax, ymax };
   };
   const ex = list.map(extent);
   const W = Math.max(...ex.map((e) => e.x1 - e.x0)) + 2, H = Math.max(...ex.map((e) => e.y1 - e.y0)) + 2;
   const shade = (hex, k) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - k)).toString(16).padStart(2, '0')).join('');
-  const poly = (pts, fill, cls = '') => `<path${cls ? ` class="${cls}"` : ''} d="M${pts.map(([u, v]) => `${u.toFixed(2)} ${v.toFixed(2)}`).join('L')}Z" fill="${fill}"/>`;
+  const path = (pts) => `M${pts.map(([u, v]) => `${u.toFixed(2)} ${v.toFixed(2)}`).join('L')}Z`;
   return list.map((t, i) => {
     const e = ex[i];
-    const dx = (W - (e.x1 - e.x0)) / 2 - e.x0, dy = H - 1 - e.y1;           // centred, standing on the baseline
+    const dx = (W - (e.x1 - e.x0)) / 2 - e.x0, dy = H - 1 - e.y1;
     const Q = (x, y, z) => { const [u, v] = P(x, y, z); return [u + dx, v + dy]; };
-    let g = poly([Q(-PLATE, -PLATE, 0), Q(e.xmax, -PLATE, 0), Q(e.xmax, e.ymax, 0), Q(-PLATE, e.ymax, 0)], 'none', 'tyx__plate');
-    for (const [x, y, l, w] of t.pools) g += poly([Q(x, y, 0), Q(x + l, y, 0), Q(x + l, y + w, 0), Q(x, y + w, 0)], '#8fd3d6', 'tyx__pool');
-    for (const [x, y, z, l, w, h] of [...t.boxes].sort((a, b) => a[2] - b[2] || a[0] + a[1] - (b[0] + b[1]))) {
-      const z1 = z + h;
-      g += poly([Q(x, y + w, z), Q(x + l, y + w, z), Q(x + l, y + w, z1), Q(x, y + w, z1)], shade(t.color, 0.22), 'tyx__f');   // front, facing +y
-      g += poly([Q(x + l, y, z), Q(x + l, y + w, z), Q(x + l, y + w, z1), Q(x + l, y, z1)], shade(t.color, 0.4), 'tyx__f');   // side, facing +x
-      g += poly([Q(x, y, z1), Q(x + l, y, z1), Q(x + l, y + w, z1), Q(x, y + w, z1)], t.color, 'tyx__f');                      // roof
+    let g = `<path class="tyx__plate" d="${path([Q(-PLATE, -PLATE, 0), Q(e.xmax, -PLATE, 0), Q(e.xmax, e.ymax, 0), Q(-PLATE, e.ymax, 0)])}" fill="none"/>`;
+    for (const [x, y, l, w] of t.pools) g += `<path class="tyx__pool" d="${path([Q(x, y, 0), Q(x + l, y, 0), Q(x + l, y + w, 0), Q(x, y + w, 0)])}" fill="#8fd3d6"/>`;
+    // the walls that face the viewer (outward normal +x or +y), the farthest first
+    const pts = t.plan, n = pts.length;
+    const ccw = pts.reduce((a, p, k) => a + p[0] * pts[(k + 1) % n][1] - pts[(k + 1) % n][0] * p[1], 0) > 0;
+    const walls = [];
+    for (let k = 0; k < n; k++) {
+      const [x1, y1] = pts[k], [x2, y2] = pts[(k + 1) % n];
+      const nx = ccw ? y2 - y1 : y1 - y2, ny = ccw ? x1 - x2 : x2 - x1;    // outward normal
+      if (nx + ny <= 0) continue;
+      walls.push({ a: [x1, y1], b: [x2, y2], depth: (x1 + x2 + y1 + y2) / 2, k: nx > 0 ? 0.4 : 0.22 });
     }
+    walls.sort((p, q) => p.depth - q.depth);
+    for (const w of walls) {
+      g += `<path class="tyx__f" d="${path([Q(...w.a, 0), Q(...w.b, 0), Q(...w.b, t.h), Q(...w.a, t.h)])}" fill="${shade(t.color, w.k)}"/>`;
+      for (const z of t.floors ?? []) g += `<path class="tyx__fl" d="M${Q(...w.a, z).map((v) => v.toFixed(2)).join(' ')}L${Q(...w.b, z).map((v) => v.toFixed(2)).join(' ')}"/>`;
+    }
+    g += `<path class="tyx__f" d="${path(pts.map(([x, y]) => Q(x, y, t.h)))}" fill="${t.color}"/>`;
     return `<svg class="tyx__svg" viewBox="0 0 ${W.toFixed(1)} ${H.toFixed(1)}" role="img" aria-hidden="true">${g}</svg>`;
   });
 }
