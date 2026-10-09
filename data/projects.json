@@ -1,5 +1,5 @@
 {
-  "_note": "Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Areas (siteArea, builtArea) are numbers in m²; the pages add square feet. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
+  "_note": "grade: true runs the studio grade (scripts/grade.py: less golden-hour colour, deeper shadows, softer edges, fine grain) on the photos at export; the sources stay untouched. Source of truth for /projects/. Fill a fact by replacing its null; null renders as 'To be confirmed'. Areas (siteArea, builtArea) are numbers in m²; the pages add square feet. Folder = the project's folder in the renders source (Desktop/CAVA). Image order: the first image is the cover. coords = [lng, lat]; pin = exact | approximate | placeholder (placeholder pins are invented spots in Guanacaste until the real site is known; the page says so). hero = the home page slides, in order. Spanish: type_es, alt_es on each image, and <field>_es for any sheet field whose Spanish differs (location_es).",
   "hero": [
     "rancho-cartagena/1",
     "papagayo-404/1",
@@ -61,6 +61,7 @@
     },
     {
       "slug": "papagayo-404",
+      "grade": true,
       "name": "Papagayo 404",
       "folder": "Papagayo 404",
       "type": "House",
@@ -314,6 +315,7 @@
     },
     {
       "slug": "kauhane-house",
+      "grade": true,
       "name": "Kauhane House",
       "folder": "Kauhane House",
       "type": "House",
@@ -423,6 +425,7 @@
     },
     {
       "slug": "s3-houses",
+      "grade": true,
       "name": "S3 Houses",
       "folder": "S3 Houses",
       "type": "Houses",
@@ -704,6 +707,7 @@
     },
     {
       "slug": "lean-and-green",
+      "grade": true,
       "name": "Lean & Green",
       "folder": "Lean & Green Organic Health Bar",
       "type": "Restaurant and grocery",

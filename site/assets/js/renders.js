@@ -24,63 +24,63 @@ window.CAVA_RENDERS = [
  {
   "id": "papagayo-404-1",
   "src": "assets/img/projects/papagayo-404/1",
-  "v": "4d2d9d59",
+  "v": "973db2f1",
   "title": "Papagayo 404",
   "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside"
  },
  {
   "id": "papagayo-404-2",
   "src": "assets/img/projects/papagayo-404/2",
-  "v": "de9744c2",
+  "v": "dd8ee6fa",
   "title": "Papagayo 404",
   "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond"
  },
  {
   "id": "papagayo-404-3",
   "src": "assets/img/projects/papagayo-404/3",
-  "v": "67c9f923",
+  "v": "8997d121",
   "title": "Papagayo 404",
   "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge"
  },
  {
   "id": "papagayo-404-4",
   "src": "assets/img/projects/papagayo-404/4",
-  "v": "63a72a6d",
+  "v": "1bd8b84d",
   "title": "Papagayo 404",
   "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms"
  },
  {
   "id": "papagayo-404-5",
   "src": "assets/img/projects/papagayo-404/5",
-  "v": "ba6a3662",
+  "v": "77774699",
   "title": "Papagayo 404",
   "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay"
  },
  {
   "id": "papagayo-404-6",
   "src": "assets/img/projects/papagayo-404/6",
-  "v": "1e2cac83",
+  "v": "c0d1d97b",
   "title": "Papagayo 404",
   "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest"
  },
  {
   "id": "papagayo-404-7",
   "src": "assets/img/projects/papagayo-404/7",
-  "v": "6e0b5e06",
+  "v": "0b44a822",
   "title": "Papagayo 404",
   "alt": "Double-height living room with a timber wall, open to the garden through full-height glass"
  },
  {
   "id": "papagayo-404-8",
   "src": "assets/img/projects/papagayo-404/8",
-  "v": "5252a1a7",
+  "v": "5d32b6c2",
   "title": "Papagayo 404",
   "alt": "White cubic house raised on slender steel columns above a pool deck"
  },
  {
   "id": "papagayo-404-9",
   "src": "assets/img/projects/papagayo-404/9",
-  "v": "f432f563",
+  "v": "872c2827",
   "title": "Papagayo 404",
   "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
  },
@@ -164,35 +164,35 @@ window.CAVA_RENDERS = [
  {
   "id": "kauhane-house-1",
   "src": "assets/img/projects/kauhane-house/1",
-  "v": "42444a64",
+  "v": "688fe3a2",
   "title": "Kauhane House",
   "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees"
  },
  {
   "id": "kauhane-house-2",
   "src": "assets/img/projects/kauhane-house/2",
-  "v": "c1a6338b",
+  "v": "cabdb99e",
   "title": "Kauhane House",
   "alt": "Stone and timber house around a pool in a tropical garden"
  },
  {
   "id": "kauhane-house-3",
   "src": "assets/img/projects/kauhane-house/3",
-  "v": "02badb0d",
+  "v": "67c9a2da",
   "title": "Kauhane House",
   "alt": "Living room with full-height glass opening to a garden"
  },
  {
   "id": "kauhane-house-4",
   "src": "assets/img/projects/kauhane-house/4",
-  "v": "064ac7ac",
+  "v": "bbf19fc7",
   "title": "Kauhane House",
   "alt": "Kitchen island under a timber ceiling with garden views on both sides"
  },
  {
   "id": "kauhane-house-5",
   "src": "assets/img/projects/kauhane-house/5",
-  "v": "144ca204",
+  "v": "2a147d63",
   "title": "Kauhane House",
   "alt": "Dining room under a slatted timber ceiling with glass walls"
  },
@@ -206,7 +206,7 @@ window.CAVA_RENDERS = [
  {
   "id": "s3-houses-1",
   "src": "assets/img/projects/s3-houses/1",
-  "v": "92233c72",
+  "v": "8bea592a",
   "title": "S3 Houses",
   "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck"
  },
@@ -297,35 +297,35 @@ window.CAVA_RENDERS = [
  {
   "id": "lean-and-green-1",
   "src": "assets/img/projects/lean-and-green/1",
-  "v": "5e1f0f8f",
+  "v": "cfcc331b",
   "title": "Lean & Green",
   "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store"
  },
  {
   "id": "lean-and-green-2",
   "src": "assets/img/projects/lean-and-green/2",
-  "v": "e17caa99",
+  "v": "52324104",
   "title": "Lean & Green",
   "alt": "The Grab & Go wall of chilled drinks and meals in timber cases, with low concrete screens between the tables"
  },
  {
   "id": "lean-and-green-3",
   "src": "assets/img/projects/lean-and-green/3",
-  "v": "b2eab5ed",
+  "v": "609ceaff",
   "title": "Lean & Green",
   "alt": "The order counter behind black steel glazing, beside timber shelves of fruit, vegetables and bread"
  },
  {
   "id": "lean-and-green-4",
   "src": "assets/img/projects/lean-and-green/4",
-  "v": "825edf51",
+  "v": "303e204c",
   "title": "Lean & Green",
   "alt": "The grocery wall of timber shelves and baskets, with long tables in front and the terrace opening to the street"
  },
  {
   "id": "lean-and-green-5",
   "src": "assets/img/projects/lean-and-green/5",
-  "v": "74275147",
+  "v": "b1fc136d",
   "title": "Lean & Green",
   "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants"
  }
@@ -343,7 +343,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/1",
-  "v": "4d2d9d59",
+  "v": "973db2f1",
   "w": 1484,
   "h": 1060,
   "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
@@ -373,7 +373,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/6",
-  "v": "1e2cac83",
+  "v": "c0d1d97b",
   "w": 1484,
   "h": 1060,
   "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest",
@@ -393,7 +393,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/2",
-  "v": "de9744c2",
+  "v": "dd8ee6fa",
   "w": 1448,
   "h": 1086,
   "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond",
@@ -413,7 +413,7 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/papagayo-404/3",
-  "v": "67c9f923",
+  "v": "8997d121",
   "w": 1484,
   "h": 1060,
   "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge",
