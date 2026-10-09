@@ -527,6 +527,110 @@
           "file": "Amacor House.png",
           "alt": "Double-height living room with a stair, a timber kitchen and courtyard light",
           "alt_es": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
+        },
+        {
+          "file": "Planos/web/ground-mob.png",
+          "desk": "Planos/web/ground-desk.png",
+          "alt": "Ground floor plan, numbered: the hall and a planted courtyard at the centre, the kitchen, lounge and living and dining opening to the terrace and pool, a guest bedroom, a study, the service wing and a three-car garage",
+          "alt_es": "Planta baja, numerada: el vestíbulo y un patio sembrado al centro, la cocina, el estar y la sala y comedor abiertos a la terraza y la piscina, un dormitorio de visitas, un estudio, el área de servicio y un garaje para tres carros",
+          "plan": true,
+          "label": "(Ground floor)",
+          "label_es": "(Planta baja)",
+          "key": [
+            "Hall",
+            "Covered entry",
+            "Lounge",
+            "Living and dining",
+            "Terrace",
+            "Pool",
+            "Guest bedroom",
+            "Bathroom",
+            "Powder room",
+            "Study",
+            "Kitchen",
+            "Pantry",
+            "Laundry",
+            "Staff bedroom",
+            "Staff bathroom",
+            "Service patio",
+            "Garage"
+          ],
+          "key_es": [
+            "Vestíbulo",
+            "Acceso cubierto",
+            "Estar",
+            "Sala y comedor",
+            "Terraza",
+            "Piscina",
+            "Dormitorio de visitas",
+            "Baño",
+            "Medio baño",
+            "Estudio",
+            "Cocina",
+            "Despensa",
+            "Lavandería",
+            "Cuarto de servicio",
+            "Baño de servicio",
+            "Patio de servicio",
+            "Garaje"
+          ]
+        },
+        {
+          "file": "Planos/web/upper-mob.png",
+          "desk": "Planos/web/upper-desk.png",
+          "alt": "Upper floor plan, numbered: a family room over the entry, two bedrooms with a balcony, and the main bedroom with its walk-in closet and bathroom",
+          "alt_es": "Planta alta, numerada: una sala familiar sobre el acceso, dos dormitorios con un balcón, y el dormitorio principal con su vestidor y baño",
+          "plan": true,
+          "label": "(Upper floor)",
+          "label_es": "(Planta alta)",
+          "key": [
+            "Hall",
+            "Family room",
+            "Bathroom",
+            "Bedroom",
+            "Balcony",
+            "Bedroom",
+            "Bathroom",
+            "Main bedroom",
+            "Walk-in closet",
+            "Main bathroom"
+          ],
+          "key_es": [
+            "Vestíbulo",
+            "Sala familiar",
+            "Baño",
+            "Dormitorio",
+            "Balcón",
+            "Dormitorio",
+            "Baño",
+            "Dormitorio principal",
+            "Vestidor",
+            "Baño principal"
+          ]
+        }
+      ],
+      "planRows": [
+        {
+          "images": [2, 3],
+          "spans": [4, 4]
+        }
+      ],
+      "views": [
+        {
+          "id": "a-axo-1",
+          "file": "Planos/web/axo1.png",
+          "en": "Axonometric, ground floor",
+          "es": "Axonometría, planta baja",
+          "alt": "Axonometric cut through the ground floor: the living and dining room on the terrace, the kitchen, the guest bedroom, the service wing and the garage with its slatted screen",
+          "alt_es": "Axonometría cortada en la planta baja: la sala y comedor sobre la terraza, la cocina, el dormitorio de visitas, el área de servicio y el garaje con su celosía"
+        },
+        {
+          "id": "a-axo-2",
+          "file": "Planos/web/axo2.png",
+          "en": "Axonometric, upper floor",
+          "es": "Axonometría, planta alta",
+          "alt": "Axonometric cut through the upper floor: the bedrooms with their timber balconies and pergolas, the family room and the main bathroom",
+          "alt_es": "Axonometría cortada en la planta alta: los dormitorios con sus balcones y pérgolas de madera, la sala familiar y el baño principal"
         }
       ]
     },
