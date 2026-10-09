@@ -679,8 +679,9 @@ function identityFigures(lang, S, up) {
       </div>`;
   return { voids, gestalt, nolli, grid, mark, type, colour };
 }
-// The twenty tries as they sat in the working file: a design tool's canvas (toolbar, layers, frames with
-// column grids), every exploration loose in its frame, and the mark pulled out on its own, selected.
+// The twenty tries as they sat in the working file, drawn after the design tool's current layout: the
+// file, pages and layers on the left, the properties of the selection on the right, the tools floating at
+// the bottom, frames with column grids on the canvas and the mark pulled out on its own, selected.
 // One SVG in a 1600 x 1000 box; on a phone it keeps its width and scrolls sideways, like a screenshot.
 function triesCanvas(lang, up, S) {
   const en = lang === 'en';
@@ -692,11 +693,12 @@ function triesCanvas(lang, up, S) {
   const href = (id) => `${up}assets/img/identity/${id}.svg?v=${assetVer(`assets/img/identity/${id}.svg`)}`;
   let seed = 7;
   const jit = (a) => { seed = (seed * 16807) % 2147483647; return ((seed / 2147483647) * 2 - 1) * a; };
-  // the frames, in canvas units; items flow in rows at one height, a little off the line, as dropped there
+  const blue = '#0d99ff', red = '#f24822', ink = '#1e1e1e', dim = '#757575', line = '#e6e6e6', field = '#f5f5f5';
+  // the canvas runs from x 240 to 1360, between the two panels
   const FR = [
-    { key: 'pinwheel', x: 290, y: 120, w: 650, h: 390, per: 4, hh: 124 },
-    { key: 'cuts', x: 990, y: 120, w: 570, h: 470, per: 3, hh: 76 },
-    { key: 'curves', x: 290, y: 580, w: 560, h: 270, per: 3, hh: 132 },
+    { key: 'pinwheel', x: 290, y: 78, w: 560, h: 340, per: 4, hh: 108 },
+    { key: 'cuts', x: 890, y: 78, w: 420, h: 410, per: 3, hh: 62 },
+    { key: 'curves', x: 290, y: 476, w: 470, h: 236, per: 3, hh: 116 },
   ];
   const items = [], grids = [];
   const frames = FR.map((F) => {
@@ -707,57 +709,84 @@ function triesCanvas(lang, up, S) {
       // a row at one height, spread across the frame; a row too wide for it is set smaller
       const row = ids.slice(r * F.per, (r + 1) * F.per).map((id) => ({ id, h: F.hh * (ratio[id] > 1.6 ? 0.9 : 1) }));
       for (const t of row) t.w = t.h * ratio[t.id];
-      const total = row.reduce((a, t) => a + t.w, 0), min = 22 * (row.length + 1);
+      const total = row.reduce((a, t) => a + t.w, 0), min = 20 * (row.length + 1);
       const k = total > F.w - min ? (F.w - min) / total : 1;
       const gap = (F.w - total * k) / (row.length + 1);
       let x = F.x + gap;
       for (const t of row) {
         const w = t.w * k, h = t.h * k;
-        items.push({ id: t.id, x: x + jit(Math.min(8, gap / 3)), y: F.y + gapY + r * (F.hh + gapY) + (F.hh - h) / 2 + jit(7), w, h });
+        items.push({ id: t.id, x: x + jit(Math.min(7, gap / 3)), y: F.y + gapY + r * (F.hh + gapY) + (F.hh - h) / 2 + jit(6), w, h });
         x += w + gap;
       }
     }
-    const cols = 8, m = 18, gut = 14, cw = (F.w - 2 * m - (cols - 1) * gut) / cols;
-    const grid = Array.from({ length: cols }, (_, k) => `<rect x="${(F.x + m + k * (cw + gut)).toFixed(1)}" y="${F.y}" width="${cw.toFixed(1)}" height="${F.h}" class="fg-col"/>`).join('');
-    grids.push(grid);
-    return `<text x="${F.x}" y="${F.y - 9}" class="fg-fname">${esc(S.tries.groups[F.key])}</text><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" class="fg-frame"/>`;
+    const cols = 8, m = 16, gut = 12, cw = (F.w - 2 * m - (cols - 1) * gut) / cols;
+    grids.push(Array.from({ length: cols }, (_, k) => `<rect x="${(F.x + m + k * (cw + gut)).toFixed(1)}" y="${F.y}" width="${cw.toFixed(1)}" height="${F.h}" class="fg-col"/>`).join(''));
+    return `<text x="${F.x}" y="${F.y - 8}" class="fg-fname">${esc(S.tries.groups[F.key])}</text><rect x="${F.x}" y="${F.y}" width="${F.w}" height="${F.h}" class="fg-frame"/>`;
   }).join('');
   const imgs = items.map((t) => `<image href="${href(t.id)}" x="${t.x.toFixed(1)}" y="${t.y.toFixed(1)}" width="${t.w.toFixed(1)}" height="${t.h.toFixed(1)}" preserveAspectRatio="xMidYMid meet"/>`).join('');
-  // a hover outline on one of the cut tries, as if the cursor had just passed over it
-  const hov = items.find((t) => t.id === 'e13');
-  // the mark, pulled out of its frame: selected, measured, commented
-  const M = { x: 1010, y: 650, s: 200 };
-  const fin = items.find((t) => t.id === 'e20');
-  const blue = '#0d99ff', red = '#f24822';
-  const handles = [[M.x, M.y], [M.x + M.s, M.y], [M.x, M.y + M.s], [M.x + M.s, M.y + M.s]].map(([x, y]) => `<rect x="${x - 4}" y="${y - 4}" width="8" height="8" fill="#fff" stroke="${blue}" stroke-width="1.5"/>`).join('');
-  const gy = M.y + M.s / 2, gx0 = 850, gx1 = M.x;
-  const layers = [[en ? 'Mark' : 'Marca', true], [S.tries.groups.curves], [S.tries.groups.cuts], [S.tries.groups.pinwheel]];
-  const tool = (x, d, on) => `${on ? `<rect x="${x - 14}" y="10" width="28" height="28" rx="5" fill="${blue}"/>` : ''}<path d="${d}" transform="translate(${x - 8} 16)" fill="none" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const hov = items.find((t) => t.id === 'e13'), fin = items.find((t) => t.id === 'e20');
+  const box = (t, extra = '') => `<rect x="${(t.x - 3).toFixed(1)}" y="${(t.y - 3).toFixed(1)}" width="${(t.w + 6).toFixed(1)}" height="${(t.h + 6).toFixed(1)}" fill="none" stroke="${blue}" stroke-width="1"${extra}/>`;
+  // the mark, pulled out of its frame: selected and measured
+  const M = { x: 920, y: 540, s: 200 };
+  const handles = [[M.x, M.y], [M.x + M.s, M.y], [M.x, M.y + M.s], [M.x + M.s, M.y + M.s]].map(([x, y]) => `<rect x="${x - 4}" y="${y - 4}" width="8" height="8" fill="#fff" stroke="${blue}" stroke-width="1"/>`).join('');
+  const gy = M.y + M.s / 2, gx0 = 760, gx1 = M.x;
+  // panels: text, icons and fields at the tool's own sizes; the tool's own words stay in English, as most
+  // people run it, and only what is in the file (pages, frames, layers) follows the page's language
+  const T = (x, y, s, cls = 'fg-ui', extra = '') => `<text x="${x}" y="${y}" class="${cls}"${extra}>${s}</text>`;
+  const icon = (x, y, d, c = ink) => `<path d="${d}" transform="translate(${x} ${y})" fill="none" stroke="${c}" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const FRAME = 'M4 1v14M12 1v14M1 4h14M1 12h14', CHEV = 'M5 7l3 3 3-3', PLUS = 'M8 3v10M3 8h10', CARET = 'M6 4l4 4-4 4';
+  const input = (x, y, w, label, val) => `<rect x="${x}" y="${y}" width="${w}" height="24" rx="5" fill="${field}"/>${T(x + 8, y + 16, label, 'fg-ui fg-dim')}${T(x + 24, y + 16, val)}`;
+  const hr = (x0, x1, y) => `<path d="M${x0} ${y}H${x1}" stroke="${line}"/>`;
+  const left = `<rect y="0" width="240" height="1000" fill="#fff"/><path d="M240 0v1000" stroke="${line}"/>
+          <rect x="10" y="10" width="40" height="28" rx="5" fill="${field}"/>${icon(14, 16, 'M2 5h12M2 8h12M2 11h12')}${icon(30, 16, CHEV)}${icon(212, 16, 'M1.5 2.5h13v11h-13zM6 2.5v11')}
+          ${T(16, 66, 'CAVA Identity', 'fg-ui fg-b')}${T(16, 84, 'Drafts', 'fg-ui fg-dim')}${icon(54, 73, CHEV, dim)}
+          ${hr(0, 240, 100)}${T(16, 124, 'File', 'fg-ui fg-b')}${T(70, 124, 'Assets', 'fg-ui fg-dim')}${icon(210, 112, 'M7 12.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM11 11l4 4')}
+          ${hr(0, 240, 138)}${T(16, 162, 'Pages', 'fg-ui fg-b')}${icon(210, 150, PLUS)}
+          <rect x="8" y="172" width="224" height="26" rx="5" fill="${field}"/>${icon(14, 177, 'M3.5 8.5l3 3 6-7')}${T(36, 190, en ? 'Explorations' : 'Exploraciones')}${T(36, 216, en ? 'Final mark' : 'Marca final', 'fg-ui fg-dim')}
+          ${hr(0, 240, 232)}${T(16, 256, 'Layers', 'fg-ui fg-b')}
+          ${[[en ? 'Mark' : 'Marca', true], [S.tries.groups.curves], [S.tries.groups.cuts], [S.tries.groups.pinwheel]].map(([n, on], k) => { const y = 266 + k * 30; return `${on ? `<rect x="8" y="${y}" width="224" height="28" rx="5" fill="#e5f4ff"/>` : ''}${icon(14, y + 6, CARET, dim)}${icon(30, y + 6, FRAME, on ? blue : ink)}${T(54, y + 19, esc(n), on ? 'fg-ui fg-sel' : 'fg-ui')}`; }).join('')}`;
+  const R = 1360;
+  const right = `<rect x="${R}" y="0" width="240" height="1000" fill="#fff"/><path d="M${R} 0v1000" stroke="${line}"/>
+          <circle cx="${R + 22}" cy="24" r="12" fill="#9747ff"/>${T(R + 22, 28, 'CV', 'fg-av')}${icon(R + 112, 16, 'M5 3.5l8 4.5-8 4.5z')}${icon(R + 128, 16, CHEV)}
+          <rect x="${R + 160}" y="12" width="68" height="24" rx="5" fill="${blue}"/>${T(R + 194, 28, 'Share', 'fg-ui fg-btn')}
+          ${hr(R, 1600, 48)}${T(R + 16, 72, 'Design', 'fg-ui fg-b')}${T(R + 78, 72, 'Prototype', 'fg-ui fg-dim')}${T(R + 196, 72, '62%', 'fg-ui fg-dim')}${icon(R + 214, 60, CHEV, dim)}
+          ${hr(R, 1600, 86)}${T(R + 16, 112, 'Frame', 'fg-ui fg-b')}${icon(R + 58, 100, CHEV)}
+          ${T(R + 16, 140, 'Position', 'fg-ui fg-dim')}
+          ${[0, 1, 2, 3, 4, 5].map((k) => icon(R + 16 + k * 26 + (k > 2 ? 8 : 0), 150, k < 3 ? ['M2 2v12M5 5h8v6H5z', 'M8 2v12M3 5h10v6H3z', 'M14 2v12M3 5h8v6H3z'][k] : ['M2 2h12M5 5v8h6V5z', 'M2 8h12M5 3v10h6V3z', 'M2 14h12M5 3v8h6V3z'][k - 3])).join('')}
+          ${input(R + 16, 176, 100, 'X', String(M.x))}${input(R + 124, 176, 100, 'Y', String(M.y))}${input(R + 16, 208, 100, '⟲', '0°')}
+          ${hr(R, 1600, 246)}${T(R + 16, 270, 'Layout', 'fg-ui fg-b')}
+          ${input(R + 16, 282, 100, 'W', String(M.s))}${input(R + 124, 282, 100, 'H', String(M.s))}
+          <rect x="${R + 16}" y="318" width="14" height="14" rx="3" fill="none" stroke="${dim}"/>${T(R + 38, 330, 'Clip content')}
+          ${hr(R, 1600, 350)}${T(R + 16, 374, 'Appearance', 'fg-ui fg-b')}
+          ${input(R + 16, 386, 100, '◐', '100%')}${input(R + 124, 386, 100, '⌜', '0')}
+          ${hr(R, 1600, 424)}${T(R + 16, 448, 'Fill', 'fg-ui fg-b')}${icon(R + 208, 436, PLUS)}
+          <rect x="${R + 16}" y="460" width="208" height="24" rx="5" fill="${field}"/><rect x="${R + 22}" y="465" width="14" height="14" rx="2" fill="#fff" stroke="#d9d9d9"/>${T(R + 44, 476, 'FFFFFF')}${T(R + 180, 476, '100 %', 'fg-ui fg-dim')}
+          ${['Stroke', 'Effects', 'Export'].map((n, k) => { const y = 500 + k * 44; return `${hr(R, 1600, y)}${T(R + 16, y + 26, n, 'fg-ui fg-b')}${icon(R + 208, y + 14, PLUS)}`; }).join('')}`;
+  // the tools, floating at the bottom of the canvas
+  const tools = ['M4 2l0 11 3-3 2.5 5 2-1-2.5-5H13z', FRAME, 'M2 3h12v10H2z', 'M3 13l3-9 7 2-4 7zM6 4l3 3', 'M3 3h10M8 3v10', 'M2 3h12v8H7l-3 3v-3H2z'];
+  const tb = { x: 800 - 150, y: 924, w: 300, h: 44 };
+  const toolbar = `<rect x="${tb.x}" y="${tb.y}" width="${tb.w}" height="${tb.h}" rx="12" fill="#fff" filter="url(#fg-sh)"/>
+          ${tools.map((d, k) => `${k === 0 ? `<rect x="${tb.x + 8 + k * 40}" y="${tb.y + 6}" width="32" height="32" rx="6" fill="${blue}"/>` : ''}${icon(tb.x + 16 + k * 40, tb.y + 14, d, k === 0 ? '#fff' : ink)}`).join('')}
+          <path d="M${tb.x + 250} ${tb.y + 10}v24" stroke="${line}"/>${icon(tb.x + 262, tb.y + 14, 'M3 8h10M8 3v10M4.5 4.5l7 7M11.5 4.5l-7 7')}`;
   return `<div class="fg" role="img" aria-label="${esc(en ? 'The twenty tries laid out in the working file: houses in a pinwheel, cut and folded forms, and the curve; the chosen mark pulled out on its own and selected' : 'Los veinte intentos en el archivo de trabajo: casas en molinete, formas cortadas y plegadas, y la curva; la marca elegida sacada aparte y seleccionada')}">
         <svg class="fg__svg" viewBox="0 0 1600 1000" aria-hidden="true">
+          <defs><filter id="fg-sh" x="-10%" y="-40%" width="120%" height="180%"><feDropShadow dx="0" dy="2" stdDeviation="5" flood-opacity=".14"/></filter></defs>
           <rect width="1600" height="1000" fill="#e6e6e6"/>
-          <g class="fg-grid">${Array.from({ length: 33 }, (_, k) => `<path d="M${240 + k * 42} 48V1000"/>`).join('')}${Array.from({ length: 23 }, (_, k) => `<path d="M240 ${48 + k * 42}H1600"/>`).join('')}</g>
+          <g class="fg-grid">${Array.from({ length: 28 }, (_, k) => `<path d="M${240 + k * 42} 0V1000"/>`).join('')}${Array.from({ length: 24 }, (_, k) => `<path d="M240 ${k * 42}H1360"/>`).join('')}</g>
           ${frames}
-          <rect x="${(hov.x - 3).toFixed(1)}" y="${(hov.y - 3).toFixed(1)}" width="${(hov.w + 6).toFixed(1)}" height="${(hov.h + 6).toFixed(1)}" fill="none" stroke="${blue}" stroke-width="1"/>
+          ${box(hov)}
           ${imgs}${grids.join('')}
-          <rect x="${(fin.x - 3).toFixed(1)}" y="${(fin.y - 3).toFixed(1)}" width="${(fin.w + 6).toFixed(1)}" height="${(fin.h + 6).toFixed(1)}" fill="none" stroke="${blue}" stroke-width="1" stroke-dasharray="4 3"/>
-          <text x="${M.x}" y="${M.y - 12}" class="fg-fname fg-fname--sel">${en ? 'Mark' : 'Marca'}</text>
+          ${box(fin, ' stroke-dasharray="4 3"')}
+          <text x="${M.x}" y="${M.y - 10}" class="fg-fname fg-fname--sel">${en ? 'Mark' : 'Marca'}</text>
           <image href="${href('e20')}" x="${M.x}" y="${M.y}" width="${M.s}" height="${M.s}" preserveAspectRatio="xMidYMid meet"/>
-          <rect x="${M.x}" y="${M.y}" width="${M.s}" height="${M.s}" fill="none" stroke="${blue}" stroke-width="1.5"/>${handles}
-          <rect x="${M.x + M.s / 2 - 38}" y="${M.y + M.s + 10}" width="76" height="22" rx="4" fill="${blue}"/><text x="${M.x + M.s / 2}" y="${M.y + M.s + 25}" class="fg-pill">200 × 200</text>
-          <path d="M${gx0} ${gy}H${gx1}M${gx0} ${gy - 6}V${gy + 6}M${gx1} ${gy - 6}V${gy + 6}" stroke="${red}" stroke-width="1"/>
-          <rect x="${(gx0 + gx1) / 2 - 20}" y="${gy - 24}" width="40" height="20" rx="4" fill="${red}"/><text x="${(gx0 + gx1) / 2}" y="${gy - 10}" class="fg-pill">${gx1 - gx0}</text>
-          <path d="M1222 864l0 26 7-7 5 11 4-2-5-11h10z" fill="#080807" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-          <g transform="translate(1248 612)"><path d="M0 16a16 16 0 1 1 16 16H0z" fill="#9747ff"/><text x="16" y="21" class="fg-av">CV</text>
-            <rect x="40" y="-6" width="${en ? 236 : 210}" height="46" rx="8" fill="#fff" stroke="#d9d9d9"/><text x="54" y="13" class="fg-cm"><tspan font-weight="600">Carlos</tspan><tspan dx="8" class="fg-cm--dim">${en ? '2h' : 'hace 2 h'}</tspan></text><text x="54" y="31" class="fg-cm">${en ? 'This one. The A is the gap.' : 'Esta. La A es el hueco.'}</text></g>
-          <rect width="1600" height="48" fill="#2c2c2c"/>
-          ${tool(30, 'M2 1l0 13 4-4 3 6 2-1-3-6h6z', true)}${tool(70, 'M4 0v16M12 0v16M0 4h16M0 12h16')}${tool(106, 'M1 2h14v12H1z')}${tool(142, 'M2 14C6 2 10 2 14 14')}${tool(178, 'M2 2h12M8 2v13')}${tool(214, 'M3 9V4a1 1 0 0 1 2 0v4V2a1 1 0 0 1 2 0v6V3a1 1 0 0 1 2 0v6V5a1 1 0 0 1 2 0v6c0 3-2 5-5 5s-4-2-5-4z')}
-          <text x="800" y="29" class="fg-file"><tspan class="fg-file--dim">Studio CAVA /</tspan> ${en ? 'Identity' : 'Identidad'}</text>
-          <path d="M1508 0v48" stroke="#444"/><text x="1554" y="29" class="fg-zoom">62%</text>
-          <circle cx="1470" cy="24" r="13" fill="#9747ff"/><text x="1470" y="28" class="fg-av fg-av--s">CV</text>
-          <rect y="48" width="240" height="952" fill="#fff"/><path d="M240 48v952" stroke="#e6e6e6"/>
-          <text x="16" y="76" class="fg-tab"><tspan font-weight="600">${en ? 'Layers' : 'Capas'}</tspan><tspan dx="16" class="fg-cm--dim">${en ? 'Assets' : 'Recursos'}</tspan></text><path d="M0 92h240" stroke="#e6e6e6"/>
-          ${layers.map(([n, on], k) => `${on ? `<rect x="0" y="${100 + k * 32}" width="240" height="30" fill="#e5f4ff"/>` : ''}<path d="M18 ${110 + k * 32}v10M22 ${110 + k * 32}v10M16 ${112 + k * 32}h10M16 ${118 + k * 32}h10" stroke="${on ? blue : '#8b8b88'}" stroke-width="1.1"/><text x="38" y="${120 + k * 32}" class="fg-layer${on ? ' fg-layer--sel' : ''}">${esc(n)}</text>`).join('')}
+          <rect x="${M.x}" y="${M.y}" width="${M.s}" height="${M.s}" fill="none" stroke="${blue}" stroke-width="1"/>${handles}
+          <rect x="${M.x + M.s / 2 - 36}" y="${M.y + M.s + 8}" width="72" height="20" rx="4" fill="${blue}"/><text x="${M.x + M.s / 2}" y="${M.y + M.s + 22}" class="fg-pill">${M.s} × ${M.s}</text>
+          <path d="M${gx0} ${gy}H${gx1}M${gx0} ${gy - 5}V${gy + 5}M${gx1} ${gy - 5}V${gy + 5}" stroke="${red}" stroke-width="1"/>
+          <rect x="${(gx0 + gx1) / 2 - 18}" y="${gy - 22}" width="36" height="18" rx="4" fill="${red}"/><text x="${(gx0 + gx1) / 2}" y="${gy - 9}" class="fg-pill">${gx1 - gx0}</text>
+          <path d="M${M.x + M.s + 16} ${M.y + M.s + 12}l0 22 6-6 4.5 9.5 3.5-1.6-4.5-9.4h8.5z" fill="${ink}" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/>
+          ${toolbar}
+          ${left}
+          ${right}
         </svg>
       </div>`;
 }
