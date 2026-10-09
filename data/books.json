@@ -2,25 +2,25 @@
   "_note": "/studio/library/ and /es/estudio/biblioteca/. Covers from Open Library (covers.openlibrary.org), resized into site/assets/img/books/<id>.webp; ol = the Open Library work, linked from each title. The 'why' lines are the studio's draft; Carlos may rewrite them in his own words.",
   "en": {
     "title": "On the shelf: books on architecture and the rest of the work | Studio CAVA",
-    "description": "Twenty-four books we keep near the drawing table, from Tom Kundig, Geoffrey Bawa and Bruno Stagno to Bachelard, Neufert, parametric design and Rick Rubin, with a line on why each one is there.",
+    "description": "Twenty-three books we keep near the drawing table, from Tom Kundig, Geoffrey Bawa and Bruno Stagno to Bachelard, Grasshopper, Julius Shulman and Rick Rubin, with a line on why each one is there.",
     "label": "(Library)", "h1": ["On the", "shelf"],
-    "intro": "Twenty-four books we keep near the drawing table: about architecture, and about the rest of the work. A line or two on why each one is here.",
-    "covers": "Covers from Open Library. The books belong to their authors and publishers; we have no arrangement with any of them."
+    "intro": "Twenty-three books we keep near the drawing table: about architecture, and about the rest of the work. A line or two on why each one is here.",
+    "covers": "Covers from Open Library and booksellers' listings. The books belong to their authors and publishers; we have no arrangement with any of them."
   },
   "es": {
     "title": "En el estante: libros de arquitectura y del resto del oficio | Studio CAVA",
-    "description": "Veinticuatro libros que tenemos cerca de la mesa de dibujo, de Tom Kundig, Geoffrey Bawa y Bruno Stagno a Bachelard, Neufert, diseño paramétrico y Rick Rubin, con una línea sobre por qué está cada uno.",
+    "description": "Veintitrés libros que tenemos cerca de la mesa de dibujo, de Tom Kundig, Geoffrey Bawa y Bruno Stagno a Bachelard, Grasshopper, Julius Shulman y Rick Rubin, con una línea sobre por qué está cada uno.",
     "label": "(Biblioteca)", "h1": ["En el", "estante"],
-    "intro": "Veinticuatro libros que tenemos cerca de la mesa de dibujo: de arquitectura y del resto del oficio. Una o dos líneas sobre por qué está cada uno.",
-    "covers": "Portadas de Open Library. Los libros son de sus autores y editoriales; no tenemos ningún acuerdo con ellos."
+    "intro": "Veintitrés libros que tenemos cerca de la mesa de dibujo: de arquitectura y del resto del oficio. Una o dos líneas sobre por qué está cada uno.",
+    "covers": "Portadas de Open Library y de listados de librerías. Los libros son de sus autores y editoriales; no tenemos ningún acuerdo con ellos."
   },
   "shelves": [
     {
       "en": "Architects we go back to", "es": "Arquitectos a los que volvemos",
       "books": [
-        { "id": "kundig-houses", "title": "Tom Kundig: Houses", "by": "Dung Ngo (ed.)", "pub": "Princeton Architectural Press, 2006", "ol": "OL18400334W",
-          "en": "Raw steel, timber and concrete, and the hand-cranked mechanisms that open a whole wall to the landscape. Delta Shelter and Chicken Point Cabin are in it, and both shaped how we think about a house that closes up when no one is there.",
-          "es": "Acero, madera y concreto a la vista, y los mecanismos de manivela que abren una pared entera al paisaje. Ahí están Delta Shelter y Chicken Point Cabin, y las dos cambiaron cómo pensamos una casa que se cierra cuando no hay nadie." },
+        { "id": "kundig-works", "title": "Tom Kundig: Works", "by": "Tom Kundig", "pub": "Princeton Architectural Press, 2015", "ol": "OL20018427W",
+          "en": "Raw steel, timber and concrete, and the mechanisms Kundig calls gizmos: hand-cranked shutters and walls that pivot open to the landscape. The book that taught us a building can move, and close up when no one is there.",
+          "es": "Acero, madera y concreto a la vista, y los mecanismos que Kundig llama gizmos: persianas de manivela y paredes que giran para abrirse al paisaje. El libro que nos enseñó que un edificio puede moverse, y cerrarse cuando no hay nadie." },
         { "id": "bawa", "title": "Geoffrey Bawa: The Complete Works", "by": "David Robson", "pub": "Thames & Hudson, 2002", "ol": "OL18479233W",
           "en": "Tropical modernism from Sri Lanka: deep verandas, courtyards open to the rain, buildings that step down a slope instead of flattening it. Of everyone on this shelf, his climate is the closest to ours.",
           "es": "Modernismo tropical de Sri Lanka: corredores profundos, patios abiertos a la lluvia, edificios que bajan con la pendiente en vez de aplanarla. De todos en este estante, su clima es el más parecido al nuestro." },
@@ -70,9 +70,6 @@
         { "id": "form-space-order", "title": "Architecture: Form, Space, and Order", "by": "Francis D. K. Ching", "pub": "1979; Wiley, fifth edition 2023", "ol": "OL30636W",
           "en": "Ching's drawings sort two thousand years of buildings by geometry, axis, symmetry, rhythm and threshold. The compendium many architects learned to see with, us included.",
           "es": "Los dibujos de Ching ordenan dos mil años de edificios por geometría, eje, simetría, ritmo y umbral. El compendio con el que muchos arquitectos aprendimos a ver." },
-        { "id": "neufert", "title": "Architects' Data", "by": "Ernst Neufert", "pub": "1936; Wiley-Blackwell, fifth edition 2019", "ol": "OL20709896W",
-          "en": "How wide a corridor, how deep a stair, how much room a bed needs around it. The reference that sits open on the desk more than any other.",
-          "es": "Qué tan ancho un pasillo, qué tan profunda una grada, cuánto espacio necesita una cama alrededor. El libro de consulta que más tiempo pasa abierto en la mesa." },
         { "id": "pattern-language", "title": "A Pattern Language", "by": "Christopher Alexander and others", "pub": "Oxford University Press, 1977", "ol": "OL3923600W",
           "en": "253 patterns, from regions down to window seats, each a problem and a way to solve it. Light on two sides of every room is one of them, and it is in most of our plans.",
           "es": "253 patrones, de regiones a bancas junto a la ventana, cada uno un problema y una forma de resolverlo. Luz por dos lados en cada espacio es uno de ellos, y está en la mayoría de nuestras plantas." },
@@ -85,17 +82,20 @@
       ]
     },
     {
-      "en": "Computation and type", "es": "Cómputo y tipografía",
+      "en": "Computation, type and image", "es": "Cómputo, tipografía e imagen",
       "books": [
-        { "id": "parametric-design", "title": "Elements of Parametric Design", "by": "Robert Woodbury", "pub": "Routledge, 2010", "ol": "OL15535730W",
-          "en": "What changes when a design is a set of relations instead of a set of lines. We use parametric models for roofs, louvres and sun studies, and this is the clearest account of how to think in them.",
-          "es": "Qué cambia cuando un diseño es un conjunto de relaciones y no de líneas. Usamos modelos paramétricos para techos, celosías y estudios de sol, y esta es la explicación más clara de cómo pensar con ellos." },
+        { "id": "tedeschi-aad", "title": "AAD Algorithms-Aided Design: Parametric Strategies Using Grasshopper", "by": "Arturo Tedeschi", "pub": "Le Penseur, 2014", "ol": "OL21847250W",
+          "en": "A Grasshopper manual that teaches the thinking as well as the buttons: data structures, attractors, form-finding. We use parametric models for roofs, louvres and sun studies, and this one stays within reach.",
+          "es": "Un manual de Grasshopper que enseña a pensar además de qué botón tocar: estructuras de datos, atractores, búsqueda de forma. Usamos modelos paramétricos para techos, celosías y estudios de sol, y este libro está siempre a mano." },
         { "id": "algorithmic-architecture", "title": "Algorithmic Architecture", "by": "Kostas Terzidis", "pub": "Architectural Press, 2006", "ol": "OL6027548W",
-          "en": "The argument that code is not a faster pencil but a different way of designing. Good to read next to Woodbury, and to disagree with in places.",
-          "es": "El argumento de que el código no es un lápiz más rápido sino otra forma de diseñar. Bueno para leer junto a Woodbury, y para discrepar en algunas partes." },
-        { "id": "type-in-motion", "title": "Type in Motion: Innovations in Digital Graphics", "by": "Jeff Bellantoni, Matt Woolman", "pub": "Thames & Hudson, 1999", "ol": "OL31773693W",
-          "en": "Letters that move, from film titles to early screen work. The titles on this site step and slide across the page for reasons that start here.",
-          "es": "Letras que se mueven, de los títulos de cine a los primeros trabajos en pantalla. Los títulos de este sitio se escalonan y se deslizan por razones que empiezan aquí." }
+          "en": "The argument that code is not a faster pencil but a different way of designing. Tedeschi shows how; this one asks why, and we disagree with it in places.",
+          "es": "El argumento de que el código no es un lápiz más rápido sino otra forma de diseñar. Tedeschi muestra cómo; este pregunta por qué, y en algunas partes discrepamos." },
+        { "id": "typography-for-screen", "title": "Typography for Screen: Type in Motion", "by": "Wang Shaoqiang (ed.)", "pub": "Flamant, 2020", "ol": "OL21338652W",
+          "en": "Type made to move: motion graphics, websites and experiments, with interviews with the studios behind them and QR codes to the work in motion. The titles on this site step and slide across the page for reasons that start here.",
+          "es": "Tipografía hecha para moverse: gráficos en movimiento, sitios web y experimentos, con entrevistas a los estudios que los hicieron y códigos QR al trabajo en movimiento. Los títulos de este sitio se escalonan y se deslizan por razones que empiezan aquí." },
+        { "id": "shulman", "title": "Julius Shulman: Architecture and Its Photography", "by": "Julius Shulman, Peter Gössel (ed.)", "pub": "Taschen, 1999", "ol": "OL2919611W",
+          "en": "The photographs that made Californian modernism famous: the Kaufmann House pool at dusk, Case Study House 22 hanging over Los Angeles. Shulman set up every frame, the lights, the furniture, sometimes the people, and seeing how is the best lesson we know in photographing a house.",
+          "es": "Las fotos que hicieron famoso al modernismo californiano: la piscina de la Kaufmann House al atardecer, la Case Study House 22 colgada sobre Los Ángeles. Shulman armaba cada encuadre, las luces, los muebles, a veces las personas, y ver cómo lo hacía es la mejor lección que conocemos para fotografiar una casa." }
       ]
     },
     {
@@ -106,10 +106,7 @@
           "es": "Un productor musical sobre poner atención, empezar antes de sentirse listo y terminar lo que se empieza. Nada es sobre arquitectura y todo aplica." },
         { "id": "deep-work", "title": "Deep Work: Rules for Focused Success in a Distracted World", "by": "Cal Newport", "pub": "Grand Central, 2016", "ol": "OL17713267W",
           "en": "Design needs long stretches without messages. This is the case for protecting them, with a method for doing it.",
-          "es": "Diseñar necesita ratos largos sin mensajes. Este es el argumento para protegerlos, con un método para hacerlo." },
-        { "id": "4dx", "title": "The 4 Disciplines of Execution", "by": "Chris McChesney, Sean Covey, Jim Huling", "pub": "Free Press, 2012", "ol": "OL16465202W",
-          "en": "Few goals, measures you can act on, a scoreboard everyone sees and a short weekly check. How a small studio keeps a construction schedule from slipping one week at a time.",
-          "es": "Pocas metas, medidas sobre las que se puede actuar, un marcador que todos ven y una revisión semanal corta. Cómo un estudio pequeño evita que un cronograma de obra se atrase semana a semana." }
+          "es": "Diseñar necesita ratos largos sin mensajes. Este es el argumento para protegerlos, con un método para hacerlo." }
       ]
     }
   ]
