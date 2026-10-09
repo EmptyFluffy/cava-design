@@ -2561,7 +2561,6 @@ const PT = {
     email: 'Email', pw: 'Password', show: 'Show', hide: 'Hide', go: 'Sign in',
     forgot: 'Forgot your password?', link: 'Email me a sign-in link',
     inside: '(Inside)', items: ['Drawings', 'Permits', 'Schedule', 'Site visits', 'Invoices'],
-    note: 'The portal is being set up. Until it opens, everything still reaches you by email and WhatsApp.',
     notYet: '(Not a client yet)', notYetText: 'The portal is for projects in progress with the studio. To start one, talk to us.',
     closed: (mail, waLink) => `The portal is not open yet, so nothing was sent and nothing was stored. For your files, write to ${mail} or ${waLink}.`,
     badEmail: 'Enter the email address we have on file, for example name@domain.com.',
@@ -2574,7 +2573,6 @@ const PT = {
     email: 'Correo', pw: 'Contraseña', show: 'Ver', hide: 'Ocultar', go: 'Ingresar',
     forgot: '¿Olvidó su contraseña?', link: 'Enviarme un enlace de acceso',
     inside: '(Adentro)', items: ['Planos', 'Permisos', 'Cronograma', 'Visitas de obra', 'Facturas'],
-    note: 'El portal se está preparando. Mientras abre, todo le sigue llegando por correo y WhatsApp.',
     notYet: '(Aún no es cliente)', notYetText: 'El portal es para proyectos en curso con el estudio. Para empezar uno, hablemos.',
     closed: (mail, waLink) => `El portal todavía no está abierto, así que no se envió ni se guardó nada. Para sus archivos, escriba a ${mail} o por ${waLink}.`,
     badEmail: 'Escriba el correo que tenemos registrado, por ejemplo nombre@dominio.com.',
@@ -2615,7 +2613,6 @@ ${bar(lang, up, paths, 'portal')}
         <p class="label">${esc(P.inside)}</p>
         <ul>${P.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
       </div>
-      <p class="note portal__note">${esc(P.note)}</p>
       <div class="portal__new">
         <p class="label">${esc(P.notYet)}</p>
         <p>${esc(P.notYetText)}</p>
