@@ -1808,3 +1808,6 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .book__cover img { max-width: 92%; }
 }
 @media (prefers-reduced-motion: reduce) { .book__cover img { transition: none; } }
+/* "Obras seleccionadas": the long Spanish word, indented two columns, needs a smaller size on a phone */
+@media (max-width: 767px) { html[lang="es"] .works__title { font-size: min(var(--f-display), 9.8vw); } }
+@media (max-width: 1099px) { html[lang="es"] .works__head { flex-wrap: wrap; } html[lang="es"] .works__count { margin-left: auto; } }

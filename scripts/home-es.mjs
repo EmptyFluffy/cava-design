@@ -64,7 +64,7 @@ export const PAIRS = [
   ['(Our studio)', '(El estudio)'],
 
   // ---------- works ----------
-  ['<span>Featured</span><span class="indent-2">works</span>', '<span>Obras</span><span class="indent-2">selectas</span>'],
+  ['<span>Featured</span><span class="indent-2">works</span>', '<span>Obras</span><span class="indent-2">seleccionadas</span>'],
   [/aria-label="View (.+?) image"/g, 'aria-label="Ver imagen de $1"'],
   [/<span class="card__meta">([^<]+)<\/span>/g, (m, t) => `<span class="card__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel' })[t] ?? t}</span>`],
   [/<span class="work__meta">([^<]+)<\/span>/g, (m, t) => `<span class="work__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel', 'View image →': 'Ver imagen →' })[t] ?? t}</span>`],
