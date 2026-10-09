@@ -186,7 +186,7 @@
       "year": 2015,
       "siteArea": 520,
       "builtArea": 200,
-      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
+      "team": {"architecture": ["Melissa Araya"]},
       "compare": { "images": [1, 2], "en": ["Day", "Night"], "es": ["Día", "Noche"] },
       "images": [
         {
