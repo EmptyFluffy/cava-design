@@ -44,7 +44,7 @@ for p in data['projects']:
                 if w == 1600:
                     sizes[f"{p['slug']}/{n}-d"] = [r.width, r.height]
     # construction drawings (line art: a higher quality, so the lines stay clean)
-    for d in (x for s in p.get('drawings', []) for x in s['items']):
+    for d in [x for s in p.get('drawings', []) for x in s['items']] + p.get('views', []):
         img = Image.open(os.path.join(src, p['folder'], d['file'])).convert('RGB')
         for w in (1600, 800):
             r = img.copy()

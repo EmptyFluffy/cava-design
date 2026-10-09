@@ -368,6 +368,14 @@ ${row.images.map((n, i) => {
     </section>
 `;
   }).join('');
+  // drawings and views (elevation, axonometrics): small, two to a row, captioned
+  const views = p.views?.length ? `    <section class="pview" aria-labelledby="pview-title">
+      <h2 class="label" id="pview-title">${lang === 'en' ? '(Drawings)' : '(Dibujos)'}</h2>
+      <div class="pview__grid">
+${p.views.map((v) => `        <figure class="pview__fig">${picture(up, p.slug, `d-${v.id}`, lang === 'en' ? v.alt : v.alt_es, '(min-width: 768px) 32vw, 92vw')}<figcaption class="label pview__cap">${esc(v[lang])}</figcaption></figure>`).join('\n')}
+      </div>
+    </section>
+` : '';
   // design iterations (vector SVGs): the schemes tried, small and in a row, all alike
   const it = p.iterations;
   const iterations = it ? `    <section class="iter" aria-labelledby="iter-title">
@@ -453,7 +461,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}${compare}${plans}${iterations}${planRows}${drawings}    <section class="related" aria-labelledby="related-title">
+${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

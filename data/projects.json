@@ -356,7 +356,42 @@
           "file": "Kauhane House C.png",
           "alt": "Dining room under a slatted timber ceiling with glass walls",
           "alt_es": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio"
+        },
+        {
+          "file": "Planos/web/ground-mob.png",
+          "desk": "Planos/web/ground-desk.png",
+          "alt": "Ground floor plan, numbered: the garage, pantry and stair at one end, kitchen and dining, the living room, a guest bedroom, and the pool and catwalk on the garden side",
+          "alt_es": "Planta baja, numerada: el garaje, la despensa y la escalera en un extremo, la cocina y el comedor, la sala, un dormitorio de visitas, y la piscina y la pasarela hacia el jardín",
+          "plan": true,
+          "label": "(Ground floor)", "label_es": "(Planta baja)",
+          "key": ["Arrival", "Kitchen and dining", "Living", "Garage and storage", "Pantry", "Bathroom", "Guest bedroom", "Outdoor shower", "Pool", "Plunge pool", "Catwalk"],
+          "key_es": ["Llegada", "Cocina y comedor", "Sala", "Garaje y bodega", "Despensa", "Baño", "Dormitorio de visitas", "Ducha exterior", "Piscina", "Piscina de inmersión", "Pasarela"]
+        },
+        {
+          "file": "Planos/web/upper-mob.png",
+          "desk": "Planos/web/upper-desk.png",
+          "alt": "Upper floor plan, numbered: the main bedroom with its closet and bathroom, a green terrace beside it, and the roof over the living room",
+          "alt_es": "Planta alta, numerada: el dormitorio principal con su clóset y baño, una terraza verde a un lado, y el techo sobre la sala",
+          "plan": true,
+          "label": "(Upper floor)", "label_es": "(Planta alta)",
+          "key": ["Main bedroom", "Closet", "Bathroom", "Green terrace", "Roof over the living room"],
+          "key_es": ["Dormitorio principal", "Clóset", "Baño", "Terraza verde", "Techo sobre la sala"]
         }
+      ],
+      "planRows": [{ "images": [6, 7], "spans": [4, 4] }],
+      "views": [
+        { "id": "k-section", "file": "Planos/web/sec2.png", "en": "Axonometric section", "es": "Sección axonométrica",
+          "alt": "Axonometric section along the house: the living room, dining and kitchen below, the main bedroom above, under two timber roofs",
+          "alt_es": "Sección axonométrica a lo largo de la casa: la sala, el comedor y la cocina abajo, el dormitorio principal arriba, bajo dos techos de madera" },
+        { "id": "k-elevation", "file": "Planos/web/elev.png", "en": "Elevation", "es": "Elevación",
+          "alt": "Elevation: the long single-storey wing and the two-storey volume, following the slope of the site",
+          "alt_es": "Elevación: el ala larga de un piso y el volumen de dos pisos, siguiendo la pendiente del terreno" },
+        { "id": "k-axo-1", "file": "Planos/web/axo1.png", "en": "Axonometric, garden side", "es": "Axonometría, lado del jardín",
+          "alt": "Axonometric view of the house on its site from the garden side, with the terraces and the pool",
+          "alt_es": "Axonometría de la casa en su terreno desde el lado del jardín, con las terrazas y la piscina" },
+        { "id": "k-axo-2", "file": "Planos/web/axo2.png", "en": "Axonometric, arrival side", "es": "Axonometría, lado de llegada",
+          "alt": "Axonometric view of the house on its site from the arrival side, with the brick screen and the upper volume",
+          "alt_es": "Axonometría de la casa en su terreno desde el lado de llegada, con la celosía de ladrillo y el volumen superior" }
       ]
     },
     {
