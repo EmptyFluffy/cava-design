@@ -506,7 +506,7 @@
       "year": 2024,
       "siteArea": 210,
       "builtArea": 75,
-      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
+      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Emanuel Baizán"]},
       "images": [
         {
           "file": "Tree House.png",
@@ -709,7 +709,7 @@
       "year": 2025,
       "siteArea": 6500,
       "builtArea": 2400,
-      "team": {"architecture": ["Carlos Vinocour", "Joshua Chaves"]},
+      "team": {"architecture": ["Carlos Vinocour", "Joshua Chaves"], "visualization": ["Emanuel Baizán"]},
       "images": [
         {
           "file": "Military Museum.png",
