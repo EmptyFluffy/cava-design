@@ -1,6 +1,6 @@
 {
   "_note": "Services: /services/ and /es/servicios/, one page each. Text cites shared sources by key, [@key]; each page numbers only the ones it uses, in order. Studio policies marked _confirm are drafts for Carlos to confirm.",
-  "_confirm": "Two rounds of changes per design phase; lot study at a fixed fee credited to the design; a written report with photos after every site visit; interiors at an agreed fee; design meetings by video with a visit to the lot at the start.",
+  "_confirm": "Two rounds of changes per design phase; lot study at a fixed fee credited to the design; a written report with photos after every site visit; interiors at an agreed fee; design meetings by video with a visit to the lot at the start. Sustainable design (draft): certification run with accredited consultants (a RESET consultant listed by the CFIA, a LEED AP, a Green Rater for LEED houses) until the studio holds those credentials; a separate fee agreed up front.",
   "sources": {
     "reg": { "title": "Reglamento para la contratación de servicios de consultoría en ingeniería y arquitectura", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/reglamento-para-la-contratacion-de-servicios-de-consultoria-ingenieria-arquitectura.pdf", "date": "in force since 3 February 2020", "date_es": "vigente desde el 3 de febrero de 2020" },
     "arancel": { "title": "Arancel de servicios profesionales de consultoría para edificaciones (Decreto 18636-MOPT)", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/reglamentos/ejercicio/arancel-de-servicios-profesionales-de-consultoria-para-edificaciones.pdf", "date": "1988, reformed 2010", "date_es": "1988, reformado en 2010" },
@@ -13,7 +13,13 @@
     "aya": { "title": "Reglamento para la prestación de servicios a los usuarios (arts. 36 and 37)", "title_es": "Reglamento para la prestación de servicios a los usuarios (arts. 36 y 37)", "publisher": "AyA, via SINALEVI", "publisher_es": "AyA, en SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=93632&param2=150995&param3=1", "date": "2021, current version 2026", "date_es": "2021, versión vigente 2026" },
     "zmt": { "title": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (consolidated text)", "title_es": "Ley 6043, Ley sobre la Zona Marítimo Terrestre (texto consolidado)", "publisher": "SNIT", "url": "https://www.snitcr.go.cr/pdfs/leyes/Ley-6043.pdf", "date": "1977, consolidated 1999", "date_es": "1977, consolidado 1999" },
     "ranking": { "title": "Ranking municipal 2024-2025, memoria técnica", "publisher": "CFIA", "url": "https://cfia.or.cr/site/wp-content/uploads/2024/pdf/descargas/informes/memoria-tecnica-ranking-municipal-2025.pdf", "date": "August 2025", "date_es": "agosto de 2025" },
-    "salud": { "title": "Decreto 36550-MP-MIVAH-S-MEIC, Reglamento para el trámite de revisión de los planos para la construcción", "publisher": "SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=70485&param2=129782&param3=1", "date": "2011, reformed 2022", "date_es": "2011, reformado en 2022" }
+    "salud": { "title": "Decreto 36550-MP-MIVAH-S-MEIC, Reglamento para el trámite de revisión de los planos para la construcción", "publisher": "SINALEVI", "url": "https://sinalevi.go.cr/ResultadosNormativa/Informacion?param1=70485&param2=129782&param3=1", "date": "2011, reformed 2022", "date_es": "2011, reformado en 2022" },
+    "reset": { "title": "#25 RESET, the standard for sustainable architecture in the tropics", "publisher": "Construction21", "url": "https://www.construction21.org/amp/articles/h/25-reset-the-standard-for-sustainable-architecture-in-the-tropics.html", "date": "2020" },
+    "resetcfia": { "title": "Consultoría de la Norma RESET (list of RESET consultants by level)", "title_es": "Consultoría de la Norma RESET (lista de consultores RESET por nivel)", "publisher": "CFIA", "url": "https://cfia.or.cr/site/en/tramites-tecnicos/inspecciones-y-verificaciones-especiales/consultoria-de-la-norma-reset/", "date": "consulted October 2026", "date_es": "consultado en octubre de 2026" },
+    "resetsol": { "title": "RESET: Edificaciones sostenibles en el trópico", "publisher": "Vince Studio", "url": "https://vincestudiocr.com/blog/reset-edificaciones-sostenibles-en-el-tropico/", "date": "consulted October 2026", "date_es": "consultado en octubre de 2026" },
+    "leedv5": { "title": "What you need to know about LEED v5", "publisher": "UL Solutions", "url": "https://www.ul.com/insights/what-know-about-leed-v5", "date": "2025" },
+    "leedfees": { "title": "LEED certification fees", "title_es": "LEED certification fees (tarifas de certificación)", "publisher": "USGBC", "url": "https://www.usgbc.org/tools/leed-certification/fees", "date": "consulted October 2026", "date_es": "consultado en octubre de 2026" },
+    "rater": { "title": "LEED Green Rater", "publisher": "USGBC", "url": "https://www.usgbc.org/credentials/leed-green-rater", "date": "consulted October 2026", "date_es": "consultado en octubre de 2026" }
   },
   "services": [
     {
@@ -310,6 +316,181 @@
           ["¿Cada cuánto visitan la obra?", "Al menos una vez por semana, el mínimo legal, y más en los momentos que importan: fundaciones, cada chorrea, el techo y las instalaciones antes de cerrarlas [@reg]."],
           ["Vivo fuera del país. ¿Cómo voy a saber cómo va?", "Después de cada visita recibe un informe escrito con fotos: qué se hizo, qué se revisó, qué se aprobó y qué necesita una decisión suya."],
           ["¿Ayudan a elegir al constructor?", "Sí: documentos del concurso para tres o más constructores, una comparación de sus ofertas partida por partida y una recomendación. El mínimo del CFIA para eso es el 0.5% del contrato [@arancel]."]
+        ]
+      }
+    },
+    {
+      "slug": {
+        "en": "sustainable-design",
+        "es": "diseno-sostenible"
+      },
+      "image": "casa-alcaravan/1",
+      "projects": ["casa-alcaravan", "kauhane-house", "tragaluz-retreat"],
+      "en": {
+        "name": "Sustainable design",
+        "h1": ["Sustainable", "design"],
+        "card": "Houses and hotels designed to a sustainability standard, with RESET or LEED® certification if you want the label.",
+        "time": "Alongside the design and the build",
+        "fee": "Separate, agreed up front",
+        "title": "Sustainable design and RESET or LEED certification in Costa Rica | Studio CAVA",
+        "description": "Sustainable design for houses and hotels in Costa Rica, and the route to certification: RESET, the Costa Rican standard for the tropics, or LEED, from the first sketch to the certifier's review.",
+        "lead": "We design to the criteria of a sustainability standard from the first sketch, and if you want the certificate we run the process: RESET, written in Costa Rica for the tropics, or LEED®, recognised abroad.",
+        "for": [
+          "Hotels and retreats that want a label their guests recognise",
+          "Owners who will sell or rent and want proof of how the building performs",
+          "Anyone who wants the shade, breeze and water decisions written down and checked"
+        ],
+        "glance": [
+          ["Standards", "RESET (INTE C170), evaluated by INTECO [@reset], or LEED v5, certified by GBCI [@leedv5]"],
+          ["Levels", "RESET rates in suns, from one sun to Sol RESET + 2 [@resetsol]; LEED from Certified to Platinum"],
+          ["Fee", "Our work is a separate fee agreed up front; the certifier's fees are paid by the owner [@leedfees]"],
+          [
+            "Team",
+            "We work with accredited consultants: a RESET consultant listed by the CFIA [@resetcfia], a LEED AP, and a Green Rater where LEED requires one [@rater]"
+          ]
+        ],
+        "phases": [
+          {
+            "name": "Choose the standard",
+            "time": "With the lot study or the concept",
+            "do": "We compare RESET and LEED for your project's type, budget and goals, set the level to aim for, and register the project with the certifier.",
+            "get": [
+              "Which standard and which level",
+              "What certification will cost, certifier included",
+              "The list of criteria the design has to meet"
+            ]
+          },
+          {
+            "name": "Design to the criteria",
+            "time": "With the design",
+            "do": "Orientation, shade, cross ventilation, water and materials are decided against the criteria and recorded as we draw. RESET reviews design, construction and operation as separate stages [@reset]; an energy model is added where the standard asks for one.",
+            "get": ["The criteria tracked in the drawings", "The design documentation for review"]
+          },
+          {
+            "name": "Build and verify",
+            "time": "During construction",
+            "do": "We keep the evidence the standard asks for on site: materials, waste, water and energy systems. LEED houses need on-site verification by an independent Green Rater from the design stage on [@rater].",
+            "get": ["Evidence for each criterion", "Site verification where it applies"]
+          },
+          {
+            "name": "Certification",
+            "time": "After the build",
+            "do": "We submit the project to INTECO or GBCI and answer the reviewers until the certificate is issued.",
+            "get": ["The certificate and its level"]
+          }
+        ],
+        "fees": [
+          "Certification adds two costs to the design: our work on it, agreed up front as a separate fee, and the certifier's fees, which the owner pays. For LEED these are a registration fee and a certification fee set by GBCI by floor area [@leedfees]; for RESET, the evaluation by INTECO [@reset]. An energy model or commissioning, where the standard requires them, are paid to those specialists.",
+          "The decisions the standards reward, deep shade, rooms that cross-ventilate, water that is collected and reused, are ones we already make for the climate. Most of the extra cost is the evidence and the review, not the building.",
+          "LEED® is a registered trademark of the U.S. Green Building Council, named here to describe the certification."
+        ],
+        "not": [
+          "A promise of certification: the certifier decides after reviewing the evidence",
+          "The independent verification of a LEED house, done by a Green Rater [@rater]",
+          "Energy modelling and commissioning, which we coordinate with specialists"
+        ],
+        "faq": [
+          [
+            "RESET or LEED, which one in Costa Rica?",
+            "RESET was written in Costa Rica for tropical buildings, is published as the national standard INTE C170 and is evaluated by INTECO [@reset]. LEED is international and better known to foreign buyers, guests and investors, and it costs more to certify. For a house or a small hotel RESET usually fits; for a hotel aimed at international guests or a brand, LEED may be worth it."
+          ],
+          [
+            "Can a house be LEED certified?",
+            "Yes, under the LEED residential rating systems. The difference is a third party: an independent Green Rater has to verify the house on site, from the design stage to the end of the build [@rater]."
+          ],
+          [
+            "Who grants the certificate?",
+            "Not the architect. For RESET, INTECO evaluates the project against INTE C170 [@reset]; for LEED, GBCI reviews it on behalf of the U.S. Green Building Council [@leedv5]. A project that is only registered is not certified, and we never describe it as if it were."
+          ],
+          [
+            "When should we decide?",
+            "Before the concept. The standards reward decisions about where the building sits and which way it faces, and those are the first ones we make. Adding certification once the plans are approved is possible, but usually costs more and reaches a lower level."
+          ]
+        ]
+      },
+      "es": {
+        "name": "Diseño sostenible",
+        "h1": ["Diseño", "sostenible"],
+        "card": "Casas y hoteles diseñados con un estándar de sostenibilidad, y certificación RESET o LEED® si quiere el sello.",
+        "time": "Junto con el diseño y la obra",
+        "fee": "Aparte, acordado de entrada",
+        "title": "Diseño sostenible y certificación RESET o LEED en Costa Rica | Studio CAVA",
+        "description": "Diseño sostenible para casas y hoteles en Costa Rica, y el camino a la certificación: RESET, la norma costarricense para el trópico, o LEED, del primer boceto a la revisión del certificador.",
+        "lead": "Diseñamos con los criterios de un estándar de sostenibilidad desde el primer boceto y, si quiere el certificado, llevamos el proceso: RESET, escrito en Costa Rica para el trópico, o LEED®, reconocido afuera.",
+        "for": [
+          "Hoteles y retiros que quieren un sello que sus huéspedes reconozcan",
+          "Dueños que van a vender o alquilar y quieren demostrar cómo funciona el edificio",
+          "Quien quiere que las decisiones de sombra, brisa y agua queden escritas y revisadas"
+        ],
+        "glance": [
+          ["Estándares", "RESET (INTE C170), evaluado por INTECO [@reset], o LEED v5, certificado por GBCI [@leedv5]"],
+          ["Niveles", "RESET califica en soles, de un sol a Sol RESET + 2 [@resetsol]; LEED de Certified a Platinum"],
+          [
+            "Honorarios",
+            "Nuestro trabajo va aparte, acordado de entrada; las tarifas del certificador las paga el dueño [@leedfees]"
+          ],
+          [
+            "Equipo",
+            "Trabajamos con consultores acreditados: un consultor RESET inscrito en el CFIA [@resetcfia], un LEED AP y un Green Rater cuando LEED lo exige [@rater]"
+          ]
+        ],
+        "phases": [
+          {
+            "name": "Elegir el estándar",
+            "time": "Con el estudio de lote o el concepto",
+            "do": "Comparamos RESET y LEED según el tipo de proyecto, el presupuesto y lo que busca, fijamos el nivel al que apuntar e inscribimos el proyecto ante el certificador.",
+            "get": [
+              "Qué estándar y qué nivel",
+              "Lo que costará certificar, certificador incluido",
+              "La lista de criterios que el diseño debe cumplir"
+            ]
+          },
+          {
+            "name": "Diseñar con los criterios",
+            "time": "Con el diseño",
+            "do": "Orientación, sombra, ventilación cruzada, agua y materiales se deciden contra los criterios y quedan registrados mientras dibujamos. RESET revisa diseño, construcción y operación como etapas separadas [@reset]; si el estándar lo pide, se suma un modelo energético.",
+            "get": ["Los criterios seguidos en los planos", "La documentación del diseño para la revisión"]
+          },
+          {
+            "name": "Construir y verificar",
+            "time": "Durante la obra",
+            "do": "Guardamos en obra la evidencia que pide el estándar: materiales, desechos, sistemas de agua y energía. Una casa LEED necesita verificación en sitio de un Green Rater independiente desde el diseño [@rater].",
+            "get": ["Evidencia de cada criterio", "Verificación en sitio cuando aplica"]
+          },
+          {
+            "name": "Certificación",
+            "time": "Al terminar la obra",
+            "do": "Presentamos el proyecto a INTECO o a GBCI y respondemos a los revisores hasta que sale el certificado.",
+            "get": ["El certificado y su nivel"]
+          }
+        ],
+        "fees": [
+          "Certificar suma dos costos al diseño: nuestro trabajo, acordado de entrada como honorario aparte, y las tarifas del certificador, que paga el dueño. En LEED son una tarifa de inscripción y una de certificación que GBCI fija según el área [@leedfees]; en RESET, la evaluación de INTECO [@reset]. Un modelo energético o la puesta en marcha de los sistemas, cuando el estándar los pide, se pagan a esos especialistas.",
+          "Las decisiones que premian los estándares, sombra profunda, espacios con ventilación cruzada, agua que se recoge y se reutiliza, ya las tomamos por el clima. La mayor parte del costo extra está en la evidencia y la revisión, no en el edificio.",
+          "LEED® es una marca registrada del U.S. Green Building Council, nombrada aquí para describir la certificación."
+        ],
+        "not": [
+          "Una promesa de certificación: el certificador decide después de revisar la evidencia",
+          "La verificación independiente de una casa LEED, que hace un Green Rater [@rater]",
+          "El modelo energético y la puesta en marcha, que coordinamos con especialistas"
+        ],
+        "faq": [
+          [
+            "¿RESET o LEED, cuál conviene en Costa Rica?",
+            "RESET se escribió en Costa Rica para edificios en el trópico, está publicada como la norma nacional INTE C170 y la evalúa INTECO [@reset]. LEED es internacional, más conocida por compradores, huéspedes e inversionistas extranjeros, y certificar cuesta más. Para una casa o un hotel pequeño RESET suele bastar; para un hotel dirigido a huéspedes internacionales o una marca, LEED puede valer la pena."
+          ],
+          [
+            "¿Una casa puede certificarse LEED?",
+            "Sí, con los sistemas LEED residenciales. La diferencia es un tercero: un Green Rater independiente tiene que verificar la casa en sitio, desde el diseño hasta el final de la obra [@rater]."
+          ],
+          [
+            "¿Quién otorga el certificado?",
+            "No el arquitecto. En RESET, INTECO evalúa el proyecto contra la INTE C170 [@reset]; en LEED, GBCI lo revisa en nombre del U.S. Green Building Council [@leedv5]. Un proyecto solo inscrito no está certificado, y nunca lo presentamos como si lo estuviera."
+          ],
+          [
+            "¿Cuándo hay que decidirlo?",
+            "Antes del concepto. Los estándares premian decisiones sobre dónde se ubica el edificio y hacia dónde mira, y son las primeras que tomamos. Sumar la certificación con los planos ya aprobados es posible, pero suele costar más y llegar a un nivel más bajo."
+          ]
         ]
       }
     }
