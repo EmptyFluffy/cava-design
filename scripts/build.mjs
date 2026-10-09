@@ -340,6 +340,41 @@ function townLink(lang, p) {
   return `        <p class="label pmap__town"><a class="ulink" href="../../${lang === 'es' ? '../' : ''}${townPath(lang, best.t.slug)}">${TT[lang].kicker} ${esc(best.t.name)} →</a></p>\n`;
 }
 
+// The house typologies of a master plan as axonometric volumes, all at one scale and standing on one
+// baseline, so they read from the smallest to the largest. boxes: [x, y, z, length, width, height] in
+// metres; pools: [x, y, length, width] at ground level.
+function typologyAxos(list) {
+  const C = Math.cos(Math.PI / 6), S = Math.sin(Math.PI / 6);
+  const P = (x, y, z) => [(x - y) * C, (x + y) * S - z];
+  const PLATE = 1.5;
+  const extent = (t) => {
+    const xs = [], ys = [];
+    const xmax = Math.max(...t.boxes.map((b) => b[0] + b[3]), ...t.pools.map((q) => q[0] + q[2])) + PLATE;
+    const ymax = Math.max(...t.boxes.map((b) => b[1] + b[4]), ...t.pools.map((q) => q[1] + q[3])) + PLATE;
+    for (const [x, y] of [[-PLATE, -PLATE], [xmax, -PLATE], [xmax, ymax], [-PLATE, ymax]]) { const [u, v] = P(x, y, 0); xs.push(u); ys.push(v); }
+    for (const b of t.boxes) for (const [x, y] of [[b[0], b[1]], [b[0] + b[3], b[1]], [b[0], b[1] + b[4]]]) { const [u, v] = P(x, y, b[2] + b[5]); xs.push(u); ys.push(v); }
+    return { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys), xmax, ymax };
+  };
+  const ex = list.map(extent);
+  const W = Math.max(...ex.map((e) => e.x1 - e.x0)) + 2, H = Math.max(...ex.map((e) => e.y1 - e.y0)) + 2;
+  const shade = (hex, k) => '#' + [1, 3, 5].map((i) => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - k)).toString(16).padStart(2, '0')).join('');
+  const poly = (pts, fill, cls = '') => `<path${cls ? ` class="${cls}"` : ''} d="M${pts.map(([u, v]) => `${u.toFixed(2)} ${v.toFixed(2)}`).join('L')}Z" fill="${fill}"/>`;
+  return list.map((t, i) => {
+    const e = ex[i];
+    const dx = (W - (e.x1 - e.x0)) / 2 - e.x0, dy = H - 1 - e.y1;           // centred, standing on the baseline
+    const Q = (x, y, z) => { const [u, v] = P(x, y, z); return [u + dx, v + dy]; };
+    let g = poly([Q(-PLATE, -PLATE, 0), Q(e.xmax, -PLATE, 0), Q(e.xmax, e.ymax, 0), Q(-PLATE, e.ymax, 0)], 'none', 'tyx__plate');
+    for (const [x, y, l, w] of t.pools) g += poly([Q(x, y, 0), Q(x + l, y, 0), Q(x + l, y + w, 0), Q(x, y + w, 0)], '#8fd3d6', 'tyx__pool');
+    for (const [x, y, z, l, w, h] of [...t.boxes].sort((a, b) => a[2] - b[2] || a[0] + a[1] - (b[0] + b[1]))) {
+      const z1 = z + h;
+      g += poly([Q(x, y + w, z), Q(x + l, y + w, z), Q(x + l, y + w, z1), Q(x, y + w, z1)], shade(t.color, 0.22), 'tyx__f');   // front, facing +y
+      g += poly([Q(x + l, y, z), Q(x + l, y + w, z), Q(x + l, y + w, z1), Q(x + l, y, z1)], shade(t.color, 0.4), 'tyx__f');   // side, facing +x
+      g += poly([Q(x, y, z1), Q(x + l, y, z1), Q(x + l, y + w, z1), Q(x, y + w, z1)], t.color, 'tyx__f');                      // roof
+    }
+    return `<svg class="tyx__svg" viewBox="0 0 ${W.toFixed(1)} ${H.toFixed(1)}" role="img" aria-hidden="true">${g}</svg>`;
+  });
+}
+
 // A project with a site analysis opens on every view of it at once: a matrix on black, plan above and
 // axonometric below; each view opens that layer in the analysis further down (analysis.js).
 function coverMatrix(lang, up, p) {
@@ -347,6 +382,10 @@ function coverMatrix(lang, up, p) {
   return `<figure class="proj__cover pmx" aria-label="${esc(altOf(lang, p, 1))}">
       <div class="pmx__grid" style="--n: ${an.layers.length}">
 ${an.views.map((v) => `        <p class="label pmx__row">(${esc(v[lang])})</p>\n` + an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [w, h] = sizes[k]; return `        <button class="pmx__cell" type="button" data-anl-go="${v.key} ${l.key}"><img src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${w}" height="${h}" decoding="async" fetchpriority="${i < 4 ? 'high' : 'auto'}" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}"><span class="label pmx__cap"><span>${pad(i + 1)}</span>${esc(l[lang].name)}</span></button>`; }).join('\n')).join('\n')}
+${an.typologies ? (() => { const svgs = typologyAxos(an.typologies); const tot = an.typologies.reduce((a, t) => a + t.area * t.units, 0); const units = an.typologies.reduce((a, t) => a + t.units, 0); const num = (n) => (lang === 'en' ? n.toLocaleString('en-US') : String(n)); return `        <p class="label pmx__row">(${lang === 'en' ? 'Typologies' : 'Tipologías'})<span class="pmx__tot">${units} ${lang === 'en' ? 'houses' : 'casas'}, ${num(tot)} m²</span></p>
+${an.typologies.map((t, i) => `        <button class="pmx__ty" type="button" data-anl-go="plan modules"><span class="tyx">${svgs[i]}</span><span class="pmx__tyhead"><span class="pmx__tyname"><i style="--c: ${t.color}"></i>${lang === 'en' ? 'Typology' : 'Tipología'} ${t.key}</span><b>×${t.units}</b></span><span class="pmx__tyarea">${t.area} m²<span> · ${num(t.area * t.units)} m² ${lang === 'en' ? 'in all' : 'en total'}</span></span><span class="pmx__typrog">${esc(t[lang])}</span></button>`).join('\n')}
+${an.amenities ? `        <p class="label pmx__row">(${lang === 'en' ? 'Amenities' : 'Amenidades'})<span class="pmx__tot">${an.amenities.length} ${lang === 'en' ? 'shared buildings' : 'edificios comunes'}, ${num(an.amenities.reduce((a, m) => a + m.area, 0))} m²</span></p>
+${an.amenities.map((m) => `        <button class="pmx__am" type="button" data-anl-go="plan modules"><span class="pmx__amname">${esc(m[lang].name)}</span><span class="pmx__tyarea">${m.area} m²</span><span class="pmx__typrog">${esc(m[lang].text)}</span></button>`).join('\n')}` : ''}`; })() : ''}
       </div>
     </figure>`;
 }
@@ -416,6 +455,7 @@ ${row.images.map((n, i) => {
   const analysis = an ? (() => {
     const n = an.layers.length;
     const frame = (v) => { const [w, h] = sizes[`${p.slug}/a-${v.key}-${an.layers[0].key}`]; return `        <div class="anl__frame${v === an.views[0] ? ' is-on' : ''}" data-anl-frame="${v.key}" style="--ratio: ${(w / h).toFixed(3)}">
+${v.key === 'plan' && an.amenities ? `          <div class="anl__notes" data-anl-notes="modules modules-runoff" style="--ar: ${(w / h).toFixed(4)}"><div class="anl__notebox">${an.amenities.map((m) => `<span class="anl__pin${m.side === 'left' ? ' is-left' : ''}" style="left: ${(m.x * 100).toFixed(1)}%; top: ${(m.y * 100).toFixed(1)}%"><i></i><span class="label">${esc(m[lang].name)}</span></span>`).join('')}</div></div>\n` : ''}
 ${an.layers.map((l, i) => { const k = `${p.slug}/a-${v.key}-${l.key}`; const [lw, lh] = sizes[k]; return `          <img class="anl__img${i === 0 ? ' is-on' : ''}" data-anl-img="${l.key}" src="${up}assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp?v=${assetVer(`assets/img/projects/${p.slug}/a-${v.key}-${l.key}.webp`)}" width="${lw}" height="${lh}" ${i === 0 && v === an.views[0] ? '' : 'loading="lazy" '}decoding="async" alt="${esc(`${l[lang].name}, ${v[lang].toLowerCase()}`)}">`; }).join('\n')}
         </div>`; };
     return `    <section class="anl" aria-labelledby="anl-title" data-anl>

@@ -45,6 +45,7 @@
     });
     for (const b of views) b.setAttribute('aria-pressed', String(b.dataset.anlView === view));
     for (const l of root.querySelectorAll('[data-anl-legend]')) l.classList.toggle('is-on', l.dataset.anlLegend === layer);
+    for (const n of root.querySelectorAll('[data-anl-notes]')) n.classList.toggle('is-on', n.dataset.anlNotes.split(' ').includes(layer));
   };
 
   // autoplay: the progress bar on the active tab restarts with every step

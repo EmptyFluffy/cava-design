@@ -1906,3 +1906,37 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 @media (max-width: 991px) { .pmx__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 479px) { .pmx { padding: var(--s-3) var(--margin); } .pmx__grid { row-gap: 1.1rem; } .pmx__cap { font-size: 0.625rem; } .pmx__cap { visibility: hidden; height: 0; margin-top: -0.7rem; } }   /* phones: the names are in the analysis below */
 @media (prefers-reduced-motion: reduce) { .pmx__cell img { transition: none; } .anl.is-playing .anl__tab[aria-selected="true"]::after { animation: none; } }
+/* the typologies under the matrix: volumes at one scale, from the smallest to the largest */
+.pmx__tot { margin-left: 0.9rem; color: #8b8b88; text-transform: none; }
+.pmx__ty { grid-column: span 2; display: grid; gap: 0.5rem; align-content: start; padding: 0; border: 0; background: none; color: #dcddde; text-align: left; cursor: pointer; font: inherit; }
+.tyx { display: block; border-bottom: 1px solid #2a2a28; padding-bottom: 0.4rem; }
+.tyx__svg { display: block; width: 100%; height: auto; overflow: visible; transition: transform 0.45s var(--ease); }
+.pmx__ty:hover .tyx__svg { transform: translateY(-0.3rem); }
+.pmx__ty:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
+.tyx__f { stroke: #0b0b0a; stroke-width: 0.05; stroke-linejoin: round; }
+.tyx__plate { stroke: #3a3a37; stroke-width: 0.06; stroke-dasharray: 0.4 0.3; }
+.tyx__pool { stroke: #0b0b0a; stroke-width: 0.05; }
+.pmx__tyhead { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; margin-top: 0.3rem; }
+.pmx__tyname { display: inline-flex; align-items: center; gap: 0.5rem; font-size: var(--f-main); font-weight: var(--w-strong); color: var(--white); }
+.pmx__tyname i { width: 0.7rem; height: 0.7rem; background: var(--c); display: inline-block; }
+.pmx__tyhead b { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1; color: var(--white); font-variant-numeric: tabular-nums; }
+.pmx__tyarea { font-size: var(--f-main); color: #dcddde; font-variant-numeric: tabular-nums; }
+.pmx__tyarea span { color: #8b8b88; }
+.pmx__typrog { font-size: var(--f-small); line-height: 1.4; color: #8b8b88; max-width: 22rem; }
+@media (max-width: 991px) { .pmx__ty { grid-column: span 2; } }
+@media (max-width: 479px) { .pmx__tot { display: block; margin: 0.3rem 0 0; } .pmx__tyhead b { font-size: 1.2rem; } }
+@media (prefers-reduced-motion: reduce) { .tyx__svg { transition: none; } }
+/* labels on the plan: the image's own box inside the frame (contain), so the points land where they belong */
+.anl__frame { container-type: size; }
+.anl__notes { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s var(--ease); pointer-events: none; z-index: 2; }
+.anl__notes.is-on { opacity: 1; }
+.anl__notebox { position: absolute; inset: 0; margin: auto; width: min(100cqw, 100cqh * var(--ar)); height: min(100cqh, 100cqw / var(--ar)); }
+.anl__pin { position: absolute; display: flex; align-items: center; gap: 0.35rem; transform: translate(-0.3rem, -50%); white-space: nowrap; }
+.anl__pin i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--white); box-shadow: 0 0 0 3px rgba(11, 11, 10, 0.55); flex: none; }
+.anl__pin .label { padding: 0.25rem 0.5rem; border-radius: 100vw; background: rgba(11, 11, 10, 0.78); color: var(--white); font-size: 0.6875rem; }
+.anl__pin.is-left { flex-direction: row-reverse; transform: translate(calc(-100% + 0.3rem), -50%); }
+.pmx__am { grid-column: span 2; display: grid; gap: 0.35rem; align-content: start; padding: 0.9rem 0 0; border: 0; border-top: 1px solid #2a2a28; background: none; color: #dcddde; text-align: left; cursor: pointer; font: inherit; }
+.pmx__amname { font-size: var(--f-main); font-weight: var(--w-strong); color: var(--white); }
+.pmx__am:hover .pmx__amname { text-decoration: underline; text-underline-offset: 0.2em; }
+.pmx__am:focus-visible { outline: 1px solid var(--white); outline-offset: 4px; }
+@media (max-width: 767px) { .anl__pin .label { font-size: 0.5625rem; padding: 0.18rem 0.4rem; } .anl__pin i { width: 0.4rem; height: 0.4rem; } }

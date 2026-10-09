@@ -602,7 +602,7 @@
       "status_es": "Estudio de plan maestro",
       "year": 2021,
       "siteArea": 57075,
-      "builtArea": 3905,
+      "builtArea": 7120,
       "images": [
         {
           "file": "web/cover.png",
@@ -636,6 +636,26 @@
           "en": "Before drawing a single lot we read the land: its height, its slope and where the rain runs.", "note_en": "A condominium on 5.7 hectares at Matapalo, on the road to Bahía Pirata, planned in 2021 and not built.",
           "es": "Antes de dibujar un solo lote leímos el terreno: su altura, su pendiente y por dónde corre la lluvia.", "note_es": "Un condominio en 5.7 hectáreas en Matapalo, camino a Bahía Pirata, planificado en 2021 y no construido."
         },
+        "amenities": [
+          { "key": "clubhouse", "x": 0.374, "y": 0.403, "area": 320, "en": { "name": "Clubhouse", "text": "Pool, bar and lounge at the heart of the loop" }, "es": { "name": "Casa Club", "text": "Piscina, bar y sala en el corazón del circuito" } },
+          { "key": "lookout", "x": 0.502, "y": 0.208, "area": 60, "en": { "name": "The Lookout", "text": "A sunset deck on the high edge of the land" }, "es": { "name": "El Mirador", "text": "Un deck para el atardecer en el borde alto del terreno" } },
+          { "key": "bathhouse", "x": 0.342, "y": 0.587, "area": 140, "side": "left", "en": { "name": "Bathhouse", "text": "Spa, sauna and a yoga deck" }, "es": { "name": "Casa de Baños", "text": "Spa, sauna y un deck de yoga" } },
+          { "key": "garden-kitchen", "x": 0.472, "y": 0.602, "area": 90, "en": { "name": "Garden Kitchen", "text": "A shared outdoor kitchen beside the kitchen garden" }, "es": { "name": "Cocina de la Huerta", "text": "Una cocina exterior común junto a la huerta" } }
+        ],
+        "typologies": [
+          { "key": "D", "color": "#c4a884", "area": 100, "units": 8,
+            "boxes": [[0, 0, 0, 12.5, 8, 3.2]], "pools": [],
+            "en": "Studio: bed, bathroom, kitchenette and a deck", "es": "Estudio: cama, baño, cocineta y un deck" },
+          { "key": "C", "color": "#fad8a8", "area": 160, "units": 11,
+            "boxes": [[0, 0, 0, 12, 8, 3.2], [4, 8, 0, 8, 8, 3.2]], "pools": [],
+            "en": "1 bedroom, 1 bathroom, kitchen and living, terrace", "es": "1 dormitorio, 1 baño, cocina y sala, terraza" },
+          { "key": "B", "color": "#f09c54", "area": 250, "units": 11,
+            "boxes": [[0, 0, 0, 14, 10, 3.4], [0, 10, 0, 8, 7, 3.4], [14, 0, 0, 6, 9, 3.4]], "pools": [[8.8, 10.8, 4, 5]],
+            "en": "3 bedrooms, 2.5 bathrooms, kitchen, living and dining around a courtyard with a plunge pool", "es": "3 dormitorios, 2.5 baños, cocina, sala y comedor alrededor de un patio con piscina" },
+          { "key": "A", "color": "#ccc06c", "area": 400, "units": 3,
+            "boxes": [[0, 0, 0, 18, 14, 3.4], [1, 0, 3.4, 16, 9.25, 3.2]], "pools": [[1, 15.5, 14, 4]],
+            "en": "4 bedrooms on two floors, 3.5 bathrooms, kitchen, living and dining, family room, terrace and pool", "es": "4 dormitorios en dos pisos, 3.5 baños, cocina, sala y comedor, sala familiar, terraza y piscina" }
+        ],
         "views": [
           { "key": "plan", "en": "Plan", "es": "Planta" },
           { "key": "axo", "en": "Axonometric", "es": "Axonometría" }
@@ -647,7 +667,7 @@
           { "key": "slope", "legend": { "ramp": true, "en": ["Flat", "Steep"], "es": ["Plano", "Empinado"] }, "en": { "name": "Slope", "text": "How steep the ground is at every point. Gentler ground is where a road or a house costs least to build; the steepest is left as it is." }, "es": { "name": "Pendiente", "text": "Qué tan inclinado es el terreno en cada punto. Donde es más suave, una calle o una casa cuesta menos; lo más empinado se deja como está." } },
           { "key": "runoff", "legend": { "keys": [{ "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Runoff", "text": "The paths rain takes across the land. Where they gather, the water has to be led away and kept clear of buildings." }, "es": { "name": "Escorrentía", "text": "Los caminos que toma la lluvia sobre el terreno. Donde se juntan, el agua hay que conducirla y mantenerla lejos de las construcciones." } },
           { "key": "streets", "legend": { "keys": [{ "line": "#7b6553", "en": "Road", "es": "Calle" }] }, "en": { "name": "Streets", "text": "One road that follows the land to keep its grade gentle, ending in a turning circle." }, "es": { "name": "Calles", "text": "Una sola calle que sigue el terreno para mantener una pendiente suave, y termina en un retorno." } },
-          { "key": "modules", "legend": { "keys": [{ "box": "#ccc06c", "en": "Typology A", "es": "Tipología A", "sub": "220 m² × 3" }, { "box": "#f09c54", "en": "Typology B", "es": "Tipología B", "sub": "160 m² × 11" }, { "box": "#fad8a8", "en": "Typology C", "es": "Tipología C", "sub": "75 m² × 15" }, { "box": "#c4a884", "en": "Typology D", "es": "Tipología D", "sub": "45 m² × 8" }] }, "en": { "name": "Lots and houses", "text": "37 houses in four typologies, 3,905 m² in all: in rows on one side of the road, in a fan around the turning circle." }, "es": { "name": "Lotes y casas", "text": "37 casas en cuatro tipologías, 3905 m² en total: en hileras de un lado de la calle y en abanico alrededor del retorno." } },
+          { "key": "modules", "legend": { "keys": [{ "box": "#ccc06c", "en": "Typology A", "es": "Tipología A", "sub": "400 m² × 3" }, { "box": "#f09c54", "en": "Typology B", "es": "Tipología B", "sub": "250 m² × 11" }, { "box": "#fad8a8", "en": "Typology C", "es": "Tipología C", "sub": "160 m² × 11" }, { "box": "#c4a884", "en": "Typology D", "es": "Tipología D", "sub": "100 m² × 8" }] }, "en": { "name": "Lots and houses", "text": "33 houses in four typologies, 6,510 m², and four shared buildings, 610 m²: houses in rows on one side of the road and in a fan around the turning circle, the shared buildings inside the loop." }, "es": { "name": "Lotes y casas", "text": "33 casas en cuatro tipologías, 6510 m², y cuatro edificios comunes, 610 m²: las casas en hileras de un lado de la calle y en abanico alrededor del retorno, los edificios comunes dentro del circuito." } },
           { "key": "modules-runoff", "legend": { "keys": [{ "box": "#ccc06c", "en": "A", "es": "A" }, { "box": "#f09c54", "en": "B", "es": "B" }, { "box": "#fad8a8", "en": "C", "es": "C" }, { "box": "#c4a884", "en": "D", "es": "D" }, { "line": "#3ee8ef", "en": "Path of the rain", "es": "Camino de la lluvia" }] }, "en": { "name": "Houses over runoff", "text": "The houses laid over the runoff, to check each one against the paths the water takes." }, "es": { "name": "Casas sobre la escorrentía", "text": "Las casas sobre la escorrentía, para revisar cada una contra los caminos del agua." } }
         ]
       }
