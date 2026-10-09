@@ -1918,14 +1918,15 @@ ${cards}
 ${svcData.extras?.length ? `    <section class="tw__sec grid svc-x" aria-labelledby="svc-also">
       <h2 class="label tw__label" id="svc-also">${S.also}</h2>
       <p class="h3 tw__text">${esc(S.alsoText)}</p>
-      <ol class="strats svc-x__list">
-${svcData.extras.map((x) => { const X = x[lang]; const [sl, n] = x.image.split('/'); const pr = projects.find((o) => o.slug === sl); return `        <li class="strat">
-          <figure class="strat__fig">${picture(up, sl, +n, altOf(lang, pr, +n), '(min-width: 992px) 31vw, 92vw')}<figcaption class="label strat__cap">${esc(pr.name)}</figcaption></figure>
-          <p class="label strat__n">${esc(X.kicker)}</p>
-          <h3 class="strat__name">${esc(X.name)}</h3>
-          <p class="strat__text">${esc(X.text)}</p>
-          <ul class="strat__items">${X.items.map((it) => `<li>${esc(it)}</li>`).join('')}</ul>
-          <a class="ulink strat__link" href="${wa(S.wa(X.name))}" target="_blank" rel="noopener">${S.ask} →</a>
+      <ol class="gcards svc-x__list">
+${svcData.extras.map((x) => { const X = x[lang]; const [sl, n] = x.image.split('/'); const pr = projects.find((o) => o.slug === sl); return `        <li class="gcard">
+          <a class="gcard__link" href="${wa(S.wa(X.name))}" target="_blank" rel="noopener">
+            <span class="gcard__top"><span class="gcard__thumb">${picture(up, sl, +n, altOf(lang, pr, +n), '4rem')}</span><span class="label gcard__kind"><span>${esc(X.kicker)}</span><span class="gcard__count">${esc(pr.name)}</span></span></span>
+            <span class="gcard__title">${esc(X.name)}</span>
+            <span class="gcard__text">${esc(X.text)}</span>
+            <span class="gcard__list"><span class="label gcard__listlabel">${lang === 'en' ? 'Includes' : 'Incluye'}</span>${X.items.map((it, k) => `<span class="gcard__row"><span class="gcard__k">${pad(k + 1)}</span><span>${esc(it)}</span></span>`).join('')}</span>
+            <span class="label gcard__foot"><span>${lang === 'en' ? 'Added to a project or on its own' : 'Con un proyecto o por separado'}</span><span class="gcard__go">${S.ask} →</span></span>
+          </a>
         </li>`; }).join('\n')}
       </ol>
     </section>

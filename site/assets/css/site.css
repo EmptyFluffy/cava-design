@@ -1795,10 +1795,21 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 /* a strategy drawn from a site analysis: the layer on black, whole */
 .strat__fig--dark img { background: #0b0b0a; object-fit: contain; padding: 7% 9%; box-sizing: border-box; }
 /* the smaller services on /services/: three cards across, after the order */
-.svc-x .svc-x__list { grid-column: 1 / -1; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--s-2); }
-.svc-x .strat__items { grid-template-columns: minmax(0, 1fr); }
-@media (min-width: 1280px) { .svc-x .strat__items { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 767px) { .svc-x .svc-x__list { grid-template-columns: minmax(0, 1fr); } }
+.svc-x .svc-x__list { grid-column: 1 / -1; padding: 0; margin-top: var(--s-2); }
+/* the seven services: four and three, so no card stands alone (two and three on a tablet) */
+/* the time goes under the name, so a narrow card keeps the name on one line */
+.svc__cards .card__cap { flex-wrap: wrap; row-gap: 0.15rem; column-gap: 0.6rem; }
+.svc__cards .card__meta { flex-basis: 100%; margin-left: 0; text-align: left; }
+@media (min-width: 992px) {
+  .svc__cards { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .svc__cards > li { grid-column: span 4; }
+  .svc__cards > li:nth-child(-n + 4) { grid-column: span 3; }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .svc__cards { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .svc__cards > li { grid-column: span 2; }
+  .svc__cards > li:nth-child(-n + 4) { grid-column: span 3; }
+}
 .certs { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 .cert { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.4rem 1.3rem 1.5rem; background: var(--light-grey); border-radius: 0.9rem; }
 .cert__kicker { margin: 0; color: var(--dark-grey); }
