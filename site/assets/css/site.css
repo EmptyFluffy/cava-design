@@ -1679,9 +1679,11 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 
 /* ---------- the client portal: its button in the nav, and the sign-in page ---------- */
 .lock { width: 0.95rem; height: 0.95rem; flex: none; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; }
-.portal-btn { gap: 0.5rem; }
+/* the same box as the button beside it: 1rem above and below a 0.875rem line = 2.875rem */
+.portal-btn { gap: 0.5rem; height: 2.875rem; padding: 0 1.25rem; }
 .portal-btn[aria-current="page"] { background: var(--grey); }
 .bar__acts, .nav__acts { display: flex; align-items: center; justify-content: flex-end; gap: 0.5rem; }
+.bar__acts > *, .nav__acts > * { flex: none; }
 /* the actions share columns with the links, so on a wide screen both are pinned to the first row */
 .bar__acts { grid-column: 9 / span 4; grid-row: 1; justify-self: end; }
 .nav__acts { grid-column: 9 / span 4; grid-row: 1; justify-self: end; }
@@ -1691,7 +1693,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 /* where the links leave no room for the word, the button is the lock alone (a circle) */
 @media (max-width: 1439px) {
   .portal-btn__t { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .portal-btn { padding: 0; width: 2.75rem; height: 2.75rem; justify-content: center; }
+  .portal-btn { padding: 0; width: 2.875rem; justify-content: center; }
 }
 @media (min-width: 992px) and (max-width: 1279px) {
   .bar__links, .nav__links { grid-column: 6 / span 5; }
@@ -1740,7 +1742,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .portal__media { grid-column: 1 / -1; height: 15rem; margin-bottom: 0; }
   .portal__panel { grid-column: 1 / -1; padding: var(--s-3) 0 var(--s-4); max-width: none; }
   .bar__acts { grid-column: 8 / span 5; }
-  .portal-btn { width: 2.6rem; height: 2.6rem; }
+  .bar__acts .portal-btn { width: 2.575rem; height: 2.575rem; }   /* the phone bar's button: 0.85rem padding */
 }
 @media (prefers-reduced-motion: reduce) { .portal__status { transition: none; } }
 /* the smallest phones: the bar keeps the brand and the call to action; the portal is in the menu and footer */
