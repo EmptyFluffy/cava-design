@@ -328,13 +328,6 @@ window.CAVA_RENDERS = [
   "v": "74275147",
   "title": "Lean & Green",
   "alt": "El mostrador de frente: pizarras de menú, una barra de azulejo verde y mesas de madera bajo las plantas colgantes"
- },
- {
-  "id": "lean-and-green-6",
-  "src": "../assets/img/projects/lean-and-green/6",
-  "v": "de91dede",
-  "title": "Lean & Green",
-  "alt": "Toda la terraza desde la calle: filas de mesas de madera bajo la vela de sombra, jardineras y el mostrador al fondo"
  }
 ];
 window.CAVA_HERO = [

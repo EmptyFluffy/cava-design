@@ -328,13 +328,6 @@ window.CAVA_RENDERS = [
   "v": "74275147",
   "title": "Lean & Green",
   "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants"
- },
- {
-  "id": "lean-and-green-6",
-  "src": "assets/img/projects/lean-and-green/6",
-  "v": "de91dede",
-  "title": "Lean & Green",
-  "alt": "The whole terrace from the street side: rows of timber tables under the sail shade, planters and the counter at the back"
  }
 ];
 window.CAVA_HERO = [
