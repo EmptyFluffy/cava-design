@@ -723,7 +723,7 @@ function recognitionSection(lang, up) {
 ${recognition.items.map((it) => { const T = it[lang]; return `    <article class="rec__item">
       <div class="rec__head grid">
         <p class="label rec__award">${esc(T.award)}</p>
-        <h3 class="display rec__title"><span>${esc(it.name)}</span><span class="right rec__sub">${esc(T.sub)}</span></h3>
+        <h3 class="rec__title">${esc(it.name)}<span class="rec__sub">${esc(T.sub)}</span></h3>
       </div>
       <div class="rec__pics">
 ${it.images.map((im) => { const b = `${up}assets/img/recognition/${it.id}-${im.key}`, v = `?v=${assetVer(`assets/img/recognition/${it.id}-${im.key}-1600.webp`)}`; return `        <figure class="rec__fig"><img src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1600.webp${v} 1600w, ${b}-2400.webp${v} 2400w" sizes="(min-width: 768px) 48vw, 92vw" width="${im.w}" height="${im.h}" loading="lazy" decoding="async" alt="${esc(im[lang])}"></figure>`; }).join('\n')}
@@ -732,9 +732,21 @@ ${it.images.map((im) => { const b = `${up}assets/img/recognition/${it.id}-${im.k
         <div class="rec__text">${T.text.map((x) => `<p class="large">${esc(x)}</p>`).join('')}</div>
         <dl class="rec__facts">
           <div><dt class="label">${lang === 'en' ? 'Credits' : 'Créditos'}</dt><dd>${esc(T.credits)}</dd></div>
-          <div><dt class="label">${lang === 'en' ? 'Press' : 'Prensa'}</dt><dd>${it.press.map((pr) => `<a class="ulink" href="${pr.url}" target="_blank" rel="noopener">${esc(pr.name)}, ${esc(pr.date[lang])} ↗</a>`).join('<br>')}</dd></div>
           <div><dt class="label">${lang === 'en' ? 'Images' : 'Imágenes'}</dt><dd class="rec__credit">${esc(T.images.replace(/^(Images|Imágenes): /, ''))}</dd></div>
         </dl>
+      </div>
+      <div class="rec__press grid">
+        <h4 class="label rec__presslabel">${lang === 'en' ? '(Press)' : '(Prensa)'}</h4>
+        <ul class="rec__cards">
+${it.press.map((pr) => `          <li><a class="pcard" href="${pr.url}" target="_blank" rel="noopener"${pr.lang && pr.lang !== lang ? ` hreflang="${pr.lang}"` : ''}>
+            <span class="pcard__img"><img src="${up}assets/img/recognition/${pr.image}.webp?v=${assetVer(`assets/img/recognition/${pr.image}.webp`)}" width="800" height="600" loading="lazy" decoding="async" alt=""></span>
+            <span class="pcard__body">
+              <span class="pcard__pub"><b>${esc(pr.name)}</b><span>${esc(pr.edition ?? '')}</span></span>
+              <span class="pcard__title"${pr.lang && pr.lang !== lang ? ` lang="${pr.lang}"` : ''}>${esc(pr.headline)}</span>
+              <span class="label pcard__meta"><span>${esc(pr.date[lang])}</span><span>${lang === 'en' ? 'Read the article' : 'Leer el artículo'} ↗</span></span>
+            </span>
+          </a></li>`).join('\n')}
+        </ul>
       </div>
     </article>`; }).join('\n')}
   </section>

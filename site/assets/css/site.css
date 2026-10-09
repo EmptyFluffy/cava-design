@@ -1948,8 +1948,24 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .rec__label { margin: 0 0 var(--s-3); }
 .rec__head { row-gap: 1rem; margin-bottom: var(--s-3); }
 .rec__award { grid-column: 1 / span 4; margin: 0; align-self: start; max-width: 22rem; }
-.rec__title { grid-column: 5 / -1; margin: 0; display: grid; }
-.rec__title .rec__sub { color: var(--mid-grey); }
+.rec__title { grid-column: 5 / -1; margin: 0; display: grid; gap: 0.3rem; font-size: var(--f-h3); font-weight: var(--w-strong); line-height: 1.05; letter-spacing: -0.03em; }
+.rec__title .rec__sub { font-size: var(--f-h4); font-weight: var(--w-text); letter-spacing: -0.02em; color: var(--mid-grey); }
+/* the press, one card per article */
+.rec__press { margin-top: var(--s-3); row-gap: 1rem; align-items: start; }
+.rec__presslabel { grid-column: 1 / span 4; margin: 0; }
+.rec__cards { grid-column: 5 / -1; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.pcard { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); height: 100%; background: var(--light-grey); border-radius: 0.9rem; overflow: hidden; transition: background-color 0.3s; }
+.pcard:hover { background: var(--grey); }
+.pcard__img { display: block; }
+.pcard__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pcard__body { display: flex; flex-direction: column; gap: 0.7rem; padding: 1.1rem 1.2rem 1.2rem; min-width: 0; }
+.pcard__pub { display: flex; flex-direction: column; gap: 0.1rem; }
+.pcard__pub b { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1; }
+.pcard__pub span { font-size: var(--f-small); color: var(--dark-grey); }
+.pcard__title { font-size: var(--f-small); line-height: 1.4; }
+.pcard__meta { margin-top: auto; display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; color: var(--dark-grey); }
+.pcard:hover .pcard__meta span:last-child { color: var(--black); }
+.pcard:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
 .rec__pics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); margin-bottom: var(--s-3); }
 .rec__fig { margin: 0; }
 .rec__fig img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
@@ -1960,7 +1976,9 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .rec__facts > div { display: grid; gap: 0.35rem; padding-top: 0.7rem; border-top: 1px solid var(--grey); }
 .rec__facts dd { margin: 0; font-size: var(--f-small); line-height: 1.45; }
 .rec__credit { color: var(--dark-grey); }
+@media (max-width: 1199px) { .rec__cards { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 991px) {
+  .rec__presslabel, .rec__cards { grid-column: 1 / -1; }
   .rec__award, .rec__title { grid-column: 1 / -1; }
   .rec__text { grid-column: 1 / span 7; }
   .rec__facts { grid-column: 8 / -1; }
@@ -1968,4 +1986,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 @media (max-width: 767px) {
   .rec__pics { grid-template-columns: minmax(0, 1fr); }
   .rec__text, .rec__facts { grid-column: 1 / -1; }
+  .pcard { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .pcard__body { padding: 0.9rem; gap: 0.5rem; }
+  .pcard__pub b { font-size: 1.15rem; }
 }
