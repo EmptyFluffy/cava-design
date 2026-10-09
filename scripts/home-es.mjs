@@ -11,7 +11,7 @@ export const SAME = new Set([
   // shared between the two pages on purpose
   'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'hola@cava.design', 'cava.design', 'Arquitectura',
   'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'website', 'summary_large_image',
-  'WhatsApp +506 7173 7336', 'WhatsApp +506 7173 7336 ↗',
+  'WhatsApp +506 7173 7336', 'WhatsApp +506 7173 7336 ↗', '(Costa Rica)',
 ]);
 
 export const PAIRS = [
@@ -35,7 +35,6 @@ export const PAIRS = [
   ['<nav class="nav" aria-label="Main">', '<nav class="nav" aria-label="Principal">'],
   ['>Projects</a>', '>Proyectos</a>'],
   ['>Studio</a>', '>Estudio</a>'],
-  ['>Process</a>', '>Proceso</a>'],
   ['>Identity</a>', '>Identidad</a>'],
   ['>Contact</a>', '>Contacto</a>'],
   ['aria-label="Client portal"', 'aria-label="Portal de clientes"'],
@@ -102,7 +101,10 @@ export const PAIRS = [
   // ---------- footer ----------
   ['aria-label="Footer"', 'aria-label="Pie de página"'],
   ['(Navigation)', '(Navegación)'],
-  ['>Contact us</button>', '>Contáctenos</button>'],
+  ['>Contact</button>', '>Contacto</button>'],
+  ['>(Tools)<', '>(Herramientas)<'],
+  ['>(More)<', '>(Más)<'],
+  ['>Permit route</a>', '>Ruta de permisos</a>'],
   ['(Studio)', '(Estudio)'],
   ['Studio CAVA is an architecture and interiors practice based in San José, working across Costa Rica. Formerly AVARQ.',
     'Studio CAVA es un estudio de arquitectura e interiores con base en San José que trabaja en todo Costa Rica. Antes AVARQ.'],

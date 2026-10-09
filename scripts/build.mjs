@@ -203,19 +203,10 @@ function footer(lang, up, paths) {
     </div>
     <nav class="footer__nav" aria-label="${t.aria}">
       <span class="label">${t.nav}</span>
-      <a class="footer__link" href="${home}">${t.home}</a>
       <a class="footer__link" href="${up}${projectsPath(lang)}">${n.projects}</a>
 ${services.length ? `      <a class="footer__link" href="${up}${servicesPath(lang)}">${SVT[lang].link}</a>
 ` : ''}      <a class="footer__link" href="${up}${studioPath(lang)}">${n.studio}</a>
-      <a class="footer__link" href="${up}${studioPath(lang)}#process">${n.process}</a>
-${identity ? `      <a class="footer__link" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
-` : ''}      <a class="footer__link" href="${up}${townsPath(lang)}">${t.where}</a>
-${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
-` : ''}${costs ? `      <a class="footer__link" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
-` : ''}${land ? `      <a class="footer__link" href="${up}${landPath(lang)}">${LT[lang].link}</a>
-` : ''}      <a class="footer__link" href="${home}#enquiry">${t.contactUs}</a>
-      <a class="footer__link" href="${up}${portalPath(lang)}">${n.portal}</a>
-      <a class="footer__link" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
+      <a class="footer__link" href="${home}#enquiry">${n.contact}</a>
     </nav>
     <div class="footer__info">
       <div>
@@ -233,6 +224,22 @@ ${guides.length ? `      <a class="footer__link" href="${up}${guidesIndexPath(la
         <a class="footer__careers ulink" href="mailto:${CAREERS}?subject=Portfolio">${t.careersCta}: ${CAREERS} →</a>
       </div>
       <img class="footer__mark" src="${up}assets/mark.svg" width="56" height="56" alt="">
+    </div>
+    <div class="footer__more">
+${costs || land || permitGuide ? `      <div class="footer__group"><span class="label">${t.tools}</span>
+${costs ? `        <a class="ulink" href="${up}${estimatorPath(lang)}">${ET[lang].link}</a>
+` : ''}${land ? `        <a class="ulink" href="${up}${landPath(lang)}">${LT[lang].link}</a>
+` : ''}${permitGuide ? `        <a class="ulink" href="${up}${permitPath(lang)}">${PR[lang].link}</a>
+` : ''}      </div>
+` : ''}      <div class="footer__group"><span class="label">${t.cr}</span>
+        <a class="ulink" href="${up}${townsPath(lang)}">${t.where}</a>
+${guides.length ? `        <a class="ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides}</a>
+` : ''}      </div>
+      <div class="footer__group"><span class="label">${t.more}</span>
+${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
+` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
+        <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
+      </div>
     </div>
   </div>
   <div class="grid footer__bottom label">
@@ -2526,6 +2533,7 @@ function homeEs() {
     if (u.startsWith('guides/')) return `guias/${u.slice('guides/'.length)}`;
     if (u.startsWith('tools/cost-estimator/')) return `herramientas/estimador-de-costos/${u.slice('tools/cost-estimator/'.length)}`;
     if (u.startsWith('tools/land-prices/')) return `herramientas/precios-de-terrenos/${u.slice('tools/land-prices/'.length)}`;
+    if (u.startsWith('tools/permit-route/')) return `herramientas/ruta-de-permisos/${u.slice('tools/permit-route/'.length)}`;
     if (u.startsWith('services/')) return `servicios/${u.slice('services/'.length)}`;
     if (u.startsWith('portal/')) return u;
     return `../${u}`;
