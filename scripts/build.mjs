@@ -345,7 +345,30 @@ function projectPage(lang, p, i) {
   // a numbered plan, with its key beside it in the page's language. With a plate (the studio's titled
   // sheet, key included) a wide screen shows the plate in the page's language; a phone keeps the bare
   // plan, larger, with the key in text under it.
-  const plans = p.images.map((im, j) => [im, j + 1]).filter(([im]) => im.plan).map(([im, n]) => {
+  const planLabel = (im) => esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'));
+  const planKey = (im) => `<ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${i + 1}</b><span>${esc(k)}</span></li>`).join('')}</ol>`;
+  // plans laid out in rows (planRows): each plan at its own width (spans of the 12 columns), the keys in
+  // text stacked in the columns left over; a plan drawn for that width (desk) on a wide screen, the
+  // phone version (file) below 768 px. On a phone each plan is followed by its key.
+  const inRows = new Set((p.planRows ?? []).flatMap((r) => r.images));
+  const planRows = (p.planRows ?? []).map((row) => {
+    const keyStart = Math.min(row.spans.reduce((a, b) => a + b, 0) + 2, 10);   // keys get at least three columns
+    let col = 1;
+    return `    <section class="prow grid" aria-label="${lang === 'en' ? 'Plans' : 'Planos'}">
+${row.images.map((n, i) => {
+      const im = p.images[n - 1], span = row.spans[i];
+      const dk = `${p.slug}/${n}-d`, db = up + imgBase(p.slug, `${n}-d`), dv = `?v=${imgVer(dk)}`;
+      const vw = Math.round((span / 12) * 96);
+      const desk = im.desk ? `<source media="(min-width: 768px)" srcset="${db}-800.webp${dv} 800w, ${db}-1600.webp${dv} 1600w, ${db}-2400.webp${dv} 2400w, ${db}-3600.webp${dv} 3600w" sizes="${vw}vw" width="${sizes[dk][0]}" height="${sizes[dk][1]}">` : '';
+      const out = `      <div class="prow__img" style="--c: ${col} / span ${span}; --r: 1 / span ${row.images.length}"><picture>${desk}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture></div>
+      <div class="pplan__key prow__key" style="--c: ${keyStart} / -1; --r: ${i + 1}"><p class="label">${planLabel(im)}</p>${planKey(im)}</div>`;
+      col += span;
+      return out;
+    }).join('\n')}
+    </section>
+`;
+  }).join('');
+  const plans = p.images.map((im, j) => [im, j + 1]).filter(([im, n]) => im.plan && !inRows.has(n)).map(([im, n]) => {
     const pk = `${p.slug}/${n}-${lang}`, pb = up + imgBase(p.slug, `${n}-${lang}`), pv = `?v=${imgVer(pk)}`;
     const plate = im.plate ? `<source media="(min-width: 768px)" srcset="${pb}-800.webp${pv} 800w, ${pb}-1600.webp${pv} 1600w, ${pb}-2400.webp${pv} 2400w, ${pb}-3600.webp${pv} 3600w" sizes="86vw" width="${sizes[pk][0]}" height="${sizes[pk][1]}">` : '';
     return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}">
@@ -415,7 +438,7 @@ ${bar(lang, up, paths, 'projects')}
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${gallery}${compare}${plans}${drawings}    <section class="related" aria-labelledby="related-title">
+${gallery}${compare}${plans}${planRows}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

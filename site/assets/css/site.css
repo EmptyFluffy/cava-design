@@ -1623,6 +1623,16 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .pplan--plate .pplan__img { grid-column: 1 / -1; width: 90%; justify-self: center; }
   .pplan--plate .pplan__key { display: none; }
 }
+/* plans in rows: each at its own width, the keys stacked beside them (placed by --c / --r) */
+.prow { padding: 0 var(--margin) var(--pad-v); row-gap: var(--s-2); align-items: end; }
+.prow__img img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }   /* white ground: the page's shows through */
+.prow > * { grid-column: 1 / -1; }
+.prow + .prow { margin-top: calc(var(--s-3) - var(--pad-v)); }
+@media (min-width: 768px) {
+  .prow { row-gap: var(--s-3); }
+  .prow > .prow__img, .prow > .prow__key { grid-column: var(--c); grid-row: var(--r); }
+  .prow > .prow__key ol { font-size: var(--f-small); }
+}
 
 /* ---------- a project's construction drawings: one row per part of the house, one scale per row ---------- */
 .pdraw { display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }

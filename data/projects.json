@@ -285,36 +285,37 @@
           "alt_es": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio"
         },
         {
-          "file": "Plantas/web/site.png",
+          "file": "Plantas/web/site-mob.png",
           "alt": "Site plan of the retreat on its long lot, numbered: the drop-off and lobby by the road, the restaurant, kitchen and outdoor cinema in the middle, and five cabins with plunge pools along a row of trees",
           "alt_es": "Planta de conjunto del retiro en su lote largo, numerada: la zona de descenso y el lobby junto a la calle, el restaurante, la cocina y el cine exterior al centro, y cinco cabinas con piscina a lo largo de una hilera de árboles",
           "plan": true,
           "label": "(Site plan)", "label_es": "(Planta de conjunto)",
           "key": ["Drop-off", "Lobby and living", "Flex bedroom", "Laundry", "Washroom", "Restaurant", "Kitchen and pantry", "Outdoor living", "Parking", "Yoga deck", "Outdoor cinema", "Outdoor dining", "Cabin", "Plunge pool"],
           "key_es": ["Zona de descenso", "Lobby y sala", "Dormitorio flexible", "Lavandería", "Baño", "Restaurante", "Cocina y despensa", "Sala exterior", "Parqueo", "Deck de yoga", "Cine exterior", "Comedor exterior", "Cabina", "Piscina"],
-          "plate": { "en": "Plantas/web/site-en.png", "es": "Plantas/web/site-es.png" }
+          "desk": "Plantas/web/site-desk.png"
         },
         {
-          "file": "Plantas/web/welcome.png",
+          "file": "Plantas/web/welcome-mob.png",
           "alt": "Floor plan of the Welcome House, numbered: the living room and home office on one side of the entrance passage, the kitchen and dining on the other, with storage, laundry and a porous wall facing the drop-off",
           "alt_es": "Planta de la Casa de bienvenida, numerada: la sala y la oficina a un lado del pasaje de entrada, la cocina y el comedor al otro, con bodega, lavandería y un muro poroso frente a la zona de descenso",
           "plan": true,
           "label": "(Welcome House)", "label_es": "(Casa de bienvenida)",
           "key": ["Drop-off", "Entrance passage", "Living", "Home office", "Bathroom", "Kitchen", "Dining", "Dry storage", "Laundry and mechanical", "Porous wall", "Outdoor cinema"],
           "key_es": ["Zona de descenso", "Pasaje de entrada", "Sala", "Oficina", "Baño", "Cocina", "Comedor", "Bodega seca", "Lavandería y cuarto mecánico", "Muro poroso", "Cine exterior"],
-          "plate": { "en": "Plantas/web/welcome-en.png", "es": "Plantas/web/welcome-es.png" }
+          "desk": "Plantas/web/welcome-desk.png"
         },
         {
-          "file": "Plantas/web/cabin.png",
+          "file": "Plantas/web/cabin-mob.png",
           "alt": "Floor plan of a cabin, numbered: the bedroom with a built-in desk, the bathroom, shower and closet, an outdoor shower and the deck",
           "alt_es": "Planta de una cabina, numerada: el dormitorio con un escritorio empotrado, el baño, la ducha y el clóset, una ducha exterior y el deck",
           "plan": true,
           "label": "(Cabin)", "label_es": "(Cabina)",
           "key": ["Bedroom", "Desk", "Closet", "Bathroom", "Shower", "Outdoor shower", "Deck"],
           "key_es": ["Dormitorio", "Escritorio", "Clóset", "Baño", "Ducha", "Ducha exterior", "Deck"],
-          "plate": { "en": "Plantas/web/cabin-en.png", "es": "Plantas/web/cabin-es.png" }
+          "desk": "Plantas/web/cabin-desk.png"
         }
-      ]
+      ],
+      "planRows": [{ "images": [4], "spans": [6] }, { "images": [5, 6], "spans": [6, 3] }]
     },
     {
       "slug": "kauhane-house",

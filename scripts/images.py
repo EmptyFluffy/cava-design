@@ -22,7 +22,7 @@ for p in data['projects']:
         for w in (1600, 800):
             r = img.copy()
             r.thumbnail((w, w * 2), Image.LANCZOS)
-            r.save(os.path.join(out, f'{n}-{w}.webp'), 'WEBP', quality=80 if w == 1600 else 78, method=6)
+            r.save(os.path.join(out, f'{n}-{w}.webp'), 'WEBP', quality=92 if im.get('plan') else 80 if w == 1600 else 78, method=6)
             if w == 1600:
                 sizes[f"{p['slug']}/{n}"] = [r.width, r.height]
         # a plan shown as a titled plate in each language, up to 3600 px (a retina screen at full width)
@@ -34,6 +34,15 @@ for p in data['projects']:
                 r.save(os.path.join(out, f'{n}-{lang}-{w}.webp'), 'WEBP', quality=92, method=6)
                 if w == 1600:
                     sizes[f"{p['slug']}/{n}-{lang}"] = [r.width, r.height]
+        # a plan drawn for the desktop width it is shown at (numbers sized for it), up to 3600 px
+        if im.get('desk'):
+            img = Image.open(os.path.join(src, p['folder'], im['desk'])).convert('RGB')
+            for w in (3600, 2400, 1600, 800):
+                r = img.copy()
+                r.thumbnail((w, w * 3), Image.LANCZOS)
+                r.save(os.path.join(out, f'{n}-d-{w}.webp'), 'WEBP', quality=92, method=6)
+                if w == 1600:
+                    sizes[f"{p['slug']}/{n}-d"] = [r.width, r.height]
     # construction drawings (line art: a higher quality, so the lines stay clean)
     for d in (x for s in p.get('drawings', []) for x in s['items']):
         img = Image.open(os.path.join(src, p['folder'], d['file'])).convert('RGB')
