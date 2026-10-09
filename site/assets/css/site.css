@@ -433,14 +433,15 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .proj__cover img { width: 100%; max-height: 92vh; max-height: 92svh; object-fit: cover; }
 .proj__body { padding: var(--s-3) var(--margin) var(--pad-v); row-gap: 1rem; align-items: start; }
 .sheet__label { grid-column: 1 / span 4; grid-row: 1; }
-.sheet { grid-column: 5 / span 8; grid-row: 1 / span 3; border-top: 1px solid var(--black); }
+/* the label sits on its own row, so the map and the sheet start on one line: the map's top edge on the sheet's top rule */
+.sheet { grid-column: 5 / span 8; grid-row: 2 / span 3; border-top: 1px solid var(--black); }
 .sheet > div { display: grid; grid-template-columns: minmax(7rem, 1fr) 2fr; column-gap: var(--gap); padding: 0.8rem 0; border-bottom: 1px solid var(--grey); }
 .sheet dt { font-size: var(--f-small); font-weight: var(--w-strong); text-transform: uppercase; padding-top: 0.2em; }
 .sheet dd { font-size: var(--f-large); }
 .sheet .tbc { color: var(--mid-grey); }
-.sheet__note { grid-column: 5 / span 8; grid-row: 4; margin-top: 0.25rem; }
+.sheet__note { grid-column: 5 / span 8; grid-row: 5; margin-top: 0.25rem; }
 /* Location map: under the sheet label on wide screens, after the sheet on phones */
-.pmap { grid-column: 1 / span 3; grid-row: 2 / span 3; margin-top: 0.75rem; }
+.pmap { grid-column: 1 / span 3; grid-row: 2 / span 3; margin-top: 0; }
 .pmap__canvas { aspect-ratio: 1; background: var(--light-grey); overflow: hidden; }
 .pmap__canvas .maplibregl-ctrl-attrib { font-size: 10px; }
 .pmap__cap { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-top: 0.6rem; }

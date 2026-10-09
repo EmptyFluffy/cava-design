@@ -314,6 +314,7 @@ const similar = (p, n = 3) => projects.filter((o) => o.slug !== p.slug)
 
 // ---------- /projects/<slug>/ and /es/proyectos/<slug>/ ----------
 const FACTS = ['location', 'year', 'status', 'siteArea', 'builtArea'];
+const TEAM_ROLES = { architecture: { en: 'Architecture', es: 'Arquitectura' }, engineering: { en: 'Engineering', es: 'Ingeniería' }, visualization: { en: 'Visualization', es: 'Visualización' } };
 const AREAS = new Set(['siteArea', 'builtArea']);
 // Areas are kept in m²; the sheet adds square feet (1 m² = 10.7639 ft²), rounded to 10 because the metres are round figures too.
 const group = (lang, n) => (lang === 'en' ? n.toLocaleString('en-US') : n >= 10000 ? n.toLocaleString('en-US').replace(/,/g, '\u00a0') : String(n));
@@ -421,6 +422,8 @@ function projectPage(lang, p, i) {
     [s.rows.type, type],
     [s.rows.typology, tr(lang, p, 'typology')],
     ...FACTS.map((k) => [s.rows[k], AREAS.has(k) && p[k] != null ? area(lang, p[k]) : tr(lang, p, k)]),
+    // the team: who drew it, and who worked on it with us
+    ...Object.entries(p.team ?? {}).map(([role, names]) => [TEAM_ROLES[role][lang], names.join(', ')]),
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? s.tbc)}</dd></div>`).join('\n');
   const placeholders = FACTS.some((k) => p[k] == null);
   // the gallery: every image after the cover, except those shown in the day/night comparison
