@@ -63,7 +63,9 @@
   function riseTitle(h, delay = 0) {
     h.style.visibility = 'visible';
     const parts = [...h.children].filter((c) => c.matches('span'));
-    if (!parts.length) return riseLines(h, delay);
+    // a display title is a grid: split into lines its text would become several grid items and move the
+    // page under it. One line or two, it rises whole.
+    if (!parts.length) return rise(h, delay);
     parts.forEach((s, i) => rise(s, delay + i * 82.5));
   }
 
