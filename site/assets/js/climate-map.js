@@ -191,19 +191,36 @@
     });
   }
 
-  // the map library waits for the page to finish loading and for an idle moment (see project.js)
+  // warm the map: once the page has loaded and is idle, fetch the library (and the base map's style) into the
+  // cache without running it, so the map is ready when the visitor gets to it
+  const warm = () => {
+    const links = [[MAPLIBRE + 'maplibre-gl.js'], [MAPLIBRE + 'maplibre-gl.css'], ['https://tiles.openfreemap.org/styles/positron', 'anonymous']];
+    for (const [href, cors] of links) {
+      if (document.querySelector(`link[href="${href}"]`)) continue;
+      const l = document.createElement('link'); l.rel = 'prefetch'; l.href = href; if (cors) l.crossOrigin = cors; document.head.appendChild(l);
+    }
+  };
   const settled = (fn) => {
     const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
     if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
   };
+  // build it on the visitor's first scroll, or when it comes near the screen, whichever is first
+  const onFirstScroll = (fn) => window.addEventListener('scroll', fn, { once: true, passive: true });
+  const started = new Set();
+  const start = (fig) => {
+    if (started.has(fig)) return; started.add(fig);
+    settled(() => Promise.all([loadMapLib(), getJSON('../data/wind.json'), getJSON('../data/ghi.json')])
+      .then(([, wind, ghi]) => init(fig, wind, ghi))
+      .catch(() => { fig.querySelector('.cmap__canvas').innerHTML = `<div class="map__fallback"><p>${document.documentElement.lang === 'es' ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`; }));
+  };
+  settled(warm);
+  onFirstScroll(() => figs.forEach(start));
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
       io.unobserve(e.target);
-      settled(() => Promise.all([loadMapLib(), getJSON('../data/wind.json'), getJSON('../data/ghi.json')])
-        .then(([, wind, ghi]) => init(e.target, wind, ghi))
-        .catch(() => { e.target.querySelector('.cmap__canvas').innerHTML = `<div class="map__fallback"><p>${document.documentElement.lang === 'es' ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`; }));
+      start(e.target);
     }
-  }, { rootMargin: '80px 0px' });
+  }, { rootMargin: '300px 0px' });
   figs.forEach((f) => io.observe(f));
 })();

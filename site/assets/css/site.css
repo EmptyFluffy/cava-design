@@ -2089,3 +2089,26 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .gcard__foot { margin-top: auto; padding-top: 0.75rem; border-top: 1px solid var(--black); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.6rem; color: var(--dark-grey); }
 .gcard__go { margin-left: auto; color: var(--black); white-space: nowrap; }
 @media (max-width: 899px) { .gcards { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-2); } }
+
+/* ---------- Motion (assets/js/motion.js) ----------
+   The head adds .motion when motion is allowed; what the entrance animates waits hidden until the script
+   says .is-entered, and shows on its own after 2.5 s if the script never runs. */
+.mo-ln { display: block; }
+.motion .mo-wait { visibility: hidden; }
+.motion:not(.is-entered) :is(.hero .nav__brand, .hero .nav__links, .hero .nav__acts > *, .hero__row > *, .hero__title, .hero__scroll, .bar__brand, .bar__links, .bar__acts > *, main h1, main .mf__label, main .proj__crumb) {
+  visibility: hidden;
+  animation: mo-show 0s 2.5s forwards;
+}
+@keyframes mo-show { to { visibility: visible; } }
+/* the preloader: the home's first visit in a session (the head adds .is-pre) */
+.pre { display: none; }
+.is-pre { overflow: hidden; }
+.is-pre .pre { display: block; position: fixed; inset: 0; z-index: 2000; background: var(--black); color: var(--white); }
+.pre__line { position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: var(--white); transform-origin: left center; transform: scaleX(0); }
+.pre__foot { position: absolute; left: var(--margin); right: var(--margin); bottom: var(--margin); display: flex; align-items: flex-end; flex-wrap: wrap; gap: 1.2rem 4vw; }
+/* the studio's logo, as in the nav, set large; its copy waits below for the roll */
+.pre__mark { position: relative; display: block; overflow: hidden; padding-bottom: 0.06em; color: var(--white); font-size: clamp(2.6rem, 1.4rem + 5.2vw, 7.5rem); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; }
+.pre__word { display: flex; align-items: center; gap: 0.3em; white-space: nowrap; }
+.pre__word + .pre__word { position: absolute; left: 0; top: 0; transform: translateY(105%); }
+.pre__label { margin: 0 0 0.6em; color: var(--white); }
+@media (max-width: 767px) { .pre__label { order: -1; } }

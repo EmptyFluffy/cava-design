@@ -74,19 +74,31 @@
     canvas.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`;
   }
 
-  // the map library is heavy (about 280 KB): it waits for the page to finish loading and for an idle moment,
-  // so it never holds up the first view on a phone, and only once the map is close to the screen
+  // warm the map: once the page has loaded and is idle, fetch the library (and the base map's style) into the
+  // cache without running it, so the map is ready when the visitor gets to it
+  const warm = () => {
+    const links = [[MAPLIBRE + 'maplibre-gl.js'], [MAPLIBRE + 'maplibre-gl.css'], ['https://tiles.openfreemap.org/styles/positron', 'anonymous']];
+    for (const [href, cors] of links) {
+      if (document.querySelector(`link[href="${href}"]`)) continue;
+      const l = document.createElement('link'); l.rel = 'prefetch'; l.href = href; if (cors) l.crossOrigin = cors; document.head.appendChild(l);
+    }
+  };
   const settled = (fn) => {
     const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
     if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
   };
-  const start = () => settled(() => loadMapLib().then(init).catch(fallback));
+  // build it on the visitor's first scroll, or when it comes near the screen, whichever is first
+  const onFirstScroll = (fn) => window.addEventListener('scroll', fn, { once: true, passive: true });
+  let started = false;
+  const start = () => { if (started) return; started = true; settled(() => loadMapLib().then(init).catch(fallback)); };
+  settled(warm);
+  onFirstScroll(start);
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;
       io.disconnect();
       start();
-    }, { rootMargin: '80px 0px' });
+    }, { rootMargin: '300px 0px' });
     io.observe(canvas);
   } else {
     start();

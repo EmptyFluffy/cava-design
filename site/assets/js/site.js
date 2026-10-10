@@ -335,15 +335,34 @@
     new gl.Marker({ element: pin, anchor: 'bottom', offset: [0, 7] }).setLngLat(STUDIO).addTo(map);
   }
 
+  // warm the map: once the page has loaded and is idle, fetch the library (and the base map's style) into the
+  // cache without running it, so the map is ready when the visitor gets to it
+  const warm = () => {
+    const links = [[MAPLIBRE + 'maplibre-gl.js'], [MAPLIBRE + 'maplibre-gl.css'], ['https://tiles.openfreemap.org/styles/positron', 'anonymous']];
+    for (const [href, cors] of links) {
+      if (document.querySelector(`link[href="${href}"]`)) continue;
+      const l = document.createElement('link'); l.rel = 'prefetch'; l.href = href; if (cors) l.crossOrigin = cors; document.head.appendChild(l);
+    }
+  };
+  const settled = (fn) => {
+    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+  };
+  // build it on the visitor's first scroll, or when it comes near the screen, whichever is first
+  const onFirstScroll = (fn) => window.addEventListener('scroll', fn, { once: true, passive: true });
+  let mapStarted = false;
+  const startMap = () => { if (mapStarted) return; mapStarted = true; settled(() => loadMapLib().then(initMap).catch(mapFallback)); };
+  settled(warm);
+  onFirstScroll(startMap);
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       if (!entries.some((en) => en.isIntersecting)) return;
       io.disconnect();
-      loadMapLib().then(initMap).catch(mapFallback);
+      startMap();
     }, { rootMargin: '800px 0px' });
     io.observe(mapEl);
   } else {
-    loadMapLib().then(initMap).catch(mapFallback);
+    startMap();
   }
 
   /* ---------- Hero: the best exterior views take turns (data/projects.json "hero") ---------- */

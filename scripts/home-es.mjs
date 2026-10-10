@@ -16,8 +16,9 @@ export const SAME = new Set([
 
 export const PAIRS = [
   // ---------- head ----------
-  ['<html lang="en">', '<html lang="es">'],
+  ['<html lang="en" data-pre>', '<html lang="es" data-pre>'],
   ['<title>Studio CAVA | Architecture and interiors in Costa Rica</title>', '<title>Studio CAVA | Arquitectura e interiores en Costa Rica</title>'],
+  ['(Architecture and interiors, Costa Rica)', '(Arquitectura e interiores, Costa Rica)'],
   ['content="Studio CAVA designs houses, retreats and cafés in Costa Rica, from the first site visit and uso de suelo to CFIA permits and site supervision."',
     'content="Studio CAVA diseña casas, hoteles pequeños y cafés en Costa Rica, desde la primera visita al lote y el uso de suelo hasta los permisos del CFIA y la supervisión de obra."'],
   ['<link rel="canonical" href="https://cava.design/">', '<link rel="canonical" href="https://cava.design/es/">'],
