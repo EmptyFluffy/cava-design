@@ -32,20 +32,26 @@
     { opacity: 1, transform: 'none' },
   ], { duration: 900, delay, easing: EASE, fill: 'backwards' });
 
-  // ---- plain text split into its rendered lines (each a block with its own mask), put back once it has risen
+  // ---- plain text split into its rendered lines (each a block with its own mask), put back once it has risen.
+  // All inside one wrapper, so a grid or flex parent (.tw__text) still sees a single item; if the split
+  // changes the height anyway, the text goes back and rises whole.
   function lines(el) {
     if (el.children.length || !el.textContent.trim()) return null;
     const text = el.textContent;
-    el.innerHTML = text.trim().split(/\s+/).map((w) => `<span class="mo-w">${w}</span>`).join(' ');
+    const h = el.getBoundingClientRect().height;
+    const restore = () => { el.textContent = text; };
+    const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    el.innerHTML = `<span class="mo-lns">${text.trim().split(/\s+/).map((w) => `<span class="mo-w">${esc(w)}</span>`).join(' ')}</span>`;
     const rows = [];
     for (const w of el.querySelectorAll('.mo-w')) {
       const top = w.offsetTop;
       if (!rows.length || Math.abs(rows[rows.length - 1].top - top) > 2) rows.push({ top, words: [] });
       rows[rows.length - 1].words.push(w.textContent);
     }
-    el.innerHTML = rows.map((r) => `<span class="mo-ln">${r.words.join(' ')}</span>`).join('');
+    el.innerHTML = `<span class="mo-lns">${rows.map((r) => `<span class="mo-ln">${esc(r.words.join(' '))}</span>`).join('')}</span>`;
+    if (Math.abs(el.getBoundingClientRect().height - h) > 1.5) { restore(); return null; }
     const spans = [...el.querySelectorAll('.mo-ln')];
-    return { spans, restore: () => { el.textContent = text; } };
+    return { spans, restore };
   }
   function riseLines(el, delay = 0) {
     const split = lines(el);

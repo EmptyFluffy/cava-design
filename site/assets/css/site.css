@@ -2093,7 +2093,11 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 /* ---------- Motion (assets/js/motion.js) ----------
    The head adds .motion when motion is allowed; what the entrance animates waits hidden until the script
    says .is-entered, and shows on its own after 2.5 s if the script never runs. */
-.mo-ln { display: block; }
+/* a text split into its lines: one wrapper (a grid or flex parent sees one item, as it saw the text), each
+   line a block that never wraps again (it was measured as one line), the first-line indent on the first only */
+.mo-lns, .mo-ln { display: block; }
+.mo-ln { white-space: nowrap; text-indent: 0; }
+.mo-ln:first-child { text-indent: inherit; }
 .motion .mo-wait { visibility: hidden; }
 .motion:not(.is-entered) :is(.hero .nav__brand, .hero .nav__links, .hero .nav__acts > *, .hero__row > *, .hero__title, .hero__scroll, .bar__brand, .bar__links, .bar__acts > *, main h1, main .mf__label, main .proj__crumb) {
   visibility: hidden;
