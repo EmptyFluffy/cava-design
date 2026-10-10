@@ -2996,8 +2996,11 @@ function portalPage(lang) {
   const home = up + UI[lang].dir;
   const mail = `<a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a>`;
   const waLink = `<a class="ulink" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN}</a>`;
+  // the portal is the private side of the studio: black, like the menu and the enquiry sheets (site.css, .dark)
   const page = head(lang, { title: P.title, description: P.description, paths, image: `${imgBase('papagayo-404', 2)}-1600.webp`, up, script: 'portal.js' })
-    .replace('<head>', '<head>\n<meta name="robots" content="noindex">');
+    .replace('<head>', '<head>\n<meta name="robots" content="noindex">')
+    .replace('<meta name="theme-color" content="#fcfcfc">', '<meta name="theme-color" content="#080807">')
+    .replace('<body class="sub">', '<body class="sub dark">');
   return page + `<div id="top"></div>
 ${bar(lang, up, paths, 'portal')}
 <main class="page">

@@ -1,5 +1,8 @@
 // Studio CAVA: the project enquiry, from the form on the home page to the studio's inbox.
-// POST /api/enquiry with JSON { lang, rows: [[label, value], ...], name, email, subject, hp, ms }.
+// POST /api/enquiry with JSON { lang, rows: [[label, value], ...], name, email, subject, hp, ms }; it answers
+// { ok, id }. Then, if the client answers "how did you find us?" on the thank-you screen, a second POST
+// { kind: 'source', ref: id, source, name, email, subject, lang, hp, ms } sends one line as a reply in the
+// same thread (In-Reply-To the first message).
 // Guards: same origin, a honeypot field that people never see (hp), at least 4 s spent on the form (ms),
 // a valid reply-to address, and caps on every length. The mail goes out through Cloudflare Email Routing,
 // signed for cava.design, with the client's address as Reply-To so a reply goes straight to them.
@@ -33,17 +36,25 @@ export default {
     const email = oneLine(d.email, 200);
     const name = oneLine(d.name, 120);
     if (!name || !EMAIL.test(email)) return json(422, { ok: false });
-    const rows = (Array.isArray(d.rows) ? d.rows : []).slice(0, 20)
-      .map(([k, v]) => [oneLine(k, 60), clean(v, 2500)]).filter(([k, v]) => k && v);
     const es = d.lang === 'es';
     const subject = oneLine(d.subject, 160) || (es ? 'Consulta de proyecto' : 'Project enquiry');
+    const follow = d.kind === 'source';
+    const ref = follow ? String(d.ref || '') : '';
+    if (follow && !/^[0-9a-f-]{36}$/.test(ref)) return json(422, { ok: false });
+    const rows = follow
+      ? [[es ? 'Nos encontró por' : 'Found us through', oneLine(d.source, 80)]].filter(([, v]) => v)
+      : (Array.isArray(d.rows) ? d.rows : []).slice(0, 20).map(([k, v]) => [oneLine(k, 60), clean(v, 2500)]).filter(([k, v]) => k && v);
+    if (!rows.length) return json(422, { ok: false });
+    const id = crypto.randomUUID();
     const ip = request.headers.get('cf-connecting-ip') || '';
     const country = request.cf?.country || '';
     const body = [
       ...rows.map(([k, v]) => `${k}: ${v.includes('\n') ? `\n${v}` : v}`),
       '',
       '--',
-      es ? 'Enviado desde el formulario de cava.design (español).' : 'Sent from the form on cava.design (English).',
+      follow
+        ? (es ? 'Respondido en la pantalla de gracias, después de la consulta.' : 'Answered on the thank-you screen, after the enquiry.')
+        : (es ? 'Enviado desde el formulario de cava.design (español).' : 'Sent from the form on cava.design (English).'),
       `${new Date().toISOString().replace('T', ' ').slice(0, 16)} UTC${country ? ` · ${country}` : ''}${ip ? ` · ${ip}` : ''}`,
       es ? 'Responda a este correo para escribirle directamente.' : 'Reply to this email to write to them directly.',
     ].join('\n');
@@ -51,9 +62,10 @@ export default {
       `From: ${display('Studio CAVA, web')} <${FROM}>`,
       `To: <${TO}>`,
       `Reply-To: ${display(name)} <${email}>`,
-      `Subject: ${header(subject)}`,
+      `Subject: ${header(follow ? `Re: ${subject}` : subject)}`,
       `Date: ${new Date().toUTCString()}`,
-      `Message-ID: <${crypto.randomUUID()}@cava.design>`,
+      `Message-ID: <${id}@cava.design>`,
+      ...(follow ? [`In-Reply-To: <${ref}@cava.design>`, `References: <${ref}@cava.design>`] : []),
       'MIME-Version: 1.0',
       'Content-Type: text/plain; charset=UTF-8',
       'Content-Transfer-Encoding: base64',
@@ -66,6 +78,6 @@ export default {
       console.error('send failed', e && e.message);   // read with: npx wrangler tail cava-enquiry
       return json(502, { ok: false });
     }
-    return json(200, { ok: true });
+    return json(200, { ok: true, id });
   },
 };

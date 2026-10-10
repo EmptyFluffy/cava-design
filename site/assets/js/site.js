@@ -149,7 +149,7 @@
     touchX = null;
   });
 
-  /* ---------- Project enquiry: eight steps, validated, sends nothing ---------- */
+  /* ---------- Project enquiry: four steps, the contact details last, sent by email (/api/enquiry) ---------- */
   const modal = $('#enquiry');
   const form = $('[data-enq]');
   const steps = $$('[data-step]', form);
@@ -232,11 +232,10 @@
     const d = new FormData(form);
     const all = (k) => d.getAll(k).filter(Boolean).join(', ');
     const keys = ES
-      ? ['Nombre', 'Correo', 'Teléfono o WhatsApp', 'Tiene el lote', 'Proyecto', 'Lote', 'Inicio de obra', 'Presupuesto de construcción', 'Constructor', 'Datos del constructor', 'Sobre el proyecto', 'Nos encontró por']
-      : ['Name', 'Email', 'Phone or WhatsApp', 'Owns the land', 'Planning', 'Site', 'Start of construction', 'Construction budget', 'Builder', 'Builder details', 'About the project', 'Found us through'];
+      ? ['Nombre', 'Correo', 'Teléfono o WhatsApp', 'Proyecto', 'Tiene el lote', 'Lugar', 'Presupuesto de construcción', 'Inicio de obra', 'Algo más']
+      : ['Name', 'Email', 'Phone or WhatsApp', 'Planning', 'Owns the land', 'Site', 'Construction budget', 'Start of construction', 'Anything else'];
     return [
-      d.get('name'), d.get('email'), d.get('phone'), d.get('land'), all('type'), d.get('site'), d.get('start'), d.get('budget'),
-      d.get('builder'), d.get('builderDetails'), d.get('brief'), [d.get('source'), d.get('sourceOther')].filter(Boolean).join(': '),
+      d.get('name'), d.get('email'), d.get('phone'), all('type'), d.get('land'), d.get('site'), d.get('budget'), d.get('start'), d.get('brief'),
     ].map((v, k) => [keys[k], v]).filter(([, v]) => v && String(v).trim());
   }
 
@@ -266,8 +265,10 @@
       panel.dataset.step = 'done';
       bar.style.width = '100%';
       $('[data-thanks]').focus({ preventScroll: true });
+      src.hidden = !ok;
       if (ok) window.dispatchEvent(new CustomEvent('cava:enquiry', { detail: { site: d.get('site'), budget: d.get('budget') } }));
     };
+    sent = { name: d.get('name'), email: d.get('email'), subject };
     next.disabled = true;
     next.textContent = ES ? 'Enviando…' : 'Sending…';
     fetch('/api/enquiry', {
@@ -275,10 +276,28 @@
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ lang: ES ? 'es' : 'en', rows: a, name: d.get('name'), email: d.get('email'), subject, hp: d.get('company') || '', ms: Date.now() - opened }),
     })
-      .then((r) => r.json().then((j) => r.ok && j.ok))
+      .then((r) => r.json().then((j) => { sent.id = j.id; return r.ok && j.ok; }))
       .catch(() => false)
       .then((ok) => { next.disabled = false; show(ok); });
   }
+
+  // after it is sent, one optional tap: how they found us. It reaches the studio as a reply in the same
+  // thread; nothing on the form waited for it.
+  const src = $('[data-source]');
+  let sent = {};
+  src.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-src]');
+    if (!b || src.dataset.done) return;
+    src.dataset.done = '1';
+    $$('[data-src]', src).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    $('[data-source-done]', src).hidden = false;
+    if (!sent.id) return;
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ kind: 'source', ref: sent.id, source: b.dataset.src, lang: ES ? 'es' : 'en', name: sent.name, email: sent.email, subject: sent.subject, hp: '', ms: Date.now() - opened }),
+    }).catch(() => {});
+  });
 
   function resetIfDone() {
     if (done.hidden) return;
@@ -287,10 +306,14 @@
     $$('.err.is-on', form).forEach((n) => n.classList.remove('is-on'));
     done.hidden = true;
     form.hidden = false;
+    src.hidden = true;
+    delete src.dataset.done;
+    $$('[data-src]', src).forEach((x) => x.removeAttribute('aria-pressed'));
+    $('[data-source-done]', src).hidden = true;
     showStep(0, false);
   }
 
-  modal.dataset.focus = '#f-name';
+  modal.dataset.focus = 'input[name="type"]';
   showStep(0, false);
 
   /* ---------- Footer clock, Costa Rica time ---------- */

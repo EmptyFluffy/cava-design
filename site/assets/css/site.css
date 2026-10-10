@@ -411,9 +411,29 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
 .note { font-size: 0.8125rem; color: var(--mid-grey); max-width: 62ch; line-height: 1.3; }
 .err { display: none; font-size: 0.8125rem; color: var(--req); }
 .err.is-on { display: block; }
-.enq__nav { display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem; margin-top: 1.5rem; }
+.enq__nav { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: flex-end; align-items: center; gap: 1.5rem; margin-top: 1.5rem; padding: 0.75rem 0; background: var(--black); }   /* Back and Next stay on screen when a step runs long */
+/* on a wider sheet the choices go three across (four when there are four), so a step fits a laptop screen */
+@media (min-width: 768px) {
+  .tiles, .enq__src-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tiles:has(> .tile:nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
 .enq__thanks { font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; margin: 1rem 0; outline: none; }
 .enq__done p:not(.enq__thanks) { max-width: 44ch; }
+.enq__done [hidden] { display: none !important; }   /* .btn's display would show the email fallback after a sent enquiry */
+#enquiry .modal__panel:not([data-step="0"]) .modal__head { display: none; }   /* the introduction and its photo belong to the first step */
+textarea.input.enq__brief { height: 6rem; }
+/* after sending: one optional tap, how they found us */
+.enq__src { display: grid; gap: 0.75rem; margin-top: 2rem; }
+.enq__src[hidden] { display: none; }
+.enq__src-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.enq__src-list button {
+  min-height: 3rem; padding: 0.55rem 0.5rem; border: 0; border-radius: 4px; background: var(--input); color: var(--white); cursor: pointer;
+  font: inherit; font-size: var(--f-small); font-weight: var(--w-strong); text-transform: uppercase; line-height: 1.2; text-wrap: balance;
+  transition: background-color 0.25s, color 0.25s, opacity 0.25s;
+}
+.enq__src-list button:hover { background: #333331; }
+.enq__src-list button[aria-pressed="true"] { background: var(--white); color: var(--black); }
+.enq__src[data-done] button:not([aria-pressed="true"]) { opacity: 0.4; pointer-events: none; }
 
 .menu__links { display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; margin-top: auto; padding-top: 3rem; }
 .menu__links a { font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.08; }
@@ -1282,7 +1302,6 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   #enquiry .modal__panel { padding-bottom: 0; }
   #enquiry .modal__thumb { display: none; }
   #enquiry .modal__intro { max-width: none; }
-  #enquiry .modal__panel:not([data-step="0"]) .modal__head { display: none; }
   #enquiry :is(.enq, .enq__done):not([hidden]) { padding-top: 1.25rem; margin-top: 0; flex: 1 0 auto; display: flex; flex-direction: column; }   /* each step starts at the same height; the nav sits at the foot */
   #enquiry .step__title { margin-bottom: 1rem; }
   #enquiry .field { gap: 0.5rem; margin-bottom: 1rem; }
@@ -1290,8 +1309,8 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   #enquiry textarea.input { height: 8rem; }
   #enquiry .tiles { gap: 0.5rem; }
   #enquiry .tile span { min-height: 3rem; padding: 0.55rem 0.5rem; }
-  #enquiry .field--other { display: none; }
-  #enquiry .step:has(input[name="source"][value="Other"]:checked) .field--other { display: grid; }
+  #enquiry textarea.input.enq__brief { height: 5.25rem; }
+  #enquiry .enq__src { margin-top: 1.5rem; }
   #enquiry .enq__nav { position: sticky; bottom: 0; z-index: 1; margin-top: auto; padding: 0.85rem 0 max(1rem, env(safe-area-inset-bottom)); background: var(--black); }
   .lb__alt { display: none; }
 
@@ -1882,6 +1901,22 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .bar__acts .portal-btn { width: 2.575rem; height: 2.575rem; }   /* the phone bar's button: 0.85rem padding */
 }
 @media (prefers-reduced-motion: reduce) { .portal__status { transition: none; } }
+/* the black portal: the page's tokens turn over in its bar, its page and its footer (the menu and the
+   booking sheet keep theirs). Greys chosen for black: secondary text 9:1, notes 5.9:1. */
+body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
+.dark .bks { color: var(--black); color-scheme: light; }   /* the booking sheet stays white, with its own dark text */
+.dark :is(.bar, main, .footer) {
+  --black: #fcfcfc; --white: #080807; --grey: #333331; --light-grey: #222221; --dark-grey: #aeaea9; --mid-grey: #8b8b88;
+}
+.dark .bar { background: rgba(8, 8, 7, 0.94); }
+.dark .btn--dark:hover { background: #e2e2df; }
+.dark .portal .input { background: var(--input); border-color: transparent; }
+.dark .portal .input:hover { border-color: #3d3d3b; }
+.dark .portal .input:focus { outline: 1px solid #fcfcfc; border-color: transparent; }
+.dark .portal .input:-webkit-autofill { -webkit-box-shadow: 0 0 0 100px var(--input) inset; -webkit-text-fill-color: #fcfcfc; caret-color: #fcfcfc; }
+.dark .portal__show:hover { background: #333331; }
+.dark .portal__cap { color: #fcfcfc; }
+.dark .portal__media { background: #1b1b1a; }
 /* the smallest phones: the bar keeps the brand and the call to action; the portal is in the menu and footer */
 @media (max-width: 379px) { .bar__acts .portal-btn, .nav__acts .portal-btn { display: none; } }
 
@@ -2216,3 +2251,14 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .bk__grid button.bk__day { height: 3.4rem; }
   .bk__time { padding-block: 0.6rem; }
 }
+
+/* the enquiry on a short screen (a laptop at 720 px, an iPhone SE with Safari's bars): a little tighter,
+   so each step still fits */
+@media (max-height: 760px) {
+  #enquiry .field { margin-bottom: 0.75rem; }
+  #enquiry .input { height: 3rem; }
+  #enquiry textarea.input.enq__brief { height: 4.5rem; }
+  #enquiry .tile span { min-height: 2.75rem; }
+  #enquiry .step__title { margin-bottom: 0.75rem; }
+}
+@media (max-height: 600px) { #enquiry .step .note { display: none; } }   /* the SE: step 3's ten choices before its note */

@@ -23,9 +23,9 @@
 <link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="../assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, ../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
 <!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Sur de la península de Nicoya"},{"@type":"AdministrativeArea","name":"Pacífico central"},{"@type":"AdministrativeArea","name":"Pacífico sur"},{"@type":"AdministrativeArea","name":"Caribe"},{"@type":"AdministrativeArea","name":"Valle Central"}],"knowsAbout":["Arquitectura","Diseño de interiores","Planes maestros","Diseño sostenible","Permisos de construcción en Costa Rica","Dirección de obra","Arquitectura tropical"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Estudio de lote","url":"https://cava.design/es/servicios/estudio-de-lote/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Plan maestro","url":"https://cava.design/es/servicios/plan-maestro/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Arquitectura","url":"https://cava.design/es/servicios/arquitectura/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permisos","url":"https://cava.design/es/servicios/permisos/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiores","url":"https://cava.design/es/servicios/interiores/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Dirección de obra","url":"https://cava.design/es/servicios/direccion-de-obra/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Diseño sostenible","url":"https://cava.design/es/servicios/diseno-sostenible/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
-<link rel="stylesheet" href="../assets/css/site.css?v=c0526c1f">
+<link rel="stylesheet" href="../assets/css/site.css?v=50fc4f7b">
 <script defer src="../assets/js/renders.es.js?v=55bd3d9b"></script>
-<script defer src="../assets/js/site.js?v=c2252767"></script>
+<script defer src="../assets/js/site.js?v=83b1474a"></script>
 <script defer src="../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../assets/js/titles.js?v=fa76a511"></script>
 <script defer src="../assets/js/motion.js?v=9a2d9a75"></script>
@@ -314,48 +314,15 @@
       <button class="label ulink" type="button" data-close>Cerrar</button>
     </div>
     <div class="modal__head">
-      <p class="modal__intro">Unas preguntas sobre su propiedad y sus planes. Toma unos tres minutos y nos dice si somos el estudio indicado para el proyecto.</p>
+      <p class="modal__intro">Cuatro preguntas cortas sobre su proyecto. Toma un minuto y nos dice si somos el estudio indicado.</p>
       <img class="modal__thumb" src="../assets/img/projects/negra-mixed-use/1-800.webp?v=beb76a2a" width="800" height="450" loading="lazy" decoding="async" alt="">
     </div>
 
     <form class="enq" data-enq novalidate>
       <div class="enq__hp" aria-hidden="true"><label for="f-company">Empresa</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
       <fieldset class="step is-active" data-step>
-        <legend class="sr-only">Sus datos, paso 1 de 8</legend>
-        <div class="step__title label"><span>Sus datos</span><span>(01/08)</span></div>
-        <div class="field">
-          <label for="f-name">Nombre <span class="req">*</span></label>
-          <input class="input" id="f-name" enterkeyhint="next" name="name" type="text" autocomplete="name" placeholder="Su nombre" required>
-          <p class="err" data-err="name">Escriba su nombre para saber a quién responderle.</p>
-        </div>
-        <div class="field">
-          <label for="f-email">Correo electrónico <span class="req">*</span></label>
-          <input class="input" id="f-email" enterkeyhint="next" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" required>
-          <p class="err" data-err="email">Escriba un correo como nombre@ejemplo.com.</p>
-        </div>
-        <div class="field">
-          <label for="f-phone">Teléfono o WhatsApp</label>
-          <input class="input" id="f-phone" enterkeyhint="next" name="phone" type="tel" autocomplete="tel" placeholder="+506 0000 0000">
-        </div>
-      </fieldset>
-
-      <fieldset class="step" data-step>
-        <legend class="sr-only">Sus datos, paso 2 de 8</legend>
-        <div class="step__title label"><span>Sus datos</span><span>(02/08)</span></div>
-        <div class="field">
-          <p class="q" id="q-land">¿Ya tiene el lote? <span class="req">*</span></p>
-          <div class="tiles" role="radiogroup" aria-labelledby="q-land">
-            <label class="tile"><input type="radio" name="land" value="Sí" required><span>Sí</span></label>
-            <label class="tile"><input type="radio" name="land" value="En negociación"><span>En negociación</span></label>
-            <label class="tile"><input type="radio" name="land" value="Todavía no, sigo buscando"><span>Todavía no, sigo buscando</span></label>
-          </div>
-          <p class="err" data-err="land">Elija una opción para continuar.</p>
-        </div>
-      </fieldset>
-
-      <fieldset class="step" data-step>
-        <legend class="sr-only">El proyecto, paso 3 de 8</legend>
-        <div class="step__title label"><span>El proyecto</span><span>(03/08)</span></div>
+        <legend class="sr-only">El proyecto, paso 1 de 4</legend>
+        <div class="step__title label"><span>El proyecto</span><span>(01/04)</span></div>
         <div class="field">
           <p class="q" id="q-type">¿Qué tiene en mente? <span class="req">*</span> <span class="hint">(puede elegir varias)</span></p>
           <div class="tiles" role="group" aria-labelledby="q-type">
@@ -371,23 +338,27 @@
       </fieldset>
 
       <fieldset class="step" data-step>
-        <legend class="sr-only">El proyecto, paso 4 de 8</legend>
-        <div class="step__title label"><span>El proyecto</span><span>(04/08)</span></div>
+        <legend class="sr-only">El lote, paso 2 de 4</legend>
+        <div class="step__title label"><span>El lote</span><span>(02/04)</span></div>
+        <div class="field">
+          <p class="q" id="q-land">¿Ya tiene el lote? <span class="req">*</span></p>
+          <div class="tiles" role="radiogroup" aria-labelledby="q-land">
+            <label class="tile"><input type="radio" name="land" value="Sí" required><span>Sí</span></label>
+            <label class="tile"><input type="radio" name="land" value="En negociación"><span>En negociación</span></label>
+            <label class="tile"><input type="radio" name="land" value="Todavía no, sigo buscando"><span>Todavía no, sigo buscando</span></label>
+          </div>
+          <p class="err" data-err="land">Elija una opción para continuar.</p>
+        </div>
         <div class="field">
           <label for="f-site">¿Dónde está el lote? <span class="req">*</span></label>
           <input class="input" id="f-site" enterkeyhint="next" name="site" type="text" placeholder="Santa Ana, San José" required>
           <p class="err" data-err="site">Indique un pueblo o una zona, aunque sea aproximada.</p>
         </div>
-        <div class="field">
-          <label for="f-start">¿Cuándo le gustaría empezar a construir?</label>
-          <input class="input" id="f-start" enterkeyhint="next" name="start" type="text" placeholder="Inicios de 2027">
-          <p class="note">Los permisos del CFIA y la municipalidad suelen sumar varios meses después de terminar el diseño. En la primera reunión armamos con usted el cronograma completo.</p>
-        </div>
       </fieldset>
 
       <fieldset class="step" data-step>
-        <legend class="sr-only">El proyecto, paso 5 de 8</legend>
-        <div class="step__title label"><span>El proyecto</span><span>(05/08)</span></div>
+        <legend class="sr-only">Presupuesto y plazos, paso 3 de 4</legend>
+        <div class="step__title label"><span>Presupuesto y plazos</span><span>(03/04)</span></div>
         <div class="field">
           <p class="q" id="q-budget">Presupuesto de construcción (si ya lo tiene)</p>
           <div class="tiles" role="radiogroup" aria-labelledby="q-budget">
@@ -398,52 +369,39 @@
             <label class="tile"><input type="radio" name="budget" value="Más de $2 millones"><span>Más de $2 millones</span></label>
             <label class="tile"><input type="radio" name="budget" value="Todavía no sé"><span>Todavía no sé</span></label>
           </div>
-          <p class="note">Los honorarios de diseño se cotizan por proyecto después de una primera reunión, cuando conocemos el lote y el alcance.</p>
         </div>
-      </fieldset>
-
-      <fieldset class="step" data-step>
-        <legend class="sr-only">El proyecto, paso 6 de 8</legend>
-        <div class="step__title label"><span>El proyecto</span><span>(06/08)</span></div>
         <div class="field">
-          <p class="q" id="q-builder">¿Ya tiene constructor?</p>
-          <div class="tiles" role="radiogroup" aria-labelledby="q-builder">
-            <label class="tile"><input type="radio" name="builder" value="Sí"><span>Sí</span></label>
-            <label class="tile"><input type="radio" name="builder" value="Todavía no, pero tengo a alguien en mente"><span>Todavía no, pero tengo a alguien en mente</span></label>
-            <label class="tile"><input type="radio" name="builder" value="No, nos gustaría una recomendación"><span>No, nos gustaría una recomendación</span></label>
+          <p class="q" id="q-start">¿Cuándo le gustaría empezar a construir?</p>
+          <div class="tiles" role="radiogroup" aria-labelledby="q-start">
+            <label class="tile"><input type="radio" name="start" value="En menos de 6 meses"><span>En menos de 6 meses</span></label>
+            <label class="tile"><input type="radio" name="start" value="De 6 a 12 meses"><span>De 6 a 12 meses</span></label>
+            <label class="tile"><input type="radio" name="start" value="En un año o más"><span>En un año o más</span></label>
+            <label class="tile"><input type="radio" name="start" value="Todavía no sé"><span>Todavía no sé</span></label>
           </div>
-        </div>
-        <div class="field">
-          <label for="f-builder">Datos del constructor (si ya lo tiene)</label>
-          <input class="input" id="f-builder" enterkeyhint="next" name="builderDetails" type="text" placeholder="Empresa, contacto">
+          <p class="note">Los honorarios de diseño se cotizan por proyecto después de una primera reunión. Los permisos del CFIA y la municipalidad suelen sumar varios meses después del diseño.</p>
         </div>
       </fieldset>
 
       <fieldset class="step" data-step>
-        <legend class="sr-only">El proyecto, paso 7 de 8</legend>
-        <div class="step__title label"><span>El proyecto</span><span>(07/08)</span></div>
+        <legend class="sr-only">Sus datos, paso 4 de 4</legend>
+        <div class="step__title label"><span>Sus datos</span><span>(04/04)</span></div>
         <div class="field">
-          <label for="f-brief">Cuéntenos sobre el proyecto</label>
-          <textarea class="input" id="f-brief" name="brief" rows="5" placeholder="Habitaciones, las vistas que quiere conservar, cuántos meses al año va a estar ahí, lo que ya sabe que quiere."></textarea>
+          <label for="f-name">Nombre <span class="req">*</span></label>
+          <input class="input" id="f-name" enterkeyhint="next" name="name" type="text" autocomplete="name" placeholder="Su nombre" required>
+          <p class="err" data-err="name">Escriba su nombre para saber a quién responderle.</p>
         </div>
-      </fieldset>
-
-      <fieldset class="step" data-step>
-        <legend class="sr-only">Última pregunta, paso 8 de 8</legend>
-        <div class="step__title label"><span>Última pregunta</span><span>(08/08)</span></div>
         <div class="field">
-          <p class="q" id="q-source">¿Cómo nos encontró?</p>
-          <div class="tiles" role="radiogroup" aria-labelledby="q-source">
-            <label class="tile"><input type="radio" name="source" value="Un amigo o familiar"><span>Un amigo o familiar</span></label>
-            <label class="tile"><input type="radio" name="source" value="Google"><span>Google</span></label>
-            <label class="tile"><input type="radio" name="source" value="Instagram"><span>Instagram</span></label>
-            <label class="tile"><input type="radio" name="source" value="Un constructor o agente"><span>Un constructor o agente</span></label>
-            <label class="tile"><input type="radio" name="source" value="Otro"><span>Otro</span></label>
-          </div>
+          <label for="f-email">Correo electrónico <span class="req">*</span></label>
+          <input class="input" id="f-email" enterkeyhint="next" name="email" type="email" autocomplete="email" placeholder="nombre@ejemplo.com" required>
+          <p class="err" data-err="email">Escriba un correo como nombre@ejemplo.com.</p>
         </div>
-        <div class="field field--other">
-          <label for="f-other">Si fue otro, ¿dónde?</label>
-          <input class="input" id="f-other" enterkeyhint="send" name="sourceOther" type="text" placeholder="Una revista, un evento, un proyecto que vio">
+        <div class="field">
+          <label for="f-phone">Teléfono o WhatsApp <span class="hint">(opcional)</span></label>
+          <input class="input" id="f-phone" enterkeyhint="next" name="phone" type="tel" autocomplete="tel" placeholder="+506 0000 0000">
+        </div>
+        <div class="field">
+          <label for="f-brief">¿Algo más? <span class="hint">(opcional)</span></label>
+          <textarea class="input enq__brief" id="f-brief" name="brief" rows="3" placeholder="Habitaciones, las vistas que quiere conservar, cuántos meses al año va a estar ahí."></textarea>
         </div>
       </fieldset>
 
@@ -458,6 +416,18 @@
       <p class="enq__thanks" data-thanks tabindex="-1">Gracias.</p>
       <p data-sent>Sus respuestas ya están con el estudio. Respondemos en un día hábil, por correo o WhatsApp.</p>
       <p data-failed hidden>No se pudo enviar. Mande las mismas respuestas por correo y le llegan igual al estudio.</p>
+      <div class="enq__src" data-source hidden>
+        <p class="q" id="q-source">Una más, si quiere: ¿cómo nos encontró?</p>
+        <div class="enq__src-list" role="group" aria-labelledby="q-source">
+          <button type="button" data-src="Un amigo o familiar">Un amigo o familiar</button>
+          <button type="button" data-src="Google">Google</button>
+          <button type="button" data-src="Instagram">Instagram</button>
+          <button type="button" data-src="Un constructor o agente">Un constructor o agente</button>
+          <button type="button" data-src="Una revista o un sitio web">Una revista o un sitio web</button>
+          <button type="button" data-src="Otro">Otro</button>
+        </div>
+        <p class="note" data-source-done hidden>Anotado, gracias.</p>
+      </div>
       <div class="enq__nav">
         <button class="label ulink" type="button" data-close>Cerrar</button>
         <a class="btn btn--light" data-mailto href="mailto:hola@cava.design" hidden>Enviar por correo →</a>
