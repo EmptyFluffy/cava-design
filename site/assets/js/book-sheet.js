@@ -65,7 +65,10 @@
           // images in it are relative to the booking page
           bk.querySelectorAll('img[src]').forEach((im) => { im.src = new URL(im.getAttribute('src'), url).href; });
           bk.setAttribute('lang', doc.documentElement.lang);
-          await load(new URL('booking.js', SCRIPT).href);
+          // the scheduler's script at the version the booking page names, so its markup and its script
+          // always match (an unversioned file could come from a cache hours old)
+          const js = doc.querySelector('script[src*="booking.js"]');
+          await load(js ? new URL(js.getAttribute('src'), url).href : new URL('booking.js', SCRIPT).href);
           return bk;
         })();
       }
