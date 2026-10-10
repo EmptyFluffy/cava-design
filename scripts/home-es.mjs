@@ -17,7 +17,7 @@ export const SAME = new Set([
 export const PAIRS = [
   // ---------- head ----------
   ['<html lang="en" data-pre>', '<html lang="es" data-pre>'],
-  ['<title>Studio CAVA | Architecture and interiors in Costa Rica</title>', '<title>Studio CAVA | Arquitectura e interiores en Costa Rica</title>'],
+  ['<title>Studio CAVA | Architects and interior design in Costa Rica</title>', '<title>Studio CAVA | Arquitectos y diseño de interiores en Costa Rica</title>'],
   ['(Architecture and interiors, Costa Rica)', '(Arquitectura e interiores, Costa Rica)'],
   ['content="Studio CAVA designs houses, retreats and cafés in Costa Rica, from the first site visit and uso de suelo to CFIA permits and site supervision."',
     'content="Studio CAVA diseña casas, hoteles pequeños y cafés en Costa Rica, desde la primera visita al lote y el uso de suelo hasta los permisos del CFIA y la supervisión de obra."'],
@@ -179,10 +179,11 @@ export const PAIRS = [
   ['placeholder="A magazine, an event, a project you saw"', 'placeholder="Una revista, un evento, un proyecto que vio"'],
   ['data-back hidden>Back</button>', 'data-back hidden>Atrás</button>'],
   ['data-next>Next →</button>', 'data-next>Siguiente →</button>'],
-  ['(Preview)', '(Vista previa)'],
+  ['(Sent)', '(Enviado)'],
+  ['<label for="f-company">Company</label>', '<label for="f-company">Empresa</label>'],
   ['tabindex="-1">Thank you.</p>', 'tabindex="-1">Gracias.</p>'],
-  ['This form is a preview and is not connected yet, so nothing has been sent. To reach the studio today, send the same answers by email.',
-    'Este formulario es una vista previa y todavía no está conectado, así que no se envió nada. Para escribirle al estudio hoy, mande las mismas respuestas por correo.'],
+  ['Your answers are with the studio. We reply within one working day, by email or WhatsApp.', 'Sus respuestas ya están con el estudio. Respondemos en un día hábil, por correo o WhatsApp.'],
+  ['It did not go through. Send the same answers by email and they reach the studio all the same.', 'No se pudo enviar. Mande las mismas respuestas por correo y le llegan igual al estudio.'],
   ['Send by email →', 'Enviar por correo →'],
 
   // ---------- menu, viewer ----------

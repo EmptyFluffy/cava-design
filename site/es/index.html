@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Studio CAVA | Arquitectura e interiores en Costa Rica</title>
+<title>Studio CAVA | Arquitectos y diseño de interiores en Costa Rica</title>
 <meta name="description" content="Studio CAVA diseña casas, hoteles pequeños y cafés en Costa Rica, desde la primera visita al lote y el uso de suelo hasta los permisos del CFIA y la supervisión de obra.">
 <link rel="canonical" href="https://cava.design/es/">
 <link rel="alternate" hreflang="en" href="https://cava.design/">
@@ -22,9 +22,10 @@
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="../assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, ../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
-<link rel="stylesheet" href="../assets/css/site.css?v=6ce49df4">
+<!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Sur de la península de Nicoya"},{"@type":"AdministrativeArea","name":"Pacífico central"},{"@type":"AdministrativeArea","name":"Pacífico sur"},{"@type":"AdministrativeArea","name":"Caribe"},{"@type":"AdministrativeArea","name":"Valle Central"}],"knowsAbout":["Arquitectura","Diseño de interiores","Planes maestros","Diseño sostenible","Permisos de construcción en Costa Rica","Dirección de obra","Arquitectura tropical"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Estudio de lote","url":"https://cava.design/es/servicios/estudio-de-lote/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Plan maestro","url":"https://cava.design/es/servicios/plan-maestro/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Arquitectura","url":"https://cava.design/es/servicios/arquitectura/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permisos","url":"https://cava.design/es/servicios/permisos/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiores","url":"https://cava.design/es/servicios/interiores/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Dirección de obra","url":"https://cava.design/es/servicios/direccion-de-obra/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Diseño sostenible","url":"https://cava.design/es/servicios/diseno-sostenible/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
+<link rel="stylesheet" href="../assets/css/site.css?v=bb6fd028">
 <script defer src="../assets/js/renders.es.js?v=55bd3d9b"></script>
-<script defer src="../assets/js/site.js?v=2dc421c8"></script>
+<script defer src="../assets/js/site.js?v=b3758fcc"></script>
 <script defer src="../assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="../assets/js/titles.js?v=fa76a511"></script>
 <script defer src="../assets/js/motion.js?v=e7643ad1"></script>
@@ -303,7 +304,7 @@
   </div>
 </footer>
 
-<!-- Project enquiry sheet. A dummy for now: nothing is sent anywhere. -->
+<!-- Project enquiry sheet: sent to the studio by email through /api/enquiry (workers/enquiry). -->
 <div class="modal" id="enquiry" role="dialog" aria-modal="true" aria-labelledby="enq-title" inert>
   <div class="modal__overlay" data-close></div>
   <div class="modal__panel">
@@ -318,6 +319,7 @@
     </div>
 
     <form class="enq" data-enq novalidate>
+      <div class="enq__hp" aria-hidden="true"><label for="f-company">Empresa</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
       <fieldset class="step is-active" data-step>
         <legend class="sr-only">Sus datos, paso 1 de 8</legend>
         <div class="step__title label"><span>Sus datos</span><span>(01/08)</span></div>
@@ -452,12 +454,13 @@
     </form>
 
     <div class="enq__done" data-done hidden>
-      <span class="label">(Vista previa)</span>
+      <span class="label">(Enviado)</span>
       <p class="enq__thanks" data-thanks tabindex="-1">Gracias.</p>
-      <p>Este formulario es una vista previa y todavía no está conectado, así que no se envió nada. Para escribirle al estudio hoy, mande las mismas respuestas por correo.</p>
+      <p data-sent>Sus respuestas ya están con el estudio. Respondemos en un día hábil, por correo o WhatsApp.</p>
+      <p data-failed hidden>No se pudo enviar. Mande las mismas respuestas por correo y le llegan igual al estudio.</p>
       <div class="enq__nav">
         <button class="label ulink" type="button" data-close>Cerrar</button>
-        <a class="btn btn--light" data-mailto href="mailto:hola@cava.design">Enviar por correo →</a>
+        <a class="btn btn--light" data-mailto href="mailto:hola@cava.design" hidden>Enviar por correo →</a>
       </div>
     </div>
   </div>

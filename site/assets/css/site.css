@@ -2112,3 +2112,6 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pre__word + .pre__word { position: absolute; left: 0; top: 0; transform: translateY(105%); }
 .pre__label { margin: 0 0 0.6em; color: var(--white); }
 @media (max-width: 767px) { .pre__label { order: -1; } }
+
+/* the enquiry's honeypot: off screen for people, there for bots */
+.enq__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

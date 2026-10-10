@@ -2818,6 +2818,32 @@ ${proc.stages.map((ids, i) => `          <span class="process__capline label${i 
       <!-- /process-fig -->`;
 }
 
+// The studio for search engines, on both homes: what it is, where, what it does and where it works.
+// The town pages point to it by its @id.
+function studioLd(lang) {
+  const en = lang === 'en';
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', alternateName: 'CAVA',
+        description: en
+          ? 'Architecture and interior design studio in Costa Rica: houses, rental villas, boutique hotels, cafés and master plans, from the study of the lot to the permits and the supervision of the works.'
+          : 'Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.',
+        url: `${ORIGIN}/`, logo: `${ORIGIN}/apple-touch-icon.png`, image: `${ORIGIN}/assets/img/og.jpg`,
+        telephone: `+${WHATSAPP}`, email: EMAIL,
+        address: { '@type': 'PostalAddress', addressLocality: 'San José', addressCountry: 'CR' },
+        areaServed: [{ '@type': 'Country', name: 'Costa Rica' }, ...Object.values(regions).map((r) => ({ '@type': 'AdministrativeArea', name: r[lang] }))],
+        knowsAbout: en ? ['Architecture', 'Interior design', 'Master planning', 'Sustainable design', 'Building permits in Costa Rica', 'Construction supervision', 'Tropical architecture'] : ['Arquitectura', 'Diseño de interiores', 'Planes maestros', 'Diseño sostenible', 'Permisos de construcción en Costa Rica', 'Dirección de obra', 'Arquitectura tropical'],
+        founder: { '@type': 'Person', name: 'Carlos Vinocour' },
+        hasOfferCatalog: { '@type': 'OfferCatalog', name: en ? 'Services' : 'Servicios', itemListElement: services.map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv[lang].name, url: `${ORIGIN}/${servicePath(lang, sv)}` } })) },
+      },
+      { '@type': 'WebSite', '@id': `${ORIGIN}/#website`, url: `${ORIGIN}/`, name: 'Studio CAVA', inLanguage: ['en', 'es'], publisher: { '@id': `${ORIGIN}/#studio` } },
+    ],
+  };
+  return `<!-- ld --><script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script><!-- /ld -->`;
+}
+
 function homeCounts() {
   const path = join(SITE, 'index.html');
   const before = readFileSync(path, 'utf8');
@@ -2829,6 +2855,7 @@ function homeCounts() {
     // the services list, from data/services.json: between its markers, or first put before the process
     .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m))
     .replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => (proc ? processSteps('en', 'studio/') : ''))
+    .replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('en'))
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
   if (after !== before) writeFileSync(path, after);
 }
@@ -2843,6 +2870,7 @@ function homeEs() {
     html = from instanceof RegExp ? html.replace(from, to) : html.split(from).join(to);
     if (html === before) missing.push(String(from));
   }
+  html = html.replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('es'));
   // image alt texts, from the data
   for (const p of projects) p.images.forEach((im, j) => {
     html = html.split(`alt="${esc(im.alt)}"`).join(`alt="${esc(altOf('es', p, j + 1))}"`);

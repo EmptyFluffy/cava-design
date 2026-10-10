@@ -45,7 +45,7 @@
     const opener = e.target.closest('[data-open]');
     if (opener) {
       const el = document.getElementById(opener.dataset.open);
-      if (el) { e.preventDefault(); if (el.id === 'enquiry') resetIfDone(); open(el, opener); }
+      if (el) { e.preventDefault(); if (el.id === 'enquiry') { resetIfDone(); opened = Date.now(); } open(el, opener); }
       return;
     }
     const closer = e.target.closest('[data-close]');
@@ -232,20 +232,43 @@
     ].map((v, k) => [keys[k], v]).filter(([, v]) => v && String(v).trim());
   }
 
+  // the answers go to the studio by email (/api/enquiry, workers/enquiry); if that fails, the same answers
+  // are ready in a mailto link. The hidden "company" field and the time spent keep bots out.
+  let opened = Date.now();
   function finish() {
     const a = answers();
-    const first = String(new FormData(form).get('name') || '').trim().split(/\s+/)[0];
-    $('[data-thanks]').textContent = ES ? (first ? `Gracias, ${first}.` : 'Gracias.') : (first ? `Thank you, ${first}.` : 'Thank you.');
     const d = new FormData(form);
+    const first = String(d.get('name') || '').trim().split(/\s+/)[0];
     const subject = ES
       ? `Consulta de proyecto: ${d.getAll('type').join(', ') || 'proyecto nuevo'} en ${d.get('site') || 'Costa Rica'}`
       : `Project enquiry: ${d.getAll('type').join(', ') || 'new project'} in ${d.get('site') || 'Costa Rica'}`;
     const body = a.map(([k, v]) => `${k}: ${v}`).join('\n');
-    $('[data-mailto]').href = `mailto:hola@cava.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    form.hidden = true;
-    done.hidden = false;
-    bar.style.width = '100%';
-    $('[data-thanks]').focus({ preventScroll: true });
+    const mail = $('[data-mailto]');
+    mail.href = `mailto:hola@cava.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const show = (ok) => {
+      $('[data-thanks]').textContent = ok
+        ? (ES ? (first ? `Gracias, ${first}.` : 'Gracias.') : (first ? `Thank you, ${first}.` : 'Thank you.'))
+        : (ES ? 'No se envió.' : 'Not sent.');
+      $('.enq__done .label').textContent = ok ? (ES ? '(Enviado)' : '(Sent)') : (ES ? '(Error)' : '(Error)');
+      $('[data-sent]').hidden = !ok;
+      $('[data-failed]').hidden = ok;
+      mail.hidden = ok;
+      form.hidden = true;
+      done.hidden = false;
+      bar.style.width = '100%';
+      $('[data-thanks]').focus({ preventScroll: true });
+      if (ok) window.dispatchEvent(new CustomEvent('cava:enquiry', { detail: { site: d.get('site'), budget: d.get('budget') } }));
+    };
+    next.disabled = true;
+    next.textContent = ES ? 'Enviando…' : 'Sending…';
+    fetch('/api/enquiry', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ lang: ES ? 'es' : 'en', rows: a, name: d.get('name'), email: d.get('email'), subject, hp: d.get('company') || '', ms: Date.now() - opened }),
+    })
+      .then((r) => r.json().then((j) => r.ok && j.ok))
+      .catch(() => false)
+      .then((ok) => { next.disabled = false; show(ok); });
   }
 
   function resetIfDone() {

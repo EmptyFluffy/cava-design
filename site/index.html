@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Studio CAVA | Architecture and interiors in Costa Rica</title>
+<title>Studio CAVA | Architects and interior design in Costa Rica</title>
 <meta name="description" content="Studio CAVA designs houses, retreats and cafés in Costa Rica, from the first site visit and uso de suelo to CFIA permits and site supervision.">
 <link rel="canonical" href="https://cava.design/">
 <link rel="alternate" hreflang="en" href="https://cava.design/">
@@ -22,9 +22,10 @@
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
-<link rel="stylesheet" href="assets/css/site.css?v=6ce49df4">
+<!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Architecture and interior design studio in Costa Rica: houses, rental villas, boutique hotels, cafés and master plans, from the study of the lot to the permits and the supervision of the works.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Southern Nicoya Peninsula"},{"@type":"AdministrativeArea","name":"Central Pacific"},{"@type":"AdministrativeArea","name":"South Pacific"},{"@type":"AdministrativeArea","name":"Caribbean"},{"@type":"AdministrativeArea","name":"Central Valley"}],"knowsAbout":["Architecture","Interior design","Master planning","Sustainable design","Building permits in Costa Rica","Construction supervision","Tropical architecture"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Lot study","url":"https://cava.design/services/lot-study/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Master planning","url":"https://cava.design/services/master-planning/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Architecture","url":"https://cava.design/services/architecture/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permits","url":"https://cava.design/services/permits/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiors","url":"https://cava.design/services/interiors/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Construction supervision","url":"https://cava.design/services/construction-supervision/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Sustainable design","url":"https://cava.design/services/sustainable-design/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
+<link rel="stylesheet" href="assets/css/site.css?v=bb6fd028">
 <script defer src="assets/js/renders.js?v=29c9c0bf"></script>
-<script defer src="assets/js/site.js?v=2dc421c8"></script>
+<script defer src="assets/js/site.js?v=b3758fcc"></script>
 <script defer src="assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="assets/js/titles.js?v=fa76a511"></script>
 <script defer src="assets/js/motion.js?v=e7643ad1"></script>
@@ -303,7 +304,7 @@
   </div>
 </footer>
 
-<!-- Project enquiry sheet. A dummy for now: nothing is sent anywhere. -->
+<!-- Project enquiry sheet: sent to the studio by email through /api/enquiry (workers/enquiry). -->
 <div class="modal" id="enquiry" role="dialog" aria-modal="true" aria-labelledby="enq-title" inert>
   <div class="modal__overlay" data-close></div>
   <div class="modal__panel">
@@ -318,6 +319,7 @@
     </div>
 
     <form class="enq" data-enq novalidate>
+      <div class="enq__hp" aria-hidden="true"><label for="f-company">Company</label><input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
       <fieldset class="step is-active" data-step>
         <legend class="sr-only">Your details, step 1 of 8</legend>
         <div class="step__title label"><span>Your details</span><span>(01/08)</span></div>
@@ -452,12 +454,13 @@
     </form>
 
     <div class="enq__done" data-done hidden>
-      <span class="label">(Preview)</span>
+      <span class="label">(Sent)</span>
       <p class="enq__thanks" data-thanks tabindex="-1">Thank you.</p>
-      <p>This form is a preview and is not connected yet, so nothing has been sent. To reach the studio today, send the same answers by email.</p>
+      <p data-sent>Your answers are with the studio. We reply within one working day, by email or WhatsApp.</p>
+      <p data-failed hidden>It did not go through. Send the same answers by email and they reach the studio all the same.</p>
       <div class="enq__nav">
         <button class="label ulink" type="button" data-close>Close</button>
-        <a class="btn btn--light" data-mailto href="mailto:hola@cava.design">Send by email →</a>
+        <a class="btn btn--light" data-mailto href="mailto:hola@cava.design" hidden>Send by email →</a>
       </div>
     </div>
   </div>

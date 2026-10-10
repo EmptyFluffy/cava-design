@@ -1,0 +1,10 @@
+{
+  // the project enquiry: the form on cava.design posts here, and the studio gets it by email
+  "name": "cava-enquiry",
+  "main": "index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "cava.design/api/*", "zone_name": "cava.design" }],
+  // Email Routing's own sender: it can only write to verified addresses of the account
+  "send_email": [{ "name": "MAIL", "destination_address": "vinocouralvarez@gmail.com" }]
+}
