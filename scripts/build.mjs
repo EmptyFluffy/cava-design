@@ -591,7 +591,7 @@ ${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, 
   const waText = t.wa.project(p.name);
   return head(lang, {
     title: `${p.name} | Studio CAVA`,
-    description: s.description(p.name, type),
+    description: p.summary?.[lang] ?? s.description(p.name, type),
     paths,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
@@ -605,7 +605,11 @@ ${bar(lang, up, paths, 'projects')}
       <h1 class="display proj__title" id="proj-title">${esc(p.name)}</h1>
     </header>
     ${p.analysis ? coverMatrix(lang, up, p) : `<figure class="proj__cover">${picture(up, p.slug, 1, altOf(lang, p, 1), '100vw', { eager: true })}</figure>`}
-    <section class="proj__body grid" aria-labelledby="sheet-title">
+${p.text ? `    <section class="proj__text grid" aria-labelledby="about-title">
+      <h2 class="label tw__label" id="about-title">${s.about}</h2>
+      <div class="tw__text">${p.text[lang].map((x) => `<p class="large">${esc(x)}</p>`).join('')}</div>
+    </section>
+` : ''}    <section class="proj__body grid" aria-labelledby="sheet-title">
       <h2 class="label sheet__label" id="sheet-title">${s.sheet}</h2>
       <dl class="sheet">
 ${rows}
@@ -846,6 +850,16 @@ ${footer(lang, up, paths)}${end}`;
 // ---------- recognition before the studio (data/recognition.json), on the Studio page ----------
 const RECOG_PATH = join(ROOT, 'data', 'recognition.json');
 const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH, 'utf8')) : null;
+// The studio's profiles elsewhere (data/profiles.json): only the public ones show
+const PROFILES_PATH = join(ROOT, 'data', 'profiles.json');
+const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_PATH, 'utf8')).items : []).filter((x) => x.live && x.url);
+const profilesSection = (lang) => (profiles.length ? `  <section class="tw__sec grid" aria-labelledby="elsewhere-title">
+    <h2 class="label tw__label" id="elsewhere-title">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</h2>
+    <ul class="svc__for">
+${profiles.map((x) => `      <li><a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${lang === 'en' ? 'Studio CAVA on' : 'Studio CAVA en'} ${esc(x.name)} ↗</a></li>`).join('\n')}
+    </ul>
+  </section>
+` : '');
 function recognitionSection(lang, up) {
   if (!recognition) return '';
   const R = recognition[lang];
@@ -938,7 +952,7 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
-${recognitionSection(lang, up)}${identity ? `  <section class="idn-teaser grid">
+${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
     <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
   </section>` : ''}
 ${contact(lang, t.wa.general, up)}</main>
@@ -2847,6 +2861,7 @@ function studioLd(lang) {
         areaServed: [{ '@type': 'Country', name: 'Costa Rica' }, ...Object.values(regions).map((r) => ({ '@type': 'AdministrativeArea', name: r[lang] }))],
         knowsAbout: en ? ['Architecture', 'Interior design', 'Master planning', 'Sustainable design', 'Building permits in Costa Rica', 'Construction supervision', 'Tropical architecture'] : ['Arquitectura', 'Diseño de interiores', 'Planes maestros', 'Diseño sostenible', 'Permisos de construcción en Costa Rica', 'Dirección de obra', 'Arquitectura tropical'],
         founder: { '@type': 'Person', name: 'Carlos Vinocour' },
+        ...(profiles.length ? { sameAs: profiles.map((x) => x.url) } : {}),
         hasOfferCatalog: { '@type': 'OfferCatalog', name: en ? 'Services' : 'Servicios', itemListElement: services.map((sv) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: sv[lang].name, url: `${ORIGIN}/${servicePath(lang, sv)}` } })) },
       },
       { '@type': 'WebSite', '@id': `${ORIGIN}/#website`, url: `${ORIGIN}/`, name: 'Studio CAVA', inLanguage: ['en', 'es'], publisher: { '@id': `${ORIGIN}/#studio` } },

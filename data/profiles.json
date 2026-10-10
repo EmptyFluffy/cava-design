@@ -1,0 +1,7 @@
+{
+  "_note": "The studio's profiles on other sites. Turn live to true once a profile is public (and check its url): the build then links it from /studio/ and lists it under sameAs in the homes' structured data, which tells Google the profile and cava.design are the same studio.",
+  "items": [
+    { "name": "Architizer", "url": "https://architizer.com/firms/studio-cava/", "live": false },
+    { "name": "Archello", "url": "", "live": false }
+  ]
+}
