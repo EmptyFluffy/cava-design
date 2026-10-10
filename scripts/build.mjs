@@ -325,7 +325,7 @@ const similar = (p, n = 3) => projects.filter((o) => o.slug !== p.slug)
 
 // ---------- /projects/<slug>/ and /es/proyectos/<slug>/ ----------
 const FACTS = ['location', 'year', 'status', 'siteArea', 'builtArea'];
-const TEAM_ROLES = { architecture: { en: 'Architecture', es: 'Arquitectura' }, engineering: { en: 'Engineering', es: 'Ingeniería' }, visualization: { en: 'Visualization', es: 'Visualización' } };
+const TEAM_ROLES = { architecture: { en: 'Architecture', es: 'Arquitectura' }, engineering: { en: 'Engineering', es: 'Ingeniería' }, visualization: { en: 'Visualization', es: 'Visualización' }, photography: { en: 'Photography', es: 'Fotografía' } };
 const AREAS = new Set(['siteArea', 'builtArea']);
 // Areas are kept in m²; the sheet adds square feet (1 m² = 10.7639 ft²), rounded to 10 because the metres are round figures too.
 const group = (lang, n) => (lang === 'en' ? n.toLocaleString('en-US') : n >= 10000 ? n.toLocaleString('en-US').replace(/,/g, '\u00a0') : String(n));

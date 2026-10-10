@@ -65,8 +65,8 @@
       "grade": true,
       "name": "Papagayo 404",
       "folder": "Papagayo 404",
-      "type": "House",
-      "type_es": "Casa",
+      "type": "House extension",
+      "type_es": "Ampliación de casa",
       "typology": "Residential",
       "typology_es": "Habitacional",
       "location": "Península Papagayo, Guanacaste",
@@ -80,7 +80,7 @@
       "year": 2020,
       "siteArea": 2900,
       "builtArea": 1100,
-      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"]},
+      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"], "photography": ["John Abrams"]},
       "images": [
         {
           "file": "Arquitectura moderna restaurada con precisión-5.png",
