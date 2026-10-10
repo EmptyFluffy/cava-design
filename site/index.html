@@ -23,9 +23,9 @@
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
 <!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Architecture and interior design studio in Costa Rica: houses, rental villas, boutique hotels, cafés and master plans, from the study of the lot to the permits and the supervision of the works.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Southern Nicoya Peninsula"},{"@type":"AdministrativeArea","name":"Central Pacific"},{"@type":"AdministrativeArea","name":"South Pacific"},{"@type":"AdministrativeArea","name":"Caribbean"},{"@type":"AdministrativeArea","name":"Central Valley"}],"knowsAbout":["Architecture","Interior design","Master planning","Sustainable design","Building permits in Costa Rica","Construction supervision","Tropical architecture"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Lot study","url":"https://cava.design/services/lot-study/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Master planning","url":"https://cava.design/services/master-planning/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Architecture","url":"https://cava.design/services/architecture/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permits","url":"https://cava.design/services/permits/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiors","url":"https://cava.design/services/interiors/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Construction supervision","url":"https://cava.design/services/construction-supervision/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Sustainable design","url":"https://cava.design/services/sustainable-design/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
-<link rel="stylesheet" href="assets/css/site.css?v=1299e05e">
+<link rel="stylesheet" href="assets/css/site.css?v=c0526c1f">
 <script defer src="assets/js/renders.js?v=29c9c0bf"></script>
-<script defer src="assets/js/site.js?v=b3758fcc"></script>
+<script defer src="assets/js/site.js?v=c2252767"></script>
 <script defer src="assets/js/book-sheet.js?v=b68a0006"></script>
 <script defer src="assets/js/titles.js?v=fa76a511"></script>
 <script defer src="assets/js/motion.js?v=9a2d9a75"></script>
@@ -325,17 +325,17 @@
         <div class="step__title label"><span>Your details</span><span>(01/08)</span></div>
         <div class="field">
           <label for="f-name">Name <span class="req">*</span></label>
-          <input class="input" id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+          <input class="input" id="f-name" enterkeyhint="next" name="name" type="text" autocomplete="name" placeholder="Your name" required>
           <p class="err" data-err="name">Add your name so we know who to reply to.</p>
         </div>
         <div class="field">
           <label for="f-email">Email address <span class="req">*</span></label>
-          <input class="input" id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <input class="input" id="f-email" enterkeyhint="next" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
           <p class="err" data-err="email">Enter an email address like name@example.com.</p>
         </div>
         <div class="field">
           <label for="f-phone">Phone or WhatsApp</label>
-          <input class="input" id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+506 0000 0000">
+          <input class="input" id="f-phone" enterkeyhint="next" name="phone" type="tel" autocomplete="tel" placeholder="+506 0000 0000">
         </div>
       </fieldset>
 
@@ -375,12 +375,12 @@
         <div class="step__title label"><span>The project</span><span>(04/08)</span></div>
         <div class="field">
           <label for="f-site">Where is the site? <span class="req">*</span></label>
-          <input class="input" id="f-site" name="site" type="text" placeholder="Nosara, Guanacaste" required>
+          <input class="input" id="f-site" enterkeyhint="next" name="site" type="text" placeholder="Nosara, Guanacaste" required>
           <p class="err" data-err="site">Add a town or area, even a rough one.</p>
         </div>
         <div class="field">
           <label for="f-start">When would you like to start building?</label>
-          <input class="input" id="f-start" name="start" type="text" placeholder="Early 2027">
+          <input class="input" id="f-start" enterkeyhint="next" name="start" type="text" placeholder="Early 2027">
           <p class="note">Permits through CFIA and the municipality usually add several months after the design is finished. We map the full timeline with you at the first meeting.</p>
         </div>
       </fieldset>
@@ -415,7 +415,7 @@
         </div>
         <div class="field">
           <label for="f-builder">Builder details (if you have one)</label>
-          <input class="input" id="f-builder" name="builderDetails" type="text" placeholder="Company name, contact">
+          <input class="input" id="f-builder" enterkeyhint="next" name="builderDetails" type="text" placeholder="Company name, contact">
         </div>
       </fieldset>
 
@@ -441,9 +441,9 @@
             <label class="tile"><input type="radio" name="source" value="Other"><span>Other</span></label>
           </div>
         </div>
-        <div class="field">
+        <div class="field field--other">
           <label for="f-other">If other, where?</label>
-          <input class="input" id="f-other" name="sourceOther" type="text" placeholder="A magazine, an event, a project you saw">
+          <input class="input" id="f-other" enterkeyhint="send" name="sourceOther" type="text" placeholder="A magazine, an event, a project you saw">
         </div>
       </fieldset>
 

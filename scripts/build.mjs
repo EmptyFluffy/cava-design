@@ -192,11 +192,21 @@ ${up !== null && booking ? `      <a class="btn btn--light" href="${up}${bookPat
 `;
 }
 
-function footer(lang, up, paths) {
+function footer(lang, up, paths, { mini = false } = {}) {
   const t = UI[lang].footer;
   const n = UI[lang].nav;
   const o = UI[lang].other;
   const home = up + UI[lang].dir;
+  // the client portal's: one line, a sign-in page needs a way to reach the studio and the other language only
+  if (mini) return `<footer class="footer footer--mini page">
+  <div class="grid footer__bottom label">
+    <p>© 2026 Studio CAVA<br>San José, Costa Rica</p>
+    <a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a>
+    <a class="ulink" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN}</a>
+    <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
+  </div>
+</footer>
+`;
   return `<footer class="footer page">
   <div class="grid footer__top">
     <div class="footer__brand cq">
@@ -1733,7 +1743,7 @@ const BK = {
     budget: 'Budget for the works', budgets: ['Not sure yet', 'Under US$300,000', 'US$300,000 to 600,000', 'US$600,000 to 1 million', 'Over US$1 million'],
     notes: 'Anything we should look at before the call?', notesHint: 'A link to the lot, its cadastral plan number, references you like.',
     legalLive: 'By confirming you agree to the terms and privacy policy of Cal.com, which handles the booking.', legalReq: 'We use your details only to confirm and prepare the call.',
-    back: 'Back', confirm: 'Confirm', confirmReq: 'Send by WhatsApp',
+    back: 'Back', confirm: 'Confirm', confirmReq: 'Send by WhatsApp', more: 'Add details (optional)', change: 'Change',
     cover: '(What we cover)', covers: ['Your property: what the land use, the setbacks, the water and the slope allow', 'What it could cost and how long it takes, with our estimator', 'How we work, our fees and the next step'],
     helps: '(What helps)', helpsList: ['The location of the lot, or its cadastral plan', 'Photos of the lot and of houses you like', 'A budget range and when you would like to move in'],
   },
@@ -1751,7 +1761,7 @@ const BK = {
     budget: 'Presupuesto de la obra', budgets: ['Todavía no sé', 'Menos de US$300,000', 'US$300,000 a 600,000', 'US$600,000 a 1 millón', 'Más de US$1 millón'],
     notes: '¿Algo que debamos revisar antes de la llamada?', notesHint: 'Un enlace al lote, el número de plano catastrado, referencias que le gusten.',
     legalLive: 'Al confirmar acepta los términos y la política de privacidad de Cal.com, que gestiona la reserva.', legalReq: 'Usamos sus datos solo para confirmar y preparar la llamada.',
-    back: 'Atrás', confirm: 'Confirmar', confirmReq: 'Enviar por WhatsApp',
+    back: 'Atrás', confirm: 'Confirmar', confirmReq: 'Enviar por WhatsApp', more: 'Agregar detalles (opcional)', change: 'Cambiar',
     cover: '(De qué hablamos)', covers: ['Su propiedad: lo que permiten el uso de suelo, los retiros, el agua y la pendiente', 'Cuánto podría costar y cuánto tarda, con nuestro estimador', 'Cómo trabajamos, nuestros honorarios y el siguiente paso'],
     helps: '(Lo que ayuda)', helpsList: ['La ubicación del lote, o su plano catastrado', 'Fotos del lote y de casas que le gusten', 'Un rango de presupuesto y cuándo quisiera mudarse'],
   },
@@ -1787,7 +1797,7 @@ ${bar(lang, up, paths, 'book')}
         <h2 class="bk__title">${esc(B.callTitle(b.duration))}</h2>
         <p class="bk__text">${esc(B.callText)}</p>
         <ul class="bk__facts">
-          <li class="bk__picked">${ICON.cal}<span><span data-bk-when></span></span></li>
+          <li class="bk__picked">${ICON.cal}<span><span data-bk-when></span> <button class="ulink bk__change" type="button" data-bk-change>${B.change}</button></span></li>
           <li>${ICON.clock}<span>${B.minutes(b.duration)}</span></li>
           <li>${ICON.video}<span>${B.video}</span></li>
           <li class="bk__tzrow">${ICON.globe}<label class="bk__tz"><span class="sr-only">Time zone</span><select data-bk-tz>${ZONES.map((z) => `<option value="${z}">${z.replace(/_/g, ' ')}</option>`).join('')}</select></label></li>
@@ -1805,14 +1815,15 @@ ${bar(lang, up, paths, 'book')}
       </section>
       <form class="bk__form" data-bk-form novalidate>
         <p class="bk__form-title label bk__wide">${lang === 'en' ? '(Your details)' : '(Sus datos)'}</p>
-        <label class="bk__field"><span class="label">${B.name} *</span><input class="input" name="name" autocomplete="name" required></label>
-        <label class="bk__field"><span class="label">${B.email} *</span><input class="input" type="email" name="email" autocomplete="email" required></label>
-        <label class="bk__field"><span class="label">${B.phone} <i>(${B.optional})</i></span><input class="input" type="tel" name="phone" autocomplete="tel" placeholder="+1 555 123 4567"></label>
-        <label class="bk__field"><span class="label">${B.where}</span><select class="input" name="where"><option value="unsure">${B.unsure}</option>${towns.map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}<option value="other">${B.other}</option></select></label>
-        <fieldset class="bk__field bk__wide"><legend class="label">${B.what}</legend>${seg('what', B.whats)}</fieldset>
-        <fieldset class="bk__field"><legend class="label">${B.lot}</legend>${seg('lot', B.lots)}</fieldset>
-        <label class="bk__field"><span class="label">${B.budget} <i>(${B.optional})</i></span><select class="input" name="budget">${B.budgets.map((x, i) => `<option value="${i}">${esc(x)}</option>`).join('')}</select></label>
-        <label class="bk__field bk__wide"><span class="label">${B.notes} <i>(${B.optional})</i></span><textarea class="input" name="notes" rows="2" placeholder="${esc(B.notesHint)}"></textarea></label>
+        <label class="bk__field"><span class="label">${B.name} *</span><input class="input" name="name" autocomplete="name" enterkeyhint="next" required></label>
+        <label class="bk__field"><span class="label">${B.email} *</span><input class="input" type="email" name="email" autocomplete="email" enterkeyhint="next" required></label>
+        <label class="bk__field"><span class="label">${B.phone} <i>(${B.optional})</i></span><input class="input" type="tel" name="phone" autocomplete="tel" enterkeyhint="send" placeholder="+1 555 123 4567"></label>
+        <button class="bk__more" type="button" data-bk-more aria-expanded="false">${B.more}</button>
+        <label class="bk__field bk__opt"><span class="label">${B.where}</span><select class="input" name="where"><option value="unsure">${B.unsure}</option>${towns.map((t) => `<option value="${t.slug}">${esc(t.name)}</option>`).join('')}<option value="other">${B.other}</option></select></label>
+        <fieldset class="bk__field bk__opt bk__wide"><legend class="label">${B.what}</legend>${seg('what', B.whats)}</fieldset>
+        <fieldset class="bk__field bk__opt"><legend class="label">${B.lot}</legend>${seg('lot', B.lots)}</fieldset>
+        <label class="bk__field bk__opt"><span class="label">${B.budget} <i>(${B.optional})</i></span><select class="input" name="budget">${B.budgets.map((x, i) => `<option value="${i}">${esc(x)}</option>`).join('')}</select></label>
+        <label class="bk__field bk__opt bk__wide"><span class="label">${B.notes} <i>(${B.optional})</i></span><textarea class="input" name="notes" rows="2" placeholder="${esc(B.notesHint)}"></textarea></label>
         <input type="hidden" name="est">
         <p class="note bk__legal bk__wide">${live ? B.legalLive : B.legalReq}</p>
         <p class="bk__error bk__wide" data-bk-error role="alert"></p>
@@ -2992,7 +3003,7 @@ ${bar(lang, up, paths, 'portal')}
 <main class="page">
   <section class="portal" aria-labelledby="portal-title">
     <figure class="portal__media">
-      ${picture(up, 'papagayo-404', 2, altOf(lang, projects.find((x) => x.slug === 'papagayo-404'), 2), '(min-width: 768px) 50vw, 100vw', { eager: true })}
+      <picture><source media="(max-width: 767px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">${picture(up, 'papagayo-404', 2, altOf(lang, projects.find((x) => x.slug === 'papagayo-404'), 2), '50vw', { eager: true })}</picture>
       <figcaption class="label portal__cap">${esc(P.photo)}</figcaption>
     </figure>
     <div class="portal__panel">
@@ -3020,7 +3031,7 @@ ${bar(lang, up, paths, 'portal')}
     </div>
   </section>
 </main>
-${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
+${footer(lang, up, paths, { mini: true })}${end}`;
 }
 
 // Projects that changed name: the old address forwards to the new page (GitHub Pages has no redirects).
@@ -3028,8 +3039,10 @@ const RENAMED = { 'portland-house': 'rancho-cartagena', 'amacor-house': 'green-c
 const forward = (to, rel) => `<!doctype html>\n<html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="${ORIGIN}/${to}"><meta http-equiv="refresh" content="0; url=${rel}"><title>Moved</title></head><body><a href="${rel}">${to}</a></body></html>\n`;
 
 const write = (path, html) => {
-  // every page carries the floating WhatsApp button
-  if (path.endsWith('.html') && !/class="wa["\s]/.test(html) && !html.includes('http-equiv="refresh"')) {
+  // every page carries the floating WhatsApp button, but the client portal (Carlos: it covered the email box;
+  // the portal's own footer has WhatsApp)
+  const portal = [portalPath('en'), portalPath('es')].some((x) => path.startsWith(x));
+  if (path.endsWith('.html') && !portal && !/class="wa["\s]/.test(html) && !html.includes('http-equiv="refresh"')) {
     const lang = /<html lang="es"/.test(html) ? 'es' : 'en';
     html = html.replace('</body>', `${waButton(lang, UI[lang].wa.general)}</body>`);
   }

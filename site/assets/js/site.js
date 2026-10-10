@@ -161,8 +161,10 @@
 
   const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
+  const panel = modal.querySelector('.modal__panel');
   function showStep(i, focus = true) {
     step = i;
+    panel.dataset.step = i;   // on a phone the introduction shows with the first step only (site.css)
     steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
     bar.style.width = `${((i + 1) / steps.length) * 100}%`;
     back.hidden = i === 0;
@@ -209,8 +211,14 @@
     if (t.getAttribute('aria-invalid') === 'true') setErr(t.name, false, t);
     if (t.type === 'radio' || t.type === 'checkbox') setErr(t.name, false);
   });
+  // Enter moves to the step's next box, and from its last one to the next step
   form.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); next.click(); }
+    if (e.key !== 'Enter' || e.target.tagName !== 'INPUT') return;
+    e.preventDefault();
+    const boxes = $$('input.input, textarea.input', steps[step]).filter((x) => x.offsetParent);
+    const after = boxes[boxes.indexOf(e.target) + 1];
+    if (after && e.target.classList.contains('input')) after.focus();
+    else next.click();
   });
 
   next.addEventListener('click', () => {
@@ -255,6 +263,7 @@
       mail.hidden = ok;
       form.hidden = true;
       done.hidden = false;
+      panel.dataset.step = 'done';
       bar.style.width = '100%';
       $('[data-thanks]').focus({ preventScroll: true });
       if (ok) window.dispatchEvent(new CustomEvent('cava:enquiry', { detail: { site: d.get('site'), budget: d.get('budget') } }));

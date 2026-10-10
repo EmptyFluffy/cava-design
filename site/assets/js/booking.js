@@ -99,7 +99,7 @@ function init(root, params = new URLSearchParams(location.search)) {
   let day = null, picked = null, open = {};
   const status = $('[data-bk-status]');
 
-  async function drawMonth(autoPick) {
+  async function drawMonth(autoPick, skipEmpty = false) {
     const title = $('[data-bk-month]');
     const name = new Intl.DateTimeFormat(T.locale, { timeZone: 'UTC', month: 'long' }).format(month);
     title.innerHTML = `<b>${name}</b> ${month.getUTCFullYear()}`;
@@ -117,13 +117,19 @@ function init(root, params = new URLSearchParams(location.search)) {
     for (let d = 1; d <= count; d++) {
       const key = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
       const has = open[key]?.length;
-      cells.push(has ? `<button type="button" class="bk__day" data-day="${key}" aria-pressed="${key === day}">${d}</button>` : `<span class="bk__day is-off">${d}</span>`);
+      const dw = T.dows[(lead + d - 1) % 7];
+      cells.push(has ? `<button type="button" class="bk__day" data-day="${key}" aria-pressed="${key === day}"><span class="bk__dw" aria-hidden="true">${dw}</span>${d}</button>` : `<span class="bk__day is-off">${d}</span>`);
     }
     grid.innerHTML = cells.join('');
     const keys = Object.keys(open).filter((k) => open[k].length).sort();
+    // the last days of a month, nothing left in it: open on the next one
+    if (skipEmpty && !keys.length && !status.textContent) { month = new Date(Date.UTC(y, m + 1, 1)); return drawMonth(true); }
     if (!keys.length && !status.textContent) status.textContent = T.noDays;
     if (autoPick || !open[day]?.length) day = keys[0] ?? null;
     $$('.bk__day[data-day]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.day === day)));
+    // on a phone the days are a strip: bring the chosen one into it
+    const on = grid.querySelector('[aria-pressed="true"]');
+    if (on && grid.scrollWidth > grid.clientWidth) grid.scrollLeft += on.getBoundingClientRect().left - grid.getBoundingClientRect().left - 18;
     drawTimes();
   }
 
@@ -158,7 +164,22 @@ function init(root, params = new URLSearchParams(location.search)) {
     $('[data-bk-when-tz]').textContent = tz().replace(/_/g, ' ');
     form.querySelector('input')?.focus({ preventScroll: true });
   }
-  $('[data-bk-back]').addEventListener('click', () => { root.dataset.dir = 'back'; root.dataset.step = 'pick'; $('[data-bk-error]').textContent = ''; });
+  const back = () => { root.dataset.dir = 'back'; root.dataset.step = 'pick'; $('[data-bk-error]').textContent = ''; };
+  $('[data-bk-back]').addEventListener('click', back);
+  $('[data-bk-change]')?.addEventListener('click', back);
+  // on a phone only the name, the email and WhatsApp show; the rest opens on request (site.css)
+  const more = $('[data-bk-more]');
+  more?.addEventListener('click', () => {
+    const on = form.classList.toggle('is-more');
+    more.setAttribute('aria-expanded', String(on));
+    if (on) form.querySelector('.bk__opt select, .bk__opt input')?.focus({ preventScroll: true });
+  });
+  // Enter goes from the name to the email to WhatsApp, and sends from there
+  form.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || !['name', 'email'].includes(e.target.name)) return;
+    e.preventDefault();
+    form.querySelector(e.target.name === 'name' ? '[name=email]' : '[name=phone]').focus();
+  });
 
   // what the visitor tells us, as text for the studio's calendar
   function notes(f) {
@@ -223,7 +244,7 @@ function init(root, params = new URLSearchParams(location.search)) {
 
   root.dataset.step = 'pick';
   root.classList.add('is-ready');
-  drawMonth(true);
+  drawMonth(true, true);
 }
 
   window.CAVA_BOOK = { init };
