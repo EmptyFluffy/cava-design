@@ -516,19 +516,19 @@
       ]
     },
     {
-      "slug": "amacor-house",
-      "name": "Amacor House",
+      "slug": "green-city-amacor",
+      "name": "Green City, Amacor",
       "folder": "Amacor House",
       "type": "House",
       "type_es": "Casa",
       "typology": "Residential",
       "typology_es": "Habitacional",
-      "location": null,
+      "location": "Green City, San Rafael, Alajuela",
       "coords": [
-        -85.5289,
-        9.88342
+        -84.24019,
+        9.94886
       ],
-      "pin": "placeholder",
+      "pin": "approximate",
       "status": "In progress",
       "status_es": "En proceso",
       "year": 2022,

@@ -218,10 +218,10 @@ window.CAVA_RENDERS = [
   "alt": "Timber cabin cantilevered over a forested hillside at sunset"
  },
  {
-  "id": "amacor-house-1",
-  "src": "assets/img/projects/amacor-house/1",
+  "id": "green-city-amacor-1",
+  "src": "assets/img/projects/green-city-amacor/1",
   "v": "58a6ef0e",
-  "title": "Amacor House",
+  "title": "Green City, Amacor",
   "alt": "Double-height living room with a stair, a timber kitchen and courtyard light"
  },
  {

@@ -218,10 +218,10 @@ window.CAVA_RENDERS = [
   "alt": "Cabaña de madera en voladizo sobre una ladera boscosa al atardecer"
  },
  {
-  "id": "amacor-house-1",
-  "src": "../assets/img/projects/amacor-house/1",
+  "id": "green-city-amacor-1",
+  "src": "../assets/img/projects/green-city-amacor/1",
   "v": "58a6ef0e",
-  "title": "Amacor House",
+  "title": "Green City, Amacor",
   "alt": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
  },
  {

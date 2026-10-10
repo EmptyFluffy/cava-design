@@ -2995,7 +2995,7 @@ ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
 
 // Projects that changed name: the old address forwards to the new page (GitHub Pages has no redirects).
-const RENAMED = { 'portland-house': 'rancho-cartagena' };
+const RENAMED = { 'portland-house': 'rancho-cartagena', 'amacor-house': 'green-city-amacor' };
 const forward = (to, rel) => `<!doctype html>\n<html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="${ORIGIN}/${to}"><meta http-equiv="refresh" content="0; url=${rel}"><title>Moved</title></head><body><a href="${rel}">${to}</a></body></html>\n`;
 
 const write = (path, html) => {
