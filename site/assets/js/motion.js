@@ -3,8 +3,8 @@
       across the top, then the black lifts. The hero image paints underneath from the start.
    2. The entrance, on every page: the nav and the labels rise in turn, the title rises line by line out of
       its own mask, the first image settles from a slight zoom.
-   3. On the way down: titles rise line by line, paragraphs and list items rise a little, images settle
-      from a slight zoom, each once, when they come into view. Only what starts below the first screen.
+   3. On the way down: titles rise line by line, paragraphs and text list items rise a little, each once,
+      when they come into view. Images do not move. Only what starts below the first screen.
    Timing and curves after OH Architecture's: ease-secondary (0.16, 1, 0.35, 1), 1 s, 0.0825 s between
    lines. Nothing moves with prefers-reduced-motion. The page reads in full if this file never runs:
    the head adds .motion, and site.css shows everything after 2.5 s on its own. */
@@ -31,10 +31,6 @@
     { opacity: 0, transform: `translateY(${y}px)` },
     { opacity: 1, transform: 'none' },
   ], { duration: 900, delay, easing: EASE, fill: 'backwards' });
-  const settle = (img, delay = 0, from = 1.06) => img.animate([
-    { opacity: 0, transform: `scale(${from})` },
-    { opacity: 1, transform: 'none' },
-  ], { duration: 1200, delay, easing: EASE, fill: 'backwards' });
 
   // ---- plain text split into its rendered lines (each a block with its own mask), put back once it has risen
   function lines(el) {
@@ -141,14 +137,10 @@
   pick('main h2.display, main .display:not(h1)').forEach((el) => add(el, (d) => riseTitle(el, d)));
   pick('main .h3, main .mf__intro, main .rec__title, main .gcard__title').forEach((el) => add(el, (d) => riseLines(el, d)));
   pick('main .tw__label, main .label.sheet__label, main h2.label').forEach((el) => add(el, (d) => rise(el, d, 900)));
-  // images settle; the ones without a frame that clips them only fade and rise
-  pick('main .card__media img, main .gallery__item img, main .work__media img, main .strat__fig img, main .rec__fig img, main .idn-u img, main .place img').forEach((img) => add(img, (d) => {
-    const go = () => settle(img, d);
-    if (img.complete) go(); else img.addEventListener('load', go, { once: true });
-  }));
-  pick('main .prow__img img, main .pview__fig img, main .pdraw__fig img, main .pplan__img img, main .iter__item img').forEach((img) => add(img, (d) => lift(img, d, 16)));
+  // images do not move on the way down: they have their own hover, and many at once felt heavy (Carlos)
   // list items in turn
-  const lists = 'main .cards, main .gcards, main .svc__phases, main .stages, main .strats, main .rec__cards, main .certs, main .svc__for, main .svc__glance, main .sheet, main .guide__sources';
+  // list items in turn; not the lists of image cards (projects, strategies, press), for the same reason
+  const lists = 'main .gcards, main .svc__phases, main .stages, main .certs, main .svc__for, main .svc__glance, main .sheet, main .guide__sources';
   pick(lists).forEach((list) => {
     [...list.children].filter((c) => !c.closest(SKIP)).forEach((it) => add(it, (d) => lift(it, d)));
   });
