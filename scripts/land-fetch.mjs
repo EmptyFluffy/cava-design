@@ -102,9 +102,13 @@ if (missing.length) throw new Error(`cantons without a name in data/land/cantons
 // ---- 4. tiles, and a summary per canton for the page ----
 const geo = join(RAW, 'zones.geojson');
 writeFileSync(geo, JSON.stringify({ type: 'FeatureCollection', features }));
-const out = join(ROOT, 'site', 'assets', 'data', 'land.pmtiles');
+const out = join(RAW, 'land.pmtiles');
 execFileSync('tippecanoe', ['-o', out, '--force', '-l', 'zones', '--use-attribute-for-id=id', '-Z', '6', '-z', '13', '--no-tile-size-limit',
   '--coalesce-densest-as-needed', '--extend-zooms-if-still-dropping', '--detect-shared-borders', '--simplification=4', '-q', geo], { stdio: 'inherit' });
+// the site serves the tiles as plain files, {z}/{x}/{y}.pbf: hosts that answer byte ranges with the whole file
+// (Cloudflare Pages) cannot serve one PMTiles file. Uncompressed, so no host needs a Content-Encoding header.
+const tilesDir = join(ROOT, 'site', 'assets', 'data', 'land');
+execFileSync('tile-join', ['-e', tilesDir, '--force', '--no-tile-size-limit', '--no-tile-compression', '-q', out], { stdio: 'inherit' });
 const summary = {};
 for (const [code, ys] of Object.entries(years)) {
   const edition = +Object.entries(ys).sort((a, b) => b[1] - a[1])[0][0]; // the year most of its zones carry

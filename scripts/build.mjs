@@ -77,6 +77,8 @@ const imgVer = (key) => {
 // never pairs new markup with an old stylesheet or script held in a browser's cache.
 const assetVers = new Map();
 const md5 = (x) => createHash('md5').update(x).digest('hex').slice(0, 8);
+// the land tiles' version: their metadata changes whenever they are made again
+const tilesVer = () => { const f = join(SITE, 'assets', 'data', 'land', 'metadata.json'); return existsSync(f) ? createHash('md5').update(readFileSync(f)).digest('hex').slice(0, 8) : ''; };
 const assetVer = (rel) => {
   if (!assetVers.has(rel)) {
     // files the build writes itself are hashed from what it will write
@@ -2065,7 +2067,7 @@ ${footer(lang, up, paths)}${waButton(lang, S.wa(T.name))}${end}`;
 }
 
 // ---------- /tools/land-prices/ and /es/herramientas/precios-de-terrenos/ ----------
-// The map reads site/assets/data/land.pmtiles (scripts/land-fetch.mjs); the town table reads data/land/towns.json.
+// The map reads the tiles in site/assets/data/land/{z}/{x}/{y}.pbf (scripts/land-fetch.mjs); the town table reads data/land/towns.json.
 const LAND_PATH = join(ROOT, 'data', 'land', 'towns.json');
 const land = existsSync(LAND_PATH) ? JSON.parse(readFileSync(LAND_PATH, 'utf8')) : null;
 const landEditions = land ? JSON.parse(readFileSync(join(ROOT, 'data', 'land', 'editions.json'), 'utf8')) : null;
@@ -2134,7 +2136,7 @@ function landFigure(lang, start = '') {
   const pins = towns.filter((t) => land.towns[t.slug]).map((t) => ({ slug: t.slug, n: t.name, c: land.towns[t.slug].center }));
   const cantonNames = Object.fromEntries(Object.entries(landEditions.cantons).map(([c, v]) => [c, v.name]));
   return `    <div class="lt__map-wrap">
-      <figure class="lmap" data-lmap data-fx="${costs.fx.crcPerUsd}" data-town="${start}" data-towns="${esc(JSON.stringify(pins))}" data-cantons="${esc(JSON.stringify(cantonNames))}">
+      <figure class="lmap" data-lmap data-tiles="${tilesVer()}" data-fx="${costs.fx.crcPerUsd}" data-town="${start}" data-towns="${esc(JSON.stringify(pins))}" data-cantons="${esc(JSON.stringify(cantonNames))}">
         <div class="lmap__canvas" role="region" aria-label="${esc(E.aria)}"></div>
         <div class="cmap__controls lmap__controls">
           <label class="lmap__go"><span class="label">${E.go}</span><select class="lmap__select" data-lmap-town><option value="">${E.all}</option>${towns.filter((t) => land.towns[t.slug]).map((t) => `<option value="${t.slug}"${t.slug === start ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></label>

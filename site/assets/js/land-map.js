@@ -1,6 +1,6 @@
 /* Studio CAVA: the land value map (/tools/land-prices/).
-   Every homogeneous zone of the Ministry of Finance, coloured by its official value per m², from one
-   PMTiles file the browser reads by ranges (only the tiles in view). Tap a zone for its value, the lot it is
+   Every homogeneous zone of the Ministry of Finance, coloured by its official value per m², from a folder of
+   vector tiles ({z}/{x}/{y}.pbf, only the tiles in view). Tap a zone for its value, the lot it is
    set for and its edition. MapLibre and the tiles load only when the map comes near the viewport. */
 (() => {
   'use strict';
@@ -11,7 +11,6 @@
   const asset = (p) => new URL(p, SCRIPT).href;
   const ES = document.documentElement.lang === 'es';
   const MAPLIBRE = 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/';
-  const PMTILES = 'https://cdn.jsdelivr.net/npm/pmtiles@4.5.0/dist/pmtiles.js';
   const STYLE = 'https://tiles.openfreemap.org/styles/positron';
   const FX = +fig.dataset.fx;
   const towns = JSON.parse(fig.dataset.towns);
@@ -74,8 +73,6 @@
 
   function init() {
     const gl = window.maplibregl;
-    const protocol = new window.pmtiles.Protocol();
-    gl.addProtocol('pmtiles', protocol.tile);
     const box = fig.querySelector('.lmap__canvas');
     const start = towns.find((t) => t.slug === (new URLSearchParams(location.search).get('town') || fig.dataset.town));
     const map = new gl.Map({
@@ -107,7 +104,9 @@
         const not = ['!', ['in', ['coalesce', ['get', 'name'], ''], ['literal', names]]];
         map.setFilter(l.id, l.filter ? ['all', l.filter, not] : not);
       }
-      map.addSource('zones', { type: 'vector', url: `pmtiles://${asset('../data/land.pmtiles')}`, attribution: 'Valores de terrenos por zonas homogéneas, ONT' });
+      // tiles exist only where there are zones: the empty ones answer 404, which is not an error here
+      map.addSource('zones', { type: 'vector', tiles: [`${asset('../data/land/')}{z}/{x}/{y}.pbf${fig.dataset.tiles ? `?v=${fig.dataset.tiles}` : ''}`], minzoom: 6, maxzoom: 13, bounds: [-87.11, 5.49, -82.55, 11.23], attribution: 'Valores de terrenos por zonas homogéneas, ONT' });
+      map.on('error', (e) => { if (e.sourceId === 'zones' && e.error?.status === 404) return; console.error(e.error ?? e); });
       const step = ['step', ['get', 'v'], TONES[0], ...EDGES.flatMap((e, i) => [e, TONES[i + 1]])];
       map.addLayer({ id: 'zones-fill', type: 'fill', source: 'zones', 'source-layer': 'zones', paint: { 'fill-color': step, 'fill-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.85, 13, 0.62] } }, firstSymbol);
       map.addLayer({ id: 'zones-line', type: 'line', source: 'zones', 'source-layer': 'zones', minzoom: 9, paint: { 'line-color': '#fcfcfc', 'line-width': ['interpolate', ['linear'], ['zoom'], 9, 0.2, 14, 1] } }, firstSymbol);
@@ -277,7 +276,7 @@
   const io = new IntersectionObserver((entries) => {
     if (!entries.some((e) => e.isIntersecting)) return;
     io.disconnect();
-    Promise.all([loadMapLib(), window.pmtiles ? Promise.resolve() : load(PMTILES)])
+    loadMapLib()
       .then(init)
       .catch(() => { fig.querySelector('.lmap__canvas').innerHTML = `<div class="map__fallback"><p>${T.failed}</p></div>`; });
   }, { rootMargin: '600px 0px' });
