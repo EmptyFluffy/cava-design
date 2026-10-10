@@ -20,12 +20,12 @@ for p in data['projects']:
     os.makedirs(out, exist_ok=True)
     for n, im in enumerate(p['images'], 1):
         img = Image.open(os.path.join(src, p['folder'], im['file'])).convert('RGB')
-        for w in (1600, 800):
+        for w in (1600, 1200, 800):                         # 1200: a phone at 3x, without the 1600
             r = img.copy()
             r.thumbnail((w, w * 2), Image.LANCZOS)
             if p.get('grade') and not im.get('plan'):      # the studio grade (scripts/grade.py), photos only
                 r = grade(r, f"{p['slug']}/{n}")
-            r.save(os.path.join(out, f'{n}-{w}.webp'), 'WEBP', quality=92 if im.get('plan') else 80 if w == 1600 else 78, method=6)
+            r.save(os.path.join(out, f'{n}-{w}.webp'), 'WEBP', quality=92 if im.get('plan') else 80 if w >= 1200 else 78, method=6)
             if w == 1600:
                 sizes[f"{p['slug']}/{n}"] = [r.width, r.height]
         # a plan shown as a titled plate in each language, up to 3600 px (a retina screen at full width)
@@ -59,7 +59,7 @@ for p in data['projects']:
     # construction drawings (line art: a higher quality, so the lines stay clean)
     for d in [x for s in p.get('drawings', []) for x in s['items']] + p.get('views', []):
         img = Image.open(os.path.join(src, p['folder'], d['file'])).convert('RGB')
-        for w in (1600, 800):
+        for w in (1600, 1200, 800):
             r = img.copy()
             r.thumbnail((w, w * 2), Image.LANCZOS)
             r.save(os.path.join(out, f"d-{d['id']}-{w}.webp"), 'WEBP', quality=88, method=6)

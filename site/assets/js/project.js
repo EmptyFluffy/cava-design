@@ -74,13 +74,19 @@
     canvas.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`;
   }
 
-  const start = () => loadMapLib().then(init).catch(fallback);
+  // the map library is heavy (about 280 KB): it waits for the page to finish loading and for an idle moment,
+  // so it never holds up the first view on a phone, and only once the map is close to the screen
+  const settled = (fn) => {
+    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+  };
+  const start = () => settled(() => loadMapLib().then(init).catch(fallback));
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       if (!entries.some((e) => e.isIntersecting)) return;
       io.disconnect();
       start();
-    }, { rootMargin: '600px 0px' });
+    }, { rootMargin: '80px 0px' });
     io.observe(canvas);
   } else {
     start();

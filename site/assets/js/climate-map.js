@@ -191,14 +191,19 @@
     });
   }
 
+  // the map library waits for the page to finish loading and for an idle moment (see project.js)
+  const settled = (fn) => {
+    const go = () => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 2500 }) : setTimeout(fn, 300));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+  };
   const io = new IntersectionObserver((entries) => {
     for (const e of entries) {
       if (!e.isIntersecting) continue;
       io.unobserve(e.target);
-      Promise.all([loadMapLib(), getJSON('../data/wind.json'), getJSON('../data/ghi.json')])
+      settled(() => Promise.all([loadMapLib(), getJSON('../data/wind.json'), getJSON('../data/ghi.json')])
         .then(([, wind, ghi]) => init(e.target, wind, ghi))
-        .catch(() => { e.target.querySelector('.cmap__canvas').innerHTML = `<div class="map__fallback"><p>${document.documentElement.lang === 'es' ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`; });
+        .catch(() => { e.target.querySelector('.cmap__canvas').innerHTML = `<div class="map__fallback"><p>${document.documentElement.lang === 'es' ? 'El mapa no cargó.' : 'The map did not load.'}</p></div>`; }));
     }
-  }, { rootMargin: '600px 0px' });
+  }, { rootMargin: '80px 0px' });
   figs.forEach((f) => io.observe(f));
 })();

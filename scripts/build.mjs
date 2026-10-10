@@ -91,7 +91,7 @@ function picture(up, slug, n, alt, sizesAttr, { eager = false, cls = '' } = {}) 
   const [w, h] = sizes[`${slug}/${n}`];
   const b = up + imgBase(slug, n);
   const v = `?v=${imgVer(`${slug}/${n}`)}`;
-  return `<img${cls ? ` class="${cls}"` : ''} src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1600.webp${v} 1600w" sizes="${sizesAttr}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(alt)}">`;
+  return `<img${cls ? ` class="${cls}"` : ''} src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1200.webp${v} 1200w, ${b}-1600.webp${v} 1600w" sizes="${sizesAttr}" width="${w}" height="${h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" alt="${esc(alt)}">`;
 }
 
 // Images for the process stages and the services (data/process.json, scripts/process-images.py): 3:2,
@@ -138,9 +138,7 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <meta name="theme-color" content="#fcfcfc">
 <link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${up}apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300..700&display=swap">
+<link rel="preload" href="${up}assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${up}assets/css/site.css?v=${assetVer('assets/css/site.css')}">
 ${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js', 'titles.js', 'info-sheet.js').map((s) => `<script defer src="${up}assets/js/${s}?v=${assetVer(`assets/js/${s}`)}"></script>
 `).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
