@@ -1,0 +1,12 @@
+{
+  // avarq.net and www.avarq.net forward to cava.design (index.js). Deploy once the avarq.net zone is active
+  // in Cloudflare and its old A and www records (Squarespace) are deleted: npx wrangler deploy
+  "name": "avarq-redirect",
+  "main": "index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "avarq.net", "custom_domain": true },
+    { "pattern": "www.avarq.net", "custom_domain": true }
+  ]
+}
