@@ -149,7 +149,7 @@
     touchX = null;
   });
 
-  /* ---------- Project enquiry: four steps, the contact details last, sent by email (/api/enquiry) ---------- */
+  /* ---------- Project enquiry: three steps, the contact details last, sent by email (/api/enquiry) ---------- */
   const modal = $('#enquiry');
   const form = $('[data-enq]');
   const steps = $$('[data-step]', form);
@@ -168,7 +168,8 @@
     steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
     bar.style.width = `${((i + 1) / steps.length) * 100}%`;
     back.hidden = i === 0;
-    next.textContent = i === steps.length - 1 ? (ES ? 'Enviar →' : 'Submit form →') : (ES ? 'Siguiente →' : 'Next →');
+    panel.scrollTop = 0;   // a step opens at its top, not where the last one was scrolled to
+    next.textContent = i === steps.length - 1 ? (ES ? 'Enviar →' : 'Send →') : (ES ? 'Siguiente →' : 'Next →');
     if (focus) {
       const first = $('input, textarea', steps[i]);
       if (first) first.focus({ preventScroll: true });
@@ -202,7 +203,11 @@
       setErr('type', bad);
       if (bad) { ok = false; firstBad = firstBad || $('input[name="type"]', s); }
     }
-    if (firstBad) firstBad.focus({ preventScroll: true });
+    if (firstBad) {
+      // the sticky Back and Next can cover the question at the foot of a long step: bring it to the middle
+      firstBad.focus({ preventScroll: true });
+      firstBad.closest('.field').scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    }
     return ok;
   }
 

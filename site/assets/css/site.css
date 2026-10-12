@@ -372,13 +372,13 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 }
 .modal.is-open .modal__panel { transform: none; }
 .progress { position: absolute; top: 0; left: 0; right: 0; height: 4px; }
-.progress__bar { display: block; height: 100%; width: 12.5%; background: var(--white); transition: width 0.875s var(--ease); }
+.progress__bar { display: block; height: 100%; width: 33.3%; background: var(--white); transition: width 0.875s var(--ease); }
 .modal__top { display: flex; justify-content: space-between; gap: 1rem; }
 .modal__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; margin-top: 1rem; }
 .modal__intro { max-width: 31ch; }
 .modal__thumb { width: 10rem; aspect-ratio: 0.75; object-fit: cover; flex: none; }
 
-.enq, .enq__done { margin-top: auto; padding-top: 3rem; }
+.enq, .enq__done { padding-top: 2.5rem; }   /* the questions follow the introduction; anchored to the foot, a tall screen left a void between them */
 .step { border: 0; margin: 0; padding: 0; min-width: 0; display: none; }
 .step.is-active { display: block; animation: step-in 0.5s var(--ease); }
 @keyframes step-in { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
@@ -417,6 +417,7 @@ textarea.input { height: 9rem; padding: 0.9rem; resize: vertical; line-height: 1
   .tiles, .enq__src-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tiles:has(> .tile:nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+.tiles--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }   /* three short answers sit in one row on a phone too */
 .enq__thanks { font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; margin: 1rem 0; outline: none; }
 .enq__done p:not(.enq__thanks) { max-width: 44ch; }
 .enq__done [hidden] { display: none !important; }   /* .btn's display would show the email fallback after a sent enquiry */
@@ -2374,6 +2375,11 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
   #enquiry .tile span { min-height: 2.75rem; }
   #enquiry .step__title { margin-bottom: 0.75rem; }
 }
-@media (max-height: 600px) { #enquiry .step .note { display: none; } }   /* the SE: step 3's ten choices before its note */
+@media (max-height: 600px) { #enquiry .step .note { display: none; } }   /* the SE: step 2's ten choices before its note */
+/* a laptop at 768 px or less: the photo gives its height to the first step, which then fits without scrolling */
+@media (min-width: 768px) and (max-height: 820px) {
+  #enquiry .modal__thumb { display: none; }
+  #enquiry .enq { padding-top: 1.75rem; }
+}
 
 /* 2026-10-12: town photos and cards; town strips and the permit tool head */
