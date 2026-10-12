@@ -10,7 +10,7 @@ const WA_ES = 'Hola Studio CAVA, quisiera conversar sobre un proyecto.';
 export const SAME = new Set([
   'Archello ↗', 'Architizer ↗', 'Instagram ↗',
   // shared between the two pages on purpose
-  'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'hola@cava.design', 'cava.design', 'Arquitectura',
+  'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'hola@cava.design', 'cava.design', 'cava.design ·', 'Arquitectura',
   'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'website', 'summary_large_image',
   'WhatsApp +506 7173 7336', 'WhatsApp +506 7173 7336 ↗', '(Costa Rica)',
 ]);
@@ -114,6 +114,7 @@ export const PAIRS = [
   ['<dt>A:</dt>', '<dt>D:</dt>'],
   ['Monday to Friday, 8:00 to 17:00', 'Lunes a viernes, 8:00 a 17:00'],
   ['Back to top ↑', 'Volver arriba ↑'],
+  ['>Privacy</a></p>', '>Privacidad</a></p>'],
   ['>Work with us: careers@cava.design →</a>', '>Trabaje con nosotros: careers@cava.design →</a>'],
 
   // ---------- enquiry ----------

@@ -258,7 +258,7 @@ ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(i
   </div>
   <div class="grid footer__bottom label">
     <p>© 2026 Studio CAVA<br>San José, Costa Rica</p>
-    <p>cava.design</p>
+    <p>cava.design · <a class="ulink" href="${up}${privacyPath(lang)}">${lang === 'en' ? 'Privacy' : 'Privacidad'}</a></p>
     <a class="ulink" href="${up}${paths[otherLang(lang)]}" hreflang="${o.lang}" lang="${o.lang}">${o.name}</a>
     <a class="ulink" href="#top">${t.top}</a>
   </div>
@@ -2972,6 +2972,115 @@ ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${end}`;
 }
 
+// ---------- Privacy: /privacy/ and /es/privacidad/ ----------
+// It says what the site does today: the measurement sections appear only for the tags set in
+// data/tracking.json, and the free-call line follows data/booking.json.
+const tracking = JSON.parse(readFileSync(join(ROOT, 'data', 'tracking.json'), 'utf8'));
+const privacyPath = (lang) => (lang === 'en' ? 'privacy/' : 'es/privacidad/');
+const PRIVACY_UPDATED = { en: '12 October 2026', es: '12 de octubre de 2026' };
+function privacyText(lang) {
+  const en = lang === 'en';
+  const mail = `<a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a>`;
+  const WHATSAPP_SHOWN = '+506\u00a07173\u00a07336';   // the number on one line
+  const out = (href, text) => `<a class="ulink" href="${href}" target="_blank" rel="noopener">${text}</a>`;
+  const live = !!booking?.username;
+  const tags = [
+    tracking.ga4 && (en
+      ? `Google Analytics counts visits and the pages people read, with cookies Google sets. We see totals, not who you are. ${out('https://tools.google.com/dlpage/gaoptout', "Google's browser add-on")} turns it off.`
+      : `Google Analytics cuenta las visitas y las páginas que se leen, con cookies que pone Google. Vemos totales, no quién es usted. ${out('https://tools.google.com/dlpage/gaoptout', 'El complemento de Google para el navegador')} lo desactiva.`),
+    tracking.ads && (en
+      ? `Google Ads tells us which of our ads bring enquiries, also with cookies. ${out('https://myadcenter.google.com/', 'My Ad Center')} changes the ads Google shows you.`
+      : `Google Ads nos dice cuáles de nuestros anuncios traen consultas, también con cookies. ${out('https://myadcenter.google.com/', 'Mi centro de anuncios')} cambia los anuncios que Google le muestra.`),
+    tracking.pixel && (en
+      ? `The Meta Pixel tells us which visits come from our ads on Facebook or Instagram, and lets us show our ads again to people who visited. ${out('https://accountscenter.facebook.com/ad_preferences', 'Your Meta ad preferences')} control it.`
+      : `El Pixel de Meta nos dice qué visitas llegan desde nuestros anuncios en Facebook o Instagram, y nos deja volver a mostrarlos a quien ya visitó el sitio. ${out('https://accountscenter.facebook.com/ad_preferences', 'Sus preferencias de anuncios de Meta')} lo controlan.`),
+  ].filter(Boolean);
+  return [
+    [en ? '(Who)' : '(Quién)', en ? 'Who is responsible' : 'Quién es responsable', [
+      en ? 'Studio CAVA, an architecture and interior design studio in San José and Guanacaste, Costa Rica, runs cava.design and decides what happens to what you send through it.'
+        : 'Studio CAVA, un estudio de arquitectura e interiores en San José y Guanacaste, Costa Rica, administra cava.design y decide qué se hace con lo que usted envía por aquí.',
+      en ? `For anything on this page, write to ${mail} or on WhatsApp at ${WHATSAPP_SHOWN}.` : `Para cualquier tema de esta página, escriba a ${mail} o por WhatsApp al ${WHATSAPP_SHOWN}.`,
+    ]],
+    [en ? '(What you send)' : '(Lo que envía)', en ? 'What you send us' : 'Lo que usted nos envía', [
+      en ? 'The project form asks what you are planning, where, whether you own the land, your budget and timing if you know them, your name and email, and, if you want, a phone or WhatsApp number and a note. It reaches the studio as an email. With it come the date, the country you wrote from and your IP address, which help us tell people from spam. The site keeps no other copy.'
+        : 'El formulario de proyecto pregunta qué tiene en mente, dónde, si ya tiene el lote, el presupuesto y el plazo si los conoce, su nombre y su correo y, si quiere, un teléfono o WhatsApp y una nota. Le llega al estudio como un correo, junto con la fecha, el país desde donde escribió y su dirección IP, que nos ayudan a distinguir a las personas del spam. El sitio no guarda otra copia.',
+      en ? 'If you answer "how did you find us?" after sending, the answer follows in the same email thread.' : 'Si después de enviar contesta "¿cómo nos encontró?", la respuesta llega en el mismo hilo de correo.',
+      live
+        ? (en ? 'When you book a free call, your name, email and note go to our calendar on Cal.com, which sends the invitation.' : 'Cuando agenda una llamada gratis, su nombre, su correo y su nota van a nuestro calendario en Cal.com, que envía la invitación.')
+        : (en ? 'The free-call page sends nothing by itself: it writes a WhatsApp message with the day and time you picked, and you decide whether to send it.' : 'La página de la llamada gratis no envía nada por sí sola: escribe un mensaje de WhatsApp con el día y la hora que eligió, y usted decide si lo manda.'),
+      en ? 'When you write to us by email or WhatsApp, the message travels through your provider and ours, under their own terms.' : 'Cuando nos escribe por correo o WhatsApp, el mensaje pasa por su proveedor y el nuestro, con sus propias condiciones.',
+      en ? 'The client portal is not open yet: nothing typed there is sent or stored.' : 'El portal de clientes todavía no está abierto: nada de lo que se escribe ahí se envía ni se guarda.',
+    ]],
+    [en ? '(In your browser)' : '(En su navegador)', en ? 'What stays in your browser' : 'Lo que se queda en su navegador', [
+      en ? 'The cost estimator, the land price map, the permit route and the climate on each town page work in your browser. What you choose or type in them is not sent to us, and the cost PDF is made by your own browser.'
+        : 'El estimador de costos, el mapa de precios de terrenos, la ruta de permisos y el clima de cada pueblo funcionan en su navegador. Lo que elige o escribe ahí no nos llega, y el PDF de costos lo hace su propio navegador.',
+      en ? 'The maps come from OpenFreeMap and the code that draws them from jsDelivr. Your browser asks those servers for them directly, so they see your IP address, as any website you visit does.'
+        : 'Los mapas vienen de OpenFreeMap y el código que los dibuja, de jsDelivr. Su navegador se los pide directamente a esos servidores, así que ven su dirección IP, como cualquier sitio que usted visita.',
+    ]],
+    [en ? '(Cookies)' : '(Cookies)', en ? 'Cookies' : 'Cookies', [
+      tags.length
+        ? (en ? 'The site sets no cookies of its own. These services, which measure the site and our ads, set theirs:' : 'El sitio no pone cookies propias. Estos servicios, que miden el sitio y nuestros anuncios, ponen las suyas:')
+        : (en ? 'The site sets no cookies. It keeps one note in your browser for the length of the visit, so the opening animation does not play again on every page; closing the tab erases it.' : 'El sitio no pone cookies. Guarda una sola nota en su navegador mientras dura la visita, para que la animación de entrada no se repita en cada página; al cerrar la pestaña se borra.'),
+      ...(tags.length ? [{ list: tags }, en ? 'Apart from them, the site keeps one note in your browser for the length of the visit, so the opening animation does not play again; closing the tab erases it.' : 'Aparte de esas, el sitio guarda una sola nota en su navegador mientras dura la visita, para que la animación de entrada no se repita; al cerrar la pestaña se borra.'] : []),
+    ]],
+    [en ? '(What for)' : '(Para qué)', en ? 'What we use it for' : 'Para qué lo usamos', [
+      en ? 'To answer you, to prepare a proposal and, if we work together, to run the project. We do not sell or rent your details, and we do not add you to a mailing list unless you ask.'
+        : 'Para responderle, preparar una propuesta y, si trabajamos juntos, llevar el proyecto. No vendemos ni alquilamos sus datos, y no lo agregamos a ninguna lista de correo a menos que usted lo pida.',
+    ]],
+    [en ? '(Who else)' : '(Quién más)', en ? 'Who else handles it' : 'Quién más los maneja', [
+      { list: [
+        en ? 'Cloudflare hosts the site, protects it from attacks and routes the studio\'s email. It sees the IP address of every visit.' : 'Cloudflare aloja el sitio, lo protege de ataques y dirige el correo del estudio. Ve la dirección IP de cada visita.',
+        en ? 'Google (Gmail) holds the studio\'s inbox, where your enquiry arrives.' : 'Google (Gmail) guarda la bandeja del estudio, donde llega su consulta.',
+        en ? 'Resend delivers the emails we send from hola@cava.design.' : 'Resend entrega los correos que enviamos desde hola@cava.design.',
+        ...(live ? [en ? 'Cal.com holds the calendar for free calls.' : 'Cal.com guarda el calendario de las llamadas gratis.'] : []),
+        ...(tracking.ga4 || tracking.ads ? [en ? 'Google measures visits and ads, as described under Cookies.' : 'Google mide las visitas y los anuncios, como se explica en Cookies.'] : []),
+        ...(tracking.pixel ? [en ? 'Meta measures visits from our ads, as described under Cookies.' : 'Meta mide las visitas que llegan de nuestros anuncios, como se explica en Cookies.'] : []),
+      ] },
+      en ? 'Some of these companies keep data in the United States.' : 'Algunas de estas empresas guardan datos en Estados Unidos.',
+    ]],
+    [en ? '(How long)' : '(Cuánto tiempo)', en ? 'How long we keep it' : 'Cuánto tiempo lo guardamos', [
+      en ? 'An enquiry stays in the studio\'s email while it is useful for following up and, if we work together, as part of the project\'s records. If we do not, ask and we delete it.'
+        : 'Una consulta se queda en el correo del estudio mientras sirva para darle seguimiento y, si trabajamos juntos, como parte del expediente del proyecto. Si no, pídalo y la borramos.',
+    ]],
+    [en ? '(Your rights)' : '(Sus derechos)', en ? 'What you can ask' : 'Lo que puede pedir', [
+      en ? `You can ask what we hold about you, ask us to correct it or ask us to delete it, by writing to ${mail}. We may ask you to confirm it is you before we answer.`
+        : `Puede pedirnos qué datos tenemos de usted, que los corrijamos o que los borremos, escribiendo a ${mail}. Antes de responder podemos pedirle que confirme que es usted.`,
+      en ? "Costa Rica's Law 8968 protects these rights, and the Agencia de Protección de Datos de los Habitantes (PRODHAB) hears complaints. If you live elsewhere, your own country's law may give you more."
+        : 'La Ley 8968 de Costa Rica protege estos derechos, y la Agencia de Protección de Datos de los Habitantes (PRODHAB) recibe las denuncias. Si vive en otro país, su propia ley puede darle más.',
+    ]],
+  ];
+}
+function privacyPage(lang) {
+  const en = lang === 'en';
+  const paths = { en: privacyPath('en'), es: privacyPath('es') };
+  const up = upFrom(paths[lang]);
+  const title = en ? 'Privacy | Studio CAVA' : 'Privacidad | Studio CAVA';
+  const description = en
+    ? 'What Studio CAVA collects through cava.design, what it is used for, who else handles it, and how to ask for a copy or its deletion.'
+    : 'Qué datos recoge Studio CAVA en cava.design, para qué los usa, quién más los maneja y cómo pedir una copia o que se borren.';
+  const para = (x) => (typeof x === 'string' ? `        <p class="large">${x}</p>` : `        <ul class="guide__tips">\n${x.list.map((li) => `          <li>${li}</li>`).join('\n')}\n        </ul>`);
+  return head(lang, { title, description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up }) + `<div id="top"></div>
+${bar(lang, up, paths, '')}
+<main class="page">
+  <article class="mf pv" aria-labelledby="pv-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${en ? '(Privacy)' : '(Privacidad)'}</p>
+      <h1 class="display mf__title" id="pv-title"><span>${en ? 'Privacy' : 'Aviso de'}</span><span class="right">${en ? 'notice' : 'privacidad'}</span></h1>
+      <p class="large mf__intro">${en ? 'What the studio learns about you through this site, what it does with it and what you can ask for. In short: only what you send us, used to answer you, never sold.' : 'Lo que el estudio sabe de usted por este sitio, qué hace con eso y qué puede pedir. En corto: solo lo que usted nos envía, para responderle, y nunca se vende.'}</p>
+      <p class="note mf__intro">${en ? `Updated ${PRIVACY_UPDATED.en}. If this page changes, this date changes with it.` : `Actualizado el ${PRIVACY_UPDATED.es}. Si esta página cambia, esta fecha cambia con ella.`}</p>
+    </header>
+${privacyText(lang).map(([label, h2, body], i) => `    <section class="tw__sec grid" aria-labelledby="pv-${i}">
+      <p class="label tw__label">${label}</p>
+      <div class="tw__text guide__body">
+        <h2 class="guide__h2" id="pv-${i}">${h2}</h2>
+${body.map(para).join('\n')}
+      </div>
+    </section>`).join('\n')}
+  </article>
+</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 // ---------- sitemap.xml and robots.txt ----------
 function sitemap() {
   const pairs = [
@@ -2990,6 +3099,7 @@ function sitemap() {
     ...(services.length ? [{ en: servicesPath('en'), es: servicesPath('es') }, ...services.map((x) => ({ en: servicePath('en', x), es: servicePath('es', x) }))] : []),
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
     ...(permitGuide ? [{ en: permitPath('en'), es: permitPath('es') }] : []),
+    { en: privacyPath('en'), es: privacyPath('es') },
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
@@ -3127,6 +3237,7 @@ function homeEs() {
     if (u.startsWith('tools/permit-route/')) return `herramientas/ruta-de-permisos/${u.slice('tools/permit-route/'.length)}`;
     if (u.startsWith('services/')) return `servicios/${u.slice('services/'.length)}`;
     if (u.startsWith('portal/')) return u;
+    if (u === 'privacy/') return 'privacidad/';
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
@@ -3303,6 +3414,7 @@ for (const lang of ['en', 'es']) {
   if (books) write(`${libraryPath(lang)}index.html`, libraryPage(lang));
   for (const [from, to] of Object.entries(RENAMED)) write(`${projectPath(lang, from)}index.html`, forward(projectPath(lang, to), `../${to}/`));
   if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
+  write(`${privacyPath(lang)}index.html`, privacyPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
     services.forEach((x, i) => write(`${servicePath(lang, x)}index.html`, servicePage(lang, x, i)));

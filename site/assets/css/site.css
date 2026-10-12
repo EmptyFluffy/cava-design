@@ -1174,6 +1174,8 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 
 /* land prices: the zone map and the town table */
 .lt .tw__sec { margin-left: 0; margin-right: 0; }
+.pv .tw__sec, .prp .tw__sec { margin-left: 0; margin-right: 0; }
+.pv .mf__intro { max-width: 46rem; }   /* privacy and the permit route: the sections line up with the head */
 .lt__map-wrap { margin-bottom: var(--s-3); }
 .lmap { margin: 0; }
 .lmap__canvas { position: relative; aspect-ratio: 16 / 10; max-height: 80vh; width: 100%; background: var(--light-grey); overflow: hidden; }
