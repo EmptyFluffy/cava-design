@@ -928,12 +928,14 @@ textarea.input.enq__brief { height: 6rem; }
 /* photos of Costa Rica: a full-width band, credit underneath */
 .place { margin: 0 var(--margin) var(--s-3); }
 /* a town page's top: the place, and on it who we are, what we design there and how to reach us */
-.tw__hero { position: relative; margin: 0 var(--margin) var(--s-3); }
-.tw__hero .place { margin: 0; position: relative; }
-.place--hero img { aspect-ratio: 12 / 5; }
+/* The band keeps a 12:5 shape and grows when the words need more height (an aspect-ratio box never
+   shrinks below its content), so the text always sits on the photo, inside its edges. */
+.tw__hero { position: relative; display: flex; align-items: flex-end; aspect-ratio: 12 / 5; margin: 0 var(--margin) var(--s-3); }
+.tw__hero .place { position: absolute; inset: 0; margin: 0; }
+.tw__hero .place img { height: 100%; aspect-ratio: auto; }
 .place--hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, rgba(8, 8, 7, 0.66), rgba(8, 8, 7, 0.28) 55%, rgba(8, 8, 7, 0.05)), linear-gradient(0deg, rgba(8, 8, 7, 0.38), rgba(8, 8, 7, 0) 55%); }
-.tw__pitch { position: absolute; z-index: 1; left: clamp(1.25rem, 3.2vw, 3rem); right: 1.25rem; bottom: clamp(1.25rem, 3.2vw, 3rem); max-width: 48rem; display: grid; gap: 0.9rem; justify-items: start; color: var(--white); }
+.tw__pitch { position: relative; z-index: 1; box-sizing: border-box; max-width: 54rem; padding: clamp(1.25rem, 3.2vw, 3rem); display: grid; gap: 0.9rem; justify-items: start; color: var(--white); }
 .tw__pitch .label { margin: 0; }
 .tw__pitch-title { margin: 0; font-size: var(--f-h3); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.05; text-wrap: balance; }
 .tw__pitch-text { margin: 0; max-width: 46ch; font-size: var(--f-large); line-height: 1.35; color: rgba(252, 252, 252, 0.88); text-wrap: pretty; }
@@ -944,9 +946,11 @@ textarea.input.enq__brief { height: 6rem; }
 .tw__pitch .btn--light:hover { background: rgba(252, 252, 252, 0.28); }
 @media (max-width: 767px) {
   /* a phone: the photo, then the words under it on the page's white */
-  .place--hero img { aspect-ratio: 16 / 9; }
+  .tw__hero { display: block; aspect-ratio: auto; }
+  .tw__hero .place { position: static; }
+  .tw__hero .place img { height: auto; aspect-ratio: 16 / 9; }
   .place--hero::after { display: none; }
-  .tw__pitch { position: static; padding-top: 1.25rem; color: var(--black); }
+  .tw__pitch { padding: 1.25rem 0 0; color: var(--black); }
   .tw__pitch-text { color: var(--dark-grey); }
   .tw__pitch .btn--dark { background: var(--black); color: var(--white); }
   .tw__pitch .btn--light { background: var(--light-grey); color: var(--black); -webkit-backdrop-filter: none; backdrop-filter: none; }
