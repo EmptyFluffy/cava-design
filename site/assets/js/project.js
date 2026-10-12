@@ -17,6 +17,36 @@
     io3.observe(sunFig);
   }
 
+  // The drawings: one row the arrows walk a drawing at a time; a swipe or a trackpad moves it too, and
+  // the arrows and the count follow wherever it stops.
+  for (const car of document.querySelectorAll('[data-carousel]')) {
+    const track = car.querySelector('[data-car-track]');
+    const items = [...track.children];
+    const at = car.querySelector('[data-car-at]');
+    const [prev, next] = [...car.querySelectorAll('[data-car-step]')];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // where each item lands when it is the first one: its left edge, less the page margin
+    const stops = () => { const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0; return items.map((li) => li.offsetLeft - pad); };
+    const max = () => track.scrollWidth - track.clientWidth;
+    const sync = () => {
+      const x = track.scrollLeft;
+      prev.disabled = x <= 2;
+      next.disabled = x >= max() - 2;
+      // the count: the first drawing at the left edge, or the last one once the row has run out
+      if (at) at.textContent = String(next.disabled ? items.length : stops().filter((v) => v <= x + 2).length || 1).padStart(2, '0');
+    };
+    // a step goes to the next drawing past the left edge, either way; the last steps end where the row does
+    car.querySelectorAll('[data-car-step]').forEach((b) => b.addEventListener('click', () => {
+      const s = stops(), x = track.scrollLeft, fwd = b.dataset.carStep === '1';
+      const to = fwd ? (s.find((v) => v > x + 2) ?? max()) : ([...s].reverse().find((v) => v < x - 2) ?? 0);
+      track.scrollTo({ left: Math.min(to, max()), behavior: reduced ? 'auto' : 'smooth' });
+    }));
+    let raf = 0;
+    track.addEventListener('scroll', () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(sync); }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  }
+
   const fig = document.querySelector('[data-pmap]');
   if (!fig) return;
   const canvas = fig.querySelector('.pmap__canvas');

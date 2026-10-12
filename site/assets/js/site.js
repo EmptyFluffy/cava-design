@@ -470,6 +470,15 @@
     setInterval(advance, 6500);
   }
 
+  /* ---------- The sea beside "Climate first": it loads and plays only while on screen ---------- */
+  // With reduced motion, Save-Data or a browser that will not autoplay, the still (its poster) stays.
+  const sea = $('[data-sea]');
+  if (sea && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) sea.play().catch(() => {}); else sea.pause();
+    }, { rootMargin: '200px 0px' }).observe(sea);
+  }
+
   /* ---------- The process: each step shows its stage's image ---------- */
   const psteps = $('[data-psteps]'), pfig = $('[data-pfig]');
   if (psteps && pfig) {

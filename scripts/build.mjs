@@ -565,19 +565,32 @@ ${it.files.map((f, i) => {
     </figure>
 `;
   }).join('');
-  // construction drawings, one row per part of the house. The drawings in a row share one scale: each
-  // takes width in proportion to what it covers on site (span, in metres), and they sit on one line.
-  const drawings = p.drawings?.length ? `    <section class="pdraw" aria-labelledby="pdraw-title">
-      <h2 class="label" id="pdraw-title">${lang === 'en' ? '(Drawings)' : '(Planos)'}</h2>
+  // construction drawings, small, in one row that the arrows walk (project.js). The drawings of a part of
+  // the house share one scale: what each covers on site (span, in metres) sets its width, so the tallest
+  // of the part takes the row's height (--H) and the others stand shorter beside it (--k).
+  const nDraw = p.drawings?.reduce((a, set) => a + set.items.length, 0) ?? 0;
+  const drawings = nDraw ? `    <section class="pdraw" aria-labelledby="pdraw-title" data-carousel>
+      <div class="pdraw__head">
+        <h2 class="label" id="pdraw-title">${lang === 'en' ? '(Drawings)' : '(Planos)'}</h2>
+        <p class="label pdraw__count" aria-hidden="true"><span data-car-at>01</span>/${pad(nDraw)}</p>
+        <div class="pdraw__nav">
+          <button class="pdraw__arrow" type="button" data-car-step="-1" aria-label="${lang === 'en' ? 'Previous drawing' : 'Plano anterior'}" disabled><svg viewBox="0 0 48 24" aria-hidden="true" focusable="false"><path d="M47 12H2M13 1 2 12l11 11"/></svg></button>
+          <button class="pdraw__arrow" type="button" data-car-step="1" aria-label="${lang === 'en' ? 'Next drawing' : 'Plano siguiente'}"><svg viewBox="0 0 48 24" aria-hidden="true" focusable="false"><path d="M1 12h45M35 1l11 11-11 11"/></svg></button>
+        </div>
+      </div>
+      <ol class="pdraw__track" data-car-track tabindex="0" aria-label="${lang === 'en' ? 'Drawings: the arrows or a sideways swipe move along them' : 'Planos: las flechas o un deslizamiento lateral los recorren'}">
 ${p.drawings.map((set) => {
-    const total = set.items.reduce((a, d) => a + d.span, 0);
-    return `      <div class="pdraw__set">
-${set.items.map((d) => `        <figure class="pdraw__fig" style="--span: ${d.span}">
-          ${picture(up, p.slug, `d-${d.id}`, lang === 'en' ? d.alt : d.alt_es, `(min-width: 768px) ${Math.round((96 * d.span) / total)}vw, 92vw`)}
-          <figcaption class="label pdraw__cap"><span>${esc(set[lang])}</span><span class="pdraw__view">${esc(d[lang])}</span></figcaption>
-        </figure>`).join('\n')}
-      </div>`;
+    const dims = set.items.map((d) => { const [w, h] = sizes[`${p.slug}/d-${d.id}`]; return { ar: w / h, tall: (d.span * h) / w }; });
+    const top = Math.max(...dims.map((x) => x.tall));
+    return set.items.map((d, i) => {
+      const { ar, tall } = dims[i], k = tall / top;
+      return `        <li class="pdraw__fig${i === 0 ? ' is-set' : ''}" style="--k: ${k.toFixed(3)}; --ar: ${ar.toFixed(3)}">
+          <figure>${picture(up, p.slug, `d-${d.id}`, lang === 'en' ? d.alt : d.alt_es, `${(24 * k * ar).toFixed(1)}rem`)}
+          <figcaption class="label pdraw__cap"><span>${esc(set[lang])}</span><span class="pdraw__view">${esc(d[lang])}</span></figcaption></figure>
+        </li>`;
+    }).join('\n');
   }).join('\n')}
+      </ol>
     </section>
 ` : '';
   // Every image in the gallery shares the narrowest image's proportion, so rows line up
@@ -3197,7 +3210,7 @@ function homeCounts() {
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
     .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.filter((im) => !im.plan).length, 0)})`)
     .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)
-    .replace(/(assets\/(?:css\/[a-z-]+\.css|js\/[a-z0-9.-]+\.js))(?:\?v=[0-9a-f]+)?"/g, (m, url) => `${url}?v=${assetVer(url)}"`)
+    .replace(/(assets\/(?:css\/[a-z-]+\.css|js\/[a-z0-9.-]+\.js|video\/[a-z0-9-]+\.(?:mp4|webm|webp)))(?:\?v=[0-9a-f]+)?"/g, (m, url) => `${url}?v=${assetVer(url)}"`)
     // the services list, from data/services.json: between its markers, or first put before the process
     .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m))
     .replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => (proc ? processSteps('en', 'studio/') : ''))
@@ -3240,7 +3253,7 @@ function homeEs() {
     if (u === 'privacy/') return 'privacidad/';
     return `../${u}`;
   };
-  html = html.replace(/\s(href|src|srcset|imagesrcset)="([^"]*)"/g, (m, attr, val) => {
+  html = html.replace(/\s(href|src|srcset|imagesrcset|poster)="([^"]*)"/g, (m, attr, val) => {
     const v = /srcset$/.test(attr) ? val.split(',').map((part) => { const [u, ...rest] = part.trim().split(/\s+/); return [fix(u), ...rest].join(' '); }).join(', ') : fix(val);
     return ` ${attr}="${v}"`;
   });

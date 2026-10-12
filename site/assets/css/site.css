@@ -234,7 +234,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 
 /* About */
 .about { padding: var(--s-3) var(--margin) var(--pad-v-lg); }
-.about .display { margin-bottom: var(--s-2); }
+/* the title, and beside it the sea from above (a ten-second loop, site.js): as tall as the title's two lines */
+.about__head { margin-bottom: var(--s-2); }
+.about__head .display { grid-column: 1 / span 8; }
+.about__sea { grid-column: 9 / -1; position: relative; margin: 0; overflow: hidden; background: #1d4540; }
+.about__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .about__body { row-gap: var(--s-2); }
 .about__img { grid-column: 5 / span 4; grid-row: 1; }
 .about__img img { width: 100%; aspect-ratio: 1.5; object-fit: cover; }
@@ -1296,6 +1300,10 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .hero__row > :nth-child(2) { grid-column: 4 / span 4; }
   .hero__row > :nth-child(3) { grid-column: 8 / span 3; }
   .about__img, .about__text { grid-column: 4 / span 6; }
+  /* under the title, a band of sea the width of the page */
+  .about__head { row-gap: var(--s-2); }
+  .about__head .display, .about__sea { grid-column: 1 / -1; }
+  .about__sea { aspect-ratio: 3 / 1; }
   .process__aside { grid-column: 1 / span 4; }
   .process__main { grid-column: 6 / span 7; }
   .interiors__left { grid-column: 1 / span 6; }
@@ -1330,6 +1338,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
   .float .btn { display: none; }
 
   .about__img, .about__text { grid-column: 3 / -1; }
+  .about__sea { aspect-ratio: 2 / 1; }
   .about__label { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
   .about__text { grid-row: 3; }
 
@@ -1870,17 +1879,35 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
   .prow > .prow__key ol { font-size: var(--f-small); }
 }
 
-/* ---------- a project's construction drawings: one row per part of the house, one scale per row ---------- */
-.pdraw { display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }
-.pdraw__set { display: flex; align-items: flex-end; gap: var(--s-2); }
-.pdraw__set + .pdraw__set { margin-top: var(--s-3); }
-.pdraw__fig { margin: 0; flex: var(--span) 1 0; min-width: 0; display: grid; gap: 0.7rem; }
-.pdraw__fig img { width: 100%; height: auto; display: block; background: #fcfcfc; }
-.pdraw__cap { display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding-top: 0.7rem; border-top: 1px solid var(--grey); }
+/* ---------- a project's construction drawings: small, in one row the big arrows walk (project.js).
+   The tallest drawing of each part of the house is --H high, the others of that part stand at its scale
+   (--k), on one baseline; a wider gap opens where the next part starts. ---------- */
+.pdraw { --H: clamp(16rem, 10rem + 12vw, 24rem); display: grid; row-gap: var(--s-2); padding: 0 var(--margin) var(--pad-v); }
+.pdraw__head { display: flex; align-items: center; gap: var(--gap); }
+.pdraw__count { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--mid-grey); }
+.pdraw__nav { display: flex; gap: 0.25rem; }
+.pdraw__arrow { display: grid; place-items: center; width: 5rem; height: 3.5rem; padding: 0; border: 0; border-radius: 999px; background: none; color: var(--black); cursor: pointer; transition: background-color 0.3s var(--ease), opacity 0.3s var(--ease); }
+.pdraw__arrow svg { width: 3.5rem; height: 1.75rem; fill: none; stroke: currentColor; stroke-width: 1.5; transition: transform 0.4s var(--ease); }
+.pdraw__arrow path { vector-effect: non-scaling-stroke; }
+.pdraw__arrow:hover:not(:disabled) { background: var(--light-grey); }
+.pdraw__arrow[data-car-step="1"]:hover:not(:disabled) svg { transform: translateX(0.3rem); }
+.pdraw__arrow[data-car-step="-1"]:hover:not(:disabled) svg { transform: translateX(-0.3rem); }
+.pdraw__arrow:disabled { opacity: 0.2; cursor: default; }
+.pdraw__arrow:focus-visible, .pdraw__track:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.pdraw__track { position: relative; display: grid; grid-auto-flow: column; grid-template-rows: auto auto; column-gap: var(--gap); row-gap: 0.7rem; list-style: none; margin: 0 calc(-1 * var(--margin)); padding: 0 var(--margin) 0.25rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); scrollbar-width: none; }
+.pdraw__track::-webkit-scrollbar { display: none; }
+/* each drawing takes the row's two lines (subgrid): every drawing stands on one baseline, every caption
+   starts on one line, however many lines a caption wraps to */
+.pdraw__fig { grid-row: span 2; display: grid; grid-template-rows: subgrid; width: calc(var(--H) * var(--k) * var(--ar)); scroll-snap-align: start; }
+.pdraw__fig.is-set:not(:first-child) { margin-left: var(--s-3); }
+.pdraw__fig figure { display: contents; }
+.pdraw__fig img { align-self: end; width: 100%; height: auto; display: block; background: #fcfcfc; }
+.pdraw__cap { align-self: start; display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding-top: 0.7rem; border-top: 1px solid var(--grey); }
 .pdraw__view { color: var(--mid-grey); }
 @media (max-width: 767px) {
-  .pdraw__set { flex-direction: column; align-items: stretch; gap: var(--s-2); }
-  .pdraw__fig { flex: none; }
+  .pdraw__arrow { width: 3.5rem; height: 2.75rem; }
+  .pdraw__arrow svg { width: 2.4rem; height: 1.2rem; }
+  .pdraw__fig.is-set:not(:first-child) { margin-left: var(--s-2); }
 }
 
 /* ---------- the client portal: its button in the nav, and the sign-in page ---------- */

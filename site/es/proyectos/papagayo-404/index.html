@@ -21,8 +21,8 @@
 <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../../../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../../assets/css/site.css?v=e0794209">
-<script defer src="../../../assets/js/project.js?v=d409fffd"></script>
+<link rel="stylesheet" href="../../../assets/css/site.css?v=85d58a4f">
+<script defer src="../../../assets/js/project.js?v=87313427"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -88,42 +88,45 @@
       <div class="pplan__img"><picture><source media="(min-width: 768px)" srcset="../../../assets/img/projects/papagayo-404/10-es-800.webp?v=8de06042 800w, ../../../assets/img/projects/papagayo-404/10-es-1600.webp?v=8de06042 1600w, ../../../assets/img/projects/papagayo-404/10-es-2400.webp?v=8de06042 2400w, ../../../assets/img/projects/papagayo-404/10-es-3600.webp?v=8de06042 3600w" sizes="86vw" width="1600" height="1251"><img src="../../../assets/img/projects/papagayo-404/10-1600.webp?v=610e43e4" srcset="../../../assets/img/projects/papagayo-404/10-800.webp?v=610e43e4 800w, ../../../assets/img/projects/papagayo-404/10-1200.webp?v=610e43e4 1200w, ../../../assets/img/projects/papagayo-404/10-1600.webp?v=610e43e4 1600w" sizes="100vw" width="1600" height="1569" loading="lazy" decoding="async" alt="Planta de conjunto de la casa, numerada: la piscina larga con el jacuzzi y la crioterapia en su cabecera, los decks, la terraza, la cocina y la sala, y la terraza baja, con los árboles alrededor del lote"></picture></div>
       <figcaption class="pplan__key"><p class="label">(Planta de conjunto)</p><ol><li><b>1</b><span>Ducha exterior</span></li><li><b>2</b><span>Jacuzzi</span></li><li><b>3</b><span>Crioterapia</span></li><li><b>4</b><span>Piscina</span></li><li><b>5</b><span>Espejo de agua</span></li><li><b>6</b><span>Deck principal</span></li><li><b>7</b><span>Deck</span></li><li><b>8</b><span>Pasarela de deck</span></li><li><b>9</b><span>Terraza</span></li><li><b>10</b><span>Cocina y comedor</span></li><li><b>11</b><span>Sala</span></li><li><b>12</b><span>Terraza baja y fogata</span></li><li><b>13</b><span>Deck de sol</span></li></ol></figcaption>
     </figure>
-    <section class="pdraw" aria-labelledby="pdraw-title">
-      <h2 class="label" id="pdraw-title">(Planos)</h2>
-      <div class="pdraw__set">
-        <figure class="pdraw__fig" style="--span: 13.14">
-          <img src="../../../assets/img/projects/papagayo-404/d-terrace-plan-1600.webp?v=477f1b97" srcset="../../../assets/img/projects/papagayo-404/d-terrace-plan-800.webp?v=477f1b97 800w, ../../../assets/img/projects/papagayo-404/d-terrace-plan-1200.webp?v=477f1b97 1200w, ../../../assets/img/projects/papagayo-404/d-terrace-plan-1600.webp?v=477f1b97 1600w" sizes="(min-width: 768px) 49vw, 92vw" width="1600" height="1418" loading="lazy" decoding="async" alt="Planta de la terraza baja: anillos de asientos empotrados que bajan hacia un fogón cuadrado, con tablones de deck a un lado, acotada en metros">
-          <figcaption class="label pdraw__cap"><span>Terraza baja</span><span class="pdraw__view">Planta</span></figcaption>
-        </figure>
-        <figure class="pdraw__fig" style="--span: 12.52">
-          <img src="../../../assets/img/projects/papagayo-404/d-terrace-section-1600.webp?v=76611e30" srcset="../../../assets/img/projects/papagayo-404/d-terrace-section-800.webp?v=76611e30 800w, ../../../assets/img/projects/papagayo-404/d-terrace-section-1200.webp?v=76611e30 1200w, ../../../assets/img/projects/papagayo-404/d-terrace-section-1600.webp?v=76611e30 1600w" sizes="(min-width: 768px) 47vw, 92vw" width="1600" height="1256" loading="lazy" decoding="async" alt="Corte de la terraza baja: los asientos bajan a ambos lados hacia el fogón, bajo una cubierta sobre dos postes inclinados de 3.58 m">
-          <figcaption class="label pdraw__cap"><span>Terraza baja</span><span class="pdraw__view">Corte</span></figcaption>
-        </figure>
+    <section class="pdraw" aria-labelledby="pdraw-title" data-carousel>
+      <div class="pdraw__head">
+        <h2 class="label" id="pdraw-title">(Planos)</h2>
+        <p class="label pdraw__count" aria-hidden="true"><span data-car-at>01</span>/07</p>
+        <div class="pdraw__nav">
+          <button class="pdraw__arrow" type="button" data-car-step="-1" aria-label="Plano anterior" disabled><svg viewBox="0 0 48 24" aria-hidden="true" focusable="false"><path d="M47 12H2M13 1 2 12l11 11"/></svg></button>
+          <button class="pdraw__arrow" type="button" data-car-step="1" aria-label="Plano siguiente"><svg viewBox="0 0 48 24" aria-hidden="true" focusable="false"><path d="M1 12h45M35 1l11 11-11 11"/></svg></button>
+        </div>
       </div>
-      <div class="pdraw__set">
-        <figure class="pdraw__fig" style="--span: 17.16">
-          <img src="../../../assets/img/projects/papagayo-404/d-bbq-plan-1600.webp?v=e40393a5" srcset="../../../assets/img/projects/papagayo-404/d-bbq-plan-800.webp?v=e40393a5 800w, ../../../assets/img/projects/papagayo-404/d-bbq-plan-1200.webp?v=e40393a5 1200w, ../../../assets/img/projects/papagayo-404/d-bbq-plan-1600.webp?v=e40393a5 1600w" sizes="(min-width: 768px) 47vw, 92vw" width="1600" height="1193" loading="lazy" decoding="async" alt="Planta de la cocina exterior: el mueble con parrilla y fregadero entre dos decks de madera a distinto nivel, con iluminación LED perimetral">
-          <figcaption class="label pdraw__cap"><span>Cocina exterior</span><span class="pdraw__view">Planta</span></figcaption>
-        </figure>
-        <figure class="pdraw__fig" style="--span: 17.8">
-          <img src="../../../assets/img/projects/papagayo-404/d-bbq-elevation-1600.webp?v=92f71c0d" srcset="../../../assets/img/projects/papagayo-404/d-bbq-elevation-800.webp?v=92f71c0d 800w, ../../../assets/img/projects/papagayo-404/d-bbq-elevation-1200.webp?v=92f71c0d 1200w, ../../../assets/img/projects/papagayo-404/d-bbq-elevation-1600.webp?v=92f71c0d 1600w" sizes="(min-width: 768px) 49vw, 92vw" width="1600" height="1033" loading="lazy" decoding="async" alt="Elevación interna de la cocina exterior: el mueble de 1.00 m de alto, con la parrilla y el fregadero, entre las columnas de los ejes C5, C6 y C8">
-          <figcaption class="label pdraw__cap"><span>Cocina exterior</span><span class="pdraw__view">Elevación interna</span></figcaption>
-        </figure>
-      </div>
-      <div class="pdraw__set">
-        <figure class="pdraw__fig" style="--span: 12.06">
-          <img src="../../../assets/img/projects/papagayo-404/d-bath-plan-1600.webp?v=3f6cb9bd" srcset="../../../assets/img/projects/papagayo-404/d-bath-plan-800.webp?v=3f6cb9bd 800w, ../../../assets/img/projects/papagayo-404/d-bath-plan-1200.webp?v=3f6cb9bd 1200w, ../../../assets/img/projects/papagayo-404/d-bath-plan-1600.webp?v=3f6cb9bd 1600w" sizes="(min-width: 768px) 39vw, 92vw" width="1600" height="1900" loading="lazy" decoding="async" alt="Planta del baño: la ducha con su nicho, el lavamanos y el inodoro, bajo la proyección de la cubierta">
-          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Planta</span></figcaption>
-        </figure>
-        <figure class="pdraw__fig" style="--span: 8.99">
-          <img src="../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1600.webp?v=e6b38bfd" srcset="../../../assets/img/projects/papagayo-404/d-bath-elevation-1-800.webp?v=e6b38bfd 800w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1200.webp?v=e6b38bfd 1200w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1600.webp?v=e6b38bfd 1600w" sizes="(min-width: 768px) 29vw, 92vw" width="1600" height="1725" loading="lazy" decoding="async" alt="Elevación interna del baño entre los ejes 15 y 14: la ducha y su nicho bajo un cielo inclinado, de 2.40 m en el lado bajo">
-          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Elevación, ejes 15 a 14</span></figcaption>
-        </figure>
-        <figure class="pdraw__fig" style="--span: 8.57">
-          <img src="../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1600.webp?v=f80cf52a" srcset="../../../assets/img/projects/papagayo-404/d-bath-elevation-2-800.webp?v=f80cf52a 800w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1200.webp?v=f80cf52a 1200w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1600.webp?v=f80cf52a 1600w" sizes="(min-width: 768px) 28vw, 92vw" width="1600" height="1811" loading="lazy" decoding="async" alt="Elevación interna del baño entre los ejes D y A: la pared de la ducha enchapada hasta 2.15 m, con el nicho y la regadera">
-          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Elevación, ejes D a A</span></figcaption>
-        </figure>
-      </div>
+      <ol class="pdraw__track" data-car-track tabindex="0" aria-label="Planos: las flechas o un deslizamiento lateral los recorren">
+        <li class="pdraw__fig is-set" style="--k: 1.000; --ar: 1.128">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-terrace-plan-1600.webp?v=477f1b97" srcset="../../../assets/img/projects/papagayo-404/d-terrace-plan-800.webp?v=477f1b97 800w, ../../../assets/img/projects/papagayo-404/d-terrace-plan-1200.webp?v=477f1b97 1200w, ../../../assets/img/projects/papagayo-404/d-terrace-plan-1600.webp?v=477f1b97 1600w" sizes="27.1rem" width="1600" height="1418" loading="lazy" decoding="async" alt="Planta de la terraza baja: anillos de asientos empotrados que bajan hacia un fogón cuadrado, con tablones de deck a un lado, acotada en metros">
+          <figcaption class="label pdraw__cap"><span>Terraza baja</span><span class="pdraw__view">Planta</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig" style="--k: 0.844; --ar: 1.274">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-terrace-section-1600.webp?v=76611e30" srcset="../../../assets/img/projects/papagayo-404/d-terrace-section-800.webp?v=76611e30 800w, ../../../assets/img/projects/papagayo-404/d-terrace-section-1200.webp?v=76611e30 1200w, ../../../assets/img/projects/papagayo-404/d-terrace-section-1600.webp?v=76611e30 1600w" sizes="25.8rem" width="1600" height="1256" loading="lazy" decoding="async" alt="Corte de la terraza baja: los asientos bajan a ambos lados hacia el fogón, bajo una cubierta sobre dos postes inclinados de 3.58 m">
+          <figcaption class="label pdraw__cap"><span>Terraza baja</span><span class="pdraw__view">Corte</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig is-set" style="--k: 1.000; --ar: 1.341">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-bbq-plan-1600.webp?v=e40393a5" srcset="../../../assets/img/projects/papagayo-404/d-bbq-plan-800.webp?v=e40393a5 800w, ../../../assets/img/projects/papagayo-404/d-bbq-plan-1200.webp?v=e40393a5 1200w, ../../../assets/img/projects/papagayo-404/d-bbq-plan-1600.webp?v=e40393a5 1600w" sizes="32.2rem" width="1600" height="1193" loading="lazy" decoding="async" alt="Planta de la cocina exterior: el mueble con parrilla y fregadero entre dos decks de madera a distinto nivel, con iluminación LED perimetral">
+          <figcaption class="label pdraw__cap"><span>Cocina exterior</span><span class="pdraw__view">Planta</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig" style="--k: 0.898; --ar: 1.549">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-bbq-elevation-1600.webp?v=92f71c0d" srcset="../../../assets/img/projects/papagayo-404/d-bbq-elevation-800.webp?v=92f71c0d 800w, ../../../assets/img/projects/papagayo-404/d-bbq-elevation-1200.webp?v=92f71c0d 1200w, ../../../assets/img/projects/papagayo-404/d-bbq-elevation-1600.webp?v=92f71c0d 1600w" sizes="33.4rem" width="1600" height="1033" loading="lazy" decoding="async" alt="Elevación interna de la cocina exterior: el mueble de 1.00 m de alto, con la parrilla y el fregadero, entre las columnas de los ejes C5, C6 y C8">
+          <figcaption class="label pdraw__cap"><span>Cocina exterior</span><span class="pdraw__view">Elevación interna</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig is-set" style="--k: 1.000; --ar: 0.842">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-bath-plan-1600.webp?v=3f6cb9bd" srcset="../../../assets/img/projects/papagayo-404/d-bath-plan-800.webp?v=3f6cb9bd 800w, ../../../assets/img/projects/papagayo-404/d-bath-plan-1200.webp?v=3f6cb9bd 1200w, ../../../assets/img/projects/papagayo-404/d-bath-plan-1600.webp?v=3f6cb9bd 1600w" sizes="20.2rem" width="1600" height="1900" loading="lazy" decoding="async" alt="Planta del baño: la ducha con su nicho, el lavamanos y el inodoro, bajo la proyección de la cubierta">
+          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Planta</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig" style="--k: 0.677; --ar: 0.928">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1600.webp?v=e6b38bfd" srcset="../../../assets/img/projects/papagayo-404/d-bath-elevation-1-800.webp?v=e6b38bfd 800w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1200.webp?v=e6b38bfd 1200w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-1-1600.webp?v=e6b38bfd 1600w" sizes="15.1rem" width="1600" height="1725" loading="lazy" decoding="async" alt="Elevación interna del baño entre los ejes 15 y 14: la ducha y su nicho bajo un cielo inclinado, de 2.40 m en el lado bajo">
+          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Elevación, ejes 15 a 14</span></figcaption></figure>
+        </li>
+        <li class="pdraw__fig" style="--k: 0.677; --ar: 0.883">
+          <figure><img src="../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1600.webp?v=f80cf52a" srcset="../../../assets/img/projects/papagayo-404/d-bath-elevation-2-800.webp?v=f80cf52a 800w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1200.webp?v=f80cf52a 1200w, ../../../assets/img/projects/papagayo-404/d-bath-elevation-2-1600.webp?v=f80cf52a 1600w" sizes="14.4rem" width="1600" height="1811" loading="lazy" decoding="async" alt="Elevación interna del baño entre los ejes D y A: la pared de la ducha enchapada hasta 2.15 m, con el nicho y la regadera">
+          <figcaption class="label pdraw__cap"><span>Baño</span><span class="pdraw__view">Elevación, ejes D a A</span></figcaption></figure>
+        </li>
+      </ol>
     </section>
     <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">(Proyectos similares)</h2>
