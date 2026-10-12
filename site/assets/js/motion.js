@@ -89,11 +89,17 @@
       if (s) rise(s, base + 700);
     } else {
       [...document.querySelectorAll('.bar__brand, .bar__links, .bar__acts > *')].forEach((el, i) => rise(el, base + i * 62.5, 900));
+      // the client portal comes in like the enquiry sheet: the panel from the right, quickly, as one piece
+      const panel = document.querySelector('.portal__panel');
+      if (panel) panel.animate([
+        { opacity: 0, transform: `translateX(${small ? 48 : 160}px)` },
+        { opacity: 1, transform: 'none' },
+      ], { duration: 700, delay: base + 80, easing: EASE, fill: 'backwards' });
       const h1 = document.querySelector('main h1');
-      if (h1) (h1.classList.contains('display') ? riseTitle : riseLines)(h1, base + 120);
+      if (h1 && !panel) (h1.classList.contains('display') ? riseTitle : riseLines)(h1, base + 120);
       const label = document.querySelector('main .mf__label, main .proj__crumb');
       if (label) rise(label, base + 60, 900);
-      const cover = document.querySelector('.proj__cover > img, .proj__cover picture img');
+      const cover = document.querySelector('.proj__cover > img, .proj__cover picture img, .portal__media img');
       if (cover) cover.animate([{ transform: 'scale(1.06)' }, { transform: 'none' }], { duration: 1600, delay: base, easing: EASE });
     }
     // everything hidden for the entrance shows now (each piece animates from its own start)
