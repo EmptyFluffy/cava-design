@@ -1,6 +1,6 @@
 /* Studio CAVA: motion. No library; the Web Animations API.
    1. The preloader (home, the first visit of a session): the word CAVA on black rolls once, a line runs
-      across the top, then the black lifts. The hero image paints underneath from the start.
+      across the top, then the black lifts. The hero (the sea, or the first photo) paints underneath from the start.
    2. The entrance, on every page: the nav and the labels rise in turn, the title rises line by line out of
       its own mask, the first image settles from a slight zoom.
    3. On the way down: titles rise line by line, paragraphs and text list items rise a little, each once,
@@ -76,7 +76,8 @@
     root.classList.add('is-entering');
     const hero = document.querySelector('.hero');
     if (hero) {
-      const img = hero.querySelector('.hero__img');
+      // the layer on screen: the sea when it opens the home (site.js), else the first photo
+      const img = hero.querySelector(root.classList.contains('sea') && hero.querySelector('.hero__video') ? '.hero__video' : '.hero__img');
       if (img) img.animate([
         { transform: 'scale(1.1)', filter: small ? 'none' : 'blur(5px)' },
         { transform: 'none', filter: 'none' },
@@ -121,10 +122,12 @@
       line.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(0.58)' }], { duration: 1000, easing: LINE, fill: 'forwards' });
       line.animate([{ transform: 'scaleX(0.58)' }, { transform: 'scaleX(1)' }], { duration: 400, delay: 1200, easing: LINE, fill: 'forwards' });
     }
-    // it lifts at 1.6 s, or later if the hero image is not in yet (never past 3 s)
+    // it lifts at 1.6 s, or later if the hero is not in yet: the sea's first frame, or the first photo (never past 3 s)
+    const vid = root.classList.contains('sea') ? document.querySelector('.hero__video') : null;
     const img = document.querySelector('.hero__img');
+    const waitFor = (el, ok, evs) => (!el || ok ? null : new Promise((r) => evs.forEach((ev) => el.addEventListener(ev, r, { once: true }))));
     const ready = Promise.race([
-      Promise.all([img && !img.complete ? new Promise((r) => { img.addEventListener('load', r, { once: true }); img.addEventListener('error', r, { once: true }); }) : null, document.fonts?.ready]),
+      Promise.all([vid ? waitFor(vid, vid.readyState >= 2, ['loadeddata', 'error']) : waitFor(img, img && img.complete, ['load', 'error']), document.fonts?.ready]),
       new Promise((r) => setTimeout(r, 3000)),
     ]);
     Promise.all([ready, new Promise((r) => setTimeout(r, 1600))]).then(() => {

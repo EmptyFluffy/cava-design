@@ -425,58 +425,90 @@
     startMap();
   }
 
-  /* ---------- Hero: the best exterior views take turns (data/projects.json "hero") ---------- */
+  /* ---------- Hero: the sea from above, then the best exterior views in turn (data/projects.json "hero") ---------- */
+  // The sea opens the home when the head added .sea (motion welcome, Save-Data off): ten seconds of video,
+  // then a photo every 6.5 s, and after the last photo the sea again. The photos crossfade on two <img>
+  // layers; the sea is a third layer over them. The project row shows only with a photo.
   const SLIDES = window.CAVA_HERO || [];
+  const hero = $('.hero');
   const heroImg = $('.hero__img');
   const heroRow = $('.hero__row');
-  if (heroImg && heroRow && SLIDES.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seaVid = $('[data-hero-video]');
+  const withSea = !!seaVid && root.classList.contains('sea');
+  if (hero && heroImg && heroRow && (SLIDES.length > 1 || withSea) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const nameEl = $('[data-hero-name]', heroRow);
     const placeEl = $('[data-hero-place]', heroRow);
     const linkEl = $('[data-hero-link]', heroRow);
+    const SEA_MS = 9000, PHOTO_MS = 6500, FADE_MS = 1600;
     const layer = heroImg.cloneNode(false);
     layer.removeAttribute('fetchpriority');
     layer.classList.add('is-off');
     layer.setAttribute('aria-hidden', 'true');
     heroImg.after(layer);
-    let shown = heroImg, waiting = layer, idx = 0, busy = false;
+    heroImg.dataset.k = '0';   // the page arrives with the first photo in it
+    const order = withSea ? ['sea', ...SLIDES] : SLIDES;
+    let shown = withSea ? seaVid : heroImg, at = 0;
+    // only while the hero is on screen and the tab is visible
+    const away = () => document.hidden || window.scrollY > window.innerHeight * 0.9;
     const load = (img, sl) => {
       img.srcset = `${sl.src}-800.webp?v=${sl.v} 800w, ${sl.src}-1600.webp?v=${sl.v} 1600w`;
       img.src = `${sl.src}-1600.webp?v=${sl.v}`;
       img.width = sl.w; img.height = sl.h; img.alt = sl.alt;
     };
-    const advance = () => {
-      // only while the hero is on screen and the tab is visible
-      if (busy || document.hidden || window.scrollY > window.innerHeight * 0.9) return;
-      busy = true;
-      const next = (idx + 1) % SLIDES.length;
-      const sl = SLIDES[next];
-      load(waiting, sl);
-      const swap = () => {
-        waiting.classList.remove('is-off'); waiting.removeAttribute('aria-hidden');
-        shown.classList.add('is-off'); shown.setAttribute('aria-hidden', 'true');
-        [shown, waiting] = [waiting, shown];
-        idx = next;
-        heroRow.classList.add('is-fading');
-        setTimeout(() => {
-          nameEl.textContent = sl.name;
-          placeEl.textContent = sl.place;
-          linkEl.href = sl.href;
-          heroRow.classList.remove('is-fading');
-          busy = false;
-        }, 350);
-      };
-      (waiting.decode ? waiting.decode() : Promise.resolve()).then(swap, () => { busy = false; });
+    const row = (sl) => { nameEl.textContent = sl.name; placeEl.textContent = sl.place; linkEl.href = sl.href; };
+    const show = (el) => {
+      el.classList.remove('is-off'); el.removeAttribute('aria-hidden');
+      shown.classList.add('is-off'); shown.setAttribute('aria-hidden', 'true');
+      if (shown === seaVid) setTimeout(() => { if (shown !== seaVid) seaVid.pause(); }, FADE_MS);
+      shown = el;
     };
-    setInterval(advance, 6500);
-  }
-
-  /* ---------- The sea beside "Climate first": it loads and plays only while on screen ---------- */
-  // With reduced motion, Save-Data or a browser that will not autoplay, the still (its poster) stays.
-  const sea = $('[data-sea]');
-  if (sea && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !navigator.connection?.saveData) {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) sea.play().catch(() => {}); else sea.pause();
-    }, { rootMargin: '200px 0px' }).observe(sea);
+    let wasAway = false;
+    const next = () => {
+      if (away()) { wasAway = true; setTimeout(next, 1000); return; }
+      // back on the hero: what is on screen stays a moment longer before the turn
+      if (wasAway) { wasAway = false; setTimeout(next, 3000); return; }
+      const to = (at + 1) % order.length;
+      if (order[to] === 'sea') {
+        // back to the sea from its first frame, once it plays (a browser that will not play it shows its still)
+        seaVid.currentTime = 0;
+        const go = () => { show(seaVid); hero.classList.remove('is-photo'); at = to; setTimeout(next, SEA_MS); };
+        seaVid.play().then(go, go);
+        return;
+      }
+      const k = String(withSea ? to - 1 : to), sl = order[to];
+      // after the sea, the layer that already holds this photo if one does; otherwise the one not on screen
+      const img = shown === seaVid ? ([heroImg, layer].find((x) => x.dataset.k === k) || layer) : (shown === heroImg ? layer : heroImg);
+      if (img.dataset.k !== k) { load(img, sl); img.dataset.k = k; }
+      (img.decode ? img.decode() : Promise.resolve()).then(() => {
+        const fromSea = shown === seaVid;
+        show(img);
+        at = to;
+        if (fromSea) { row(sl); hero.classList.add('is-photo'); } else {
+          heroRow.classList.add('is-fading');
+          setTimeout(() => { row(sl); heroRow.classList.remove('is-fading'); }, 350);
+        }
+        setTimeout(next, PHOTO_MS);
+      }, () => { setTimeout(next, 1000); });
+    };
+    if (withSea) {
+      // the cut for the screen (upright on a portrait one), in VP9 where the browser plays it
+      const d = seaVid.dataset, tall = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+      const vp9 = seaVid.canPlayType('video/webm; codecs="vp9"') !== '';
+      seaVid.preload = 'auto';
+      seaVid.src = vp9 ? (tall ? d.webmP : d.webm) : (tall ? d.mp4P : d.mp4);
+      heroImg.classList.add('is-off'); heroImg.setAttribute('aria-hidden', 'true');
+      seaVid.play().catch(() => {});
+      // it plays only while it can be seen
+      const keep = () => {
+        if (shown !== seaVid) return;
+        if (away()) { if (!seaVid.paused) seaVid.pause(); } else if (seaVid.paused) seaVid.play().catch(() => {});
+      };
+      window.addEventListener('scroll', keep, { passive: true });
+      document.addEventListener('visibilitychange', keep);
+    } else {
+      hero.classList.add('is-photo');
+    }
+    setTimeout(next, withSea ? SEA_MS : PHOTO_MS);
   }
 
   /* ---------- The process: each step shows its stage's image ---------- */

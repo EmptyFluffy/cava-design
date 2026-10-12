@@ -3253,7 +3253,7 @@ function homeEs() {
     if (u === 'privacy/') return 'privacidad/';
     return `../${u}`;
   };
-  html = html.replace(/\s(href|src|srcset|imagesrcset|poster)="([^"]*)"/g, (m, attr, val) => {
+  html = html.replace(/\s(href|src|srcset|imagesrcset|poster|data-webm|data-mp4|data-webm-p|data-mp4-p)="([^"]*)"/g, (m, attr, val) => {
     const v = /srcset$/.test(attr) ? val.split(',').map((part) => { const [u, ...rest] = part.trim().split(/\s+/); return [fix(u), ...rest].join(' '); }).join(', ') : fix(val);
     return ` ${attr}="${v}"`;
   });

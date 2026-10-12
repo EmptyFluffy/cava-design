@@ -19,16 +19,16 @@
 <meta name="theme-color" content="#080807">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-<script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
+<script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(!(navigator.connection&&navigator.connection.saveData))d.classList.add('sea');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="../assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, ../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
 <!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Sur de la península de Nicoya"},{"@type":"AdministrativeArea","name":"Pacífico central"},{"@type":"AdministrativeArea","name":"Pacífico sur"},{"@type":"AdministrativeArea","name":"Caribe"},{"@type":"AdministrativeArea","name":"Valle Central"},{"@type":"AdministrativeArea","name":"Monteverde y Arenal"}],"knowsAbout":["Arquitectura","Diseño de interiores","Planes maestros","Diseño sostenible","Permisos de construcción en Costa Rica","Dirección de obra","Arquitectura tropical"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"sameAs":["https://architizer.com/firms/studio-cava/","https://archello.com/brand/studio-cava"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Servicios","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Estudio de lote","url":"https://cava.design/es/servicios/estudio-de-lote/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Plan maestro","url":"https://cava.design/es/servicios/plan-maestro/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Arquitectura","url":"https://cava.design/es/servicios/arquitectura/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permisos","url":"https://cava.design/es/servicios/permisos/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiores","url":"https://cava.design/es/servicios/interiores/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Dirección de obra","url":"https://cava.design/es/servicios/direccion-de-obra/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Diseño sostenible","url":"https://cava.design/es/servicios/diseno-sostenible/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
-<link rel="stylesheet" href="../assets/css/site.css?v=85d58a4f">
+<link rel="stylesheet" href="../assets/css/site.css?v=5a34816e">
 <script defer src="../assets/js/renders.es.js?v=55bd3d9b"></script>
-<script defer src="../assets/js/site.js?v=912533ad"></script>
+<script defer src="../assets/js/site.js?v=915e9a7a"></script>
 <script defer src="../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../assets/js/titles.js?v=fa76a511"></script>
-<script defer src="../assets/js/motion.js?v=68b69667"></script>
+<script defer src="../assets/js/motion.js?v=a65b30f1"></script>
 </head>
 <body>
 
@@ -42,6 +42,8 @@
 
 <header class="hero" id="top">
   <img class="hero__img" src="../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" srcset="../assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, ../assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" sizes="100vw" width="1600" height="900" alt="Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía" fetchpriority="high">
+  <!-- The sea from above, the hero's first slide (site.js): Mixkit video 2091, under the Mixkit Stock Video Free License (commercial use, no credit required). Ten seconds, cut to loop; an upright cut for portrait screens. -->
+  <video class="hero__video" data-hero-video data-webm="../assets/video/sea-hero.webm?v=6d740dda" data-mp4="../assets/video/sea-hero.mp4?v=51faf964" data-webm-p="../assets/video/sea-hero-p.webm?v=1045f8db" data-mp4-p="../assets/video/sea-hero-p.mp4?v=7a96e951" muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" poster="../assets/video/sea-hero.webp?v=df4cc060" aria-hidden="true"></video>
   <div class="hero__shade" aria-hidden="true"></div>
 
   <nav class="nav" aria-label="Principal">
@@ -83,16 +85,7 @@
 <main class="page">
 
   <section class="about" id="studio" aria-labelledby="about-title">
-    <div class="grid about__head">
-      <h2 class="display" id="about-title"><span>El clima</span><span>primero</span></h2>
-      <!-- The sea from above: Mixkit video 2091, under the Mixkit Stock Video Free License (commercial use, no credit required). Ten seconds, cut to loop. -->
-      <figure class="about__sea" aria-hidden="true">
-        <video class="about__video" data-sea muted loop playsinline disablepictureinpicture disableremoteplayback preload="none" poster="../assets/video/sea.webp?v=128ad15b">
-          <source src="../assets/video/sea.webm?v=f7998dfa" type="video/webm">
-          <source src="../assets/video/sea.mp4?v=8b7a14d3" type="video/mp4">
-        </video>
-      </figure>
-    </div>
+    <h2 class="display" id="about-title"><span>El clima</span><span>primero</span></h2>
     <div class="grid about__body">
       <figure class="about__img">
         <img src="../assets/img/projects/rancho-cartagena/3-800.webp?v=c4fa6d01" srcset="../assets/img/projects/rancho-cartagena/3-800.webp?v=c4fa6d01 800w, ../assets/img/projects/rancho-cartagena/3-1600.webp?v=c4fa6d01 1600w" sizes="(min-width: 768px) 32vw, 75vw" width="800" height="396" loading="lazy" decoding="async" alt="Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo">
