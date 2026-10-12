@@ -26,7 +26,9 @@ export const UI = {
       h1: 'Projects',
     },
     project: {
-      description: (name, type, place) => `${name}, ${type.toLowerCase()} in ${place} by Studio CAVA, architects in Costa Rica: images, drawings and technical sheet.`,
+      description: (name, type, place, town) => town
+        ? `${name}, ${type.toLowerCase()} by Studio CAVA, architects in ${town}, Costa Rica: images, drawings and technical sheet.`
+        : `${name}, ${type.toLowerCase()} in ${place} by Studio CAVA, architects in Costa Rica: images, drawings and technical sheet.`,
       crumb: 'Projects', sheet: '(Technical sheet)',
       rows: {
         project: 'Project', type: 'Type', typology: 'Typology', location: 'Location', year: 'Year', status: 'Status', siteArea: 'Site area', builtArea: 'Built area',
@@ -68,7 +70,9 @@ export const UI = {
       h1: 'Proyectos',
     },
     project: {
-      description: (name, type, place) => `${name}, ${type.toLowerCase()} en ${place} de Studio CAVA, arquitectos en Costa Rica: imágenes, planos y ficha técnica.`,
+      description: (name, type, place, town) => town
+        ? `${name}, ${type.toLowerCase()} de Studio CAVA, arquitectos en ${town}, Costa Rica: imágenes, planos y ficha técnica.`
+        : `${name}, ${type.toLowerCase()} en ${place} de Studio CAVA, arquitectos en Costa Rica: imágenes, planos y ficha técnica.`,
       crumb: 'Proyectos', sheet: '(Ficha técnica)',
       rows: {
         project: 'Proyecto', type: 'Tipo', typology: 'Tipología', location: 'Ubicación', year: 'Año', status: 'Estado', siteArea: 'Área del lote', builtArea: 'Área construida',

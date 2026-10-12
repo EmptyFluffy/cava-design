@@ -348,10 +348,14 @@ ${p.pin === 'placeholder' ? `        <p class="note pmap__ph">${t.placeholderNot
 }
 
 // The town page nearest a project, when it is close enough to be the same place (not for placeholder pins).
-function townLink(lang, p) {
-  if (p.pin === 'placeholder') return '';
+function nearTown(p) {
+  if (p.pin === 'placeholder') return null;
   const [best] = towns.map((t) => ({ t, km: km(p.coords, townData.towns[t.slug].coords) })).sort((a, b) => a.km - b.km);
-  if (!best || best.km > 25) return '';
+  return best && best.km <= 25 ? best : null;
+}
+function townLink(lang, p) {
+  const best = nearTown(p);
+  if (!best) return '';
   return `        <p class="label pmap__town"><a class="ulink" href="../../${lang === 'es' ? '../' : ''}${townPath(lang, best.t.slug)}">${TT[lang].kicker} ${esc(best.t.name)} →</a></p>\n`;
 }
 
@@ -602,7 +606,8 @@ ${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, 
   const waText = t.wa.project(p.name);
   return head(lang, {
     title: `${p.name}, ${shortPlace(lang, p)} | Studio CAVA`,
-    description: p.summary?.[lang] ?? s.description(p.name, type, shortPlace(lang, p)),
+    // the search a project can answer: architects in its town (the town page is the one that takes the title)
+    description: p.summary?.[lang] ?? s.description(p.name, type, shortPlace(lang, p), nearTown(p)?.t.name),
     paths,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
