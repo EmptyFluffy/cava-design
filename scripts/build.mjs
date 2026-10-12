@@ -1211,7 +1211,7 @@ ${townHero(lang, up, t, muni, waText)}    <section class="tw__intro grid">
         <p class="large">${esc(L.intro(t, d, c, muni)[1])}</p>
       </div>
     </section>
-    <section class="proj__body grid tw__facts" aria-labelledby="facts-title">
+${serviceCards(lang, up, t, muni)}    <section class="proj__body grid tw__facts" aria-labelledby="facts-title">
       <h2 class="label sheet__label" id="facts-title">${LB.facts}</h2>
       <dl class="sheet">
 ${[
@@ -1308,6 +1308,50 @@ ${(Array.isArray(x.sources) ? x.sources : t.extra[x.sources].sources).map((s, k)
 }
 
 // ---------- /architects/ and /es/arquitectos/: where we work ----------
+// The services as cards, the heading in the first cell. On a town's page the lot study names the town and
+// the permits name its council.
+function serviceCards(lang, up, t = null, muni = null) {
+  const S = SVT[lang];
+  const local = (s, txt) => {
+    if (!t) return txt;
+    if (s.slug.en === 'lot-study') return txt.replace(lang === 'en' ? /^Before you buy:/ : /^Antes de comprar:/, lang === 'en' ? `Before you buy in ${t.name}:` : `Antes de comprar en ${t.name}:`);
+    if (s.slug.en === 'permits') return txt.replace(lang === 'en' ? 'the municipality' : 'la municipalidad', muni);
+    return txt;
+  };
+  return `    <section class="${t ? 'tw__sec ' : ''}sv${t ? '' : ' sv--page'}" aria-labelledby="sv-title">
+      <div class="sv__intro">
+        <h2 class="label" id="sv-title">${t ? S.here(esc(t.name)) : S.ours}</h2>
+        <p class="sv__lead">${esc(S.lead)}</p>
+        <p class="sv__text">${esc(S.leadText)}</p>
+        <a class="label ulink sv__all" href="${up}${servicesPath(lang)}">${S.allSvc} →</a>
+      </div>
+      <ol class="sv__list" role="list">
+${services.map((s, i) => { const T = s[lang]; return `        <li class="gcard sv__card"><a class="gcard__link" href="${up}${servicePath(lang, s)}">
+          <span class="label gcard__k">(${pad(i + 1)})</span>
+          <span class="gcard__title">${esc(T.name)}</span>
+          <span class="gcard__text">${esc(local(s, plain(T.card)))}</span>
+          <span class="gcard__foot label"><span>${esc(T.time)} · ${esc(T.fee)}</span><span class="gcard__go" aria-hidden="true">→</span></span>
+        </a></li>`; }).join('\n')}
+      </ol>
+    </section>
+`;
+}
+// A town as a card on where we work: its rain by month on the town pages' scale (dry months grey), the
+// year's total and dry season, the nearer airport, and how many of our projects have it as their nearest
+// town (each project counts once, as on its own page).
+function townCard(lang, t) {
+  const H = TT[lang].hub;
+  const d = townOf(t);
+  const c = climate(d);
+  const ours = projects.filter((p) => p.pin !== 'placeholder' && nearTown(p)?.t.slug === t.slug).length;
+  return `          <li class="gcard tcard"><a class="gcard__link" href="${t.slug}/">
+            <span class="tcard__head"><span class="gcard__title">${esc(t.name)}</span>${ours ? `<span class="label tcard__ours">${H.ours(ours)}</span>` : ''}</span>
+            <span class="label gcard__count">${esc(d.canton)}</span>
+            <span class="tcard__rain" aria-hidden="true">${d.rain.map((r) => `<i${r < 60 ? ' class="is-dry"' : ''} style="--v: ${(r / RAIN_MAX).toFixed(3)}"></i>`).join('')}</span>
+            <span class="gcard__text">${esc(H.cardRain(c))}<br>${esc(H.cardDry(c))}</span>
+            <span class="gcard__foot label"><span>${esc(H.cardAir(d))}</span><span class="gcard__go" aria-hidden="true">→</span></span>
+          </a></li>`;
+}
 function hubPage(lang) {
   const L = TT[lang];
   const H = L.hub;
@@ -1332,15 +1376,26 @@ ${bar(lang, up, paths, 'towns')}
     </header>
 ${places?.hub ? placePhoto(lang, up, places.hub, { eager: true }).replace('<figure class="place">', '<figure class="place place--hub">') : ''}    <div class="hub__map">
 ${climateMap(lang, { center: [-84.25, 9.85], zoom: 6.9, bounds: [[-85.95, 8.0], [-82.55, 11.22]], where: 'Costa Rica', pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: `${o.slug}/` })) })}    </div>
-    <div class="hub__wrap">
-      <table class="hub__table">
-        <thead><tr>${H.cols.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead>
-${rows}
-      </table>
+    <div class="tgroups">
+${Object.keys(regions).map((r) => { const list = towns.filter((t) => t.region === r); return list.length ? `      <section class="tgroup" aria-labelledby="rg-${r}">
+        <h2 class="label tgroup__title" id="rg-${r}">(${regions[r][lang]})</h2>
+        <ol class="tcards">
+${list.map((t) => townCard(lang, t)).join('\n')}
+        </ol>
+      </section>` : ''; }).filter(Boolean).join('\n')}
     </div>
+    <details class="hub__compare">
+      <summary class="label">${esc(H.compare(towns.length))}</summary>
+      <div class="hub__wrap">
+        <table class="hub__table">
+          <thead><tr>${H.cols.map((h) => `<th scope="col">${h}</th>`).join('')}</tr></thead>
+${rows}
+        </table>
+      </div>
+    </details>
     <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}</p>
   </article>
-${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title">
+${serviceCards(lang, up)}${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title">
     <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
     <ol class="stages">
 ${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
@@ -1929,6 +1984,8 @@ const SVT = {
     work: '(Projects)', all: 'All projects', faq: '(Questions)', others: '(Other services)', sources: '(Sources)',
     estimator: 'What it comes to for your project, in our cost estimator', guide: 'Every step of the permit, with its rules, in our guide',
     talk: 'Talk to us on WhatsApp', start: 'Start a project', wa: (n) => `Hi Studio CAVA, I would like to talk about ${n.toLowerCase()}.`, more: 'More',
+    // the services as cards on where we work and on each town's page
+    ours: '(Our services)', here: (n) => `(Our services in ${n})`, lead: 'One studio, from the lot to the keys.', leadText: 'A project usually takes them in this order, and each one can also be hired on its own.', allSvc: 'All services',
   },
   es: {
     link: 'Servicios', label: '(Servicios)', service: '(Servicio)', h1: ['Nuestros', 'servicios'],
@@ -1941,6 +1998,7 @@ const SVT = {
     work: '(Proyectos)', all: 'Todos los proyectos', faq: '(Preguntas)', others: '(Otros servicios)', sources: '(Fuentes)',
     estimator: 'Cuánto da para su proyecto, en nuestro estimador de costos', guide: 'Cada paso del permiso, con sus reglas, en nuestra guía',
     talk: 'Escríbanos por WhatsApp', start: 'Empezar un proyecto', wa: (n) => `Hola Studio CAVA, quisiera conversar sobre ${n.toLowerCase()}.`, more: 'Ver más',
+    ours: '(Nuestros servicios)', here: (n) => `(Nuestros servicios en ${n})`, lead: 'Un solo estudio, del lote a las llaves.', leadText: 'Un proyecto suele tomarlos en este orden, y cada uno también se puede contratar por separado.', allSvc: 'Todos los servicios',
   },
 };
 // "[@a, @b]" -> "[1, 2]", numbering each source the first time a page cites it

@@ -2243,6 +2243,53 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .gcard__go { margin-left: auto; color: var(--black); white-space: nowrap; }
 @media (max-width: 899px) { .gcards { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-2); } }
 
+/* the services as cards, the heading in the first cell: four across on a wide screen, a strip to swipe
+   below that (seven cards would leave one alone in any narrower grid) */
+.sv { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
+.sv--page { padding: 0 var(--margin) var(--pad-v); }
+.sv__intro { display: flex; flex-direction: column; gap: 0.8rem; padding: 0.2rem 0 0.4rem; min-width: 0; }
+.sv__intro .label { margin: 0; }
+.sv__lead { margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.1; text-wrap: balance; }
+.sv__text { margin: 0; color: var(--dark-grey); max-width: 30rem; line-height: 1.4; text-wrap: pretty; }
+.sv__all { margin-top: auto; padding-top: 0.4rem; align-self: flex-start; }
+.sv__list { display: contents; list-style: none; }
+.sv__card { list-style: none; }
+.sv__card .gcard__link { min-height: 15.5rem; }
+.sv__card .gcard__title { margin-top: -0.35rem; }
+.sv__card .gcard__foot { flex-wrap: nowrap; align-items: flex-start; }
+@media (max-width: 1099px) {
+  .sv { grid-template-columns: minmax(0, 1fr); row-gap: var(--s-2); }
+  .sv__intro { padding-bottom: 0; }
+  .sv__all { margin-top: 0; }
+  .sv__list { display: grid; grid-auto-flow: column; grid-auto-columns: min(78%, 19rem); gap: var(--gap); list-style: none; margin: 0 calc(-1 * var(--margin)); padding: 0.25rem var(--margin) 1.1rem; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margin); scrollbar-width: none; }
+  .sv__list::-webkit-scrollbar { display: none; }
+  .sv__card { scroll-snap-align: start; }
+  .sv__card .gcard__link { min-height: 14rem; }
+}
+
+/* where we work: each town as a card, grouped by region */
+.tgroups { display: grid; gap: var(--s-3); margin-top: var(--s-3); }
+.tgroup__title { margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--black); }
+.tcards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+.tcard .gcard__link { gap: 0.5rem; }
+.tcard__head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 0.4rem 0.6rem; }
+.tcard__ours { flex: none; padding: 0.3rem 0.55rem; border-radius: 100vw; background: var(--black); color: var(--white); font-size: 0.625rem; white-space: nowrap; }
+.tcard__rain { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 3px; align-items: end; height: 2.75rem; margin: 0.35rem 0 0.15rem; border-bottom: 1px solid var(--black); }
+.tcard__rain i { display: block; height: calc(var(--v) * 100%); min-height: 1px; background: var(--black); }
+.tcard__rain i.is-dry { background: var(--mid-grey); }
+.hub__compare { margin-top: var(--s-3); border-top: 1px solid var(--black); }
+.hub__compare summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; cursor: pointer; list-style: none; }
+.hub__compare summary::-webkit-details-marker { display: none; }
+.hub__compare summary::after { content: "+"; font-size: 1.1rem; line-height: 1; }
+.hub__compare[open] summary::after { content: "\2212"; }
+@media (max-width: 1199px) { .tcards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 899px) { .tcards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 479px) {
+  .tcard .gcard__link { padding: 0.95rem 0.9rem 0.85rem; }
+  .tcard .gcard__title { font-size: 1.15rem; }
+  .tcard .gcard__text, .tcard .gcard__foot { font-size: 0.75rem; }
+}
+
 /* ---------- Motion (assets/js/motion.js) ----------
    The head adds .motion when motion is allowed; what the entrance animates waits hidden until the script
    says .is-entered, and shows on its own after 2.5 s if the script never runs. */
