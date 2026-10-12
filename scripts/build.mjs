@@ -3206,7 +3206,15 @@ function studioLd(lang) {
 function homeCounts() {
   const path = join(SITE, 'index.html');
   const before = readFileSync(path, 'utf8');
+  // the hero's first photo is in the page itself (preloaded; the one that stays with reduced motion): hero[0]
+  const [h0s, h0n] = hero[0].split('/'), h0 = bySlug.get(h0s), [h0w, h0h] = sizes[hero[0]];
+  const h0b = imgBase(h0s, h0n), h0v = imgVer(hero[0]), h0loc = tr('en', h0, 'location');
   const after = before
+    .replace(/<link rel="preload" as="image" href="[^"]*" imagesrcset="[^"]*" imagesizes="100vw">/, `<link rel="preload" as="image" href="${h0b}-1600.webp?v=${h0v}" imagesrcset="${h0b}-800.webp?v=${h0v} 800w, ${h0b}-1600.webp?v=${h0v} 1600w" imagesizes="100vw">`)
+    .replace(/<img class="hero__img" [^>]*>/, `<img class="hero__img" src="${h0b}-1600.webp?v=${h0v}" srcset="${h0b}-800.webp?v=${h0v} 800w, ${h0b}-1600.webp?v=${h0v} 1600w" sizes="100vw" width="${h0w}" height="${h0h}" alt="${esc(altOf('en', h0, Number(h0n)))}" fetchpriority="high">`)
+    .replace(/<span data-hero-name>[^<]*<\/span>/, `<span data-hero-name>${esc(h0.name)}</span>`)
+    .replace(/<span class="hero__place" data-hero-place>[^<]*<\/span>/, `<span class="hero__place" data-hero-place>${esc(h0loc ? h0loc.split(',')[0] : tr('en', h0, 'type'))}</span>`)
+    .replace(/href="projects\/[a-z0-9-]+\/" data-hero-link/, `href="projects/${h0s}/" data-hero-link`)
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
     .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.filter((im) => !im.plan).length, 0)})`)
     .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)

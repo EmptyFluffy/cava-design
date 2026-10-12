@@ -332,11 +332,11 @@ window.CAVA_RENDERS = [
 ];
 window.CAVA_HERO = [
  {
-  "src": "../assets/img/projects/rancho-cartagena/1",
-  "v": "49e63442",
+  "src": "../assets/img/projects/rancho-cartagena/3",
+  "v": "c4fa6d01",
   "w": 1600,
-  "h": 900,
-  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía",
+  "h": 793,
+  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "proyectos/rancho-cartagena/"
@@ -352,21 +352,11 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
-  "src": "../assets/img/projects/casa-alcaravan/2",
-  "v": "8b80842b",
-  "w": 1536,
-  "h": 1024,
-  "alt": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "proyectos/casa-alcaravan/"
- },
- {
-  "src": "../assets/img/projects/rancho-cartagena/3",
-  "v": "c4fa6d01",
+  "src": "../assets/img/projects/rancho-cartagena/1",
+  "v": "49e63442",
   "w": 1600,
-  "h": 793,
-  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo",
+  "h": 900,
+  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "proyectos/rancho-cartagena/"
@@ -380,6 +370,26 @@ window.CAVA_HERO = [
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
+ },
+ {
+  "src": "../assets/img/projects/casa-alcaravan/1",
+  "v": "4422641d",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "proyectos/casa-alcaravan/"
+ },
+ {
+  "src": "../assets/img/projects/casa-alcaravan/3",
+  "v": "a581f729",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "proyectos/casa-alcaravan/"
  },
  {
   "src": "../assets/img/projects/military-museum/1",

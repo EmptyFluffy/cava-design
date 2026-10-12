@@ -332,11 +332,11 @@ window.CAVA_RENDERS = [
 ];
 window.CAVA_HERO = [
  {
-  "src": "assets/img/projects/rancho-cartagena/1",
-  "v": "49e63442",
+  "src": "assets/img/projects/rancho-cartagena/3",
+  "v": "c4fa6d01",
   "w": 1600,
-  "h": 900,
-  "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
+  "h": 793,
+  "alt": "Open kitchen and living room facing a green valley through full-height glass",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "projects/rancho-cartagena/"
@@ -352,21 +352,11 @@ window.CAVA_HERO = [
   "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/casa-alcaravan/2",
-  "v": "8b80842b",
-  "w": 1536,
-  "h": 1024,
-  "alt": "The house at dusk, its timber eave and louvres lit from inside, behind a gravel garden and a tree",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "projects/casa-alcaravan/"
- },
- {
-  "src": "assets/img/projects/rancho-cartagena/3",
-  "v": "c4fa6d01",
+  "src": "assets/img/projects/rancho-cartagena/1",
+  "v": "49e63442",
   "w": 1600,
-  "h": 793,
-  "alt": "Open kitchen and living room facing a green valley through full-height glass",
+  "h": 900,
+  "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "projects/rancho-cartagena/"
@@ -380,6 +370,26 @@ window.CAVA_HERO = [
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"
+ },
+ {
+  "src": "assets/img/projects/casa-alcaravan/1",
+  "v": "4422641d",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "projects/casa-alcaravan/"
+ },
+ {
+  "src": "assets/img/projects/casa-alcaravan/3",
+  "v": "a581f729",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "projects/casa-alcaravan/"
  },
  {
   "src": "assets/img/projects/military-museum/1",
