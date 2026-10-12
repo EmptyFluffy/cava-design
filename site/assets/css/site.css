@@ -2425,4 +2425,22 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 /* a phone on its side, or the smallest phones: the progress bar at the top already says which step it is */
 @container enq (max-height: 499px) { #enquiry .step__title { display: none; } }
 
+/* ---------- the nav row: name, links, buttons. The links sit in the middle of the space between the end
+   of the name and the first button, as far from one as from the other; the buttons share one height
+   (--act-h), and the black one keeps a faint edge over a dark photo so its full height reads. ---------- */
+:root { --act-h: 2.875rem; }
+:is(.nav__acts, .bar__acts, .float) > :is(.btn, .pill) { height: var(--act-h); padding-top: 0; padding-bottom: 0; }
+.hero .nav__cta { box-shadow: inset 0 0 0 1px rgba(252, 252, 252, 0.16); }
+@media (min-width: 768px) {
+  .nav, .bar { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .nav__brand, .bar__brand { grid-column: 1; grid-row: 1; }
+  .nav__links, .bar__links { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; text-wrap: balance; }
+  .nav__acts, .bar__acts { grid-column: 3; grid-row: 1; }
+}
+@media (max-width: 767px) {
+  .bar { --act-h: 2.575rem; }   /* the phone bar: 0.85rem above and below the line */
+  .nav__brand { margin-right: 0; }
+  .nav__links { flex: 1 1 auto; text-align: center; }   /* the language link, midway between the name and the buttons */
+}
+
 /* 2026-10-12: town photos and cards; town strips and the permit tool head; the enquiry fits every screen */
