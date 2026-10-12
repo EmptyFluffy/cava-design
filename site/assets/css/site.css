@@ -2425,4 +2425,4 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 /* a phone on its side, or the smallest phones: the progress bar at the top already says which step it is */
 @container enq (max-height: 499px) { #enquiry .step__title { display: none; } }
 
-/* 2026-10-12: town photos and cards; town strips and the permit tool head */
+/* 2026-10-12: town photos and cards; town strips and the permit tool head; the enquiry fits every screen */
