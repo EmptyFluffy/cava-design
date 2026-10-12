@@ -173,7 +173,7 @@ export const T = {
     work: { near: '(Our work nearby)', far: '(Our work)', km: (n) => `${num('en', n)} km` },
     faq: { label: '(Questions)' },
     nearby: { label: '(Nearby)', km: (n) => `${num('en', n)} km`, all: 'All the places we work' },
-    reach: (t) => `Tell us about your property in ${t.name} and what you want to build. We answer within a working day.`,
+    reach: (t) => `Tell us about your property in ${t.name} and what you want to build. Let's start a conversation.`,
     wa: (t) => `Hi Studio CAVA, I have a lot in ${t.name} and would like to talk about a project.`,
     sources: (fetched, st) => `Rain: CHIRPS climatology (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperature and wind: ${st ? `measured at ${st.name}, ${num('en', st.km)} km away` : 'the nearest of 12 weather stations'}, typical year 2011 to 2025 (Climate.OneBuilding.org TMYx, from NOAA observations), temperatures adjusted for elevation. Heavy-rain days: NASA POWER (MERRA-2), 2001 to 2020. Sun: calculated for the town's coordinates. Elevation: SRTM. Roads and places: OpenStreetMap. Gathered ${fetched}.`,
     wind: {
@@ -188,6 +188,7 @@ export const T = {
       label: '(Where we work)', h1: ['Where we', 'work'],
       intro: 'We design and sign projects anywhere in Costa Rica. Each page gathers what matters before building in that place: the rain, the sun, the wind, the permits and the drive from the airport.',
       work: '(Our work)', all: 'All projects',
+      pitch: { label: '(Architects in Costa Rica)', text: 'Architecture and interior design for houses, villas and boutique hotels across Costa Rica: the study of the lot before you buy, the design, the permits and the works.' },
       // the town cards
       ours: (n) => (n === 1 ? '1 of our projects' : `${n} of our projects`),
       cardRain: (c) => `${num('en', c.total)} mm of rain a year`,
@@ -237,7 +238,7 @@ export const T = {
     work: { near: '(Nuestro trabajo cerca)', far: '(Nuestro trabajo)', km: (n) => `${num('es', n)} km` },
     faq: { label: '(Preguntas)' },
     nearby: { label: '(Cerca)', km: (n) => `${num('es', n)} km`, all: 'Todos los lugares donde trabajamos' },
-    reach: (t) => `Cuéntenos sobre su propiedad en ${t.name} y lo que quiere construir. Respondemos en un día hábil.`,
+    reach: (t) => `Cuéntenos sobre su propiedad en ${t.name} y lo que quiere construir. Empecemos a conversar.`,
     wa: (t) => `Hola Studio CAVA, tengo un lote en ${t.name} y quisiera conversar sobre un proyecto.`,
     sources: (fetched, st) => `Lluvia: climatología CHIRPS (CHPclim v2, Climate Hazards Center, UC Santa Barbara). Temperatura y viento: ${st ? `medidos en ${enSt(st.name_es)}, a ${num('es', st.km)} km` : 'la más cercana de 12 estaciones meteorológicas'}, año típico 2011 a 2025 (Climate.OneBuilding.org TMYx, a partir de observaciones de la NOAA), con la temperatura ajustada por altitud. Días de lluvia fuerte: NASA POWER (MERRA-2), 2001 a 2020. Sol: calculado para las coordenadas del pueblo. Altitud: SRTM. Carreteras y lugares: OpenStreetMap. Datos reunidos en ${fetched}.`,
     wind: {
@@ -252,6 +253,7 @@ export const T = {
       label: '(Dónde trabajamos)', h1: ['Dónde', 'trabajamos'],
       intro: 'Diseñamos y firmamos proyectos en cualquier parte de Costa Rica. Cada página reúne lo que importa antes de construir en ese lugar: la lluvia, el sol, el viento, los permisos y el viaje desde el aeropuerto.',
       work: '(Nuestro trabajo)', all: 'Todos los proyectos',
+      pitch: { label: '(Arquitectos en Costa Rica)', text: 'Arquitectura e interiores para casas, villas y hoteles boutique en todo Costa Rica: el estudio del lote antes de comprar, el diseño, los permisos y la obra.' },
       ours: (n) => (n === 1 ? '1 proyecto nuestro' : `${n} proyectos nuestros`),
       cardRain: (c) => `${num('es', c.total)} mm de lluvia al año`,
       cardDry: (c) => (c.dry ? `Seco de ${MONTHS_SHORT.es[c.dry.start]} a ${MONTHS_SHORT.es[(c.dry.start + c.dry.n - 1) % 12]}` : 'Llueve todos los meses'),

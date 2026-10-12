@@ -1139,16 +1139,47 @@ function sunDiagram(lang, t, d) {
 
 // The top of a town page: the place, and on it who we are and how to reach us (the place's photo, or the
 // monstera when the town has none)
+// The photo that stands for a town: one of our projects there ("project:<slug>/<n>" in data/places.json)
+// or a photo of the place. `card` asks for the 4:3 crop scripts/places.py writes. A photo whose licence
+// asks for credit carries it (`license` in places.json).
+function townPhoto(lang, up, t, { card = false, sz = '100vw', eager = false } = {}) {
+  const ref = places?.towns[t.slug] ?? 'monstera';
+  const load = eager ? 'fetchpriority="high"' : 'loading="lazy"';
+  if (ref.startsWith('project:')) {
+    const [sl, n] = ref.slice(8).split('/');
+    const pr = projects.find((o) => o.slug === sl);
+    return { img: picture(up, sl, +n, altOf(lang, pr, +n), sz, { eager }), project: pr, ph: null };
+  }
+  const ph = places.photos[ref];
+  const b = `${up}assets/img/places/${ref}`;
+  const img = card
+    ? `<img src="${b}-card-800.webp" srcset="${b}-card-480.webp 480w, ${b}-card-800.webp 800w" sizes="${sz}" width="800" height="600" ${load} decoding="async" alt="${esc(ph[`alt_${lang}`])}">`
+    : `<img src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="${sz}" width="1600" height="800" ${load} decoding="async" alt="${esc(ph[`alt_${lang}`])}">`;
+  return { img, project: null, ph };
+}
+// a town's photo as the shared image of its pages
+const townOg = (t) => { const ref = places?.towns[t.slug] ?? 'monstera'; return ref.startsWith('project:') ? `${imgBase(...ref.slice(8).split('/'))}-1600.webp` : `assets/img/places/${ref}-1600.webp`; };
+// a town's photo as a full-width band (its cost page), with the credit a licence asks for
+function townBand(lang, up, t) {
+  const P = townPhoto(lang, up, t, { sz: '(min-width: 768px) 96vw, 100vw', eager: true });
+  const cr = photoCredit(lang, P.ph);
+  return `    <figure class="place${cr ? ' place--credit' : ''}">
+      ${P.img}${cr ? `\n      <figcaption class="tw__credit">${cr}</figcaption>` : ''}
+    </figure>
+`;
+}
+// "Photo: Ana Pérez, CC BY-SA 4.0", for a photo whose licence asks for it
+const photoCredit = (lang, ph) => (ph?.license ? `${lang === 'en' ? 'Photo' : 'Foto'}: <a href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.by)}</a>, <a href="${esc(ph.license_url)}" target="_blank" rel="noopener">${esc(ph.license)}</a>, ${lang === 'en' ? 'cropped' : 'recortada'}` : '');
 function townHero(lang, up, t, muni, waText) {
-  const id = places?.towns[t.slug] ?? 'monstera';
-  const ph = places?.photos[id];
-  if (!ph) return '';
+  const P = townPhoto(lang, up, t, { sz: '(min-width: 768px) 96vw, 100vw', eager: true });
   const X = TT[lang].pitch(t, muni);
   const home = up + UI[lang].dir;
-  const base = `${up}assets/img/places/${id}`;
+  const cap = P.project
+    ? `<a href="${up}${projectPath(lang, P.project.slug)}">${esc(P.project.name)}</a>, ${lang === 'en' ? 'our project' : 'nuestro proyecto'}`
+    : photoCredit(lang, P.ph);
   return `    <section class="tw__hero" aria-labelledby="pitch-title">
       <figure class="place place--hero">
-        <img src="${base}-1600.webp" srcset="${base}-800.webp 800w, ${base}-1600.webp 1600w" sizes="(min-width: 768px) 96vw, 100vw" width="1600" height="800" fetchpriority="high" decoding="async" alt="${esc(ph[`alt_${lang}`])}">
+        ${P.img}${cap ? `\n        <figcaption class="tw__credit">${cap}</figcaption>` : ''}
       </figure>
       <div class="tw__pitch">
         <p class="label">${X.label}</p>
@@ -1157,6 +1188,29 @@ function townHero(lang, up, t, muni, waText) {
         <div class="reach__actions">
           <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
           ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}?town=${t.slug}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light reach__mail" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a>`}
+        </div>
+      </div>
+    </section>
+`;
+}
+// Where we work opens on the monstera with who we are, large and white, and what we do.
+function hubHero(lang, up) {
+  const id = places?.hub ?? 'monstera';
+  const ph = places?.photos[id];
+  if (!ph) return '';
+  const X = TT[lang].hub.pitch;
+  const b = `${up}assets/img/places/${id}`;
+  return `    <section class="tw__hero tw__hero--brand" aria-labelledby="brand-title">
+      <figure class="place place--hero">
+        <img src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="(min-width: 768px) 96vw, 100vw" width="1600" height="800" fetchpriority="high" decoding="async" alt="${esc(ph[`alt_${lang}`])}">
+      </figure>
+      <div class="tw__pitch">
+        <p class="label">${X.label}</p>
+        <h2 class="tw__brand" id="brand-title">Studio CAVA</h2>
+        <p class="tw__pitch-text">${esc(X.text)}</p>
+        <div class="reach__actions">
+          <a class="btn btn--dark" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
+          ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : ''}
         </div>
       </div>
     </section>
@@ -1326,7 +1380,8 @@ function serviceCards(lang, up, t = null, muni = null) {
         <a class="label ulink sv__all" href="${up}${servicesPath(lang)}">${S.allSvc} →</a>
       </div>
       <ol class="sv__list" role="list">
-${services.map((s, i) => { const T = s[lang]; return `        <li class="gcard sv__card"><a class="gcard__link" href="${up}${servicePath(lang, s)}">
+${services.map((s, i) => { const T = s[lang]; const [sl, n] = s.image.split('/'); const pic = serviceImages(s.slug.en)[0]; const sz = '(min-width: 1100px) 23vw, min(78vw, 19rem)'; return `        <li class="gcard sv__card"><a class="gcard__link" href="${up}${servicePath(lang, s)}">
+          <span class="gcard__media">${pic ? procImg(lang, up, pic, sz) : picture(up, sl, +n, altOf(lang, projects.find((p) => p.slug === sl), +n), sz)}</span>
           <span class="label gcard__k">(${pad(i + 1)})</span>
           <span class="gcard__title">${esc(T.name)}</span>
           <span class="gcard__text">${esc(local(s, plain(T.card)))}</span>
@@ -1336,18 +1391,19 @@ ${services.map((s, i) => { const T = s[lang]; return `        <li class="gcard s
     </section>
 `;
 }
-// A town as a card on where we work: its rain by month on the town pages' scale (dry months grey), the
-// year's total and dry season, the nearer airport, and how many of our projects have it as their nearest
-// town (each project counts once, as on its own page).
-function townCard(lang, t) {
+// A town as a card on where we work: its photo (one of our projects when we have one there), the year's
+// rain and dry season, the nearer airport, and how many of our projects have it as their nearest town
+// (each project counts once, as on its own page).
+function townCard(lang, up, t) {
   const H = TT[lang].hub;
   const d = townOf(t);
   const c = climate(d);
   const ours = projects.filter((p) => p.pin !== 'placeholder' && nearTown(p)?.t.slug === t.slug).length;
+  const P = townPhoto(lang, up, t, { card: true, sz: '(min-width: 1200px) 23vw, (min-width: 900px) 31vw, 46vw' });
   return `          <li class="gcard tcard"><a class="gcard__link" href="${t.slug}/">
-            <span class="tcard__head"><span class="gcard__title">${esc(t.name)}</span>${ours ? `<span class="label tcard__ours">${H.ours(ours)}</span>` : ''}</span>
+            <span class="gcard__media">${P.img}${ours ? `<span class="label tcard__ours">${H.ours(ours)}</span>` : ''}</span>
+            <span class="gcard__title">${esc(t.name)}</span>
             <span class="label gcard__count">${esc(d.canton)}</span>
-            <span class="tcard__rain" aria-hidden="true">${d.rain.map((r) => `<i${r < 60 ? ' class="is-dry"' : ''} style="--v: ${(r / RAIN_MAX).toFixed(3)}"></i>`).join('')}</span>
             <span class="gcard__text">${esc(H.cardRain(c))}<br>${esc(H.cardDry(c))}</span>
             <span class="gcard__foot label"><span>${esc(H.cardAir(d))}</span><span class="gcard__go" aria-hidden="true">→</span></span>
           </a></li>`;
@@ -1374,13 +1430,13 @@ ${bar(lang, up, paths, 'towns')}
       <h1 class="display mf__title" id="hub-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
     </header>
-${places?.hub ? placePhoto(lang, up, places.hub, { eager: true }).replace('<figure class="place">', '<figure class="place place--hub">') : ''}    <div class="hub__map">
+${hubHero(lang, up)}    <div class="hub__map">
 ${climateMap(lang, { center: [-84.25, 9.85], zoom: 6.9, bounds: [[-85.95, 8.0], [-82.55, 11.22]], where: 'Costa Rica', pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: `${o.slug}/` })) })}    </div>
     <div class="tgroups">
 ${Object.keys(regions).map((r) => { const list = towns.filter((t) => t.region === r); return list.length ? `      <section class="tgroup" aria-labelledby="rg-${r}">
         <h2 class="label tgroup__title" id="rg-${r}">(${regions[r][lang]})</h2>
         <ol class="tcards">
-${list.map((t) => townCard(lang, t)).join('\n')}
+${list.map((t) => townCard(lang, up, t)).join('\n')}
         </ol>
       </section>` : ''; }).filter(Boolean).join('\n')}
     </div>
@@ -1393,14 +1449,11 @@ ${rows}
         </table>
       </div>
     </details>
-    <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}</p>
+    <p class="note tw__sources">${esc(L.sources(fetchedLabel(lang)))}${(() => { const cr = towns.map((t) => [t, places?.photos[places?.towns[t.slug]]]).filter(([, ph]) => ph?.license); return cr.length ? ` ${lang === 'en' ? 'Photos' : 'Fotos'}: ${cr.map(([t, ph]) => `${esc(t.name)}, <a class="ulink" href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.by)}</a> (${esc(ph.license)})`).join('; ')}.` : ''; })()}</p>
   </article>
-${serviceCards(lang, up)}${guides.length ? `  <section class="related" aria-labelledby="hub-guides-title">
-    <div class="related__head"><h2 class="label" id="hub-guides-title">${GT[lang].label}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
-    <ol class="stages">
-${guides.map((g, i) => `      <li class="stage"><span class="label stage__n">(${pad(i + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].title.split(' | ')[0])}</a></h3><p class="large stage__text">${esc(g[lang].description)}</p></li>`).join('\n')}
-${costs ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${estimatorPath(lang)}">${esc(ET[lang].name)}</a></h3><p class="large stage__text">${esc(ET[lang].description)}</p></li>\n` : ''}${land ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 2 : 1))})</span><h3 class="stage__title"><a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)}</a></h3><p class="large stage__text">${esc(LT[lang].description)}</p></li>\n` : ''}${permitGuide ? `      <li class="stage"><span class="label stage__n">(${pad(guides.length + (costs ? 1 : 0) + (land ? 1 : 0) + 1)})</span><h3 class="stage__title"><a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].name)}</a></h3><p class="large stage__text">${esc(PR[lang].description)}</p></li>\n` : ''}    </ol>
-  </section>
+${serviceCards(lang, up)}${guides.length ? `  <section class="related hub__guides" aria-labelledby="hub-guides-title">
+    <div class="related__head"><h2 class="label" id="hub-guides-title">${lang === 'en' ? '(Guides and tools)' : '(Guías y herramientas)'}</h2><a class="label ulink" href="${up}${guidesIndexPath(lang)}">${GT[lang].guides} →</a></div>
+${guideCards(lang, up, costs ? [estimatorCard(lang, up)] : [])}${land || permitGuide ? `    <p class="label hub__tools">${[land ? `<a class="ulink" href="${up}${landPath(lang)}">${esc(LT[lang].name)} →</a>` : '', permitGuide ? `<a class="ulink" href="${up}${permitPath(lang)}">${esc(PR[lang].link)} →</a>` : ''].filter(Boolean).join('')}</p>\n` : ''}  </section>
 ` : ''}  <section class="related" aria-labelledby="hub-work-title">
     <div class="related__head"><h2 class="label" id="hub-work-title">${H.work}</h2><a class="label ulink" href="${up}${projectsPath(lang)}">${H.all} →</a></div>
 ${projectCards(lang, up, [...projects].sort((a, b) => (a.status === 'Built' ? 0 : 1) - (b.status === 'Built' ? 0 : 1)).slice(0, 6).map((p) => ({ p, meta: placeOf(lang, p) })))}  </section>
@@ -1510,6 +1563,41 @@ ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 // /guides/ and /es/guias/: the list of guides
 const GUIDES_DIR = { en: 'guides', es: 'guias' };
 const guidesIndexPath = (lang) => `${UI[lang].dir}${GUIDES_DIR[lang]}/`;
+// The guides as cards (/guides/, and where we work), with any `extra` cards after them.
+function guideCards(lang, up, extra = []) {
+  const cards = [...guides.map((g) => {
+    const [sl, n] = g.image.split('/'); const pr = projects.find((o) => o.slug === sl);
+    const srcs = (Array.isArray(g[lang].sources) ? g[lang].sources : g[g[lang].sources].sources).length;
+    const date = new Date(`${g.reviewed}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace('.', '');
+    return { href: `${up}${guidePath(lang, g)}`, img: picture(up, sl, +n, altOf(lang, pr, +n), '4rem'), kind: lang === 'en' ? 'Guide' : 'Guía', count: lang === 'en' ? `${srcs} sources` : `${srcs} fuentes`, title: g[lang].link, text: g[lang].description,
+      listLabel: lang === 'en' ? 'Contents' : 'Contenido', list: g[lang].sections.map((x, k) => [pad(k + 1), x.title]), foot: lang === 'en' ? `Reviewed ${date}` : `Revisada el ${date}`, go: lang === 'en' ? 'Read' : 'Leer' };
+  }), ...extra];
+  return `    <ol class="gcards">
+${cards.map((c, i) => `      <li class="gcard">
+        <a class="gcard__link" href="${c.href}">
+          <span class="gcard__top"><span class="gcard__thumb">${c.img}</span><span class="label gcard__kind"><span>(${pad(i + 1)}) ${esc(c.kind)}</span><span class="gcard__count">${esc(c.count)}</span></span></span>
+          <span class="gcard__title">${esc(c.title)}</span>
+          <span class="gcard__text">${esc(c.text)}</span>
+          <span class="gcard__list"><span class="label gcard__listlabel">${esc(c.listLabel)}</span>${c.list.map(([k, v, sub]) => `<span class="gcard__row"><span class="gcard__k">${esc(k)}</span><span>${esc(v)}${sub && sub !== v ? `<span class="gcard__sub">${esc(sub)}</span>` : ''}</span></span>`).join('')}</span>
+          <span class="label gcard__foot"><span>${esc(c.foot)}</span><span class="gcard__go">${esc(c.go)} →</span></span>
+        </a>
+      </li>`).join('\n')}
+    </ol>
+`;
+}
+// the card for where we work, on /guides/
+function townsCard(lang, up) {
+  const ph = places?.photos?.monstera; const b = `${up}assets/img/places/monstera`;
+  return { href: `${up}${townsPath(lang)}`, img: ph ? `<img src="${b}-800.webp" width="800" height="400" loading="lazy" decoding="async" alt="${esc(ph[`alt_${lang}`])}">` : '', kind: lang === 'en' ? 'Towns' : 'Pueblos', count: lang === 'en' ? `${towns.length} towns` : `${towns.length} pueblos`, title: lang === 'en' ? 'Where we work' : 'Dónde trabajamos', text: lang === 'en' ? 'Rain, sun, wind and permits for every town where we design, each on its own page.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos, cada uno en su página.',
+    listLabel: lang === 'en' ? 'Regions' : 'Regiones', list: Object.keys(regions).map((r) => { const ts = towns.filter((t) => t.region === r); return [String(ts.length), regions[r][lang], ts.map((t) => t.name).join(', ')]; }).sort((a, b) => b[0] - a[0]), foot: lang === 'en' ? 'Climate data by town' : 'Datos de clima por pueblo', go: lang === 'en' ? 'Open' : 'Abrir' };
+}
+// the cost estimator as a card, beside the guides on where we work
+function estimatorCard(lang, up) {
+  const en = lang === 'en';
+  return { href: `${up}${estimatorPath(lang)}`, img: picture(up, 'casa-alcaravan', 2, altOf(lang, projects.find((o) => o.slug === 'casa-alcaravan'), 2), '4rem'), kind: en ? 'Tool' : 'Herramienta', count: en ? `${towns.length} towns` : `${towns.length} pueblos`, title: ET[lang].name, text: ET[lang].description,
+    listLabel: en ? 'What it gives' : 'Qué da', list: (en ? ['Construction, by part', 'Design, permits and taxes', 'The schedule, with the dry season', 'What a budget builds'] : ['Construcción, por partes', 'Diseño, permisos e impuestos', 'El cronograma, con la época seca', 'Lo que construye un presupuesto']).map((x, k) => [pad(k + 1), x]),
+    foot: en ? 'Hacienda values, builders\' prices' : 'Valores de Hacienda, precios de constructores', go: en ? 'Open' : 'Abrir' };
+}
 function guidesIndex(lang) {
   const paths = { en: guidesIndexPath('en'), es: guidesIndexPath('es') };
   const up = upFrom(paths[lang]);
@@ -1525,28 +1613,7 @@ ${bar(lang, up, paths, 'guides')}
       <h1 class="display mf__title" id="gi-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
     </header>
-    <ol class="gcards">
-${[...guides.map((g) => {
-    const [sl, n] = g.image.split('/'); const pr = projects.find((o) => o.slug === sl);
-    const srcs = (Array.isArray(g[lang].sources) ? g[lang].sources : g[g[lang].sources].sources).length;
-    const date = new Date(`${g.reviewed}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }).replace('.', '');
-    return { href: `${up}${guidePath(lang, g)}`, img: picture(up, sl, +n, altOf(lang, pr, +n), '4rem'), kind: lang === 'en' ? 'Guide' : 'Guía', count: lang === 'en' ? `${srcs} sources` : `${srcs} fuentes`, title: g[lang].link, text: g[lang].description,
-      listLabel: lang === 'en' ? 'Contents' : 'Contenido', list: g[lang].sections.map((x, k) => [pad(k + 1), x.title]), foot: lang === 'en' ? `Reviewed ${date}` : `Revisada el ${date}`, go: lang === 'en' ? 'Read' : 'Leer' };
-  }), (() => {
-    const ph = places?.photos?.langosta; const b = `${up}assets/img/places/langosta`;
-    return { href: `${up}${townsPath(lang)}`, img: ph ? `<img src="${b}-800.webp" width="800" height="400" loading="lazy" decoding="async" alt="${esc(ph[`alt_${lang}`])}">` : '', kind: lang === 'en' ? 'Towns' : 'Pueblos', count: lang === 'en' ? `${towns.length} towns` : `${towns.length} pueblos`, title: lang === 'en' ? 'Where we work' : 'Dónde trabajamos', text: lang === 'en' ? 'Rain, sun, wind and permits for every town where we design, each on its own page.' : 'Lluvia, sol, viento y permisos de cada pueblo donde diseñamos, cada uno en su página.',
-      listLabel: lang === 'en' ? 'Regions' : 'Regiones', list: Object.keys(regions).map((r) => { const ts = towns.filter((t) => t.region === r); return [String(ts.length), regions[r][lang], ts.map((t) => t.name).join(', ')]; }).sort((a, b) => b[0] - a[0]), foot: lang === 'en' ? 'Climate data by town' : 'Datos de clima por pueblo', go: lang === 'en' ? 'Open' : 'Abrir' };
-  })()].map((c, i) => `      <li class="gcard">
-        <a class="gcard__link" href="${c.href}">
-          <span class="gcard__top"><span class="gcard__thumb">${c.img}</span><span class="label gcard__kind"><span>(${pad(i + 1)}) ${esc(c.kind)}</span><span class="gcard__count">${esc(c.count)}</span></span></span>
-          <span class="gcard__title">${esc(c.title)}</span>
-          <span class="gcard__text">${esc(c.text)}</span>
-          <span class="gcard__list"><span class="label gcard__listlabel">${esc(c.listLabel)}</span>${c.list.map(([k, v, sub]) => `<span class="gcard__row"><span class="gcard__k">${esc(k)}</span><span>${esc(v)}${sub && sub !== v ? `<span class="gcard__sub">${esc(sub)}</span>` : ''}</span></span>`).join('')}</span>
-          <span class="label gcard__foot"><span>${esc(c.foot)}</span><span class="gcard__go">${esc(c.go)} →</span></span>
-        </a>
-      </li>`).join('\n')}
-    </ol>
-  </article>
+${guideCards(lang, up, [townsCard(lang, up)])}  </article>
 ${contact(lang, UI[lang].wa.general, up)}</main>
 ${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.general)}${end}`;
 }
@@ -1677,7 +1744,7 @@ function estimatorPage(lang, pg = null) {
   const work = projects.filter((p) => kindOf(p) && p.builtArea);
   const ld = pg?.ld ?? { '@context': 'https://schema.org', '@type': 'WebApplication', name: E.title.split(' | ')[0], applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, provider: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` } };
   const H = pg ?? E;
-  const image = pg?.photo ? `assets/img/places/${pg.photo}-1600.webp` : `${imgBase('papagayo-404', 1)}-1600.webp`;
+  const image = pg?.town ? townOg(pg.town) : `${imgBase('papagayo-404', 1)}-1600.webp`;
   return head(lang, { title: H.title, description: H.description, paths, image, up, script: 'estimator.js', jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'tools')}
 <main class="page">
@@ -1687,7 +1754,7 @@ ${bar(lang, up, paths, 'tools')}
       <h1 class="display mf__title" id="est-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
       <p class="h3 mf__intro">${esc(H.intro)}</p>
 ${pg ? `      <p class="svc__cta mf__intro"><a class="btn btn--dark" href="${up}${bookPath(lang)}${pg.q ?? ''}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="${wa(pg.wa ?? UI[lang].wa.general)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a></p>\n` : ''}    </header>
-${pg?.photo ? placePhoto(lang, up, pg.photo, { eager: true }) : ''}
+${pg?.town ? townBand(lang, up, pg.town) : ''}
     <header class="est__print-head" aria-hidden="true">
       <img src="${up}assets/mark.svg" width="40" height="40" alt="">
       <div><p class="est__print-brand">Studio CAVA</p><p class="est__print-kind">${lang === 'en' ? 'Building cost estimate' : 'Estimación de costos de construcción'}${pg ? ` · ${esc(pg.h1.join(' '))}` : ''}</p></div>
@@ -2485,7 +2552,7 @@ ${land ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}"
   };
   return estimatorPage(lang, {
     paths, title: C.title(t.name), description: C.description(t.name, e), h1: C.h1(t.name), intro: C.intro(t.name, e),
-    preset: base, photo: places?.towns[t.slug], extra, ld, cls: 'est--town', wa: C.wa(t.name), q: `?town=${t.slug}`,
+    preset: base, town: t, extra, ld, cls: 'est--town', wa: C.wa(t.name), q: `?town=${t.slug}`,
   });
 }
 
