@@ -23,7 +23,7 @@
 <link rel="preload" href="assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442" imagesrcset="assets/img/projects/rancho-cartagena/1-800.webp?v=49e63442 800w, assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442 1600w" imagesizes="100vw">
 <!-- ld --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://cava.design/#studio","name":"Studio CAVA","alternateName":"CAVA","description":"Architecture and interior design studio in Costa Rica: houses, rental villas, boutique hotels, cafés and master plans, from the study of the lot to the permits and the supervision of the works.","url":"https://cava.design/","logo":"https://cava.design/apple-touch-icon.png","image":"https://cava.design/assets/img/og.jpg","telephone":"+50671737336","email":"hola@cava.design","address":{"@type":"PostalAddress","addressLocality":"San José","addressCountry":"CR"},"areaServed":[{"@type":"Country","name":"Costa Rica"},{"@type":"AdministrativeArea","name":"Guanacaste"},{"@type":"AdministrativeArea","name":"Southern Nicoya Peninsula"},{"@type":"AdministrativeArea","name":"Central Pacific"},{"@type":"AdministrativeArea","name":"South Pacific"},{"@type":"AdministrativeArea","name":"Caribbean"},{"@type":"AdministrativeArea","name":"Central Valley"},{"@type":"AdministrativeArea","name":"Monteverde and Arenal"}],"knowsAbout":["Architecture","Interior design","Master planning","Sustainable design","Building permits in Costa Rica","Construction supervision","Tropical architecture"],"founder":{"@type":"Person","name":"Carlos Vinocour"},"sameAs":["https://architizer.com/firms/studio-cava/","https://archello.com/brand/studio-cava"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Lot study","url":"https://cava.design/services/lot-study/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Master planning","url":"https://cava.design/services/master-planning/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Architecture","url":"https://cava.design/services/architecture/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Permits","url":"https://cava.design/services/permits/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interiors","url":"https://cava.design/services/interiors/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Construction supervision","url":"https://cava.design/services/construction-supervision/"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Sustainable design","url":"https://cava.design/services/sustainable-design/"}}]}},{"@type":"WebSite","@id":"https://cava.design/#website","url":"https://cava.design/","name":"Studio CAVA","inLanguage":["en","es"],"publisher":{"@id":"https://cava.design/#studio"}}]}</script><!-- /ld -->
-<link rel="stylesheet" href="assets/css/site.css?v=5a34816e">
+<link rel="stylesheet" href="assets/css/site.css?v=b5c3b58c">
 <script defer src="assets/js/renders.js?v=29c9c0bf"></script>
 <script defer src="assets/js/site.js?v=915e9a7a"></script>
 <script defer src="assets/js/book-sheet.js?v=03d2f4f0"></script>
@@ -341,6 +341,7 @@
           </div>
           <p class="err" data-err="type">Pick at least one.</p>
         </div>
+        <div class="enq__row">
         <div class="field">
           <label for="f-site">Where would you like to build? <span class="req">*</span></label>
           <input class="input" id="f-site" enterkeyhint="next" name="site" type="text" placeholder="Nosara, Guanacaste" required>
@@ -354,6 +355,7 @@
             <label class="tile"><input type="radio" name="land" value="Still looking"><span>Still looking</span></label>
           </div>
           <p class="err" data-err="land">Pick one to continue.</p>
+        </div>
         </div>
       </fieldset>
 
@@ -386,21 +388,23 @@
       <fieldset class="step" data-step>
         <legend class="sr-only">Your details, step 3 of 3</legend>
         <div class="step__title label"><span>Your details</span><span>(03/03)</span></div>
+        <div class="enq__row enq__row--three">
         <div class="field">
           <label for="f-name">Name <span class="req">*</span></label>
           <input class="input" id="f-name" enterkeyhint="next" name="name" type="text" autocomplete="name" placeholder="Your name" required>
-          <p class="err" data-err="name">Add your name so we know who to reply to.</p>
+          <p class="err" data-err="name">Add your name.</p>
         </div>
         <div class="field">
           <label for="f-email">Email address <span class="req">*</span></label>
           <input class="input" id="f-email" enterkeyhint="next" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-          <p class="err" data-err="email">Enter an email address like name@example.com.</p>
+          <p class="err" data-err="email">Check the email address.</p>
         </div>
         <div class="field">
           <label for="f-phone">Phone or WhatsApp <span class="hint">(optional)</span></label>
           <input class="input" id="f-phone" enterkeyhint="next" name="phone" type="tel" autocomplete="tel" placeholder="+506 0000 0000">
         </div>
-        <div class="field">
+        </div>
+        <div class="field field--fill">
           <label for="f-brief">Anything else? <span class="hint">(optional)</span></label>
           <textarea class="input enq__brief" id="f-brief" name="brief" rows="3" placeholder="Bedrooms, the views you want to keep, how many months a year you will be there."></textarea>
         </div>
