@@ -24,6 +24,10 @@
     "central-valley": {
       "en": "Central Valley",
       "es": "Valle Central"
+    },
+    "north": {
+      "en": "Monteverde and Arenal",
+      "es": "Monteverde y Arenal"
     }
   },
   "towns": [
@@ -395,6 +399,108 @@
       "query": "Heredia, Heredia, Costa Rica",
       "region": "central-valley",
       "coastal": false
+    },
+    {
+      "slug": "potrero",
+      "name": "Potrero",
+      "query": "Potrero, Santa Cruz, Guanacaste, Costa Rica",
+      "region": "guanacaste",
+      "coastal": true
+    },
+    {
+      "slug": "montezuma",
+      "name": "Montezuma",
+      "query": "Montezuma, Cóbano, Puntarenas, Costa Rica",
+      "region": "nicoya-south",
+      "coastal": true,
+      "council": {
+        "en": "the Concejo Municipal de Distrito de Cóbano",
+        "es": "el Concejo Municipal de Distrito de Cóbano"
+      },
+      "note": {
+        "en": "Montezuma is in Cóbano, the district that also holds Santa Teresa and Mal País, and that runs its own permits through a district council instead of the municipality of Puntarenas.",
+        "es": "Montezuma está en Cóbano, el distrito de Santa Teresa y Mal País, que tramita sus propios permisos con un concejo municipal de distrito en lugar de la Municipalidad de Puntarenas."
+      }
+    },
+    {
+      "slug": "manuel-antonio",
+      "name": "Manuel Antonio",
+      "query": "Manuel Antonio, Quepos, Puntarenas, Costa Rica",
+      "region": "central-pacific",
+      "coastal": true
+    },
+    {
+      "slug": "ojochal",
+      "name": "Ojochal",
+      "query": "Ojochal, Osa, Puntarenas, Costa Rica",
+      "region": "south-pacific",
+      "coastal": true
+    },
+    {
+      "slug": "puerto-jimenez",
+      "name": "Puerto Jiménez",
+      "query": "Puerto Jiménez, Puntarenas, Costa Rica",
+      "region": "south-pacific",
+      "coastal": true,
+      "canton": "Puerto Jiménez",
+      "council": {
+        "en": "the Municipalidad de Puerto Jiménez",
+        "es": "la Municipalidad de Puerto Jiménez"
+      },
+      "note": {
+        "en": "Puerto Jiménez became Costa Rica's 84th canton in 2022, separate from Golfito; its municipality has issued its own permits since May 2024.",
+        "es": "Puerto Jiménez es el cantón 84 de Costa Rica desde 2022, separado de Golfito; su municipalidad tramita sus propios permisos desde mayo de 2024."
+      },
+      "coords": [
+        -83.3046,
+        8.5336
+      ]
+    },
+    {
+      "slug": "monteverde",
+      "name": "Monteverde",
+      "query": "Santa Elena, Monteverde, Puntarenas, Costa Rica",
+      "region": "north",
+      "coastal": false,
+      "canton": "Monteverde",
+      "council": {
+        "en": "the Municipalidad de Monteverde",
+        "es": "la Municipalidad de Monteverde"
+      },
+      "note": {
+        "en": "Monteverde became Costa Rica's 83rd canton, separate from Puntarenas; its first municipal council was elected in 2024, and permits go through its own municipality.",
+        "es": "Monteverde es el cantón 83 de Costa Rica, separado de Puntarenas; su primer concejo municipal se eligió en 2024 y los permisos se tramitan en su propia municipalidad."
+      }
+    },
+    {
+      "slug": "la-fortuna",
+      "name": "La Fortuna",
+      "query": "La Fortuna, San Carlos, Alajuela, Costa Rica",
+      "region": "north",
+      "coastal": false,
+      "wind": false
+    },
+    {
+      "slug": "grecia",
+      "name": "Grecia",
+      "query": "Grecia, Alajuela, Costa Rica",
+      "region": "central-valley",
+      "coastal": false,
+      "coords": [
+        -84.3115,
+        10.0727
+      ]
+    },
+    {
+      "slug": "san-ramon",
+      "name": "San Ramón",
+      "query": "San Ramón, Alajuela, Costa Rica",
+      "region": "central-valley",
+      "coastal": false,
+      "coords": [
+        -84.4703,
+        10.0873
+      ]
     }
   ]
 }

@@ -1,6 +1,7 @@
 // Days of heavy rain, by month, for each town, into data/town-data.json. Node 18+.
 //
-//   node scripts/rain-days.mjs
+//   node scripts/rain-days.mjs            towns without heavy-rain days yet
+//   node scripts/rain-days.mjs --force    every town again
 //
 // A heavy-rain day is one with 10 mm or more: on such days earthworks, foundations and concrete pours
 // usually stop. Source: NASA POWER daily precipitation (MERRA-2, bias-corrected), 2001 to 2020, no
@@ -16,6 +17,7 @@ const data = JSON.parse(readFileSync(PATH, 'utf8'));
 const HEAVY = 10;
 
 for (const [slug, t] of Object.entries(data.towns)) {
+  if (t.heavyDays && !process.argv.includes('--force')) continue;   // fetched already (--force: all again)
   const [lng, lat] = t.coords;
   const q = new URLSearchParams({ parameters: 'PRECTOTCORR', community: 'RE', longitude: lng, latitude: lat, start: '20010101', end: '20201231', format: 'JSON' });
   const d = await (await fetch(`https://power.larc.nasa.gov/api/temporal/daily/point?${q}`)).json();

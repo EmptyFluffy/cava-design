@@ -134,6 +134,8 @@ const where = (lang, t, d) => {
 export const T = {
   en: {
     kicker: 'Architects in',
+    labels: (t) => ({ facts: `(${t.name} at a glance)`, year: `(The year in ${t.name})`, map: `(Wind and sun around ${t.name})`, sun: `(The sun in ${t.name})`, wind: `(The wind in ${t.name})`, build: `(Building in ${t.name})`, faq: `(Questions about building in ${t.name})`, nearby: `(Near ${t.name})`, workNear: `(Our work near ${t.name})`, workFar: '(Our work in Costa Rica)' }),
+    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Houses, villas and boutique hotels in ${t.name}, designed for its sun, wind and rain.`, text: `An architecture and interior design studio working across Costa Rica: the study of the lot before you buy, the design and the interiors, the permits with ${muni} and the works, with an early cost range.` }),
     title: (t) => `Architects in ${t.name}, Costa Rica | Studio CAVA`,
     // the search, then the place: architects for the town, its dry season and how far from the airport; the
     // permits only when they fit in 160 characters
@@ -141,7 +143,7 @@ export const T = {
     municipality: (t, d) => t.council?.en ?? `the Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('en', t, d)}, ${d.elevation < 5 ? 'at sea level' : `${num('en', d.elevation)} m above sea level`}. A year here brings ${num('en', c.total)} mm of rain, ${c.wet ? `${c.wetShare}% of it ${range('en', c.wet)}` : 'spread over every month'}. Permits for a lot go through ${muni}.`,
-      `We design houses, rental villas and small hotels in ${t.name} and anywhere else in Costa Rica, from the first site visit to the CFIA permit.`,
+      `As architects in ${t.name}, we start every project with a site visit: we walk the lot in the morning and again in the afternoon, note where the sun lands and where the breeze comes from, and only then start drawing.`,
     ],
     facts: {
       label: '(At a glance)', canton: 'Canton', permits: 'Permits', elevation: 'Elevation', rain: 'Rain', dry: 'Dry season',
@@ -192,12 +194,14 @@ export const T = {
   },
   es: {
     kicker: 'Arquitectos en',
+    labels: (t) => ({ facts: `(${t.name} de un vistazo)`, year: `(El año en ${t.name})`, map: `(Viento y sol alrededor de ${t.name})`, sun: `(El sol en ${t.name})`, wind: `(El viento en ${t.name})`, build: `(Construir en ${t.name})`, faq: `(Preguntas sobre construir en ${t.name})`, nearby: `(Cerca de ${t.name})`, workNear: `(Nuestro trabajo cerca de ${t.name})`, workFar: '(Nuestro trabajo en Costa Rica)' }),
+    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Casas, villas y hoteles boutique en ${t.name}, diseñados para su sol, su viento y su lluvia.`, text: `Un estudio de arquitectura e interiores que trabaja en todo Costa Rica: el estudio del lote antes de comprar, el diseño y los interiores, los permisos con ${muni} y la obra, con un rango de costo temprano.` }),
     title: (t) => `Arquitectos en ${t.name}, Costa Rica | Studio CAVA`,
     description: (t, d, c, muni) => fit160(`Arquitectos para casas y hoteles en ${t.name}, Costa Rica. ${c.dry ? `Seco ${range('es', c.dry)}` : 'Llueve todos los meses'}, a ${duration(nearestAirport('es', d).min)} del aeropuerto de ${nearestAirport('es', d).name}`, `, permisos en ${muni}`),
     municipality: (t, d) => t.council?.es ?? `la Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('es', t, d)}, ${d.elevation < 5 ? 'al nivel del mar' : `a ${num('es', d.elevation)} m sobre el nivel del mar`}. Al año caen ${num('es', c.total)} mm de lluvia, ${c.wet ? `el ${c.wetShare}% ${range('es', c.wet)}` : 'repartidos en todos los meses'}. Los permisos de un lote se tramitan en ${muni}.`,
-      `Diseñamos casas, villas de alquiler y hoteles pequeños en ${t.name} y en cualquier otra parte de Costa Rica, desde la primera visita al lote hasta el permiso del CFIA.`,
+      `Como arquitectos en ${t.name}, cada proyecto empieza con una visita al lote: lo recorremos en la mañana y otra vez en la tarde, anotamos dónde pega el sol y de dónde viene la brisa, y solo entonces empezamos a dibujar.`,
     ],
     facts: {
       label: '(De un vistazo)', canton: 'Cantón', permits: 'Permisos', elevation: 'Altitud', rain: 'Lluvia', dry: 'Época seca',
@@ -343,10 +347,25 @@ export function paragraphs(lang, t, d, c, s, muni) {
   return out;
 }
 
-export function faq(lang, t, d, c, s, muni) {
+export function faq(lang, t, d, c, s, muni, x = {}) {
   const en = lang === 'en';
   const M = MONTHS[lang];
   const q = [];
+  // how we work there, for clients abroad, what it costs, and what to check before buying: the questions a
+  // client asks an architect before the climate ones
+  const Muni = muni[0].toUpperCase() + muni.slice(1);
+  q.push([en ? `Where is Studio CAVA based, and how do you work in ${t.name}?` : `¿Dónde está Studio CAVA y cómo trabajan en ${t.name}?`,
+    en ? `We work from San José and Guanacaste. We visit ${t.name} for the analysis of the lot and, during construction, for the supervision visits; the rest happens by video and email, in English or Spanish.${x.near ? ` Our nearest work is ${x.near.name}, ${num(lang, x.near.km)} km away.` : ''}`
+      : `Trabajamos desde San José y Guanacaste. Visitamos ${t.name} para el análisis del lote y, durante la obra, para las visitas de dirección; lo demás se hace por video y correo, en español o en inglés.${x.near ? ` Nuestro trabajo más cercano es ${x.near.name}, a ${num(lang, x.near.km)} km.` : ''}`]);
+  q.push([en ? `Can you design my house in ${t.name} if I live abroad?` : `¿Pueden diseñar mi casa en ${t.name} si vivo fuera del país?`,
+    en ? `Yes. The first call is free and by video, and each stage of the design ends with drawings you review and approve at a distance. We walk the lot in ${t.name} ourselves, and during construction we send a report with photos after each visit.`
+      : `Sí. La primera llamada es gratis y por video, y cada etapa del diseño termina con planos que usted revisa y aprueba a distancia. El lote en ${t.name} lo recorremos nosotros, y durante la obra enviamos un informe con fotos después de cada visita.`]);
+  if (x.cost) q.push([en ? `How much does it cost to build a house in ${t.name}?` : `¿Cuánto cuesta construir una casa en ${t.name}?`,
+    en ? `A 250 m² house with a pool comes to about ${x.cost[0]} to ${x.cost[1]} in ${t.name}, with a high finish, design, permits and VAT. Our cost estimator gives the range for your own size, finish and lot, with the schedule month by month.`
+      : `Una casa de 250 m² con piscina sale en unos ${x.cost[0]} a ${x.cost[1]} en ${t.name}, con acabado alto, diseño, permisos e IVA. Nuestro estimador da el rango para su tamaño, acabado y lote, con el cronograma mes a mes.`]);
+  q.push([en ? `What should I check before buying a lot in ${t.name}?` : `¿Qué revisar antes de comprar un lote en ${t.name}?`,
+    en ? `The land use certificate from ${muni}, which sets the use, setbacks, coverage and height; water availability in writing from AyA, the local ASADA or a well; the setbacks from any river or spring${t.coastal ? '; whether the lot is within 200 m of the high-tide line, where the maritime zone law applies' : ''}; and the slope. Our lot study checks it in 2 to 4 weeks, before you sign.`
+      : `El certificado de uso de suelo de ${muni}, que fija el uso, los retiros, la cobertura y la altura; la disponibilidad de agua por escrito de AyA, la ASADA local o un pozo; los retiros de cualquier río o naciente${t.coastal ? '; si el lote está a menos de 200 m de la pleamar, donde rige la ley de la zona marítimo terrestre' : ''}; y la pendiente. Nuestro estudio de lote lo revisa en 2 a 4 semanas, antes de firmar.`]);
   {
     const b = c.build;
     const win = range(lang, { start: b.start, n: b.n });

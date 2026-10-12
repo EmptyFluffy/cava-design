@@ -18,7 +18,9 @@
     "tamarindo": "langosta", "playa-grande": "grande", "playa-negra": "sand", "flamingo": "bluff", "playas-del-coco": "surf",
     "papagayo": "peninsula", "liberia": "canopy", "nosara": "pangas", "samara": "fern", "santa-teresa": "monstera",
     "jaco": "sand", "dominical": "surf", "uvita": "whale", "puerto-viejo": "monstera", "escazu": "mist",
-    "santa-ana": "canopy", "atenas": "fern", "heredia": "bluff"
+    "santa-ana": "canopy", "atenas": "fern", "heredia": "bluff", "potrero": "bluff", "montezuma": "pangas",
+    "manuel-antonio": "surf", "ojochal": "canopy", "puerto-jimenez": "monstera", "monteverde": "mist", "la-fortuna": "fern",
+    "grecia": "canopy", "san-ramon": "mist"
   },
   "hub": "langosta"
 }

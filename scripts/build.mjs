@@ -997,7 +997,10 @@ const townOf = (t) => {
   const adj = (v) => +(v + dt).toFixed(1);
   const d = {
     ...base, canton: base.canton ?? t.canton,
-    station: { wmo, name: st.name, name_es: st.name_es, km: Math.round(dist), elevation: st.elevation },
+    // its wind stands for the town only when the station is near and at about the same height: a ridge at
+    // 1,300 m does not get the coast's wind; `wind: false` in towns.json marks a town on the other side
+    // of the mountains from its station (La Fortuna is on the Caribbean slope, Chacarita on the Pacific)
+    station: { wmo, name: st.name, name_es: st.name_es, km: Math.round(dist), elevation: st.elevation, windOk: t.wind !== false && dist <= 60 && Math.abs(base.elevation - st.elevation) <= 600 },
     tmax: st.tmax.map(adj), tmin: st.tmin.map(adj), temp: st.temp.map((row) => row.map(adj)),
     wind: st.noon, rose: st.rose, calm: st.calm,
   };
@@ -1063,6 +1066,7 @@ function roseSvg(lang, t, sh, max, season) {
   return `<svg viewBox="-125 -125 250 250" role="img" aria-label="${esc(L.wind.aria(t, season.replace(/[()]/g, '').toLowerCase()))}">${rings}<path class="rose__axis" d="M0 -${R}V${R}M-${R} 0H${R}"/>${petals}${ringLabel}<text class="rose__card" x="0" y="-108">${N}</text><text class="rose__card" x="113" y="4">${E}</text><text class="rose__card" x="0" y="116">${S}</text><text class="rose__card" x="-113" y="4">${W}</text></svg>`;
 }
 function windSection(lang, t, d, c, P) {
+  if (!d.station.windOk) return '';
   const L = TT[lang];
   const dry = c.dry ? Array.from({ length: c.dry.n }, (_, k) => (c.dry.start + k) % 12) : [];
   const wet = Array.from({ length: 12 }, (_, m) => m).filter((m) => !dry.includes(m));
@@ -1070,7 +1074,7 @@ function windSection(lang, t, d, c, P) {
   const shares = seasons.map(([label, months]) => [label, roseShares(d, months)]);
   const max = Math.max(...shares.flatMap(([, sh]) => sh.dirs.map((b) => b.reduce((x, y) => x + y, 0))));
   return `    <section class="tw__sec grid" aria-labelledby="wind-title">
-      <h2 class="label tw__label" id="wind-title">${L.wind.label}</h2>
+      <h2 class="label tw__label" id="wind-title">${L.labels ? L.labels(t).wind : L.wind.label}</h2>
       <figure class="roses tw__fig">
         <div class="roses__row${shares.length === 1 ? ' roses__row--one' : ''}">
 ${shares.map(([label, sh]) => `          <figure class="rose">${roseSvg(lang, t, sh, max, label)}<figcaption class="label"><span>${label}</span><span class="rose__calm">${L.wind.calm(Math.round(sh.calm * 100))}</span></figcaption></figure>`).join('\n')}
@@ -1133,6 +1137,31 @@ function sunDiagram(lang, t, d) {
 `;
 }
 
+// The top of a town page: the place, and on it who we are and how to reach us (the place's photo, or the
+// monstera when the town has none)
+function townHero(lang, up, t, muni, waText) {
+  const id = places?.towns[t.slug] ?? 'monstera';
+  const ph = places?.photos[id];
+  if (!ph) return '';
+  const X = TT[lang].pitch(t, muni);
+  const home = up + UI[lang].dir;
+  const base = `${up}assets/img/places/${id}`;
+  return `    <section class="tw__hero" aria-labelledby="pitch-title">
+      <figure class="place place--hero">
+        <img src="${base}-1600.webp" srcset="${base}-800.webp 800w, ${base}-1600.webp 1600w" sizes="(min-width: 768px) 96vw, 100vw" width="1600" height="800" fetchpriority="high" decoding="async" alt="${esc(ph[`alt_${lang}`])}">
+      </figure>
+      <div class="tw__pitch">
+        <p class="label">${X.label}</p>
+        <h2 class="tw__pitch-title" id="pitch-title">${esc(X.title)}</h2>
+        <p class="tw__pitch-text">${esc(X.text)}</p>
+        <div class="reach__actions">
+          <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
+          ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}?town=${t.slug}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light reach__mail" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a>`}
+        </div>
+      </div>
+    </section>
+`;
+}
 function townPage(lang, t) {
   const L = TT[lang];
   const d = townOf(t);
@@ -1140,14 +1169,16 @@ function townPage(lang, t) {
   const s = sunFacts(d.coords[1], d.coords[0]);
   const muni = L.municipality(t, d);
   const P = paragraphs(lang, t, d, c, s, muni);
-  const Q = faq(lang, t, d, c, s, muni);
   const paths = { en: townPath('en', t.slug), es: townPath('es', t.slug) };
   const up = upFrom(paths[lang]);
   const home = up + UI[lang].dir;
   const waText = L.wa(t);
+  const LB = L.labels(t);
   // our projects, nearest first (invented placeholder pins do not count)
   const work = projects.filter((p) => p.pin !== 'placeholder').map((p) => ({ p, km: km(d.coords, p.coords) })).sort((a, b) => a.km - b.km).slice(0, 3);
   const near = work[0].km <= 60;
+  const est = costs ? estimateNode(costsData(), { ...EST_DEFAULT, town: t.slug }) : null;
+  const Q = faq(lang, t, d, c, s, muni, { cost: est ? [usdK(est.total[0]), usdK(est.total[2])] : null, near: near ? { name: work[0].p.name, km: Math.round(work[0].km) } : null });
   const others = towns.filter((o) => o.slug !== t.slug).map((o) => ({ o, km: km(d.coords, townData.towns[o.slug].coords) })).sort((a, b) => a.km - b.km).slice(0, 3);
   const ld = {
     '@context': 'https://schema.org',
@@ -1174,18 +1205,14 @@ ${bar(lang, up, paths, 'towns')}
       <p class="label proj__crumb"><a class="ulink" href="../">${L.crumb}</a><span>(${regions[t.region][lang]})</span></p>
       <h1 class="tw__title" id="tw-title"><span class="label tw__kicker">${L.kicker}</span> <span class="display">${esc(t.name)}</span></h1>
     </header>
-${places?.towns[t.slug] ? placePhoto(lang, up, places.towns[t.slug], { eager: true }) : ''}    <section class="tw__intro grid">
+${townHero(lang, up, t, muni, waText)}    <section class="tw__intro grid">
       <div class="tw__lead">
         <p class="tw__standfirst">${esc(L.intro(t, d, c, muni)[0])}</p>
         <p class="large">${esc(L.intro(t, d, c, muni)[1])}</p>
-        <div class="reach__actions">
-          <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
-          ${booking ? `<a class="btn btn--light" href="${up}${bookPath(lang)}?town=${t.slug}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>` : `<a class="btn btn--light reach__mail" href="${home}#enquiry">${UI[lang].nav.cta} <span class="btn__dot" aria-hidden="true"></span></a>`}
-        </div>
       </div>
     </section>
     <section class="proj__body grid tw__facts" aria-labelledby="facts-title">
-      <h2 class="label sheet__label" id="facts-title">${L.facts.label}</h2>
+      <h2 class="label sheet__label" id="facts-title">${LB.facts}</h2>
       <dl class="sheet">
 ${[
   fact(L.facts.canton, d.canton === d.province ? d.canton : L.facts.cantonV(d)),
@@ -1205,7 +1232,7 @@ ${[
       </figure>
     </section>
     <section class="tw__sec grid" aria-labelledby="year-title">
-      <h2 class="label tw__label" id="year-title">${L.year.label}</h2>
+      <h2 class="label tw__label" id="year-title">${LB.year}</h2>
 ${rainChart(lang, t, d, c)}      <div class="tw__text">
 ${P.year.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
@@ -1215,16 +1242,16 @@ ${P.build.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
 ${windSection(lang, t, d, c, P)}    <section class="tw__sec grid" aria-labelledby="map-title">
-      <h2 class="label tw__label" id="map-title">${L.map.label}</h2>
+      <h2 class="label tw__label" id="map-title">${LB.map}</h2>
 ${climateMap(lang, { center: d.coords, zoom: 8.2, where: t.name, pins: towns.map((o) => ({ n: o.name, c: townData.towns[o.slug].coords, h: o.slug === t.slug ? '' : `../${o.slug}/`, here: o.slug === t.slug })) })}    </section>
     <section class="tw__sec grid" aria-labelledby="sun-title">
-      <h2 class="label tw__label" id="sun-title">${L.sun.label}</h2>
+      <h2 class="label tw__label" id="sun-title">${LB.sun}</h2>
 ${sunDiagram(lang, t, d)}      <div class="tw__text tw__text--side">
 ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
-      <h2 class="label tw__label" id="build-title">${L.build.label}</h2>
+      <h2 class="label tw__label" id="build-title">${LB.build}</h2>
 ${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building here follows its own route, set out below.' : 'Construir aquí sigue su propia ruta, que se explica abajo.'}</p>\n` : ''}${permitGuide && TOWN_MUNI[t.slug] ? `      <div class="tw__route" id="permits">
         <p class="note">${PR[lang].hereNote}</p>
 ${permitWidget(lang, up, { town: t.slug }, `${up}${guidePath(lang, permitGuide)}#source-`)}      </div>` : `      <ol class="tw__steps">
@@ -1236,16 +1263,16 @@ ${costs ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}
       </ul>` : ''}
     </section>
 ${townExtra(lang, t)}    <section class="tw__sec tw__work" aria-labelledby="work-title">
-      <h2 class="label" id="work-title">${near ? L.work.near : L.work.far}</h2>
+      <h2 class="label" id="work-title">${near ? LB.workNear : LB.workFar}</h2>
 ${projectCards(lang, up, work.map(({ p, km: dist }) => ({ p, meta: near ? L.work.km(Math.round(dist)) : tr(lang, p, 'type') })))}    </section>
     <section class="tw__sec grid" aria-labelledby="faq-title">
-      <h2 class="label tw__label" id="faq-title">${L.faq.label}</h2>
+      <h2 class="label tw__label" id="faq-title">${LB.faq}</h2>
       <div class="faq">
 ${Q.map(([q, a]) => faqItem(q, esc(a))).join('\n')}
       </div>
     </section>
     <nav class="tw__sec grid" aria-labelledby="near-title">
-      <h2 class="label tw__label" id="near-title">${L.nearby.label}</h2>
+      <h2 class="label tw__label" id="near-title">${LB.nearby}</h2>
       <ul class="near">
 ${others.map(({ o, km: dist }) => `        <li><a class="ulink" href="../${o.slug}/">${esc(o.name)}</a><span class="label">${L.nearby.km(Math.round(dist))}</span></li>`).join('\n')}
         <li><a class="ulink near__all" href="../">${L.nearby.all} →</a></li>
