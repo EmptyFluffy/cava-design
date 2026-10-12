@@ -82,7 +82,7 @@ const tilesVer = () => { const f = join(SITE, 'assets', 'data', 'land', 'metadat
 const assetVer = (rel) => {
   if (!assetVers.has(rel)) {
     // files the build writes itself are hashed from what it will write
-    const made = { 'assets/js/renders.js': () => rendersJs('en', ''), 'assets/js/renders.es.js': () => rendersJs('es', '../'), 'assets/data/costs.json': () => JSON.stringify(costsData()) }[rel];
+    const made = { 'assets/js/renders.js': () => rendersJs('en', ''), 'assets/js/renders.es.js': () => rendersJs('es', '../'), 'assets/data/costs.json': () => JSON.stringify(costsData()), 'assets/js/permit-route.mjs': () => readFileSync(join(ROOT, 'scripts', 'permit-route.mjs'), 'utf8') }[rel];
     assetVers.set(rel, md5(made ? made() : readFileSync(join(SITE, rel))));
   }
   return assetVers.get(rel);
@@ -1140,9 +1140,8 @@ function sunDiagram(lang, t, d) {
 // The top of a town page: the place, and on it who we are and how to reach us (the place's photo, or the
 // monstera when the town has none)
 // The photo that stands for a town: one of our projects there ("project:<slug>/<n>" in data/places.json)
-// or a photo of the place. `card` asks for the 4:3 crop scripts/places.py writes. A photo whose licence
-// asks for credit carries it (`license` in places.json).
-function townPhoto(lang, up, t, { card = false, sz = '100vw', eager = false } = {}) {
+// or a photo of the place. A photo whose licence asks for credit carries it (`license` in places.json).
+function townPhoto(lang, up, t, { sz = '100vw', eager = false } = {}) {
   const ref = places?.towns[t.slug] ?? 'monstera';
   const load = eager ? 'fetchpriority="high"' : 'loading="lazy"';
   if (ref.startsWith('project:')) {
@@ -1152,9 +1151,7 @@ function townPhoto(lang, up, t, { card = false, sz = '100vw', eager = false } = 
   }
   const ph = places.photos[ref];
   const b = `${up}assets/img/places/${ref}`;
-  const img = card
-    ? `<img src="${b}-card-800.webp" srcset="${b}-card-480.webp 480w, ${b}-card-800.webp 800w" sizes="${sz}" width="800" height="600" ${load} decoding="async" alt="${esc(ph[`alt_${lang}`])}">`
-    : `<img src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="${sz}" width="1600" height="800" ${load} decoding="async" alt="${esc(ph[`alt_${lang}`])}">`;
+  const img = `<img src="${b}-1600.webp" srcset="${b}-800.webp 800w, ${b}-1600.webp 1600w" sizes="${sz}" width="1600" height="800" ${load} decoding="async" alt="${esc(ph[`alt_${lang}`])}">`;
   return { img, project: null, ph };
 }
 // a town's photo as the shared image of its pages
@@ -1307,10 +1304,11 @@ ${P.sun.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">${LB.build}</h2>
 ${P.ownSteps ? `      <p class="large tw__aside">${lang === 'en' ? 'Building here follows its own route, set out below.' : 'Construir aquí sigue su propia ruta, que se explica abajo.'}</p>\n` : ''}${permitGuide && TOWN_MUNI[t.slug] ? `      <div class="tw__route" id="permits">
-        <p class="note">${PR[lang].hereNote}</p>
-${permitWidget(lang, up, { town: t.slug }, `${up}${guidePath(lang, permitGuide)}#source-`)}      </div>` : `      <ol class="tw__steps">
-${P.steps.map(([h, x], i) => `        <li><span class="label">(${pad(i + 1)})</span><h3>${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
-      </ol>`}
+${permitHead(lang, up, t, muni)}${permitWidget(lang, up, { town: t.slug }, `${up}${guidePath(lang, permitGuide)}#source-`)}      </div>` : `      <div class="tw__route" id="permits">
+${permitHead(lang, up, t, muni, true)}        <ol class="tw__steps">
+${P.steps.map(([h, x], i) => `          <li><span class="label">(${pad(i + 1)})</span><h3>${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
+        </ol>
+      </div>`}
 ${[P.zmt, P.note].filter(Boolean).map((x) => `      <p class="large tw__aside">${cite(x)}</p>`).join('\n')}
 ${guides.length || costs ? `      <ul class="tw__aside guide__links">
 ${costs ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${esc(ET[lang].town(t.name))} →</a></li>\n` : ''}${land?.towns[t.slug] ? `        <li><a class="ulink" href="${up}${landTownPath(lang, t.slug)}">${esc(LT[lang].town(t.name))} →</a></li>\n` : ''}${guides.map((g) => `        <li><a class="ulink" href="${up}${guidePath(lang, g)}">${esc(g[lang].link)} →</a></li>`).join('\n')}
@@ -1399,7 +1397,8 @@ function townCard(lang, up, t) {
   const d = townOf(t);
   const c = climate(d);
   const ours = projects.filter((p) => p.pin !== 'placeholder' && nearTown(p)?.t.slug === t.slug).length;
-  const P = townPhoto(lang, up, t, { card: true, sz: '(min-width: 1200px) 23vw, (min-width: 900px) 31vw, 46vw' });
+  // a strip cut from the town's band, which places.py already framed on its subject
+  const P = townPhoto(lang, up, t, { sz: '(min-width: 1200px) 23vw, (min-width: 900px) 31vw, 46vw' });
   return `          <li class="gcard tcard"><a class="gcard__link" href="${t.slug}/">
             <span class="gcard__media">${P.img}${ours ? `<span class="label tcard__ours">${H.ours(ours)}</span>` : ''}</span>
             <span class="gcard__title">${esc(t.name)}</span>
@@ -2869,11 +2868,18 @@ const PR = {
     description: 'Which permits a house, a hotel or a shop in Costa Rica needs, in what order and from whom: answer five questions and the route draws itself.',
     label: '(Tool)', h1: ['Permit', 'route'], link: 'Permit route', name: 'The permit route for your project',
     intro: 'Which permits a project in Costa Rica needs, in what order and from whom. Answer five questions and the route draws itself, step by step, with the rules behind each one.',
-    what: 'What', whats: { house: 'House', units: 'Villas, up to 3', apartments: 'Apartments, 4 or more', hotel: 'Hotel', shop: 'Shop or restaurant' },
+    what: 'What you are building', whats: { house: 'House', units: 'Villas, up to 3', apartments: 'Apartments, 4 or more', hotel: 'Hotel', shop: 'Shop or restaurant' },
     size: 'Built area', sizes: { s: 'Under 300 m²', m: '300 to 500 m²', l: '500 to 1,000 m²', xl: 'Over 1,000 m²' },
-    lot: 'The lot', lots: { zmt: 'Within 200 m of the beach', river: 'Near a river or spring', forest: 'Forest on the lot', condo: 'In a condominium', road: 'Faces a national road' },
-    where: 'Where', elsewhere: 'Elsewhere in Costa Rica',
-    town: (n) => `Permits in ${n}`, here: '(The permit route here)', hereNote: 'A house of 300 to 500 m² to start with: change the project and the route redraws.',
+    lot: 'The lot: tick what applies', lots: { zmt: 'Within 200 m of the beach', river: 'Near a river or spring', forest: 'Forest on the lot', condo: 'In a condominium', road: 'Faces a national road' },
+    where: 'Where', elsewhere: 'Elsewhere in Costa Rica', yours: '(Your permit route)',
+    town: (n) => `Permits in ${n}`,
+    // the head of the tool on a town page
+    tool: '(Permit route tool)',
+    hereTitle: (n) => `Which permits you need to build in ${n}, and in what order`,
+    hereText: (n, muni) => `The building permit in ${n} comes from ${muni}, but it is the last of several approvals: the water letter, SETENA when the project calls for it, the CFIA and the Ministry of Health among them. This tool draws the route for your project: every permit it needs, in order, and who gives each one.`,
+    how: ['Choose what you are building and its size. It starts with a house of 300 to 500 m².', 'Tick what applies to the lot.', 'Read your route below. It redraws with every answer, and the steps marked Not needed do not apply to yours.'],
+    farText: (n, muni) => `The building permit in ${n} comes from ${muni}. These are the four steps every project takes; for the whole route of yours, with SETENA, Health and the Fire Department, use the permit route tool.`,
+    farLink: 'Draw your route in the permit route tool',
     guide: 'Every step explained, in the building permits guide', service: 'We file the permits for you', sources: '(Sources)',
     note: 'General information, not legal advice: rules change, and each municipality applies them its own way. Reviewed October 2026.',
   },
@@ -2882,30 +2888,51 @@ const PR = {
     description: 'Qué permisos necesita una casa, un hotel o un comercio en Costa Rica, en qué orden y ante quién: responda cinco preguntas y la ruta se dibuja sola.',
     label: '(Herramienta)', h1: ['Ruta de', 'permisos'], link: 'Ruta de permisos', name: 'La ruta de permisos de su proyecto',
     intro: 'Qué permisos necesita un proyecto en Costa Rica, en qué orden y ante quién. Responda cinco preguntas y la ruta se dibuja sola, paso a paso, con las reglas detrás de cada uno.',
-    what: 'Qué', whats: { house: 'Casa', units: 'Villas, hasta 3', apartments: 'Apartamentos, 4 o más', hotel: 'Hotel', shop: 'Comercio o restaurante' },
+    what: 'Qué va a construir', whats: { house: 'Casa', units: 'Villas, hasta 3', apartments: 'Apartamentos, 4 o más', hotel: 'Hotel', shop: 'Comercio o restaurante' },
     size: 'Área construida', sizes: { s: 'Menos de 300 m²', m: '300 a 500 m²', l: '500 a 1,000 m²', xl: 'Más de 1,000 m²' },
-    lot: 'El lote', lots: { zmt: 'A menos de 200 m de la playa', river: 'Cerca de un río o naciente', forest: 'Bosque en el lote', condo: 'En un condominio', road: 'Frente a una ruta nacional' },
-    where: 'Dónde', elsewhere: 'En otro lugar de Costa Rica',
-    town: (n) => `Permisos en ${n}`, here: '(La ruta de permisos aquí)', hereNote: 'Una casa de 300 a 500 m² para empezar: cambie el proyecto y la ruta se vuelve a dibujar.',
+    lot: 'El lote: marque lo que aplique', lots: { zmt: 'A menos de 200 m de la playa', river: 'Cerca de un río o naciente', forest: 'Bosque en el lote', condo: 'En un condominio', road: 'Frente a una ruta nacional' },
+    where: 'Dónde', elsewhere: 'En otro lugar de Costa Rica', yours: '(Su ruta de permisos)',
+    town: (n) => `Permisos en ${n}`,
+    tool: '(Herramienta: ruta de permisos)',
+    hereTitle: (n) => `Qué permisos necesita para construir en ${n}, y en qué orden`,
+    hereText: (n, muni) => `El permiso de construcción en ${n} lo da ${muni}, pero es la última de varias aprobaciones: la carta de agua, SETENA cuando el proyecto lo pide, el CFIA y el Ministerio de Salud, entre otras. Esta herramienta dibuja la ruta de su proyecto: cada permiso que necesita, en orden, y quién da cada uno.`,
+    how: ['Elija qué va a construir y de qué tamaño. Empieza con una casa de 300 a 500 m².', 'Marque lo que aplique al lote.', 'Lea su ruta abajo. Se vuelve a dibujar con cada respuesta, y los pasos marcados No se necesita no aplican a su proyecto.'],
+    farText: (n, muni) => `El permiso de construcción en ${n} lo da ${muni}. Estos son los cuatro pasos que toma todo proyecto; para la ruta completa del suyo, con SETENA, Salud y Bomberos, use la herramienta de ruta de permisos.`,
+    farLink: 'Dibujar su ruta en la herramienta de permisos',
     guide: 'Cada paso explicado, en la guía de permisos de construcción', service: 'Tramitamos los permisos por usted', sources: '(Fuentes)',
     note: 'Información general, no asesoría legal: las reglas cambian y cada municipalidad las aplica a su manera. Revisado en octubre de 2026.',
   },
 };
+// what the tool is, said for the town; `far` is a town the tool does not cover yet, which keeps the
+// four generic steps and points to the tool
+function permitHead(lang, up, t, muni, far = false) {
+  const P = PR[lang];
+  return `        <header class="prh">
+${far ? '' : `          <p class="label prh__tool">${P.tool}</p>\n`}          <h3 class="prh__title">${esc(P.hereTitle(t.name))}</h3>
+          <p class="large prh__text">${esc((far ? P.farText : P.hereText)(t.name, muni))}</p>
+${far ? (permitGuide ? `          <p class="prh__go"><a class="ulink" href="${up}${permitPath(lang)}?town=">${P.farLink} →</a></p>\n` : '') : `          <ol class="prh__how">
+${P.how.map((x, i) => `            <li><span class="label">(${i + 1})</span><span>${esc(x)}</span></li>`).join('\n')}
+          </ol>\n`}        </header>
+`;
+}
 // the questions and the route, drawn for `preset`; `cite` is where source n lives
 function permitWidget(lang, up, preset, cite) {
   const P = PR[lang];
   const q = { type: 'house', size: 'm', town: '', ...preset };
   const seg = (name, opts, checked) => `<div class="est__seg pr__seg" role="radiogroup">${Object.entries(opts).map(([v, l]) => `<label class="est__opt"><input type="radio" name="${name}" value="${v}"${v === checked ? ' checked' : ''}><span>${esc(l)}</span></label>`).join('')}</div>`;
   const r = permitRoute(q, lang);
-  return `      <div class="pr" data-permit-route data-cite="${cite}">
+  return `      <div class="pr" data-permit-route data-cite="${cite}" data-rules="${assetVer('assets/js/permit-route.mjs')}">
         <form class="pr__form" data-pr-form onsubmit="return false">
           <fieldset class="est__field"><legend class="label">${P.what}</legend>${seg('type', P.whats, q.type)}</fieldset>
           <fieldset class="est__field"><legend class="label">${P.size}</legend>${seg('size', P.sizes, q.size)}</fieldset>
           <fieldset class="est__field est__checks pr__checks"><legend class="label">${P.lot}</legend>${Object.entries(P.lots).map(([k, l]) => `<label${k === 'condo' && q.town === 'papagayo' ? ' hidden' : ''}><input type="checkbox" name="${k}"${q[k] ? ' checked' : ''}> ${esc(l)}</label>`).join('')}</fieldset>
           <fieldset class="est__field"><legend class="label">${P.where}</legend><select class="input est__select" name="town"><option value="">${P.elsewhere}</option>${towns.filter((t) => TOWN_MUNI[t.slug]).map((t) => `<option value="${t.slug}"${t.slug === q.town ? ' selected' : ''}>${esc(t.name)}</option>`).join('')}</select></fieldset>
         </form>
-        <div class="pr__out" data-pr-out aria-live="polite">
+        <div class="pr__res">
+          <p class="label pr__yours">${P.yours}</p>
+          <div class="pr__out" data-pr-out aria-live="polite">
 ${permitRender(r, lang, (n) => `${cite}${n}`)}
+          </div>
         </div>
       </div>
 `;

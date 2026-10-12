@@ -9,7 +9,9 @@
   if (!roots.length || !SCRIPT) return;
   const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
   let mod = null;
-  const rules = () => (mod ||= import(new URL('permit-route.mjs', SCRIPT).href));
+  // the rules carry their own version, so a cached copy never draws the route of an older build
+  const ver = roots[0].dataset.rules;
+  const rules = () => (mod ||= import(new URL(`permit-route.mjs${ver ? `?v=${ver}` : ''}`, SCRIPT).href));
 
   for (const root of roots) {
     const form = root.querySelector('[data-pr-form]');
@@ -30,5 +32,12 @@
       requestAnimationFrame(() => out.classList.remove('is-drawing'));
     };
     form.addEventListener('change', draw);
+    // ?town= opens the route on that town; a town the tool does not cover opens on "elsewhere"
+    const want = new URLSearchParams(location.search).get('town');
+    const where = form.querySelector('[name=town]');
+    if (want !== null && where) {
+      const v = [...where.options].some((o) => o.value === want) ? want : '';
+      if (where.value !== v) { where.value = v; draw(); }
+    }
   }
 })();

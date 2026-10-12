@@ -21,10 +21,10 @@
 <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../../../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../../assets/css/site.css?v=cd703d96">
+<link rel="stylesheet" href="../../../assets/css/site.css?v=fdaffaf3">
 <script defer src="../../../assets/js/project.js?v=d409fffd"></script>
 <script defer src="../../../assets/js/climate-map.js?v=02b151d3"></script>
-<script defer src="../../../assets/js/permit-flow.js?v=e7d5373e"></script>
+<script defer src="../../../assets/js/permit-flow.js?v=cba1ad3e"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -246,15 +246,26 @@
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Construir en Atenas)</h2>
       <div class="tw__route" id="permits">
-        <p class="note">Una casa de 300 a 500 m² para empezar: cambie el proyecto y la ruta se vuelve a dibujar.</p>
-      <div class="pr" data-permit-route data-cite="../../../es/guias/permisos-de-construccion/#source-">
+        <header class="prh">
+          <p class="label prh__tool">(Herramienta: ruta de permisos)</p>
+          <h3 class="prh__title">Qué permisos necesita para construir en Atenas, y en qué orden</h3>
+          <p class="large prh__text">El permiso de construcción en Atenas lo da la Municipalidad de Atenas, pero es la última de varias aprobaciones: la carta de agua, SETENA cuando el proyecto lo pide, el CFIA y el Ministerio de Salud, entre otras. Esta herramienta dibuja la ruta de su proyecto: cada permiso que necesita, en orden, y quién da cada uno.</p>
+          <ol class="prh__how">
+            <li><span class="label">(1)</span><span>Elija qué va a construir y de qué tamaño. Empieza con una casa de 300 a 500 m².</span></li>
+            <li><span class="label">(2)</span><span>Marque lo que aplique al lote.</span></li>
+            <li><span class="label">(3)</span><span>Lea su ruta abajo. Se vuelve a dibujar con cada respuesta, y los pasos marcados No se necesita no aplican a su proyecto.</span></li>
+          </ol>
+        </header>
+      <div class="pr" data-permit-route data-cite="../../../es/guias/permisos-de-construccion/#source-" data-rules="2c4351f7">
         <form class="pr__form" data-pr-form onsubmit="return false">
-          <fieldset class="est__field"><legend class="label">Qué</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>Casa</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, hasta 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartamentos, 4 o más</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Comercio o restaurante</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">Qué va a construir</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>Casa</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, hasta 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartamentos, 4 o más</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Comercio o restaurante</span></label></div></fieldset>
           <fieldset class="est__field"><legend class="label">Área construida</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Menos de 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 a 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 a 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Más de 1,000 m²</span></label></div></fieldset>
-          <fieldset class="est__field est__checks pr__checks"><legend class="label">El lote</legend><label><input type="checkbox" name="zmt"> A menos de 200 m de la playa</label><label><input type="checkbox" name="river"> Cerca de un río o naciente</label><label><input type="checkbox" name="forest"> Bosque en el lote</label><label><input type="checkbox" name="condo"> En un condominio</label><label><input type="checkbox" name="road"> Frente a una ruta nacional</label></fieldset>
-          <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas" selected>Atenas</option><option value="heredia">Heredia</option></select></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">El lote: marque lo que aplique</legend><label><input type="checkbox" name="zmt"> A menos de 200 m de la playa</label><label><input type="checkbox" name="river"> Cerca de un río o naciente</label><label><input type="checkbox" name="forest"> Bosque en el lote</label><label><input type="checkbox" name="condo"> En un condominio</label><label><input type="checkbox" name="road"> Frente a una ruta nacional</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas" selected>Atenas</option><option value="heredia">Heredia</option><option value="potrero">Potrero</option><option value="montezuma">Montezuma</option><option value="ojochal">Ojochal</option></select></fieldset>
         </form>
-        <div class="pr__out" data-pr-out aria-live="polite">
+        <div class="pr__res">
+          <p class="label pr__yours">(Su ruta de permisos)</p>
+          <div class="pr__out" data-pr-out aria-live="polite">
 <p class="pf__card">La Municipalidad de Atenas da el permiso. No tiene <button class="pf__inline pf__term" type="button" data-term="plan" aria-haspopup="dialog">plan regulador</button>: rigen las reglas nacionales de construcción.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
 <ol class="pf"><li class="pf__stage is-parallel">
   <p class="pf__name label">(01) El lote y sus reglas</p>
@@ -331,6 +342,7 @@
     </li>
   </ul>
 </li></ol>
+          </div>
         </div>
       </div>
       </div>

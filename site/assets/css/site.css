@@ -1062,6 +1062,17 @@ textarea.input.enq__brief { height: 6rem; }
 /* on a town page the route sits in the text column, questions above */
 .tw__route { grid-column: 5 / -1; display: grid; gap: 1rem; min-width: 0; }
 .tw__route .pr { grid-template-columns: 1fr; }
+/* on a town page the tool says what it is before it asks anything, and the questions sit on their own panel */
+.prh { display: grid; gap: 0.9rem; max-width: 46rem; margin-bottom: 0.4rem; }
+.prh__title { margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; }
+.prh__text, .prh__go { margin: 0; }
+.prh__how { list-style: none; margin: 0.2rem 0 0; padding: 0; border-bottom: 1px solid var(--grey); }
+.prh__how li { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); align-items: baseline; padding: 0.6rem 0; border-top: 1px solid var(--grey); }
+.prh__how .label { color: var(--dark-grey); font-variant-numeric: tabular-nums; }
+.pr__res { min-width: 0; display: grid; gap: 1rem; align-content: start; }
+.tw__route .pr__form { padding: 1.3rem 1.4rem 1.4rem; background: var(--light-grey); border-radius: 0.9rem; }
+.tw__route .pr__yours { padding-top: 1rem; border-top: 1px solid var(--black); }
+.tw__route .tw__steps { grid-column: auto; }
 .tw__route .pr__form { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gap); }
 .tw__route .pr__form > :nth-child(3), .tw__route .pr__form > :nth-child(4) { align-self: start; }
 
@@ -2298,6 +2309,8 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .tgroup__title { margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--black); }
 .tcards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
 .tcard .gcard__link { gap: 0.5rem; }
+.tcard .gcard__media { aspect-ratio: 3 / 1; }   /* a strip: the place, then its name */
+.tcard .gcard__title { font-size: clamp(1.6rem, 1.05rem + 1vw, 2.15rem); line-height: 1; letter-spacing: -0.035em; }
 .tcard__ours { position: absolute; z-index: 1; left: 0.7rem; top: 0.7rem; padding: 0.35rem 0.6rem; border-radius: 100vw; background: var(--black); color: var(--white); font-size: 0.625rem; white-space: nowrap; }
 .hub__compare { margin-top: var(--s-3); border-top: 1px solid var(--black); }
 .hub__compare summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 0; cursor: pointer; list-style: none; }
@@ -2305,12 +2318,12 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .hub__compare summary::after { content: "+"; font-size: 1.1rem; line-height: 1; }
 .hub__compare[open] summary::after { content: "\2212"; }
 @media (max-width: 1199px) { .tcards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 899px) { .tcards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 899px) { .tcards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tcard .gcard__media { aspect-ratio: 5 / 2; } }
 @media (max-width: 479px) {
   .tcard .gcard__link { padding: 0.95rem 0.9rem 0.85rem; }
-  .tcard .gcard__media { margin: -0.95rem -0.9rem 0.25rem; }
+  .tcard .gcard__media { margin: -0.95rem -0.9rem 0.25rem; aspect-ratio: 2 / 1; }
   .tcard__ours { left: 0.5rem; top: 0.5rem; padding: 0.3rem 0.5rem; font-size: 0.5625rem; }
-  .tcard .gcard__title { font-size: 1.15rem; }
+  .tcard .gcard__title { font-size: 1.4rem; }
   .tcard .gcard__text, .tcard .gcard__foot { font-size: 0.75rem; }
 }
 
@@ -2363,4 +2376,4 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 }
 @media (max-height: 600px) { #enquiry .step .note { display: none; } }   /* the SE: step 3's ten choices before its note */
 
-/* 2026-10-12: town photos and cards */
+/* 2026-10-12: town photos and cards; town strips and the permit tool head */

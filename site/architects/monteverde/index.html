@@ -21,10 +21,10 @@
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=cd703d96">
+<link rel="stylesheet" href="../../assets/css/site.css?v=fdaffaf3">
 <script defer src="../../assets/js/project.js?v=d409fffd"></script>
 <script defer src="../../assets/js/climate-map.js?v=02b151d3"></script>
-<script defer src="../../assets/js/permit-flow.js?v=e7d5373e"></script>
+<script defer src="../../assets/js/permit-flow.js?v=cba1ad3e"></script>
 <script defer src="../../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../assets/js/titles.js?v=fa76a511"></script>
@@ -230,12 +230,19 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Building in Monteverde)</h2>
-      <ol class="tw__steps">
-        <li><span class="label">(01)</span><h3>Land use certificate</h3><p>The uso de suelo, from the Municipalidad de Monteverde: what the zoning allows on the lot.</p></li>
-        <li><span class="label">(02)</span><h3>Water availability letter</h3><p>From the local ASADA or from AyA. Without it there is no building permit, so it is worth asking for before buying.</p></li>
-        <li><span class="label">(03)</span><h3>Drawings at the CFIA</h3><p>Filed through the CFIA's APC platform and signed by the architect in charge.</p></li>
-        <li><span class="label">(04)</span><h3>Building permit</h3><p>Issued by the Municipalidad de Monteverde.</p></li>
-      </ol>
+      <div class="tw__route" id="permits">
+        <header class="prh">
+          <h3 class="prh__title">Which permits you need to build in Monteverde, and in what order</h3>
+          <p class="large prh__text">The building permit in Monteverde comes from the Municipalidad de Monteverde. These are the four steps every project takes; for the whole route of yours, with SETENA, Health and the Fire Department, use the permit route tool.</p>
+          <p class="prh__go"><a class="ulink" href="../../tools/permit-route/?town=">Draw your route in the permit route tool →</a></p>
+        </header>
+        <ol class="tw__steps">
+          <li><span class="label">(01)</span><h3>Land use certificate</h3><p>The uso de suelo, from the Municipalidad de Monteverde: what the zoning allows on the lot.</p></li>
+          <li><span class="label">(02)</span><h3>Water availability letter</h3><p>From the local ASADA or from AyA. Without it there is no building permit, so it is worth asking for before buying.</p></li>
+          <li><span class="label">(03)</span><h3>Drawings at the CFIA</h3><p>Filed through the CFIA's APC platform and signed by the architect in charge.</p></li>
+          <li><span class="label">(04)</span><h3>Building permit</h3><p>Issued by the Municipalidad de Monteverde.</p></li>
+        </ol>
+      </div>
       <p class="large tw__aside">Monteverde became Costa Rica's 83rd canton, separate from Puntarenas; its first municipal council was elected in 2024, and permits go through its own municipality.</p>
       <ul class="tw__aside guide__links">
         <li><a class="ulink" href="../../tools/cost-estimator/monteverde/">What it costs to build in Monteverde →</a></li>

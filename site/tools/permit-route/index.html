@@ -21,8 +21,8 @@
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/css/site.css?v=cd703d96">
-<script defer src="../../assets/js/permit-flow.js?v=e7d5373e"></script>
+<link rel="stylesheet" href="../../assets/css/site.css?v=fdaffaf3">
+<script defer src="../../assets/js/permit-flow.js?v=cba1ad3e"></script>
 <script defer src="../../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../assets/js/titles.js?v=fa76a511"></script>
@@ -51,14 +51,16 @@
       <p class="h3 mf__intro">Which permits a project in Costa Rica needs, in what order and from whom. Answer five questions and the route draws itself, step by step, with the rules behind each one.</p>
       <p class="svc__cta mf__intro"><a class="btn btn--dark" href="../../book/">Book a free call <span class="btn__dot" aria-hidden="true"></span></a> <a class="btn btn--light" href="../../services/permits/">We file the permits for you <span class="btn__dot" aria-hidden="true"></span></a></p>
     </header>
-      <div class="pr" data-permit-route data-cite="#source-">
+      <div class="pr" data-permit-route data-cite="#source-" data-rules="2c4351f7">
         <form class="pr__form" data-pr-form onsubmit="return false">
-          <fieldset class="est__field"><legend class="label">What</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>House</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, up to 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartments, 4 or more</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Shop or restaurant</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">What you are building</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>House</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, up to 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartments, 4 or more</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Shop or restaurant</span></label></div></fieldset>
           <fieldset class="est__field"><legend class="label">Built area</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Under 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 to 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 to 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Over 1,000 m²</span></label></div></fieldset>
-          <fieldset class="est__field est__checks pr__checks"><legend class="label">The lot</legend><label><input type="checkbox" name="zmt"> Within 200 m of the beach</label><label><input type="checkbox" name="river"> Near a river or spring</label><label><input type="checkbox" name="forest"> Forest on the lot</label><label><input type="checkbox" name="condo"> In a condominium</label><label><input type="checkbox" name="road"> Faces a national road</label></fieldset>
-          <fieldset class="est__field"><legend class="label">Where</legend><select class="input est__select" name="town"><option value="">Elsewhere in Costa Rica</option><option value="tamarindo" selected>Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option></select></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">The lot: tick what applies</legend><label><input type="checkbox" name="zmt"> Within 200 m of the beach</label><label><input type="checkbox" name="river"> Near a river or spring</label><label><input type="checkbox" name="forest"> Forest on the lot</label><label><input type="checkbox" name="condo"> In a condominium</label><label><input type="checkbox" name="road"> Faces a national road</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Where</legend><select class="input est__select" name="town"><option value="">Elsewhere in Costa Rica</option><option value="tamarindo" selected>Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option><option value="potrero">Potrero</option><option value="montezuma">Montezuma</option><option value="ojochal">Ojochal</option></select></fieldset>
         </form>
-        <div class="pr__out" data-pr-out aria-live="polite">
+        <div class="pr__res">
+          <p class="label pr__yours">(Your permit route)</p>
+          <div class="pr__out" data-pr-out aria-live="polite">
 <p class="pf__card">The Municipalidad de Santa Cruz issues the permit. It has a partial <button class="pf__inline pf__term" type="button" data-term="plan" aria-haspopup="dialog">regulating plan</button> (1983, 1994); outside it, the national construction rules apply.<sup class="cite"><a href="#source-21">21</a>,<a href="#source-29">29</a></sup></p>
 <ol class="pf"><li class="pf__stage is-parallel">
   <p class="pf__name label">(01) The lot and its rules</p>
@@ -135,6 +137,7 @@
     </li>
   </ul>
 </li></ol>
+          </div>
         </div>
       </div>
 
@@ -162,6 +165,9 @@
         <li><a class="ulink" href="../../architects/santa-ana/#permits">Permits in Santa Ana →</a></li>
         <li><a class="ulink" href="../../architects/atenas/#permits">Permits in Atenas →</a></li>
         <li><a class="ulink" href="../../architects/heredia/#permits">Permits in Heredia →</a></li>
+        <li><a class="ulink" href="../../architects/potrero/#permits">Permits in Potrero →</a></li>
+        <li><a class="ulink" href="../../architects/montezuma/#permits">Permits in Montezuma →</a></li>
+        <li><a class="ulink" href="../../architects/ojochal/#permits">Permits in Ojochal →</a></li>
       </ul>
     </nav>
     <section class="tw__sec grid" aria-labelledby="pr-sources">

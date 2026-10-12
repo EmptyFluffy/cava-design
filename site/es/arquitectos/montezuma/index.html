@@ -21,10 +21,10 @@
 <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
 <link rel="preload" href="../../../assets/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../../assets/css/site.css?v=cd703d96">
+<link rel="stylesheet" href="../../../assets/css/site.css?v=fdaffaf3">
 <script defer src="../../../assets/js/project.js?v=d409fffd"></script>
 <script defer src="../../../assets/js/climate-map.js?v=02b151d3"></script>
-<script defer src="../../../assets/js/permit-flow.js?v=e7d5373e"></script>
+<script defer src="../../../assets/js/permit-flow.js?v=cba1ad3e"></script>
 <script defer src="../../../assets/js/book-sheet.js?v=03d2f4f0"></script>
 <script defer src="../../../assets/js/accordion.js?v=61823f53"></script>
 <script defer src="../../../assets/js/titles.js?v=fa76a511"></script>
@@ -243,12 +243,107 @@
     </section>
     <section class="tw__sec grid" aria-labelledby="build-title">
       <h2 class="label tw__label" id="build-title">(Construir en Montezuma)</h2>
-      <ol class="tw__steps">
-        <li><span class="label">(01)</span><h3>Certificado de uso de suelo</h3><p>En el Concejo Municipal de Distrito de Cóbano: lo que la zonificación permite en el lote.</p></li>
-        <li><span class="label">(02)</span><h3>Carta de disponibilidad de agua</h3><p>De la ASADA local o de AyA. Sin ella no hay permiso de construcción, así que conviene pedirla antes de comprar.</p></li>
-        <li><span class="label">(03)</span><h3>Planos en el CFIA</h3><p>Se tramitan por la plataforma APC del CFIA, firmados por el profesional responsable.</p></li>
-        <li><span class="label">(04)</span><h3>Permiso de construcción</h3><p>Lo emite el Concejo Municipal de Distrito de Cóbano.</p></li>
-      </ol>
+      <div class="tw__route" id="permits">
+        <header class="prh">
+          <p class="label prh__tool">(Herramienta: ruta de permisos)</p>
+          <h3 class="prh__title">Qué permisos necesita para construir en Montezuma, y en qué orden</h3>
+          <p class="large prh__text">El permiso de construcción en Montezuma lo da el Concejo Municipal de Distrito de Cóbano, pero es la última de varias aprobaciones: la carta de agua, SETENA cuando el proyecto lo pide, el CFIA y el Ministerio de Salud, entre otras. Esta herramienta dibuja la ruta de su proyecto: cada permiso que necesita, en orden, y quién da cada uno.</p>
+          <ol class="prh__how">
+            <li><span class="label">(1)</span><span>Elija qué va a construir y de qué tamaño. Empieza con una casa de 300 a 500 m².</span></li>
+            <li><span class="label">(2)</span><span>Marque lo que aplique al lote.</span></li>
+            <li><span class="label">(3)</span><span>Lea su ruta abajo. Se vuelve a dibujar con cada respuesta, y los pasos marcados No se necesita no aplican a su proyecto.</span></li>
+          </ol>
+        </header>
+      <div class="pr" data-permit-route data-cite="../../../es/guias/permisos-de-construccion/#source-" data-rules="2c4351f7">
+        <form class="pr__form" data-pr-form onsubmit="return false">
+          <fieldset class="est__field"><legend class="label">Qué va a construir</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="type" value="house" checked><span>Casa</span></label><label class="est__opt"><input type="radio" name="type" value="units"><span>Villas, hasta 3</span></label><label class="est__opt"><input type="radio" name="type" value="apartments"><span>Apartamentos, 4 o más</span></label><label class="est__opt"><input type="radio" name="type" value="hotel"><span>Hotel</span></label><label class="est__opt"><input type="radio" name="type" value="shop"><span>Comercio o restaurante</span></label></div></fieldset>
+          <fieldset class="est__field"><legend class="label">Área construida</legend><div class="est__seg pr__seg" role="radiogroup"><label class="est__opt"><input type="radio" name="size" value="s"><span>Menos de 300 m²</span></label><label class="est__opt"><input type="radio" name="size" value="m" checked><span>300 a 500 m²</span></label><label class="est__opt"><input type="radio" name="size" value="l"><span>500 a 1,000 m²</span></label><label class="est__opt"><input type="radio" name="size" value="xl"><span>Más de 1,000 m²</span></label></div></fieldset>
+          <fieldset class="est__field est__checks pr__checks"><legend class="label">El lote: marque lo que aplique</legend><label><input type="checkbox" name="zmt"> A menos de 200 m de la playa</label><label><input type="checkbox" name="river"> Cerca de un río o naciente</label><label><input type="checkbox" name="forest"> Bosque en el lote</label><label><input type="checkbox" name="condo"> En un condominio</label><label><input type="checkbox" name="road"> Frente a una ruta nacional</label></fieldset>
+          <fieldset class="est__field"><legend class="label">Dónde</legend><select class="input est__select" name="town"><option value="">En otro lugar de Costa Rica</option><option value="tamarindo">Tamarindo</option><option value="playa-grande">Playa Grande</option><option value="playa-negra">Playa Negra</option><option value="flamingo">Flamingo</option><option value="playas-del-coco">Playas del Coco</option><option value="papagayo">Papagayo</option><option value="liberia">Liberia</option><option value="nosara">Nosara</option><option value="samara">Sámara</option><option value="santa-teresa">Santa Teresa</option><option value="jaco">Jacó</option><option value="dominical">Dominical</option><option value="uvita">Uvita</option><option value="puerto-viejo">Puerto Viejo</option><option value="escazu">Escazú</option><option value="santa-ana">Santa Ana</option><option value="atenas">Atenas</option><option value="heredia">Heredia</option><option value="potrero">Potrero</option><option value="montezuma" selected>Montezuma</option><option value="ojochal">Ojochal</option></select></fieldset>
+        </form>
+        <div class="pr__res">
+          <p class="label pr__yours">(Su ruta de permisos)</p>
+          <div class="pr__out" data-pr-out aria-live="polite">
+<p class="pf__card">El Concejo Municipal de Distrito de Cóbano da el permiso. Conviene preguntar si un <button class="pf__inline pf__term" type="button" data-term="plan" aria-haspopup="dialog">plan regulador</button> cubre el lote.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-21">21</a>,<a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+<ol class="pf"><li class="pf__stage is-parallel">
+  <p class="pf__name label">(01) El lote y sus reglas</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="use">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="use" aria-haspopup="dialog">Certificado de uso de suelo</button></h4>
+      <p class="pf__note">Lo que la zonificación permite en el lote: uso, retiros, cobertura, densidad y altura.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-2">2</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="water">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="aya" aria-haspopup="dialog">AyA o ASADA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="water" aria-haspopup="dialog">Disponibilidad de agua</button></h4>
+      <p class="pf__note">Toda edificación la necesita. AyA responde en 15 días hábiles, gratis, con validez de 12 meses; donde el agua la da una <button class="pf__inline pf__term" type="button" data-term="aya" aria-haspopup="dialog">ASADA</button>, ella emite su propia carta.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-2">2</a>,<a href="../../../es/guias/permisos-de-construccion/#source-6">6</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(02) El ambiente</p>
+  <ul class="pf__row">
+    <li class="pf__node is-off" data-key="setena">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="setena" aria-haspopup="dialog">SETENA</button></h4>
+      <p class="pf__note">No se necesita: menos de 500 m².<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-8">8</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+  </ul>
+</li><li class="pf__stage">
+  <p class="pf__name label">(03) Los planos y el CFIA</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="drawings">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="drawings" aria-haspopup="dialog">Planos y contrato</button></h4>
+      <p class="pf__note">Se registran en el <button class="pf__inline pf__term" type="button" data-term="apc" aria-haspopup="dialog">APC</button> del CFIA con el arquitecto y los ingenieros responsables; el CFIA cobra cerca del 0.27% de su valoración, y su sello dura un año.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-10">10</a>,<a href="../../../es/guias/permisos-de-construccion/#source-11">11</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-parallel is-sub">
+  
+  <ul class="pf__row">
+    <li class="pf__node" data-key="health">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="salud" aria-haspopup="dialog">Ministerio de Salud</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="health" aria-haspopup="dialog">Salud: declaración jurada</button></h4>
+      <p class="pf__note">En una casa, o en un edificio de 300 m² o menos, Salud aprueba con la <button class="pf__inline pf__term" type="button" data-term="health" aria-haspopup="dialog">declaración jurada</button> del profesional.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      
+    </li>
+    <li class="pf__node is-off" data-key="fire">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="bomberos" aria-haspopup="dialog">Bomberos</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="fire" aria-haspopup="dialog">Bomberos</button></h4>
+      <p class="pf__note">No revisan una casa ni menos de 4 apartamentos, aunque las reglas contra incendios igual aplican.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-12">12</a></sup></p>
+      <span class="pf__skip label">No se necesita</span>
+    </li>
+    <li class="pf__node" data-key="muni-review">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="muni-review" aria-haspopup="dialog">Revisión municipal en el APC</button></h4>
+      <p class="pf__note">El Concejo Municipal de Distrito de Cóbano aprobó proyectos en 20.6 días en promedio en 2024-25, el 18% al primer ingreso.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-29">29</a></sup></p>
+      
+    </li>
+  </ul>
+</li><li class="pf__stage is-chain">
+  <p class="pf__name label">(04) Licencia y obra</p>
+  <ul class="pf__row">
+    <li class="pf__node" data-key="licence">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="muni" aria-haspopup="dialog">Municipalidad</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="licence" aria-haspopup="dialog">Licencia municipal</button></h4>
+      <p class="pf__note">Un impuesto de construcción de hasta el 1% del valor de la obra, después de la póliza de riesgos del trabajo del <button class="pf__inline pf__term" type="button" data-term="ins" aria-haspopup="dialog">INS</button>.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-1">1</a>,<a href="../../../es/guias/permisos-de-construccion/#source-13">13</a>,<a href="../../../es/guias/permisos-de-construccion/#source-14">14</a></sup></p>
+      
+    </li>
+    <li class="pf__node" data-key="logbook">
+      <span class="pf__who label"><button class="pf__who-b pf__term" type="button" data-term="cfia" aria-haspopup="dialog">CFIA</button></span>
+      <h4 class="pf__title"><button class="pf__title-b pf__term" type="button" data-term="logbook" aria-haspopup="dialog">Bitácora digital</button></h4>
+      <p class="pf__note">La abre el director de la obra, con su código QR en el sitio.<sup class="cite"><a href="../../../es/guias/permisos-de-construccion/#source-15">15</a></sup></p>
+      
+    </li>
+  </ul>
+</li></ol>
+          </div>
+        </div>
+      </div>
+      </div>
       <p class="large tw__aside">A menos de 200 m de la pleamar ordinaria rige la Ley de la Zona Marítimo Terrestre (Ley 6043): los primeros 50 m son públicos y no se puede construir, y los 150 m siguientes se tienen en concesión de la municipalidad, no en propiedad. Conviene saber dónde está el lote antes de comprar.</p>
       <p class="large tw__aside">Montezuma está en Cóbano, el distrito de Santa Teresa y Mal País, que tramita sus propios permisos con un concejo municipal de distrito en lugar de la Municipalidad de Puntarenas.</p>
       <ul class="tw__aside guide__links">

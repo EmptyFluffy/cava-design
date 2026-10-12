@@ -27,6 +27,7 @@ export const TOWN_MUNI = {
   'playas-del-coco': 'carrillo', papagayo: 'liberia', liberia: 'liberia', nosara: 'nicoya', samara: 'nicoya',
   'santa-teresa': 'cobano', jaco: 'garabito', dominical: 'osa', uvita: 'osa', 'puerto-viejo': 'talamanca',
   escazu: 'escazu', 'santa-ana': 'santa-ana', atenas: 'atenas', heredia: 'heredia',
+  potrero: 'santa-cruz', montezuma: 'cobano', ojochal: 'osa',
 };
 export const TYPES = ['house', 'units', 'apartments', 'hotel', 'shop'];
 export const SIZES = ['s', 'm', 'l', 'xl']; // under 300, 300 to 500, 500 to 1,000, over 1,000 m²
@@ -60,8 +61,8 @@ const T = {
     psf: ['Health operating permit', 'The Permiso Sanitario de Funcionamiento, after the works. For most activities issued on submission, valid 5 years.'],
     patente: ['Business licence', 'The patente: the municipality has 30 calendar days, and it needs the land use certificate.'],
     plan: { full: (y) => `a regulating plan for the whole canton (${y})`, partial: (y) => `a partial regulating plan (${y}); outside it, the national construction rules apply`, none: () => 'no regulating plan: the national construction rules apply', unknown: () => 'ask whether a regulating plan covers the lot' },
-    muniCard: (name, plan) => `${cap(name)} issues the permit. It has ${plan}.`,
-    noMuni: 'Pick the town to see its municipality.',
+    muniCard: (name, plan) => `${cap(name)} issues the permit. ${plan.startsWith('ask') ? cap(plan) : `It has ${plan}`}.`,
+    noMuni: 'The municipality of the canton where the lot sits issues the permit. Ask it whether a regulating plan covers the lot.',
     applies: 'Applies', skip: 'Not needed',
   },
   es: {
@@ -93,7 +94,7 @@ const T = {
     patente: ['Patente', 'La municipalidad tiene 30 días naturales para resolverla, y necesita el uso de suelo.'],
     plan: { full: (y) => `un plan regulador para todo el cantón (${y})`, partial: (y) => `un plan regulador parcial (${y}); fuera de él rigen las reglas nacionales de construcción`, none: () => 'no tiene plan regulador: rigen las reglas nacionales de construcción', unknown: () => 'conviene preguntar si un plan regulador cubre el lote' },
     muniCard: (name, plan) => `${cap(name)} da el permiso. ${plan.startsWith('no tiene') || plan.startsWith('conviene') ? cap(plan) : `Tiene ${plan}`}.`,
-    noMuni: 'Elija el pueblo para ver su municipalidad.',
+    noMuni: 'La municipalidad del cantón donde está el lote da el permiso. Conviene preguntarle si un plan regulador cubre el lote.',
     applies: 'Aplica', skip: 'No se necesita',
   },
 };
