@@ -2362,3 +2362,5 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
   #enquiry .step__title { margin-bottom: 0.75rem; }
 }
 @media (max-height: 600px) { #enquiry .step .note { display: none; } }   /* the SE: step 3's ten choices before its note */
+
+/* 2026-10-12: town photos and cards */
