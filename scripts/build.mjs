@@ -3470,6 +3470,8 @@ ${footer('en', '/', paths)}${end}`;
 // Project images carry ?v=<hash> in every reference, so they can be kept for good; the rest changes in place.
 write('_headers', `/assets/img/projects/*
   Cache-Control: public, max-age=31536000, immutable
+/assets/video/*
+  Cache-Control: public, max-age=31536000, immutable
 /assets/img/places/*
   Cache-Control: public, max-age=604800
 /assets/data/*
