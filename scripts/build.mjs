@@ -253,6 +253,7 @@ ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(i
 ` : ''}${books ? `        <a class="ulink" href="${up}${libraryPath(lang)}">${lang === 'en' ? 'Library' : 'Biblioteca'}</a>
 ` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
       </div>
+      ${elsewhereGroup(lang)}
     </div>
   </div>
   <div class="grid footer__bottom label">
@@ -863,6 +864,10 @@ const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH,
 // The studio's profiles elsewhere (data/profiles.json): only the public ones show
 const PROFILES_PATH = join(ROOT, 'data', 'profiles.json');
 const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_PATH, 'utf8')).items : []).filter((x) => x.live && x.url);
+// ...and in every footer, beside Tools, Costa Rica and More
+const elsewhereGroup = (lang) => (profiles.length ? `<!-- elsewhere --><div class="footer__group"><span class="label">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</span>
+${profiles.map((x) => `        <a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a>`).join('\n')}
+      </div><!-- /elsewhere -->` : '<!-- elsewhere --><!-- /elsewhere -->');
 const profilesSection = (lang) => (profiles.length ? `  <section class="tw__sec grid" aria-labelledby="elsewhere-title">
     <h2 class="label tw__label" id="elsewhere-title">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</h2>
     <ul class="svc__for">
@@ -2903,6 +2908,7 @@ function homeCounts() {
     .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m))
     .replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => (proc ? processSteps('en', 'studio/') : ''))
     .replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('en'))
+    .replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('en'))
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
   if (after !== before) writeFileSync(path, after);
 }
@@ -2918,6 +2924,7 @@ function homeEs() {
     if (html === before) missing.push(String(from));
   }
   html = html.replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('es'));
+  html = html.replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('es'));
   // image alt texts, from the data
   for (const p of projects) p.images.forEach((im, j) => {
     html = html.split(`alt="${esc(im.alt)}"`).join(`alt="${esc(altOf('es', p, j + 1))}"`);
