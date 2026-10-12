@@ -21,12 +21,12 @@ export const UI = {
       project: (name) => `Hi Studio CAVA, I saw ${name} on your site and would like to talk about a project.`,
     },
     index: {
-      title: 'Projects | Studio CAVA',
+      title: 'Architecture projects in Costa Rica | Studio CAVA',
       description: (n) => `${n} projects by Studio CAVA: houses, retreats, hangars, a bakery and a museum, each with its images and technical sheet.`,
       h1: 'Projects',
     },
     project: {
-      description: (name, type) => `${name}, ${type.toLowerCase()} by Studio CAVA. Images and technical sheet.`,
+      description: (name, type, place) => `${name}, ${type.toLowerCase()} in ${place} by Studio CAVA, architects in Costa Rica: images, drawings and technical sheet.`,
       crumb: 'Projects', sheet: '(Technical sheet)',
       rows: {
         project: 'Project', type: 'Type', typology: 'Typology', location: 'Location', year: 'Year', status: 'Status', siteArea: 'Site area', builtArea: 'Built area',
@@ -63,12 +63,12 @@ export const UI = {
       project: (name) => `Hola Studio CAVA, vi ${name} en su sitio y quisiera conversar sobre un proyecto.`,
     },
     index: {
-      title: 'Proyectos | Studio CAVA',
+      title: 'Proyectos de arquitectura en Costa Rica | Studio CAVA',
       description: (n) => `${n} proyectos de Studio CAVA: casas, un hotel, hangares, una panadería y un museo, cada uno con sus imágenes y su ficha técnica.`,
       h1: 'Proyectos',
     },
     project: {
-      description: (name, type) => `${name}, ${type.toLowerCase()} de Studio CAVA. Imágenes y ficha técnica.`,
+      description: (name, type, place) => `${name}, ${type.toLowerCase()} en ${place} de Studio CAVA, arquitectos en Costa Rica: imágenes, planos y ficha técnica.`,
       crumb: 'Proyectos', sheet: '(Ficha técnica)',
       rows: {
         project: 'Proyecto', type: 'Tipo', typology: 'Tipología', location: 'Ubicación', year: 'Año', status: 'Estado', siteArea: 'Área del lote', builtArea: 'Área construida',

@@ -20,7 +20,7 @@ export const PAIRS = [
   ['<title>Studio CAVA | Architects and interior design in Costa Rica</title>', '<title>Studio CAVA | Arquitectos y diseño de interiores en Costa Rica</title>'],
   ['(Architecture and interiors, Costa Rica)', '(Arquitectura e interiores, Costa Rica)'],
   ['content="Studio CAVA designs houses, retreats and cafés in Costa Rica, from the first site visit and uso de suelo to CFIA permits and site supervision."',
-    'content="Studio CAVA diseña casas, hoteles pequeños y cafés en Costa Rica, desde la primera visita al lote y el uso de suelo hasta los permisos del CFIA y la supervisión de obra."'],
+    'content="Studio CAVA diseña casas, hoteles pequeños y cafés en Costa Rica, de la primera visita al lote y el uso de suelo a los permisos del CFIA y la obra."'],
   ['<link rel="canonical" href="https://cava.design/">', '<link rel="canonical" href="https://cava.design/es/">'],
   ['<meta property="og:locale" content="en_US">', '<meta property="og:locale" content="es_CR">'],
   ['content="Architecture and interiors in Costa Rica. Houses, retreats and cafés drawn around the sun path, the slope and the dry season."',

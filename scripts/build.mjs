@@ -117,6 +117,8 @@ const serviceImages = (slug) => proc?.services[slug] ?? [];
 // `paths` = { en, es }: this page in each language, from the site root.
 function head(lang, { title, description, paths, image, up, script, jsonld }) {
   const t = UI[lang];
+  // past 60 characters Google cuts the title; the brand goes first, since results show the site's name above it
+  if (title.length > 60 && title.endsWith(' | Studio CAVA')) title = title.slice(0, -' | Studio CAVA'.length);
   return `<!doctype html>
 <html lang="${t.lang}">
 <head>
@@ -421,6 +423,14 @@ ${an.amenities.map((m) => `        <button class="pmx__am" type="button" data-an
     </figure>`;
 }
 
+// a project's place in a few words for its title: the town and the province (or the region and the country
+// abroad), without a part that repeats the project's own name or a note like "across from Bar El Vaquero"
+const PROVINCES = new Set(['Guanacaste', 'Alajuela', 'San José', 'Puntarenas', 'Limón', 'Heredia', 'Cartago']);
+function shortPlace(lang, p) {
+  const parts = String(tr(lang, p, 'location') ?? '').split(',').map((x) => x.trim()).filter((x) => x && /^[A-ZÁÉÍÓÚÑ]/.test(x) && x !== p.name);
+  if (parts.length < 2) return parts[0] ?? 'Costa Rica';
+  return parts.slice(-2).join(', ');
+}
 function projectPage(lang, p, i) {
   const t = UI[lang];
   const s = t.project;
@@ -590,8 +600,8 @@ ${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, 
   })() : '';
   const waText = t.wa.project(p.name);
   return head(lang, {
-    title: `${p.name} | Studio CAVA`,
-    description: p.summary?.[lang] ?? s.description(p.name, type),
+    title: `${p.name}, ${shortPlace(lang, p)} | Studio CAVA`,
+    description: p.summary?.[lang] ?? s.description(p.name, type, shortPlace(lang, p)),
     paths,
     image: `${imgBase(p.slug, 1)}-1600.webp`,
     up,
@@ -1412,8 +1422,8 @@ function guidesIndex(lang) {
   const paths = { en: guidesIndexPath('en'), es: guidesIndexPath('es') };
   const up = upFrom(paths[lang]);
   const H = lang === 'en'
-    ? { title: 'Guides | Studio CAVA', description: 'What it takes to build in Costa Rica: permits, condominiums and the places we work, with sources.', h1: ['Guides', 'to building'], intro: 'What it takes to build in Costa Rica, step by step, with the law or the office behind every step.' }
-    : { title: 'Guías | Studio CAVA', description: 'Lo que hace falta para construir en Costa Rica: permisos, condominios y los lugares donde trabajamos, con fuentes.', h1: ['Guías', 'para construir'], intro: 'Lo que hace falta para construir en Costa Rica, paso a paso, con la ley o la oficina detrás de cada paso.' };
+    ? { title: 'Guides to building in Costa Rica | Studio CAVA', description: 'What it takes to build in Costa Rica: permits, condominiums and the places we work, with sources.', h1: ['Guides', 'to building'], intro: 'What it takes to build in Costa Rica, step by step, with the law or the office behind every step.' }
+    : { title: 'Guías para construir en Costa Rica | Studio CAVA', description: 'Lo que hace falta para construir en Costa Rica: permisos, condominios y los lugares donde trabajamos, con fuentes.', h1: ['Guías', 'para construir'], intro: 'Lo que hace falta para construir en Costa Rica, paso a paso, con la ley o la oficina detrás de cada paso.' };
   return head(lang, { title: H.title, description: H.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'guides')}
 <main class="page">
@@ -1458,7 +1468,7 @@ const estimatorPath = (lang) => (lang === 'en' ? 'tools/cost-estimator/' : 'es/h
 const ET = {
   en: {
     title: 'Building cost estimator for Costa Rica | Studio CAVA',
-    description: 'What a house, a hotel or any other building costs to build in Costa Rica, from the Ministry of Finance\'s official values, CFIA fees, VAT and builders\' prices by town, with a schedule month by month.',
+    description: 'What a house, a villa or a hotel costs to build in Costa Rica, town by town: official values, CFIA fees, VAT and builders\' prices, month by month.',
     label: '(Tool)', h1: ['Cost', 'estimator'],
     intro: 'What a house, a hotel or any other building costs to build in Costa Rica, and how long it takes, in a few choices. The numbers come from the Ministry of Finance, the CFIA and builders, and every one has its source below.',
     where: 'Where', other: 'Somewhere else in Costa Rica', what: 'What you are building', typeSearch: 'Type to search: house, cabins, restaurant…', typeNone: 'Nothing by that name. Try house, hotel, cabins or warehouse.', typeSingle: 'Hacienda gives a single value for this type, so the finish does not change it.',
@@ -1483,7 +1493,7 @@ const ET = {
   },
   es: {
     title: 'Estimador de costos de construcción en Costa Rica | Studio CAVA',
-    description: 'Cuánto cuesta construir una casa, un hotel o cualquier otra edificación en Costa Rica, con los valores oficiales de Hacienda, los honorarios del CFIA, el IVA y precios de constructores por pueblo, y un cronograma mes a mes.',
+    description: 'Cuánto cuesta construir una casa, una villa o un hotel en Costa Rica, pueblo por pueblo: valores de Hacienda, honorarios del CFIA, IVA y cronograma.',
     label: '(Herramienta)', h1: ['Estimador', 'de costos'],
     intro: 'Cuánto cuesta construir una casa, un hotel o cualquier otra edificación en Costa Rica, y cuánto tarda, en unas pocas decisiones. Los números salen del Ministerio de Hacienda, del CFIA y de constructores, y cada uno tiene su fuente abajo.',
     where: 'Dónde', other: 'En otro lugar de Costa Rica', what: 'Qué va a construir', typeSearch: 'Escriba para buscar: casa, cabinas, restaurante…', typeNone: 'Nada con ese nombre. Pruebe casa, hotel, cabinas o bodega.', typeSingle: 'Hacienda da un solo valor para este tipo, así que el acabado no lo cambia.',
@@ -1745,7 +1755,7 @@ const bookPath = (lang) => (lang === 'en' ? 'book/' : 'es/agendar/');
 const BK = {
   en: {
     link: 'Book a free call', title: 'Book a free call with an architect | Studio CAVA',
-    description: 'A free 30-minute video call with Studio CAVA about your property and your project in Costa Rica: what the rules allow, what it could cost and how long it takes. Pick a time that suits you.',
+    description: 'A free 30-minute video call with an architect about your property and your project in Costa Rica: what the rules allow, what it could cost, how long it takes.',
     label: '(Free call)', h1: ['Book a', 'free call'],
     intro: 'Thirty minutes by video, free, with the architect who would design your project: your property, what the rules allow, what it could cost and how long it takes.',
     callTitle: (m) => `Free ${m}-minute call`, callText: 'Bring the location of the lot and what you have in mind. We come having looked at the place.',
@@ -1763,7 +1773,7 @@ const BK = {
   },
   es: {
     link: 'Agende una llamada gratis', title: 'Agende una llamada gratis con un arquitecto | Studio CAVA',
-    description: 'Una videollamada gratis de 30 minutos con Studio CAVA sobre su propiedad y su proyecto en Costa Rica: qué permiten las reglas, cuánto podría costar y cuánto tarda. Elija la hora que le sirva.',
+    description: 'Una videollamada gratis de 30 minutos con un arquitecto sobre su propiedad y su proyecto en Costa Rica: qué permiten las reglas, cuánto cuesta y cuánto tarda.',
     label: '(Llamada gratis)', h1: ['Agende una', 'llamada gratis'],
     intro: 'Treinta minutos por video, gratis, con el arquitecto que diseñaría su proyecto: su propiedad, qué permiten las reglas, cuánto podría costar y cuánto tarda.',
     callTitle: (m) => `Llamada gratis de ${m} minutos`, callText: 'Traiga la ubicación del lote y lo que tiene en mente. Llegamos habiendo visto el lugar.',
@@ -1874,7 +1884,7 @@ const SVT = {
   en: {
     link: 'Services', label: '(Services)', service: '(Service)', h1: ['Our', 'services'],
     title: 'Architecture services in Costa Rica | Studio CAVA',
-    description: 'What we do, from the study of a lot before you buy it to supervising the works: what each service includes, what you receive, how long it takes and how it is charged.',
+    description: 'What we do, from the study of a lot before you buy it to supervising the works: what each service includes, what you receive, how long it takes, the fee.',
     intro: 'From the study of a lot before you buy it to the last visit to the works: what each service includes, what you receive, how long it takes and how it is charged.',
     order: '(In order)', orderText: 'A project usually takes them in this order: a study of the lot before buying, a master plan when the land will hold more than one house, the design with its interiors, the permits, and supervision while it is built. Each one can also be hired on its own.',
     also: '(Also)', alsoText: 'Three smaller services, mostly for shops, restaurants and hotels. They can be added to one of our projects or hired on their own.', ask: 'Ask us about it',
@@ -2078,7 +2088,7 @@ ${services.filter((o) => o !== s).map((o) => `        <li><a class="ulink" href=
     ],
   };
   const [slug, n] = s.image.split('/');
-  return head(lang, { title: T.title, description: T.description, paths, image: `${imgBase(slug, +n)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
+  return head(lang, { title: T.title, description: T.meta ?? T.description, paths, image: `${imgBase(slug, +n)}-1600.webp`, up, jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'services')}
 <main class="page">
   <article class="mf svc" aria-labelledby="svc-title">
@@ -2099,7 +2109,8 @@ const landPath = (lang) => (lang === 'en' ? 'tools/land-prices/' : 'es/herramien
 const LT = {
   en: {
     title: 'Land prices in Costa Rica by zone | Studio CAVA',
-    description: 'The official land value of every zone in Costa Rica on one map, from the Ministry of Finance, next to what lots ask in 18 towns. In colones and dollars, with the year of each edition.',
+    use: 'Use of this data: the zone values are the Ministry of Finance\'s, shown as published, with their source. What we add, the map, the dollar figures and the sample of lots for sale, is free to reuse with credit to Studio CAVA and a link to this page, under <a class="ulink" href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>.',
+    description: 'The official land value of every zone in Costa Rica on one map, from the Ministry of Finance, next to what lots ask in 18 towns, in colones and dollars.',
     label: '(Map)', h1: ['Land', 'prices'], link: 'Land prices', name: 'Land prices by zone', town: (n) => `Land prices in ${n}`,
     intro: 'What land is worth per square metre in every zone of Costa Rica, by the official values the Ministry of Finance sets for the property tax, and what lots ask today in the towns where we work.',
     go: 'Go to', all: 'All of Costa Rica', show: 'Show in', legend: 'Official value per m²',
@@ -2113,7 +2124,8 @@ const LT = {
   },
   es: {
     title: 'Precio del terreno en Costa Rica por zona | Studio CAVA',
-    description: 'El valor oficial del terreno de cada zona de Costa Rica en un mapa, del Ministerio de Hacienda, junto a lo que piden por un lote en 18 pueblos. En colones y dólares, con el año de cada edición.',
+    use: 'Uso de estos datos: los valores por zona son del Ministerio de Hacienda y se muestran tal como se publicaron, con su fuente. Lo que agregamos, el mapa, las cifras en dólares y la muestra de lotes en venta, se puede reusar dando crédito a Studio CAVA y con un enlace a esta página, bajo la licencia <a class="ulink" href="https://creativecommons.org/licenses/by/4.0/deed.es" rel="license noopener" target="_blank">CC BY 4.0</a>.',
+    description: 'El valor oficial del terreno de cada zona de Costa Rica en un mapa, de Hacienda, junto a lo que piden por un lote en 18 pueblos, en colones y dólares.',
     label: '(Mapa)', h1: ['Precio', 'del terreno'], link: 'Precio del terreno', name: 'Precio del terreno por zona', town: (n) => `Precio del terreno en ${n}`,
     intro: 'Cuánto vale el metro cuadrado de terreno en cada zona de Costa Rica, según los valores oficiales que fija Hacienda para el impuesto de bienes inmuebles, y cuánto piden hoy por un lote en los pueblos donde trabajamos.',
     go: 'Ir a', all: 'Todo Costa Rica', show: 'Mostrar en', legend: 'Valor oficial por m²',
@@ -2195,7 +2207,7 @@ function landPage(lang) {
   }).join('\n');
   const pins = towns.filter((t) => land.towns[t.slug]).map((t) => ({ slug: t.slug, n: t.name, c: land.towns[t.slug].center }));
   const cantonNames = Object.fromEntries(Object.entries(landEditions.cantons).map(([c, v]) => [c, v.name]));
-  const ld = { '@context': 'https://schema.org', '@type': 'Dataset', name: E.title.split(' | ')[0], description: E.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, creator: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` }, isBasedOn: LAND_SOURCES[0].url, spatialCoverage: 'Costa Rica', temporalCoverage: '2016/2026' };
+  const ld = { '@context': 'https://schema.org', '@type': 'Dataset', name: E.title.split(' | ')[0], description: E.description, inLanguage: lang, url: `${ORIGIN}/${paths[lang]}`, creator: { '@type': 'Organization', name: 'Studio CAVA', url: `${ORIGIN}/` }, isBasedOn: LAND_SOURCES[0].url, license: { '@type': 'CreativeWork', name: lang === 'en' ? 'CC BY 4.0, for what Studio CAVA adds; the zone values are the Ministry of Finance\'s' : 'CC BY 4.0, para lo que agrega Studio CAVA; los valores por zona son del Ministerio de Hacienda', url: 'https://creativecommons.org/licenses/by/4.0/' }, spatialCoverage: 'Costa Rica', temporalCoverage: '2016/2026' };
   return head(lang, { title: E.title, description: E.description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up, script: 'land-map.js', jsonld: ld }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'tools')}
 <main class="page">
@@ -2217,6 +2229,7 @@ ${rows}
         </table>
       </div>
       <p class="note">${esc(E.tableNote)}</p>
+      <p class="note lt__use" id="use">${E.use}</p>
     </section>
     <nav class="tw__sec grid" aria-labelledby="lt-more">
       <h2 class="label tw__label" id="lt-more">${E.more}</h2>
@@ -2265,7 +2278,7 @@ const TC = {
   en: {
     link: (n) => `What it costs to build in ${n}`,
     title: (n) => `Cost to build a house in ${n}, Costa Rica | Studio CAVA`,
-    description: (n, e) => `A 250 m² house with a pool in ${n} costs about ${usdK(e.total[0])} to ${usdK(e.total[2])} to build, with design, permits and VAT. Change the size, finish and extras, and see how long it takes.`,
+    description: (n, e) => `A 250 m² house with a pool in ${n} costs about ${usdK(e.total[0])} to ${usdK(e.total[2])} to build, with design, permits and VAT. Change the size and finish.`,
     label: '(Estimator)', h1: (n) => ['Cost to build', `in ${n}`],
     intro: (n, e) => `A 250 m² house with a high finish and a pool in ${n} comes to about ${usdK(e.total[0])} to ${usdK(e.total[2])}, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve. Change anything below and the numbers follow.`,
     facts: (n) => `(${n}, in numbers)`, rate: 'Construction, high finish', landM: 'Land, lots for sale', landO: 'Land, Hacienda residential values', dry: 'Dry season', rainDays: 'Days of heavy rain a year', permits: 'Permits', drive: 'From Liberia airport',
@@ -2291,7 +2304,7 @@ const TC = {
   es: {
     link: (n) => `Cuánto cuesta construir en ${n}`,
     title: (n) => `Cuánto cuesta construir una casa en ${n}, Costa Rica | Studio CAVA`,
-    description: (n, e) => `Una casa de 250 m² con piscina en ${n} cuesta de ${usdK(e.total[0])} a ${usdK(e.total[2])}, con diseño, permisos e IVA. Cambie el tamaño, los acabados y los extras, y vea cuánto tarda.`,
+    description: (n, e) => `Una casa de 250 m² con piscina en ${n} cuesta de ${usdK(e.total[0])} a ${usdK(e.total[2])}, con diseño, permisos e IVA. Cambie el tamaño y los acabados.`,
     label: '(Estimador)', h1: (n) => ['Construir', `en ${n}`],
     intro: (n, e) => `Una casa de 250 m² con acabados altos y piscina en ${n} sale en unos ${usdK(e.total[0])} a ${usdK(e.total[2])}, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y una reserva. Cambie lo que quiera abajo y los números lo siguen.`,
     facts: (n) => `(${n}, en números)`, rate: 'Construcción, acabados altos', landM: 'Terreno, lotes en venta', landO: 'Terreno, valores residenciales de Hacienda', dry: 'Época seca', rainDays: 'Días de lluvia fuerte al año', permits: 'Permisos', drive: 'Desde el aeropuerto de Liberia',
@@ -2484,7 +2497,12 @@ function landTownPage(lang, t) {
   ];
   const work = projects.filter((p) => p.pin !== 'placeholder').map((p) => ({ p, km: km(d.coords, p.coords) })).sort((a, b) => a.km - b.km).slice(0, 3);
   const rows = zs.map((z) => `            <tr><td class="label">${esc(z.z)}</td><th scope="row">${esc(z.n)}${z.zmt ? ` <span class="lt__tag">ZMT</span>` : ''}</th><td>₡${z.v.toLocaleString('en-US')}</td><td>US$${Math.round(z.v / fx).toLocaleString('en-US')}</td><td>${z.a ? `${z.a.toLocaleString('en-US')} m²` : '–'}</td><td>${z.y ?? '–'}</td></tr>`).join('\n');
-  const desc = E.description(t.name, intro.trim());
+  // for the results page: the figures, in under 160 characters (the intro says the same at length)
+  const usd = (v) => Math.round(v / fx).toLocaleString('en-US');
+  const mk = L.market ? L.market.median.toLocaleString('en-US') : null;
+  const desc = t.slug === 'papagayo' || !pick.length ? E.description(t.name, intro.trim()) : lang === 'en'
+    ? `Land prices in ${t.name}, Costa Rica: the Ministry of Finance values a m² at US$${usd(Math.min(...pick))} to ${usd(Math.max(...pick))} (${year})${mk ? `; lots for sale ask a median of US$${mk} a m²` : ''}.`
+    : `Precio del terreno en ${t.name}, Costa Rica: Hacienda valora el m² en US$${usd(Math.min(...pick))} a ${usd(Math.max(...pick))} (${year})${mk ? `; los lotes en venta piden una mediana de US$${mk} el m²` : ''}.`;
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -2673,7 +2691,10 @@ ${t ? `        <li><a class="ulink" href="${up}${townCostPath(lang, t.slug)}">${
       { '@type': 'FAQPage', mainEntity: QQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
     ],
   };
-  return estimatorPage(lang, { paths, title: S.title(T.name), description: intro, h1: T.h1, intro, preset: st, photo: sc.photo, extra, ld, cls: 'est--town', wa: S.wa(T.name), q: `?town=${st.town}` });
+  const summary = lang === 'en'
+    ? `${T.name}, Costa Rica: ${usdK(e.total[0])} to ${usdK(e.total[2])} to build, likely ${usdK(e.total[1])}, with design, permits, VAT and a reserve.`
+    : `${T.name}, Costa Rica: de ${usdK(e.total[0])} a ${usdK(e.total[2])} para construir, lo probable ${usdK(e.total[1])}, con diseño, permisos, IVA y reserva.`;
+  return estimatorPage(lang, { paths, title: S.title(T.name), description: summary, h1: T.h1, intro, preset: st, photo: sc.photo, extra, ld, cls: 'est--town', wa: S.wa(T.name), q: `?town=${st.town}` });
 }
 
 // ---------- The permit route: /tools/permit-route/ and drawn on every town page ----------
@@ -2682,8 +2703,8 @@ const permitGuide = guides.find((g) => g.slug.en === 'building-permits');
 const permitPath = (lang) => (lang === 'en' ? 'tools/permit-route/' : 'es/herramientas/ruta-de-permisos/');
 const PR = {
   en: {
-    title: 'Building permits in Costa Rica, step by step for your project | Studio CAVA',
-    description: 'Which permits a house, a hotel or a shop in Costa Rica needs, in what order and from whom: answer five questions and the route draws itself, with the municipality, SETENA, the CFIA and every source.',
+    title: 'Building permits in Costa Rica, step by step | Studio CAVA',
+    description: 'Which permits a house, a hotel or a shop in Costa Rica needs, in what order and from whom: answer five questions and the route draws itself.',
     label: '(Tool)', h1: ['Permit', 'route'], link: 'Permit route', name: 'The permit route for your project',
     intro: 'Which permits a project in Costa Rica needs, in what order and from whom. Answer five questions and the route draws itself, step by step, with the rules behind each one.',
     what: 'What', whats: { house: 'House', units: 'Villas, up to 3', apartments: 'Apartments, 4 or more', hotel: 'Hotel', shop: 'Shop or restaurant' },
@@ -2695,8 +2716,8 @@ const PR = {
     note: 'General information, not legal advice: rules change, and each municipality applies them its own way. Reviewed October 2026.',
   },
   es: {
-    title: 'Permisos de construcción en Costa Rica, paso a paso para su proyecto | Studio CAVA',
-    description: 'Qué permisos necesita una casa, un hotel o un comercio en Costa Rica, en qué orden y ante quién: responda cinco preguntas y la ruta se dibuja sola, con la municipalidad, SETENA, el CFIA y cada fuente.',
+    title: 'Permisos de construcción en Costa Rica, paso a paso | Studio CAVA',
+    description: 'Qué permisos necesita una casa, un hotel o un comercio en Costa Rica, en qué orden y ante quién: responda cinco preguntas y la ruta se dibuja sola.',
     label: '(Herramienta)', h1: ['Ruta de', 'permisos'], link: 'Ruta de permisos', name: 'La ruta de permisos de su proyecto',
     intro: 'Qué permisos necesita un proyecto en Costa Rica, en qué orden y ante quién. Responda cinco preguntas y la ruta se dibuja sola, paso a paso, con las reglas detrás de cada uno.',
     what: 'Qué', whats: { house: 'Casa', units: 'Villas, hasta 3', apartments: 'Apartamentos, 4 o más', hotel: 'Hotel', shop: 'Comercio o restaurante' },

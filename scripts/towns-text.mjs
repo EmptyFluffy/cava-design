@@ -1,6 +1,9 @@
 // What a town page says, in each language. Every sentence is built from that town's data
 // (data/town-data.json and scripts/sun.mjs), so no two pages read alike.
 
+// a sentence and an optional clause: the clause only if the whole stays within 160 characters
+const fit160 = (base, extra) => `${base}${(base + extra).length + 1 <= 160 ? extra : ''}.`;
+
 export const MONTHS = {
   en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   es: ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'setiembre', 'octubre', 'noviembre', 'diciembre'],
@@ -132,7 +135,9 @@ export const T = {
   en: {
     kicker: 'Architects in',
     title: (t) => `Architects in ${t.name}, Costa Rica | Studio CAVA`,
-    description: (t, d, c, muni) => `Building in ${t.name}: ${num('en', c.total)} mm of rain a year, ${c.dry ? `dry ${range('en', c.dry)}` : 'rain in every month'}, permits through ${muni}, ${duration(nearestAirport('en', d).min)} from ${nearestAirport('en', d).name}.`,
+    // the search, then the place: architects for the town, its dry season and how far from the airport; the
+    // permits only when they fit in 160 characters
+    description: (t, d, c, muni) => fit160(`Architects for houses and hotels in ${t.name}, Costa Rica. ${c.dry ? `Dry ${range('en', c.dry)}` : 'Rain in every month'}, ${duration(nearestAirport('en', d).min)} from ${nearestAirport('en', d).name}`, `, permits through ${muni}`),
     municipality: (t, d) => t.council?.en ?? `the Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('en', t, d)}, ${d.elevation < 5 ? 'at sea level' : `${num('en', d.elevation)} m above sea level`}. A year here brings ${num('en', c.total)} mm of rain, ${c.wet ? `${c.wetShare}% of it ${range('en', c.wet)}` : 'spread over every month'}. Permits for a lot go through ${muni}.`,
@@ -176,7 +181,7 @@ export const T = {
       aria: (t, season) => `Wind rose for ${t.name}, ${season}`,
     },
     hub: {
-      title: 'Where we work | Studio CAVA',
+      title: 'Architects in Guanacaste and across Costa Rica | Studio CAVA',
       description: 'Architects across Costa Rica. Rain, dry season, permits and the drive from the airport for every town where we design houses and hotels.',
       label: '(Where we work)', h1: ['Where we', 'work'],
       intro: 'We design and sign projects anywhere in Costa Rica. Each page gathers what matters before building in that place: the rain, the sun, the wind, the permits and the drive from the airport.',
@@ -188,7 +193,7 @@ export const T = {
   es: {
     kicker: 'Arquitectos en',
     title: (t) => `Arquitectos en ${t.name}, Costa Rica | Studio CAVA`,
-    description: (t, d, c, muni) => `Construir en ${t.name}: ${num('es', c.total)} mm de lluvia al año, ${c.dry ? `seco ${range('es', c.dry)}` : 'llueve todos los meses'}, permisos en ${muni}, a ${duration(nearestAirport('es', d).min)} del aeropuerto de ${nearestAirport('es', d).name}.`,
+    description: (t, d, c, muni) => fit160(`Arquitectos para casas y hoteles en ${t.name}, Costa Rica. ${c.dry ? `Seco ${range('es', c.dry)}` : 'Llueve todos los meses'}, a ${duration(nearestAirport('es', d).min)} del aeropuerto de ${nearestAirport('es', d).name}`, `, permisos en ${muni}`),
     municipality: (t, d) => t.council?.es ?? `la Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('es', t, d)}, ${d.elevation < 5 ? 'al nivel del mar' : `a ${num('es', d.elevation)} m sobre el nivel del mar`}. Al año caen ${num('es', c.total)} mm de lluvia, ${c.wet ? `el ${c.wetShare}% ${range('es', c.wet)}` : 'repartidos en todos los meses'}. Los permisos de un lote se tramitan en ${muni}.`,
@@ -232,7 +237,7 @@ export const T = {
       aria: (t, season) => `Rosa de los vientos de ${t.name}, ${season}`,
     },
     hub: {
-      title: 'Dónde trabajamos | Studio CAVA',
+      title: 'Arquitectos en Guanacaste y todo Costa Rica | Studio CAVA',
       description: 'Arquitectos en todo Costa Rica. Lluvia, época seca, permisos y distancia al aeropuerto de cada pueblo donde diseñamos casas y hoteles.',
       label: '(Dónde trabajamos)', h1: ['Dónde', 'trabajamos'],
       intro: 'Diseñamos y firmamos proyectos en cualquier parte de Costa Rica. Cada página reúne lo que importa antes de construir en ese lugar: la lluvia, el sol, el viento, los permisos y el viaje desde el aeropuerto.',

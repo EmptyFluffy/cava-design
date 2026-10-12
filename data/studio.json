@@ -2,7 +2,7 @@
   "_note": "Text of /studio/ and /es/estudio/: what we believe, and the process. First draft written for Carlos to refine. Each belief: word (keep it short, it is set very large), sub (one line), text (paragraphs), image (\"<project slug>/<n>\" from data/projects.json, set on the English beliefs and shared with the Spanish ones). The first belief starts open.",
   "image": "tragaluz-retreat/3",
   "en": {
-    "title": "What we believe | Studio CAVA",
+    "title": "What we believe: architects in Costa Rica | Studio CAVA",
     "description": "What Studio CAVA believes about building in Costa Rica, and why: climate, place, time, detail and clarity. With the six stages of every project.",
     "label": "(Manifesto)",
     "h1": ["What we", "believe"],
@@ -69,7 +69,7 @@
     }
   },
   "es": {
-    "title": "Lo que creemos | Studio CAVA",
+    "title": "Lo que creemos: arquitectos en Costa Rica | Studio CAVA",
     "description": "Lo que Studio CAVA cree sobre construir en Costa Rica, y por qué: clima, lugar, tiempo, detalle y claridad. Con las seis etapas de cada proyecto.",
     "label": "(Manifiesto)",
     "h1": ["Lo que", "creemos"],
