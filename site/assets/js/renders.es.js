@@ -392,6 +392,16 @@ window.CAVA_HERO = [
   "href": "proyectos/casa-alcaravan/"
  },
  {
+  "src": "../assets/img/projects/kauhane-house/2",
+  "v": "cabdb99e",
+  "w": 1600,
+  "h": 900,
+  "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
+ },
+ {
   "src": "../assets/img/projects/military-museum/1",
   "v": "7326cdd7",
   "w": 1600,
