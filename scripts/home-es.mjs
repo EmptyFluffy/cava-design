@@ -8,7 +8,7 @@ const WA_EN = 'Hi Studio CAVA, I would like to talk about a project.';
 const WA_ES = 'Hola Studio CAVA, quisiera conversar sobre un proyecto.';
 
 export const SAME = new Set([
-  'Archello ↗', 'Architizer ↗', 'Instagram ↗',
+  'Archello ↗', 'Architizer ↗', 'Houzz ↗', 'Instagram ↗',
   // shared between the two pages on purpose
   'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'hola@cava.design', 'cava.design', 'cava.design ·', 'Arquitectura',
   'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'website', 'summary_large_image',
