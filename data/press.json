@@ -1,0 +1,14 @@
+{
+  "_note": "Press about Studio CAVA's own work: an outlet's editors choosing it, not a listing the studio posted itself (those are 'published' in projects.json). Newest first. Shown on the home (between press markers), on /studio/ and in the sheet of the project it is about. date is ISO; the card prints the month.",
+  "items": [
+    {
+      "outlet": "Archinect",
+      "project": "papagayo-404",
+      "image": "papagayo-404/1",
+      "date": "2026-10-14",
+      "url": "https://archinect.com/firms/project/150569745/papagayo-404/150569746",
+      "en": { "kind": "Featured project", "headline": "Papagayo 404, chosen by Archinect's editors for its home page" },
+      "es": { "kind": "Proyecto destacado", "headline": "Papagayo 404, elegido por los editores de Archinect para su portada" }
+    }
+  ]
+}

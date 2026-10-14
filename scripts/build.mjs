@@ -472,7 +472,8 @@ function projectPage(lang, p, i) {
     // the team: who drew it, and who worked on it with us
     ...Object.entries(p.team ?? {}).map(([role, names]) => [TEAM_ROLES[role][lang], names.join(', ')]),
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? s.tbc)}</dd></div>`).join('\n')
-    // where the project is published (its page on Houzz, Archello...): the last row, links out
+    // press about this project (data/press.json), then where it is published (Houzz, Archello...): links out
+    + press.filter((pr) => pr.project === p.slug).map((pr) => `\n        <div><dt>${lang === 'en' ? 'Press' : 'Prensa'}</dt><dd><a class="ulink" href="${esc(pr.url)}" target="_blank" rel="noopener">${esc(pr[lang].kind)}, ${esc(pr.outlet)}, ${lang === 'en' ? pressMonth(lang, pr.date) : pressMonth(lang, pr.date).toLowerCase()} ↗</a></dd></div>`).join('')
     + (p.published?.length ? `\n        <div><dt>${lang === 'en' ? 'Published in' : 'Publicado en'}</dt><dd>${p.published.map((x) => `<a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a>`).join(', ')}</dd></div>` : '');
   const placeholders = FACTS.some((k) => p[k] == null);
   // the gallery: every image after the cover, except those shown in the day/night comparison
@@ -916,6 +917,32 @@ ${profiles.map((x) => `      <li><a class="ulink" href="${esc(x.url)}" target="_
     </ul>
   </section>
 ` : '');
+// Press about the studio's work (data/press.json): an outlet's editors choosing it. A card per item, with the
+// project's own photo; on the home, on /studio/ and in the project's sheet.
+const PRESS_PATH = join(ROOT, 'data', 'press.json');
+const press = existsSync(PRESS_PATH) ? JSON.parse(readFileSync(PRESS_PATH, 'utf8')).items : [];
+const pressMonth = (lang, iso) => { const m = new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { month: 'long', year: 'numeric', timeZone: 'UTC' }); return m.charAt(0).toUpperCase() + m.slice(1); };
+const pressCards = (lang, up) => `<ul class="rec__cards press__cards">
+${press.map((pr) => { const [sl, n] = pr.image.split('/'); const [w, h] = sizes[pr.image]; const T = pr[lang]; return `      <li><a class="pcard" href="${esc(pr.url)}" target="_blank" rel="noopener">
+        <span class="pcard__img"><img src="${up}${imgBase(sl, n)}-800.webp?v=${imgVer(pr.image)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt=""></span>
+        <span class="pcard__body">
+          <span class="pcard__pub"><b>${esc(pr.outlet)}</b><span>${esc(T.kind)}</span></span>
+          <span class="pcard__title">${esc(T.headline)}</span>
+          <span class="label pcard__meta"><span>${pressMonth(lang, pr.date)}</span><span>${lang === 'en' ? 'See the feature' : 'Ver la publicación'} ↗</span></span>
+        </span>
+      </a></li>`; }).join('\n')}
+    </ul>`;
+const pressHome = (lang, up) => (press.length ? `<!-- press -->
+  <section class="press-home grid" id="press" aria-labelledby="press-home-title">
+    <h2 class="label press-home__label" id="press-home-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
+    ${pressCards(lang, up)}
+  </section>
+  <!-- /press -->` : '<!-- press --><!-- /press -->');
+const pressSection = (lang, up) => (press.length ? `  <section class="tw__sec grid press" id="press" aria-labelledby="press-title">
+    <h2 class="label tw__label" id="press-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
+    ${pressCards(lang, up)}
+  </section>
+` : '');
 function recognitionSection(lang, up) {
   if (!recognition) return '';
   const R = recognition[lang];
@@ -1008,7 +1035,7 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
-${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
+${pressSection(lang, up)}${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
     <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
   </section>` : ''}
 ${contact(lang, t.wa.general, up)}</main>
@@ -3250,6 +3277,7 @@ function homeCounts() {
     .replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('en'))
     .replace(/<!-- measure -->[\s\S]*?<!-- \/measure -->\n?|(?=<\/head>)/, () => `<!-- measure -->\n${measureTags('')}<!-- /measure -->\n`)
     .replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('en'))
+    .replace(/<!-- press -->[\s\S]*?<!-- \/press -->\n\n|(?=<!-- services -->)/, () => `${pressHome('en', '')}\n\n`)
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
   if (after !== before) writeFileSync(path, after);
 }
@@ -3294,6 +3322,7 @@ function homeEs() {
   // the services list is written from data in each language, not translated pair by pair
   html = html.replace(/(assets\/js\/renders\.es\.js)\?v=[0-9a-f]+/, (m, url) => `${url}?v=${assetVer(url)}`);
   if (services.length) html = html.replace(/<!-- services -->[\s\S]*?<!-- \/services -->/, servicesHome('es', '../', 'servicios/'));
+  html = html.replace(/<!-- press -->[\s\S]*?<!-- \/press -->/, () => pressHome('es', '../'));
   if (proc) html = html.replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => processSteps('es', `${UI.es.studioDir}/`)).replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => processFigure('es', '../'));
   // project names and photo credits read the same in both languages
   const names = new Set([...projects.map((p) => p.name), ...Object.values(proc?.images ?? {}).filter((im) => im.by).map((im) => `${im.by}, ${im.site}`)]);

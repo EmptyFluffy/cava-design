@@ -2250,6 +2250,12 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .rec__facts dd { margin: 0; font-size: var(--f-small); line-height: 1.45; }
 .rec__credit { color: var(--dark-grey); }
 @media (max-width: 1199px) { .rec__cards { grid-template-columns: minmax(0, 1fr); } }
+/* press about the studio's work: on the home, a band after the featured works (the label left, the cards
+   right, like the services); on /studio/, a section of its own. One card sits in half the column. */
+.press-home { padding: var(--pad-v) var(--margin) 0; row-gap: var(--s-2); align-items: start; }
+.press-home__label { grid-column: 1 / span 4; margin: 0; }
+.press__cards { grid-column: 5 / -1; }
+@media (max-width: 991px) { .press-home__label, .press__cards { grid-column: 1 / -1; } }
 @media (max-width: 991px) {
   .rec__presslabel, .rec__cards { grid-column: 1 / -1; }
   .rec__award, .rec__title { grid-column: 1 / -1; }
