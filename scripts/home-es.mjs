@@ -37,6 +37,7 @@ export const PAIRS = [
   ['<nav class="nav" aria-label="Main">', '<nav class="nav" aria-label="Principal">'],
   ['>Projects</a>', '>Proyectos</a>'],
   ['>Studio</a>', '>Estudio</a>'],
+  ['>Press</a>', '>Prensa</a>'],
   ['>Identity</a>', '>Identidad</a>'],
   ['>Library</a>', '>Biblioteca</a>'],
   ['>Contact</a>', '>Contacto</a>'],
