@@ -13,11 +13,22 @@
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
   const gtag = window.gtag;
   gtag('js', new Date());
-  if (ga4) gtag('config', ga4);
-  if (ads) gtag('config', ads);
+  // The studio's own devices: open cava.design/?internal=1 once on each (?internal=0 undoes it). They are
+  // then sent as traffic_type=internal, which Analytics' "Internal traffic" filter leaves out, and they
+  // never reach Google Ads as conversions.
+  let internal = false;
+  try {
+    const q = new URLSearchParams(location.search).get('internal');
+    if (q === '1') localStorage.setItem('cava-internal', '1');
+    if (q === '0') localStorage.removeItem('cava-internal');
+    internal = localStorage.getItem('cava-internal') === '1';
+  } catch (e) { /* private mode: counted as a visitor */ }
+  if (ga4) gtag('config', ga4, internal ? { traffic_type: 'internal' } : {});
+  if (ads && !internal) gtag('config', ads);
 
   const lang = document.documentElement.lang === 'es' ? 'es' : 'en';
-  const send = (name, params = {}) => gtag('event', name, { page_language: lang, ...params });
+  // events go to Analytics only (Ads takes the conversions it imports from there)
+  const send = (name, params = {}) => gtag('event', name, { send_to: ga4, page_language: lang, ...(internal ? { traffic_type: 'internal' } : {}), ...params });
 
   window.addEventListener('cava:enquiry', () => send('generate_lead', { lead_source: 'enquiry_form' }));
   window.addEventListener('cava:booked', (e) => send('book_call', { method: e.detail && e.detail.live ? 'calendar' : 'whatsapp_request' }));
