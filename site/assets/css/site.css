@@ -2252,10 +2252,8 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 @media (max-width: 1199px) { .rec__cards { grid-template-columns: minmax(0, 1fr); } }
 /* press about the studio's work: on the home, a band after the featured works (the label left, the cards
    right, like the services); on /studio/, a section of its own. One card sits in half the column. */
-.press-home { padding: var(--pad-v) var(--margin) 0; row-gap: var(--s-2); align-items: start; }
-.press-home__label { grid-column: 1 / span 4; margin: 0; }
 .press__cards { grid-column: 5 / -1; }
-@media (max-width: 991px) { .press-home__label, .press__cards { grid-column: 1 / -1; } }
+@media (max-width: 991px) { .press__cards { grid-column: 1 / -1; } }
 @media (max-width: 991px) {
   .rec__presslabel, .rec__cards { grid-column: 1 / -1; }
   .rec__award, .rec__title { grid-column: 1 / -1; }
@@ -2453,7 +2451,7 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
    its logo large on light grey. Logos in black, whatever their colours. ---------- */
 .press-home__all { grid-column: 5 / -1; justify-self: start; font-size: var(--f-small); }
 .press .press-home__all { grid-column: 5 / -1; }
-.pp-sec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2); padding: var(--s-3) 0 var(--s-4); border-top: 1px solid var(--grey); }
+.pp-sec { scroll-margin-top: 5rem; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2); padding: var(--s-3) 0 var(--s-4); border-top: 1px solid var(--grey); }
 .pp-sec__label { grid-column: 1 / span 4; margin: 0; }
 .pp-feat, .pp-grid, .pp-profiles { grid-column: 5 / -1; }
 .pp-logo { display: block; width: auto; filter: brightness(0); }

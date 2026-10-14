@@ -909,9 +909,12 @@ const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_P
 // ...and in every footer, beside Tools, Costa Rica and More
 // the footer's press group: the outlets that featured or published the work, each to the press page
 // (between <!-- elsewhere --> markers, the home's hand-written footer included). Paths from the site root.
-const elsewhereGroup = (lang, up = '') => { const names = [...new Set([...(pressData.items ?? []).map((x) => x.outlet), ...projects.flatMap((p) => (p.published ?? []).map((x) => x.name))])]; const href = `${up}${lang === 'en' ? 'press/' : 'es/prensa/'}`; return names.length ? `<!-- elsewhere --><div class="footer__group"><span class="label">${lang === 'en' ? '(Press)' : '(Prensa)'}</span>
-${names.map((n) => `        <a class="ulink" href="${href}">${esc(n)}</a>`).join('\n')}
-        <a class="ulink" href="${href}">${lang === 'en' ? 'All press' : 'Toda la prensa'} →</a>
+// Three links, like every footer group, so the last line of each column meets the foot of the CAVA word:
+// the three parts of the press page (the latest feature, the publications, the studio's profiles).
+const elsewhereGroup = (lang, up = '') => { const en = lang === 'en'; const items = pressData.items ?? []; const pubs = projects.some((p) => p.published?.length); const href = `${up}${en ? 'press/' : 'es/prensa/'}`; return items.length || pubs ? `<!-- elsewhere --><div class="footer__group"><span class="label">${en ? '(Press)' : '(Prensa)'}</span>
+${items.length ? `        <a class="ulink" href="${href}#featured">${esc(items[0].outlet)}</a>
+` : ''}${pubs ? `        <a class="ulink" href="${href}#published">${en ? 'Publications' : 'Publicaciones'}</a>
+` : ''}        <a class="ulink" href="${href}#profiles">${en ? 'Profiles' : 'Perfiles'}</a>
       </div><!-- /elsewhere -->` : '<!-- elsewhere --><!-- /elsewhere -->'; };
 const profilesSection = (lang) => (profiles.length ? `  <section class="tw__sec grid" aria-labelledby="elsewhere-title">
     <h2 class="label tw__label" id="elsewhere-title">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</h2>
@@ -941,13 +944,6 @@ ${press.map((pr) => { const [sl, n] = pr.image.split('/'); const [w, h] = sizes[
         </span>
       </a></li>`; }).join('\n')}
     </ul>`;
-const pressHome = (lang, up) => (press.length ? `<!-- press -->
-  <section class="press-home grid" id="press" aria-labelledby="press-home-title">
-    <h2 class="label press-home__label" id="press-home-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
-    ${pressCards(lang, up)}
-    <a class="ulink press-home__all" href="${up}${pressPath(lang)}">${lang === 'en' ? 'All press and publications' : 'Toda la prensa y las publicaciones'} →</a>
-  </section>
-  <!-- /press -->` : '<!-- press --><!-- /press -->');
 const pressSection = (lang, up) => (press.length ? `  <section class="tw__sec grid press" id="press" aria-labelledby="press-title">
     <h2 class="label tw__label" id="press-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
     ${pressCards(lang, up)}
@@ -993,17 +989,17 @@ ${bar(lang, up, paths, '')}
       <h1 class="display mf__title" id="pp-title"><span>${en ? 'Press and' : 'Prensa y'}</span><span class="right">${en ? 'publications' : 'publicaciones'}</span></h1>
       <p class="large mf__intro">${en ? 'Where our work has been featured and published.' : 'Dónde se ha destacado y publicado nuestra obra.'}</p>
     </header>
-${press.length ? `    <section class="pp-sec" aria-labelledby="pp-feat-title">
+${press.length ? `    <section class="pp-sec" id="featured" aria-labelledby="pp-feat-title">
       <h2 class="label pp-sec__label" id="pp-feat-title">${en ? '(Featured)' : '(Destacado)'}</h2>
 ${feat}
     </section>
-` : ''}${pubs.length ? `    <section class="pp-sec" aria-labelledby="pp-pub-title">
+` : ''}${pubs.length ? `    <section class="pp-sec" id="published" aria-labelledby="pp-pub-title">
       <h2 class="label pp-sec__label" id="pp-pub-title">${en ? '(Published)' : '(Publicado en)'}</h2>
       <ul class="pp-grid">
 ${cards}
       </ul>
     </section>
-` : ''}${profiles.length ? `    <section class="pp-sec pp-sec--profiles" aria-labelledby="pp-prof-title">
+` : ''}${profiles.length ? `    <section class="pp-sec pp-sec--profiles" id="profiles" aria-labelledby="pp-prof-title">
       <h2 class="label pp-sec__label" id="pp-prof-title">${en ? '(Studio profiles)' : '(Perfiles del estudio)'}</h2>
       <ul class="pp-profiles">
 ${profiles.map((x) => `        <li><a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a></li>`).join('\n')}
@@ -3349,7 +3345,7 @@ function homeCounts() {
     .replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('en'))
     .replace(/<!-- measure -->[\s\S]*?<!-- \/measure -->\n?|(?=<\/head>)/, () => `<!-- measure -->\n${measureTags('')}<!-- /measure -->\n`)
     .replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('en'))
-    .replace(/<!-- press -->[\s\S]*?<!-- \/press -->\n\n|(?=<!-- services -->)/, () => `${pressHome('en', '')}\n\n`)
+    .replace(/<!-- press -->[\s\S]*?<!-- \/press -->\n\n/, '')   // no press band on the home (Carlos, 2026-10-14): /press/ holds it
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
   if (after !== before) writeFileSync(path, after);
 }
@@ -3395,7 +3391,6 @@ function homeEs() {
   // the services list is written from data in each language, not translated pair by pair
   html = html.replace(/(assets\/js\/renders\.es\.js)\?v=[0-9a-f]+/, (m, url) => `${url}?v=${assetVer(url)}`);
   if (services.length) html = html.replace(/<!-- services -->[\s\S]*?<!-- \/services -->/, servicesHome('es', '../', 'servicios/'));
-  html = html.replace(/<!-- press -->[\s\S]*?<!-- \/press -->/, () => pressHome('es', '../'));
   if (proc) html = html.replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => processSteps('es', `${UI.es.studioDir}/`)).replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => processFigure('es', '../'));
   // project names and photo credits read the same in both languages
   const names = new Set([...projects.map((p) => p.name), ...Object.values(proc?.images ?? {}).filter((im) => im.by).map((im) => `${im.by}, ${im.site}`)]);
