@@ -934,22 +934,6 @@ const pressPath = (lang) => (lang === 'en' ? 'press/' : 'es/prensa/');
 const publications = () => projects.flatMap((p) => (p.published ?? []).map((x) => ({ ...x, p })));
 const outletLogo = (up, name, cls = 'pp-logo') => { const o = outlets[name]; return o ? `<img class="${cls}" src="${up}assets/img/press/${o.logo}?v=${assetVer(`assets/img/press/${o.logo}`)}" width="${o.w}" height="${o.h}"${o.scale ? ` style="--s: ${o.scale}"` : ''} alt="${esc(name)}" loading="lazy" decoding="async">` : `<span class="${cls} pp-logo--text">${esc(name)}</span>`; };
 const pressMonth = (lang, iso) => { const m = new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { month: 'long', year: 'numeric', timeZone: 'UTC' }); return m.charAt(0).toUpperCase() + m.slice(1); };
-const pressCards = (lang, up) => `<ul class="rec__cards press__cards">
-${press.map((pr) => { const [sl, n] = pr.image.split('/'); const [w, h] = sizes[pr.image]; const T = pr[lang]; return `      <li><a class="pcard" href="${esc(pr.url)}" target="_blank" rel="noopener">
-        <span class="pcard__img"><img src="${up}${imgBase(sl, n)}-800.webp?v=${imgVer(pr.image)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt=""></span>
-        <span class="pcard__body">
-          <span class="pcard__pub"><b>${esc(pr.outlet)}</b><span>${esc(T.kind)}</span></span>
-          <span class="pcard__title">${esc(T.headline)}</span>
-          <span class="label pcard__meta"><span>${pressMonth(lang, pr.date)}</span><span>${lang === 'en' ? 'See the feature' : 'Ver la publicación'} ↗</span></span>
-        </span>
-      </a></li>`; }).join('\n')}
-    </ul>`;
-const pressSection = (lang, up) => (press.length ? `  <section class="tw__sec grid press" id="press" aria-labelledby="press-title">
-    <h2 class="label tw__label" id="press-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
-    ${pressCards(lang, up)}
-    <a class="ulink press-home__all" href="${up}${pressPath(lang)}">${lang === 'en' ? 'All press and publications' : 'Toda la prensa y las publicaciones'} →</a>
-  </section>
-` : '');
 // ---------- /press/ and /es/prensa/: press about the studio's work, then every place it is published ----------
 function pressPage(lang) {
   const en = lang === 'en';
@@ -999,7 +983,21 @@ ${feat}
 ${cards}
       </ul>
     </section>
-` : ''}${profiles.length ? `    <section class="pp-sec pp-sec--profiles" id="profiles" aria-labelledby="pp-prof-title">
+` : ''}${recognition ? recognition.items.filter((it) => it.press?.length).map((it) => { const T = it[lang]; return `    <section class="pp-sec" id="before" aria-labelledby="pp-before-title">
+      <h2 class="label pp-sec__label" id="pp-before-title">${en ? '(Before the studio)' : '(Antes del estudio)'}</h2>
+      <div class="pp-before">
+        <div class="pp-before__head">
+          <h3 class="pp-before__title">${esc(it.name)}</h3>
+          <p class="label pp-before__award">${esc(T.award)}</p>
+          <p class="pp-before__credits">${esc(T.credits)}</p>
+        </div>
+        <ul class="rec__cards">
+${recPressCards(lang, up, it)}
+        </ul>
+        <p class="label"><a class="ulink" href="${up}${studioPath(lang)}#recognition">${en ? 'The project, on our Studio page' : 'El proyecto, en nuestra página de Estudio'} →</a></p>
+      </div>
+    </section>
+`; }).join('') : ''}${profiles.length ? `    <section class="pp-sec pp-sec--profiles" id="profiles" aria-labelledby="pp-prof-title">
       <h2 class="label pp-sec__label" id="pp-prof-title">${en ? '(Studio profiles)' : '(Perfiles del estudio)'}</h2>
       <ul class="pp-profiles">
 ${profiles.map((x) => `        <li><a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a></li>`).join('\n')}
@@ -1010,6 +1008,14 @@ ${profiles.map((x) => `        <li><a class="ulink" href="${esc(x.url)}" target=
 ${footer(lang, up, paths)}${end}`;
 }
 
+const recPressCards = (lang, up, it) => it.press.map((pr) => `          <li><a class="pcard" href="${pr.url}" target="_blank" rel="noopener"${pr.lang && pr.lang !== lang ? ` hreflang="${pr.lang}"` : ''}>
+            <span class="pcard__img"><img src="${up}assets/img/recognition/${pr.image}.webp?v=${assetVer(`assets/img/recognition/${pr.image}.webp`)}" width="800" height="600" loading="lazy" decoding="async" alt=""></span>
+            <span class="pcard__body">
+              <span class="pcard__pub"><b>${esc(pr.name)}</b><span>${esc(pr.edition ?? '')}</span></span>
+              <span class="pcard__title"${pr.lang && pr.lang !== lang ? ` lang="${pr.lang}"` : ''}>${esc(pr.headline)}</span>
+              <span class="label pcard__meta"><span>${esc(pr.date[lang])}</span><span>${lang === 'en' ? 'Read the article' : 'Leer el artículo'} ↗</span></span>
+            </span>
+          </a></li>`).join('\n');
 function recognitionSection(lang, up) {
   if (!recognition) return '';
   const R = recognition[lang];
@@ -1033,16 +1039,10 @@ ${it.images.map((im) => { const b = `${up}assets/img/recognition/${it.id}-${im.k
       <div class="rec__press grid">
         <h4 class="label rec__presslabel">${lang === 'en' ? '(Press)' : '(Prensa)'}</h4>
         <ul class="rec__cards">
-${it.press.map((pr) => `          <li><a class="pcard" href="${pr.url}" target="_blank" rel="noopener"${pr.lang && pr.lang !== lang ? ` hreflang="${pr.lang}"` : ''}>
-            <span class="pcard__img"><img src="${up}assets/img/recognition/${pr.image}.webp?v=${assetVer(`assets/img/recognition/${pr.image}.webp`)}" width="800" height="600" loading="lazy" decoding="async" alt=""></span>
-            <span class="pcard__body">
-              <span class="pcard__pub"><b>${esc(pr.name)}</b><span>${esc(pr.edition ?? '')}</span></span>
-              <span class="pcard__title"${pr.lang && pr.lang !== lang ? ` lang="${pr.lang}"` : ''}>${esc(pr.headline)}</span>
-              <span class="label pcard__meta"><span>${esc(pr.date[lang])}</span><span>${lang === 'en' ? 'Read the article' : 'Leer el artículo'} ↗</span></span>
-            </span>
-          </a></li>`).join('\n')}
+${recPressCards(lang, up, it)}
         </ul>
-      </div>
+${press.length || publications().length ? `        <a class="ulink rec__all" href="${up}${pressPath(lang)}">${lang === 'en' ? 'All press and publications' : 'Toda la prensa y las publicaciones'} →</a>
+` : ''}      </div>
     </article>`; }).join('\n')}
   </section>
 `;
@@ -1102,7 +1102,7 @@ ${beliefs}
 ${stages}
     </ol>
   </section>
-${pressSection(lang, up)}${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
+${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
     <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
   </section>` : ''}
 ${contact(lang, t.wa.general, up)}</main>

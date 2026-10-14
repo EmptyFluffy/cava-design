@@ -2252,8 +2252,6 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 @media (max-width: 1199px) { .rec__cards { grid-template-columns: minmax(0, 1fr); } }
 /* press about the studio's work: on the home, a band after the featured works (the label left, the cards
    right, like the services); on /studio/, a section of its own. One card sits in half the column. */
-.press__cards { grid-column: 5 / -1; }
-@media (max-width: 991px) { .press__cards { grid-column: 1 / -1; } }
 @media (max-width: 991px) {
   .rec__presslabel, .rec__cards { grid-column: 1 / -1; }
   .rec__award, .rec__title { grid-column: 1 / -1; }
@@ -2449,8 +2447,6 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 
 /* ---------- /press/: the featured press as one wide card (photo, logo, headline), then a card per publication,
    its logo large on light grey. Logos in black, whatever their colours. ---------- */
-.press-home__all { grid-column: 5 / -1; justify-self: start; font-size: var(--f-small); }
-.press .press-home__all { grid-column: 5 / -1; }
 .pp-sec { scroll-margin-top: 5rem; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2); padding: var(--s-3) 0 var(--s-4); border-top: 1px solid var(--grey); }
 .pp-sec__label { grid-column: 1 / span 4; margin: 0; }
 .pp-feat, .pp-grid, .pp-profiles { grid-column: 5 / -1; }
@@ -2488,9 +2484,18 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .pp-card__project { font-size: var(--f-large); font-weight: var(--w-strong); letter-spacing: -0.02em; }
 .pp-card__meta { display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; color: var(--dark-grey); }
 .pp-card:hover .pp-card__meta span:last-child { color: var(--black); }
+/* press before the studio: San José 2050, credited to the office that led it */
+.pp-before { grid-column: 5 / -1; display: grid; gap: var(--s-2); }
+.pp-before__head { display: grid; gap: 0.6rem; max-width: 46rem; }
+.pp-before__title { margin: 0; font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.025em; line-height: 1.1; }
+.pp-before__award { margin: 0; color: var(--dark-grey); }
+.pp-before__credits { margin: 0; color: var(--dark-grey); }
+.pp-before .rec__cards { grid-column: auto; }
+.rec__all { grid-column: 5 / -1; justify-self: start; font-size: var(--f-small); }
+@media (max-width: 991px) { .rec__all { grid-column: 1 / -1; } }
 .pp-profiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; }
 @media (max-width: 991px) {
-  .pp-sec__label, .pp-feat, .pp-grid, .pp-profiles, .press-home__all, .press .press-home__all { grid-column: 1 / -1; }
+  .pp-sec__label, .pp-feat, .pp-grid, .pp-profiles, .pp-before { grid-column: 1 / -1; }
   .pp-feat__card { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 599px) { .pp-grid { grid-template-columns: minmax(0, 1fr); } .pp-card__logo { aspect-ratio: 5 / 2; } }
