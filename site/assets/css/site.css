@@ -2449,4 +2449,44 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
   .nav__links { flex: 1 1 auto; text-align: center; }   /* the language link, midway between the name and the buttons */
 }
 
+/* ---------- /press/: the featured press as one wide card (photo, logo, headline), then a card per publication,
+   its logo large on light grey. Logos in black, whatever their colours. ---------- */
+.press-home__all { grid-column: 5 / -1; justify-self: start; font-size: var(--f-small); }
+.press .press-home__all { grid-column: 5 / -1; }
+.pp-sec { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: var(--s-2); padding: var(--s-3) 0 var(--s-4); border-top: 1px solid var(--grey); }
+.pp-sec__label { grid-column: 1 / span 4; margin: 0; }
+.pp-feat, .pp-grid, .pp-profiles { grid-column: 5 / -1; }
+.pp-logo { display: block; width: auto; filter: brightness(0); }
+.pp-logo--text { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.02em; filter: none; }
+.pp-feat { display: grid; gap: 0.9rem; }
+.pp-feat__card { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); background: var(--light-grey); border-radius: 0.9rem; overflow: hidden; color: inherit; transition: background-color 0.3s; }
+.pp-feat__card:hover { background: var(--grey); }
+.pp-feat__card:focus-visible, .pp-card:focus-visible { outline: 2px solid var(--black); outline-offset: 3px; }
+.pp-feat__img { display: block; aspect-ratio: 4 / 3; overflow: hidden; }
+.pp-feat__img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s var(--ease); }
+.pp-feat__card:hover .pp-feat__img img { transform: scale(1.03); }
+.pp-feat__body { display: flex; flex-direction: column; gap: 1.2rem; padding: clamp(1.25rem, 0.8rem + 1.6vw, 2.25rem); min-width: 0; }
+.pp-feat__top { display: grid; gap: 0.9rem; }
+.pp-feat__top .pp-logo { height: calc(clamp(1.4rem, 1rem + 1.2vw, 2.1rem) * var(--s, 1)); }
+.pp-feat__kind { color: var(--dark-grey); }
+.pp-feat__title { font-size: var(--f-h4); font-weight: var(--w-strong); line-height: 1.15; letter-spacing: -0.025em; text-wrap: balance; }
+.pp-feat__go { margin-top: auto; }
+.pp-feat__card:hover .pp-feat__go { text-decoration: underline; text-underline-offset: 0.2em; }
+.pp-feat__project { margin: 0; }
+.pp-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
+.pp-card { display: grid; grid-template-rows: auto 1fr; height: 100%; border: 1px solid var(--grey); border-radius: 0.9rem; overflow: hidden; color: inherit; transition: border-color 0.3s; }
+.pp-card:hover { border-color: var(--black); }
+.pp-card__logo { display: grid; place-items: center; aspect-ratio: 16 / 7; background: var(--light-grey); padding: 1.5rem; }
+.pp-card__logo .pp-logo { height: calc(clamp(1.6rem, 1.1rem + 1.4vw, 2.6rem) * var(--s, 1)); max-width: 70%; object-fit: contain; }
+.pp-card__body { display: grid; gap: 0.5rem; padding: 1rem 1.1rem 1.1rem; }
+.pp-card__project { font-size: var(--f-large); font-weight: var(--w-strong); letter-spacing: -0.02em; }
+.pp-card__meta { display: flex; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; color: var(--dark-grey); }
+.pp-card:hover .pp-card__meta span:last-child { color: var(--black); }
+.pp-profiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; }
+@media (max-width: 991px) {
+  .pp-sec__label, .pp-feat, .pp-grid, .pp-profiles, .press-home__all, .press .press-home__all { grid-column: 1 / -1; }
+  .pp-feat__card { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 599px) { .pp-grid { grid-template-columns: minmax(0, 1fr); } .pp-card__logo { aspect-ratio: 5 / 2; } }
+
 /* 2026-10-12: town photos and cards; town strips and the permit tool head; the enquiry fits every screen */

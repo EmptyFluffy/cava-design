@@ -39,6 +39,7 @@ export const PAIRS = [
   ['>Studio</a>', '>Estudio</a>'],
   ['>Identity</a>', '>Identidad</a>'],
   ['>Library</a>', '>Biblioteca</a>'],
+  ['>Press</a>', '>Prensa</a>'],
   ['>Contact</a>', '>Contacto</a>'],
   ['aria-label="Client portal"', 'aria-label="Portal de clientes"'],
   ['<span class="portal-btn__t">Clients</span>', '<span class="portal-btn__t">Clientes</span>'],

@@ -272,6 +272,7 @@ ${guides.length ? `        <a class="ulink" href="${up}${guidesIndexPath(lang)}"
       <div class="footer__group"><span class="label">${t.more}</span>
 ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
 ` : ''}${books ? `        <a class="ulink" href="${up}${libraryPath(lang)}">${lang === 'en' ? 'Library' : 'Biblioteca'}</a>
+` : ''}${press.length || publications().length ? `        <a class="ulink" href="${up}${pressPath(lang)}">${lang === 'en' ? 'Press' : 'Prensa'}</a>
 ` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
       </div>
       ${elsewhereGroup(lang)}
@@ -920,7 +921,13 @@ ${profiles.map((x) => `      <li><a class="ulink" href="${esc(x.url)}" target="_
 // Press about the studio's work (data/press.json): an outlet's editors choosing it. A card per item, with the
 // project's own photo; on the home, on /studio/ and in the project's sheet.
 const PRESS_PATH = join(ROOT, 'data', 'press.json');
-const press = existsSync(PRESS_PATH) ? JSON.parse(readFileSync(PRESS_PATH, 'utf8')).items : [];
+const pressData = existsSync(PRESS_PATH) ? JSON.parse(readFileSync(PRESS_PATH, 'utf8')) : { items: [], outlets: {} };
+const press = pressData.items;
+const outlets = pressData.outlets ?? {};
+const pressPath = (lang) => (lang === 'en' ? 'press/' : 'es/prensa/');
+// every listing of a project on another site (projects.json "published"), newest project first as in the data
+const publications = () => projects.flatMap((p) => (p.published ?? []).map((x) => ({ ...x, p })));
+const outletLogo = (up, name, cls = 'pp-logo') => { const o = outlets[name]; return o ? `<img class="${cls}" src="${up}assets/img/press/${o.logo}?v=${assetVer(`assets/img/press/${o.logo}`)}" width="${o.w}" height="${o.h}"${o.scale ? ` style="--s: ${o.scale}"` : ''} alt="${esc(name)}" loading="lazy" decoding="async">` : `<span class="${cls} pp-logo--text">${esc(name)}</span>`; };
 const pressMonth = (lang, iso) => { const m = new Date(`${iso}T12:00:00Z`).toLocaleDateString(lang === 'en' ? 'en-GB' : 'es-CR', { month: 'long', year: 'numeric', timeZone: 'UTC' }); return m.charAt(0).toUpperCase() + m.slice(1); };
 const pressCards = (lang, up) => `<ul class="rec__cards press__cards">
 ${press.map((pr) => { const [sl, n] = pr.image.split('/'); const [w, h] = sizes[pr.image]; const T = pr[lang]; return `      <li><a class="pcard" href="${esc(pr.url)}" target="_blank" rel="noopener">
@@ -936,13 +943,71 @@ const pressHome = (lang, up) => (press.length ? `<!-- press -->
   <section class="press-home grid" id="press" aria-labelledby="press-home-title">
     <h2 class="label press-home__label" id="press-home-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
     ${pressCards(lang, up)}
+    <a class="ulink press-home__all" href="${up}${pressPath(lang)}">${lang === 'en' ? 'All press and publications' : 'Toda la prensa y las publicaciones'} →</a>
   </section>
   <!-- /press -->` : '<!-- press --><!-- /press -->');
 const pressSection = (lang, up) => (press.length ? `  <section class="tw__sec grid press" id="press" aria-labelledby="press-title">
     <h2 class="label tw__label" id="press-title">${lang === 'en' ? '(Press)' : '(Prensa)'}</h2>
     ${pressCards(lang, up)}
+    <a class="ulink press-home__all" href="${up}${pressPath(lang)}">${lang === 'en' ? 'All press and publications' : 'Toda la prensa y las publicaciones'} →</a>
   </section>
 ` : '');
+// ---------- /press/ and /es/prensa/: press about the studio's work, then every place it is published ----------
+function pressPage(lang) {
+  const en = lang === 'en';
+  const paths = { en: pressPath('en'), es: pressPath('es') };
+  const up = upFrom(paths[lang]);
+  const pubs = publications();
+  const names = [...new Set([...press.map((x) => x.outlet), ...pubs.map((x) => x.name)])];
+  const title = en ? 'Press and publications | Studio CAVA' : 'Prensa y publicaciones | Studio CAVA';
+  const description = en
+    ? `Studio CAVA's work in the press and on ${names.join(', ').replace(/, ([^,]*)$/, ' and $1')}: featured projects, published projects and the studio's profiles.`
+    : `La obra de Studio CAVA en la prensa y en ${names.join(', ').replace(/, ([^,]*)$/, ' y $1')}: proyectos destacados, proyectos publicados y los perfiles del estudio.`;
+  const feat = press.map((pr) => { const [sl, n] = pr.image.split('/'); const T = pr[lang]; const P = bySlug.get(pr.project); return `    <article class="pp-feat">
+      <a class="pp-feat__card" href="${esc(pr.url)}" target="_blank" rel="noopener">
+        <span class="pp-feat__img">${picture(up, sl, Number(n), altOf(lang, P, Number(n)), '(min-width: 768px) 58vw, 100vw')}</span>
+        <span class="pp-feat__body">
+          <span class="pp-feat__top">${outletLogo(up, pr.outlet)}<span class="label pp-feat__kind">${esc(T.kind)} · ${pressMonth(lang, pr.date)}</span></span>
+          <span class="pp-feat__title">${esc(T.headline)}</span>
+          <span class="label pp-feat__go">${en ? `See it on ${esc(pr.outlet)}` : `Verlo en ${esc(pr.outlet)}`} ↗</span>
+        </span>
+      </a>
+      <p class="label pp-feat__project"><a class="ulink" href="${up}${projectPath(lang, P.slug)}">${en ? 'The project' : 'El proyecto'}: ${esc(P.name)} →</a></p>
+    </article>`; }).join('\n');
+  const cards = pubs.map((x) => `      <li><a class="pp-card" href="${esc(x.url)}" target="_blank" rel="noopener">
+        <span class="pp-card__logo">${outletLogo(up, x.name)}</span>
+        <span class="pp-card__body"><span class="pp-card__project">${esc(x.p.name)}</span><span class="label pp-card__meta"><span>${esc(tr(lang, x.p, 'type'))}${x.p.location ? `, ${esc(String(tr(lang, x.p, 'location')).split(',')[0])}` : ''}</span><span>${en ? 'Project page' : 'Ficha del proyecto'} ↗</span></span></span>
+      </a></li>`).join('\n');
+  return head(lang, { title, description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up }) + `<div id="top"></div>
+${bar(lang, up, paths, '')}
+<main class="page">
+  <article class="mf pp" aria-labelledby="pp-title">
+    <header class="mf__head grid">
+      <p class="label mf__label">${en ? '(Press)' : '(Prensa)'}</p>
+      <h1 class="display mf__title" id="pp-title"><span>${en ? 'Press and' : 'Prensa y'}</span><span class="right">${en ? 'publications' : 'publicaciones'}</span></h1>
+      <p class="large mf__intro">${en ? 'Where our work has been featured and published.' : 'Dónde se ha destacado y publicado nuestra obra.'}</p>
+    </header>
+${press.length ? `    <section class="pp-sec" aria-labelledby="pp-feat-title">
+      <h2 class="label pp-sec__label" id="pp-feat-title">${en ? '(Featured)' : '(Destacado)'}</h2>
+${feat}
+    </section>
+` : ''}${pubs.length ? `    <section class="pp-sec" aria-labelledby="pp-pub-title">
+      <h2 class="label pp-sec__label" id="pp-pub-title">${en ? '(Published)' : '(Publicado en)'}</h2>
+      <ul class="pp-grid">
+${cards}
+      </ul>
+    </section>
+` : ''}${profiles.length ? `    <section class="pp-sec pp-sec--profiles" aria-labelledby="pp-prof-title">
+      <h2 class="label pp-sec__label" id="pp-prof-title">${en ? '(Studio profiles)' : '(Perfiles del estudio)'}</h2>
+      <ul class="pp-profiles">
+${profiles.map((x) => `        <li><a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a></li>`).join('\n')}
+      </ul>
+    </section>
+` : ''}  </article>
+</main>
+${footer(lang, up, paths)}${end}`;
+}
+
 function recognitionSection(lang, up) {
   if (!recognition) return '';
   const R = recognition[lang];
@@ -3163,6 +3228,7 @@ function sitemap() {
     ...(booking ? [{ en: bookPath('en'), es: bookPath('es') }] : []),
     ...(permitGuide ? [{ en: permitPath('en'), es: permitPath('es') }] : []),
     { en: privacyPath('en'), es: privacyPath('es') },
+    ...(press.length || publications().length ? [{ en: pressPath('en'), es: pressPath('es') }] : []),
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
   const pics = (pr) => (pr.imgs ?? []).map((u) => `\n    <image:image><image:loc>${u}</image:loc></image:image>`).join('');
@@ -3313,6 +3379,7 @@ function homeEs() {
     if (u.startsWith('services/')) return `servicios/${u.slice('services/'.length)}`;
     if (u.startsWith('portal/')) return u;
     if (u === 'privacy/') return 'privacidad/';
+    if (u === 'press/') return 'prensa/';
     return `../${u}`;
   };
   html = html.replace(/\s(href|src|srcset|imagesrcset|poster|data-webm|data-mp4|data-webm-p|data-mp4-p)="([^"]*)"/g, (m, attr, val) => {
@@ -3491,6 +3558,7 @@ for (const lang of ['en', 'es']) {
   for (const [from, to] of Object.entries(RENAMED)) write(`${projectPath(lang, from)}index.html`, forward(projectPath(lang, to), `../${to}/`));
   if (permitGuide) write(`${permitPath(lang)}index.html`, permitPage(lang));
   write(`${privacyPath(lang)}index.html`, privacyPage(lang));
+  if (press.length || publications().length) write(`${pressPath(lang)}index.html`, pressPage(lang));
   if (services.length) {
     write(`${servicesPath(lang)}index.html`, servicesIndex(lang));
     services.forEach((x, i) => write(`${servicePath(lang, x)}index.html`, servicePage(lang, x, i)));

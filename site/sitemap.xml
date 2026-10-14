@@ -1484,4 +1484,16 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/privacidad/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/privacy/"/>
   </url>
+  <url>
+    <loc>https://cava.design/press/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/press/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/prensa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/press/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/prensa/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/press/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/prensa/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/press/"/>
+  </url>
 </urlset>

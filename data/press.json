@@ -1,5 +1,5 @@
 {
-  "_note": "Press about Studio CAVA's own work: an outlet's editors choosing it, not a listing the studio posted itself (those are 'published' in projects.json). Newest first. Shown on the home (between press markers), on /studio/ and in the sheet of the project it is about. date is ISO; the card prints the month.",
+  "_note": "Press about Studio CAVA's own work: an outlet's editors choosing it, not a listing the studio posted itself (those are 'published' in projects.json). Newest first. Shown on the home (between press markers), on /studio/ and in the sheet of the project it is about. date is ISO; the card prints the month. outlets: the logo of each outlet, in site/assets/img/press (shown in black), for the press page and its cards. Logos identify the publication; the Archinect wordmark is traced from the share image Archinect sent with its feature.",
   "items": [
     {
       "outlet": "Archinect",
@@ -7,8 +7,41 @@
       "image": "papagayo-404/1",
       "date": "2026-10-14",
       "url": "https://archinect.com/firms/project/150569745/papagayo-404/150569746",
-      "en": { "kind": "Featured project", "headline": "Papagayo 404, chosen by Archinect's editors for its home page" },
-      "es": { "kind": "Proyecto destacado", "headline": "Papagayo 404, elegido por los editores de Archinect para su portada" }
+      "en": {
+        "kind": "Featured project",
+        "headline": "Papagayo 404, chosen by Archinect's editors for its home page"
+      },
+      "es": {
+        "kind": "Proyecto destacado",
+        "headline": "Papagayo 404, elegido por los editores de Archinect para su portada"
+      }
     }
-  ]
+  ],
+  "outlets": {
+    "Archinect": {
+      "logo": "archinect.png",
+      "w": 1005,
+      "h": 115,
+      "home": "https://archinect.com"
+    },
+    "Architizer": {
+      "logo": "architizer.svg",
+      "w": 400,
+      "h": 77,
+      "home": "https://architizer.com"
+    },
+    "Archello": {
+      "logo": "archello.svg",
+      "w": 133,
+      "h": 24,
+      "home": "https://archello.com",
+      "scale": 0.8
+    },
+    "Houzz": {
+      "logo": "houzz.svg",
+      "w": 557,
+      "h": 128,
+      "home": "https://www.houzz.com"
+    }
+  }
 }
