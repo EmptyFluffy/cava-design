@@ -2473,6 +2473,10 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .pp-feat__go { margin-top: auto; }
 .pp-feat__card:hover .pp-feat__go { text-decoration: underline; text-underline-offset: 0.2em; }
 .pp-feat__project { margin: 0; }
+/* the proof: the outlet's page as it was, framed like a document */
+.pp-proof { margin: var(--s-2) 0 0; display: grid; gap: 0.7rem; }
+.pp-proof img { width: 100%; height: auto; display: block; border: 1px solid var(--grey); border-radius: 0.6rem; }
+.pp-proof__cap { color: var(--dark-grey); }
 .pp-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap); }
 .pp-card { display: grid; grid-template-rows: auto 1fr; height: 100%; border: 1px solid var(--grey); border-radius: 0.9rem; overflow: hidden; color: inherit; transition: border-color 0.3s; }
 .pp-card:hover { border-color: var(--black); }

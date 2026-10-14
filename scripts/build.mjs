@@ -975,6 +975,10 @@ function pressPage(lang) {
         </span>
       </a>
       <p class="label pp-feat__project"><a class="ulink" href="${up}${projectPath(lang, P.slug)}">${en ? 'The project' : 'El proyecto'}: ${esc(P.name)} →</a></p>
+${pr.proof ? (() => { const f = pr.proof, b = `${up}assets/img/press/${f.file}`, v = `?v=${assetVer(`assets/img/press/${f.file}-1600.webp`)}`; return `      <figure class="pp-proof">
+        <img src="${b}-1600.webp${v}" srcset="${b}-800.webp${v} 800w, ${b}-1600.webp${v} 1600w" sizes="(min-width: 992px) 64vw, 92vw" width="${f.w}" height="${f.h}" loading="lazy" decoding="async" alt="${esc(f[`alt_${lang}`])}">
+        <figcaption class="label pp-proof__cap">${esc(f[lang])}</figcaption>
+      </figure>`; })() : ''}
     </article>`; }).join('\n');
   const cards = pubs.map((x) => `      <li><a class="pp-card" href="${esc(x.url)}" target="_blank" rel="noopener">
         <span class="pp-card__logo">${(() => { const n = x.image ?? 1; const k = `${x.p.slug}/${n}`; const [w, h] = sizes[k]; return `<img class="pp-card__bg" src="${up}${imgBase(x.p.slug, n)}-800.webp?v=${imgVer(k)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="">`; })()}${outletLogo(up, x.name)}</span>

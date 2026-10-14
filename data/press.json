@@ -14,6 +14,15 @@
       "es": {
         "kind": "Proyecto destacado",
         "headline": "Papagayo 404, elegido por los editores de Archinect para su portada"
+      },
+      "proof": {
+        "file": "archinect-home-2026-10-14",
+        "w": 1600,
+        "h": 751,
+        "en": "Archinect's home page on 14 October 2026, with Papagayo 404 among its projects. Screenshot.",
+        "es": "La portada de Archinect el 14 de octubre de 2026, con Papagayo 404 entre sus proyectos. Captura de pantalla.",
+        "alt_en": "Screenshot of Archinect's home page with the Papagayo 404 project tile outlined",
+        "alt_es": "Captura de la portada de Archinect con el recuadro del proyecto Papagayo 404 marcado"
       }
     }
   ],
