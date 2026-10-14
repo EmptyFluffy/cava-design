@@ -8,7 +8,7 @@ const WA_EN = 'Hi Studio CAVA, I would like to talk about a project.';
 const WA_ES = 'Hola Studio CAVA, quisiera conversar sobre un proyecto.';
 
 export const SAME = new Set([
-  'Archello ↗', 'Architizer ↗', 'Archinect ↗', 'Houzz ↗', 'Instagram ↗', 'Archinect',
+  'Archello ↗', 'Architizer ↗', 'Archinect ↗', 'Houzz ↗', 'Instagram ↗', 'Archinect', 'Architizer', 'Archello', 'Houzz',
   // shared between the two pages on purpose
   'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'hola@cava.design', 'cava.design', 'cava.design ·', 'Arquitectura',
   'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'website', 'summary_large_image',
@@ -39,7 +39,6 @@ export const PAIRS = [
   ['>Studio</a>', '>Estudio</a>'],
   ['>Identity</a>', '>Identidad</a>'],
   ['>Library</a>', '>Biblioteca</a>'],
-  ['>Press</a>', '>Prensa</a>'],
   ['>Contact</a>', '>Contacto</a>'],
   ['aria-label="Client portal"', 'aria-label="Portal de clientes"'],
   ['<span class="portal-btn__t">Clients</span>', '<span class="portal-btn__t">Clientes</span>'],

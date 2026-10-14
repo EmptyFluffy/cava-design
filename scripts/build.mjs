@@ -272,10 +272,9 @@ ${guides.length ? `        <a class="ulink" href="${up}${guidesIndexPath(lang)}"
       <div class="footer__group"><span class="label">${t.more}</span>
 ${identity ? `        <a class="ulink" href="${up}${identityPath(lang)}">${esc(identity[lang].footer)}</a>
 ` : ''}${books ? `        <a class="ulink" href="${up}${libraryPath(lang)}">${lang === 'en' ? 'Library' : 'Biblioteca'}</a>
-` : ''}${press.length || publications().length ? `        <a class="ulink" href="${up}${pressPath(lang)}">${lang === 'en' ? 'Press' : 'Prensa'}</a>
 ` : ''}        <a class="ulink" href="${up}${portalPath(lang)}">${n.portal}</a>
       </div>
-      ${elsewhereGroup(lang)}
+      ${elsewhereGroup(lang, up)}
     </div>
   </div>
   <div class="grid footer__bottom label">
@@ -908,9 +907,12 @@ const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH,
 const PROFILES_PATH = join(ROOT, 'data', 'profiles.json');
 const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_PATH, 'utf8')).items : []).filter((x) => x.live && x.url);
 // ...and in every footer, beside Tools, Costa Rica and More
-const elsewhereGroup = (lang) => (profiles.length ? `<!-- elsewhere --><div class="footer__group"><span class="label">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</span>
-${profiles.map((x) => `        <a class="ulink" href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)} ↗</a>`).join('\n')}
-      </div><!-- /elsewhere -->` : '<!-- elsewhere --><!-- /elsewhere -->');
+// the footer's press group: the outlets that featured or published the work, each to the press page
+// (between <!-- elsewhere --> markers, the home's hand-written footer included). Paths from the site root.
+const elsewhereGroup = (lang, up = '') => { const names = [...new Set([...(pressData.items ?? []).map((x) => x.outlet), ...projects.flatMap((p) => (p.published ?? []).map((x) => x.name))])]; const href = `${up}${lang === 'en' ? 'press/' : 'es/prensa/'}`; return names.length ? `<!-- elsewhere --><div class="footer__group"><span class="label">${lang === 'en' ? '(Press)' : '(Prensa)'}</span>
+${names.map((n) => `        <a class="ulink" href="${href}">${esc(n)}</a>`).join('\n')}
+        <a class="ulink" href="${href}">${lang === 'en' ? 'All press' : 'Toda la prensa'} →</a>
+      </div><!-- /elsewhere -->` : '<!-- elsewhere --><!-- /elsewhere -->'; };
 const profilesSection = (lang) => (profiles.length ? `  <section class="tw__sec grid" aria-labelledby="elsewhere-title">
     <h2 class="label tw__label" id="elsewhere-title">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</h2>
     <ul class="svc__for">
@@ -975,7 +977,7 @@ function pressPage(lang) {
       <p class="label pp-feat__project"><a class="ulink" href="${up}${projectPath(lang, P.slug)}">${en ? 'The project' : 'El proyecto'}: ${esc(P.name)} →</a></p>
     </article>`; }).join('\n');
   const cards = pubs.map((x) => `      <li><a class="pp-card" href="${esc(x.url)}" target="_blank" rel="noopener">
-        <span class="pp-card__logo">${outletLogo(up, x.name)}</span>
+        <span class="pp-card__logo">${(() => { const n = x.image ?? 1; const k = `${x.p.slug}/${n}`; const [w, h] = sizes[k]; return `<img class="pp-card__bg" src="${up}${imgBase(x.p.slug, n)}-800.webp?v=${imgVer(k)}" width="${w}" height="${h}" loading="lazy" decoding="async" alt="">`; })()}${outletLogo(up, x.name)}</span>
         <span class="pp-card__body"><span class="pp-card__project">${esc(x.p.name)}</span><span class="label pp-card__meta"><span>${esc(tr(lang, x.p, 'type'))}${x.p.location ? `, ${esc(String(tr(lang, x.p, 'location')).split(',')[0])}` : ''}</span><span>${en ? 'Project page' : 'Ficha del proyecto'} ↗</span></span></span>
       </a></li>`).join('\n');
   return head(lang, { title, description, paths, image: `${imgBase('papagayo-404', 1)}-1600.webp`, up }) + `<div id="top"></div>
