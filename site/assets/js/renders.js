@@ -5,329 +5,329 @@ window.CAVA_RENDERS = [
   "src": "assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "title": "Rancho Cartagena",
-  "alt": "Single-storey pool house under a deep flat roof, looking over a bay"
+  "alt": "Single-storey pool house under a deep flat roof, looking over a bay. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "rancho-cartagena-2",
   "src": "assets/img/projects/rancho-cartagena/2",
   "v": "6c1dab1b",
   "title": "Rancho Cartagena",
-  "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest"
+  "alt": "Two-storey house with an infinity pool on a concrete plinth above dry forest. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "rancho-cartagena-3",
   "src": "assets/img/projects/rancho-cartagena/3",
   "v": "c4fa6d01",
   "title": "Rancho Cartagena",
-  "alt": "Open kitchen and living room facing a green valley through full-height glass"
+  "alt": "Open kitchen and living room facing a green valley through full-height glass. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "papagayo-404-1",
   "src": "assets/img/projects/papagayo-404/1",
   "v": "973db2f1",
   "title": "Papagayo 404",
-  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside"
+  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-2",
   "src": "assets/img/projects/papagayo-404/2",
   "v": "dd8ee6fa",
   "title": "Papagayo 404",
-  "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond"
+  "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-3",
   "src": "assets/img/projects/papagayo-404/3",
   "v": "8997d121",
   "title": "Papagayo 404",
-  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge"
+  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-4",
   "src": "assets/img/projects/papagayo-404/4",
   "v": "1bd8b84d",
   "title": "Papagayo 404",
-  "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms"
+  "alt": "Aerial view of the pool, the plunge pool and the timber decks below the cantilevered bedrooms. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-5",
   "src": "assets/img/projects/papagayo-404/5",
   "v": "77774699",
   "title": "Papagayo 404",
-  "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay"
+  "alt": "Sunken lounge with built-in sofas and a fire pit under a shade sail, looking out to the bay. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-6",
   "src": "assets/img/projects/papagayo-404/6",
   "v": "c0d1d97b",
   "title": "Papagayo 404",
-  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest"
+  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-7",
   "src": "assets/img/projects/papagayo-404/7",
   "v": "0b44a822",
   "title": "Papagayo 404",
-  "alt": "Double-height living room with a timber wall, open to the garden through full-height glass"
+  "alt": "Double-height living room with a timber wall, open to the garden through full-height glass. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-8",
   "src": "assets/img/projects/papagayo-404/8",
   "v": "5d32b6c2",
   "title": "Papagayo 404",
-  "alt": "White cubic house raised on slender steel columns above a pool deck"
+  "alt": "White cubic house raised on slender steel columns above a pool deck. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-9",
   "src": "assets/img/projects/papagayo-404/9",
   "v": "872c2827",
   "title": "Papagayo 404",
-  "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail"
+  "alt": "Sunken lounge terrace with built-in sofas and a fire pit under a shade sail. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "casa-alcaravan-1",
   "src": "assets/img/projects/casa-alcaravan/1",
   "v": "4422641d",
   "title": "Casa Alcaraván",
-  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree"
+  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "assets/img/projects/casa-alcaravan/2",
   "v": "8b80842b",
   "title": "Casa Alcaraván",
-  "alt": "The house at dusk, its timber eave and louvres lit from inside, behind a gravel garden and a tree"
+  "alt": "The house at dusk, its timber eave and louvres lit from inside, behind a gravel garden and a tree. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "assets/img/projects/casa-alcaravan/3",
   "v": "a581f729",
   "title": "Casa Alcaraván",
-  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows"
+  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "assets/img/projects/casa-alcaravan/4",
   "v": "8185e37c",
   "title": "Casa Alcaraván",
-  "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool"
+  "alt": "Solid wood desk in the bedroom, facing sliding glass doors to the pool. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "assets/img/projects/casa-alcaravan/5",
   "v": "aa6c46fb",
   "title": "Casa Alcaraván",
-  "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors"
+  "alt": "Open bathroom with a polished concrete wall, a floating vanity and round mirrors. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-6",
   "src": "assets/img/projects/casa-alcaravan/6",
   "v": "64608d6d",
   "title": "Casa Alcaraván",
-  "alt": "Bathroom in polished concrete with a vessel sink on a timber counter"
+  "alt": "Bathroom in polished concrete with a vessel sink on a timber counter. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "hangars-b-1",
   "src": "assets/img/projects/hangars-b/1",
   "v": "e401786e",
   "title": "Hangars B",
-  "alt": "Two-storey hangar building marked 01 with a deep roof over open bays"
+  "alt": "Two-storey hangar building marked 01 with a deep roof over open bays. Hangars B, Huacas, Guanacaste"
  },
  {
   "id": "hangars-b-2",
   "src": "assets/img/projects/hangars-b/2",
   "v": "1bc15c57",
   "title": "Hangars B",
-  "alt": "Dark perforated screen facade with an exterior stair under a floating roof"
+  "alt": "Dark perforated screen facade with an exterior stair under a floating roof. Hangars B, Huacas, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-1",
   "src": "assets/img/projects/tragaluz-retreat/1",
   "v": "85b0992f",
   "title": "Tragaluz Retreat",
-  "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk"
+  "alt": "Pavilion house with a timber deck and a reflecting pool among trees at dusk. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-2",
   "src": "assets/img/projects/tragaluz-retreat/2",
   "v": "d0a89ee2",
   "title": "Tragaluz Retreat",
-  "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool"
+  "alt": "Timber boardwalk to a pavilion with a perforated screen wall and a pool. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-3",
   "src": "assets/img/projects/tragaluz-retreat/3",
   "v": "b0bd601c",
   "title": "Tragaluz Retreat",
-  "alt": "Low white house with a timber-clad wall under a wide roof"
+  "alt": "Low white house with a timber-clad wall under a wide roof. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "kauhane-house-1",
   "src": "assets/img/projects/kauhane-house/1",
   "v": "688fe3a2",
   "title": "Kauhane House",
-  "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees"
+  "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-2",
   "src": "assets/img/projects/kauhane-house/2",
   "v": "cabdb99e",
   "title": "Kauhane House",
-  "alt": "Stone and timber house around a pool in a tropical garden"
+  "alt": "Stone and timber house around a pool in a tropical garden. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-3",
   "src": "assets/img/projects/kauhane-house/3",
   "v": "67c9a2da",
   "title": "Kauhane House",
-  "alt": "Living room with full-height glass opening to a garden"
+  "alt": "Living room with full-height glass opening to a garden. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-4",
   "src": "assets/img/projects/kauhane-house/4",
   "v": "bbf19fc7",
   "title": "Kauhane House",
-  "alt": "Kitchen island under a timber ceiling with garden views on both sides"
+  "alt": "Kitchen island under a timber ceiling with garden views on both sides. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-5",
   "src": "assets/img/projects/kauhane-house/5",
   "v": "2a147d63",
   "title": "Kauhane House",
-  "alt": "Dining room under a slatted timber ceiling with glass walls"
+  "alt": "Dining room under a slatted timber ceiling with glass walls. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "negra-mixed-use-1",
   "src": "assets/img/projects/negra-mixed-use/1",
   "v": "beb76a2a",
   "title": "Negra Mixed Use",
-  "alt": "Two-storey timber and glass building with lit interiors at dusk"
+  "alt": "Two-storey timber and glass building with lit interiors at dusk. Negra Mixed Use, Playa Negra, Guanacaste"
  },
  {
   "id": "s3-houses-1",
   "src": "assets/img/projects/s3-houses/1",
   "v": "8bea592a",
   "title": "S3 Houses",
-  "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck"
+  "alt": "Stepped two-storey house on a dry hillside with a plunge pool and deck. S3 Houses, Playa Langosta, Guanacaste"
  },
  {
   "id": "tree-house-1",
   "src": "assets/img/projects/tree-house/1",
   "v": "eac7e679",
   "title": "Tree House",
-  "alt": "Timber cabin cantilevered over a forested hillside at sunset"
+  "alt": "Timber cabin cantilevered over a forested hillside at sunset. Tree House, Las Ventanas, Playa Grande, Guanacaste"
  },
  {
   "id": "green-city-amacor-1",
   "src": "assets/img/projects/green-city-amacor/1",
   "v": "58a6ef0e",
   "title": "Green City, Amacor",
-  "alt": "Double-height living room with a stair, a timber kitchen and courtyard light"
+  "alt": "Double-height living room with a stair, a timber kitchen and courtyard light. Green City, Amacor, Green City, San Rafael, Alajuela"
  },
  {
   "id": "dawn-patrol-bakery-1",
   "src": "assets/img/projects/dawn-patrol-bakery/1",
   "v": "c062df0d",
   "title": "Dawn Patrol Bakery",
-  "alt": "Café counter with a pastry case and rattan pendant lamps"
+  "alt": "Café counter with a pastry case and rattan pendant lamps. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-2",
   "src": "assets/img/projects/dawn-patrol-bakery/2",
   "v": "ca93399c",
   "title": "Dawn Patrol Bakery",
-  "alt": "Café lounge with a timber wall, sofas and ceiling fans"
+  "alt": "Café lounge with a timber wall, sofas and ceiling fans. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-3",
   "src": "assets/img/projects/dawn-patrol-bakery/3",
   "v": "88717fae",
   "title": "Dawn Patrol Bakery",
-  "alt": "Café counter in timber and stone under woven pendant lamps"
+  "alt": "Café counter in timber and stone under woven pendant lamps. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-4",
   "src": "assets/img/projects/dawn-patrol-bakery/4",
   "v": "7632c3fd",
   "title": "Dawn Patrol Bakery",
-  "alt": "Café seating area with timber panelling, a low sofa and graphic prints"
+  "alt": "Café seating area with timber panelling, a low sofa and graphic prints. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "la-perla-1",
   "src": "assets/img/projects/la-perla/1",
   "v": "46296f8b",
   "title": "La Perla",
-  "alt": "Collage of the master plan over an aerial of the land: houses with pools along a road that ends in a turning circle, the shared buildings among the trees and the boundary as a dashed line"
+  "alt": "Collage of the master plan over an aerial of the land: houses with pools along a road that ends in a turning circle, the shared buildings among the trees and the boundary as a dashed line. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-2",
   "src": "assets/img/projects/la-perla/2",
   "v": "46816b25",
   "title": "La Perla",
-  "alt": "Massing model at eye level: houses around a turning circle at the end of the road, on contoured ground"
+  "alt": "Massing model at eye level: houses around a turning circle at the end of the road, on contoured ground. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-3",
   "src": "assets/img/projects/la-perla/3",
   "v": "8d1d0188",
   "title": "La Perla",
-  "alt": "Massing model at eye level: the road curving between rows of houses down the slope"
+  "alt": "Massing model at eye level: the road curving between rows of houses down the slope. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-4",
   "src": "assets/img/projects/la-perla/4",
   "v": "91f18621",
   "title": "La Perla",
-  "alt": "The land modelled as stepped contour terraces, rising to a ridge"
+  "alt": "The land modelled as stepped contour terraces, rising to a ridge. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-5",
   "src": "assets/img/projects/la-perla/5",
   "v": "89e2363b",
   "title": "La Perla",
-  "alt": "Massing model at eye level: houses on both sides of the road as it climbs the land"
+  "alt": "Massing model at eye level: houses on both sides of the road as it climbs the land. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "military-museum-1",
   "src": "assets/img/projects/military-museum/1",
   "v": "7326cdd7",
   "title": "Military Museum",
-  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands"
+  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands. Military Museum, Isola della Maddalena, Sardinia, Italy"
  },
  {
   "id": "lean-and-green-1",
   "src": "assets/img/projects/lean-and-green/1",
   "v": "cfcc331b",
   "title": "Lean & Green",
-  "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store"
+  "alt": "An open-air health bar under a sail shade: timber tables and pastel chairs, a canopy of hanging plants and string lights, and timber shelves of produce marked Grocery Store. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-2",
   "src": "assets/img/projects/lean-and-green/2",
   "v": "52324104",
   "title": "Lean & Green",
-  "alt": "The Grab & Go wall of chilled drinks and meals in timber cases, with low concrete screens between the tables"
+  "alt": "The Grab & Go wall of chilled drinks and meals in timber cases, with low concrete screens between the tables. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-3",
   "src": "assets/img/projects/lean-and-green/3",
   "v": "609ceaff",
   "title": "Lean & Green",
-  "alt": "The order counter behind black steel glazing, beside timber shelves of fruit, vegetables and bread"
+  "alt": "The order counter behind black steel glazing, beside timber shelves of fruit, vegetables and bread. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-4",
   "src": "assets/img/projects/lean-and-green/4",
   "v": "303e204c",
   "title": "Lean & Green",
-  "alt": "The grocery wall of timber shelves and baskets, with long tables in front and the terrace opening to the street"
+  "alt": "The grocery wall of timber shelves and baskets, with long tables in front and the terrace opening to the street. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-5",
   "src": "assets/img/projects/lean-and-green/5",
   "v": "b1fc136d",
   "title": "Lean & Green",
-  "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants"
+  "alt": "The counter seen straight on: menu boards, a green-tiled bar and timber tables under hanging plants. Lean & Green, La Jolla, San Diego, California"
  }
 ];
 window.CAVA_HERO = [
@@ -336,7 +336,7 @@ window.CAVA_HERO = [
   "v": "c4fa6d01",
   "w": 1600,
   "h": 793,
-  "alt": "Open kitchen and living room facing a green valley through full-height glass",
+  "alt": "Open kitchen and living room facing a green valley through full-height glass. Rancho Cartagena, Guanacaste",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "projects/rancho-cartagena/"
@@ -346,7 +346,7 @@ window.CAVA_HERO = [
   "v": "973db2f1",
   "w": 1484,
   "h": 1060,
-  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside",
+  "alt": "Two-storey white house cantilevered over an infinity pool and a timber deck on a forested hillside. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"
@@ -356,7 +356,7 @@ window.CAVA_HERO = [
   "v": "49e63442",
   "w": 1600,
   "h": 900,
-  "alt": "Single-storey pool house under a deep flat roof, looking over a bay",
+  "alt": "Single-storey pool house under a deep flat roof, looking over a bay. Rancho Cartagena, Guanacaste",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "projects/rancho-cartagena/"
@@ -366,7 +366,7 @@ window.CAVA_HERO = [
   "v": "c0d1d97b",
   "w": 1484,
   "h": 1060,
-  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest",
+  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"
@@ -376,7 +376,7 @@ window.CAVA_HERO = [
   "v": "4422641d",
   "w": 1536,
   "h": 1024,
-  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree",
+  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree. Casa Alcaraván, Playa Grande, Guanacaste",
   "name": "Casa Alcaraván",
   "place": "Playa Grande",
   "href": "projects/casa-alcaravan/"
@@ -386,7 +386,7 @@ window.CAVA_HERO = [
   "v": "a581f729",
   "w": 1536,
   "h": 1024,
-  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows",
+  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows. Casa Alcaraván, Playa Grande, Guanacaste",
   "name": "Casa Alcaraván",
   "place": "Playa Grande",
   "href": "projects/casa-alcaravan/"
@@ -396,7 +396,7 @@ window.CAVA_HERO = [
   "v": "cabdb99e",
   "w": 1600,
   "h": 900,
-  "alt": "Stone and timber house around a pool in a tropical garden",
+  "alt": "Stone and timber house around a pool in a tropical garden. Kauhane House, Playa Grande, Guanacaste",
   "name": "Kauhane House",
   "place": "Playa Grande",
   "href": "projects/kauhane-house/"
@@ -406,7 +406,7 @@ window.CAVA_HERO = [
   "v": "7326cdd7",
   "w": 1600,
   "h": 900,
-  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands",
+  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands. Military Museum, Isola della Maddalena, Sardinia, Italy",
   "name": "Military Museum",
   "place": "Isola della Maddalena",
   "href": "projects/military-museum/"
@@ -416,7 +416,7 @@ window.CAVA_HERO = [
   "v": "dd8ee6fa",
   "w": 1448,
   "h": 1086,
-  "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond",
+  "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"
@@ -426,7 +426,7 @@ window.CAVA_HERO = [
   "v": "beb76a2a",
   "w": 1600,
   "h": 900,
-  "alt": "Two-storey timber and glass building with lit interiors at dusk",
+  "alt": "Two-storey timber and glass building with lit interiors at dusk. Negra Mixed Use, Playa Negra, Guanacaste",
   "name": "Negra Mixed Use",
   "place": "Playa Negra",
   "href": "projects/negra-mixed-use/"
@@ -436,7 +436,7 @@ window.CAVA_HERO = [
   "v": "8997d121",
   "w": 1484,
   "h": 1060,
-  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge",
+  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"

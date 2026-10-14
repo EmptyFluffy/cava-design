@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://cava.design/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/"/>
@@ -29,168 +29,284 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/rancho-cartagena/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/rancho-cartagena/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/rancho-cartagena/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/2-1600.webp?v=6c1dab1b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/3-1600.webp?v=c4fa6d01</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/4-1600.webp?v=c7ba3ee4</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/rancho-cartagena/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/rancho-cartagena/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/rancho-cartagena/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/rancho-cartagena/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/1-1600.webp?v=49e63442</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/2-1600.webp?v=6c1dab1b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/3-1600.webp?v=c4fa6d01</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/rancho-cartagena/4-1600.webp?v=c7ba3ee4</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/papagayo-404/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/papagayo-404/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/papagayo-404/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/papagayo-404/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/1-1600.webp?v=973db2f1</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/2-1600.webp?v=dd8ee6fa</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/3-1600.webp?v=8997d121</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/4-1600.webp?v=1bd8b84d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/5-1600.webp?v=77774699</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/6-1600.webp?v=c0d1d97b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/7-1600.webp?v=0b44a822</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/8-1600.webp?v=5d32b6c2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/9-1600.webp?v=872c2827</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/10-1600.webp?v=610e43e4</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/papagayo-404/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/papagayo-404/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/papagayo-404/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/papagayo-404/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/1-1600.webp?v=973db2f1</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/2-1600.webp?v=dd8ee6fa</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/3-1600.webp?v=8997d121</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/4-1600.webp?v=1bd8b84d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/5-1600.webp?v=77774699</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/6-1600.webp?v=c0d1d97b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/7-1600.webp?v=0b44a822</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/8-1600.webp?v=5d32b6c2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/9-1600.webp?v=872c2827</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/papagayo-404/10-1600.webp?v=610e43e4</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/casa-alcaravan/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/casa-alcaravan/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/casa-alcaravan/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/casa-alcaravan/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/1-1600.webp?v=4422641d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/2-1600.webp?v=8b80842b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/3-1600.webp?v=a581f729</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/4-1600.webp?v=8185e37c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/5-1600.webp?v=aa6c46fb</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/6-1600.webp?v=64608d6d</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/casa-alcaravan/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/casa-alcaravan/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/casa-alcaravan/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/casa-alcaravan/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/1-1600.webp?v=4422641d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/2-1600.webp?v=8b80842b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/3-1600.webp?v=a581f729</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/4-1600.webp?v=8185e37c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/5-1600.webp?v=aa6c46fb</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/casa-alcaravan/6-1600.webp?v=64608d6d</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/hangars-b/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/hangars-b/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/hangars-b/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/hangars-b/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/hangars-b/1-1600.webp?v=e401786e</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/hangars-b/2-1600.webp?v=1bc15c57</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/hangars-b/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/hangars-b/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/hangars-b/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/hangars-b/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/hangars-b/1-1600.webp?v=e401786e</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/hangars-b/2-1600.webp?v=1bc15c57</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/tragaluz-retreat/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tragaluz-retreat/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tragaluz-retreat/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tragaluz-retreat/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/1-1600.webp?v=85b0992f</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/2-1600.webp?v=d0a89ee2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/3-1600.webp?v=b0bd601c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/4-1600.webp?v=754599e3</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/5-1600.webp?v=fb33f449</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/tragaluz-retreat/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tragaluz-retreat/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tragaluz-retreat/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tragaluz-retreat/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/1-1600.webp?v=85b0992f</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/2-1600.webp?v=d0a89ee2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/3-1600.webp?v=b0bd601c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/4-1600.webp?v=754599e3</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tragaluz-retreat/5-1600.webp?v=fb33f449</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/kauhane-house/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/kauhane-house/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/kauhane-house/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/kauhane-house/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/1-1600.webp?v=688fe3a2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/2-1600.webp?v=cabdb99e</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/3-1600.webp?v=67c9a2da</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/4-1600.webp?v=bbf19fc7</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/5-1600.webp?v=2a147d63</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/6-1600.webp?v=2b4ff4cc</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/7-1600.webp?v=8d591a38</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/kauhane-house/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/kauhane-house/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/kauhane-house/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/kauhane-house/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/1-1600.webp?v=688fe3a2</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/2-1600.webp?v=cabdb99e</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/3-1600.webp?v=67c9a2da</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/4-1600.webp?v=bbf19fc7</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/5-1600.webp?v=2a147d63</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/6-1600.webp?v=2b4ff4cc</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/kauhane-house/7-1600.webp?v=8d591a38</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/negra-mixed-use/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/negra-mixed-use/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/negra-mixed-use/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/negra-mixed-use/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/negra-mixed-use/1-1600.webp?v=beb76a2a</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/negra-mixed-use/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/negra-mixed-use/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/negra-mixed-use/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/negra-mixed-use/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/negra-mixed-use/1-1600.webp?v=beb76a2a</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/s3-houses/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/s3-houses/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/s3-houses/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/s3-houses/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/1-1600.webp?v=8bea592a</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/2-1600.webp?v=7a61c1da</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/3-1600.webp?v=068033df</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/4-1600.webp?v=d88e74ba</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/5-1600.webp?v=c4347a0a</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/s3-houses/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/s3-houses/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/s3-houses/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/s3-houses/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/1-1600.webp?v=8bea592a</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/2-1600.webp?v=7a61c1da</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/3-1600.webp?v=068033df</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/4-1600.webp?v=d88e74ba</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/s3-houses/5-1600.webp?v=c4347a0a</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/tree-house/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tree-house/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tree-house/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tree-house/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tree-house/1-1600.webp?v=eac7e679</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/tree-house/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/tree-house/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/tree-house/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/tree-house/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/tree-house/1-1600.webp?v=eac7e679</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/green-city-amacor/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/green-city-amacor/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/green-city-amacor/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/green-city-amacor/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/green-city-amacor/1-1600.webp?v=58a6ef0e</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/green-city-amacor/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/green-city-amacor/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/green-city-amacor/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/green-city-amacor/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/green-city-amacor/1-1600.webp?v=58a6ef0e</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/dawn-patrol-bakery/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/dawn-patrol-bakery/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/dawn-patrol-bakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/1-1600.webp?v=c062df0d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/2-1600.webp?v=ca93399c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/3-1600.webp?v=88717fae</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/4-1600.webp?v=7632c3fd</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/5-1600.webp?v=dabfa05f</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/dawn-patrol-bakery/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/dawn-patrol-bakery/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/dawn-patrol-bakery/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/dawn-patrol-bakery/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/1-1600.webp?v=c062df0d</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/2-1600.webp?v=ca93399c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/3-1600.webp?v=88717fae</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/4-1600.webp?v=7632c3fd</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/dawn-patrol-bakery/5-1600.webp?v=dabfa05f</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/la-perla/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/la-perla/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/la-perla/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/la-perla/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/1-1600.webp?v=46296f8b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/2-1600.webp?v=46816b25</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/3-1600.webp?v=8d1d0188</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/4-1600.webp?v=91f18621</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/5-1600.webp?v=89e2363b</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/la-perla/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/la-perla/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/la-perla/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/la-perla/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/1-1600.webp?v=46296f8b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/2-1600.webp?v=46816b25</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/3-1600.webp?v=8d1d0188</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/4-1600.webp?v=91f18621</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/la-perla/5-1600.webp?v=89e2363b</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/military-museum/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/military-museum/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/military-museum/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/military-museum/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/military-museum/1-1600.webp?v=7326cdd7</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/military-museum/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/military-museum/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/military-museum/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/military-museum/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/military-museum/1-1600.webp?v=7326cdd7</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/projects/lean-and-green/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/lean-and-green/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/lean-and-green/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/lean-and-green/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/1-1600.webp?v=cfcc331b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/2-1600.webp?v=52324104</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/3-1600.webp?v=609ceaff</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/4-1600.webp?v=303e204c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/5-1600.webp?v=b1fc136d</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/es/proyectos/lean-and-green/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/lean-and-green/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/lean-and-green/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/lean-and-green/"/>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/1-1600.webp?v=cfcc331b</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/2-1600.webp?v=52324104</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/3-1600.webp?v=609ceaff</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/4-1600.webp?v=303e204c</image:loc></image:image>
+    <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/5-1600.webp?v=b1fc136d</image:loc></image:image>
   </url>
   <url>
     <loc>https://cava.design/studio/</loc>

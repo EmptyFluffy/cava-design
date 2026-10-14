@@ -5,329 +5,329 @@ window.CAVA_RENDERS = [
   "src": "../assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "title": "Rancho Cartagena",
-  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía"
+  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "rancho-cartagena-2",
   "src": "../assets/img/projects/rancho-cartagena/2",
   "v": "6c1dab1b",
   "title": "Rancho Cartagena",
-  "alt": "Casa de dos pisos con piscina infinita sobre una base de concreto, encima del bosque seco"
+  "alt": "Casa de dos pisos con piscina infinita sobre una base de concreto, encima del bosque seco. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "rancho-cartagena-3",
   "src": "../assets/img/projects/rancho-cartagena/3",
   "v": "c4fa6d01",
   "title": "Rancho Cartagena",
-  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo"
+  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo. Rancho Cartagena, Guanacaste"
  },
  {
   "id": "papagayo-404-1",
   "src": "../assets/img/projects/papagayo-404/1",
   "v": "973db2f1",
   "title": "Papagayo 404",
-  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa"
+  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-2",
   "src": "../assets/img/projects/papagayo-404/2",
   "v": "dd8ee6fa",
   "title": "Papagayo 404",
-  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás"
+  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-3",
   "src": "../assets/img/projects/papagayo-404/3",
   "v": "8997d121",
   "title": "Papagayo 404",
-  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito"
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-4",
   "src": "../assets/img/projects/papagayo-404/4",
   "v": "1bd8b84d",
   "title": "Papagayo 404",
-  "alt": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo"
+  "alt": "Vista aérea de la piscina, el jacuzzi y los decks de madera bajo los dormitorios en voladizo. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-5",
   "src": "../assets/img/projects/papagayo-404/5",
   "v": "77774699",
   "title": "Papagayo 404",
-  "alt": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía"
+  "alt": "Sala hundida con sillones empotrados y un fogón bajo una vela de sombra, con vista a la bahía. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-6",
   "src": "../assets/img/projects/papagayo-404/6",
   "v": "c0d1d97b",
   "title": "Papagayo 404",
-  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco"
+  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-7",
   "src": "../assets/img/projects/papagayo-404/7",
   "v": "0b44a822",
   "title": "Papagayo 404",
-  "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo"
+  "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-8",
   "src": "../assets/img/projects/papagayo-404/8",
   "v": "5d32b6c2",
   "title": "Papagayo 404",
-  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina"
+  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "papagayo-404-9",
   "src": "../assets/img/projects/papagayo-404/9",
   "v": "872c2827",
   "title": "Papagayo 404",
-  "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra"
+  "alt": "Terraza hundida con sillones empotrados y un fogón bajo una vela de sombra. Papagayo 404, Península Papagayo, Guanacaste"
  },
  {
   "id": "casa-alcaravan-1",
   "src": "../assets/img/projects/casa-alcaravan/1",
   "v": "4422641d",
   "title": "Casa Alcaraván",
-  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven"
+  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-2",
   "src": "../assets/img/projects/casa-alcaravan/2",
   "v": "8b80842b",
   "title": "Casa Alcaraván",
-  "alt": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol"
+  "alt": "La casa al anochecer, con el alero de madera y las celosías iluminadas desde adentro, detrás de un jardín de grava y un árbol. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-3",
   "src": "../assets/img/projects/casa-alcaravan/3",
   "v": "a581f729",
   "title": "Casa Alcaraván",
-  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía"
+  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-4",
   "src": "../assets/img/projects/casa-alcaravan/4",
   "v": "8185e37c",
   "title": "Casa Alcaraván",
-  "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina"
+  "alt": "Escritorio de madera maciza en el dormitorio, frente a puertas corredizas de vidrio hacia la piscina. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-5",
   "src": "../assets/img/projects/casa-alcaravan/5",
   "v": "aa6c46fb",
   "title": "Casa Alcaraván",
-  "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos"
+  "alt": "Baño abierto con una pared de concreto pulido, un mueble de lavatorio flotante y espejos redondos. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "casa-alcaravan-6",
   "src": "../assets/img/projects/casa-alcaravan/6",
   "v": "64608d6d",
   "title": "Casa Alcaraván",
-  "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera"
+  "alt": "Baño de concreto pulido con un lavatorio de sobreponer sobre una cubierta de madera. Casa Alcaraván, Playa Grande, Guanacaste"
  },
  {
   "id": "hangars-b-1",
   "src": "../assets/img/projects/hangars-b/1",
   "v": "e401786e",
   "title": "Hangars B",
-  "alt": "Edificio de hangares de dos pisos marcado 01, con un techo profundo sobre naves abiertas"
+  "alt": "Edificio de hangares de dos pisos marcado 01, con un techo profundo sobre naves abiertas. Hangars B, Huacas, Guanacaste"
  },
  {
   "id": "hangars-b-2",
   "src": "../assets/img/projects/hangars-b/2",
   "v": "1bc15c57",
   "title": "Hangars B",
-  "alt": "Fachada de celosía oscura perforada con una escalera exterior bajo un techo que parece flotar"
+  "alt": "Fachada de celosía oscura perforada con una escalera exterior bajo un techo que parece flotar. Hangars B, Huacas, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-1",
   "src": "../assets/img/projects/tragaluz-retreat/1",
   "v": "85b0992f",
   "title": "Tragaluz Retreat",
-  "alt": "Pabellón con deck de madera y un espejo de agua entre árboles al atardecer"
+  "alt": "Pabellón con deck de madera y un espejo de agua entre árboles al atardecer. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-2",
   "src": "../assets/img/projects/tragaluz-retreat/2",
   "v": "d0a89ee2",
   "title": "Tragaluz Retreat",
-  "alt": "Pasarela de madera hacia un pabellón con un muro de celosía perforada y una piscina"
+  "alt": "Pasarela de madera hacia un pabellón con un muro de celosía perforada y una piscina. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "tragaluz-retreat-3",
   "src": "../assets/img/projects/tragaluz-retreat/3",
   "v": "b0bd601c",
   "title": "Tragaluz Retreat",
-  "alt": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio"
+  "alt": "Casa baja y blanca con un muro forrado de madera bajo un techo amplio. Tragaluz Retreat, Playa Negra, Guanacaste"
  },
  {
   "id": "kauhane-house-1",
   "src": "../assets/img/projects/kauhane-house/1",
   "v": "688fe3a2",
   "title": "Kauhane House",
-  "alt": "Casa de dos pisos con un muro de piedra, un balcón de vidrio y una piscina entre árboles"
+  "alt": "Casa de dos pisos con un muro de piedra, un balcón de vidrio y una piscina entre árboles. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-2",
   "src": "../assets/img/projects/kauhane-house/2",
   "v": "cabdb99e",
   "title": "Kauhane House",
-  "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical"
+  "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-3",
   "src": "../assets/img/projects/kauhane-house/3",
   "v": "67c9a2da",
   "title": "Kauhane House",
-  "alt": "Sala con ventanales de piso a techo que abren al jardín"
+  "alt": "Sala con ventanales de piso a techo que abren al jardín. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-4",
   "src": "../assets/img/projects/kauhane-house/4",
   "v": "bbf19fc7",
   "title": "Kauhane House",
-  "alt": "Isla de cocina bajo un cielo raso de madera, con vista al jardín por los dos lados"
+  "alt": "Isla de cocina bajo un cielo raso de madera, con vista al jardín por los dos lados. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-5",
   "src": "../assets/img/projects/kauhane-house/5",
   "v": "2a147d63",
   "title": "Kauhane House",
-  "alt": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio"
+  "alt": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "negra-mixed-use-1",
   "src": "../assets/img/projects/negra-mixed-use/1",
   "v": "beb76a2a",
   "title": "Negra Mixed Use",
-  "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer"
+  "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer. Negra Mixed Use, Playa Negra, Guanacaste"
  },
  {
   "id": "s3-houses-1",
   "src": "../assets/img/projects/s3-houses/1",
   "v": "8bea592a",
   "title": "S3 Houses",
-  "alt": "Casa de dos niveles escalonada en una ladera seca, con una piscina pequeña y un deck"
+  "alt": "Casa de dos niveles escalonada en una ladera seca, con una piscina pequeña y un deck. S3 Houses, Playa Langosta, Guanacaste"
  },
  {
   "id": "tree-house-1",
   "src": "../assets/img/projects/tree-house/1",
   "v": "eac7e679",
   "title": "Tree House",
-  "alt": "Cabaña de madera en voladizo sobre una ladera boscosa al atardecer"
+  "alt": "Cabaña de madera en voladizo sobre una ladera boscosa al atardecer. Tree House, Las Ventanas, Playa Grande, Guanacaste"
  },
  {
   "id": "green-city-amacor-1",
   "src": "../assets/img/projects/green-city-amacor/1",
   "v": "58a6ef0e",
   "title": "Green City, Amacor",
-  "alt": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno"
+  "alt": "Sala de doble altura con escalera, cocina de madera y luz de un patio interno. Green City, Amacor, Green City, San Rafael, Alajuela"
  },
  {
   "id": "dawn-patrol-bakery-1",
   "src": "../assets/img/projects/dawn-patrol-bakery/1",
   "v": "c062df0d",
   "title": "Dawn Patrol Bakery",
-  "alt": "Barra de café con vitrina de repostería y lámparas colgantes de ratán"
+  "alt": "Barra de café con vitrina de repostería y lámparas colgantes de ratán. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-2",
   "src": "../assets/img/projects/dawn-patrol-bakery/2",
   "v": "ca93399c",
   "title": "Dawn Patrol Bakery",
-  "alt": "Sala del café con pared de madera, sillones y abanicos de techo"
+  "alt": "Sala del café con pared de madera, sillones y abanicos de techo. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-3",
   "src": "../assets/img/projects/dawn-patrol-bakery/3",
   "v": "88717fae",
   "title": "Dawn Patrol Bakery",
-  "alt": "Barra de café en madera y piedra bajo lámparas colgantes tejidas"
+  "alt": "Barra de café en madera y piedra bajo lámparas colgantes tejidas. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "dawn-patrol-bakery-4",
   "src": "../assets/img/projects/dawn-patrol-bakery/4",
   "v": "7632c3fd",
   "title": "Dawn Patrol Bakery",
-  "alt": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos"
+  "alt": "Zona de mesas del café con forro de madera, un sillón bajo y afiches gráficos. Dawn Patrol Bakery, Tamarindo, Guanacaste"
  },
  {
   "id": "la-perla-1",
   "src": "../assets/img/projects/la-perla/1",
   "v": "46296f8b",
   "title": "La Perla",
-  "alt": "Collage del plan maestro sobre una aérea del terreno: casas con piscina a lo largo de una calle que termina en un retorno, los edificios comunes entre los árboles y el lindero en línea punteada"
+  "alt": "Collage del plan maestro sobre una aérea del terreno: casas con piscina a lo largo de una calle que termina en un retorno, los edificios comunes entre los árboles y el lindero en línea punteada. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-2",
   "src": "../assets/img/projects/la-perla/2",
   "v": "46816b25",
   "title": "La Perla",
-  "alt": "Maqueta de volúmenes a la altura del ojo: casas alrededor del retorno al final de la calle, sobre el terreno con curvas"
+  "alt": "Maqueta de volúmenes a la altura del ojo: casas alrededor del retorno al final de la calle, sobre el terreno con curvas. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-3",
   "src": "../assets/img/projects/la-perla/3",
   "v": "8d1d0188",
   "title": "La Perla",
-  "alt": "Maqueta de volúmenes a la altura del ojo: la calle curvándose entre hileras de casas pendiente abajo"
+  "alt": "Maqueta de volúmenes a la altura del ojo: la calle curvándose entre hileras de casas pendiente abajo. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-4",
   "src": "../assets/img/projects/la-perla/4",
   "v": "91f18621",
   "title": "La Perla",
-  "alt": "El terreno modelado en terrazas por curva de nivel, subiendo hasta una cresta"
+  "alt": "El terreno modelado en terrazas por curva de nivel, subiendo hasta una cresta. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "la-perla-5",
   "src": "../assets/img/projects/la-perla/5",
   "v": "89e2363b",
   "title": "La Perla",
-  "alt": "Maqueta de volúmenes a la altura del ojo: casas a ambos lados de la calle mientras sube por el terreno"
+  "alt": "Maqueta de volúmenes a la altura del ojo: casas a ambos lados de la calle mientras sube por el terreno. La Perla, Matapalo, Santa Cruz, Guanacaste"
  },
  {
   "id": "military-museum-1",
   "src": "../assets/img/projects/military-museum/1",
   "v": "7326cdd7",
   "title": "Military Museum",
-  "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas"
+  "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas. Military Museum, Isola della Maddalena, Cerdeña, Italia"
  },
  {
   "id": "lean-and-green-1",
   "src": "../assets/img/projects/lean-and-green/1",
   "v": "cfcc331b",
   "title": "Lean & Green",
-  "alt": "Un bar saludable al aire libre bajo una vela de sombra: mesas de madera y sillas en tonos pastel, un techo de plantas colgantes y luces, y estantes de madera con productos bajo el rótulo Grocery Store"
+  "alt": "Un bar saludable al aire libre bajo una vela de sombra: mesas de madera y sillas en tonos pastel, un techo de plantas colgantes y luces, y estantes de madera con productos bajo el rótulo Grocery Store. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-2",
   "src": "../assets/img/projects/lean-and-green/2",
   "v": "52324104",
   "title": "Lean & Green",
-  "alt": "La pared Grab & Go de bebidas y comidas frías en muebles de madera, con muretes de concreto bajos entre las mesas"
+  "alt": "La pared Grab & Go de bebidas y comidas frías en muebles de madera, con muretes de concreto bajos entre las mesas. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-3",
   "src": "../assets/img/projects/lean-and-green/3",
   "v": "609ceaff",
   "title": "Lean & Green",
-  "alt": "El mostrador de pedidos tras una ventanería de acero negro, junto a estantes de madera con frutas, verduras y pan"
+  "alt": "El mostrador de pedidos tras una ventanería de acero negro, junto a estantes de madera con frutas, verduras y pan. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-4",
   "src": "../assets/img/projects/lean-and-green/4",
   "v": "303e204c",
   "title": "Lean & Green",
-  "alt": "La pared de abarrotes con estantes de madera y canastas, mesas largas al frente y la terraza abierta hacia la calle"
+  "alt": "La pared de abarrotes con estantes de madera y canastas, mesas largas al frente y la terraza abierta hacia la calle. Lean & Green, La Jolla, San Diego, California"
  },
  {
   "id": "lean-and-green-5",
   "src": "../assets/img/projects/lean-and-green/5",
   "v": "b1fc136d",
   "title": "Lean & Green",
-  "alt": "El mostrador de frente: pizarras de menú, una barra de azulejo verde y mesas de madera bajo las plantas colgantes"
+  "alt": "El mostrador de frente: pizarras de menú, una barra de azulejo verde y mesas de madera bajo las plantas colgantes. Lean & Green, La Jolla, San Diego, California"
  }
 ];
 window.CAVA_HERO = [
@@ -336,7 +336,7 @@ window.CAVA_HERO = [
   "v": "c4fa6d01",
   "w": 1600,
   "h": 793,
-  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo",
+  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo. Rancho Cartagena, Guanacaste",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "proyectos/rancho-cartagena/"
@@ -346,7 +346,7 @@ window.CAVA_HERO = [
   "v": "973db2f1",
   "w": 1484,
   "h": 1060,
-  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa",
+  "alt": "Casa blanca de dos pisos en voladizo sobre una piscina infinita y un deck de madera en una ladera boscosa. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
@@ -356,7 +356,7 @@ window.CAVA_HERO = [
   "v": "49e63442",
   "w": 1600,
   "h": 900,
-  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía",
+  "alt": "Casa de un piso con piscina bajo un techo plano y profundo, con vista a una bahía. Rancho Cartagena, Guanacaste",
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "proyectos/rancho-cartagena/"
@@ -366,7 +366,7 @@ window.CAVA_HERO = [
   "v": "c0d1d97b",
   "w": 1484,
   "h": 1060,
-  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco",
+  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
@@ -376,7 +376,7 @@ window.CAVA_HERO = [
   "v": "4422641d",
   "w": 1536,
   "h": 1024,
-  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven",
+  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven. Casa Alcaraván, Playa Grande, Guanacaste",
   "name": "Casa Alcaraván",
   "place": "Playa Grande",
   "href": "proyectos/casa-alcaravan/"
@@ -386,7 +386,7 @@ window.CAVA_HERO = [
   "v": "a581f729",
   "w": 1536,
   "h": 1024,
-  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía",
+  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía. Casa Alcaraván, Playa Grande, Guanacaste",
   "name": "Casa Alcaraván",
   "place": "Playa Grande",
   "href": "proyectos/casa-alcaravan/"
@@ -396,7 +396,7 @@ window.CAVA_HERO = [
   "v": "cabdb99e",
   "w": 1600,
   "h": 900,
-  "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical",
+  "alt": "Casa de piedra y madera alrededor de una piscina en un jardín tropical. Kauhane House, Playa Grande, Guanacaste",
   "name": "Kauhane House",
   "place": "Playa Grande",
   "href": "proyectos/kauhane-house/"
@@ -406,7 +406,7 @@ window.CAVA_HERO = [
   "v": "7326cdd7",
   "w": 1600,
   "h": 900,
-  "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas",
+  "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas. Military Museum, Isola della Maddalena, Cerdeña, Italia",
   "name": "Military Museum",
   "place": "Isola della Maddalena",
   "href": "proyectos/military-museum/"
@@ -416,7 +416,7 @@ window.CAVA_HERO = [
   "v": "dd8ee6fa",
   "w": 1448,
   "h": 1086,
-  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás",
+  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
@@ -426,7 +426,7 @@ window.CAVA_HERO = [
   "v": "beb76a2a",
   "w": 1600,
   "h": 900,
-  "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer",
+  "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer. Negra Mixed Use, Playa Negra, Guanacaste",
   "name": "Negra Mixed Use",
   "place": "Playa Negra",
   "href": "proyectos/negra-mixed-use/"
@@ -436,7 +436,7 @@ window.CAVA_HERO = [
   "v": "8997d121",
   "w": 1484,
   "h": 1060,
-  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito",
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"

@@ -50,7 +50,19 @@ const WA_ICON = '<svg class="wa__icon" viewBox="0 0 24 24" aria-hidden="true" fo
 
 // A project's text in one language: Spanish takes <field>_es where the data has it.
 const tr = (lang, obj, key) => (lang === 'es' && obj[`${key}_es`] != null ? obj[`${key}_es`] : obj[key]);
-const altOf = (lang, p, n) => tr(lang, p.images[n - 1], 'alt');
+// An image's alt: what it shows, then the project and where it is. The place is the project's own location
+// from the data, never a guess, so a photo never claims a town it is not in (and Google Images reads both).
+const altPlace = (lang, p) => {
+  const parts = String(tr(lang, p, 'location') ?? '').split(', ').filter((x) => x && !/^(across|frente)\b/i.test(x));
+  if (parts[0] === p.name) parts.shift();
+  return parts.slice(0, 3).join(', ');
+};
+const altOf = (lang, p, n) => {
+  const what = tr(lang, p.images[n - 1], 'alt');
+  if (what.includes(p.name)) return what;
+  const place = altPlace(lang, p);
+  return `${what}. ${p.name}${place && !what.includes(place.split(', ')[0]) ? `, ${place}` : ''}`;
+};
 
 // Site paths of each page, per language, from the site root.
 const projectsPath = (lang) => `${UI[lang].dir}${UI[lang].projectsDir}/`;
@@ -3101,7 +3113,7 @@ function sitemap() {
   const pairs = [
     { en: '', es: 'es/' },
     { en: projectsPath('en'), es: projectsPath('es') },
-    ...projects.map((p) => ({ en: projectPath('en', p.slug), es: projectPath('es', p.slug) })),
+    ...projects.map((p) => ({ en: projectPath('en', p.slug), es: projectPath('es', p.slug), imgs: p.images.map((_, j) => `${ORIGIN}/${imgBase(p.slug, j + 1)}-1600.webp?v=${imgVer(`${p.slug}/${j + 1}`)}`) })),
     { en: studioPath('en'), es: studioPath('es') },
     ...(identity ? [{ en: identityPath('en'), es: identityPath('es') }] : []),
     ...(books ? [{ en: libraryPath('en'), es: libraryPath('es') }] : []),
@@ -3117,8 +3129,9 @@ function sitemap() {
     { en: privacyPath('en'), es: privacyPath('es') },
   ];
   const alt = (pr) => ['en', 'es'].map((l) => `    <xhtml:link rel="alternate" hreflang="${l}" href="${ORIGIN}/${pr[l]}"/>`).join('\n') + `\n    <xhtml:link rel="alternate" hreflang="x-default" href="${ORIGIN}/${pr.en}"/>`;
-  const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}\n  </url>`));
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls.join('\n')}\n</urlset>\n`;
+  const pics = (pr) => (pr.imgs ?? []).map((u) => `\n    <image:image><image:loc>${u}</image:loc></image:image>`).join('');
+  const urls = pairs.flatMap((pr) => ['en', 'es'].map((l) => `  <url>\n    <loc>${ORIGIN}/${pr[l]}</loc>\n${alt(pr)}${pics(pr)}\n  </url>`));
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
 // ---------- Viewer list and hero slides for each home page ----------
@@ -3219,6 +3232,7 @@ function homeCounts() {
     .replace(/href="projects\/[a-z0-9-]+\/" data-hero-link/, `href="projects/${h0s}/" data-hero-link`)
     .replace(/All projects \(\d+\)/, `All projects (${projects.length})`)
     .replace(/View all images \(\d+\)/, `View all images (${projects.reduce((n, p) => n + p.images.filter((im) => !im.plan).length, 0)})`)
+    .replace(/<img\b[^>]*\bsrc="assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp[^"]*"[^>]*>/g, (tag, slug, n) => { const p = bySlug.get(slug); return p && p.images[n - 1] ? tag.replace(/\balt="[^"]*"/, `alt="${esc(altOf('en', p, Number(n)))}"`) : tag; })
     .replace(/(assets\/img\/projects\/([a-z0-9-]+)\/(\d+)-(?:800|1600)\.webp)(?:\?v=[0-9a-f]+)?/g, (m, url, slug, n) => `${url}?v=${imgVer(`${slug}/${n}`)}`)
     .replace(/(assets\/(?:css\/[a-z-]+\.css|js\/[a-z0-9.-]+\.js|video\/[a-z0-9-]+\.(?:mp4|webm|webp)))(?:\?v=[0-9a-f]+)?"/g, (m, url) => `${url}?v=${assetVer(url)}"`)
     // the services list, from data/services.json: between its markers, or first put before the process
@@ -3244,7 +3258,7 @@ function homeEs() {
   html = html.replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('es'));
   // image alt texts, from the data
   for (const p of projects) p.images.forEach((im, j) => {
-    html = html.split(`alt="${esc(im.alt)}"`).join(`alt="${esc(altOf('es', p, j + 1))}"`);
+    html = html.split(`alt="${esc(altOf('en', p, j + 1))}"`).join(`alt="${esc(altOf('es', p, j + 1))}"`);
   });
   // paths: /es/ sits one level down; project links go to /es/proyectos/
   const fix = (u) => {
