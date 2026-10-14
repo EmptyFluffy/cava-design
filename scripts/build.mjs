@@ -127,6 +127,15 @@ const procStrip = (lang, up, ids, cls = '') => `<ul class="pstrip${cls ? ` ${cls
 const serviceImages = (slug) => proc?.services[slug] ?? [];
 
 // `paths` = { en, es }: this page in each language, from the site root.
+// Measurement (data/tracking.json, the one switch; the privacy page describes exactly what it names):
+// Google's tag and assets/js/measure.js, which configures it and sends the lead events.
+const TRACK = JSON.parse(readFileSync(join(ROOT, 'data', 'tracking.json'), 'utf8'));
+const measureTags = (up) => (TRACK.ga4 || TRACK.ads
+  ? `<script async src="https://www.googletagmanager.com/gtag/js?id=${TRACK.ga4 || TRACK.ads}"></script>
+<script defer src="${up}assets/js/measure.js?v=${assetVer('assets/js/measure.js')}"${TRACK.ga4 ? ` data-ga4="${TRACK.ga4}"` : ''}${TRACK.ads ? ` data-ads="${TRACK.ads}"` : ''}></script>
+`
+  : '');
+
 function head(lang, { title, description, paths, image, up, script, jsonld }) {
   const t = UI[lang];
   // past 60 characters Google cuts the title; the brand goes first, since results show the site's name above it
@@ -157,7 +166,7 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <link rel="stylesheet" href="${up}assets/css/site.css?v=${assetVer('assets/css/site.css')}">
 ${[].concat(script ?? [], booking && ![].concat(script ?? []).includes('booking.js') ? ['book-sheet.js'] : [], 'accordion.js', 'titles.js', 'info-sheet.js', 'motion.js').map((s) => `<script defer src="${up}assets/js/${s}?v=${assetVer(`assets/js/${s}`)}"></script>
 `).join('')}${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, '\\u003c')}</script>
-` : ''}</head>
+` : ''}${measureTags(up)}</head>
 <body class="sub">
 `;
 }
@@ -3239,6 +3248,7 @@ function homeCounts() {
     .replace(/<!-- services -->[\s\S]*?<!-- \/services -->|(?=  <section class="process grid")/, (m) => (services.length ? servicesHome('en', '', 'services/') + (m ? '' : '\n\n') : m))
     .replace(/<!-- process -->[\s\S]*?<!-- \/process -->/, () => (proc ? processSteps('en', 'studio/') : ''))
     .replace(/<!-- ld -->[\s\S]*?<!-- \/ld -->/, () => studioLd('en'))
+    .replace(/<!-- measure -->[\s\S]*?<!-- \/measure -->\n?|(?=<\/head>)/, () => `<!-- measure -->\n${measureTags('')}<!-- /measure -->\n`)
     .replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('en'))
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
   if (after !== before) writeFileSync(path, after);

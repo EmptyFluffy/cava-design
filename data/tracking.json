@@ -1,6 +1,6 @@
 {
   "_note": "Measurement on cava.design. Empty means off. The privacy page (/privacy/, /es/privacidad/) describes exactly the ones set here, so a tag never runs without the page saying so. ga4: the Google Analytics measurement ID (G-...); ads: the Google Ads conversion ID (AW-...); pixel: the Meta Pixel ID. These IDs are public: any page that loads them shows them in its source.",
-  "ga4": "",
+  "ga4": "G-FV1YJX446Z",
   "ads": "",
   "pixel": ""
 }
