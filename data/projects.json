@@ -85,6 +85,7 @@
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"], "photography": ["John Abrams"]},
       "published": [
         { "name": "Architizer", "url": "https://architizer.com/projects/papagayo-404/" },
+        { "name": "Archinect", "url": "https://archinect.com/Studiocava/project/papagayo-404" },
         { "name": "Archello", "url": "https://archello.com/project/papagayo-404" },
         { "name": "Houzz", "url": "https://www.houzz.com/hznb/projects/papagayo-404-pj-vj~7959687" }
       ],
