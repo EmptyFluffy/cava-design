@@ -2491,6 +2491,7 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .pp-before__award { margin: 0; color: var(--dark-grey); }
 .pp-before__credits { margin: 0; color: var(--dark-grey); }
 .pp-before .rec__cards { grid-column: auto; }
+.pcard__logo { align-self: flex-start; height: calc(1.5rem * var(--s, 1)); width: auto; max-width: 100%; margin-bottom: 0.35rem; }
 .rec__all { grid-column: 5 / -1; justify-self: start; font-size: var(--f-small); }
 @media (max-width: 991px) { .rec__all { grid-column: 1 / -1; } }
 .pp-profiles { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; }

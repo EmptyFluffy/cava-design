@@ -983,8 +983,8 @@ ${feat}
 ${cards}
       </ul>
     </section>
-` : ''}${recognition ? recognition.items.filter((it) => it.press?.length).map((it) => { const T = it[lang]; return `    <section class="pp-sec" id="before" aria-labelledby="pp-before-title">
-      <h2 class="label pp-sec__label" id="pp-before-title">${en ? '(Before the studio)' : '(Antes del estudio)'}</h2>
+` : ''}${recognition ? recognition.items.filter((it) => it.press?.length).map((it) => { const T = it[lang]; return `    <section class="pp-sec" id="awards" aria-labelledby="pp-before-title">
+      <h2 class="label pp-sec__label" id="pp-before-title">${en ? '(Awards)' : '(Premios)'}</h2>
       <div class="pp-before">
         <div class="pp-before__head">
           <h3 class="pp-before__title">${esc(it.name)}</h3>
@@ -1011,7 +1011,7 @@ ${footer(lang, up, paths)}${end}`;
 const recPressCards = (lang, up, it) => it.press.map((pr) => `          <li><a class="pcard" href="${pr.url}" target="_blank" rel="noopener"${pr.lang && pr.lang !== lang ? ` hreflang="${pr.lang}"` : ''}>
             <span class="pcard__img"><img src="${up}assets/img/recognition/${pr.image}.webp?v=${assetVer(`assets/img/recognition/${pr.image}.webp`)}" width="800" height="600" loading="lazy" decoding="async" alt=""></span>
             <span class="pcard__body">
-              <span class="pcard__pub"><b>${esc(pr.name)}</b><span>${esc(pr.edition ?? '')}</span></span>
+              <span class="pcard__pub">${outlets[pr.name] ? outletLogo(up, pr.name, 'pp-logo pcard__logo') : `<b>${esc(pr.name)}</b>`}<span>${esc(pr.edition ?? '')}</span></span>
               <span class="pcard__title"${pr.lang && pr.lang !== lang ? ` lang="${pr.lang}"` : ''}>${esc(pr.headline)}</span>
               <span class="label pcard__meta"><span>${esc(pr.date[lang])}</span><span>${lang === 'en' ? 'Read the article' : 'Leer el artículo'} ↗</span></span>
             </span>

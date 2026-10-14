@@ -51,6 +51,19 @@
       "w": 557,
       "h": 128,
       "home": "https://www.houzz.com"
+    },
+    "ArchDaily": {
+      "logo": "archdaily.svg",
+      "w": 1283,
+      "h": 800,
+      "scale": 1.9,
+      "home": "https://www.archdaily.com"
+    },
+    "La Nación": {
+      "logo": "nacion.svg",
+      "w": 1000,
+      "h": 211,
+      "home": "https://www.nacion.com"
     }
   }
 }
