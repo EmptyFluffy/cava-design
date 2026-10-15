@@ -2620,6 +2620,8 @@ const TC = {
     },
   },
 };
+const TOWN_COST_NOTES = join(ROOT, 'data', 'town-cost-notes.json');
+const townCostNotes = existsSync(TOWN_COST_NOTES) ? JSON.parse(readFileSync(TOWN_COST_NOTES, 'utf8')).towns : {};
 function townCostPage(lang, t) {
   const C = TC[lang];
   const L = TT[lang];
@@ -2646,7 +2648,16 @@ function townCostPage(lang, t) {
     [C.q.who(t.name), C.q.whoA(t.name, muni)],
   ].filter(([, a]) => a);
   const fact = (k, v) => `        <div><dt>${k}</dt><dd>${esc(v)}</dd></div>`;
-  const extra = `    <section class="proj__body grid tw__facts est__facts" aria-labelledby="tc-facts">
+  // a town's own section, written by hand (data/town-cost-notes.json), so its page says what only it can
+  const note = townCostNotes[t.slug]?.[lang];
+  const local = note ? `    <section class="tw__sec grid" aria-labelledby="tc-local">
+      <h2 class="label tw__label" id="tc-local">${esc(note.label)}</h2>
+      <div class="tw__text">
+${note.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+    </section>
+` : '';
+  const extra = `${local}    <section class="proj__body grid tw__facts est__facts" aria-labelledby="tc-facts">
       <h2 class="label sheet__label" id="tc-facts">${C.facts(t.name)}</h2>
       <dl class="sheet">
 ${[

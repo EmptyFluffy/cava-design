@@ -1,0 +1,41 @@
+{
+  "_note": "What it costs to build in a town, told for that town: a short section on its cost page (tools/cost-estimator/<town>/), written by hand so each page says something only it can. Figures come from data/town-data.json (NASA POWER rain, 2001 to 2020 average; Global Solar Atlas yield; road times) and data/land/towns.json (lots for sale, October 2026; Hacienda zone values, 2025 edition). Started with Potrero and Liberia (2026-10-15), the two pages in CAVA's own area that Google had crawled but not indexed: their text was almost the same as every other town's.",
+  "towns": {
+    "potrero": {
+      "en": {
+        "label": "(Building in Potrero)",
+        "text": [
+          "Potrero sits on its bay just north of Flamingo and Brasilito, in the canton of Santa Cruz, 12 m above the sea and 49 minutes by road from Liberia's airport. It is one of the driest stretches of the coast: January to March average 2 to 3 mm of rain a month, while September and October bring about 350 mm each.",
+          "That split decides much of the house. The dry months ask for deep shade, cross breezes and planting that lives on little water; the wet ones ask for wide roofs, drainage, and a lot that sheds water before it reaches the foundations. Each kilowatt of solar panels yields about 1,650 kWh a year here.",
+          "Permits go through the Municipality of Santa Cruz, after the CFIA's APC. Near the beach, check first which side of the maritime zone a lot is on: within 200 m of the high-tide line the first 50 m are public and the rest are municipal concessions, not titled land. The best months to start works are December and January, so the earthworks and foundations are done before the rains return in May."
+        ]
+      },
+      "es": {
+        "label": "(Construir en Potrero)",
+        "text": [
+          "Potrero está en su bahía, justo al norte de Flamingo y Brasilito, en el cantón de Santa Cruz, a 12 m sobre el mar y a 49 minutos por carretera del aeropuerto de Liberia. Es uno de los tramos más secos de la costa: de enero a marzo llueven en promedio 2 a 3 mm al mes, y setiembre y octubre traen unos 350 mm cada uno.",
+          "Esa diferencia decide buena parte de la casa. Los meses secos piden sombra profunda, brisa cruzada y jardines que vivan con poca agua; los lluviosos, techos amplios, drenaje y un lote que saque el agua antes de que llegue a las fundaciones. Cada kilovatio de paneles solares rinde aquí unos 1,650 kWh al año.",
+          "Los permisos se tramitan en la Municipalidad de Santa Cruz, después del APC del CFIA. Cerca de la playa, lo primero es saber de qué lado de la zona marítimo terrestre queda el lote: dentro de los 200 m desde la pleamar, los primeros 50 m son públicos y el resto son concesiones municipales, no terreno titulado. Los mejores meses para arrancar la obra son diciembre y enero, para que el movimiento de tierra y las fundaciones estén listos antes de que vuelvan las lluvias en mayo."
+        ]
+      }
+    },
+    "liberia": {
+      "en": {
+        "label": "(Building in Liberia)",
+        "text": [
+          "Liberia is Guanacaste's capital, 146 m above sea level and 16 minutes from the international airport. It is inland, so the maritime zone and its concessions, which shape every beach lot, do not apply here.",
+          "Land costs a fraction of the coast. The 16 residential lots listed in October 2026 asked a median of US$82 a m², the middle half between US$58 and 110. Hacienda's 2025 values for residential zones such as Los Cerros and Condega are ₡95,000 and ₡165,000 a m².",
+          "The climate is the dry tropics: January to March average 3 to 4 mm of rain a month, and September about 360 mm. Each kilowatt of solar panels yields about 1,675 kWh a year. Permits go through the Municipality of Liberia, after the CFIA's APC."
+        ]
+      },
+      "es": {
+        "label": "(Construir en Liberia)",
+        "text": [
+          "Liberia es la capital de Guanacaste, a 146 m sobre el nivel del mar y a 16 minutos del aeropuerto internacional. Está tierra adentro, así que la zona marítimo terrestre y sus concesiones, que marcan cada lote de playa, no aplican aquí.",
+          "El terreno cuesta una fracción de lo que cuesta en la costa. Los 16 lotes residenciales anunciados en octubre de 2026 piden una mediana de US$82 el m², con la mitad central entre US$58 y 110. Los valores de Hacienda de 2025 para zonas residenciales como Los Cerros y Condega son ₡95,000 y ₡165,000 el m².",
+          "El clima es el trópico seco: de enero a marzo llueven en promedio 3 a 4 mm al mes, y en setiembre unos 360 mm. Cada kilovatio de paneles solares rinde unos 1,675 kWh al año. Los permisos se tramitan en la Municipalidad de Liberia, después del APC del CFIA."
+        ]
+      }
+    }
+  }
+}
