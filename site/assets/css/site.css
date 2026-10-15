@@ -170,7 +170,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .hero__img.is-off, .hero__video.is-off { opacity: 0; }
 /* the sea from above opens the home (a video over the photos, site.js) when the head added .sea: motion
    welcome, Save-Data off. While it shows, the photos and the project row wait under it. */
-.hero__video { display: none; background: #1d4540; }
+.hero__video { display: none; background: #1d4540 center / cover no-repeat; }
 .sea .hero__video { display: block; }
 .sea .hero:not(.is-photo) > .hero__img { opacity: 0; }
 .sea .hero__row { transition: opacity 0.6s var(--ease), visibility 0s linear 0.6s; }

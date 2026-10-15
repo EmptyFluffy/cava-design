@@ -505,6 +505,16 @@
       };
       window.addEventListener('scroll', keep, { passive: true });
       document.addEventListener('visibilitychange', keep);
+      // Safari keeps the page in its back-forward cache and drops the video's frames: back from the portal, the
+      // sea showed as a flat colour. A page restored from that cache reloads the source (the poster shows while
+      // it does) and plays again if the sea is on screen; and the poster also paints the video's own background,
+      // so a frame that goes missing never leaves the flat colour.
+      seaVid.style.backgroundImage = `url("${seaVid.poster}")`;
+      window.addEventListener('pageshow', (e) => {
+        if (!e.persisted) return;
+        seaVid.load();
+        if (shown === seaVid && !away()) seaVid.play().catch(() => {});
+      });
     } else {
       hero.classList.add('is-photo');
     }
