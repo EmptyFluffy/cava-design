@@ -64,6 +64,12 @@
       "w": 1000,
       "h": 211,
       "home": "https://www.nacion.com"
+    },
+    "e-architect": {
+      "logo": "e-architect.png",
+      "w": 554,
+      "h": 82,
+      "home": "https://www.e-architect.com"
     }
   }
 }

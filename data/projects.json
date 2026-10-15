@@ -84,6 +84,11 @@
       "builtArea": 1100,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"], "photography": ["John Abrams"]},
       "published": [
+        {
+          "name": "e-architect",
+          "url": "https://www.e-architect.com/costarica/papagayo-404-house-extension-guanacaste",
+          "image": 2
+        },
         { "name": "Architizer", "url": "https://architizer.com/projects/papagayo-404/", "image": 3 },
         { "name": "Archinect", "url": "https://archinect.com/Studiocava/project/papagayo-404", "image": 5 },
         { "name": "Archello", "url": "https://archello.com/project/papagayo-404", "image": 4 },
