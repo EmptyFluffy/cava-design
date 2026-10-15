@@ -433,7 +433,7 @@
   const hero = $('.hero');
   const heroImg = $('.hero__img');
   const heroRow = $('.hero__row');
-  const seaVid = $('[data-hero-video]');
+  let seaVid = $('[data-hero-video]');   // replaced by a fresh copy after Safari's back-forward cache (below)
   const withSea = !!seaVid && root.classList.contains('sea');
   if (hero && heroImg && heroRow && (SLIDES.length > 1 || withSea) && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const nameEl = $('[data-hero-name]', heroRow);
@@ -505,16 +505,29 @@
       };
       window.addEventListener('scroll', keep, { passive: true });
       document.addEventListener('visibilitychange', keep);
-      // Safari keeps the page in its back-forward cache and drops the video's frames: back from the portal, the
-      // sea showed as a flat colour. A page restored from that cache reloads the source (the poster shows while
-      // it does) and plays again if the sea is on screen; and the poster also paints the video's own background,
-      // so a frame that goes missing never leaves the flat colour.
+      // Safari keeps the page in its back-forward cache and drops the video's frames: back from the portal the sea
+      // showed a flat colour, and reloading the same element left it still. A page restored from that cache gets a
+      // fresh copy of the element, which Safari plays like a new one. The poster also paints the video's own
+      // background, so a missing frame shows the sea, never the flat colour.
       seaVid.style.backgroundImage = `url("${seaVid.poster}")`;
-      window.addEventListener('pageshow', (e) => {
-        if (!e.persisted) return;
-        seaVid.load();
-        if (shown === seaVid && !away()) seaVid.play().catch(() => {});
-      });
+      let renewals = 0;
+      const renew = () => {
+        if (renewals++ > 2) return;
+        const fresh = seaVid.cloneNode(false);
+        fresh.muted = true;
+        const on = shown === seaVid;
+        seaVid.replaceWith(fresh); seaVid = fresh;
+        if (on) { shown = fresh; if (!away()) fresh.play().catch(() => {}); }
+      };
+      window.addEventListener('pageshow', (e) => { if (e.persisted) renew(); });
+      // while the sea is on screen it must move: a paused one is asked to play again, a stuck one is replaced
+      let lastT = -1;
+      setInterval(() => {
+        if (shown !== seaVid || away()) { lastT = -1; return; }
+        if (seaVid.paused) seaVid.play().catch(() => {});
+        else if (seaVid.currentTime === lastT && seaVid.readyState >= 3) renew();   // loaded, playing, yet still
+        lastT = seaVid.currentTime;
+      }, 1500);
     } else {
       hero.classList.add('is-photo');
     }
