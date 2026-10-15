@@ -520,7 +520,7 @@
         if (on) { shown = fresh; if (!away()) fresh.play().catch(() => {}); }
       };
       window.addEventListener('pageshow', (e) => { if (e.persisted) renew(); });
-      // while the sea is on screen it must move: a paused one is asked to play again, a stuck one is replaced
+      // while the sea is on screen it has to move: a paused one is asked to play again, a stuck one is replaced
       let lastT = -1;
       setInterval(() => {
         if (shown !== seaVid || away()) { lastT = -1; return; }
