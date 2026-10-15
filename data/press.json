@@ -24,6 +24,30 @@
         "alt_en": "Screenshot of Archinect's home page with the Papagayo 404 project tile outlined",
         "alt_es": "Captura de la portada de Archinect con el recuadro del proyecto Papagayo 404 marcado"
       }
+    },
+    {
+      "outlet": "e-architect",
+      "project": "papagayo-404",
+      "image": "papagayo-404/7",
+      "date": "2026-10-15",
+      "url": "https://www.e-architect.com/costarica/papagayo-404-house-extension-guanacaste",
+      "en": {
+        "kind": "Featured project",
+        "headline": "Papagayo 404, published by e‑architect and shown on its home page"
+      },
+      "es": {
+        "kind": "Proyecto destacado",
+        "headline": "Papagayo 404, publicado por e‑architect y mostrado en su portada"
+      },
+      "proof": {
+        "file": "e-architect-home-2026-10-15",
+        "w": 1600,
+        "h": 1182,
+        "en": "e-architect's home page on 15 October 2026, with Papagayo 404. Screenshot.",
+        "es": "La portada de e-architect el 15 de octubre de 2026, con Papagayo 404. Captura de pantalla.",
+        "alt_en": "Screenshot of e-architect's home page showing the Papagayo 404 article, with the double-height living room",
+        "alt_es": "Captura de la portada de e-architect con el artículo de Papagayo 404 y la sala de doble altura"
+      }
     }
   ],
   "outlets": {
@@ -70,7 +94,8 @@
       "logo": "e-architect.png",
       "w": 554,
       "h": 82,
-      "home": "https://www.e-architect.com"
+      "home": "https://www.e-architect.com",
+      "scale": 0.8
     }
   }
 }
