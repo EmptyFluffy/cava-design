@@ -28,9 +28,10 @@
   ],
   "outlets": {
     "Archinect": {
-      "logo": "archinect.png",
-      "w": 1005,
-      "h": 115,
+      "logo": "archinect-a.png",
+      "w": 155,
+      "h": 155,
+      "scale": 1.9,
       "home": "https://archinect.com"
     },
     "Architizer": {
