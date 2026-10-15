@@ -210,7 +210,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   padding: var(--margin);
 }
 .hero__title { max-width: 28.5ch; font-size: var(--f-h4); font-weight: 500; line-height: 1.2; letter-spacing: -0.03em; text-wrap: balance; }
-.hero__scroll { white-space: nowrap; }
+.hero__scroll { white-space: nowrap; display: inline-flex; align-items: center; gap: 0.45em; }
+/* the arrow says which way: a small drop every few seconds, still for anyone who asks for less motion */
+.hero__arrow { display: inline-block; animation: hero-arrow 2.8s var(--ease) infinite; }
+@keyframes hero-arrow { 0%, 55%, 100% { transform: translateY(0); } 25% { transform: translateY(0.3em); } }
+@media (prefers-reduced-motion: reduce) { .hero__arrow { animation: none; } }
 
 /* Floating pills once the hero is gone */
 .float {
