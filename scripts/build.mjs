@@ -468,7 +468,9 @@ function projectPage(lang, p, i) {
     [s.rows.project, p.name],
     [s.rows.type, type],
     [s.rows.typology, tr(lang, p, 'typology')],
-    ...FACTS.map((k) => [s.rows[k], AREAS.has(k) && p[k] != null ? area(lang, p[k]) : tr(lang, p, k)]),
+    // "In progress" says nothing a visitor needs (the year and the photos tell it), so that status is not shown;
+    // the data keeps it, the home still puts built work first
+    ...FACTS.filter((k) => !(k === 'status' && p.status === 'In progress')).map((k) => [s.rows[k], AREAS.has(k) && p[k] != null ? area(lang, p[k]) : tr(lang, p, k)]),
     // the team: who drew it, and who worked on it with us
     ...Object.entries(p.team ?? {}).map(([role, names]) => [TEAM_ROLES[role][lang], names.join(', ')]),
   ].map(([k, v]) => `        <div><dt>${k}</dt><dd${v == null ? ' class="tbc"' : ''}>${esc(v ?? s.tbc)}</dd></div>`).join('\n')
