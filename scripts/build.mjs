@@ -912,7 +912,7 @@ const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_P
 // studio's Instagram (between <!-- elsewhere --> markers, the home's hand-written footer included). Three links,
 // like every footer group, so the last line of each column meets the foot of the CAVA word. Once Facebook and
 // LinkedIn are live this splits into (Press) and a (Follow) group of three.
-const featId = (outlet) => `f-${outlet.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const featId = (outlet) => `feature-${outlet.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 const elsewhereGroup = (lang, up = '') => {
   const en = lang === 'en', href = `${up}${en ? 'press/' : 'es/prensa/'}`, ig = profiles.find((x) => x.name === 'Instagram');
   const outletsShown = (pressData.items ?? []).slice(0, ig ? 2 : 3);
