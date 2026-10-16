@@ -3,7 +3,7 @@
     python3 scripts/images.py [source-folder]
 
 The source folder holds one folder per project, named as in data/projects.json
-("folder"), with the PNG renders inside. Default: ~/Desktop/CAVA.
+("folder"), with the PNG renders inside. Default: ~/Desktop/CAVA/Proyectos.
 Writes site/assets/img/projects/<slug>/<n>-1600.webp and -800.webp (n follows
 the image order in the data, 1 = cover) and data/image-sizes.json.
 """
@@ -12,7 +12,7 @@ from PIL import Image
 from grade import grade
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-src = os.path.expanduser(sys.argv[1] if len(sys.argv) > 1 else '~/Desktop/CAVA')
+src = os.path.expanduser(sys.argv[1] if len(sys.argv) > 1 else '~/Desktop/CAVA/Proyectos')
 data = json.load(open(os.path.join(ROOT, 'data', 'projects.json')))
 sizes = {}
 for p in data['projects']:
