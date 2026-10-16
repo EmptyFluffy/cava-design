@@ -5,6 +5,6 @@
     { "name": "Archello", "url": "https://archello.com/brand/studio-cava", "live": true },
     { "name": "Archinect", "url": "https://archinect.com/studiocava", "live": true },
     { "name": "Houzz", "url": "https://www.houzz.com/pro/carlos-vinocour/studio-cava", "live": true },
-    { "name": "Instagram", "url": "https://www.instagram.com/cavaarchitects/", "live": false }
+    { "name": "Instagram", "url": "https://www.instagram.com/cavaarchitects/", "live": true }
   ]
 }

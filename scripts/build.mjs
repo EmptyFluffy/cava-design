@@ -908,15 +908,20 @@ const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH,
 const PROFILES_PATH = join(ROOT, 'data', 'profiles.json');
 const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_PATH, 'utf8')).items : []).filter((x) => x.live && x.url);
 // ...and in every footer, beside Tools, Costa Rica and More
-// the footer's press group: the outlets that featured or published the work, each to the press page
-// (between <!-- elsewhere --> markers, the home's hand-written footer included). Paths from the site root.
-// Three links, like every footer group, so the last line of each column meets the foot of the CAVA word:
-// the three parts of the press page (the latest feature, the publications, the studio's profiles).
-const elsewhereGroup = (lang, up = '') => { const en = lang === 'en'; const items = pressData.items ?? []; const pubs = projects.some((p) => p.published?.length); const href = `${up}${en ? 'press/' : 'es/prensa/'}`; return items.length || pubs ? `<!-- elsewhere --><div class="footer__group"><span class="label">${en ? '(Press)' : '(Prensa)'}</span>
-${items.length ? `        <a class="ulink" href="${href}#featured">${esc(items[0].outlet)}</a>
-` : ''}${pubs ? `        <a class="ulink" href="${href}#published">${en ? 'Publications' : 'Publicaciones'}</a>
-` : ''}        <a class="ulink" href="${href}#profiles">${en ? 'Profiles' : 'Perfiles'}</a>
-      </div><!-- /elsewhere -->` : '<!-- elsewhere --><!-- /elsewhere -->'; };
+// the footer's (Elsewhere) group: the outlets that featured the work, each to its card on the press page, then the
+// studio's Instagram (between <!-- elsewhere --> markers, the home's hand-written footer included). Three links,
+// like every footer group, so the last line of each column meets the foot of the CAVA word. Once Facebook and
+// LinkedIn are live this splits into (Press) and a (Follow) group of three.
+const featId = (outlet) => `f-${outlet.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+const elsewhereGroup = (lang, up = '') => {
+  const en = lang === 'en', href = `${up}${en ? 'press/' : 'es/prensa/'}`, ig = profiles.find((x) => x.name === 'Instagram');
+  const outletsShown = (pressData.items ?? []).slice(0, ig ? 2 : 3);
+  if (!outletsShown.length && !ig) return '<!-- elsewhere --><!-- /elsewhere -->';
+  return `<!-- elsewhere --><div class="footer__group"><span class="label">${en ? '(Elsewhere)' : '(En otros sitios)'}</span>
+${outletsShown.map((x) => `        <a class="ulink" href="${href}#${featId(x.outlet)}">${esc(x.outlet)}</a>
+`).join('')}${ig ? `        <a class="ulink" href="${esc(ig.url)}" target="_blank" rel="noopener">Instagram ↗</a>
+` : ''}      </div><!-- /elsewhere -->`;
+};
 const profilesSection = (lang) => (profiles.length ? `  <section class="tw__sec grid" aria-labelledby="elsewhere-title">
     <h2 class="label tw__label" id="elsewhere-title">${lang === 'en' ? '(Elsewhere)' : '(En otros sitios)'}</h2>
     <ul class="svc__for">
@@ -946,7 +951,7 @@ function pressPage(lang) {
   const description = en
     ? `Studio CAVA's work in the press and on ${names.join(', ').replace(/, ([^,]*)$/, ' and $1')}: featured projects, published projects and the studio's profiles.`
     : `La obra de Studio CAVA en la prensa y en ${names.join(', ').replace(/, ([^,]*)$/, ' y $1')}: proyectos destacados, proyectos publicados y los perfiles del estudio.`;
-  const feat = press.map((pr) => { const [sl, n] = pr.image.split('/'); const T = pr[lang]; const P = bySlug.get(pr.project); return `    <article class="pp-feat">
+  const feat = press.map((pr) => { const [sl, n] = pr.image.split('/'); const T = pr[lang]; const P = bySlug.get(pr.project); return `    <article class="pp-feat" id="${featId(pr.outlet)}">
       <a class="pp-feat__card" href="${esc(pr.url)}" target="_blank" rel="noopener">
         <span class="pp-feat__img">${picture(up, sl, Number(n), altOf(lang, P, Number(n)), '(min-width: 768px) 58vw, 100vw')}</span>
         <span class="pp-feat__body">
