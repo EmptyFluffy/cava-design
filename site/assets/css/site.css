@@ -1846,7 +1846,6 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 @media (max-width: 767px) {
   .pview__grid { grid-template-columns: minmax(0, 1fr); width: 100%; }
 }
-/* design iterations: small diagrams in a row, all in the same light grey */
 /* what a design started from: four black-and-white photographs in a row, credited */
 .pinsp { padding: 0 var(--margin) var(--pad-v); display: grid; row-gap: var(--s-2); }
 .pinsp__head { display: grid; gap: 0.6rem; max-width: 40rem; }
@@ -1856,15 +1855,10 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pinsp__fig img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1); }
 .pinsp__cap { margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--grey); }
 .pinsp__credit { margin: 0; color: var(--mid-grey); }
-/* the steps from the source to the building: line drawings, captioned, static */
-.pdia { padding: 0 var(--margin) var(--pad-v); display: grid; row-gap: var(--s-2); }
-.pdia__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
-.pdia__step img { display: block; width: 100%; height: auto; }
-.pdia__title { margin: 0.7rem 0 0; padding-top: 0.5rem; border-top: 1px solid var(--grey); }
-.pdia__cap { margin: 0.4rem 0 0; max-width: 22rem; }
 @media (max-width: 767px) {
-  .pinsp__grid, .pdia__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pinsp__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* design iterations: small diagrams in a row, all in the same light grey */
 .iter { padding: 0 var(--margin) var(--pad-v); display: grid; row-gap: var(--s-2); }
 .iter + .prow { margin-top: calc(var(--s-3) - var(--pad-v)); }
 .iter__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s-2); max-width: 44rem; }

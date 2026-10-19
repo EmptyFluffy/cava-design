@@ -730,14 +730,6 @@
           {"id": "valkyrie-vigilant", "file": "Inspiration/valkyrie-vigilant.png", "name": "Valkyrie II and Vigilant, 1893", "by": "Henry G. Peabody", "url": "https://commons.wikimedia.org/wiki/File:Yachts_Valkyrie_II_%26_Vigilant-01.jpg", "alt": "Black-and-white photograph of the sails of Valkyrie II and Vigilant filling with wind at the start of an America’s Cup race, 1893", "alt_es": "Fotografía en blanco y negro de las velas del Valkyrie II y el Vigilant llenándose de viento en la salida de una regata de la Copa América, 1893"}
         ]
       },
-      "sailDiagram": {
-        "steps": [
-          {"file": "sail-1.svg", "en": ["The sail", "Cloth held in tension between a mast, a boom and a gaff. The wind twists it, and it curves two ways at once."], "es": ["La vela", "Tela tensada entre un mástil, una botavara y un pico. El viento la tuerce y se curva en dos sentidos a la vez."]},
-          {"file": "sail-2.svg", "en": ["One module", "The same double curve as a roof: two corners high, two corners low, drawn here with straight lines only."], "es": ["Un módulo", "La misma doble curva como techo: dos esquinas altas y dos bajas, dibujadas aquí solo con líneas rectas."]},
-          {"file": "sail-3.svg", "en": ["The rig", "Raking masts and stays hold the high corners, the way a ship's rig holds its sails. The low corners are tied down."], "es": ["El aparejo", "Mástiles inclinados y tensores sostienen las esquinas altas, como el aparejo de un barco sostiene sus velas. Las bajas se amarran abajo."]},
-          {"file": "sail-4.svg", "en": ["The fleet", "Repeated along the old stone walls, high and low in turn, the modules become a row of sails."], "es": ["La flota", "Repetidos a lo largo de los viejos muros de piedra, alternando alto y bajo, los módulos se vuelven una fila de velas."]}
-        ]
-      },
       "images": [
         {
           "file": "Military Museum.png",
