@@ -340,7 +340,8 @@
   /* ---------- Map, loaded when it comes near the viewport ---------- */
   const MAPLIBRE = 'https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/';
   const STYLE = 'https://tiles.openfreemap.org/styles/positron';
-  const STUDIO = [-84.0795, 9.9325]; // San José centre, placeholder until the studio address is set
+  // the studio's two addresses: Condominio Tekali, Barrio Escalante (San José), and Reserva Conchal (Guanacaste)
+  const OFFICES = [[[-84.0639, 9.9364], 'Studio CAVA, San José'], [[-85.8059, 10.3996], 'Studio CAVA, Guanacaste']];
   const mapEl = $('#map');
 
   function loadMapLib() {
@@ -359,7 +360,7 @@
   }
 
   function mapFallback() {
-    mapEl.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'} <a class="ulink" href="https://www.google.com/maps/search/?api=1&amp;query=San+Jos%C3%A9%2C+Costa+Rica" target="_blank" rel="noopener">${ES ? 'Abrir San José en Google Maps ↗' : 'Open San José in Google Maps ↗'}</a></p></div>`;
+    mapEl.innerHTML = `<div class="map__fallback"><p>${ES ? 'El mapa no cargó.' : 'The map did not load.'} <a class="ulink" href="https://www.google.com/maps/search/?api=1&amp;query=Condominio+Tekali%2C+Barrio+Escalante%2C+San+Jos%C3%A9%2C+Costa+Rica" target="_blank" rel="noopener">${ES ? 'San José en Google Maps ↗' : 'San José on Google Maps ↗'}</a> · <a class="ulink" href="https://www.google.com/maps/search/?api=1&amp;query=Reserva+Conchal%2C+Guanacaste%2C+Costa+Rica" target="_blank" rel="noopener">${ES ? 'Guanacaste en Google Maps ↗' : 'Guanacaste on Google Maps ↗'}</a></p></div>`;
   }
 
   function initMap() {
@@ -368,7 +369,8 @@
       container: mapEl,
       style: STYLE,
       bounds: [[-85.95, 9.45], [-83.7, 10.95]],
-      fitBoundsOptions: { padding: 40 },
+      // on a phone both pins sit near the edges: leave room on both sides for their labels
+      fitBoundsOptions: { padding: mapEl.clientWidth < 600 ? { top: 40, bottom: 40, left: 100, right: 100 } : 40 },
       cooperativeGestures: true,
       attributionControl: { compact: true },
       dragRotate: false,
@@ -389,10 +391,12 @@
       if (cap) map.setFilter('label_city_capital', ['all', cap, ['!=', ['coalesce', ['get', 'name:latin'], ['get', 'name']], 'San José']]);
     });
 
-    const pin = document.createElement('div');
-    pin.className = 'pin';
-    pin.innerHTML = '<span class="pin__label">Studio CAVA, San José</span><span class="pin__dot"></span>';
-    new gl.Marker({ element: pin, anchor: 'bottom', offset: [0, 7] }).setLngLat(STUDIO).addTo(map);
+    for (const [lngLat, name] of OFFICES) {
+      const pin = document.createElement('div');
+      pin.className = 'pin';
+      pin.innerHTML = `<span class="pin__label">${name}</span><span class="pin__dot"></span>`;
+      new gl.Marker({ element: pin, anchor: 'bottom', offset: [0, 7] }).setLngLat(lngLat).addTo(map);
+    }
   }
 
   // warm the map: once the page has loaded and is idle, fetch the library (and the base map's style) into the

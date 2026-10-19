@@ -250,7 +250,7 @@ ${services.length ? `      <a class="footer__link" href="${up}${servicesPath(lan
       <div>
         <span class="label">${t.info}</span>
         <dl class="info">
-          <div><dt>${t.address}</dt><dd>San José, Costa Rica</dd></div>
+          <div><dt>${t.address}</dt><dd>Barrio Escalante, San José<br>Reserva Conchal, Guanacaste</dd></div>
           <div><dt>W:</dt><dd><a class="ulink" href="${wa(UI[lang].wa.general)}" target="_blank" rel="noopener">${WHATSAPP_SHOWN}</a></dd></div>
           <div><dt>E:</dt><dd><a class="ulink" href="mailto:${EMAIL}">${EMAIL}</a></dd></div>
           <div><dt>${t.hoursKey}</dt><dd>${t.hours}</dd></div>
@@ -906,6 +906,12 @@ ${footer(lang, up, paths)}${end}`;
 // ---------- recognition before the studio (data/recognition.json), on the Studio page ----------
 const RECOG_PATH = join(ROOT, 'data', 'recognition.json');
 const recognition = existsSync(RECOG_PATH) ? JSON.parse(readFileSync(RECOG_PATH, 'utf8')) : null;
+// The studio's two addresses (2026-10-19, Carlos): Condominio Tekali in Barrio Escalante, San José, and Reserva
+// Conchal in Guanacaste. The home's map pins them (site.js OFFICES); keep the Google Business Profile the same.
+const OFFICES_LD = [
+  { '@type': 'PostalAddress', streetAddress: 'Condominio Tekali, Barrio Escalante', addressLocality: 'San José', addressRegion: 'San José', addressCountry: 'CR' },
+  { '@type': 'PostalAddress', streetAddress: 'Reserva Conchal', addressLocality: 'Brasilito', addressRegion: 'Guanacaste', addressCountry: 'CR' },
+];
 // The studio's profiles elsewhere (data/profiles.json): only the public ones show
 const PROFILES_PATH = join(ROOT, 'data', 'profiles.json');
 const profiles = (existsSync(PROFILES_PATH) ? JSON.parse(readFileSync(PROFILES_PATH, 'utf8')).items : []).filter((x) => x.live && x.url);
@@ -1373,7 +1379,7 @@ function townPage(lang, t) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', url: `${ORIGIN}/`, telephone: `+${WHATSAPP}`, email: EMAIL,
-        address: { '@type': 'PostalAddress', addressLocality: 'San José', addressCountry: 'CR' },
+        address: OFFICES_LD,
         areaServed: { '@type': 'Place', name: `${t.name}, ${d.canton}, ${d.province}, Costa Rica`, geo: { '@type': 'GeoCoordinates', latitude: d.coords[1], longitude: d.coords[0] } } },
       { '@type': 'BreadcrumbList', itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Studio CAVA', item: `${ORIGIN}/${UI[lang].dir}` },
@@ -3328,7 +3334,7 @@ function studioLd(lang) {
           : 'Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.',
         url: `${ORIGIN}/`, logo: `${ORIGIN}/apple-touch-icon.png`, image: `${ORIGIN}/assets/img/og.jpg`,
         telephone: `+${WHATSAPP}`, email: EMAIL,
-        address: { '@type': 'PostalAddress', addressLocality: 'San José', addressCountry: 'CR' },
+        address: OFFICES_LD,
         areaServed: [{ '@type': 'Country', name: 'Costa Rica' }, ...Object.values(regions).map((r) => ({ '@type': 'AdministrativeArea', name: r[lang] }))],
         knowsAbout: en ? ['Architecture', 'Interior design', 'Master planning', 'Sustainable design', 'Building permits in Costa Rica', 'Construction supervision', 'Tropical architecture'] : ['Arquitectura', 'Diseño de interiores', 'Planes maestros', 'Diseño sostenible', 'Permisos de construcción en Costa Rica', 'Dirección de obra', 'Arquitectura tropical'],
         founder: { '@type': 'Person', name: 'Carlos Vinocour' },

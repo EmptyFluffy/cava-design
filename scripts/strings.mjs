@@ -9,7 +9,7 @@ export const UI = {
     reach: { label: '(Start a project)', text: 'Tell us about your property and what you want to build. Let\'s start a conversation.' },
     footer: {
       aria: 'Footer', nav: '(Navigation)', home: 'Home', where: 'Where we work', contactUs: 'Contact us', studio: '(Studio)',
-      about: 'Studio CAVA is an architecture and interiors practice based in San José, working across Costa Rica. Formerly AVARQ.',
+      about: 'Studio CAVA is an architecture and interiors practice based in San José and Guanacaste, working across Costa Rica. Formerly AVARQ.',
       info: '(Info)', address: 'A:', hoursKey: 'H:', hours: 'Monday to Friday, 8:00 to 17:00', top: 'Back to top ↑',
       careersCta: 'Work with us',
       tools: '(Tools)', cr: '(Costa Rica)', more: '(More)',
@@ -53,7 +53,7 @@ export const UI = {
     reach: { label: '(Empezar un proyecto)', text: 'Cuéntenos sobre su propiedad y lo que quiere construir. Empecemos a conversar.' },
     footer: {
       aria: 'Pie de página', nav: '(Navegación)', home: 'Inicio', where: 'Dónde trabajamos', contactUs: 'Contáctenos', studio: '(Estudio)',
-      about: 'Studio CAVA es un estudio de arquitectura e interiores con base en San José que trabaja en todo Costa Rica. Antes AVARQ.',
+      about: 'Studio CAVA es un estudio de arquitectura e interiores con base en San José y Guanacaste que trabaja en todo Costa Rica. Antes AVARQ.',
       info: '(Info)', address: 'D:', hoursKey: 'H:', hours: 'Lunes a viernes, 8:00 a 17:00', top: 'Volver arriba ↑',
       careersCta: 'Trabaje con nosotros',
       tools: '(Herramientas)', cr: '(Costa Rica)', more: '(Más)',

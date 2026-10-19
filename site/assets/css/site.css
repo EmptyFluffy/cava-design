@@ -318,10 +318,11 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .map__canvas { height: 80vh; height: 80svh; min-height: 28rem; max-height: 60rem; background: var(--light-grey); }
 .map__card {
   position: absolute; left: var(--margin); bottom: var(--margin); z-index: 2;
-  display: grid; gap: 0.6rem; max-width: 22rem; padding: 1.25rem;
+  display: grid; gap: 0.6rem; max-width: 25rem; padding: 1.25rem;
   background: var(--white); color: var(--black);
 }
 .map__name { font-size: var(--f-h4); font-weight: var(--w-strong); letter-spacing: -0.03em; line-height: 1.1; }
+.map__places { display: grid; gap: 0.2rem; font-weight: var(--w-strong); }   /* the two addresses, one per line */
 .map__fallback { display: grid; place-items: center; height: 100%; padding: 2rem; text-align: center; color: var(--dark-grey); }
 .pin { display: flex; flex-direction: column; align-items: center; gap: 0.45rem; pointer-events: none; }
 .pin__dot { width: 14px; height: 14px; border-radius: 50%; background: var(--black); box-shadow: 0 0 0 4px rgba(252, 252, 252, 0.95), 0 0 0 5px rgba(8, 8, 7, 0.18); }
