@@ -627,6 +627,25 @@ ${p.drawings.map((set) => {
 ${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, altOf(lang, p, n), rest.length === 1 ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
     </section>
 ` : '';
+  // what a design started from (inspiration): photographs in a row, black and white, credited; then the steps
+  // from that source to the building (sailDiagram): line drawings with their captions, static
+  const insp = p.inspiration;
+  const inspiration = insp ? `    <section class="pinsp" aria-labelledby="pinsp-title">
+      <div class="pinsp__head"><h2 class="label" id="pinsp-title">${lang === 'en' ? '(Inspiration)' : '(Inspiración)'}</h2><p class="pinsp__text">${esc(insp[lang])}</p></div>
+      <div class="pinsp__grid">
+${insp.photos.map((ph) => `        <figure class="pinsp__fig">${picture(up, p.slug, `i-${ph.id}`, lang === 'en' ? ph.alt : ph.alt_es, '(min-width: 768px) 23vw, 46vw')}<figcaption class="label pinsp__cap">${esc(ph.name)}</figcaption></figure>`).join('\n')}
+      </div>
+      <p class="note pinsp__credit">${lang === 'en' ? 'Photos' : 'Fotos'}: ${insp.photos.map((ph) => `<a class="ulink" href="${esc(ph.url)}" target="_blank" rel="noopener">${esc(ph.by)}</a>`).join(', ')}. ${lang === 'en' ? 'Public domain, Wikimedia Commons.' : 'Dominio público, Wikimedia Commons.'}</p>
+    </section>
+` : '';
+  const sd = p.sailDiagram;
+  const sailDiagram = sd ? `    <section class="pdia" aria-labelledby="pdia-title">
+      <h2 class="label" id="pdia-title">${lang === 'en' ? '(From sail to roof)' : '(De la vela al techo)'}</h2>
+      <ol class="pdia__list">
+${sd.steps.map((st, k) => { const rel = `assets/img/projects/${p.slug}/${st.file}`, [title, cap] = st[lang]; return `        <li class="pdia__step"><img src="${up}${rel}?v=${assetVer(rel)}" width="480" height="480" loading="lazy" decoding="async" alt="${esc(`${title}: ${cap}`)}"><p class="label pdia__title">(${k + 1}) ${esc(title)}</p><p class="pdia__cap">${esc(cap)}</p></li>`; }).join('\n')}
+      </ol>
+    </section>
+` : '';
   // two views of the same place, one over the other, with a divider to drag (compare.js)
   const compare = cmp ? (() => {
     const [a, b] = cmp.images, [la, lb] = cmp[lang];
@@ -671,7 +690,7 @@ ${p.text ? `    <section class="proj__text grid" aria-labelledby="about-title">
 ${rows}
       </dl>
 ${placeholders ? `      <p class="note sheet__note">${s.tbcNote}</p>\n` : ''}${mapFigure(lang, p)}    </section>
-${analysis}${gallery}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
+${analysis}${gallery}${inspiration}${sailDiagram}${compare}${plans}${iterations}${planRows}${views}${drawings}    <section class="related" aria-labelledby="related-title">
       <h2 class="label" id="related-title">${s.similar}</h2>
 ${projectCards(lang, up, similar(p).map((o) => ({ p: o, meta: placeOf(lang, o) })))}    </section>
     <nav class="next" aria-label="${s.nextAria}">

@@ -720,6 +720,24 @@
       "siteArea": 6500,
       "builtArea": 2400,
       "team": {"architecture": ["Carlos Vinocour", "Joshua Chaves"], "visualization": ["Emanuel Baizán"]},
+      "inspiration": {
+        "en": "The roof began with sails: light cloth held in tension, curving two ways at once.",
+        "es": "El techo empezó con velas: tela liviana tensada, que se curva en dos sentidos a la vez.",
+        "photos": [
+          {"id": "defender", "file": "Inspiration/defender.png", "name": "Defender, 1895", "by": "John S. Johnston", "url": "https://commons.wikimedia.org/wiki/File:Yacht_Defender.jpg", "alt": "Black-and-white photograph of the yacht Defender's mainsail and boom seen from the deck, with the crew, 1895", "alt_es": "Fotografía en blanco y negro de la vela mayor y la botavara del yate Defender vistas desde la cubierta, con la tripulación, 1895"},
+          {"id": "shamrock-ii", "file": "Inspiration/shamrock-ii.png", "name": "Shamrock II, 1901", "by": "Detroit Publishing Co.", "url": "https://commons.wikimedia.org/wiki/File:Detroit_Publishing_-_Shamrock_II_(Yacht).jpg", "alt": "Black-and-white photograph of Shamrock II's mast and mainsail in tension, 1901", "alt_es": "Fotografía en blanco y negro del mástil y la vela mayor tensada del Shamrock II, 1901"},
+          {"id": "atalanta", "file": "Inspiration/atalanta.png", "name": "Atalanta, 1887", "by": "Nathaniel L. Stebbins", "url": "https://commons.wikimedia.org/wiki/File:Stebbins-25-Atalanta.jpg", "alt": "Black-and-white photograph of Atalanta's sails, their seams fanning across the cloth, 1887", "alt_es": "Fotografía en blanco y negro de las velas del Atalanta, con las costuras abiertas en abanico, 1887"},
+          {"id": "valkyrie-vigilant", "file": "Inspiration/valkyrie-vigilant.png", "name": "Valkyrie II and Vigilant, 1893", "by": "Henry G. Peabody", "url": "https://commons.wikimedia.org/wiki/File:Yachts_Valkyrie_II_%26_Vigilant-01.jpg", "alt": "Black-and-white photograph of the sails of Valkyrie II and Vigilant filling with wind at the start of an America’s Cup race, 1893", "alt_es": "Fotografía en blanco y negro de las velas del Valkyrie II y el Vigilant llenándose de viento en la salida de una regata de la Copa América, 1893"}
+        ]
+      },
+      "sailDiagram": {
+        "steps": [
+          {"file": "sail-1.svg", "en": ["The sail", "Cloth held in tension between a mast, a boom and a gaff. The wind twists it, and it curves two ways at once."], "es": ["La vela", "Tela tensada entre un mástil, una botavara y un pico. El viento la tuerce y se curva en dos sentidos a la vez."]},
+          {"file": "sail-2.svg", "en": ["One module", "The same double curve as a roof: two corners high, two corners low, drawn here with straight lines only."], "es": ["Un módulo", "La misma doble curva como techo: dos esquinas altas y dos bajas, dibujadas aquí solo con líneas rectas."]},
+          {"file": "sail-3.svg", "en": ["The rig", "Raking masts and stays hold the high corners, the way a ship's rig holds its sails. The low corners are tied down."], "es": ["El aparejo", "Mástiles inclinados y tensores sostienen las esquinas altas, como el aparejo de un barco sostiene sus velas. Las bajas se amarran abajo."]},
+          {"file": "sail-4.svg", "en": ["The fleet", "Repeated along the old stone walls, high and low in turn, the modules become a row of sails."], "es": ["La flota", "Repetidos a lo largo de los viejos muros de piedra, alternando alto y bajo, los módulos se vuelven una fila de velas."]}
+        ]
+      },
       "images": [
         {
           "file": "Military Museum.png",

@@ -65,5 +65,14 @@ for p in data['projects']:
             r.save(os.path.join(out, f"d-{d['id']}-{w}.webp"), 'WEBP', quality=88, method=6)
             if w == 1600:
                 sizes[f"{p['slug']}/d-{d['id']}"] = [r.width, r.height]
+    # what a design started from (inspiration): black-and-white photographs, already cropped in the folder
+    for ph in (p.get('inspiration') or {}).get('photos', []):
+        img = Image.open(os.path.join(src, p['folder'], ph['file'])).convert('RGB')
+        for w in (1600, 1200, 800):
+            r = img.copy()
+            r.thumbnail((w, w * 2), Image.LANCZOS)
+            r.save(os.path.join(out, f"i-{ph['id']}-{w}.webp"), 'WEBP', quality=82 if w >= 1200 else 78, method=6)
+            if w == 1600:
+                sizes[f"{p['slug']}/i-{ph['id']}"] = [r.width, r.height]
 json.dump(sizes, open(os.path.join(ROOT, 'data', 'image-sizes.json'), 'w'), indent=1)
 print(len(sizes), 'images written')
