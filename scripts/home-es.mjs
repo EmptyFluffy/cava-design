@@ -11,7 +11,7 @@ export const SAME = new Set([
   'Archello ↗', 'Architizer ↗', 'Archinect ↗', 'Houzz ↗', 'Instagram ↗', 'Archinect', 'Architizer', 'Archello', 'Houzz', 'e-architect',
   // shared between the two pages on purpose
   'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'Condominio Tekali, Barrio Escalante, San José', 'Reserva Conchal, Guanacaste', 'Barrio Escalante, San José', 'hola@cava.design', 'cava.design', 'cava.design ·', 'Arquitectura',
-  'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'website', 'summary_large_image',
+  'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'Playa Grande', 'Playa Negra', 'Península Papagayo', 'website', 'summary_large_image',
   'WhatsApp +506 7173 7336', 'WhatsApp +506 7173 7336 ↗', '(Costa Rica)',
 ]);
 
@@ -69,7 +69,7 @@ export const PAIRS = [
   // ---------- works ----------
   ['<span>Featured</span><span class="indent-2">works</span>', '<span>Obras</span><span class="indent-2">seleccionadas</span>'],
   [/aria-label="View (.+?) image"/g, 'aria-label="Ver imagen de $1"'],
-  [/<span class="card__meta">([^<]+)<\/span>/g, (m, t) => `<span class="card__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel' })[t] ?? t}</span>`],
+  [/<span class="card__meta">([^<]+)<\/span>/g, (m, t) => `<span class="card__meta">${({ House: 'Casa', 'House extension': 'Ampliación de casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel' })[t] ?? t}</span>`],
   [/<span class="work__meta">([^<]+)<\/span>/g, (m, t) => `<span class="work__meta">${({ House: 'Casa', Hangars: 'Hangares', 'Mixed use': 'Uso mixto', Hotel: 'Hotel', 'View image →': 'Ver imagen →' })[t] ?? t}</span>`],
   [/All projects \((\d+)\) <span/g, 'Todos los proyectos ($1) <span'],
   [/View all images \((\d+)\) <span/g, 'Ver todas las imágenes ($1) <span'],

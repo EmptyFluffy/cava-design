@@ -3477,6 +3477,30 @@ function studioLd(lang) {
   return `<!-- ld --><script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script><!-- /ld -->`;
 }
 
+// ---------- the home's featured works: a mosaic of justified rows (data/featured.json) ----------
+const FEATURED_PATH = join(ROOT, 'data', 'featured.json');
+const featured = existsSync(FEATURED_PATH) ? JSON.parse(readFileSync(FEATURED_PATH, 'utf8')) : null;
+function homeMosaic() {
+  let k = 0;
+  const rows = featured.rows.map((row) => {
+    const total = row.reduce((t, x) => t + x.r, 0);
+    const tiles = row.map((x) => {
+      const [slug, n] = x.image.split('/'), p = bySlug.get(slug), [w, h] = sizes[x.image], b = imgBase(slug, n), v = imgVer(x.image);
+      const place = (tr('en', p, 'location') || '').split(',')[0].trim();          // the town: Playa Grande, Huacas
+      const style = `--r: ${x.r}${x.fx != null ? `; --fx: ${Math.round(x.fx * 100)}%` : ''}${x.fy != null ? `; --fy: ${Math.round(x.fy * 100)}%` : ''}`;
+      k += 1;
+      return `        <li class="mtile" style="${style}">
+          <a class="mtile__link" href="projects/${slug}/">
+            <img src="${b}-1600.webp?v=${v}" srcset="${b}-800.webp?v=${v} 800w, ${b}-1600.webp?v=${v} 1600w" sizes="(min-width: 768px) ${Math.round((x.r / total) * 96)}vw, 92vw" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(altOf('en', p, Number(n)))}">
+            <span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr('en', p, 'type'))}</span>${place && place !== p.name ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>
+          </a>
+        </li>`;
+    }).join('\n');
+    return `      <ol class="mosaic__row">\n${tiles}\n      </ol>`;
+  }).join('\n');
+  return `<!-- mosaic -->\n    <div class="mosaic">\n${rows}\n    </div>\n    <!-- /mosaic -->`;
+}
+
 function homeCounts() {
   const path = join(SITE, 'index.html');
   const before = readFileSync(path, 'utf8');
@@ -3501,7 +3525,9 @@ function homeCounts() {
     .replace(/<!-- measure -->[\s\S]*?<!-- \/measure -->\n?|(?=<\/head>)/, () => `<!-- measure -->\n${measureTags('')}<!-- /measure -->\n`)
     .replace(/<!-- elsewhere -->[\s\S]*?<!-- \/elsewhere -->/, () => elsewhereGroup('en'))
     .replace(/<!-- press -->[\s\S]*?<!-- \/press -->\n\n/, '')   // no press band on the home (Carlos, 2026-10-14): /press/ holds it
-    .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''));
+    .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''))
+    // the featured works as a mosaic: between its markers, or in place of the old two-column cards
+    .replace(/<!-- mosaic -->[\s\S]*?<!-- \/mosaic -->|<ol class="cards works__cards">[\s\S]*?<\/ol>/, () => (featured ? homeMosaic() : ''));
   if (after !== before) writeFileSync(path, after);
 }
 

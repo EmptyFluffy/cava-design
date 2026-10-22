@@ -265,6 +265,23 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .work__cap { display: flex; align-items: baseline; gap: 1.1rem; margin-top: 0.6rem; }
 .work__meta { margin-left: auto; color: var(--dark-grey); font-weight: var(--w-text); text-align: right; }
 .cards.works__cards { margin-bottom: var(--pad-v); } /* .cards, later in the file, resets margins */
+/* the featured works as a mosaic of justified rows (2026-10-21): each row fills the width, its tiles share one height
+   (a tile grows by its ratio r and keeps it), thin even gutters, the name on the image */
+.mosaic { display: grid; gap: 6px; margin: 0 0 var(--pad-v); }
+.mosaic__row { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.mtile { flex: var(--r) 1 0; min-width: 0; }
+.mtile__link { position: relative; display: block; overflow: hidden; color: #fcfcfc; }
+.mtile__link img { display: block; width: 100%; height: auto; aspect-ratio: var(--r); object-fit: cover; object-position: var(--fx, 50%) var(--fy, 50%); }
+.mtile__cap { position: absolute; inset: auto 0 0 0; display: grid; gap: 0.2rem; padding: 3.5rem 1.1rem 1rem; background: linear-gradient(to top, rgba(8, 8, 7, 0.5), rgba(8, 8, 7, 0)); pointer-events: none; }
+.mtile__name { font-weight: var(--w-strong); }
+.mtile__meta { font-weight: 400; opacity: 0.92; }
+.mtile__cap .card__meta { color: inherit; }
+.mtile__link:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .mosaic__row { flex-wrap: wrap; }
+  .mtile { flex: 1 1 100%; }
+  .mtile__link img { aspect-ratio: min(var(--r), 1.78); }   /* a panorama as wide as a phone is too thin */
+}
 .works__more { flex-wrap: wrap; gap: 0.5rem; }
 .works__renders { background: var(--light-grey); }
 
