@@ -375,6 +375,22 @@
   1600,
   900
  ],
+ "military-museum/i-defender": [
+  1600,
+  2000
+ ],
+ "military-museum/i-shamrock-ii": [
+  1600,
+  2000
+ ],
+ "military-museum/i-atalanta": [
+  1100,
+  1375
+ ],
+ "military-museum/i-valkyrie-vigilant": [
+  1500,
+  1875
+ ],
  "lean-and-green/1": [
   1600,
   900
@@ -394,21 +410,5 @@
  "lean-and-green/5": [
   1600,
   900
- ],
- "military-museum/i-defender": [
-  1600,
-  2000
- ],
- "military-museum/i-shamrock-ii": [
-  1600,
-  2000
- ],
- "military-museum/i-atalanta": [
-  1100,
-  1375
- ],
- "military-museum/i-valkyrie-vigilant": [
-  1500,
-  1875
  ]
 }

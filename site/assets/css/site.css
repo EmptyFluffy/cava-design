@@ -1942,7 +1942,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 }
 /* the titled plate carries its own key on a wide screen */
 @media (min-width: 768px) {
-  .pplan--plate .pplan__img { grid-column: 1 / -1; width: 90%; justify-self: center; }
+  .pplan--plate .pplan__img { grid-column: 1 / -1; width: calc(90% * var(--pw, 1)); justify-self: center; }
   .pplan--plate .pplan__key { display: none; }
 }
 /* a row of plans at one scale: widths in proportion to what each drawing covers */

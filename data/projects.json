@@ -58,7 +58,8 @@
           "label": "(Floor plan)", "label_es": "(Planta arquitectónica)",
           "key": ["Entry", "Living", "Dining", "Kitchen", "Pantry", "Guest bathroom", "Laundry and storage", "Main bedroom", "Walk-in closet", "Main bathroom", "Bedroom", "Bathroom", "Garage", "Carport", "Deck", "Outdoor shower", "Catwalk", "Infinity pool", "Sun deck", "Gazebo and barbecue", "Dry garden"],
           "key_es": ["Acceso", "Sala", "Comedor", "Cocina", "Despensa", "Baño de visitas", "Lavandería y bodega", "Dormitorio principal", "Vestidor", "Baño principal", "Dormitorio", "Baño", "Garaje", "Cochera", "Deck", "Ducha exterior", "Pasarela", "Piscina infinita", "Deck de sol", "Gazebo y parrilla", "Jardín seco"],
-          "plate": { "en": "Planta/web/floor-plan-en.png", "es": "Planta/web/floor-plan-es.png" }
+        "plateWidth": 0.85,
+        "plate": { "en": "Planta/web/floor-plan-en.png", "es": "Planta/web/floor-plan-es.png" }
         }
       ]
     },
