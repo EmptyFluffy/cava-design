@@ -6,7 +6,7 @@
     "description": "Studio CAVA is Carlos Vinocour's architecture practice in Costa Rica: how we work with you, what we believe and the seven stages of a project.",
     "label": "(Manifesto)",
     "h1": ["What we", "believe"],
-    "intro": "Five ideas we hold to on every project, from a bakery in Tamarindo to a hotel in Playa Negra, each with the reason behind it.",
+    "intro": "Five ideas we hold to on every project.",
     "open": {
       "label": "(Studio CAVA)",
       "h1": [
@@ -36,10 +36,9 @@
       ],
       "photo": {
         "file": "carlos-vinocour",
-        "w": 585,
-        "h": 780,
-        "alt": "Carlos Vinocour, founder and architect of Studio CAVA, at the Barcelona Pavilion",
-        "caption": "At the Barcelona Pavilion, Mies van der Rohe, 1929"
+        "w": 583,
+        "h": 950,
+        "alt": "Carlos Vinocour, founder and architect of Studio CAVA, at the Barcelona Pavilion"
       }
     },
     "together": {
@@ -67,37 +66,7 @@
       "text": [
         "Every site presents possibilities, along with questions that deserve careful attention. Our role is not to promise a project without challenges, but to identify potential issues early, coordinate the right expertise, and help you understand your options before making important commitments.",
         "We believe good communication is as important as good drawings. Clear deliverables, transparent responsibilities, and well-defined decisions create a stronger foundation for the entire project."
-      ],
-      "sheet": {
-        "tag": "(Sample, not a real project)",
-        "title": "Lot study, summary page",
-        "cols": [
-          [
-            "What we know",
-            [
-              "Land use: a single-family home is allowed, per the municipal certificate on file.",
-              "The survey plan matches the boundaries walked on site.",
-              "A slope of about 12%, falling toward the access road."
-            ]
-          ],
-          [
-            "What remains to be resolved",
-            [
-              "Water availability letter: requested. AyA answers within 15 working days.",
-              "Soil study for the foundations, to order once the purchase is confirmed.",
-              "The condominium's design rules, to confirm with its committee."
-            ]
-          ],
-          [
-            "What happens next",
-            [
-              "Your lawyer completes the title review.",
-              "We order the soil study and receive the water letter.",
-              "Concept design starts when both are in hand."
-            ]
-          ]
-        ]
-      }
+      ]
     },
     "closing": {
       "text": "Let's talk about your project.",
@@ -200,7 +169,9 @@
         {
           "title": "Site feasibility and due diligence",
           "extra": true,
-          "strip": 0,
+          "strip": [
+            "G1"
+          ],
           "text": [
             "Before making major design commitments, we walk the lot with you and assess the property's opportunities and constraints. Depending on the agreed scope, this may include:"
           ],
@@ -224,7 +195,10 @@
         },
         {
           "title": "Concept design",
-          "strip": 1,
+          "strip": [
+            "G5",
+            "concept-1"
+          ],
           "text": [
             "We explore how the project could inhabit its site: layout, orientation, natural light, ventilation, access, views, and the relationships between spaces. Usually two or three ways of placing it on the lot; you pick one, or a mix."
           ],
@@ -232,7 +206,10 @@
         },
         {
           "title": "Design development",
-          "strip": 2,
+          "strip": [
+            "G7",
+            "development-11"
+          ],
           "text": [
             "The selected direction evolves into a more resolved architectural proposal: proportions, materials, spatial relationships, the interiors, and what each engineering discipline will need."
           ],
@@ -240,7 +217,10 @@
         },
         {
           "title": "Permits and approvals",
-          "strip": 3,
+          "strip": [
+            "G8",
+            "permits-1"
+          ],
           "text": [
             "We prepare the drawings the CFIA and the municipality ask for, file them and follow them through review, along with environmental agencies, utilities and condominium review bodies where they apply. Some consultations, such as water availability or road alignments, begin earlier and run alongside the design."
           ],
@@ -252,7 +232,10 @@
         },
         {
           "title": "Technical documentation",
-          "strip": 4,
+          "strip": [
+            "G9",
+            "documents-5"
+          ],
           "text": [
             "We coordinate the architectural design with the structural, electrical and mechanical engineers and prepare the documentation a builder can price and build from."
           ],
@@ -265,7 +248,10 @@
         {
           "title": "Construction support",
           "extra": true,
-          "strip": 5,
+          "strip": [
+            "construction-2",
+            "construction-12"
+          ],
           "text": [
             "Where contracted, we help you select the contractor, answer design questions during construction, visit the site to review the work, and keep the architectural intent. The contractor remains responsible for the construction; CAVA is not the general contractor."
           ],
@@ -284,7 +270,7 @@
     "description": "Studio CAVA es el estudio de arquitectura de Carlos Vinocour en Costa Rica: cómo trabajamos con usted, lo que creemos y las siete etapas de un proyecto.",
     "label": "(Manifiesto)",
     "h1": ["Lo que", "creemos"],
-    "intro": "Cinco ideas que sostenemos en cada proyecto, de una panadería en Tamarindo a un hotel en Playa Negra, cada una con su razón.",
+    "intro": "Cinco ideas que sostenemos en cada proyecto.",
     "open": {
       "label": "(Studio CAVA)",
       "h1": [
@@ -313,8 +299,7 @@
         "Trabajando en Tamarindo desde 2013"
       ],
       "photo": {
-        "alt": "Carlos Vinocour, fundador y arquitecto de Studio CAVA, en el Pabellón de Barcelona",
-        "caption": "En el Pabellón de Barcelona, Mies van der Rohe, 1929"
+        "alt": "Carlos Vinocour, fundador y arquitecto de Studio CAVA, en el Pabellón de Barcelona"
       }
     },
     "together": {
@@ -342,37 +327,7 @@
       "text": [
         "Cada terreno trae posibilidades y también preguntas que merecen atención. Nuestro papel no es prometer un proyecto sin dificultades, sino detectar los problemas a tiempo, sumar a los especialistas adecuados y ayudarle a entender sus opciones antes de comprometerse.",
         "Creemos que la buena comunicación importa tanto como los buenos planos. Entregables claros, responsabilidades a la vista y decisiones bien definidas le dan una base más firme a todo el proyecto."
-      ],
-      "sheet": {
-        "tag": "(Ejemplo, no es un proyecto real)",
-        "title": "Estudio de lote, hoja de resumen",
-        "cols": [
-          [
-            "Lo que sabemos",
-            [
-              "Uso de suelo: se permite una vivienda unifamiliar, según el certificado municipal en el expediente.",
-              "El plano catastrado coincide con los linderos recorridos en el sitio.",
-              "Una pendiente de cerca del 12%, que baja hacia el camino de acceso."
-            ]
-          ],
-          [
-            "Lo que falta resolver",
-            [
-              "Carta de disponibilidad de agua: solicitada. AyA responde en 15 días hábiles.",
-              "Estudio de suelos para las fundaciones, a encargar cuando se confirme la compra.",
-              "Las reglas de diseño del condominio, a confirmar con su comité."
-            ]
-          ],
-          [
-            "Lo que sigue",
-            [
-              "Su abogado termina la revisión del título.",
-              "Encargamos el estudio de suelos y recibimos la carta de agua.",
-              "El anteproyecto empieza cuando estén los dos."
-            ]
-          ]
-        ]
-      }
+      ]
     },
     "closing": {
       "text": "Conversemos sobre su proyecto.",
@@ -490,7 +445,9 @@
             "lot-study",
             "Estudio de lote"
           ],
-          "strip": 0
+          "strip": [
+            "G1"
+          ]
         },
         {
           "title": "Anteproyecto",
@@ -498,7 +455,10 @@
             "Exploramos cómo podría habitar el proyecto su terreno: distribución, orientación, luz natural, ventilación, acceso, vistas y la relación entre los espacios. Por lo general, dos o tres maneras de ubicarlo en el lote; usted escoge una, o una mezcla."
           ],
           "get": "Plantas y cortes del anteproyecto, estudios de arquitectura y material de presentación para su revisión.",
-          "strip": 1
+          "strip": [
+            "G5",
+            "concept-1"
+          ]
         },
         {
           "title": "Desarrollo del diseño",
@@ -506,7 +466,10 @@
             "La dirección escogida se vuelve una propuesta más resuelta: proporciones, materiales, relaciones entre espacios, los interiores y lo que cada ingeniería va a necesitar."
           ],
           "get": "Planos desarrollados, las decisiones de diseño registradas y una primera estimación de costo, según el alcance contratado.",
-          "strip": 2
+          "strip": [
+            "G7",
+            "development-11"
+          ]
         },
         {
           "title": "Permisos y aprobaciones",
@@ -518,7 +481,10 @@
             "permits",
             "Permisos de construcción"
           ],
-          "strip": 3
+          "strip": [
+            "G8",
+            "permits-1"
+          ]
         },
         {
           "title": "Planos constructivos",
@@ -530,7 +496,10 @@
             "architecture",
             "Diseño arquitectónico"
           ],
-          "strip": 4
+          "strip": [
+            "G9",
+            "documents-5"
+          ]
         },
         {
           "title": "Acompañamiento en obra",
@@ -543,7 +512,10 @@
             "construction-supervision",
             "Dirección de obra"
           ],
-          "strip": 5
+          "strip": [
+            "construction-2",
+            "construction-12"
+          ]
         }
       ],
       "scope": "Los servicios y entregables se ajustan a cada proyecto y se definen en el contrato profesional. Algunos estudios, ingenierías, aprobaciones y responsabilidades de la etapa de obra pueden contratarse por aparte."

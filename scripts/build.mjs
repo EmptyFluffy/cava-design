@@ -1072,6 +1072,58 @@ ${press.length || publications().length ? `        <a class="ulink rec__all" hre
 `;
 }
 
+// ---------- the Studio page's record (2026-10-21): awards and publications as plain tables, like a studio's CV;
+// the full story of each award, with its images and press, stays on /press/#awards ----------
+function studioRecord(lang, up) {
+  const en = lang === 'en';
+  const row = (cells) => `        <tr>${cells.map((c, i) => `<td${i === 0 ? ' class="rec2__y"' : ''}>${c}</td>`).join('')}</tr>`;
+  const thead = (cells) => `        <thead><tr>${cells.map((c) => `<th scope="col" class="label">${c}</th>`).join('')}</tr></thead>`;
+  const ext = (url, text) => `<a class="ulink" href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>`;
+  const awards = (recognition?.items ?? []).map((it) => {
+    const T = it[lang], y = (T.award.match(/(\d{4})\s*$/) ?? [])[1] ?? '';
+    return { y, project: it.name, award: T.award.replace(/,\s*\d{4}\s*$/, ''), credits: T.credits };
+  });
+  // publications: the features first, then every listing of a project (one row per outlet and project), then the
+  // press about the awards; newest year first
+  const seen = new Set(), pubs = [];
+  for (const x of press) { const P = bySlug.get(x.project); seen.add(`${x.outlet}|${x.project}`); pubs.push({ y: x.date.slice(0, 4), name: x.outlet, url: x.url, art: `${P.name}${en ? ', featured' : ', destacado'}` }); }
+  for (const x of publications()) { const k = `${x.name}|${x.p.slug}`; if (seen.has(k)) continue; seen.add(k); pubs.push({ y: '2026', name: x.name, url: x.url, art: x.p.name }); }
+  for (const it of recognition?.items ?? []) for (const pr of it.press ?? []) pubs.push({ y: (pr.date.en.match(/\d{4}/) ?? [''])[0], name: pr.name === 'ArchDaily' && pr.edition ? pr.edition : pr.name, url: pr.url, art: it.name });
+  pubs.sort((a, b) => Number(b.y) - Number(a.y));
+  const H = en ? { awards: '(Awards)', pubs: '(Publications)', profiles: '(Profiles)', year: 'Year', project: 'Project', award: 'Award', pub: 'Publication', art: 'Article', more: 'Credits and press' }
+    : { awards: '(Premios)', pubs: '(Publicaciones)', profiles: '(Perfiles)', year: 'Año', project: 'Proyecto', award: 'Premio', pub: 'Publicación', art: 'Artículo', more: 'Créditos y prensa' };
+  return `  <section class="rec2" aria-label="${en ? 'Awards and publications' : 'Premios y publicaciones'}">
+${awards.length ? `    <div class="rec2__block grid">
+      <h2 class="label rec2__label">${H.awards}</h2>
+      <div class="rec2__body">
+      <table class="rec2__table">
+${thead([H.year, H.project, H.award])}
+        <tbody>
+${awards.map((a) => row([esc(a.y), esc(a.project), esc(a.award)])).join('\n')}
+        </tbody>
+      </table>
+${awards.map((a) => `      <p class="rec2__note">${esc(a.credits)} <a class="ulink" href="${up}${pressPath(lang)}#awards">${H.more} →</a></p>`).join('\n')}
+      </div>
+    </div>
+` : ''}${pubs.length ? `    <div class="rec2__block grid">
+      <h2 class="label rec2__label">${H.pubs}</h2>
+      <div class="rec2__body">
+      <table class="rec2__table">
+${thead([H.year, H.pub, H.art])}
+        <tbody>
+${pubs.map((x) => row([esc(x.y), ext(x.url, x.name), esc(x.art)])).join('\n')}
+        </tbody>
+      </table>
+      </div>
+    </div>
+` : ''}${profiles.length ? `    <div class="rec2__block grid">
+      <h2 class="label rec2__label">${H.profiles}</h2>
+      <p class="rec2__body rec2__links">${profiles.map((x) => ext(x.url, `${x.name} ↗`)).join('<span class="rec2__dot" aria-hidden="true"> · </span>')}</p>
+    </div>
+` : ''}  </section>
+`;
+}
+
 function studioPage(lang) {
   const t = UI[lang];
   const d = studio[lang];
@@ -1080,7 +1132,7 @@ function studioPage(lang) {
   const up = upFrom(paths[lang]);
   const A = d.architect, AP = { ...studio.en.architect.photo, ...A.photo };
   // the founder's portrait (2026-10-21, Carlos's own photograph, cropped 3:4 like a studio page's portrait)
-  const photoBase = `${up}assets/img/studio/${AP.file}`, photoV = `?v=${assetVer(`assets/img/studio/${AP.file}-585.webp`)}`;
+  const photoBase = `${up}assets/img/studio/${AP.file}`, photoV = `?v=${assetVer(`assets/img/studio/${AP.file}-${AP.w}.webp`)}`;
   const svcHref = (key) => key === 'book' ? (booking ? `${up}${bookPath(lang)}` : `${up}${t.dir}#enquiry`) : (() => { const s = services.find((x) => x.slug.en === key); return s ? `${up}${servicePath(lang, s)}` : null; })();
   const beliefs = d.beliefs.map((b, i) => {
     // images are set on the English beliefs and shared by both languages
@@ -1104,14 +1156,13 @@ ${b.text.map((x) => `            <p class="large">${esc(x)}</p>`).join('\n')}
         <span class="label stage__n">(${pad(i + 1)})</span>
         <div class="stage__head">
           <h3 class="stage__title">${esc(st.title)}</h3>
-${st.extra ? `          <p class="label stage__tag">${esc(d.process.extra)}</p>\n` : ''}        </div>
+        </div>
         <div class="stage__body">
 ${st.text.map((x) => `          <p class="large stage__text">${esc(x)}</p>`).join('\n')}
 ${st.list ? `          <ul class="stage__list">\n${st.list.map((x) => `            <li>${esc(x)}</li>`).join('\n')}\n          </ul>\n` : ''}${st.note ? `          <p class="stage__note">${esc(st.note)}</p>\n` : ''}          <p class="stage__get"><span class="label">${esc(d.process.get)}</span> ${esc(st.get)}</p>
 ${href ? `          <p class="label stage__link"><a class="ulink" href="${href}">${esc(st.link[1])} →</a></p>\n` : ''}        </div>
-${Number.isInteger(st.strip) && proc?.stages[st.strip] ? `        ${procStrip(lang, up, proc.stages[st.strip], 'stage__strip')}\n` : ''}      </li>`;
+${st.strip?.length ? `        ${procStrip(lang, up, st.strip, 'stage__strip')}\n` : ''}      </li>`;
   }).join('\n');
-  const sheet = d.clarity.sheet;
   // the founder, for search engines: the page is his profile, the studio already has its own record on the home
   const ld = {
     '@context': 'https://schema.org',
@@ -1119,7 +1170,7 @@ ${Number.isInteger(st.strip) && proc?.stages[st.strip] ? `        ${procStrip(la
     url: `${ORIGIN}/${paths[lang]}`,
     mainEntity: {
       '@type': 'Person', '@id': `${ORIGIN}/studio/#carlos-vinocour`, name: A.name, jobTitle: A.role,
-      image: `${ORIGIN}/assets/img/studio/${AP.file}-585.webp`,
+      image: `${ORIGIN}/assets/img/studio/${AP.file}-${AP.w}.webp`,
       worksFor: { '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', url: `${ORIGIN}/` },
       hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'license', name: en ? 'Architect, CFIA registration A-31886' : 'Arquitecto, registro CFIA A-31886', recognizedBy: { '@type': 'Organization', name: 'Colegio Federado de Ingenieros y de Arquitectos de Costa Rica', url: 'https://cfia.or.cr/' } },
       knowsLanguage: ['en', 'es'],
@@ -1138,7 +1189,7 @@ ${bar(lang, up, paths, 'studio')}
   <header class="mf st-open" aria-labelledby="st-title">
     <div class="mf__head grid">
       <span class="label mf__label">${esc(d.open.label)}</span>
-      <h1 class="display mf__title" id="st-title"><span>${esc(d.open.h1[0])}</span><span class="indent-2">${esc(d.open.h1[1])}</span></h1>
+      <h1 class="display mf__title st-title" id="st-title"><span>${esc(d.open.h1[0])}</span><span class="indent-2">${esc(d.open.h1[1])}</span></h1>
       <div class="st-open__text">
 ${d.open.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
         <p class="label st-open__cta"><a class="ulink" href="${svcHref('book')}">${esc(d.open.cta)} →</a></p>
@@ -1151,16 +1202,15 @@ ${d.open.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
     <div class="st-arch__who">
       <p class="st-arch__name">${esc(A.name)}</p>
       <p class="label st-arch__role">${esc(A.role)}</p>
+      <ul class="st-arch__facts">
+${A.facts.map((x) => `        <li>${esc(x)}</li>`).join('\n')}
+      </ul>
       <div class="st-arch__bio">
-${A.bio.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+${A.bio.map((x) => `        <p>${esc(x)}</p>`).join('\n')}
       </div>
     </div>
     <figure class="st-arch__fig">
-      <img src="${photoBase}-585.webp${photoV}" srcset="${photoBase}-390.webp${photoV} 390w, ${photoBase}-585.webp${photoV} 585w" sizes="(min-width: 768px) 22vw, 60vw" width="${AP.w}" height="${AP.h}" loading="lazy" decoding="async" alt="${esc(AP.alt)}">
-      <figcaption class="st-arch__facts">
-${A.facts.map((x) => `        <span>${esc(x)}</span>`).join('\n')}
-        <span class="st-arch__cap">${esc(AP.caption)}</span>
-      </figcaption>
+      <img src="${photoBase}-${AP.w}.webp${photoV}" srcset="${photoBase}-390.webp${photoV} 390w, ${photoBase}-${AP.w}.webp${photoV} ${AP.w}w" sizes="(min-width: 768px) 18vw, 60vw" width="${AP.w}" height="${AP.h}" loading="lazy" decoding="async" alt="${esc(AP.alt)}">
     </figure>
   </section>
   <section class="st-tog grid" aria-labelledby="st-tog-title">
@@ -1174,7 +1224,7 @@ ${d.together.items.map(([h, x], i) => `      <li><span class="label st-tog__n">(
   <article class="mf" aria-labelledby="mf-title">
     <header class="mf__head grid">
       <span class="label mf__label">${d.label}</span>
-      <h2 class="display mf__title" id="mf-title"><span>${esc(d.h1[0])}</span><span class="indent-2">${esc(d.h1[1])}</span></h2>
+      <h2 class="display mf__title st-title" id="mf-title"><span>${esc(d.h1[0])}</span><span class="indent-2">${esc(d.h1[1])}</span></h2>
       <p class="h3 mf__intro">${esc(d.intro)}</p>
     </header>
     <div class="beliefs">
@@ -1186,15 +1236,9 @@ ${beliefs}
       <div class="st-clar__text">
 ${d.clarity.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
       </div>
-      <figure class="st-sheet" aria-label="${esc(`${sheet.title} ${sheet.tag}`)}">
-        <figcaption class="st-sheet__top"><span class="label">${esc(sheet.title)}</span><span class="label st-sheet__tag">${esc(sheet.tag)}</span></figcaption>
-        <div class="st-sheet__cols">
-${sheet.cols.map(([h, items]) => `          <div class="st-sheet__col"><p class="label st-sheet__h">${esc(h)}</p><ul>${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('\n')}
-        </div>
-      </figure>
     </section>
   </article>
-  <section class="stages-sec" id="process" aria-labelledby="process-title">
+  <section class="stages-sec st-proc" id="process" aria-labelledby="process-title">
     <div class="stages__head grid">
       <span class="label stages__label">${d.process.label}</span>
       <h2 class="h3 stages__title st-proc__h" id="process-title">${esc(d.process.h2.join(' '))}</h2>
@@ -1205,10 +1249,7 @@ ${stages}
     </ol>
     <p class="stages__scope grid"><span>${esc(d.process.scope)}</span></p>
   </section>
-${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
-    <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
-  </section>` : ''}
-${contact(lang, t.wa.general, up, '', d.closing)}</main>
+${studioRecord(lang, up)}${contact(lang, t.wa.general, up, '', d.closing)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.general)}${end}`;
 }
 
