@@ -3527,7 +3527,8 @@ function homeCounts() {
     .replace(/<!-- press -->[\s\S]*?<!-- \/press -->\n\n/, '')   // no press band on the home (Carlos, 2026-10-14): /press/ holds it
     .replace(/<!-- process-fig -->[\s\S]*?<!-- \/process-fig -->/, () => (proc ? processFigure('en', '') : ''))
     // the featured works as a mosaic: between its markers, or in place of the old two-column cards
-    .replace(/<!-- mosaic -->[\s\S]*?<!-- \/mosaic -->|<ol class="cards works__cards">[\s\S]*?<\/ol>/, () => (featured ? homeMosaic() : ''));
+    .replace(/<!-- mosaic -->[\s\S]*?<!-- \/mosaic -->|<ol class="cards works__cards">[\s\S]*?<\/ol>/, () => (featured ? homeMosaic() : ''))
+    .replace(/(<span class="display works__count" aria-hidden="true">)\(\d+\)/, (m, a) => (featured ? `${a}(${pad(featured.rows.flat().length)})` : m));
   if (after !== before) writeFileSync(path, after);
 }
 
