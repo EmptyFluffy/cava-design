@@ -3486,13 +3486,13 @@ function homeMosaic() {
     const total = row.reduce((t, x) => t + x.r, 0);
     const tiles = row.map((x) => {
       const [slug, n] = x.image.split('/'), p = bySlug.get(slug), [w, h] = sizes[x.image], b = imgBase(slug, n), v = imgVer(x.image);
-      const place = (tr('en', p, 'location') || '').split(',')[0].trim();          // the town: Playa Grande, Huacas
+      const place = (tr('en', p, 'location') || '').split(',').map((t) => t.trim()).find((t) => t && !p.name.includes(t)) ?? '';   // the town, unless the name already says it
       const style = `--r: ${x.r}${x.fx != null ? `; --fx: ${Math.round(x.fx * 100)}%` : ''}${x.fy != null ? `; --fy: ${Math.round(x.fy * 100)}%` : ''}`;
       k += 1;
       return `        <li class="mtile" style="${style}">
           <a class="mtile__link" href="projects/${slug}/">
             <img src="${b}-1600.webp?v=${v}" srcset="${b}-800.webp?v=${v} 800w, ${b}-1600.webp?v=${v} 1600w" sizes="(min-width: 768px) ${Math.round((x.r / total) * 96)}vw, 92vw" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(altOf('en', p, Number(n)))}">
-            <span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr('en', p, 'type'))}</span>${place && place !== p.name ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>
+            <span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr('en', p, 'type'))}</span>${place ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>
           </a>
         </li>`;
     }).join('\n');

@@ -11,7 +11,7 @@ export const SAME = new Set([
   'Archello ↗', 'Architizer ↗', 'Archinect ↗', 'Houzz ↗', 'Instagram ↗', 'Archinect', 'Architizer', 'Archello', 'Houzz', 'e-architect',
   // shared between the two pages on purpose
   'Studio CAVA', 'CAVA', 'WhatsApp', 'San José, Costa Rica', 'Condominio Tekali, Barrio Escalante, San José', 'Reserva Conchal, Guanacaste', 'Barrio Escalante, San José', 'hola@cava.design', 'cava.design', 'cava.design ·', 'Arquitectura',
-  'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'Playa Grande', 'Playa Negra', 'Península Papagayo', 'website', 'summary_large_image',
+  'Google', 'Instagram', '(Info)', '(Interior)', 'Hotel', 'Huacas', 'Tamarindo', 'Playa Grande', 'Playa Negra', 'Península Papagayo', 'Green City', 'San Rafael', 'Guanacaste', 'website', 'summary_large_image',
   'WhatsApp +506 7173 7336', 'WhatsApp +506 7173 7336 ↗', '(Costa Rica)',
 ]);
 

@@ -2,7 +2,7 @@
   "_note": "The home's featured works, as a mosaic of justified rows (2026-10-21, after omegarender.com): every row fills the width and its tiles share one height, so each tile's width follows its ratio. A tile is a project's image (slug/n from data/projects.json) shown at ratio r, cropped with object-fit around the focus point fx, fy (0 to 1). Below 768 px each tile takes a row of its own.",
   "rows": [
     [ { "image": "rancho-cartagena/1", "r": 1.78 }, { "image": "papagayo-404/1", "r": 1.4 } ],
-    [ { "image": "hangars-b/2", "r": 1.33 }, { "image": "tragaluz-retreat/2", "r": 1.15, "fx": 0.62 }, { "image": "kauhane-house/1", "r": 1.78 } ],
-    [ { "image": "casa-alcaravan/1", "r": 1.4 }, { "image": "negra-mixed-use/1", "r": 1.78 } ]
+    [ { "image": "hangars-b/2", "r": 1.33 }, { "image": "green-city-amacor/1", "r": 1.15, "fx": 0.6 }, { "image": "kauhane-house/1", "r": 1.78 } ],
+    [ { "image": "casa-alcaravan/3", "r": 1.5 }, { "image": "negra-mixed-use/1", "r": 1.78 } ]
   ]
 }
