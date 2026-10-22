@@ -1930,6 +1930,9 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 
 /* ---------- a project's numbered plan, with its key ---------- */
 .pplan { margin: 0; padding: 0 var(--margin) var(--pad-v); align-items: end; row-gap: var(--s-2); }
+/* a plan on a ground tone: the band takes the tone edge to edge, the sheet and the key sit on it */
+.pplan--ground { background: var(--ground); padding-top: var(--s-4); padding-bottom: var(--s-4); margin-bottom: var(--pad-v); }
+.pplan--ground .pplan__img { background: transparent; }
 .pplan__img { grid-column: 1 / span 8; background: #fcfcfc; }
 .pplan__img img { width: 100%; height: auto; display: block; }
 .pplan__key { grid-column: 9 / -1; display: grid; gap: 0.9rem; padding-bottom: 0.5rem; }

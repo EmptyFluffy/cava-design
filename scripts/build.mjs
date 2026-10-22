@@ -592,7 +592,9 @@ ${it.files.map((f, i) => {
   const plans = p.images.map((im, j) => [im, j + 1]).filter(([im, n]) => im.plan && !inRows.has(n)).map(([im, n]) => {
     const pk = `${p.slug}/${n}-${lang}`, pb = up + imgBase(p.slug, `${n}-${lang}`), pv = `?v=${imgVer(pk)}`;
     const plate = im.plate ? `<source media="(min-width: 768px)" srcset="${pb}-800.webp${pv} 800w, ${pb}-1600.webp${pv} 1600w, ${pb}-2400.webp${pv} 2400w, ${pb}-3600.webp${pv} 3600w" sizes="86vw" width="${sizes[pk][0]}" height="${sizes[pk][1]}">` : '';
-    return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}"${im.plateWidth ? ` style="--pw: ${im.plateWidth}"` : ''}>
+    // a plan drawn on a ground tone (im.ground) sits on a full-bleed band of that tone, so the sheet has no edge
+    const pst = [im.plateWidth ? `--pw: ${im.plateWidth}` : '', im.ground ? `--ground: ${im.ground}` : ''].filter(Boolean).join('; ');
+    return `    <figure class="pplan grid${im.plate ? ' pplan--plate' : ''}${im.ground ? ' pplan--ground' : ''}"${pst ? ` style="${pst}"` : ''}>
       <div class="pplan__img">${im.plate ? `<picture>${plate}${picture(up, p.slug, n, altOf(lang, p, n), '100vw')}</picture>` : picture(up, p.slug, n, altOf(lang, p, n), '(min-width: 768px) 64vw, 100vw')}</div>
       <figcaption class="pplan__key"><p class="label">${esc(im[lang === 'en' ? 'label' : 'label_es'] ?? (lang === 'en' ? '(Site plan)' : '(Planta de conjunto)'))}</p><ol>${(im[lang === 'en' ? 'key' : 'key_es'] ?? []).map((k, i) => `<li><b>${(im.keyFrom ?? 1) + i}</b><span>${esc(k)}</span></li>`).join('')}</ol></figcaption>
     </figure>
