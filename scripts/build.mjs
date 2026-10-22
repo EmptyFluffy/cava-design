@@ -199,13 +199,13 @@ function bar(lang, up, paths, current) {
 `;
 }
 
-function contact(lang, waText, up = null, q = '') {
-  const t = UI[lang].reach;
+function contact(lang, waText, up = null, q = '', o = null) {
+  const t = { ...UI[lang].reach, ...(o ?? {}) };
   return `<section class="reach grid" aria-labelledby="reach-title">
   <span class="label reach__label" id="reach-title">${t.label}</span>
   <div class="reach__main">
     <p class="h3">${t.text}</p>
-    <div class="reach__actions">
+${t.sub ? `    <p class="large reach__sub">${t.sub}</p>\n` : ''}    <div class="reach__actions">
       <a class="btn btn--dark" href="${wa(waText)}" target="_blank" rel="noopener">WhatsApp ${WHATSAPP_SHOWN} <span class="btn__dot" aria-hidden="true"></span></a>
 ${up !== null && booking ? `      <a class="btn btn--light" href="${up}${bookPath(lang)}${q}">${BK[lang].link} <span class="btn__dot" aria-hidden="true"></span></a>
 ` : ''}      <a class="btn btn--light reach__mail" href="mailto:${EMAIL}">${EMAIL} <span class="btn__dot" aria-hidden="true"></span></a>
@@ -1075,8 +1075,13 @@ ${press.length || publications().length ? `        <a class="ulink rec__all" hre
 function studioPage(lang) {
   const t = UI[lang];
   const d = studio[lang];
+  const en = lang === 'en';
   const paths = { en: studioPath('en'), es: studioPath('es') };
   const up = upFrom(paths[lang]);
+  const A = d.architect, AP = { ...studio.en.architect.photo, ...A.photo };
+  // the founder's portrait (2026-10-21, Carlos's own photograph, cropped 3:4 like a studio page's portrait)
+  const photoBase = `${up}assets/img/studio/${AP.file}`, photoV = `?v=${assetVer(`assets/img/studio/${AP.file}-585.webp`)}`;
+  const svcHref = (key) => key === 'book' ? (booking ? `${up}${bookPath(lang)}` : `${up}${t.dir}#enquiry`) : (() => { const s = services.find((x) => x.slug.en === key); return s ? `${up}${servicePath(lang, s)}` : null; })();
   const beliefs = d.beliefs.map((b, i) => {
     // images are set on the English beliefs and shared by both languages
     const [slug, n] = (b.image ?? studio.en.beliefs[i].image).split('/');
@@ -1092,44 +1097,118 @@ ${b.text.map((x) => `            <p class="large">${esc(x)}</p>`).join('\n')}
         </div>
       </details>`;
   }).join('\n');
-  const stages = d.process.stages.map(([title, text], i) => `      <li class="stage">
+  // seven stages, in the order Costa Rica asks for; the ones contracted on their own say so
+  const stages = d.process.stages.map((st, i) => {
+    const href = st.link ? svcHref(st.link[0]) : null;
+    return `      <li class="stage">
         <span class="label stage__n">(${pad(i + 1)})</span>
-        <h3 class="stage__title">${esc(title)}</h3>
-        <p class="large stage__text">${esc(text)}</p>
-${proc?.stages[i] ? `        ${procStrip(lang, up, proc.stages[i], 'stage__strip')}\n` : ''}      </li>`).join('\n');
+        <div class="stage__head">
+          <h3 class="stage__title">${esc(st.title)}</h3>
+${st.extra ? `          <p class="label stage__tag">${esc(d.process.extra)}</p>\n` : ''}        </div>
+        <div class="stage__body">
+${st.text.map((x) => `          <p class="large stage__text">${esc(x)}</p>`).join('\n')}
+${st.list ? `          <ul class="stage__list">\n${st.list.map((x) => `            <li>${esc(x)}</li>`).join('\n')}\n          </ul>\n` : ''}${st.note ? `          <p class="stage__note">${esc(st.note)}</p>\n` : ''}          <p class="stage__get"><span class="label">${esc(d.process.get)}</span> ${esc(st.get)}</p>
+${href ? `          <p class="label stage__link"><a class="ulink" href="${href}">${esc(st.link[1])} →</a></p>\n` : ''}        </div>
+${Number.isInteger(st.strip) && proc?.stages[st.strip] ? `        ${procStrip(lang, up, proc.stages[st.strip], 'stage__strip')}\n` : ''}      </li>`;
+  }).join('\n');
+  const sheet = d.clarity.sheet;
+  // the founder, for search engines: the page is his profile, the studio already has its own record on the home
+  const ld = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    url: `${ORIGIN}/${paths[lang]}`,
+    mainEntity: {
+      '@type': 'Person', '@id': `${ORIGIN}/studio/#carlos-vinocour`, name: A.name, jobTitle: A.role,
+      image: `${ORIGIN}/assets/img/studio/${AP.file}-585.webp`,
+      worksFor: { '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', url: `${ORIGIN}/` },
+      hasCredential: { '@type': 'EducationalOccupationalCredential', credentialCategory: 'license', name: en ? 'Architect, CFIA registration A-31886' : 'Arquitecto, registro CFIA A-31886', recognizedBy: { '@type': 'Organization', name: 'Colegio Federado de Ingenieros y de Arquitectos de Costa Rica', url: 'https://cfia.or.cr/' } },
+      knowsLanguage: ['en', 'es'],
+    },
+  };
   return head(lang, {
     title: d.title,
     description: d.description,
     paths,
     image: `${imgBase(...studio.image.split('/'))}-1600.webp`,
     up,
+    jsonld: ld,
   }) + `<div id="top"></div>
 ${bar(lang, up, paths, 'studio')}
 <main class="page">
+  <header class="mf st-open" aria-labelledby="st-title">
+    <div class="mf__head grid">
+      <span class="label mf__label">${esc(d.open.label)}</span>
+      <h1 class="display mf__title" id="st-title"><span>${esc(d.open.h1[0])}</span><span class="indent-2">${esc(d.open.h1[1])}</span></h1>
+      <div class="st-open__text">
+${d.open.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+        <p class="label st-open__cta"><a class="ulink" href="${svcHref('book')}">${esc(d.open.cta)} →</a></p>
+      </div>
+    </div>
+  </header>
+  <section class="st-arch grid" aria-labelledby="st-arch-title">
+    <span class="label st-arch__label">${esc(A.label)}</span>
+    <h2 class="h3 st-arch__h" id="st-arch-title">${esc(A.h2)}</h2>
+    <div class="st-arch__who">
+      <p class="st-arch__name">${esc(A.name)}</p>
+      <p class="label st-arch__role">${esc(A.role)}</p>
+      <div class="st-arch__bio">
+${A.bio.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+    </div>
+    <figure class="st-arch__fig">
+      <img src="${photoBase}-585.webp${photoV}" srcset="${photoBase}-390.webp${photoV} 390w, ${photoBase}-585.webp${photoV} 585w" sizes="(min-width: 768px) 22vw, 60vw" width="${AP.w}" height="${AP.h}" loading="lazy" decoding="async" alt="${esc(AP.alt)}">
+      <figcaption class="st-arch__facts">
+${A.facts.map((x) => `        <span>${esc(x)}</span>`).join('\n')}
+        <span class="st-arch__cap">${esc(AP.caption)}</span>
+      </figcaption>
+    </figure>
+  </section>
+  <section class="st-tog grid" aria-labelledby="st-tog-title">
+    <span class="label st-tog__label">${esc(d.together.label)}</span>
+    <h2 class="h3 st-tog__h" id="st-tog-title">${esc(d.together.h2)}</h2>
+    <p class="large st-tog__intro">${esc(d.together.intro)}</p>
+    <ol class="st-tog__list">
+${d.together.items.map(([h, x], i) => `      <li><span class="label st-tog__n">(${pad(i + 1)})</span><h3 class="st-tog__t">${esc(h)}</h3><p>${esc(x)}</p></li>`).join('\n')}
+    </ol>
+  </section>
   <article class="mf" aria-labelledby="mf-title">
     <header class="mf__head grid">
       <span class="label mf__label">${d.label}</span>
-      <h1 class="display mf__title" id="mf-title"><span>${esc(d.h1[0])}</span><span class="indent-2">${esc(d.h1[1])}</span></h1>
+      <h2 class="display mf__title" id="mf-title"><span>${esc(d.h1[0])}</span><span class="indent-2">${esc(d.h1[1])}</span></h2>
       <p class="h3 mf__intro">${esc(d.intro)}</p>
     </header>
     <div class="beliefs">
 ${beliefs}
     </div>
+    <section class="st-clar grid" aria-labelledby="st-clar-title">
+      <span class="label st-clar__label">${esc(d.clarity.label)}</span>
+      <h3 class="h3 st-clar__h" id="st-clar-title">${esc(d.clarity.h3)}</h3>
+      <div class="st-clar__text">
+${d.clarity.text.map((x) => `        <p class="large">${esc(x)}</p>`).join('\n')}
+      </div>
+      <figure class="st-sheet" aria-label="${esc(`${sheet.title} ${sheet.tag}`)}">
+        <figcaption class="st-sheet__top"><span class="label">${esc(sheet.title)}</span><span class="label st-sheet__tag">${esc(sheet.tag)}</span></figcaption>
+        <div class="st-sheet__cols">
+${sheet.cols.map(([h, items]) => `          <div class="st-sheet__col"><p class="label st-sheet__h">${esc(h)}</p><ul>${items.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></div>`).join('\n')}
+        </div>
+      </figure>
+    </section>
   </article>
   <section class="stages-sec" id="process" aria-labelledby="process-title">
     <div class="stages__head grid">
       <span class="label stages__label">${d.process.label}</span>
-      <h2 class="display stages__title" id="process-title"><span>${esc(d.process.h2[0])}</span><span class="right">${esc(d.process.h2[1])}</span></h2>
-      <p class="h3 stages__intro">${esc(d.process.intro)}</p>
+      <h2 class="h3 stages__title st-proc__h" id="process-title">${esc(d.process.h2.join(' '))}</h2>
+      <p class="large stages__intro">${esc(d.process.intro)}</p>
     </div>
     <ol class="stages">
 ${stages}
     </ol>
+    <p class="stages__scope grid"><span>${esc(d.process.scope)}</span></p>
   </section>
 ${recognitionSection(lang, up)}${profilesSection(lang)}${identity ? `  <section class="idn-teaser grid">
     <a class="idn-teaser__link" href="${up}${identityPath(lang)}"><svg viewBox="0 0 200 200" aria-hidden="true"><path d="${IDM.disc}"/><path d="${IDM.tri}"/></svg><span class="label">${lang === 'en' ? '(Identity)' : '(Identidad)'}</span><span class="idn-teaser__t">${esc(identity[lang].link)} →</span></a>
   </section>` : ''}
-${contact(lang, t.wa.general, up)}</main>
+${contact(lang, t.wa.general, up, '', d.closing)}</main>
 ${footer(lang, up, paths)}${waButton(lang, t.wa.general)}${end}`;
 }
 
@@ -3308,7 +3387,7 @@ function texts(html) {
 // and the fingerprint on every project image it shows.
 // The home's process: the steps (buttons) and one image per stage that follows them (site.js).
 function processSteps(lang, studioHref) {
-  const st = studio[lang].process.stages;
+  const st = studio[lang].process.home;
   return `<!-- process -->
       <ol class="steps" data-psteps>
 ${st.map(([title], i) => `        <li><button class="steps__btn" type="button" data-pstep="${i}" aria-pressed="${i === 0}"><span>(${pad(i + 1)})</span>${esc(title)}</button></li>`).join('\n')}
@@ -3317,7 +3396,7 @@ ${st.map(([title], i) => `        <li><button class="steps__btn" type="button" d
       <!-- /process -->`;
 }
 function processFigure(lang, up) {
-  const st = studio[lang].process.stages;
+  const st = studio[lang].process.home;
   return `<!-- process-fig -->
       <figure class="process__fig" data-pfig>
         <div class="process__frame">

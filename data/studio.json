@@ -3,10 +3,106 @@
   "image": "tragaluz-retreat/3",
   "en": {
     "title": "What we believe: architects in Costa Rica | Studio CAVA",
-    "description": "What Studio CAVA believes about building in Costa Rica, and why: climate, place, time, detail and clarity. With the six stages of every project.",
+    "description": "Studio CAVA is Carlos Vinocour's architecture practice in Costa Rica: how we work with you, what we believe and the seven stages of a project.",
     "label": "(Manifesto)",
     "h1": ["What we", "believe"],
     "intro": "Five ideas we hold to on every project, from a bakery in Tamarindo to a hotel in Playa Negra, each with the reason behind it.",
+    "open": {
+      "label": "(Studio CAVA)",
+      "h1": [
+        "Architecture",
+        "shaped around you."
+      ],
+      "text": [
+        "Every project begins with a conversation. We listen to how you want to live, understand the possibilities of your site, and bring both together through thoughtful design.",
+        "Studio CAVA is a Costa Rican architecture practice creating residential and hospitality spaces rooted in their surroundings, with personal attention and clear guidance throughout the design process."
+      ],
+      "cta": "Discuss your project"
+    },
+    "architect": {
+      "label": "(The architect)",
+      "h2": "A personal practice.",
+      "name": "Carlos Vinocour",
+      "role": "Founder & Architect",
+      "bio": [
+        "Carlos Vinocour is a Costa Rican architect with over a decade of experience in residential and hospitality design, particularly along the country's Pacific coast.",
+        "His approach begins with listening. Understanding how clients live, what matters to them, and what they envision for their future becomes the foundation for each project.",
+        "Carlos believes exceptional architecture begins with the quality of space itself. Natural light, thoughtful proportions, material warmth, and a meaningful relationship with the landscape create comfort and a sense of understated luxury.",
+        "Through Studio CAVA, clients work directly with Carlos during the design process, benefiting from personal attention, clear communication, and guidance informed by years of experience in Costa Rica."
+      ],
+      "facts": [
+        "Architect, CFIA A-31886",
+        "Working in Tamarindo since 2013"
+      ],
+      "photo": {
+        "file": "carlos-vinocour",
+        "w": 585,
+        "h": 780,
+        "alt": "Carlos Vinocour, founder and architect of Studio CAVA, at the Barcelona Pavilion",
+        "caption": "At the Barcelona Pavilion, Mies van der Rohe, 1929"
+      }
+    },
+    "together": {
+      "label": "(Working together)",
+      "h2": "Your project, personally guided.",
+      "intro": "Good architecture is collaborative. We believe the best results come from a close working relationship, where your ideas remain central and every design decision has a clear purpose.",
+      "items": [
+        [
+          "A direct relationship",
+          "You work directly with the architect leading your project. Your questions, priorities, and feedback remain part of the conversation throughout the design process."
+        ],
+        [
+          "Designed around your life",
+          "We begin with how you want to live, rather than a predetermined architectural style. Your routines, memories, preferences, and aspirations inform the spaces we create together."
+        ],
+        [
+          "Clarity at every stage",
+          "Building involves important decisions. We help you understand the available options, their implications, and the next steps, allowing you to move forward with confidence."
+        ]
+      ]
+    },
+    "clarity": {
+      "label": "(Clarity, in practice)",
+      "h3": "Informed decisions, at every stage.",
+      "text": [
+        "Every site presents possibilities, along with questions that deserve careful attention. Our role is not to promise a project without challenges, but to identify potential issues early, coordinate the right expertise, and help you understand your options before making important commitments.",
+        "We believe good communication is as important as good drawings. Clear deliverables, transparent responsibilities, and well-defined decisions create a stronger foundation for the entire project."
+      ],
+      "sheet": {
+        "tag": "(Sample, not a real project)",
+        "title": "Lot study, summary page",
+        "cols": [
+          [
+            "What we know",
+            [
+              "Land use: a single-family home is allowed, per the municipal certificate on file.",
+              "The survey plan matches the boundaries walked on site.",
+              "A slope of about 12%, falling toward the access road."
+            ]
+          ],
+          [
+            "What remains to be resolved",
+            [
+              "Water availability letter: requested. AyA answers within 15 working days.",
+              "Soil study for the foundations, to order once the purchase is confirmed.",
+              "The condominium's design rules, to confirm with its committee."
+            ]
+          ],
+          [
+            "What happens next",
+            [
+              "Your lawyer completes the title review.",
+              "We order the soil study and receive the water letter.",
+              "Concept design starts when both are in hand."
+            ]
+          ]
+        ]
+      }
+    },
+    "closing": {
+      "text": "Let's talk about your project.",
+      "sub": "Whether you're exploring the possibilities of a property or ready to begin designing, we'd be happy to hear what you have in mind."
+    },
     "beliefs": [
       {
         "word": "Climate",
@@ -55,25 +151,233 @@
       }
     ],
     "process": {
+      "home": [
+        [
+          "Site visit and uso de suelo",
+          "We walk the lot with you, read the slope, the sun, the access and the services, and check what the municipality's land use allows before any design starts."
+        ],
+        [
+          "Concept design",
+          "Two or three ways of placing the project on the lot, in plans, sections and images. You pick one, or a mix."
+        ],
+        [
+          "Design development",
+          "The chosen idea, measured and resolved: plans, elevations, materials and a first cost estimate."
+        ],
+        [
+          "Permit drawings for CFIA",
+          "The drawings the CFIA and the municipality ask for. We file them and follow them up until the permit is granted."
+        ],
+        [
+          "Construction documents",
+          "Details, specifications and schedules a builder can price and build from."
+        ],
+        [
+          "Site supervision",
+          "Regular visits during construction to check that what gets built matches the drawings, and to answer the builder's questions as they come up."
+        ]
+      ],
       "label": "(Our process)",
-      "h2": ["How we", "work"],
-      "intro": "Six stages, in the order Costa Rica asks for. Each one ends with drawings you approve before the next begins.",
+      "h2": [
+        "From first conversation",
+        "to built reality."
+      ],
+      "intro": "Designing a home in Costa Rica involves creative decisions, technical coordination, and regulatory requirements. Our process is organized into clearly defined stages, giving you the information and guidance needed to make informed decisions as the project develops.",
+      "get": "You receive",
+      "extra": "Additional service",
       "stages": [
-        ["Site visit and uso de suelo", "We walk the lot with you, read the slope, the sun, the access and the services, and check what the municipality's land use allows before any design starts."],
-        ["Concept design", "Two or three ways of placing the project on the lot, in plans, sections and images. You pick one, or a mix."],
-        ["Design development", "The chosen idea, measured and resolved: plans, elevations, materials and a first cost estimate."],
-        ["Permit drawings for CFIA", "The drawings the CFIA and the municipality ask for. We file them and follow them up until the permit is granted."],
-        ["Construction documents", "Details, specifications and schedules a builder can price and build from."],
-        ["Site supervision", "Regular visits during construction to check that what gets built matches the drawings, and to answer the builder's questions as they come up."]
-      ]
+        {
+          "title": "Discovery",
+          "text": [
+            "We discuss your property, aspirations, priorities, intended use, approximate budget, and expectations."
+          ],
+          "get": "A preliminary understanding of the project and a written proposal defining services, scope, fees, and next steps.",
+          "link": [
+            "book",
+            "Book a free call"
+          ]
+        },
+        {
+          "title": "Site feasibility and due diligence",
+          "extra": true,
+          "strip": 0,
+          "text": [
+            "Before making major design commitments, we walk the lot with you and assess the property's opportunities and constraints. Depending on the agreed scope, this may include:"
+          ],
+          "list": [
+            "Land-use regulations and municipal requirements",
+            "Setbacks, heights, coverage and density",
+            "Road access and relevant alignments",
+            "Water availability",
+            "Topography and site conditions",
+            "Environmental restrictions",
+            "Condominium regulations, when they apply",
+            "A preliminary buildable area",
+            "The additional technical studies the project will need"
+          ],
+          "note": "Legal title and ownership due diligence require a lawyer, and technical studies are coordinated with qualified specialists. We do not guarantee that a property is suitable or that a permit will be approved.",
+          "get": "A feasibility assessment outlining the relevant findings, the outstanding risks, and recommended next steps.",
+          "link": [
+            "lot-study",
+            "Lot study"
+          ]
+        },
+        {
+          "title": "Concept design",
+          "strip": 1,
+          "text": [
+            "We explore how the project could inhabit its site: layout, orientation, natural light, ventilation, access, views, and the relationships between spaces. Usually two or three ways of placing it on the lot; you pick one, or a mix."
+          ],
+          "get": "Concept plans, sections, architectural studies and presentation material for your review."
+        },
+        {
+          "title": "Design development",
+          "strip": 2,
+          "text": [
+            "The selected direction evolves into a more resolved architectural proposal: proportions, materials, spatial relationships, the interiors, and what each engineering discipline will need."
+          ],
+          "get": "Developed drawings, design decisions and preliminary cost considerations appropriate to the contracted scope."
+        },
+        {
+          "title": "Permits and approvals",
+          "strip": 3,
+          "text": [
+            "We prepare the drawings the CFIA and the municipality ask for, file them and follow them through review, along with environmental agencies, utilities and condominium review bodies where they apply. Some consultations, such as water availability or road alignments, begin earlier and run alongside the design."
+          ],
+          "get": "Organized submissions, review responses and progress updates. Permit timing and approval remain subject to each authority.",
+          "link": [
+            "permits",
+            "Building permits"
+          ]
+        },
+        {
+          "title": "Technical documentation",
+          "strip": 4,
+          "text": [
+            "We coordinate the architectural design with the structural, electrical and mechanical engineers and prepare the documentation a builder can price and build from."
+          ],
+          "get": "Drawings, details, schedules, and specifications, according to the contracted services.",
+          "link": [
+            "architecture",
+            "Architectural design"
+          ]
+        },
+        {
+          "title": "Construction support",
+          "extra": true,
+          "strip": 5,
+          "text": [
+            "Where contracted, we help you select the contractor, answer design questions during construction, visit the site to review the work, and keep the architectural intent. The contractor remains responsible for the construction; CAVA is not the general contractor."
+          ],
+          "get": "The documentation and site visits agreed in the professional contract.",
+          "link": [
+            "construction-supervision",
+            "Construction supervision"
+          ]
+        }
+      ],
+      "scope": "Services and deliverables are tailored to each project and defined in the professional agreement. Certain studies, engineering services, approvals, and construction-phase responsibilities may be contracted separately."
     }
   },
   "es": {
     "title": "Lo que creemos: arquitectos en Costa Rica | Studio CAVA",
-    "description": "Lo que Studio CAVA cree sobre construir en Costa Rica, y por qué: clima, lugar, tiempo, detalle y claridad. Con las seis etapas de cada proyecto.",
+    "description": "Studio CAVA es el estudio de arquitectura de Carlos Vinocour en Costa Rica: cómo trabajamos con usted, lo que creemos y las siete etapas de un proyecto.",
     "label": "(Manifiesto)",
     "h1": ["Lo que", "creemos"],
     "intro": "Cinco ideas que sostenemos en cada proyecto, de una panadería en Tamarindo a un hotel en Playa Negra, cada una con su razón.",
+    "open": {
+      "label": "(Studio CAVA)",
+      "h1": [
+        "Arquitectura",
+        "a su medida."
+      ],
+      "text": [
+        "Cada proyecto empieza con una conversación. Escuchamos cómo quiere vivir, entendemos lo que su terreno hace posible y unimos las dos cosas en un diseño pensado con cuidado.",
+        "Studio CAVA es un estudio de arquitectura costarricense que crea espacios residenciales y de hospitalidad arraigados en su entorno, con atención personal y una guía clara durante todo el diseño."
+      ],
+      "cta": "Conversemos sobre su proyecto"
+    },
+    "architect": {
+      "label": "(El arquitecto)",
+      "h2": "Un estudio con nombre y apellido.",
+      "name": "Carlos Vinocour",
+      "role": "Fundador y arquitecto",
+      "bio": [
+        "Carlos Vinocour es un arquitecto costarricense con más de diez años de experiencia en diseño residencial y de hospitalidad, sobre todo en la costa del Pacífico.",
+        "Su manera de trabajar empieza por escuchar. Entender cómo vive cada cliente, qué le importa y qué imagina para su futuro es la base de cada proyecto.",
+        "Carlos cree que la buena arquitectura empieza por la calidad del espacio. La luz natural, las proporciones cuidadas, la calidez de los materiales y una relación verdadera con el paisaje dan comodidad y un lujo discreto.",
+        "En Studio CAVA, los clientes trabajan directamente con Carlos durante el diseño, con atención personal, comunicación clara y el criterio de muchos años de trabajo en Costa Rica."
+      ],
+      "facts": [
+        "Arquitecto, CFIA A-31886",
+        "Trabajando en Tamarindo desde 2013"
+      ],
+      "photo": {
+        "alt": "Carlos Vinocour, fundador y arquitecto de Studio CAVA, en el Pabellón de Barcelona",
+        "caption": "En el Pabellón de Barcelona, Mies van der Rohe, 1929"
+      }
+    },
+    "together": {
+      "label": "(Trabajar juntos)",
+      "h2": "Su proyecto, acompañado de cerca.",
+      "intro": "La buena arquitectura se hace en conjunto. Creemos que los mejores resultados salen de una relación cercana, donde sus ideas siguen en el centro y cada decisión de diseño tiene un propósito claro.",
+      "items": [
+        [
+          "Una relación directa",
+          "Usted trabaja directamente con el arquitecto a cargo de su proyecto. Sus preguntas, prioridades y comentarios siguen en la conversación durante todo el diseño."
+        ],
+        [
+          "Pensado para su vida",
+          "Empezamos por cómo quiere vivir, no por un estilo decidido de antemano. Sus rutinas, recuerdos, gustos y aspiraciones dan forma a los espacios que creamos juntos."
+        ],
+        [
+          "Claridad en cada etapa",
+          "Construir implica decisiones importantes. Le ayudamos a entender las opciones, lo que implica cada una y los pasos que siguen, para que avance con confianza."
+        ]
+      ]
+    },
+    "clarity": {
+      "label": "(La claridad, en la práctica)",
+      "h3": "Decisiones informadas, en cada etapa.",
+      "text": [
+        "Cada terreno trae posibilidades y también preguntas que merecen atención. Nuestro papel no es prometer un proyecto sin dificultades, sino detectar los problemas a tiempo, sumar a los especialistas adecuados y ayudarle a entender sus opciones antes de comprometerse.",
+        "Creemos que la buena comunicación importa tanto como los buenos planos. Entregables claros, responsabilidades a la vista y decisiones bien definidas le dan una base más firme a todo el proyecto."
+      ],
+      "sheet": {
+        "tag": "(Ejemplo, no es un proyecto real)",
+        "title": "Estudio de lote, hoja de resumen",
+        "cols": [
+          [
+            "Lo que sabemos",
+            [
+              "Uso de suelo: se permite una vivienda unifamiliar, según el certificado municipal en el expediente.",
+              "El plano catastrado coincide con los linderos recorridos en el sitio.",
+              "Una pendiente de cerca del 12%, que baja hacia el camino de acceso."
+            ]
+          ],
+          [
+            "Lo que falta resolver",
+            [
+              "Carta de disponibilidad de agua: solicitada. AyA responde en 15 días hábiles.",
+              "Estudio de suelos para las fundaciones, a encargar cuando se confirme la compra.",
+              "Las reglas de diseño del condominio, a confirmar con su comité."
+            ]
+          ],
+          [
+            "Lo que sigue",
+            [
+              "Su abogado termina la revisión del título.",
+              "Encargamos el estudio de suelos y recibimos la carta de agua.",
+              "El anteproyecto empieza cuando estén los dos."
+            ]
+          ]
+        ]
+      }
+    },
+    "closing": {
+      "text": "Conversemos sobre su proyecto.",
+      "sub": "Ya sea que esté explorando lo que permite una propiedad o que esté listo para empezar a diseñar, nos encantaría saber qué tiene en mente."
+    },
     "beliefs": [
       {
         "word": "Clima",
@@ -117,17 +421,132 @@
       }
     ],
     "process": {
+      "home": [
+        [
+          "Visita al lote y uso de suelo",
+          "Recorremos el lote con usted, leemos la pendiente, el sol, el acceso y los servicios, y revisamos qué permite el uso de suelo de la municipalidad antes de empezar a diseñar."
+        ],
+        [
+          "Diseño conceptual",
+          "Dos o tres formas de ubicar el proyecto en el lote, en plantas, cortes e imágenes. Usted elige una, o una mezcla."
+        ],
+        [
+          "Anteproyecto",
+          "La idea elegida, medida y resuelta: plantas, elevaciones, materiales y una primera estimación de costo."
+        ],
+        [
+          "Planos para el permiso del CFIA",
+          "Los planos que piden el CFIA y la municipalidad. Los tramitamos y les damos seguimiento hasta que sale el permiso."
+        ],
+        [
+          "Planos constructivos",
+          "Detalles, especificaciones y cuadros con los que un constructor puede cotizar y construir."
+        ],
+        [
+          "Supervisión de obra",
+          "Visitas periódicas durante la construcción para revisar que lo construido coincida con los planos y responder las dudas del constructor cuando aparecen."
+        ]
+      ],
       "label": "(El proceso)",
-      "h2": ["Cómo", "trabajamos"],
-      "intro": "Seis etapas, en el orden que pide Costa Rica. Cada una termina con planos que usted aprueba antes de pasar a la siguiente.",
+      "h2": [
+        "De la primera conversación",
+        "a la obra construida."
+      ],
+      "intro": "Diseñar una casa en Costa Rica implica decisiones creativas, coordinación técnica y requisitos legales. Nuestro proceso está ordenado en etapas bien definidas, que le dan la información y la guía para decidir con criterio a medida que el proyecto avanza.",
+      "get": "Usted recibe",
+      "extra": "Servicio adicional",
       "stages": [
-        ["Visita al lote y uso de suelo", "Recorremos el lote con usted, leemos la pendiente, el sol, el acceso y los servicios, y revisamos qué permite el uso de suelo de la municipalidad antes de empezar a diseñar."],
-        ["Diseño conceptual", "Dos o tres formas de ubicar el proyecto en el lote, en plantas, cortes e imágenes. Usted elige una, o una mezcla."],
-        ["Anteproyecto", "La idea elegida, medida y resuelta: plantas, elevaciones, materiales y una primera estimación de costo."],
-        ["Planos para el permiso del CFIA", "Los planos que piden el CFIA y la municipalidad. Los tramitamos y les damos seguimiento hasta que sale el permiso."],
-        ["Planos constructivos", "Detalles, especificaciones y cuadros con los que un constructor puede cotizar y construir."],
-        ["Supervisión de obra", "Visitas periódicas durante la construcción para revisar que lo construido coincida con los planos y responder las dudas del constructor cuando aparecen."]
-      ]
+        {
+          "title": "Primera conversación",
+          "text": [
+            "Hablamos de su propiedad, de lo que imagina, de sus prioridades, del uso que le dará, de un presupuesto aproximado y de lo que espera de nosotros."
+          ],
+          "get": "Una primera comprensión del proyecto y una propuesta escrita con los servicios, el alcance, los honorarios y los pasos que siguen.",
+          "link": [
+            "book",
+            "Agendar una llamada gratis"
+          ]
+        },
+        {
+          "title": "Factibilidad del terreno y debida diligencia",
+          "extra": true,
+          "text": [
+            "Antes de comprometer el diseño, recorremos el lote con usted y estudiamos lo que permite y lo que pide. Según el alcance acordado, puede incluir:"
+          ],
+          "list": [
+            "Uso de suelo y requisitos municipales",
+            "Retiros, alturas, cobertura y densidad",
+            "Acceso por camino y alineamientos",
+            "Disponibilidad de agua",
+            "Topografía y condiciones del sitio",
+            "Restricciones ambientales",
+            "El reglamento del condominio, cuando aplica",
+            "Un área construible preliminar",
+            "Los estudios técnicos adicionales que el proyecto necesitará"
+          ],
+          "note": "La revisión legal del título y de la propiedad le corresponde a un abogado, y los estudios técnicos se coordinan con especialistas calificados. No garantizamos que un terreno sea apto ni que un permiso se apruebe.",
+          "get": "Un informe de factibilidad con los hallazgos, los riesgos pendientes y los pasos recomendados.",
+          "link": [
+            "lot-study",
+            "Estudio de lote"
+          ],
+          "strip": 0
+        },
+        {
+          "title": "Anteproyecto",
+          "text": [
+            "Exploramos cómo podría habitar el proyecto su terreno: distribución, orientación, luz natural, ventilación, acceso, vistas y la relación entre los espacios. Por lo general, dos o tres maneras de ubicarlo en el lote; usted escoge una, o una mezcla."
+          ],
+          "get": "Plantas y cortes del anteproyecto, estudios de arquitectura y material de presentación para su revisión.",
+          "strip": 1
+        },
+        {
+          "title": "Desarrollo del diseño",
+          "text": [
+            "La dirección escogida se vuelve una propuesta más resuelta: proporciones, materiales, relaciones entre espacios, los interiores y lo que cada ingeniería va a necesitar."
+          ],
+          "get": "Planos desarrollados, las decisiones de diseño registradas y una primera estimación de costo, según el alcance contratado.",
+          "strip": 2
+        },
+        {
+          "title": "Permisos y aprobaciones",
+          "text": [
+            "Preparamos los planos que piden el CFIA y la municipalidad, los presentamos y les damos seguimiento durante la revisión, junto con las instituciones ambientales, de servicios y el comité del condominio cuando aplica. Algunas consultas, como la disponibilidad de agua o los alineamientos, empiezan antes y avanzan junto con el diseño."
+          ],
+          "get": "Trámites ordenados, respuestas a las revisiones y avisos del avance. Los plazos y la aprobación dependen de cada institución.",
+          "link": [
+            "permits",
+            "Permisos de construcción"
+          ],
+          "strip": 3
+        },
+        {
+          "title": "Planos constructivos",
+          "text": [
+            "Coordinamos la arquitectura con los ingenieros estructural, eléctrico y mecánico, y preparamos la documentación con la que un constructor puede cotizar y construir."
+          ],
+          "get": "Planos, detalles, tablas y especificaciones, según los servicios contratados.",
+          "link": [
+            "architecture",
+            "Diseño arquitectónico"
+          ],
+          "strip": 4
+        },
+        {
+          "title": "Acompañamiento en obra",
+          "extra": true,
+          "text": [
+            "Cuando se contrata, le ayudamos a escoger al constructor, respondemos las preguntas de diseño durante la obra, visitamos el sitio para revisar el trabajo y cuidamos la intención del diseño. El constructor sigue siendo el responsable de la construcción; CAVA no es el contratista general."
+          ],
+          "get": "La documentación y las visitas al sitio que se acuerden en el contrato profesional.",
+          "link": [
+            "construction-supervision",
+            "Dirección de obra"
+          ],
+          "strip": 5
+        }
+      ],
+      "scope": "Los servicios y entregables se ajustan a cada proyecto y se definen en el contrato profesional. Algunos estudios, ingenierías, aprobaciones y responsabilidades de la etapa de obra pueden contratarse por aparte."
     }
   }
 }
