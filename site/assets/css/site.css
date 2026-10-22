@@ -651,7 +651,7 @@ textarea.input.enq__brief { height: 6rem; }
 .rec2__links { display: flex; flex-wrap: wrap; row-gap: 0.3rem; }
 .rec2__dot { white-space: pre; }
 @media (max-width: 1299px) {
-  .st-arch__fig { grid-column: 5 / span 3; grid-row: 2; align-self: start; min-height: 0; aspect-ratio: 583 / 950; }
+  .st-arch__fig { grid-column: 5 / span 3; grid-row: 2; align-self: start; min-height: 0; aspect-ratio: 600 / 983; }
   .st-arch__who { grid-column: 5 / -1; grid-row: 3; }
 }
 @media (max-width: 991px) {
