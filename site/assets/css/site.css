@@ -273,9 +273,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .mtile__link { position: relative; display: block; overflow: hidden; color: #fcfcfc; }
 .mtile__link img { display: block; width: 100%; height: auto; aspect-ratio: var(--r); object-fit: cover; object-position: var(--fx, 50%) var(--fy, 50%); }
 /* the name on the image: small, quiet, white over a soft shade (the mosaic and the projects page) */
-.mtile__cap { position: absolute; inset: auto 0 0 0; display: grid; gap: 0.12rem; padding: 2.6rem 0.9rem 0.8rem; font-size: 0.72rem; letter-spacing: 0.01em; color: #fcfcfc; background: linear-gradient(to top, rgba(8, 8, 7, 0.38), rgba(8, 8, 7, 0)); pointer-events: none; }
-.mtile__name { font-weight: 500; }
-.mtile__meta { font-weight: 400; opacity: 0.78; }
+.mtile__cap { position: absolute; inset: auto 0 0 0; display: grid; gap: 0.14rem; padding: 2.8rem 0.95rem 0.85rem; font-size: 0.78rem; letter-spacing: 0.01em; color: #fcfcfc; background: linear-gradient(to top, rgba(8, 8, 7, 0.5) 0%, rgba(8, 8, 7, 0.22) 55%, rgba(8, 8, 7, 0)); text-shadow: 0 0 10px rgba(8, 8, 7, 0.35); pointer-events: none; }
+.mtile__name { font-weight: 560; }
+.mtile__meta { font-weight: 440; opacity: 0.9; }
 /* the projects page: the same 6 px gutters both ways, the caption on the image */
 .cards.cards--tight { column-gap: 6px; row-gap: 6px; }
 .cards--tight .card__link { position: relative; color: #fcfcfc; }
