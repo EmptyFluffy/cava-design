@@ -47,11 +47,11 @@
   color-scheme: light;
 
   --black: #080807;
-  --white: #fcfcfc;
+  --white: #faf8f4;   /* the paper, a touch warm (2026-10-22, preview); was #fcfcfc */
   --grey: #dcddde;
   --dark-grey: #545454;
   --mid-grey: #8b8b88;
-  --light-grey: #f1f0ee;
+  --light-grey: #efede8;
   --input: #292929;
   --req: #ff6a5f;
 
@@ -971,7 +971,7 @@ textarea.input.enq__brief { height: 6rem; }
 .est__massing polygon, .est__massing polyline, .est__massing line { vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .m-sil { fill: var(--black); stroke: var(--black); stroke-width: 4px; }
 .m-face { stroke: var(--black); stroke-width: 0.8px; }
-.m-rf { fill: #fcfcfc; } .m-s { fill: #f4f3f0; } .m-e { fill: #e4e3df; } .m-rb { fill: #ecebe7; }
+.m-rf { fill: var(--white); } .m-s { fill: #f4f3f0; } .m-e { fill: #e4e3df; } .m-rb { fill: #ecebe7; }
 .m-seam { fill: none; stroke: var(--black); stroke-width: 0.6px; }
 .m-shadow { fill: #ebe9e4; }
 .m-pool { fill: #d9e8ee; stroke: var(--black); stroke-width: 0.8px; }
@@ -1699,7 +1699,7 @@ button.bk__day[aria-pressed="true"] { background: var(--black); color: var(--whi
 .fg { overflow-x: auto; border: 1px solid var(--grey); scrollbar-width: thin; }
 .fg__svg { display: block; width: 100%; min-width: 880px; height: auto; font-family: var(--font); }
 .fg-grid path { stroke: #dcdcdc; stroke-width: 1; }
-.fg-frame { fill: #fcfcfc; }
+.fg-frame { fill: var(--white); }
 .fg-col { fill: rgba(255, 72, 72, 0.06); }
 .fg-fname { font-size: 11px; fill: #757575; }
 .fg-fname--sel { fill: #0d99ff; }
@@ -1933,7 +1933,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 /* a plan on a ground tone: the band takes the tone edge to edge, the sheet and the key sit on it */
 .pplan--ground { background: var(--ground); padding-top: var(--s-4); padding-bottom: var(--s-4); margin-bottom: var(--pad-v); }
 .pplan--ground .pplan__img { background: transparent; }
-.pplan__img { grid-column: 1 / span 8; background: #fcfcfc; }
+.pplan__img { grid-column: 1 / span 8; background: var(--white); }
 .pplan__img img { width: 100%; height: auto; display: block; }
 .pplan__key { grid-column: 9 / -1; display: grid; gap: 0.9rem; padding-bottom: 0.5rem; }
 .pplan__key ol { list-style: none; margin: 0; padding: 0.9rem 0 0; border-top: 1px solid var(--black); display: grid; gap: 0.35rem; font-size: var(--f-main); }
@@ -2023,7 +2023,7 @@ html.isheet-lock, html.isheet-lock body { overflow: hidden; }
 .pdraw__fig { grid-row: span 2; display: grid; grid-template-rows: subgrid; width: calc(var(--H) * var(--k) * var(--ar)); scroll-snap-align: start; }
 .pdraw__fig.is-set:not(:first-child) { margin-left: var(--s-3); }
 .pdraw__fig figure { display: contents; }
-.pdraw__fig img { align-self: end; width: 100%; height: auto; display: block; background: #fcfcfc; }
+.pdraw__fig img { align-self: end; width: 100%; height: auto; display: block; background: var(--white); }
 .pdraw__cap { align-self: start; display: flex; flex-wrap: wrap; column-gap: 0.6rem; padding-top: 0.7rem; border-top: 1px solid var(--grey); }
 .pdraw__view { color: var(--mid-grey); }
 @media (max-width: 767px) {
@@ -2640,3 +2640,6 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 @media (max-width: 599px) { .pp-grid { grid-template-columns: minmax(0, 1fr); } .pp-card__logo { aspect-ratio: 5 / 2; } }
 
 /* 2026-10-12: town photos and cards; town strips and the permit tool head; the enquiry fits every screen */
+
+/* drawings on white take the paper's warm tone (multiply turns their white into the page colour) */
+.pplan:not(.pplan--ground) .pplan__img img, .prow img, .pdraw__fig img, .iter img, .pview img, .idn img, .tyx img { mix-blend-mode: multiply; }

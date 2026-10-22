@@ -158,7 +158,7 @@ function head(lang, { title, description, paths, image, up, script, jsonld }) {
 <meta property="og:url" content="${ORIGIN}/${paths[lang]}">
 <meta property="og:image" content="${ORIGIN}/${image}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#fcfcfc">
+<meta name="theme-color" content="#faf8f4">
 <link rel="icon" href="${up}favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="${up}apple-touch-icon.png">
 <script>(()=>{const d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('motion');if(d.hasAttribute('data-pre')&&!sessionStorage.getItem('cava-pre'))d.classList.add('is-pre')}catch(e){}})()</script>
@@ -3670,7 +3670,7 @@ function portalPage(lang) {
   // the portal is the private side of the studio: black, like the menu and the enquiry sheets (site.css, .dark)
   const page = head(lang, { title: P.title, description: P.description, paths, image: `${imgBase('papagayo-404', 2)}-1600.webp`, up, script: 'portal.js' })
     .replace('<head>', '<head>\n<meta name="robots" content="noindex">')
-    .replace('<meta name="theme-color" content="#fcfcfc">', '<meta name="theme-color" content="#080807">')
+    .replace('<meta name="theme-color" content="#faf8f4">', '<meta name="theme-color" content="#080807">')
     .replace('<body class="sub">', '<body class="sub dark">');
   return page + `<div id="top"></div>
 ${bar(lang, up, paths, 'portal')}
