@@ -297,10 +297,10 @@ const end = '</body>\n</html>\n';
 const upFrom = (path) => '../'.repeat(path.split('/').filter(Boolean).length);
 
 // ---------- /projects/ and /es/proyectos/ ----------
-// the name on the image (the home's mosaic and the projects page): (n) name, then type and town; the town is left out
+// the name on the image (the home's mosaic and the projects page): the name, then type and town (no number); the town is left out
 // when the name already says it
 const imgCapPlace = (lang, p) => (tr(lang, p, 'location') || '').split(',').map((t) => t.trim()).find((t) => t && !p.name.includes(t)) ?? '';
-const imgCap = (lang, p, k) => { const place = imgCapPlace(lang, p); return `<span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr(lang, p, 'type'))}</span>${place ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>`; };
+const imgCap = (lang, p, k) => { const place = imgCapPlace(lang, p); return `<span class="mtile__cap label"><span class="mtile__name">${esc(p.name)}</span><span class="mtile__meta"><span class="card__meta">${esc(tr(lang, p, 'type'))}</span>${place ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>`; };
 
 function indexPage(lang) {
   const t = UI[lang];
