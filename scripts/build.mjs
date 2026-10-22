@@ -297,14 +297,20 @@ const end = '</body>\n</html>\n';
 const upFrom = (path) => '../'.repeat(path.split('/').filter(Boolean).length);
 
 // ---------- /projects/ and /es/proyectos/ ----------
+// the name on the image (the home's mosaic and the projects page): (n) name, then type and town; the town is left out
+// when the name already says it
+const imgCapPlace = (lang, p) => (tr(lang, p, 'location') || '').split(',').map((t) => t.trim()).find((t) => t && !p.name.includes(t)) ?? '';
+const imgCap = (lang, p, k) => { const place = imgCapPlace(lang, p); return `<span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr(lang, p, 'type'))}</span>${place ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>`; };
+
 function indexPage(lang) {
   const t = UI[lang];
   const paths = { en: projectsPath('en'), es: projectsPath('es') };
   const up = upFrom(paths[lang]);
+  // the grid with even 6 px gutters and the name on the image, like the home's mosaic (2026-10-21)
   const cards = projects.map((p, i) => `    <li class="card">
       <a class="card__link" href="${p.slug}/">
         <span class="card__media">${picture(up, p.slug, 1, altOf(lang, p, 1), '(min-width: 768px) 48vw, 92vw')}</span>
-        <span class="card__cap label"><span>(${pad(i + 1)})</span><span class="card__name">${esc(p.name)}</span><span class="card__meta">${esc(tr(lang, p, 'type'))}</span></span>
+        ${imgCap(lang, p, i + 1)}
       </a>
     </li>`).join('\n');
   return head(lang, {
@@ -321,7 +327,7 @@ ${bar(lang, up, paths, 'projects')}
       <h1 class="display" id="plist-title"><span>${t.index.h1}</span></h1>
       <span class="display plist__count" aria-hidden="true">(${pad(projects.length)})</span>
     </div>
-    <ol class="cards">
+    <ol class="cards cards--tight">
 ${cards}
     </ol>
   </section>
@@ -3486,13 +3492,12 @@ function homeMosaic() {
     const total = row.reduce((t, x) => t + x.r, 0);
     const tiles = row.map((x) => {
       const [slug, n] = x.image.split('/'), p = bySlug.get(slug), [w, h] = sizes[x.image], b = imgBase(slug, n), v = imgVer(x.image);
-      const place = (tr('en', p, 'location') || '').split(',').map((t) => t.trim()).find((t) => t && !p.name.includes(t)) ?? '';   // the town, unless the name already says it
       const style = `--r: ${x.r}${x.fx != null ? `; --fx: ${Math.round(x.fx * 100)}%` : ''}${x.fy != null ? `; --fy: ${Math.round(x.fy * 100)}%` : ''}`;
       k += 1;
       return `        <li class="mtile" style="${style}">
           <a class="mtile__link" href="projects/${slug}/">
             <img src="${b}-1600.webp?v=${v}" srcset="${b}-800.webp?v=${v} 800w, ${b}-1600.webp?v=${v} 1600w" sizes="(min-width: 768px) ${Math.round((x.r / total) * 96)}vw, 92vw" width="${w}" height="${h}" loading="lazy" decoding="async" alt="${esc(altOf('en', p, Number(n)))}">
-            <span class="mtile__cap label"><span class="mtile__name"><span class="mtile__n">(${pad(k)})</span> <span>${esc(p.name)}</span></span><span class="mtile__meta"><span class="card__meta">${esc(tr('en', p, 'type'))}</span>${place ? `<span aria-hidden="true">, </span><span class="mtile__place">${esc(place)}</span>` : ''}</span></span>
+            ${imgCap('en', p, k)}
           </a>
         </li>`;
     }).join('\n');
