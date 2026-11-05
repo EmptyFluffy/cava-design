@@ -30,9 +30,9 @@
       "pin": "approximate",
       "status": "In progress",
       "status_es": "En proceso",
-      "year": 2023,
-      "siteArea": 1150,
-      "builtArea": 420,
+      "year": 2021,
+      "siteArea": null,
+      "builtArea": 213,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
         {
@@ -250,8 +250,8 @@
       "status": "Built",
       "status_es": "Construidos",
       "year": 2024,
-      "siteArea": 4000,
-      "builtArea": 1600,
+      "siteArea": 5379,
+      "builtArea": 1048,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "engineering": ["Pattoni Ingenieros"]},
       "images": [
         {
@@ -283,8 +283,8 @@
       "status": "In progress",
       "status_es": "En proceso",
       "year": 2022,
-      "siteArea": 1900,
-      "builtArea": 680,
+      "siteArea": 1239,
+      "builtArea": 243,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"]},
       "images": [
         {
@@ -347,9 +347,9 @@
       "pin": "exact",
       "status": "Built",
       "status_es": "Construida",
-      "year": 2021,
-      "siteArea": 1050,
-      "builtArea": 380,
+      "year": 2022,
+      "siteArea": 706,
+      "builtArea": 248,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
         {
@@ -430,9 +430,9 @@
       "pin": "approximate",
       "status": "In progress",
       "status_es": "En proceso",
-      "year": 2025,
-      "siteArea": 1200,
-      "builtArea": 450,
+      "year": 2022,
+      "siteArea": null,
+      "builtArea": 300,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
         {
@@ -459,8 +459,8 @@
       "pin": "approximate",
       "status": "In progress",
       "status_es": "En proceso",
-      "year": 2023,
-      "siteArea": 1500,
+      "year": 2021,
+      "siteArea": null,
       "builtArea": 550,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
@@ -544,8 +544,8 @@
       "status": "In progress",
       "status_es": "En proceso",
       "year": 2022,
-      "siteArea": 850,
-      "builtArea": 320,
+      "siteArea": 791,
+      "builtArea": 656,
       "team": {"architecture": ["Carlos Vinocour", "Gastón Cordero"], "engineering": ["Pattoni Ingenieros"]},
       "images": [
         {
@@ -573,8 +573,8 @@
       "status": "In progress",
       "status_es": "En proceso",
       "year": 2021,
-      "siteArea": 420,
-      "builtArea": 160,
+      "siteArea": null,
+      "builtArea": 161,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
         {
@@ -718,9 +718,9 @@
       "pin": "approximate",
       "status": "Competition entry",
       "status_es": "Concurso",
-      "year": 2025,
-      "siteArea": 6500,
-      "builtArea": 2400,
+      "year": 2018,
+      "siteArea": null,
+      "builtArea": null,
       "team": {"architecture": ["Carlos Vinocour", "Joshua Chaves"], "visualization": ["Emanuel Baizán"]},
       "inspiration": {
         "en": "The roof began with sails: light cloth held in tension, curving two ways at once.",
@@ -757,7 +757,7 @@
       "pin": "approximate",
       "status": "Design development",
       "status_es": "Desarrollo de diseño",
-      "year": 2023,
+      "year": 2021,
       "siteArea": 200,
       "builtArea": 200,
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "visualization": ["Adriana Salvador Luna"]},

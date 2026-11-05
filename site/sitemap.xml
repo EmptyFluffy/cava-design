@@ -309,6 +309,18 @@
     <image:image><image:loc>https://cava.design/assets/img/projects/lean-and-green/5-1600.webp?v=b1fc136d</image:loc></image:image>
   </url>
   <url>
+    <loc>https://cava.design/projects/index/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/index/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/indice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/index/"/>
+  </url>
+  <url>
+    <loc>https://cava.design/es/proyectos/indice/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/projects/index/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/proyectos/indice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cava.design/projects/index/"/>
+  </url>
+  <url>
     <loc>https://cava.design/studio/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cava.design/studio/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cava.design/es/estudio/"/>

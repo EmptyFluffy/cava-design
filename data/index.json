@@ -1,0 +1,74 @@
+{
+  "_note": "Every project of the studio, for /projects/index/ and /es/proyectos/indice/. `no` is permanent: never renumber, a new project takes the next number. A row with `slug` has a project page and takes its name, type, area and site from data/projects.json; the others carry their own. Names never carry a client's name. `area` = gross built area in m2 from the permit set or the area table (null when no document gives it); `site` = lot area in m2. `town` links to /architects/<town>/ when it matches a town page. Figures come from the AVARQ Drive (read 2026-11-05); `src` says where. `check` marks what Carlos still has to confirm.",
+  "groups": {
+    "house": { "en": "Houses", "es": "Casas" },
+    "multi": { "en": "Multi-unit housing", "es": "Vivienda multifamiliar" },
+    "hospitality": { "en": "Hospitality", "es": "Hospitalidad" },
+    "commercial": { "en": "Commercial and mixed use", "es": "Comercio y uso mixto" },
+    "hangar": { "en": "Hangars", "es": "Hangares" },
+    "civic": { "en": "Civic", "es": "Institucional" },
+    "plan": { "en": "Master plans", "es": "Planes maestros" },
+    "study": { "en": "Studies and competitions", "es": "Estudios y concursos" }
+  },
+  "statuses": {
+    "built": { "en": "Built", "es": "Construido", "rank": 1 },
+    "permit": { "en": "Permit approved", "es": "Permiso aprobado", "rank": 2 },
+    "cd": { "en": "Construction documents", "es": "Planos constructivos", "rank": 3 },
+    "dd": { "en": "Design development", "es": "Desarrollo de diseño", "rank": 4 },
+    "sd": { "en": "Schematic design", "es": "Diseño esquemático", "rank": 5 },
+    "design": { "en": "In design", "es": "En diseño", "rank": 5 },
+    "concept": { "en": "Concept", "es": "Concepto", "rank": 6 },
+    "masterplan": { "en": "Master plan study", "es": "Estudio de plan maestro", "rank": 7 },
+    "competition": { "en": "Competition entry", "es": "Concurso", "rank": 8 },
+    "study": { "en": "Study", "es": "Estudio", "rank": 8 }
+  },
+  "items": [
+    { "no": 1, "slug": "casa-alcaravan", "group": "house", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "years": [2015, 2015], "status": "built" },
+    { "no": 2, "slug": "military-museum", "group": "study", "place": null, "region": "Italy", "region_es": "Italia", "years": [2018, 2018], "status": "competition", "check": "the island: the site's Isola della Maddalena was a placeholder" },
+
+    { "no": 3, "name": "Compact house", "name_es": "Casa compacta", "type": "House", "type_es": "Casa", "group": "house", "town": "tamarindo", "place": "Tamarindo", "region": "Guanacaste", "area": 86, "site": 558, "years": [2020, 2021], "status": "cd", "src": "03. TERMINADOS/01 (CFIA set, permit filed Dec 2020)" },
+    { "no": 4, "name": "House and two rental cabins", "name_es": "Casa y dos cabinas de alquiler", "type": "House and cabins", "type_es": "Casa y cabinas", "group": "multi", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 220, "site": 5000, "years": [2020, 2021], "status": "sd", "src": "03. TERMINADOS/02" },
+    { "no": 5, "name": "Two-level house on five hectares", "name_es": "Casa de dos niveles en cinco hectáreas", "type": "House", "type_es": "Casa", "group": "house", "town": "potrero", "place": "Potrero", "region": "Guanacaste", "area": 230, "site": 50383, "years": [2020, 2021], "status": "cd", "src": "03. TERMINADOS/03 (CFIA set, permit filed June 2021)" },
+    { "no": 6, "slug": "papagayo-404", "group": "house", "town": "papagayo", "place": "Península Papagayo", "region": "Guanacaste", "years": [2020, 2023], "status": "built" },
+    { "no": 7, "name": "Water board office", "name_es": "Oficina de la ASADA", "type": "Office", "type_es": "Oficina", "group": "civic", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 55, "years": [2020, 2020], "status": "concept", "src": "02. POTENCIALES/VIEJOS/02" },
+    { "no": 8, "name": "Duplex", "name_es": "Dúplex", "type": "Duplex", "type_es": "Dúplex", "group": "multi", "place": null, "region": "Guanacaste", "area": 157, "years": [2020, 2020], "status": "sd", "src": "02. POTENCIALES/VIEJOS/04" },
+    { "no": 9, "name": "Five apartments around a pool", "name_es": "Cinco apartamentos alrededor de una piscina", "type": "Apartments", "type_es": "Apartamentos", "group": "multi", "town": "tamarindo", "place": "Tamarindo", "region": "Guanacaste", "area": 256, "years": [2020, 2020], "status": "sd", "src": "02. POTENCIALES/VIEJOS/05" },
+    { "no": 10, "name": "Three-bedroom house with a pool", "name_es": "Casa de tres habitaciones con piscina", "type": "House", "type_es": "Casa", "group": "house", "town": "playas-del-coco", "place": "Playas del Coco", "region": "Guanacaste", "area": null, "years": [2020, 2020], "status": "sd", "src": "02. POTENCIALES/VIEJOS/06" },
+    { "no": 11, "name": "Remodel and addition", "name_es": "Remodelación y ampliación", "type": "Remodel", "type_es": "Remodelación", "group": "house", "place": "Villarreal", "region": "Guanacaste", "area": null, "years": [2020, 2021], "status": "sd", "src": "03. TERMINADOS/10" },
+    { "no": 12, "name": "Yoga retreat", "name_es": "Retiro de yoga", "type": "Retreat", "type_es": "Retiro", "group": "study", "place": null, "region": null, "area": null, "years": [2020, 2021], "status": "study", "src": "04. LAB/01" },
+    { "no": 13, "name": "Sleeping pods on a cliff", "name_es": "Cápsulas para dormir en un acantilado", "type": "Pods", "type_es": "Cápsulas", "group": "study", "place": "Vale de Moses", "region": "Portugal", "area": null, "years": [2020, 2021], "status": "competition", "src": "04. LAB/02" },
+
+    { "no": 14, "slug": "lean-and-green", "group": "hospitality", "place": "La Jolla", "region": "California, USA", "region_es": "California, EE. UU.", "years": [2021, 2021], "status": "dd" },
+    { "no": 15, "name": "Three-level house with a roof terrace", "name_es": "Casa de tres niveles con terraza en la azotea", "type": "House", "type_es": "Casa", "group": "house", "place": "Villarreal", "region": "Guanacaste", "area": null, "years": [2021, 2021], "status": "cd", "src": "03. TERMINADOS/11 (full set 2021)" },
+    { "no": 16, "name": "Main house and two guest houses", "name_es": "Casa principal y dos casas de huéspedes", "type": "Houses", "type_es": "Casas", "group": "multi", "town": "potrero", "place": "Playa Potrero", "region": "Guanacaste", "area": 410, "site": 5002, "years": [2021, 2021], "status": "sd", "src": "03. TERMINADOS/14" },
+    { "no": 17, "slug": "rancho-cartagena", "group": "house", "place": "Rancho Cartagena", "region": "Guanacaste", "years": [2021, 2022], "status": "sd" },
+    { "no": 18, "name": "Small house", "name_es": "Casa pequeña", "type": "House", "type_es": "Casa", "group": "house", "place": null, "region": "Guanacaste", "area": null, "years": [2021, 2021], "status": "cd", "src": "03. TERMINADOS/16 (APC set Aug 2021)" },
+    { "no": 19, "slug": "s3-houses", "group": "multi", "town": "tamarindo", "place": "Playa Langosta", "region": "Guanacaste", "years": [2021, 2021], "status": "sd" },
+    { "no": 20, "name": "House on six thousand square metres", "name_es": "Casa en seis mil metros cuadrados", "type": "House", "type_es": "Casa", "group": "house", "place": "Santa Rosa", "region": "Guanacaste", "area": 242, "site": 6072, "years": [2021, 2023], "status": "permit", "src": "03. TERMINADOS/18 (permit 1487-2022, Feb 2023)" },
+    { "no": 21, "name": "House with three suites and an infinity pool", "name_es": "Casa de tres suites con piscina infinita", "type": "House", "type_es": "Casa", "group": "house", "place": "Santa Cruz", "region": "Guanacaste", "area": 326, "years": [2021, 2021], "status": "sd", "src": "02. POTENCIALES/VIEJOS/18" },
+    { "no": 22, "slug": "dawn-patrol-bakery", "group": "hospitality", "town": "tamarindo", "place": "Tamarindo", "region": "Guanacaste", "years": [2021, 2022], "status": "cd" },
+    { "no": 23, "name": "Guest house and game room", "name_es": "Casa de huéspedes y sala de juegos", "type": "House extension", "type_es": "Ampliación de casa", "group": "house", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 300, "years": [2021, 2022], "status": "sd", "src": "03. TERMINADOS/21" },
+    { "no": 24, "name": "House in Salinitas", "name_es": "Casa en Salinitas", "type": "House", "type_es": "Casa", "group": "house", "place": "Salinitas", "region": "Guanacaste", "area": 201, "site": 5338, "years": [2021, 2023], "status": "permit", "src": "03. TERMINADOS/22 (permit 1318-2022, Feb 2023)" },
+    { "no": 25, "slug": "la-perla", "group": "plan", "place": "Matapalo", "region": "Guanacaste", "years": [2021, 2021], "status": "masterplan" },
+
+    { "no": 26, "name": "Futuro Brillante", "name_es": "Futuro Brillante", "type": "Social housing", "type_es": "Vivienda social", "group": "multi", "place": "Matapalo", "region": "Guanacaste", "area": 268, "site": 3296, "units": 3, "years": [2022, 2022], "status": "cd", "src": "03. TERMINADOS/23 (permit filed, fee paid Aug 2022)", "check": "was it built" },
+    { "no": 27, "name": "House with a pool deck and a roof terrace", "name_es": "Casa con terraza de piscina y azotea", "type": "House", "type_es": "Casa", "group": "house", "place": null, "region": "Guanacaste", "area": null, "years": [2022, 2022], "status": "sd", "src": "03. TERMINADOS/24" },
+    { "no": 28, "slug": "negra-mixed-use", "group": "commercial", "town": "playa-negra", "place": "Playa Negra", "region": "Guanacaste", "years": [2022, 2022], "status": "sd" },
+    { "no": 29, "slug": "tragaluz-retreat", "group": "hospitality", "town": "playa-negra", "place": "Playa Negra", "region": "Guanacaste", "years": [2022, 2023], "status": "cd" },
+    { "no": 30, "name": "Ocean view house", "name_es": "Casa con vista al mar", "type": "House", "type_es": "Casa", "group": "house", "town": "potrero", "place": "Playa Potrero", "region": "Guanacaste", "area": 213, "years": [2022, 2023], "status": "dd", "src": "01. ACTIVOS/26" },
+    { "no": 31, "name": "Palm Beach houses", "name_es": "Casas Palm Beach", "type": "Houses", "type_es": "Casas", "group": "multi", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 165, "units": 3, "years": [2022, 2024], "status": "permit", "src": "01. ACTIVOS/27 (permit 1408-2023, Mar 2024)" },
+    { "no": 32, "slug": "kauhane-house", "group": "house", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "years": [2022, 2023], "status": "built" },
+    { "no": 33, "name": "Casa Nueces", "name_es": "Casa Nueces", "type": "House", "type_es": "Casa", "group": "house", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 229, "years": [2022, 2023], "status": "sd", "src": "01. ACTIVOS/30" },
+    { "no": 34, "slug": "green-city-amacor", "group": "house", "place": "San Rafael de Alajuela", "region": "Alajuela", "years": [2022, 2024], "status": "cd" },
+
+    { "no": 35, "name": "Casa 77", "name_es": "Casa 77", "type": "House extension", "type_es": "Ampliación de casa", "group": "house", "town": "playa-grande", "place": "Las Ventanas", "region": "Guanacaste", "area": 54, "years": [2023, 2023], "status": "cd", "src": "01. ACTIVOS/31 (rooms and carport; the program adds a 20 m2 pool)" },
+    { "no": 36, "name": "Casita", "name_es": "Casita", "type": "House", "type_es": "Casa", "group": "house", "town": "playa-grande", "place": "Playa Grande", "region": "Guanacaste", "area": 175, "years": [2023, 2024], "status": "cd", "src": "01. ACTIVOS/32 (permit set at CFIA)" },
+    { "no": 37, "name": "Mata Caña eco-resort", "name_es": "Ecoresort Mata Caña", "type": "Resort master plan", "type_es": "Plan maestro de resort", "group": "plan", "place": "Mata Caña", "region": "Guanacaste", "area": null, "site": 200000, "years": [2023, 2024], "status": "masterplan", "src": "02. POTENCIALES/33 (concept master plan, invoiced)" },
+
+    { "no": 38, "slug": "hangars-b", "group": "hangar", "place": "Huacas", "region": "Guanacaste", "years": [2024, 2024], "status": "built" },
+    { "no": 39, "name": "Casa La Garita", "name_es": "Casa La Garita", "type": "House", "type_es": "Casa", "group": "house", "place": "Huacas", "region": "Guanacaste", "area": 249, "years": [2024, 2024], "status": "permit", "src": "03. TERMINADOS/03 (permit 852-2024, Aug 2024)", "check": "design or permits only" },
+    { "no": 40, "slug": "tree-house", "group": "house", "town": "playa-grande", "place": "Las Ventanas", "region": "Guanacaste", "years": [2024, 2024], "status": "design", "check": "the 2020 tree house (72 m2) or Casa 77 (2023)" },
+
+    { "no": 41, "name": "House in Mal País", "name_es": "Casa en Mal País", "type": "House", "type_es": "Casa", "group": "house", "town": "santa-teresa", "place": "Mal País", "region": "Puntarenas", "area": 400, "years": [2026, null], "status": "design", "src": "Carlos, 2026-11-05", "check": "type, year and stage" }
+  ]
+}

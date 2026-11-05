@@ -327,7 +327,8 @@ ${bar(lang, up, paths, 'projects')}
       <h1 class="display" id="plist-title"><span>${t.index.h1}</span></h1>
       <span class="display plist__count" aria-hidden="true">(${pad(projects.length)})</span>
     </div>
-    <ol class="cards cards--tight">
+${pindex ? `    <p class="plist__idx label"><a class="ulink" href="${lang === 'en' ? 'index/' : 'indice/'}">${lang === 'en' ? `Index of all ${pindex.items.length} projects` : `Índice de los ${pindex.items.length} proyectos`} →</a></p>
+` : ''}    <ol class="cards cards--tight">
 ${cards}
     </ol>
   </section>
@@ -3380,6 +3381,7 @@ function sitemap() {
     { en: '', es: 'es/' },
     { en: projectsPath('en'), es: projectsPath('es') },
     ...projects.map((p) => ({ en: projectPath('en', p.slug), es: projectPath('es', p.slug), imgs: p.images.map((_, j) => `${ORIGIN}/${imgBase(p.slug, j + 1)}-1600.webp?v=${imgVer(`${p.slug}/${j + 1}`)}`) })),
+    ...(pindex ? [{ en: idxPath('en'), es: idxPath('es') }] : []),
     { en: studioPath('en'), es: studioPath('es') },
     ...(identity ? [{ en: identityPath('en'), es: identityPath('es') }] : []),
     ...(books ? [{ en: libraryPath('en'), es: libraryPath('es') }] : []),
@@ -3466,7 +3468,7 @@ function studioLd(lang) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', alternateName: 'CAVA',
+        '@type': 'ProfessionalService', '@id': `${ORIGIN}/#studio`, name: 'Studio CAVA', alternateName: ['CAVA', 'AVARQ'],
         description: en
           ? 'Architecture and interior design studio in Costa Rica: houses, rental villas, boutique hotels, cafés and master plans, from the study of the lot to the permits and the supervision of the works.'
           : 'Estudio de arquitectura y diseño de interiores en Costa Rica: casas, villas de alquiler, hoteles boutique, cafés y planes maestros, del estudio del lote a los permisos y la dirección de obra.',
@@ -3712,6 +3714,263 @@ ${footer(lang, up, paths, { mini: true })}${end}`;
 const RENAMED = { 'portland-house': 'rancho-cartagena', 'amacor-house': 'green-city-amacor' };
 const forward = (to, rel) => `<!doctype html>\n<html><head><meta charset="utf-8"><meta name="robots" content="noindex"><link rel="canonical" href="${ORIGIN}/${to}"><meta http-equiv="refresh" content="0; url=${rel}"><title>Moved</title></head><body><a href="${rel}">${to}</a></body></html>\n`;
 
+// ---------- /projects/index/ and /es/proyectos/indice/: every project, with a page or without ----------
+// data/index.json holds one row per project under a permanent number. A row with a slug takes its name, type and
+// areas from data/projects.json, so a sheet and its row never disagree. The page is a plain table in the HTML (read
+// by people, crawlers and language models alike, none of which need the script), the built areas drawn at one
+// scale, and the same rows as CSV and JSON next to it.
+const INDEX_PATH = join(ROOT, 'data', 'index.json');
+const pindex = existsSync(INDEX_PATH) ? JSON.parse(readFileSync(INDEX_PATH, 'utf8')) : null;
+const idxPath = (lang) => (lang === 'en' ? 'projects/index/' : 'es/proyectos/indice/');
+const idxFile = (lang, ext) => (lang === 'en' ? `projects/index.${ext}` : `es/proyectos/indice.${ext}`);
+// the filter by stage folds the design phases together; the studies, competitions and master plans never reach a permit
+const STAGE_OF = { built: 'built', permit: 'permit', cd: 'cd', dd: 'design', sd: 'design', design: 'design', concept: 'design', masterplan: 'study', competition: 'study', study: 'study' };
+const STAGES = {
+  built: { en: 'Built', es: 'Construidos' }, permit: { en: 'Permit approved', es: 'Con permiso aprobado' }, cd: { en: 'Construction documents', es: 'Planos constructivos' },
+  design: { en: 'Design', es: 'Diseño' }, study: { en: 'Studies', es: 'Estudios' },
+};
+const IDX_ELSE = { guanacaste: { en: 'Elsewhere in Guanacaste', es: 'Otros lugares de Guanacaste' }, elsewhere: { en: 'Outside Guanacaste', es: 'Fuera de Guanacaste' } };
+const yearsOf = ([a, b]) => (b == null || b === a ? String(a) : `${a}-${String(b).slice(2)}`);
+const ha = (lang, m2) => (m2 / 10000).toFixed(1).replace('.', lang === 'es' ? ',' : '.');
+
+function idxRows(lang) {
+  return pindex.items.map((it) => {
+    const p = it.slug ? bySlug.get(it.slug) : null;
+    if (it.slug && !p) throw new Error(`data/index.json no. ${it.no}: no project "${it.slug}" in data/projects.json`);
+    const T = it.town ? towns.find((t) => t.slug === it.town) : null;
+    if (it.town && !T) throw new Error(`data/index.json no. ${it.no}: no town page "${it.town}"`);
+    const plan = it.group === 'plan';
+    return {
+      no: it.no, id: `p-${pad(it.no)}`, slug: it.slug ?? null, group: it.group, status: it.status, stage: STAGE_OF[it.status], years: it.years,
+      name: p ? p.name : tr(lang, it, 'name'), type: p ? tr(lang, p, 'type') : tr(lang, it, 'type'),
+      place: it.place, region: tr(lang, it, 'region'), country: it.region === 'Portugal' || it.region === 'Italy' ? it.region : /USA/.test(it.region ?? '') ? 'United States' : 'Costa Rica',
+      town: T, where: T ? T.slug : it.region === 'Guanacaste' ? 'guanacaste' : 'elsewhere',
+      // a master plan is measured by its land: its houses are a program, not a design
+      area: plan ? null : (p ? p.builtArea : it.area) ?? null, site: (p ? p.siteArea : it.site) ?? null, plan,
+    };
+  });
+}
+const idxSums = (rows) => {
+  const ys = rows.flatMap((r) => r.years).filter(Boolean);
+  return {
+    n: rows.length, m2: rows.reduce((s, r) => s + (r.area ?? 0), 0), drawn: rows.filter((r) => r.area).length,
+    gte: rows.filter((r) => r.region === 'Guanacaste').length, built: rows.filter((r) => r.status === 'built').length,
+    permit: rows.filter((r) => r.status === 'permit').length, plans: rows.filter((r) => r.plan).length,
+    planHa: rows.filter((r) => r.plan && r.site).reduce((s, r) => s + r.site, 0), first: Math.min(...ys), last: Math.max(...ys),
+    pages: rows.filter((r) => r.slug).length,
+  };
+};
+const idxLoc = (lang, r) => [r.place, r.region].filter(Boolean).join(', ');
+const idxArea = (lang, r) => (r.area ? `${group(lang, r.area)} m²` : r.plan && r.site ? `${ha(lang, r.site)} ha` : '');
+
+function projectIndexPage(lang) {
+  const en = lang === 'en';
+  const paths = { en: idxPath('en'), es: idxPath('es') };
+  const up = upFrom(paths[lang]);
+  const rows = idxRows(lang);
+  const S = idxSums(rows);
+  const G = pindex.groups, ST = pindex.statuses;
+  const H = en ? {
+    title: `Index of ${S.n} projects in Costa Rica | Studio CAVA`,
+    description: `Every project by Studio CAVA, formerly AVARQ, since ${S.first}: ${S.n} houses, apartments, hotels, cafés, hangars and master plans, with type, place, built area, year and stage.`,
+    label: '(All projects)', h1: ['Project', 'index'],
+    intro: `Studio CAVA, formerly AVARQ, has worked on ${S.n} projects since ${S.first}, ${S.gte} of them in Guanacaste.`,
+    // the nouns name the rows as they are today: change them with the data
+    sub: `${group(lang, S.m2)} m² of houses, apartments, cabins, a small hotel, a bakery and hangars, and ${S.plans === 2 ? 'two' : S.plans} master plans over ${ha(lang, S.planHa)} hectares. Of these, ${S.built} are built and ${S.permit} more have an approved permit.`,
+    scale: '(At one scale)', scaleText: `Each square is the built area of one project, all drawn to the same scale: ${S.drawn} of the ${S.n}, by year.`,
+    built: 'Built', permit: 'Permit approved', designed: 'Designed', ref: '100 m²',
+    list: '(Every project)', facets: { group: 'Type', stage: 'Stage', where: 'Place' }, all: 'All',
+    cols: { no: 'No.', name: 'Project', type: 'Type', loc: 'Location', area: 'Area', year: 'Year', stage: 'Stage' },
+    caption: `Index of the ${S.n} projects of Studio CAVA, formerly AVARQ, ${S.first} to ${S.last}`,
+    total: `${S.n} projects`, page: 'Page', sortBy: 'Sort by',
+    foot: `Areas are gross built areas from each project's permit set or area table; master plans show their land.`,
+    data: 'The index as data', withImages: `The ${S.pages} projects with images`,
+  } : {
+    title: `Índice de ${S.n} proyectos en Costa Rica | Studio CAVA`,
+    description: `Todos los proyectos de Studio CAVA, antes AVARQ, desde ${S.first}: ${S.n} casas, apartamentos, hoteles, cafés, hangares y planes maestros, con tipo, lugar, área construida, año y etapa.`,
+    label: '(Todos los proyectos)', h1: ['Índice de', 'proyectos'],
+    intro: `Studio CAVA, antes AVARQ, ha trabajado en ${S.n} proyectos desde ${S.first}, ${S.gte} de ellos en Guanacaste.`,
+    sub: `${group(lang, S.m2)} m² de casas, apartamentos, cabinas, un hotel pequeño, una panadería y hangares, y ${S.plans === 2 ? 'dos' : S.plans} planes maestros sobre ${ha(lang, S.planHa)} hectáreas. De ellos, ${S.built} están construidos y ${S.permit} más tienen el permiso aprobado.`,
+    scale: '(A una escala)', scaleText: `Cada cuadrado es el área construida de un proyecto, todos dibujados a la misma escala: ${S.drawn} de los ${S.n}, por año.`,
+    built: 'Construido', permit: 'Permiso aprobado', designed: 'Diseñado', ref: '100 m²',
+    list: '(Todos los proyectos)', facets: { group: 'Tipo', stage: 'Etapa', where: 'Lugar' }, all: 'Todos',
+    cols: { no: 'N.º', name: 'Proyecto', type: 'Tipo', loc: 'Ubicación', area: 'Área', year: 'Año', stage: 'Etapa' },
+    caption: `Índice de los ${S.n} proyectos de Studio CAVA, antes AVARQ, de ${S.first} a ${S.last}`,
+    total: `${S.n} proyectos`, page: 'Página', sortBy: 'Ordenar por',
+    foot: 'Las áreas son áreas construidas brutas, del juego de permisos o la tabla de áreas de cada proyecto; los planes maestros muestran su terreno.',
+    data: 'El índice como datos', withImages: `Los ${S.pages} proyectos con imágenes`,
+  };
+  const pageOf = (r) => `${up}${projectPath(lang, r.slug)}`;
+  const tip = (r) => [`${pad(r.no)}`, r.name, idxArea(lang, r), ST[r.status][lang]].filter(Boolean).join(' · ');
+
+  // the squares, by year: side = the square root of the built area
+  const years = [...new Set(rows.filter((r) => r.area).map((r) => r.years[0]))].sort((a, b) => a - b);
+  const fill = (r) => (r.status === 'built' ? ' idx__sq--built' : r.status === 'permit' ? ' idx__sq--permit' : '');
+  const plate = `      <ol class="idx__years">
+${years.map((y) => `        <li class="idx__yr"><ol class="idx__sqs">${rows.filter((r) => r.area && r.years[0] === y).map((r) => `<li><a class="idx__sq${fill(r)}" href="#${r.id}" style="--s: ${Math.sqrt(r.area).toFixed(2)}" data-no="${r.no}" data-tip="${esc(tip(r))}" aria-label="${esc(tip(r))}"></a><span class="idx__sqn" aria-hidden="true">${pad(r.no)}</span></li>`).join('')}</ol><span class="idx__yl label">${y}</span></li>`).join('\n')}
+      </ol>
+      <p class="idx__legend label"><span><i class="idx__key idx__sq--built"></i>${H.built}</span><span><i class="idx__key idx__sq--permit"></i>${H.permit}</span><span><i class="idx__key"></i>${H.designed}</span><span><i class="idx__ref" style="--s: 10"></i>${H.ref}</span></p>`;
+
+  // the filters, each value with its count (Kengo Kuma's index does this: the counts are the breadth)
+  const count = (k, v) => rows.filter((r) => r[k] === v).length;
+  const wheres = [...new Set(rows.filter((r) => r.town).map((r) => r.where))].sort((a, b) => count('where', b) - count('where', a) || a.localeCompare(b));
+  const facet = (k, vals) => `        <div class="idx__facet"><h3 class="label idx__fl" id="idx-f-${k}">${H.facets[k]}</h3><div class="idx__pills" role="group" aria-labelledby="idx-f-${k}">
+          <button class="idx__pill" type="button" data-f="${k}" data-v="" aria-pressed="true">${H.all} <span class="idx__c">${rows.length}</span></button>
+${vals.filter(([v]) => count(k, v)).map(([v, label]) => `          <button class="idx__pill" type="button" data-f="${k}" data-v="${v}" aria-pressed="false">${esc(label)} <span class="idx__c">${count(k, v)}</span></button>`).join('\n')}
+        </div></div>`;
+  const facets = [
+    facet('group', Object.entries(G).map(([v, g]) => [v, g[lang]])),
+    facet('stage', Object.entries(STAGES).map(([v, s]) => [v, s[lang]])),
+    facet('where', [...wheres.map((v) => [v, towns.find((t) => t.slug === v).name]), ...Object.entries(IDX_ELSE).map(([v, s]) => [v, s[lang]])]),
+  ].join('\n');
+
+  const sortTh = (key, label, cls, sort = '') => `<th scope="col" class="${cls}"${sort ? ` aria-sort="${sort}"` : ''}><button class="idx__sort" type="button" data-sort="${key}" aria-label="${H.sortBy} ${label.toLowerCase()}">${label}<span class="idx__arr" aria-hidden="true"></span></button></th>`;
+  const tr_ = (r) => {
+    // the arrow stays with the last word, so a wrapped name never leaves it alone on a line
+    const words = r.name.split(' '), last = words.pop();
+    const name = r.slug ? `<a class="ulink idx__go" href="${pageOf(r)}">${esc(words.length ? `${words.join(' ')} ` : '')}<span class="idx__nw">${esc(last)}<span class="idx__arrow" aria-hidden="true">→</span></span></a>` : esc(r.name);
+    const loc = esc(idxLoc(lang, r));
+    const locCell = r.town ? `<a class="ulink" href="${up}${townPath(lang, r.town.slug)}">${esc(r.place)}</a>${r.region ? `, ${esc(r.region)}` : ''}` : loc;
+    const img = r.slug ? ` data-img="${up}${imgBase(r.slug, 1)}-800.webp?v=${imgVer(`${r.slug}/1`)}"` : '';
+    return `          <tr id="${r.id}" data-group="${r.group}" data-stage="${r.stage}" data-where="${r.where}" data-no="${r.no}" data-area="${r.area ?? r.site ?? 0}" data-y="${r.years[0]}" data-name="${esc(r.name)}"${img}>
+            <td class="idx__no"><a href="#${r.id}" aria-label="${H.cols.no} ${r.no}">${pad(r.no)}</a></td>
+            <th scope="row" class="idx__name">${name}</th>
+            <td class="idx__type">${esc(r.type)}</td>
+            <td class="idx__loc">${locCell}</td>
+            <td class="idx__area">${r.area ? `${group(lang, r.area)} m²<span class="idx__ft">${group(lang, Math.round((r.area * 10.7639) / 10) * 10)} ft²</span>` : r.plan && r.site ? `${ha(lang, r.site)} ha<span class="idx__ft">${en ? 'land' : 'terreno'}</span>` : ''}</td>
+            <td class="idx__year">${yearsOf(r.years)}</td>
+            <td class="idx__stage"><span class="idx__dot idx__dot--${r.stage}" aria-hidden="true"></span>${esc(ST[r.status][lang])}</td>
+          </tr>`;
+  };
+  const sorted = [...rows].sort((a, b) => b.no - a.no);
+
+  const url = `${ORIGIN}/${paths[lang]}`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage', '@id': url, url, name: H.title.replace(/ \| Studio CAVA$/, ''), description: H.description, inLanguage: lang,
+        isPartOf: { '@id': `${ORIGIN}/#website` }, about: { '@id': `${ORIGIN}/#studio` },
+        mainEntity: {
+          '@type': 'ItemList', name: H.caption, numberOfItems: rows.length, itemListOrder: 'https://schema.org/ItemListOrderAscending',
+          itemListElement: rows.map((r) => ({
+            '@type': 'ListItem', position: r.no,
+            item: {
+              '@type': 'CreativeWork', '@id': `${url}#${r.id}`, name: r.name, genre: r.type, url: r.slug ? `${ORIGIN}/${projectPath(lang, r.slug)}` : `${url}#${r.id}`,
+              creativeWorkStatus: ST[r.status][lang], dateCreated: String(r.years[0]), creator: { '@id': `${ORIGIN}/#studio` },
+              ...(r.place || r.region ? { locationCreated: { '@type': 'Place', name: idxLoc(lang, r), address: { '@type': 'PostalAddress', ...(r.place ? { addressLocality: r.place } : {}), ...(r.region && r.region !== r.country ? { addressRegion: r.region } : {}), addressCountry: r.country } } } : {}),
+              ...(r.area ? { additionalProperty: { '@type': 'PropertyValue', name: en ? 'Built area' : 'Área construida', value: r.area, unitCode: 'MTK', unitText: 'm²' } } : {}),
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'Dataset', name: en ? 'Studio CAVA project index' : 'Índice de proyectos de Studio CAVA', description: `${H.intro} ${H.sub}`, url,
+        creator: { '@id': `${ORIGIN}/#studio` }, spatialCoverage: 'Costa Rica', temporalCoverage: `${S.first}/${S.last}`, inLanguage: lang,
+        variableMeasured: Object.values(H.cols).slice(1),
+        distribution: [
+          { '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: `${ORIGIN}/${idxFile(lang, 'csv')}` },
+          { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: `${ORIGIN}/${idxFile(lang, 'json')}` },
+        ],
+      },
+    ],
+  };
+
+  return head(lang, { title: H.title, description: H.description, paths, image: `${imgBase('hangars-b', 1)}-1600.webp`, up, script: 'pindex.js', jsonld: ld }) + `<div id="top"></div>
+${bar(lang, up, paths, 'projects')}
+<main class="page">
+  <article class="mf idx" aria-labelledby="idx-title">
+    <header class="mf__head grid">
+      <span class="label mf__label">${H.label}</span>
+      <h1 class="display mf__title" id="idx-title"><span>${esc(H.h1[0])}</span><span class="right">${esc(H.h1[1])}</span></h1>
+      <p class="h3 mf__intro">${esc(H.intro)}</p>
+      <p class="large idx__sub">${esc(H.sub)}</p>
+    </header>
+    <section class="tw__sec grid idx__scale" aria-labelledby="idx-scale">
+      <h2 class="label tw__label" id="idx-scale">${H.scale}</h2>
+      <p class="large tw__aside">${esc(H.scaleText)}</p>
+      <div class="idx__plate" data-idx-plate>
+${plate}
+      </div>
+    </section>
+    <section class="tw__sec grid idx__list" aria-labelledby="idx-list">
+      <h2 class="label tw__label" id="idx-list">${H.list}</h2>
+      <div class="idx__facets" data-idx-facets>
+${facets}
+        <p class="idx__shown label" data-idx-shown aria-live="polite"></p>
+      </div>
+      <div class="idx__wrap">
+      <table class="idx__table" data-idx-table>
+        <caption class="sr-only">${esc(H.caption)}</caption>
+        <thead><tr>${sortTh('no', H.cols.no, 'idx__no', 'descending')}<th scope="col" class="idx__name">${H.cols.name}</th><th scope="col" class="idx__type">${H.cols.type}</th><th scope="col" class="idx__loc">${H.cols.loc}</th>${sortTh('area', H.cols.area, 'idx__area')}${sortTh('y', H.cols.year, 'idx__year')}<th scope="col" class="idx__stage">${H.cols.stage}</th></tr></thead>
+        <tbody>
+${sorted.map(tr_).join('\n')}
+        </tbody>
+        <tfoot><tr><td class="idx__no"></td><th scope="row" class="idx__name">${H.total}</th><td class="idx__type"></td><td class="idx__loc"></td><td class="idx__area">${group(lang, S.m2)} m²<span class="idx__ft">${group(lang, Math.round((S.m2 * 10.7639) / 10) * 10)} ft²</span></td><td class="idx__year">${S.first}-${String(S.last).slice(2)}</td><td class="idx__stage"></td></tr></tfoot>
+      </table>
+      </div>
+      <div class="idx__after">
+        <p class="note">${esc(H.foot)}</p>
+        <p class="label idx__links"><a class="ulink" href="${up}${projectsPath(lang)}">${H.withImages} →</a><span>${H.data}: <a class="ulink" href="${up}${idxFile(lang, 'csv')}" download>CSV</a>, <a class="ulink" href="${up}${idxFile(lang, 'json')}">JSON</a></span></p>
+      </div>
+    </section>
+  </article>
+${contact(lang, UI[lang].wa.projects, up)}</main>
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.projects)}<div class="idx__tip" data-idx-tip hidden></div><img class="idx__peek" data-idx-peek alt="" hidden>${end}`;
+}
+
+// The same rows for anyone who wants the list itself: a spreadsheet, a script, a language model.
+function idxData(lang) {
+  const ST = pindex.statuses;
+  return idxRows(lang).map((r) => ({
+    no: r.no, name: r.name, type: r.type, place: r.place ?? '', region: r.region ?? '', country: r.country,
+    built_area_m2: r.area ?? '', site_area_m2: r.site ?? '', year_start: r.years[0], year_end: r.years[1] ?? '',
+    stage: ST[r.status][lang], url: r.slug ? `${ORIGIN}/${projectPath(lang, r.slug)}` : `${ORIGIN}/${idxPath(lang)}#${r.id}`,
+  }));
+}
+const idxCsv = (lang) => {
+  const rows = idxData(lang);
+  const cell = (v) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+  return [Object.keys(rows[0]).join(','), ...rows.map((r) => Object.values(r).map(cell).join(','))].join('\n') + '\n';
+};
+
+// llms.txt (llmstxt.org): a plain map of the site for language models. No study shows they read it yet; it costs nothing.
+function llmsTxt() {
+  const S = idxSums(idxRows('en'));
+  const L = (path, name, note) => `- [${name}](${ORIGIN}/${path})${note ? `: ${note}` : ''}`;
+  return `# Studio CAVA
+
+> Architecture and interior design studio in Costa Rica, formerly AVARQ. Houses, rental villas, small hotels, cafés, hangars and master plans, mostly on the Guanacaste coast, from the study of the lot to the permits and the supervision of the works. ${S.n} projects since ${S.first}, ${S.gte} of them in Guanacaste.
+
+Contact: ${EMAIL}, WhatsApp ${WHATSAPP_SHOWN}. Spanish pages live under ${ORIGIN}/es/.
+
+## Projects
+
+${L(idxPath('en'), 'Project index', `all ${S.n} projects with type, place, built area, year and stage`)}
+${L(idxFile('en', 'csv'), 'Project index, CSV')}
+${L(projectsPath('en'), 'Projects with images')}
+${projects.map((p) => L(projectPath('en', p.slug), p.name, `${p.type.toLowerCase()}, ${(p.location ?? '').split(',').slice(0, 2).join(',')}`)).join('\n')}
+
+## Services
+
+${L(servicesPath('en'), 'Services')}
+${services.map((s) => L(servicePath('en', s), s.en.name)).join('\n')}
+
+## Building in Costa Rica
+
+${L(townsPath('en'), 'Where we work', `${towns.length} towns, each with its climate, permits and costs`)}
+${guides.map((g) => L(guidePath('en', g), g.en.title.replace(/ \| Studio CAVA$/, ''))).join('\n')}
+${costs ? L(estimatorPath('en'), 'Construction cost estimator') : ''}
+${land ? L(landPath('en'), 'Land prices map') : ''}
+${permitGuide ? L(permitPath('en'), 'Permit route') : ''}
+
+## Studio
+
+${L(studioPath('en'), 'Studio')}
+${press.length || publications().length ? L(pressPath('en'), 'Press and publications') : ''}
+`.replace(/\n{3,}/g, '\n\n');
+}
+
 const write = (path, html) => {
   // every page carries the floating WhatsApp button, but the client portal (Carlos: it covered the email box;
   // the portal's own footer has WhatsApp)
@@ -3726,6 +3985,11 @@ const write = (path, html) => {
 
 for (const lang of ['en', 'es']) {
   write(`${projectsPath(lang)}index.html`, indexPage(lang));
+  if (pindex) {
+    write(`${idxPath(lang)}index.html`, projectIndexPage(lang));
+    write(idxFile(lang, "csv"), idxCsv(lang));
+    write(idxFile(lang, "json"), JSON.stringify({ name: lang === "en" ? "Studio CAVA project index" : "Índice de proyectos de Studio CAVA", url: `${ORIGIN}/${idxPath(lang)}`, projects: idxData(lang) }, null, 1) + "\n");
+  }
   projects.forEach((p, i) => write(`${projectPath(lang, p.slug)}index.html`, projectPage(lang, p, i)));
   write(`${studioPath(lang)}index.html`, studioPage(lang));
   if (identity) write(`${identityPath(lang)}index.html`, identityPage(lang));
@@ -3756,6 +4020,7 @@ for (const lang of ['en', 'es']) {
 }
 if (costs) write('assets/data/costs.json', JSON.stringify(costsData()));
 write('sitemap.xml', sitemap());
+if (pindex) write('llms.txt', llmsTxt());
 write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 
 // ---------- 404.html: served for any missing path, so its links start at the root ----------
