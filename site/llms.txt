@@ -1,12 +1,12 @@
 # Studio CAVA
 
-> Architecture and interior design studio in Costa Rica, formerly AVARQ. Houses, rental villas, small hotels, cafés, hangars and master plans, mostly on the Guanacaste coast, from the study of the lot to the permits and the supervision of the works. 41 projects since 2015, 35 of them in Guanacaste.
+> Architecture and interior design studio in Costa Rica, formerly AVARQ. Houses, rental villas, small hotels, cafés, hangars and master plans, mostly on the Guanacaste coast, from the study of the lot to the permits and the supervision of the works. 42 projects since 2015, 35 of them in Guanacaste.
 
 Contact: hola@cava.design, WhatsApp +506 7173 7336. Spanish pages live under https://cava.design/es/.
 
 ## Projects
 
-- [Project index](https://cava.design/projects/index/): all 41 projects with type, place, built area, year and stage
+- [Project index](https://cava.design/projects/index/): all 42 projects with type, place, built area, year and stage
 - [Project index, CSV](https://cava.design/projects/index.csv)
 - [Projects with images](https://cava.design/projects/)
 - [Rancho Cartagena](https://cava.design/projects/rancho-cartagena/): house, Rancho Cartagena, Guanacaste

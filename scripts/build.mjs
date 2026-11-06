@@ -3717,8 +3717,8 @@ const forward = (to, rel) => `<!doctype html>\n<html><head><meta charset="utf-8"
 // ---------- /projects/index/ and /es/proyectos/indice/: every project, with a page or without ----------
 // data/index.json holds one row per project under a permanent number. A row with a slug takes its name, type and
 // areas from data/projects.json, so a sheet and its row never disagree. The page is a plain table in the HTML (read
-// by people, crawlers and language models alike, none of which need the script), the built areas drawn at one
-// scale, and the same rows as CSV and JSON next to it.
+// by people, crawlers and language models alike, none of which need the script), and the same rows as CSV and JSON
+// next to it.
 const INDEX_PATH = join(ROOT, 'data', 'index.json');
 const pindex = existsSync(INDEX_PATH) ? JSON.parse(readFileSync(INDEX_PATH, 'utf8')) : null;
 const idxPath = (lang) => (lang === 'en' ? 'projects/index/' : 'es/proyectos/indice/');
@@ -3753,7 +3753,7 @@ function idxRows(lang) {
 const idxSums = (rows) => {
   const ys = rows.flatMap((r) => r.years).filter(Boolean);
   return {
-    n: rows.length, m2: rows.reduce((s, r) => s + (r.area ?? 0), 0), drawn: rows.filter((r) => r.area).length,
+    n: rows.length, m2: rows.reduce((s, r) => s + (r.area ?? 0), 0),
     gte: rows.filter((r) => r.region === 'Guanacaste').length, built: rows.filter((r) => r.status === 'built').length,
     permit: rows.filter((r) => r.status === 'permit').length, plans: rows.filter((r) => r.plan).length,
     planHa: rows.filter((r) => r.plan && r.site).reduce((s, r) => s + r.site, 0), first: Math.min(...ys), last: Math.max(...ys),
@@ -3776,9 +3776,7 @@ function projectIndexPage(lang) {
     label: '(All projects)', h1: ['Project', 'index'],
     intro: `Studio CAVA, formerly AVARQ, has worked on ${S.n} projects since ${S.first}, ${S.gte} of them in Guanacaste.`,
     // the nouns name the rows as they are today: change them with the data
-    sub: `${group(lang, S.m2)} m² of houses, apartments, cabins, a small hotel, a bakery and hangars, and ${S.plans === 2 ? 'two' : S.plans} master plans over ${ha(lang, S.planHa)} hectares. Of these, ${S.built} are built and ${S.permit} more have an approved permit.`,
-    scale: '(At one scale)', scaleText: `Each square is the built area of one project, all drawn to the same scale: ${S.drawn} of the ${S.n}, by year.`,
-    built: 'Built', permit: 'Permit approved', designed: 'Designed', ref: '100 m²',
+    sub: `${group(lang, S.m2)} m² of houses, apartments, cabins, a small hotel, a bakery and hangars, and ${S.plans === 2 ? 'two' : S.plans} master plans over ${ha(lang, S.planHa)} hectares. Of these, ${S.built} are built${S.permit ? ` and ${S.permit} more have an approved permit` : ''}.`,
     list: '(Every project)', facets: { group: 'Type', stage: 'Stage', where: 'Place' }, all: 'All',
     cols: { no: 'No.', name: 'Project', type: 'Type', loc: 'Location', area: 'Area', year: 'Year', stage: 'Stage' },
     caption: `Index of the ${S.n} projects of Studio CAVA, formerly AVARQ, ${S.first} to ${S.last}`,
@@ -3790,9 +3788,7 @@ function projectIndexPage(lang) {
     description: `Todos los proyectos de Studio CAVA, antes AVARQ, desde ${S.first}: ${S.n} casas, apartamentos, hoteles, cafés, hangares y planes maestros, con tipo, lugar, área construida, año y etapa.`,
     label: '(Todos los proyectos)', h1: ['Índice de', 'proyectos'],
     intro: `Studio CAVA, antes AVARQ, ha trabajado en ${S.n} proyectos desde ${S.first}, ${S.gte} de ellos en Guanacaste.`,
-    sub: `${group(lang, S.m2)} m² de casas, apartamentos, cabinas, un hotel pequeño, una panadería y hangares, y ${S.plans === 2 ? 'dos' : S.plans} planes maestros sobre ${ha(lang, S.planHa)} hectáreas. De ellos, ${S.built} están construidos y ${S.permit} más tienen el permiso aprobado.`,
-    scale: '(A una escala)', scaleText: `Cada cuadrado es el área construida de un proyecto, todos dibujados a la misma escala: ${S.drawn} de los ${S.n}, por año.`,
-    built: 'Construido', permit: 'Permiso aprobado', designed: 'Diseñado', ref: '100 m²',
+    sub: `${group(lang, S.m2)} m² de casas, apartamentos, cabinas, un hotel pequeño, una panadería y hangares, y ${S.plans === 2 ? 'dos' : S.plans} planes maestros sobre ${ha(lang, S.planHa)} hectáreas. De ellos, ${S.built} están construidos${S.permit ? ` y ${S.permit} más tienen el permiso aprobado` : ''}.`,
     list: '(Todos los proyectos)', facets: { group: 'Tipo', stage: 'Etapa', where: 'Lugar' }, all: 'Todos',
     cols: { no: 'N.º', name: 'Proyecto', type: 'Tipo', loc: 'Ubicación', area: 'Área', year: 'Año', stage: 'Etapa' },
     caption: `Índice de los ${S.n} proyectos de Studio CAVA, antes AVARQ, de ${S.first} a ${S.last}`,
@@ -3801,16 +3797,6 @@ function projectIndexPage(lang) {
     data: 'El índice como datos', withImages: `Los ${S.pages} proyectos con imágenes`,
   };
   const pageOf = (r) => `${up}${projectPath(lang, r.slug)}`;
-  const tip = (r) => [`${pad(r.no)}`, r.name, idxArea(lang, r), ST[r.status][lang]].filter(Boolean).join(' · ');
-
-  // the squares, by year: side = the square root of the built area
-  const years = [...new Set(rows.filter((r) => r.area).map((r) => r.years[0]))].sort((a, b) => a - b);
-  const fill = (r) => (r.status === 'built' ? ' idx__sq--built' : r.status === 'permit' ? ' idx__sq--permit' : '');
-  const plate = `      <ol class="idx__years">
-${years.map((y) => `        <li class="idx__yr"><ol class="idx__sqs">${rows.filter((r) => r.area && r.years[0] === y).map((r) => `<li><a class="idx__sq${fill(r)}" href="#${r.id}" style="--s: ${Math.sqrt(r.area).toFixed(2)}" data-no="${r.no}" data-tip="${esc(tip(r))}" aria-label="${esc(tip(r))}"></a><span class="idx__sqn" aria-hidden="true">${pad(r.no)}</span></li>`).join('')}</ol><span class="idx__yl label">${y}</span></li>`).join('\n')}
-      </ol>
-      <p class="idx__legend label"><span><i class="idx__key idx__sq--built"></i>${H.built}</span><span><i class="idx__key idx__sq--permit"></i>${H.permit}</span><span><i class="idx__key"></i>${H.designed}</span><span><i class="idx__ref" style="--s: 10"></i>${H.ref}</span></p>`;
-
   // the filters, each value with its count (Kengo Kuma's index does this: the counts are the breadth)
   const count = (k, v) => rows.filter((r) => r[k] === v).length;
   const wheres = [...new Set(rows.filter((r) => r.town).map((r) => r.where))].sort((a, b) => count('where', b) - count('where', a) || a.localeCompare(b));
@@ -3831,8 +3817,7 @@ ${vals.filter(([v]) => count(k, v)).map(([v, label]) => `          <button class
     const name = r.slug ? `<a class="ulink idx__go" href="${pageOf(r)}">${esc(words.length ? `${words.join(' ')} ` : '')}<span class="idx__nw">${esc(last)}<span class="idx__arrow" aria-hidden="true">→</span></span></a>` : esc(r.name);
     const loc = esc(idxLoc(lang, r));
     const locCell = r.town ? `<a class="ulink" href="${up}${townPath(lang, r.town.slug)}">${esc(r.place)}</a>${r.region ? `, ${esc(r.region)}` : ''}` : loc;
-    const img = r.slug ? ` data-img="${up}${imgBase(r.slug, 1)}-800.webp?v=${imgVer(`${r.slug}/1`)}"` : '';
-    return `          <tr id="${r.id}" data-group="${r.group}" data-stage="${r.stage}" data-where="${r.where}" data-no="${r.no}" data-area="${r.area ?? r.site ?? 0}" data-y="${r.years[0]}" data-name="${esc(r.name)}"${img}>
+    return `          <tr id="${r.id}" data-group="${r.group}" data-stage="${r.stage}" data-where="${r.where}" data-no="${r.no}" data-area="${r.area ?? r.site ?? 0}" data-y="${r.years[0]}" data-name="${esc(r.name)}">
             <td class="idx__no"><a href="#${r.id}" aria-label="${H.cols.no} ${r.no}">${pad(r.no)}</a></td>
             <th scope="row" class="idx__name">${name}</th>
             <td class="idx__type">${esc(r.type)}</td>
@@ -3886,13 +3871,6 @@ ${bar(lang, up, paths, 'projects')}
       <p class="h3 mf__intro">${esc(H.intro)}</p>
       <p class="large idx__sub">${esc(H.sub)}</p>
     </header>
-    <section class="tw__sec grid idx__scale" aria-labelledby="idx-scale">
-      <h2 class="label tw__label" id="idx-scale">${H.scale}</h2>
-      <p class="large tw__aside">${esc(H.scaleText)}</p>
-      <div class="idx__plate" data-idx-plate>
-${plate}
-      </div>
-    </section>
     <section class="tw__sec grid idx__list" aria-labelledby="idx-list">
       <h2 class="label tw__label" id="idx-list">${H.list}</h2>
       <div class="idx__facets" data-idx-facets>
@@ -3916,7 +3894,7 @@ ${sorted.map(tr_).join('\n')}
     </section>
   </article>
 ${contact(lang, UI[lang].wa.projects, up)}</main>
-${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.projects)}<div class="idx__tip" data-idx-tip hidden></div><img class="idx__peek" data-idx-peek alt="" hidden>${end}`;
+${footer(lang, up, paths)}${waButton(lang, UI[lang].wa.projects)}${end}`;
 }
 
 // The same rows for anyone who wants the list itself: a spreadsheet, a script, a language model.

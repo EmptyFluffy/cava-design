@@ -2644,31 +2644,8 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 /* drawings on white take the paper's warm tone (multiply turns their white into the page colour) */
 .pplan:not(.pplan--ground) .pplan__img img, .prow img, .pdraw__fig img, .iter img, .pview img, .idn img, .tyx img { mix-blend-mode: multiply; }
 
-/* the project index (2026-11-05): every project in one table, the built areas at one scale above it */
+/* the project index (2026-11-05): every project in one table, with filters (squares and hover images removed 2026-11-06) */
 .idx__sub { grid-column: 5 / -1; max-width: 44rem; margin: 0; text-wrap: pretty; }
-.idx__scale .tw__aside { margin: 0; }
-.idx__plate { grid-column: 1 / -1; --u: clamp(2.4px, 0.28vw, 4.6px); }
-.idx__years, .idx__sqs { margin: 0; padding: 0; list-style: none; }
-.idx__years { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--s-2) calc(var(--u) * 7); }
-.idx__yr { display: flex; flex-direction: column; min-width: 2.25rem; }
-.idx__sqs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.75rem calc(var(--u) * 2.5); }
-.idx__sqs > li { display: flex; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
-.idx__sq { display: block; width: calc(var(--s) * var(--u)); aspect-ratio: 1; border: 1px solid var(--black); background: var(--white); transition: opacity 0.3s, outline-color 0.2s; outline: 2px solid transparent; outline-offset: 2px; }
-.idx__sq--built { background: var(--black); }
-.idx__sq--permit { background: var(--dark-grey); border-color: var(--dark-grey); }
-.idx__sq.is-hot, .idx__sq:focus-visible { outline-color: var(--black); }
-.idx__sq.is-out { opacity: 0.12; }
-.idx__sqn { font-size: 0.625rem; font-weight: var(--w-strong); line-height: 1; color: var(--dark-grey); font-variant-numeric: tabular-nums; }
-.idx__yl { margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--black); font-variant-numeric: tabular-nums; }
-.idx__legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: var(--s-2) 0 0; color: var(--dark-grey); }
-.idx__legend > span { display: inline-flex; align-items: center; gap: 0.5rem; }
-.idx__legend > span:last-child { text-transform: none; }
-.idx__key { display: inline-block; width: 0.75rem; height: 0.75rem; border: 1px solid var(--black); background: var(--white); }
-.idx__key.idx__sq--built { background: var(--black); }
-.idx__key.idx__sq--permit { background: var(--dark-grey); border-color: var(--dark-grey); }
-.idx__ref { display: inline-block; width: calc(var(--s) * var(--u)); aspect-ratio: 1; border: 1px dashed var(--black); }
-.idx__tip { position: fixed; left: 0; top: 0; z-index: 60; pointer-events: none; padding: 0.45rem 0.65rem; border-radius: 0.4rem; background: var(--black); color: var(--white); font-size: var(--f-small); font-weight: var(--w-strong); line-height: 1.2; white-space: nowrap; }
-
 .idx__facets { grid-column: 5 / -1; display: grid; gap: 1rem; }
 .idx__facet { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); align-items: baseline; gap: 0.75rem; }
 .idx__fl { margin: 0; color: var(--dark-grey); }
@@ -2691,11 +2668,14 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .idx__table .idx__area { text-align: right; white-space: nowrap; padding-right: 2rem; }
 .idx__table .idx__year { white-space: nowrap; }
 .idx__arrow { margin-left: 0.35em; color: var(--mid-grey); font-weight: var(--w-text); transition: color 0.2s, transform 0.3s var(--ease); display: inline-block; }
-.idx__table tr.is-hot .idx__arrow { color: var(--black); transform: translateX(0.15em); }
 .idx__nw { white-space: nowrap; }
 .idx__ft { display: block; font-size: 0.75rem; color: var(--mid-grey); }
 .idx__table tbody tr { scroll-margin-top: 7rem; transition: background-color 0.2s; }
-.idx__table tbody tr.is-hot, .idx__table tbody tr:target { background: var(--light-grey); }
+.idx__table tbody tr:target { background: var(--light-grey); }
+@media (hover: hover) {
+  .idx__table tbody tr:hover { background: var(--light-grey); }
+  .idx__table tbody tr:hover .idx__arrow { color: var(--black); transform: translateX(0.15em); }
+}
 .idx__table tbody tr.has-page { cursor: pointer; }
 .idx__table tfoot th, .idx__table tfoot td { border-bottom: 0; border-top: 1px solid var(--black); font-weight: var(--w-strong); }
 .idx__table tfoot th.idx__name { font-size: var(--f-main); }
@@ -2711,7 +2691,6 @@ body.dark { background: #080807; color: #fcfcfc; color-scheme: dark; }
 .idx__after { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; margin-top: 0.5rem; }
 .idx__after .note { margin: 0; }
 .idx__links { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; margin: 0; }
-.idx__peek { position: fixed; left: 0; top: 0; z-index: 55; width: 18rem; height: auto; pointer-events: none; box-shadow: 0 0.5rem 2rem rgba(8, 8, 7, 0.18); }
 .plist__idx { margin: calc(var(--s-3) * -0.5) 0 var(--s-2); text-align: right; }
 
 @media (max-width: 991px) {

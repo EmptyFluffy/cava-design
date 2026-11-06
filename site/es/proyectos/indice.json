@@ -237,7 +237,7 @@
    "site_area_m2": "",
    "year_start": 2021,
    "year_end": 2022,
-   "stage": "Diseño esquemático",
+   "stage": "Construido",
    "url": "https://cava.design/es/proyectos/rancho-cartagena/"
   },
   {
@@ -279,7 +279,7 @@
    "site_area_m2": 6072,
    "year_start": 2021,
    "year_end": 2023,
-   "stage": "Permiso aprobado",
+   "stage": "Construido",
    "url": "https://cava.design/es/proyectos/indice/#p-20"
   },
   {
@@ -335,7 +335,7 @@
    "site_area_m2": 5338,
    "year_start": 2021,
    "year_end": 2023,
-   "stage": "Permiso aprobado",
+   "stage": "Construido",
    "url": "https://cava.design/es/proyectos/indice/#p-24"
   },
   {
@@ -433,7 +433,7 @@
    "site_area_m2": "",
    "year_start": 2022,
    "year_end": 2024,
-   "stage": "Permiso aprobado",
+   "stage": "Construido",
    "url": "https://cava.design/es/proyectos/indice/#p-31"
   },
   {
@@ -545,7 +545,7 @@
    "site_area_m2": "",
    "year_start": 2024,
    "year_end": 2024,
-   "stage": "Permiso aprobado",
+   "stage": "Construido",
    "url": "https://cava.design/es/proyectos/indice/#p-39"
   },
   {
@@ -564,6 +564,20 @@
   },
   {
    "no": 41,
+   "name": "Tiny houses en Pérez Zeledón",
+   "type": "Tiny houses",
+   "place": "El General, Pérez Zeledón",
+   "region": "San José",
+   "country": "Costa Rica",
+   "built_area_m2": 150,
+   "site_area_m2": 530843,
+   "year_start": 2025,
+   "year_end": 2025,
+   "stage": "Construido",
+   "url": "https://cava.design/es/proyectos/indice/#p-41"
+  },
+  {
+   "no": 42,
    "name": "Casa en Mal País",
    "type": "Casa",
    "place": "Mal País",
@@ -574,7 +588,7 @@
    "year_start": 2026,
    "year_end": "",
    "stage": "En diseño",
-   "url": "https://cava.design/es/proyectos/indice/#p-41"
+   "url": "https://cava.design/es/proyectos/indice/#p-42"
   }
  ]
 }

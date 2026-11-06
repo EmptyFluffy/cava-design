@@ -1,15 +1,11 @@
-// The project index (/projects/index/, /es/proyectos/indice/): filters with counts, sortable columns, a
-// square and its row lit together, and a peek at a project's image beside the cursor. The table and the
-// squares work without any of it: this only adds the handling.
+// The project index (/projects/index/, /es/proyectos/indice/): filters with counts, sortable columns, and a row
+// with a page that opens it. The table works without any of it: this only adds the handling.
 (() => {
   const table = document.querySelector('[data-idx-table]');
   if (!table) return;
   const es = document.documentElement.lang === 'es';
   const body = table.tBodies[0];
   const rows = [...body.rows];
-  const rowByNo = new Map(rows.map((r) => [r.dataset.no, r]));
-  const sqs = [...document.querySelectorAll('.idx__sq')];
-  const sqByNo = new Map(sqs.map((s) => [s.dataset.no, s]));
   const shown = document.querySelector('[data-idx-shown]');
 
   // filters: one value per facet, all of them must match
@@ -20,7 +16,6 @@
       const on = Object.entries(state).every(([k, v]) => !v || r.dataset[k] === v);
       r.hidden = !on;
       if (on) n += 1;
-      sqByNo.get(r.dataset.no)?.classList.toggle('is-out', !on);
     }
     const all = Object.values(state).every((v) => !v);
     shown.textContent = all ? '' : es ? `${n} de ${rows.length} proyectos` : `${n} of ${rows.length} projects`;
@@ -49,40 +44,8 @@
     });
   }
 
-  // a square and its row light together; the square says what it is
-  const tip = document.querySelector('[data-idx-tip]');
-  const hot = (no, on) => {
-    rowByNo.get(no)?.classList.toggle('is-hot', on);
-    sqByNo.get(no)?.classList.toggle('is-hot', on);
-  };
-  for (const s of sqs) {
-    const show = () => {
-      hot(s.dataset.no, true);
-      tip.textContent = s.dataset.tip;
-      tip.hidden = false;
-      const r = s.getBoundingClientRect();
-      const t = tip.getBoundingClientRect();
-      const x = Math.max(8, Math.min(r.left + r.width / 2 - t.width / 2, innerWidth - t.width - 8));
-      const y = r.top - t.height - 8 < 8 ? r.bottom + 8 : r.top - t.height - 8;
-      tip.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
-    };
-    const hide = () => {
-      hot(s.dataset.no, false);
-      tip.hidden = true;
-    };
-    s.addEventListener('pointerenter', show);
-    s.addEventListener('pointerleave', hide);
-    s.addEventListener('focus', show);
-    s.addEventListener('blur', hide);
-  }
-  addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
-
-  // rows with a page: the whole row opens it, and a mouse sees the project's image beside the cursor
-  const peek = document.querySelector('[data-idx-peek]');
-  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  // rows with a page: the whole row opens it
   for (const r of rows) {
-    r.addEventListener('pointerenter', () => hot(r.dataset.no, true));
-    r.addEventListener('pointerleave', () => hot(r.dataset.no, false));
     const link = r.querySelector('.idx__go');
     if (!link) continue;
     r.classList.add('has-page');
@@ -90,18 +53,5 @@
       if (e.target.closest('a') || String(getSelection())) return;
       location.href = link.href;
     });
-    if (!fine || !r.dataset.img) continue;
-    r.addEventListener('pointerenter', () => {
-      if (peek.getAttribute('src') !== r.dataset.img) peek.src = r.dataset.img;
-      peek.hidden = false;
-    });
-    r.addEventListener('pointermove', (e) => {
-      const w = peek.offsetWidth || 288;
-      const h = peek.offsetHeight || 192;
-      const x = e.clientX + 28 + w > innerWidth - 16 ? e.clientX - 28 - w : e.clientX + 28;
-      const y = Math.max(16, Math.min(e.clientY - h / 2, innerHeight - h - 16));
-      peek.style.transform = `translate(${Math.round(x)}px, ${Math.round(y)}px)`;
-    });
-    r.addEventListener('pointerleave', () => { peek.hidden = true; });
   }
 })();

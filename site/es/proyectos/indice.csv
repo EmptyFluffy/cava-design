@@ -15,21 +15,21 @@ no,name,type,place,region,country,built_area_m2,site_area_m2,year_start,year_end
 14,Lean & Green,Restaurante y abarrotes,La Jolla,"California, EE. UU.",United States,200,200,2021,2021,Desarrollo de diseño,https://cava.design/es/proyectos/lean-and-green/
 15,Casa de tres niveles con terraza en la azotea,Casa,Villarreal,Guanacaste,Costa Rica,,,2021,2021,Planos constructivos,https://cava.design/es/proyectos/indice/#p-15
 16,Casa principal y dos casas de huéspedes,Casas,Playa Potrero,Guanacaste,Costa Rica,410,5002,2021,2021,Diseño esquemático,https://cava.design/es/proyectos/indice/#p-16
-17,Rancho Cartagena,Casa,Rancho Cartagena,Guanacaste,Costa Rica,213,,2021,2022,Diseño esquemático,https://cava.design/es/proyectos/rancho-cartagena/
+17,Rancho Cartagena,Casa,Rancho Cartagena,Guanacaste,Costa Rica,213,,2021,2022,Construido,https://cava.design/es/proyectos/rancho-cartagena/
 18,Casa pequeña,Casa,,Guanacaste,Costa Rica,,,2021,2021,Planos constructivos,https://cava.design/es/proyectos/indice/#p-18
 19,S3 Houses,Casas,Playa Langosta,Guanacaste,Costa Rica,550,,2021,2021,Diseño esquemático,https://cava.design/es/proyectos/s3-houses/
-20,Casa en seis mil metros cuadrados,Casa,Santa Rosa,Guanacaste,Costa Rica,242,6072,2021,2023,Permiso aprobado,https://cava.design/es/proyectos/indice/#p-20
+20,Casa en seis mil metros cuadrados,Casa,Santa Rosa,Guanacaste,Costa Rica,242,6072,2021,2023,Construido,https://cava.design/es/proyectos/indice/#p-20
 21,Casa de tres suites con piscina infinita,Casa,Santa Cruz,Guanacaste,Costa Rica,326,,2021,2021,Diseño esquemático,https://cava.design/es/proyectos/indice/#p-21
 22,Dawn Patrol Bakery,Panadería y café,Tamarindo,Guanacaste,Costa Rica,161,,2021,2022,Planos constructivos,https://cava.design/es/proyectos/dawn-patrol-bakery/
 23,Casa de huéspedes y sala de juegos,Ampliación de casa,Playa Grande,Guanacaste,Costa Rica,300,,2021,2022,Diseño esquemático,https://cava.design/es/proyectos/indice/#p-23
-24,Casa en Salinitas,Casa,Salinitas,Guanacaste,Costa Rica,201,5338,2021,2023,Permiso aprobado,https://cava.design/es/proyectos/indice/#p-24
+24,Casa en Salinitas,Casa,Salinitas,Guanacaste,Costa Rica,201,5338,2021,2023,Construido,https://cava.design/es/proyectos/indice/#p-24
 25,La Perla,Plan maestro de condominio,Matapalo,Guanacaste,Costa Rica,,57075,2021,2021,Estudio de plan maestro,https://cava.design/es/proyectos/la-perla/
 26,Futuro Brillante,Vivienda social,Matapalo,Guanacaste,Costa Rica,268,3296,2022,2022,Planos constructivos,https://cava.design/es/proyectos/indice/#p-26
 27,Casa con terraza de piscina y azotea,Casa,,Guanacaste,Costa Rica,,,2022,2022,Diseño esquemático,https://cava.design/es/proyectos/indice/#p-27
 28,Negra Mixed Use,Uso mixto,Playa Negra,Guanacaste,Costa Rica,300,,2022,2022,Diseño esquemático,https://cava.design/es/proyectos/negra-mixed-use/
 29,Tragaluz Retreat,Hotel,Playa Negra,Guanacaste,Costa Rica,243,1239,2022,2023,Planos constructivos,https://cava.design/es/proyectos/tragaluz-retreat/
 30,Casa con vista al mar,Casa,Playa Potrero,Guanacaste,Costa Rica,213,,2022,2023,Desarrollo de diseño,https://cava.design/es/proyectos/indice/#p-30
-31,Casas Palm Beach,Casas,Playa Grande,Guanacaste,Costa Rica,165,,2022,2024,Permiso aprobado,https://cava.design/es/proyectos/indice/#p-31
+31,Casas Palm Beach,Casas,Playa Grande,Guanacaste,Costa Rica,165,,2022,2024,Construido,https://cava.design/es/proyectos/indice/#p-31
 32,Kauhane House,Casa,Playa Grande,Guanacaste,Costa Rica,248,706,2022,2023,Construido,https://cava.design/es/proyectos/kauhane-house/
 33,Casa Nueces,Casa,Playa Grande,Guanacaste,Costa Rica,229,,2022,2023,Diseño esquemático,https://cava.design/es/proyectos/indice/#p-33
 34,"Green City, Amacor",Casa,San Rafael de Alajuela,Alajuela,Costa Rica,656,791,2022,2024,Planos constructivos,https://cava.design/es/proyectos/green-city-amacor/
@@ -37,6 +37,7 @@ no,name,type,place,region,country,built_area_m2,site_area_m2,year_start,year_end
 36,Casita,Casa,Playa Grande,Guanacaste,Costa Rica,175,,2023,2024,Planos constructivos,https://cava.design/es/proyectos/indice/#p-36
 37,Ecoresort Mata Caña,Plan maestro de resort,Mata Caña,Guanacaste,Costa Rica,,200000,2023,2024,Estudio de plan maestro,https://cava.design/es/proyectos/indice/#p-37
 38,Hangars B,Hangares,Huacas,Guanacaste,Costa Rica,1048,5379,2024,2024,Construido,https://cava.design/es/proyectos/hangars-b/
-39,Casa La Garita,Casa,Huacas,Guanacaste,Costa Rica,249,,2024,2024,Permiso aprobado,https://cava.design/es/proyectos/indice/#p-39
+39,Casa La Garita,Casa,Huacas,Guanacaste,Costa Rica,249,,2024,2024,Construido,https://cava.design/es/proyectos/indice/#p-39
 40,Tree House,Casa del árbol,Las Ventanas,Guanacaste,Costa Rica,75,210,2024,2024,En diseño,https://cava.design/es/proyectos/tree-house/
-41,Casa en Mal País,Casa,Mal País,Puntarenas,Costa Rica,400,,2026,,En diseño,https://cava.design/es/proyectos/indice/#p-41
+41,Tiny houses en Pérez Zeledón,Tiny houses,"El General, Pérez Zeledón",San José,Costa Rica,150,530843,2025,2025,Construido,https://cava.design/es/proyectos/indice/#p-41
+42,Casa en Mal País,Casa,Mal País,Puntarenas,Costa Rica,400,,2026,,En diseño,https://cava.design/es/proyectos/indice/#p-42
