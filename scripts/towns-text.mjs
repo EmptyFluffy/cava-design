@@ -131,19 +131,22 @@ const where = (lang, t, d) => {
   return en ? `${t.name} is in the canton of ${d.canton}, ${d.province}` : `${t.name} está en el cantón de ${d.canton}, ${d.province}`;
 };
 
+// the name a town page takes where people search it by another name too (data/towns.json `area`): titles, heading, opening
+export const area = (lang, t) => t.area?.[lang] ?? t.name;
+
 export const T = {
   en: {
     kicker: 'Architects in',
     labels: (t) => ({ facts: `(${t.name} at a glance)`, year: `(The year in ${t.name})`, map: `(Wind and sun around ${t.name})`, sun: `(The sun in ${t.name})`, wind: `(The wind in ${t.name})`, build: `(Building in ${t.name})`, faq: `(Questions about building in ${t.name})`, nearby: `(Near ${t.name})`, workNear: `(Our work near ${t.name})`, workFar: '(Our work in Costa Rica)' }),
-    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Houses, villas and boutique hotels in ${t.name}, designed for its sun, wind and rain.`, text: `An architecture and interior design studio working across Costa Rica: the study of the lot before you buy, the design and the interiors, the permits with ${muni} and the works, with an early cost range.` }),
-    title: (t) => `Architects in ${t.name}, Costa Rica | Studio CAVA`,
+    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Houses, villas and boutique hotels in ${area('en', t)}, designed for its sun, wind and rain.`, text: `An architecture and interior design studio working across Costa Rica: the study of the lot before you buy, the design and the interiors, the permits with ${muni} and the works, with an early cost range.` }),
+    title: (t) => `Architects in ${area('en', t)}, Costa Rica | Studio CAVA`,
     // the search, then the place: architects for the town, its dry season and how far from the airport; the
     // permits only when they fit in 160 characters
-    description: (t, d, c, muni) => fit160(`Architects for houses and hotels in ${t.name}, Costa Rica. ${c.dry ? `Dry ${range('en', c.dry)}` : 'Rain in every month'}, ${duration(nearestAirport('en', d).min)} from ${nearestAirport('en', d).name}`, `, permits through ${muni}`),
+    description: (t, d, c, muni) => fit160(`Architects for houses and hotels in ${area('en', t)}, Costa Rica. ${c.dry ? `Dry ${range('en', c.dry)}` : 'Rain in every month'}, ${duration(nearestAirport('en', d).min)} from ${nearestAirport('en', d).name}`, `, permits through ${muni}`),
     municipality: (t, d) => t.council?.en ?? `the Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('en', t, d)}, ${d.elevation < 5 ? 'at sea level' : `${num('en', d.elevation)} m above sea level`}. A year here brings ${num('en', c.total)} mm of rain, ${c.wet ? `${c.wetShare}% of it ${range('en', c.wet)}` : 'spread over every month'}. Permits for a lot go through ${muni}.`,
-      `As architects in ${t.name}, we start every project with a site visit: we walk the lot in the morning and again in the afternoon, note where the sun lands and where the breeze comes from, and only then start drawing.`,
+      `As architects in ${area('en', t)}, we start every project with a site visit: we walk the lot in the morning and again in the afternoon, note where the sun lands and where the breeze comes from, and only then start drawing.`,
     ],
     facts: {
       label: '(At a glance)', canton: 'Canton', permits: 'Permits', elevation: 'Elevation', rain: 'Rain', dry: 'Dry season',
@@ -202,13 +205,13 @@ export const T = {
   es: {
     kicker: 'Arquitectos en',
     labels: (t) => ({ facts: `(${t.name} de un vistazo)`, year: `(El año en ${t.name})`, map: `(Viento y sol alrededor de ${t.name})`, sun: `(El sol en ${t.name})`, wind: `(El viento en ${t.name})`, build: `(Construir en ${t.name})`, faq: `(Preguntas sobre construir en ${t.name})`, nearby: `(Cerca de ${t.name})`, workNear: `(Nuestro trabajo cerca de ${t.name})`, workFar: '(Nuestro trabajo en Costa Rica)' }),
-    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Casas, villas y hoteles boutique en ${t.name}, diseñados para su sol, su viento y su lluvia.`, text: `Un estudio de arquitectura e interiores que trabaja en todo Costa Rica: el estudio del lote antes de comprar, el diseño y los interiores, los permisos con ${muni} y la obra, con un rango de costo temprano.` }),
-    title: (t) => `Arquitectos en ${t.name}, Costa Rica | Studio CAVA`,
-    description: (t, d, c, muni) => fit160(`Arquitectos para casas y hoteles en ${t.name}, Costa Rica. ${c.dry ? `Seco ${range('es', c.dry)}` : 'Llueve todos los meses'}, a ${duration(nearestAirport('es', d).min)} del aeropuerto de ${nearestAirport('es', d).name}`, `, permisos en ${muni}`),
+    pitch: (t, muni) => ({ label: '(Studio CAVA)', title: `Casas, villas y hoteles boutique en ${area('es', t)}, diseñados para su sol, su viento y su lluvia.`, text: `Un estudio de arquitectura e interiores que trabaja en todo Costa Rica: el estudio del lote antes de comprar, el diseño y los interiores, los permisos con ${muni} y la obra, con un rango de costo temprano.` }),
+    title: (t) => `Arquitectos en ${area('es', t)}, Costa Rica | Studio CAVA`,
+    description: (t, d, c, muni) => fit160(`Arquitectos para casas y hoteles en ${area('es', t)}, Costa Rica. ${c.dry ? `Seco ${range('es', c.dry)}` : 'Llueve todos los meses'}, a ${duration(nearestAirport('es', d).min)} del aeropuerto de ${nearestAirport('es', d).name}`, `, permisos en ${muni}`),
     municipality: (t, d) => t.council?.es ?? `la Municipalidad de ${d.canton}`,
     intro: (t, d, c, muni) => [
       `${where('es', t, d)}, ${d.elevation < 5 ? 'al nivel del mar' : `a ${num('es', d.elevation)} m sobre el nivel del mar`}. Al año caen ${num('es', c.total)} mm de lluvia, ${c.wet ? `el ${c.wetShare}% ${range('es', c.wet)}` : 'repartidos en todos los meses'}. Los permisos de un lote se tramitan en ${muni}.`,
-      `Como arquitectos en ${t.name}, cada proyecto empieza con una visita al lote: lo recorremos en la mañana y otra vez en la tarde, anotamos dónde pega el sol y de dónde viene la brisa, y solo entonces empezamos a dibujar.`,
+      `Como arquitectos en ${area('es', t)}, cada proyecto empieza con una visita al lote: lo recorremos en la mañana y otra vez en la tarde, anotamos dónde pega el sol y de dónde viene la brisa, y solo entonces empezamos a dibujar.`,
     ],
     facts: {
       label: '(De un vistazo)', canton: 'Cantón', permits: 'Permisos', elevation: 'Altitud', rain: 'Lluvia', dry: 'Época seca',

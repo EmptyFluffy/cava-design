@@ -21,7 +21,7 @@ import { UI } from './strings.mjs';
 import { PAIRS, SAME } from './home-es.mjs';
 import { sunFacts, path as sunPath, SOLSTICE_JUNE, EQUINOX_MARCH, SOLSTICE_DECEMBER } from './sun.mjs';
 import { route as permitRoute, render as permitRender, TOWN_MUNI } from './permit-route.mjs';
-import { T as TT, MONTHS, MONTHS_SHORT, climate, paragraphs, faq, num, duration } from './towns-text.mjs';
+import { T as TT, area as townArea, MONTHS, MONTHS_SHORT, climate, paragraphs, faq, num, duration } from './towns-text.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = join(ROOT, 'site');
@@ -1537,7 +1537,7 @@ ${bar(lang, up, paths, 'towns')}
   <article class="tw" aria-labelledby="tw-title">
     <header class="proj__head cq">
       <p class="label proj__crumb"><a class="ulink" href="../">${L.crumb}</a><span>(${regions[t.region][lang]})</span></p>
-      <h1 class="tw__title" id="tw-title"><span class="label tw__kicker">${L.kicker}</span> <span class="display">${esc(t.name)}</span></h1>
+      <h1 class="tw__title" id="tw-title"><span class="label tw__kicker">${L.kicker}</span> <span class="display">${esc(townArea(lang, t))}</span></h1>
     </header>
 ${townHero(lang, up, t, muni, waText)}    <section class="tw__intro grid">
       <div class="tw__lead">

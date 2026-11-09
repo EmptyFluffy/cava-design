@@ -1,5 +1,5 @@
 {
-  "_note": "Town pages (/architects/<slug>/, /es/arquitectos/<slug>/). Hand-kept: name, the geocoding query, the canton only where OpenStreetMap leaves it out, region, whether the town is on the coast (the maritime zone law applies), and a short local note only where it is a fact we can stand behind. Everything else (coordinates, canton, elevation, rain, temperature, wind, roads) comes from scripts/towns-fetch.mjs and scripts/towns-rain.py into data/town-data.json. To add a town: add it here, run both scripts, then node scripts/build.mjs.",
+  "_note": "Town pages (/architects/<slug>/, /es/arquitectos/<slug>/). Hand-kept: name, the geocoding query, the canton only where OpenStreetMap leaves it out, region, whether the town is on the coast (the maritime zone law applies), and a short local note only where it is a fact we can stand behind. Everything else (coordinates, canton, elevation, rain, temperature, wind, roads) comes from scripts/towns-fetch.mjs and scripts/towns-rain.py into data/town-data.json. To add a town: add it here, run both scripts, then node scripts/build.mjs. `area` (optional, per language) is the name the page takes in its title, heading and opening when people search the town by another name too: Nosara is searched as Playa Guiones (Carlos, 2026-11-08).",
   "regions": {
     "guanacaste": {
       "en": "Guanacaste",
@@ -313,6 +313,7 @@
     {
       "slug": "nosara",
       "name": "Nosara",
+      "area": { "en": "Nosara and Playa Guiones", "es": "Nosara y Playa Guiones" },
       "query": "Nosara, Nicoya, Guanacaste, Costa Rica",
       "region": "guanacaste",
       "coastal": true
