@@ -630,10 +630,14 @@ ${p.drawings.map((set) => {
     </section>
 ` : '';
   // Every image in the gallery shares the narrowest image's proportion, so rows line up
-  // and wider images are cropped at the sides, never at the top or bottom.
-  const ratio = Math.min(...rest.map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
+  // and wider images are cropped at the sides, never at the top or bottom. An image marked `wide`
+  // (a landscape photo among portraits) takes the full width at its own proportion instead, so a
+  // photo set alternates one wide image and a pair of upright ones.
+  const isWide = (n) => !!p.images[n - 1].wide;
+  const pairs = rest.filter((n) => !isWide(n));
+  const ratio = Math.min(...(pairs.length ? pairs : rest).map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
   const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : rest.length === 3 ? ' gallery--three' : ''}" style="--ratio: ${ratio.toFixed(3)}" aria-label="${esc(s.more(p.name))}">
-${rest.map((n) => `      <figure class="gallery__item">${picture(up, p.slug, n, altOf(lang, p, n), rest.length === 1 ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
+${rest.map((n) => `      <figure class="gallery__item${isWide(n) ? ' gallery__item--wide' : ''}">${picture(up, p.slug, n, altOf(lang, p, n), rest.length === 1 || isWide(n) ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
     </section>
 ` : '';
   // what a design started from (inspiration): photographs in a row, black and white, credited

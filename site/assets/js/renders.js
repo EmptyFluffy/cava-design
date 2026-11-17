@@ -164,37 +164,100 @@ window.CAVA_RENDERS = [
  {
   "id": "kauhane-house-1",
   "src": "assets/img/projects/kauhane-house/1",
-  "v": "688fe3a2",
+  "v": "a2d15289",
   "title": "Kauhane House",
-  "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "The house from the garden: a white two-storey volume under timber eaves, a slatted wood screen and the garage door among tropical plants. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-2",
   "src": "assets/img/projects/kauhane-house/2",
-  "v": "cabdb99e",
+  "v": "cbe32f35",
   "title": "Kauhane House",
-  "alt": "Stone and timber house around a pool in a tropical garden. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "The pool beside the covered terrace, under the upper floor and its balcony, with a stone-clad wall and slate paving. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-3",
   "src": "assets/img/projects/kauhane-house/3",
-  "v": "67c9a2da",
+  "v": "f0a0bbe4",
   "title": "Kauhane House",
-  "alt": "Living room with full-height glass opening to a garden. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "A deep timber eave and a steel column over the pool deck, with a lounger in the shade. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-4",
   "src": "assets/img/projects/kauhane-house/4",
-  "v": "bbf19fc7",
+  "v": "1e45764d",
   "title": "Kauhane House",
-  "alt": "Kitchen island under a timber ceiling with garden views on both sides. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-5",
   "src": "assets/img/projects/kauhane-house/5",
-  "v": "2a147d63",
+  "v": "0e1fc58c",
   "title": "Kauhane House",
-  "alt": "Dining room under a slatted timber ceiling with glass walls. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "The living room seen through open glass doors, with a wooden sofa under a timber ceiling. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-6",
+  "src": "assets/img/projects/kauhane-house/6",
+  "v": "0102a197",
+  "title": "Kauhane House",
+  "alt": "A freestanding bathtub under a long window, beside an indoor planter. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-7",
+  "src": "assets/img/projects/kauhane-house/7",
+  "v": "17a7daa1",
+  "title": "Kauhane House",
+  "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-8",
+  "src": "assets/img/projects/kauhane-house/8",
+  "v": "7758549c",
+  "title": "Kauhane House",
+  "alt": "The kitchen counter and stools, with sliding glass doors and a slatted screen behind. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-9",
+  "src": "assets/img/projects/kauhane-house/9",
+  "v": "daba7993",
+  "title": "Kauhane House",
+  "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-10",
+  "src": "assets/img/projects/kauhane-house/10",
+  "v": "3d6deea1",
+  "title": "Kauhane House",
+  "alt": "Timber slats of the pergola against the sky. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-11",
+  "src": "assets/img/projects/kauhane-house/11",
+  "v": "c7256803",
+  "title": "Kauhane House",
+  "alt": "Full-height windows in a white wall behind flowering shrubs. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-12",
+  "src": "assets/img/projects/kauhane-house/12",
+  "v": "620caabe",
+  "title": "Kauhane House",
+  "alt": "The arrival side: a slatted screen and a white wall under the timber eave, above a gravel garden. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-13",
+  "src": "assets/img/projects/kauhane-house/13",
+  "v": "a60f2239",
+  "title": "Kauhane House",
+  "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-14",
+  "src": "assets/img/projects/kauhane-house/14",
+  "v": "df29dd65",
+  "title": "Kauhane House",
+  "alt": "The house name on a plaque beside a woven metal gate. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "negra-mixed-use-1",
@@ -393,10 +456,10 @@ window.CAVA_HERO = [
  },
  {
   "src": "assets/img/projects/kauhane-house/2",
-  "v": "cabdb99e",
+  "v": "cbe32f35",
   "w": 1600,
-  "h": 900,
-  "alt": "Stone and timber house around a pool in a tropical garden. Kauhane House, Playa Grande, Guanacaste",
+  "h": 1067,
+  "alt": "The pool beside the covered terrace, under the upper floor and its balcony, with a stone-clad wall and slate paving. Kauhane House, Playa Grande, Guanacaste",
   "name": "Kauhane House",
   "place": "Playa Grande",
   "href": "projects/kauhane-house/"

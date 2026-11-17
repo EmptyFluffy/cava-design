@@ -332,7 +332,6 @@
     },
     {
       "slug": "kauhane-house",
-      "grade": true,
       "name": "Kauhane House",
       "folder": "Kauhane House",
       "type": "House",
@@ -353,29 +352,79 @@
       "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
       "images": [
         {
-          "file": "Kauhane House E.png",
-          "alt": "Two-storey house with a stone wall, a glass balcony and a pool among trees",
-          "alt_es": "Casa de dos pisos con un muro de piedra, un balcón de vidrio y una piscina entre árboles"
+          "file": "Fotos/DSCF3506.jpg",
+          "alt": "The house from the garden: a white two-storey volume under timber eaves, a slatted wood screen and the garage door among tropical plants",
+          "alt_es": "La casa desde el jardín: un volumen blanco de dos pisos bajo aleros de madera, una celosía de reglas de madera y el portón del garaje entre plantas tropicales"
         },
         {
-          "file": "Kauhane House D.png",
-          "alt": "Stone and timber house around a pool in a tropical garden",
-          "alt_es": "Casa de piedra y madera alrededor de una piscina en un jardín tropical"
+          "file": "Fotos/DSCF3572.jpg",
+          "wide": true,
+          "alt": "The pool beside the covered terrace, under the upper floor and its balcony, with a stone-clad wall and slate paving",
+          "alt_es": "La piscina junto a la terraza techada, bajo la planta alta y su balcón, con un muro enchapado en piedra y piso de pizarra"
         },
         {
-          "file": "Kauhane House.png",
-          "alt": "Living room with full-height glass opening to a garden",
-          "alt_es": "Sala con ventanales de piso a techo que abren al jardín"
+          "file": "Fotos/DSCF3574.jpg",
+          "alt": "A deep timber eave and a steel column over the pool deck, with a lounger in the shade",
+          "alt_es": "Un alero profundo de madera y una columna de acero sobre la terraza de la piscina, con una tumbona a la sombra"
         },
         {
-          "file": "Kauhane House B.png",
-          "alt": "Kitchen island under a timber ceiling with garden views on both sides",
-          "alt_es": "Isla de cocina bajo un cielo raso de madera, con vista al jardín por los dos lados"
+          "file": "Fotos/DSCF3498.jpg",
+          "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind",
+          "alt_es": "Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás"
         },
         {
-          "file": "Kauhane House C.png",
-          "alt": "Dining room under a slatted timber ceiling with glass walls",
-          "alt_es": "Comedor bajo un cielo raso de reglilla de madera, con paredes de vidrio"
+          "file": "Fotos/DSCF3560.jpg",
+          "wide": true,
+          "alt": "The living room seen through open glass doors, with a wooden sofa under a timber ceiling",
+          "alt_es": "La sala vista a través de las puertas de vidrio abiertas, con un sofá de madera bajo un cielo raso de madera"
+        },
+        {
+          "file": "Fotos/DSCF3497.jpg",
+          "alt": "A freestanding bathtub under a long window, beside an indoor planter",
+          "alt_es": "Una tina exenta bajo una ventana alargada, junto a una jardinera interior"
+        },
+        {
+          "file": "Fotos/DSCF3575.jpg",
+          "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck",
+          "alt_es": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza"
+        },
+        {
+          "file": "Fotos/DSCF3499.jpg",
+          "wide": true,
+          "alt": "The kitchen counter and stools, with sliding glass doors and a slatted screen behind",
+          "alt_es": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás"
+        },
+        {
+          "file": "Fotos/DSCF3578.jpg",
+          "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs",
+          "alt_es": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor"
+        },
+        {
+          "file": "Fotos/DSCF3580.jpg",
+          "alt": "Timber slats of the pergola against the sky",
+          "alt_es": "Las reglas de madera de la pérgola contra el cielo"
+        },
+        {
+          "file": "Fotos/DSCF3577.jpg",
+          "wide": true,
+          "alt": "Full-height windows in a white wall behind flowering shrubs",
+          "alt_es": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor"
+        },
+        {
+          "file": "Fotos/DSCF3539.jpg",
+          "alt": "The arrival side: a slatted screen and a white wall under the timber eave, above a gravel garden",
+          "alt_es": "El lado de llegada: una celosía y un muro blanco bajo el alero de madera, sobre un jardín de grava"
+        },
+        {
+          "file": "Fotos/DSCF3541.jpg",
+          "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace",
+          "alt_es": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza"
+        },
+        {
+          "file": "Fotos/DSCF3538.jpg",
+          "wide": true,
+          "alt": "The house name on a plaque beside a woven metal gate",
+          "alt_es": "El nombre de la casa en una placa junto a un portón de metal tejido"
         },
         {
           "file": "Planos/web/ground-mob.png",
@@ -398,7 +447,7 @@
           "key_es": ["Dormitorio principal", "Clóset", "Baño", "Terraza verde", "Techo sobre la sala"]
         }
       ],
-      "planRows": [{ "images": [6, 7], "spans": [4, 4] }],
+      "planRows": [{ "images": [15, 16], "spans": [4, 4] }],
       "views": [
         { "id": "k-section", "file": "Planos/web/sec2.png", "en": "Axonometric section", "es": "Sección axonométrica",
           "alt": "Axonometric section along the house: the living room, dining and kitchen below, the main bedroom above, under two timber roofs",
