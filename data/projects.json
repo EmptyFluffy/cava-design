@@ -349,7 +349,7 @@
       "year": 2022,
       "siteArea": 706,
       "builtArea": 248,
-      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"]},
+      "team": {"architecture": ["Carlos Vinocour", "Melissa Araya"], "photography": ["Ronald Gonzalez"]},
       "images": [
         {
           "file": "Fotos/DSCF3506.jpg",
@@ -389,10 +389,10 @@
           "alt_es": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza"
         },
         {
-          "file": "Fotos/DSCF3499.jpg",
+          "file": "Fotos/DSCF3561.jpg",
           "wide": true,
-          "alt": "The kitchen counter and stools, with sliding glass doors and a slatted screen behind",
-          "alt_es": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás"
+          "alt": "A woman by the pool, seen from the living room through the glass doors, under the upper floor",
+          "alt_es": "Una mujer junto a la piscina, vista desde la sala a través de las puertas de vidrio, bajo la planta alta"
         },
         {
           "file": "Fotos/DSCF3578.jpg",
@@ -405,10 +405,10 @@
           "alt_es": "Las reglas de madera de la pérgola contra el cielo"
         },
         {
-          "file": "Fotos/DSCF3577.jpg",
+          "file": "Fotos/DSCF3499.jpg",
           "wide": true,
-          "alt": "Full-height windows in a white wall behind flowering shrubs",
-          "alt_es": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor"
+          "alt": "The kitchen counter and stools, with sliding glass doors and a slatted screen behind",
+          "alt_es": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás"
         },
         {
           "file": "Fotos/DSCF3539.jpg",
@@ -416,9 +416,15 @@
           "alt_es": "El lado de llegada: una celosía y un muro blanco bajo el alero de madera, sobre un jardín de grava"
         },
         {
-          "file": "Fotos/DSCF3541.jpg",
-          "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace",
-          "alt_es": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza"
+          "file": "Fotos/DSCF3585.jpg",
+          "alt": "A woman sitting on the terrace in front of tall windows, among flowering shrubs",
+          "alt_es": "Una mujer sentada en la terraza frente a ventanales altos, entre arbustos en flor"
+        },
+        {
+          "file": "Fotos/DSCF3577.jpg",
+          "wide": true,
+          "alt": "Full-height windows in a white wall behind flowering shrubs",
+          "alt_es": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor"
         },
         {
           "file": "Fotos/DSCF3538.jpg",
@@ -447,7 +453,7 @@
           "key_es": ["Dormitorio principal", "Clóset", "Baño", "Terraza verde", "Techo sobre la sala"]
         }
       ],
-      "planRows": [{ "images": [15, 16], "spans": [4, 4] }],
+      "planRows": [{ "images": [16, 17], "spans": [4, 4] }],
       "views": [
         { "id": "k-section", "file": "Planos/web/sec2.png", "en": "Axonometric section", "es": "Sección axonométrica",
           "alt": "Axonometric section along the house: the living room, dining and kitchen below, the main bedroom above, under two timber roofs",

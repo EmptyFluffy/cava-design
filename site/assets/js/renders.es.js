@@ -213,9 +213,9 @@ window.CAVA_RENDERS = [
  {
   "id": "kauhane-house-8",
   "src": "../assets/img/projects/kauhane-house/8",
-  "v": "7758549c",
+  "v": "5bbdb279",
   "title": "Kauhane House",
-  "alt": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "Una mujer junto a la piscina, vista desde la sala a través de las puertas de vidrio, bajo la planta alta. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-9",
@@ -234,9 +234,9 @@ window.CAVA_RENDERS = [
  {
   "id": "kauhane-house-11",
   "src": "../assets/img/projects/kauhane-house/11",
-  "v": "c7256803",
+  "v": "7758549c",
   "title": "Kauhane House",
-  "alt": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-12",
@@ -248,13 +248,20 @@ window.CAVA_RENDERS = [
  {
   "id": "kauhane-house-13",
   "src": "../assets/img/projects/kauhane-house/13",
-  "v": "a60f2239",
+  "v": "0762d0cb",
   "title": "Kauhane House",
-  "alt": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza. Kauhane House, Playa Grande, Guanacaste"
+  "alt": "Una mujer sentada en la terraza frente a ventanales altos, entre arbustos en flor. Kauhane House, Playa Grande, Guanacaste"
  },
  {
   "id": "kauhane-house-14",
   "src": "../assets/img/projects/kauhane-house/14",
+  "v": "c7256803",
+  "title": "Kauhane House",
+  "alt": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor. Kauhane House, Playa Grande, Guanacaste"
+ },
+ {
+  "id": "kauhane-house-15",
+  "src": "../assets/img/projects/kauhane-house/15",
   "v": "df29dd65",
   "title": "Kauhane House",
   "alt": "El nombre de la casa en una placa junto a un portón de metal tejido. Kauhane House, Playa Grande, Guanacaste"
