@@ -6,11 +6,11 @@
     "kauhane-house/1",
     "rancho-cartagena/1",
     "papagayo-404/6",
-    "kauhane-house/2",
+    "kauhane-house/8",
     "casa-alcaravan/1",
     "papagayo-404/2",
     "casa-alcaravan/3",
-    "kauhane-house/5",
+    "kauhane-house/15",
     "papagayo-404/3"
   ],
   "projects": [
@@ -357,36 +357,51 @@
           "alt_es": "La casa desde el jardín: un volumen blanco de dos pisos bajo aleros de madera, una celosía de reglas de madera y el portón del garaje entre plantas tropicales"
         },
         {
+          "file": "Fotos/DSCF3539.jpg",
+          "alt": "The arrival side: a slatted screen and a white wall under the timber eave, above a gravel garden",
+          "alt_es": "El lado de llegada: una celosía y un muro blanco bajo el alero de madera, sobre un jardín de grava"
+        },
+        {
+          "file": "Fotos/DSCF3500.jpg",
+          "alt": "Flowering shrubs in front of a slatted wood screen, under the timber eaves",
+          "alt_es": "Arbustos en flor frente a una celosía de madera, bajo los aleros de madera"
+        },
+        {
+          "file": "Fotos/DSCF3581.jpg",
+          "alt": "A corner of the house: a slatted screen, a white wall and the timber eave, with trees behind",
+          "alt_es": "Una esquina de la casa: una celosía, un muro blanco y el alero de madera, con árboles detrás"
+        },
+        {
+          "file": "Fotos/DSCF3576.jpg",
+          "alt": "The timber underside of the upper floor's eave against the sky, over a white wall",
+          "alt_es": "La cara inferior de madera del alero de la planta alta contra el cielo, sobre un muro blanco"
+        },
+        {
+          "file": "Fotos/DSCF3578.jpg",
+          "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs",
+          "alt_es": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor"
+        },
+        {
+          "file": "Fotos/DSCF3577.jpg",
+          "wide": true,
+          "alt": "Full-height windows in a white wall behind flowering shrubs",
+          "alt_es": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor"
+        },
+        {
           "file": "Fotos/DSCF3572.jpg",
           "wide": true,
           "alt": "The pool beside the covered terrace, under the upper floor and its balcony, with a stone-clad wall and slate paving",
           "alt_es": "La piscina junto a la terraza techada, bajo la planta alta y su balcón, con un muro enchapado en piedra y piso de pizarra"
         },
         {
-          "file": "Fotos/DSCF3574.jpg",
-          "alt": "A deep timber eave and a steel column over the pool deck, with a lounger in the shade",
-          "alt_es": "Un alero profundo de madera y una columna de acero sobre la terraza de la piscina, con una tumbona a la sombra"
-        },
-        {
-          "file": "Fotos/DSCF3498.jpg",
-          "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind",
-          "alt_es": "Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás"
-        },
-        {
-          "file": "Fotos/DSCF3560.jpg",
-          "wide": true,
-          "alt": "The living room seen through open glass doors, with a wooden sofa under a timber ceiling",
-          "alt_es": "La sala vista a través de las puertas de vidrio abiertas, con un sofá de madera bajo un cielo raso de madera"
-        },
-        {
-          "file": "Fotos/DSCF3497.jpg",
-          "alt": "A freestanding bathtub under a long window, beside an indoor planter",
-          "alt_es": "Una tina exenta bajo una ventana alargada, junto a una jardinera interior"
-        },
-        {
           "file": "Fotos/DSCF3575.jpg",
           "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck",
           "alt_es": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza"
+        },
+        {
+          "file": "Fotos/DSCF3548.jpg",
+          "alt": "The edge of the pool and the stone deck from above, in sun and shade",
+          "alt_es": "El borde de la piscina y la terraza de piedra vistos desde arriba, entre sol y sombra"
         },
         {
           "file": "Fotos/DSCF3561.jpg",
@@ -395,14 +410,42 @@
           "alt_es": "Una mujer junto a la piscina, vista desde la sala a través de las puertas de vidrio, bajo la planta alta"
         },
         {
-          "file": "Fotos/DSCF3578.jpg",
-          "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs",
-          "alt_es": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor"
+          "file": "Fotos/DSCF3541.jpg",
+          "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace",
+          "alt_es": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza"
+        },
+        {
+          "file": "Fotos/DSCF3585.jpg",
+          "alt": "A woman sitting on the terrace in front of tall windows, among flowering shrubs",
+          "alt_es": "Una mujer sentada en la terraza frente a ventanales altos, entre arbustos en flor"
+        },
+        {
+          "file": "Fotos/DSCF3586.jpg",
+          "wide": true,
+          "alt": "The covered terrace behind tall grasses, with a woman sitting under the roof",
+          "alt_es": "La terraza techada detrás de pastos altos, con una mujer sentada bajo el techo"
+        },
+        {
+          "file": "Fotos/DSCF3560.jpg",
+          "wide": true,
+          "alt": "The living room seen through open glass doors, with a wooden sofa under a timber ceiling",
+          "alt_es": "La sala vista a través de las puertas de vidrio abiertas, con un sofá de madera bajo un cielo raso de madera"
+        },
+        {
+          "file": "Fotos/DSCF3549.jpg",
+          "alt": "The living room through the sliding glass doors, with the timber sideboard and sofa",
+          "alt_es": "La sala a través de las puertas corredizas de vidrio, con el mueble y el sofá de madera"
         },
         {
           "file": "Fotos/DSCF3580.jpg",
           "alt": "Timber slats of the pergola against the sky",
           "alt_es": "Las reglas de madera de la pérgola contra el cielo"
+        },
+        {
+          "file": "Fotos/DSCF3508.jpg",
+          "wide": true,
+          "alt": "The living room wall, with two carved wood panels, a television and a timber sideboard",
+          "alt_es": "La pared de la sala, con dos paneles de madera tallada, un televisor y un mueble de madera"
         },
         {
           "file": "Fotos/DSCF3499.jpg",
@@ -411,20 +454,20 @@
           "alt_es": "La barra de la cocina y sus bancos, con puertas corredizas de vidrio y una celosía de madera detrás"
         },
         {
-          "file": "Fotos/DSCF3539.jpg",
-          "alt": "The arrival side: a slatted screen and a white wall under the timber eave, above a gravel garden",
-          "alt_es": "El lado de llegada: una celosía y un muro blanco bajo el alero de madera, sobre un jardín de grava"
+          "file": "Fotos/DSCF3497.jpg",
+          "alt": "A freestanding bathtub under a long window, beside an indoor planter",
+          "alt_es": "Una tina exenta bajo una ventana alargada, junto a una jardinera interior"
         },
         {
-          "file": "Fotos/DSCF3585.jpg",
-          "alt": "A woman sitting on the terrace in front of tall windows, among flowering shrubs",
-          "alt_es": "Una mujer sentada en la terraza frente a ventanales altos, entre arbustos en flor"
+          "file": "Fotos/DSCF3498.jpg",
+          "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind",
+          "alt_es": "Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás"
         },
         {
-          "file": "Fotos/DSCF3577.jpg",
+          "file": "Fotos/DSCF3591.jpg",
           "wide": true,
-          "alt": "Full-height windows in a white wall behind flowering shrubs",
-          "alt_es": "Ventanales de piso a techo en un muro blanco, detrás de arbustos en flor"
+          "alt": "The house under the branches of a tree, with a gravel and stone garden in front",
+          "alt_es": "La casa bajo las ramas de un árbol, con un jardín de grava y piedras al frente"
         },
         {
           "file": "Fotos/DSCF3538.jpg",
@@ -453,7 +496,7 @@
           "key_es": ["Dormitorio principal", "Clóset", "Baño", "Terraza verde", "Techo sobre la sala"]
         }
       ],
-      "planRows": [{ "images": [16, 17], "spans": [4, 4] }],
+      "planRows": [{ "images": [24, 25], "spans": [4, 4] }],
       "views": [
         { "id": "k-section", "file": "Planos/web/sec2.png", "en": "Axonometric section", "es": "Sección axonométrica",
           "alt": "Axonometric section along the house: the living room, dining and kitchen below, the main bedroom above, under two timber roofs",

@@ -633,11 +633,25 @@ ${p.drawings.map((set) => {
   // and wider images are cropped at the sides, never at the top or bottom. An image marked `wide`
   // (a landscape photo among portraits) takes the full width at its own proportion instead, so a
   // photo set alternates one wide image and a pair of upright ones.
+  // A run of upright images between two wide ones that cannot be split into pairs opens with a row
+  // of three (gallery--rows: a 6-column grid where a pair takes 3 columns each, a trio 2).
   const isWide = (n) => !!p.images[n - 1].wide;
   const pairs = rest.filter((n) => !isWide(n));
   const ratio = Math.min(...(pairs.length ? pairs : rest).map((n) => { const [w, h] = sizes[`${p.slug}/${n}`]; return w / h; }));
-  const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : rest.length === 3 ? ' gallery--three' : ''}" style="--ratio: ${ratio.toFixed(3)}" aria-label="${esc(s.more(p.name))}">
-${rest.map((n) => `      <figure class="gallery__item${isWide(n) ? ' gallery__item--wide' : ''}">${picture(up, p.slug, n, altOf(lang, p, n), rest.length === 1 || isWide(n) ? '92vw' : rest.length === 3 ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw')}</figure>`).join('\n')}
+  const rowMode = rest.some(isWide);
+  const third = new Set();
+  if (rowMode) {
+    let run = [];
+    for (const n of [...rest, null]) {
+      if (n != null && !isWide(n)) { run.push(n); continue; }
+      if (run.length % 2 === 1 && run.length >= 3) run.slice(0, 3).forEach((m) => third.add(m));
+      run = [];
+    }
+  }
+  const itemClass = (n) => (isWide(n) ? ' gallery__item--wide' : third.has(n) ? ' gallery__item--third' : '');
+  const itemSizes = (n) => (rest.length === 1 || isWide(n) ? '92vw' : rest.length === 3 || third.has(n) ? '(min-width: 768px) 31vw, 92vw' : '(min-width: 768px) 46vw, 92vw');
+  const gallery = rest.length ? `    <section class="gallery${rest.length === 1 ? ' gallery--one' : rest.length === 3 ? ' gallery--three' : ''}${rowMode ? ' gallery--rows' : ''}" style="--ratio: ${ratio.toFixed(3)}" aria-label="${esc(s.more(p.name))}">
+${rest.map((n) => `      <figure class="gallery__item${itemClass(n)}">${picture(up, p.slug, n, altOf(lang, p, n), itemSizes(n))}</figure>`).join('\n')}
     </section>
 ` : '';
   // what a design started from (inspiration): photographs in a row, black and white, credited
