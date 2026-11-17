@@ -74,5 +74,47 @@ for p in data['projects']:
             r.save(os.path.join(out, f"i-{ph['id']}-{w}.webp"), 'WEBP', quality=82 if w >= 1200 else 78, method=6)
             if w == 1600:
                 sizes[f"{p['slug']}/i-{ph['id']}"] = [r.width, r.height]
+# hero diptychs: data/projects.json "hero" may hold {"mix": ["slug/n", "slug/n"], "fy": [y, y]}, two upright
+# photos side by side as one slide (a thin gap in the hero's black), and stacked for a portrait screen.
+# Files: site/assets/img/hero/<id>-{800,1600}.webp and <id>-p-{800,1600}.webp (named by width).
+def mix_id(keys):
+    slugs = {k.split('/')[0] for k in keys}
+    return '-'.join([keys[0].replace('/', '-')] + [k.split('/')[1] for k in keys[1:]]) if len(slugs) == 1 else '-'.join(k.replace('/', '-') for k in keys)
+def crop_to(img, ratio, fy):
+    w, h = img.size
+    if w / h > ratio:                                   # too wide: trim the sides, centred
+        nw = round(h * ratio); x = (w - nw) // 2
+        return img.crop((x, 0, x + nw, h))
+    nh = round(w / ratio); y = round((h - nh) * fy)     # too tall: trim top and bottom around the focus
+    return img.crop((0, y, w, y + nh))
+GROUND, GAP = (8, 8, 7), 16                             # --black; 0.5% of the 3200 px master
+hero_out = os.path.join(ROOT, 'site', 'assets', 'img', 'hero')
+os.makedirs(hero_out, exist_ok=True)
+by_slug = {p['slug']: p for p in data['projects']}
+for e in data.get('hero', []):
+    if not isinstance(e, dict):
+        continue
+    keys, fys = e['mix'], e.get('fy', [0.5] * len(e['mix']))
+    srcs = []
+    for k in keys:
+        slug, n = k.split('/'); p = by_slug[slug]
+        srcs.append(Image.open(os.path.join(src, p['folder'], p['images'][int(n) - 1]['file'])).convert('RGB'))
+    mid = mix_id(keys)
+    for tall, (W, H) in ((False, (3200, 1800)), (True, (1800, 3200))):
+        canvas = Image.new('RGB', (W, H), GROUND)
+        if tall:
+            ch = (H - GAP) // 2
+            for i, (im, fy) in enumerate(zip(srcs, fys)):
+                canvas.paste(crop_to(im, W / ch, fy).resize((W, ch), Image.LANCZOS), (0, i * (ch + GAP)))
+        else:
+            cw = (W - GAP) // 2
+            for i, (im, fy) in enumerate(zip(srcs, fys)):
+                canvas.paste(crop_to(im, cw / H, fy).resize((cw, H), Image.LANCZOS), (i * (cw + GAP), 0))
+        name = mid + ('-p' if tall else '')
+        for w in (1600, 800):
+            r = canvas.resize((w, round(H * w / W)), Image.LANCZOS)
+            r.save(os.path.join(hero_out, f'{name}-{w}.webp'), 'WEBP', quality=80 if w >= 1200 else 78, method=6)
+            if w == 1600:
+                sizes[f'hero/{name}'] = [r.width, r.height]
 json.dump(sizes, open(os.path.join(ROOT, 'data', 'image-sizes.json'), 'w'), indent=1)
 print(len(sizes), 'images written')

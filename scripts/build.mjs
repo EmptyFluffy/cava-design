@@ -85,6 +85,18 @@ const imgVer = (key) => {
   }
   return versions.get(key);
 };
+// hero diptychs (scripts/images.py): the id names both photos, as images.py's mix_id does
+const mixId = (keys) => (new Set(keys.map((k) => k.split('/')[0])).size === 1
+  ? [keys[0].replace('/', '-'), ...keys.slice(1).map((k) => k.split('/')[1])].join('-')
+  : keys.map((k) => k.replace('/', '-')).join('-'));
+const heroVer = (name) => {
+  if (!versions.has(`hero/${name}`)) {
+    const h = createHash('md5');
+    for (const w of [1600, 800]) h.update(readFileSync(join(SITE, `assets/img/hero/${name}-${w}.webp`)));
+    versions.set(`hero/${name}`, h.digest('hex').slice(0, 8));
+  }
+  return versions.get(`hero/${name}`);
+};
 // The same for stylesheets, scripts and data: a fingerprint of the file the page asks for, so a deploy
 // never pairs new markup with an old stylesheet or script held in a browser's cache.
 const assetVers = new Map();
@@ -3427,6 +3439,14 @@ function rendersJs(lang, up) {
   // the home lightbox walks the photographs; plans stay on their project pages
   const list = projects.flatMap((p) => p.images.map((im, j) => [im, j]).filter(([im]) => !im.plan).map(([, j]) => ({ id: `${p.slug}-${j + 1}`, src: up + imgBase(p.slug, j + 1), v: imgVer(`${p.slug}/${j + 1}`), title: p.name, alt: altOf(lang, p, j + 1) })));
   const slides = hero.map((key) => {
+    // a diptych ({ mix: [two keys] }, made by images.py): one slide, its own file side by side and a stacked
+    // one (srcP) for a portrait screen; named and linked after the first photo's project
+    if (typeof key === 'object') {
+      const id = mixId(key.mix), [slug] = key.mix[0].split('/'), p = bySlug.get(slug);
+      const [w, h] = sizes[`hero/${id}`], [wP, hP] = sizes[`hero/${id}-p`];
+      const location = tr(lang, p, 'location');
+      return { src: `${up}assets/img/hero/${id}`, v: heroVer(id), w, h, srcP: `${up}assets/img/hero/${id}-p`, vP: heroVer(`${id}-p`), wP, hP, alt: key.mix.map((k) => { const [s, n] = k.split('/'); return altOf(lang, bySlug.get(s), Number(n)); }).join('. '), name: p.name, place: location ? location.split(',')[0] : tr(lang, p, 'type'), href: `${UI[lang].projectsDir}/${slug}/` };
+    }
     const [slug, n] = key.split('/');
     const p = bySlug.get(slug);
     const [w, h] = sizes[key];
@@ -3532,6 +3552,7 @@ function homeCounts() {
   const path = join(SITE, 'index.html');
   const before = readFileSync(path, 'utf8');
   // the hero's first photo is in the page itself (preloaded; the one that stays with reduced motion): hero[0]
+  if (typeof hero[0] !== 'string') throw new Error('data/projects.json "hero": the first slide is written into the page, so it must be one photo ("slug/n"), not a diptych');
   const [h0s, h0n] = hero[0].split('/'), h0 = bySlug.get(h0s), [h0w, h0h] = sizes[hero[0]];
   const h0b = imgBase(h0s, h0n), h0v = imgVer(hero[0]), h0loc = tr('en', h0, 'location');
   const after = before

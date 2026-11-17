@@ -458,14 +458,14 @@ window.CAVA_RENDERS = [
 ];
 window.CAVA_HERO = [
  {
-  "src": "../assets/img/projects/rancho-cartagena/3",
-  "v": "c4fa6d01",
+  "src": "../assets/img/projects/kauhane-house/1",
+  "v": "a2d15289",
   "w": 1600,
-  "h": 793,
-  "alt": "Cocina abierta y sala frente a un valle verde, detrás de ventanales de piso a techo. Rancho Cartagena, Guanacaste",
-  "name": "Rancho Cartagena",
-  "place": "Rancho Cartagena",
-  "href": "proyectos/rancho-cartagena/"
+  "h": 1067,
+  "alt": "La casa desde el jardín: un volumen blanco de dos pisos bajo aleros de madera, una celosía de reglas de madera y el portón del garaje entre plantas tropicales. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
  },
  {
   "src": "../assets/img/projects/papagayo-404/1",
@@ -478,16 +478,6 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
-  "src": "../assets/img/projects/kauhane-house/1",
-  "v": "a2d15289",
-  "w": 1600,
-  "h": 1067,
-  "alt": "La casa desde el jardín: un volumen blanco de dos pisos bajo aleros de madera, una celosía de reglas de madera y el portón del garaje entre plantas tropicales. Kauhane House, Playa Grande, Guanacaste",
-  "name": "Kauhane House",
-  "place": "Playa Grande",
-  "href": "proyectos/kauhane-house/"
- },
- {
   "src": "../assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "w": 1600,
@@ -496,16 +486,6 @@ window.CAVA_HERO = [
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "proyectos/rancho-cartagena/"
- },
- {
-  "src": "../assets/img/projects/papagayo-404/6",
-  "v": "c0d1d97b",
-  "w": 1484,
-  "h": 1060,
-  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco. Papagayo 404, Península Papagayo, Guanacaste",
-  "name": "Papagayo 404",
-  "place": "Península Papagayo",
-  "href": "proyectos/papagayo-404/"
  },
  {
   "src": "../assets/img/projects/kauhane-house/6",
@@ -518,34 +498,28 @@ window.CAVA_HERO = [
   "href": "proyectos/kauhane-house/"
  },
  {
-  "src": "../assets/img/projects/casa-alcaravan/1",
-  "v": "4422641d",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "proyectos/casa-alcaravan/"
- },
- {
-  "src": "../assets/img/projects/papagayo-404/2",
-  "v": "dd8ee6fa",
-  "w": 1448,
-  "h": 1086,
-  "alt": "La sala hundida al anochecer con el fogón encendido, sillones empotrados y el bosque detrás. Papagayo 404, Península Papagayo, Guanacaste",
+  "src": "../assets/img/projects/papagayo-404/3",
+  "v": "8997d121",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"
  },
  {
-  "src": "../assets/img/projects/casa-alcaravan/3",
-  "v": "a581f729",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
+  "src": "../assets/img/hero/kauhane-house-3-4",
+  "v": "bcbadbf0",
+  "w": 1600,
+  "h": 900,
+  "srcP": "../assets/img/hero/kauhane-house-3-4-p",
+  "vP": "a0ee34ac",
+  "wP": 1600,
+  "hP": 2844,
+  "alt": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza. Kauhane House, Playa Grande, Guanacaste. Las reglas de madera de la pérgola contra el cielo. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
   "place": "Playa Grande",
-  "href": "proyectos/casa-alcaravan/"
+  "href": "proyectos/kauhane-house/"
  },
  {
   "src": "../assets/img/projects/kauhane-house/13",
@@ -558,11 +532,45 @@ window.CAVA_HERO = [
   "href": "proyectos/kauhane-house/"
  },
  {
-  "src": "../assets/img/projects/papagayo-404/3",
-  "v": "8997d121",
+  "src": "../assets/img/projects/papagayo-404/6",
+  "v": "c0d1d97b",
   "w": 1484,
   "h": 1060,
-  "alt": "Terraza de la piscina bajo la casa, con columnas de acero inclinadas, un jacuzzi y el borde infinito. Papagayo 404, Península Papagayo, Guanacaste",
+  "alt": "Terraza con un jacuzzi redondo y tumbonas al atardecer sobre el bosque seco. Papagayo 404, Península Papagayo, Guanacaste",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "proyectos/papagayo-404/"
+ },
+ {
+  "src": "../assets/img/hero/kauhane-house-7-22",
+  "v": "fa225411",
+  "w": 1600,
+  "h": 900,
+  "srcP": "../assets/img/hero/kauhane-house-7-22-p",
+  "vP": "d566fc3d",
+  "wP": 1600,
+  "hP": 2844,
+  "alt": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor. Kauhane House, Playa Grande, Guanacaste. Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
+ },
+ {
+  "src": "../assets/img/projects/kauhane-house/9",
+  "v": "5bbdb279",
+  "w": 1600,
+  "h": 1067,
+  "alt": "Una mujer junto a la piscina, vista desde la sala a través de las puertas de vidrio, bajo la planta alta. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
+ },
+ {
+  "src": "../assets/img/projects/papagayo-404/8",
+  "v": "5d32b6c2",
+  "w": 1448,
+  "h": 1086,
+  "alt": "Casa blanca de volumen cúbico elevada sobre columnas delgadas de acero, encima de la terraza de la piscina. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "proyectos/papagayo-404/"

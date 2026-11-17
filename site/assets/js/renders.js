@@ -458,14 +458,14 @@ window.CAVA_RENDERS = [
 ];
 window.CAVA_HERO = [
  {
-  "src": "assets/img/projects/rancho-cartagena/3",
-  "v": "c4fa6d01",
+  "src": "assets/img/projects/kauhane-house/1",
+  "v": "a2d15289",
   "w": 1600,
-  "h": 793,
-  "alt": "Open kitchen and living room facing a green valley through full-height glass. Rancho Cartagena, Guanacaste",
-  "name": "Rancho Cartagena",
-  "place": "Rancho Cartagena",
-  "href": "projects/rancho-cartagena/"
+  "h": 1067,
+  "alt": "The house from the garden: a white two-storey volume under timber eaves, a slatted wood screen and the garage door among tropical plants. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
  },
  {
   "src": "assets/img/projects/papagayo-404/1",
@@ -478,16 +478,6 @@ window.CAVA_HERO = [
   "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/kauhane-house/1",
-  "v": "a2d15289",
-  "w": 1600,
-  "h": 1067,
-  "alt": "The house from the garden: a white two-storey volume under timber eaves, a slatted wood screen and the garage door among tropical plants. Kauhane House, Playa Grande, Guanacaste",
-  "name": "Kauhane House",
-  "place": "Playa Grande",
-  "href": "projects/kauhane-house/"
- },
- {
   "src": "assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "w": 1600,
@@ -496,16 +486,6 @@ window.CAVA_HERO = [
   "name": "Rancho Cartagena",
   "place": "Rancho Cartagena",
   "href": "projects/rancho-cartagena/"
- },
- {
-  "src": "assets/img/projects/papagayo-404/6",
-  "v": "c0d1d97b",
-  "w": 1484,
-  "h": 1060,
-  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest. Papagayo 404, Península Papagayo, Guanacaste",
-  "name": "Papagayo 404",
-  "place": "Península Papagayo",
-  "href": "projects/papagayo-404/"
  },
  {
   "src": "assets/img/projects/kauhane-house/6",
@@ -518,34 +498,28 @@ window.CAVA_HERO = [
   "href": "projects/kauhane-house/"
  },
  {
-  "src": "assets/img/projects/casa-alcaravan/1",
-  "v": "4422641d",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "projects/casa-alcaravan/"
- },
- {
-  "src": "assets/img/projects/papagayo-404/2",
-  "v": "dd8ee6fa",
-  "w": 1448,
-  "h": 1086,
-  "alt": "Sunken lounge at dusk with the fire pit lit, built-in sofas and the forest beyond. Papagayo 404, Península Papagayo, Guanacaste",
+  "src": "assets/img/projects/papagayo-404/3",
+  "v": "8997d121",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/casa-alcaravan/3",
-  "v": "a581f729",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
+  "src": "assets/img/hero/kauhane-house-3-4",
+  "v": "bcbadbf0",
+  "w": 1600,
+  "h": 900,
+  "srcP": "assets/img/hero/kauhane-house-3-4-p",
+  "vP": "a0ee34ac",
+  "wP": 1600,
+  "hP": 2844,
+  "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck. Kauhane House, Playa Grande, Guanacaste. Timber slats of the pergola against the sky. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
   "place": "Playa Grande",
-  "href": "projects/casa-alcaravan/"
+  "href": "projects/kauhane-house/"
  },
  {
   "src": "assets/img/projects/kauhane-house/13",
@@ -558,11 +532,45 @@ window.CAVA_HERO = [
   "href": "projects/kauhane-house/"
  },
  {
-  "src": "assets/img/projects/papagayo-404/3",
-  "v": "8997d121",
+  "src": "assets/img/projects/papagayo-404/6",
+  "v": "c0d1d97b",
   "w": 1484,
   "h": 1060,
-  "alt": "Pool deck under the house, with slanted steel columns, a plunge pool and the infinity edge. Papagayo 404, Península Papagayo, Guanacaste",
+  "alt": "Terrace with a round plunge pool and loungers at sunset over the dry forest. Papagayo 404, Península Papagayo, Guanacaste",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "projects/papagayo-404/"
+ },
+ {
+  "src": "assets/img/hero/kauhane-house-7-22",
+  "v": "fa225411",
+  "w": 1600,
+  "h": 900,
+  "srcP": "assets/img/hero/kauhane-house-7-22-p",
+  "vP": "d566fc3d",
+  "wP": 1600,
+  "hP": 2844,
+  "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs. Kauhane House, Playa Grande, Guanacaste. A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
+ },
+ {
+  "src": "assets/img/projects/kauhane-house/9",
+  "v": "5bbdb279",
+  "w": 1600,
+  "h": 1067,
+  "alt": "A woman by the pool, seen from the living room through the glass doors, under the upper floor. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
+ },
+ {
+  "src": "assets/img/projects/papagayo-404/8",
+  "v": "5d32b6c2",
+  "w": 1448,
+  "h": 1086,
+  "alt": "White cubic house raised on slender steel columns above a pool deck. Papagayo 404, Península Papagayo, Guanacaste",
   "name": "Papagayo 404",
   "place": "Península Papagayo",
   "href": "projects/papagayo-404/"

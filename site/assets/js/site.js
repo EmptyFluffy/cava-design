@@ -454,10 +454,13 @@
     let shown = withSea ? seaVid : heroImg, at = 0;
     // only while the hero is on screen and the tab is visible
     const away = () => document.hidden || window.scrollY > window.innerHeight * 0.9;
+    // a diptych has a stacked version (srcP) for a portrait screen
+    const portrait = window.matchMedia('(max-aspect-ratio: 1/1)');
     const load = (img, sl) => {
-      img.srcset = `${sl.src}-800.webp?v=${sl.v} 800w, ${sl.src}-1600.webp?v=${sl.v} 1600w`;
-      img.src = `${sl.src}-1600.webp?v=${sl.v}`;
-      img.width = sl.w; img.height = sl.h; img.alt = sl.alt;
+      const p = sl.srcP && portrait.matches, src = p ? sl.srcP : sl.src, v = p ? sl.vP : sl.v;
+      img.srcset = `${src}-800.webp?v=${v} 800w, ${src}-1600.webp?v=${v} 1600w`;
+      img.src = `${src}-1600.webp?v=${v}`;
+      img.width = p ? sl.wP : sl.w; img.height = p ? sl.hP : sl.h; img.alt = sl.alt;
     };
     const row = (sl) => { nameEl.textContent = sl.name; placeEl.textContent = sl.place; linkEl.href = sl.href; };
     const show = (el) => {
