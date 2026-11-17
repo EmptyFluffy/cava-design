@@ -83,7 +83,12 @@
         { transform: 'none', filter: 'none' },
       ], { duration: 1800, delay: base, easing: EASE });
       [...hero.querySelectorAll('.nav__brand, .nav__links, .nav__acts > *')].forEach((el, i) => rise(el, base + 100 + i * 62.5));
-      [...hero.querySelectorAll('.hero__row > *')].forEach((el, i) => rise(el, base + 250 + i * 125));
+      // the project row rises without the clip-path mask: Chrome (Nov 2026) crashed the tab ("out of memory")
+      // when the row, masked once by the entrance, turned visible again as the sea gave way to a photo
+      [...hero.querySelectorAll('.hero__row > *')].forEach((el, i) => el.animate([
+        { transform: 'translateY(110%)', opacity: 0 },
+        { transform: 'none', opacity: 1 },
+      ], { duration: 1000, delay: base + 250 + i * 125, easing: EASE, fill: 'backwards' }));
       const t = hero.querySelector('.hero__title');
       if (t) riseLines(t, base + 350);
       const s = hero.querySelector('.hero__scroll');
