@@ -422,6 +422,16 @@ window.CAVA_HERO = [
   "href": "projects/papagayo-404/"
  },
  {
+  "src": "assets/img/projects/kauhane-house/1",
+  "v": "a2d15289",
+  "w": 1600,
+  "h": 1067,
+  "alt": "The house from the garden: a white two-storey volume under timber eaves, a slatted wood screen and the garage door among tropical plants. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
+ },
+ {
   "src": "assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "w": 1600,
@@ -442,26 +452,6 @@ window.CAVA_HERO = [
   "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/casa-alcaravan/1",
-  "v": "4422641d",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "projects/casa-alcaravan/"
- },
- {
-  "src": "assets/img/projects/casa-alcaravan/3",
-  "v": "a581f729",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "projects/casa-alcaravan/"
- },
- {
   "src": "assets/img/projects/kauhane-house/2",
   "v": "cbe32f35",
   "w": 1600,
@@ -472,14 +462,14 @@ window.CAVA_HERO = [
   "href": "projects/kauhane-house/"
  },
  {
-  "src": "assets/img/projects/military-museum/1",
-  "v": "7326cdd7",
-  "w": 1600,
-  "h": 900,
-  "alt": "Aerial view of a tensile canopy on a headland above a bay with islands. Military Museum, Isola della Maddalena, Sardinia, Italy",
-  "name": "Military Museum",
-  "place": "Isola della Maddalena",
-  "href": "projects/military-museum/"
+  "src": "assets/img/projects/casa-alcaravan/1",
+  "v": "4422641d",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Single-storey house with a timber facade and a long low roof behind a dry garden with a young tree. Casa Alcaraván, Playa Grande, Guanacaste",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "projects/casa-alcaravan/"
  },
  {
   "src": "assets/img/projects/papagayo-404/2",
@@ -492,14 +482,24 @@ window.CAVA_HERO = [
   "href": "projects/papagayo-404/"
  },
  {
-  "src": "assets/img/projects/negra-mixed-use/1",
-  "v": "beb76a2a",
+  "src": "assets/img/projects/casa-alcaravan/3",
+  "v": "a581f729",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Kitchen and dining room under a timber ceiling, with a solid wood island and high louvred windows. Casa Alcaraván, Playa Grande, Guanacaste",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "projects/casa-alcaravan/"
+ },
+ {
+  "src": "assets/img/projects/kauhane-house/5",
+  "v": "0e1fc58c",
   "w": 1600,
-  "h": 900,
-  "alt": "Two-storey timber and glass building with lit interiors at dusk. Negra Mixed Use, Playa Negra, Guanacaste",
-  "name": "Negra Mixed Use",
-  "place": "Playa Negra",
-  "href": "projects/negra-mixed-use/"
+  "h": 1170,
+  "alt": "The living room seen through open glass doors, with a wooden sofa under a timber ceiling. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "projects/kauhane-house/"
  },
  {
   "src": "assets/img/projects/papagayo-404/3",

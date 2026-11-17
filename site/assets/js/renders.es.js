@@ -422,6 +422,16 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
+  "src": "../assets/img/projects/kauhane-house/1",
+  "v": "a2d15289",
+  "w": 1600,
+  "h": 1067,
+  "alt": "La casa desde el jardín: un volumen blanco de dos pisos bajo aleros de madera, una celosía de reglas de madera y el portón del garaje entre plantas tropicales. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
+ },
+ {
   "src": "../assets/img/projects/rancho-cartagena/1",
   "v": "49e63442",
   "w": 1600,
@@ -442,26 +452,6 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
-  "src": "../assets/img/projects/casa-alcaravan/1",
-  "v": "4422641d",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "proyectos/casa-alcaravan/"
- },
- {
-  "src": "../assets/img/projects/casa-alcaravan/3",
-  "v": "a581f729",
-  "w": 1536,
-  "h": 1024,
-  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía. Casa Alcaraván, Playa Grande, Guanacaste",
-  "name": "Casa Alcaraván",
-  "place": "Playa Grande",
-  "href": "proyectos/casa-alcaravan/"
- },
- {
   "src": "../assets/img/projects/kauhane-house/2",
   "v": "cbe32f35",
   "w": 1600,
@@ -472,14 +462,14 @@ window.CAVA_HERO = [
   "href": "proyectos/kauhane-house/"
  },
  {
-  "src": "../assets/img/projects/military-museum/1",
-  "v": "7326cdd7",
-  "w": 1600,
-  "h": 900,
-  "alt": "Vista aérea de una cubierta tensada sobre un promontorio frente a una bahía con islas. Military Museum, Isola della Maddalena, Cerdeña, Italia",
-  "name": "Military Museum",
-  "place": "Isola della Maddalena",
-  "href": "proyectos/military-museum/"
+  "src": "../assets/img/projects/casa-alcaravan/1",
+  "v": "4422641d",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Casa de un piso con fachada de madera y un techo largo y bajo, detrás de un jardín seco con un árbol joven. Casa Alcaraván, Playa Grande, Guanacaste",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "proyectos/casa-alcaravan/"
  },
  {
   "src": "../assets/img/projects/papagayo-404/2",
@@ -492,14 +482,24 @@ window.CAVA_HERO = [
   "href": "proyectos/papagayo-404/"
  },
  {
-  "src": "../assets/img/projects/negra-mixed-use/1",
-  "v": "beb76a2a",
+  "src": "../assets/img/projects/casa-alcaravan/3",
+  "v": "a581f729",
+  "w": 1536,
+  "h": 1024,
+  "alt": "Cocina y comedor bajo un cielo de madera, con una isla de madera maciza y ventanas altas de celosía. Casa Alcaraván, Playa Grande, Guanacaste",
+  "name": "Casa Alcaraván",
+  "place": "Playa Grande",
+  "href": "proyectos/casa-alcaravan/"
+ },
+ {
+  "src": "../assets/img/projects/kauhane-house/5",
+  "v": "0e1fc58c",
   "w": 1600,
-  "h": 900,
-  "alt": "Edificio de dos pisos en madera y vidrio con los interiores encendidos al atardecer. Negra Mixed Use, Playa Negra, Guanacaste",
-  "name": "Negra Mixed Use",
-  "place": "Playa Negra",
-  "href": "proyectos/negra-mixed-use/"
+  "h": 1170,
+  "alt": "La sala vista a través de las puertas de vidrio abiertas, con un sofá de madera bajo un cielo raso de madera. Kauhane House, Playa Grande, Guanacaste",
+  "name": "Kauhane House",
+  "place": "Playa Grande",
+  "href": "proyectos/kauhane-house/"
  },
  {
   "src": "../assets/img/projects/papagayo-404/3",
