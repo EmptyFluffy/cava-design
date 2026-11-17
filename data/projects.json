@@ -6,11 +6,11 @@
     "kauhane-house/1",
     "rancho-cartagena/1",
     "papagayo-404/6",
-    "kauhane-house/8",
+    "kauhane-house/6",
     "casa-alcaravan/1",
     "papagayo-404/2",
     "casa-alcaravan/3",
-    "kauhane-house/15",
+    "kauhane-house/13",
     "papagayo-404/3"
   ],
   "projects": [
@@ -362,24 +362,14 @@
           "alt_es": "El lado de llegada: una celosía y un muro blanco bajo el alero de madera, sobre un jardín de grava"
         },
         {
-          "file": "Fotos/DSCF3500.jpg",
-          "alt": "Flowering shrubs in front of a slatted wood screen, under the timber eaves",
-          "alt_es": "Arbustos en flor frente a una celosía de madera, bajo los aleros de madera"
+          "file": "Fotos/DSCF3575.jpg",
+          "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck",
+          "alt_es": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza"
         },
         {
-          "file": "Fotos/DSCF3581.jpg",
-          "alt": "A corner of the house: a slatted screen, a white wall and the timber eave, with trees behind",
-          "alt_es": "Una esquina de la casa: una celosía, un muro blanco y el alero de madera, con árboles detrás"
-        },
-        {
-          "file": "Fotos/DSCF3576.jpg",
-          "alt": "The timber underside of the upper floor's eave against the sky, over a white wall",
-          "alt_es": "La cara inferior de madera del alero de la planta alta contra el cielo, sobre un muro blanco"
-        },
-        {
-          "file": "Fotos/DSCF3578.jpg",
-          "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs",
-          "alt_es": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor"
+          "file": "Fotos/DSCF3580.jpg",
+          "alt": "Timber slats of the pergola against the sky",
+          "alt_es": "Las reglas de madera de la pérgola contra el cielo"
         },
         {
           "file": "Fotos/DSCF3577.jpg",
@@ -394,14 +384,14 @@
           "alt_es": "La piscina junto a la terraza techada, bajo la planta alta y su balcón, con un muro enchapado en piedra y piso de pizarra"
         },
         {
-          "file": "Fotos/DSCF3575.jpg",
-          "alt": "The edge of the pool in sun and shade, with the shadow of a column across the deck",
-          "alt_es": "El borde de la piscina entre sol y sombra, con la sombra de una columna sobre la terraza"
+          "file": "Fotos/DSCF3578.jpg",
+          "alt": "The timber eave of the upper floor over a white wall and a slatted screen, with flowering shrubs",
+          "alt_es": "El alero de madera de la planta alta sobre un muro blanco y una celosía, con arbustos en flor"
         },
         {
-          "file": "Fotos/DSCF3548.jpg",
-          "alt": "The edge of the pool and the stone deck from above, in sun and shade",
-          "alt_es": "El borde de la piscina y la terraza de piedra vistos desde arriba, entre sol y sombra"
+          "file": "Fotos/DSCF3541.jpg",
+          "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace",
+          "alt_es": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza"
         },
         {
           "file": "Fotos/DSCF3561.jpg",
@@ -410,9 +400,9 @@
           "alt_es": "Una mujer junto a la piscina, vista desde la sala a través de las puertas de vidrio, bajo la planta alta"
         },
         {
-          "file": "Fotos/DSCF3541.jpg",
-          "alt": "A lounger on dark stone paving in sun and shade, beside the steps to the terrace",
-          "alt_es": "Una tumbona sobre piso de piedra oscura entre sol y sombra, junto a las gradas de la terraza"
+          "file": "Fotos/DSCF3548.jpg",
+          "alt": "The edge of the pool and the stone deck from above, in sun and shade",
+          "alt_es": "El borde de la piscina y la terraza de piedra vistos desde arriba, entre sol y sombra"
         },
         {
           "file": "Fotos/DSCF3585.jpg",
@@ -437,9 +427,9 @@
           "alt_es": "La sala a través de las puertas corredizas de vidrio, con el mueble y el sofá de madera"
         },
         {
-          "file": "Fotos/DSCF3580.jpg",
-          "alt": "Timber slats of the pergola against the sky",
-          "alt_es": "Las reglas de madera de la pérgola contra el cielo"
+          "file": "Fotos/DSCF3576.jpg",
+          "alt": "The timber underside of the upper floor's eave against the sky, over a white wall",
+          "alt_es": "La cara inferior de madera del alero de la planta alta contra el cielo, sobre un muro blanco"
         },
         {
           "file": "Fotos/DSCF3508.jpg",
@@ -459,15 +449,25 @@
           "alt_es": "Una tina exenta bajo una ventana alargada, junto a una jardinera interior"
         },
         {
-          "file": "Fotos/DSCF3498.jpg",
-          "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind",
-          "alt_es": "Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás"
+          "file": "Fotos/DSCF3500.jpg",
+          "alt": "Flowering shrubs in front of a slatted wood screen, under the timber eaves",
+          "alt_es": "Arbustos en flor frente a una celosía de madera, bajo los aleros de madera"
         },
         {
           "file": "Fotos/DSCF3591.jpg",
           "wide": true,
           "alt": "The house under the branches of a tree, with a gravel and stone garden in front",
           "alt_es": "La casa bajo las ramas de un árbol, con un jardín de grava y piedras al frente"
+        },
+        {
+          "file": "Fotos/DSCF3581.jpg",
+          "alt": "A corner of the house: a slatted screen, a white wall and the timber eave, with trees behind",
+          "alt_es": "Una esquina de la casa: una celosía, un muro blanco y el alero de madera, con árboles detrás"
+        },
+        {
+          "file": "Fotos/DSCF3498.jpg",
+          "alt": "A leather chair on the upper balcony, framed by the bedroom door, with the treetops behind",
+          "alt_es": "Una silla de cuero en el balcón de arriba, enmarcada por la puerta del dormitorio, con las copas de los árboles detrás"
         },
         {
           "file": "Fotos/DSCF3538.jpg",
