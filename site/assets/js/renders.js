@@ -556,6 +556,16 @@ window.CAVA_HERO = [
   "href": "projects/kauhane-house/"
  },
  {
+  "src": "assets/img/projects/papagayo-404/7",
+  "v": "0b44a822",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Double-height living room with a timber wall, open to the garden through full-height glass. Papagayo 404, Península Papagayo, Guanacaste",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "projects/papagayo-404/"
+ },
+ {
   "src": "assets/img/projects/kauhane-house/9",
   "v": "5bbdb279",
   "w": 1600,

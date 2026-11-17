@@ -556,6 +556,16 @@ window.CAVA_HERO = [
   "href": "proyectos/kauhane-house/"
  },
  {
+  "src": "../assets/img/projects/papagayo-404/7",
+  "v": "0b44a822",
+  "w": 1484,
+  "h": 1060,
+  "alt": "Sala de doble altura con una pared de madera, abierta al jardín por ventanales de piso a techo. Papagayo 404, Península Papagayo, Guanacaste",
+  "name": "Papagayo 404",
+  "place": "Península Papagayo",
+  "href": "proyectos/papagayo-404/"
+ },
+ {
   "src": "../assets/img/projects/kauhane-house/9",
   "v": "5bbdb279",
   "w": 1600,
